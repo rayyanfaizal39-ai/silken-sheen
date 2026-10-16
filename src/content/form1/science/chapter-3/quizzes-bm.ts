@@ -10,13 +10,14 @@ export const scienceF1C3QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     question: "Apakah maksud homeostasis?",
     options: [
-      "Penghasilan tenaga oleh badan",
-      "Pengekalan persekitaran dalaman badan yang stabil",
-      "Proses pembiakan organisma",
-      "Pergerakan badan terhadap rangsangan",
+      "Pelarasan keadaan dalaman mengikut setiap perubahan luar",
+      "Pengekalan persekitaran dalaman yang stabil",
+      "Pengekalan persekitaran luar yang tidak berubah",
+      "Pencegahan semua perubahan dalam badan",
     ],
     answerIndex: 1,
-    explanation: "Homeostasis ialah proses mengekalkan persekitaran dalaman badan supaya seimbang dan stabil.",
+    explanation:
+      "Homeostasis ialah proses mengekalkan persekitaran dalaman badan supaya seimbang dan stabil.",
   },
   {
     id: "sci-f1-c3-bm-q2",
@@ -33,7 +34,8 @@ export const scienceF1C3QuizzesBM: QuizQuestion[] = [
       "Menghalang semua perubahan dalaman termasuk perubahan yang diperlukan semasa aktiviti fizikal",
     ],
     answerIndex: 1,
-    explanation: "Homeostasis mengekalkan keadaan dalaman yang sesuai supaya sel, enzim dan proses metabolisme dapat berfungsi dengan cekap.",
+    explanation:
+      "Homeostasis mengekalkan keadaan dalaman yang sesuai supaya sel, enzim dan proses metabolisme dapat berfungsi dengan cekap.",
   },
   {
     id: "sci-f1-c3-bm-q3",
@@ -43,9 +45,15 @@ export const scienceF1C3QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Easy",
     question: "Apakah contoh persekitaran dalaman badan?",
-    options: ["Warna pakaian", "Suhu badan dan kandungan air", "Jenis makanan di kantin", "Saiz kasut"],
+    options: [
+      "Suhu dan kelembapan udara di sekeliling badan",
+      "Suhu badan dan kandungan air",
+      "Suhu bilik dan suhu badan",
+      "Kelembapan udara dan kandungan air badan",
+    ],
     answerIndex: 1,
-    explanation: "Persekitaran dalaman termasuk keadaan dalam badan seperti suhu badan dan kandungan air.",
+    explanation:
+      "Persekitaran dalaman termasuk keadaan dalam badan seperti suhu badan dan kandungan air.",
   },
   {
     id: "sci-f1-c3-bm-q4",
@@ -56,13 +64,14 @@ export const scienceF1C3QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     question: "Apakah maksud keadaan stabil dan seimbang dalam homeostasis?",
     options: [
-      "Keadaan badan berubah tanpa kawalan",
-      "Keadaan dalaman badan dikekalkan dalam julat normal",
-      "Organisma berhenti bergerak",
-      "Badan tidak menghasilkan haba",
+      "Keadaan dalaman sentiasa mengikut keadaan luar",
+      "Keadaan dalaman dikekalkan dalam julat normal",
+      "Keadaan dalaman tidak pernah berubah semasa aktiviti",
+      "Keadaan dalaman berubah tanpa gerak balas pembetulan",
     ],
     answerIndex: 1,
-    explanation: "Keadaan stabil bermaksud keadaan dalaman badan dikawal supaya kekal dalam julat yang sesuai.",
+    explanation:
+      "Keadaan stabil bermaksud keadaan dalaman badan dikawal supaya kekal dalam julat yang sesuai.",
   },
   {
     id: "sci-f1-c3-bm-q5",
@@ -74,7 +83,8 @@ export const scienceF1C3QuizzesBM: QuizQuestion[] = [
     question: "Organ manakah bertindak sebagai pusat kawalan dalam homeostasis manusia?",
     options: ["Perut", "Otak", "Paru-paru", "Kulit"],
     answerIndex: 1,
-    explanation: "Otak bertindak sebagai pusat kawalan yang mengesan perubahan dan menghantar arahan pembetulan.",
+    explanation:
+      "Otak bertindak sebagai pusat kawalan yang mengesan perubahan dan menghantar arahan pembetulan.",
   },
   {
     id: "sci-f1-c3-bm-q6",
@@ -96,9 +106,15 @@ export const scienceF1C3QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Easy",
     question: "Apakah yang berlaku kepada salur darah kulit dalam persekitaran panas?",
-    options: ["Salur darah mengembang", "Salur darah mengecut", "Salur darah tertutup", "Salur darah menjadi keras"],
+    options: [
+      "Salur darah berhampiran kulit mengembang, meningkatkan kehilangan haba",
+      "Salur darah berhampiran kulit mengecut, meningkatkan kehilangan haba",
+      "Salur darah berhampiran kulit mengembang, mengurangkan kehilangan haba",
+      "Salur darah berhampiran kulit mengecut, mengurangkan kehilangan haba",
+    ],
     answerIndex: 0,
-    explanation: "Dalam persekitaran panas, salur darah mengembang supaya lebih banyak haba dapat dibebaskan.",
+    explanation:
+      "Dalam persekitaran panas, salur darah mengembang supaya lebih banyak haba dapat dibebaskan.",
   },
   {
     id: "sci-f1-c3-bm-q8",
@@ -109,12 +125,12 @@ export const scienceF1C3QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     question: "Apakah fungsi peluh dalam persekitaran panas?",
     options: [
-      "Meningkatkan suhu badan",
-      "Menyejukkan badan apabila peluh mengewap",
-      "Menghasilkan air kencing",
-      "Menutup stoma",
+      "Penyejatan peluh menyingkirkan haba daripada badan",
+      "Penyejatan peluh membekalkan haba kepada badan",
+      "Peluh memerangkap lapisan udara penebat di atas kulit",
+      "Peluh menghalang haba daripada meninggalkan kulit",
     ],
-    answerIndex: 1,
+    answerIndex: 0,
     explanation: "Peluh mengewap dari kulit dan membantu membebaskan haba daripada badan.",
   },
   {
@@ -125,9 +141,15 @@ export const scienceF1C3QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Easy",
     question: "Apakah keadaan bulu roma manusia dalam persekitaran panas?",
-    options: ["Bulu roma menegak", "Bulu roma condong pada kulit", "Bulu roma menjadi lebih panjang", "Bulu roma menghasilkan peluh"],
-    answerIndex: 1,
-    explanation: "Dalam persekitaran panas, bulu roma condong pada kulit untuk mengurangkan perangkap haba.",
+    options: [
+      "Bulu roma condong, mengurangkan lapisan udara terperangkap",
+      "Bulu roma menegak, mengurangkan lapisan udara terperangkap",
+      "Bulu roma condong, menambahkan lapisan udara terperangkap",
+      "Bulu roma menegak, menambahkan lapisan udara terperangkap",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Dalam persekitaran panas, bulu roma condong pada kulit untuk mengurangkan perangkap haba.",
   },
   {
     id: "sci-f1-c3-bm-q10",
@@ -137,9 +159,15 @@ export const scienceF1C3QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Easy",
     question: "Apakah yang berlaku kepada salur darah kulit dalam persekitaran sejuk?",
-    options: ["Salur darah mengembang", "Salur darah mengecut", "Salur darah pecah", "Salur darah menghasilkan peluh"],
-    answerIndex: 1,
-    explanation: "Dalam persekitaran sejuk, salur darah mengecut untuk mengurangkan kehilangan haba.",
+    options: [
+      "Salur darah berhampiran kulit mengecut, mengurangkan kehilangan haba",
+      "Salur darah berhampiran kulit mengembang, mengurangkan kehilangan haba",
+      "Salur darah berhampiran kulit mengecut, meningkatkan kehilangan haba",
+      "Salur darah berhampiran kulit mengembang, meningkatkan kehilangan haba",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Dalam persekitaran sejuk, salur darah mengecut untuk mengurangkan kehilangan haba.",
   },
   {
     id: "sci-f1-c3-bm-q11",
@@ -156,7 +184,8 @@ export const scienceF1C3QuizzesBM: QuizQuestion[] = [
       "Pengecutan dan pengenduran otot meningkatkan kehilangan haba melalui kulit",
     ],
     answerIndex: 2,
-    explanation: "Menggigil melibatkan pengecutan dan pengenduran otot rangka yang menghasilkan haba dan membantu mengembalikan suhu badan ke julat normal.",
+    explanation:
+      "Menggigil melibatkan pengecutan dan pengenduran otot rangka yang menghasilkan haba dan membantu mengembalikan suhu badan ke julat normal.",
   },
   {
     id: "sci-f1-c3-bm-q12",
@@ -168,7 +197,8 @@ export const scienceF1C3QuizzesBM: QuizQuestion[] = [
     question: "Organ manakah mengawal kandungan air dengan menghasilkan air kencing?",
     options: ["Ginjal", "Jantung", "Peparu", "Usus kecil"],
     answerIndex: 0,
-    explanation: "Ginjal mengawal kandungan air badan dengan menghasilkan lebih atau kurang air kencing.",
+    explanation:
+      "Ginjal mengawal kandungan air badan dengan menghasilkan lebih atau kurang air kencing.",
   },
   {
     id: "sci-f1-c3-bm-q13",
@@ -177,15 +207,17 @@ export const scienceF1C3QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 3",
     lang: "bm",
     difficulty: "Medium",
-    question: "Selepas seseorang minum air dalam kuantiti yang banyak, apakah yang biasanya berlaku?",
+    question:
+      "Selepas seseorang minum air dalam kuantiti yang banyak, apakah yang biasanya berlaku?",
     options: [
-      "Kurang air disingkirkan melalui air kencing supaya kandungan air badan terus meningkat",
-      "Lebih banyak air berlebihan disingkirkan melalui air kencing",
-      "Lebihan air disimpan sepenuhnya dalam badan tanpa perubahan penghasilan air kencing",
-      "Lebihan air disingkirkan terutamanya melalui peluh walaupun badan tidak kepanasan",
+      "Lebih banyak air kencing dihasilkan dan kurang air dikekalkan",
+      "Kurang air kencing dihasilkan dan lebih banyak air dikekalkan",
+      "Lebih banyak air kencing dihasilkan dan lebih banyak air dikekalkan",
+      "Kurang air kencing dihasilkan dan kurang air dikekalkan",
     ],
-    answerIndex: 1,
-    explanation: "Badan mengawal kandungan air untuk mengekalkan keseimbangan. Air yang berlebihan disingkirkan melalui air kencing.",
+    answerIndex: 0,
+    explanation:
+      "Badan mengawal kandungan air untuk mengekalkan keseimbangan. Air yang berlebihan disingkirkan melalui air kencing.",
   },
   {
     id: "sci-f1-c3-bm-q14",
@@ -196,13 +228,14 @@ export const scienceF1C3QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     question: "Apakah transpirasi?",
     options: [
-      "Kehilangan wap air daripada tumbuhan melalui stoma",
-      "Penghasilan makanan oleh akar",
-      "Pernafasan haiwan melalui spirakel",
-      "Penghasilan peluh oleh kulit",
+      "Kehilangan wap air melalui stoma",
+      "Penyerapan air melalui rerambut akar",
+      "Pengangkutan air ke atas melalui batang",
+      "Penggunaan air untuk menghasilkan makanan semasa fotosintesis",
     ],
     answerIndex: 0,
-    explanation: "Transpirasi ialah kehilangan air dalam bentuk wap air daripada tumbuhan, terutamanya melalui stoma.",
+    explanation:
+      "Transpirasi ialah kehilangan air dalam bentuk wap air daripada tumbuhan, terutamanya melalui stoma.",
   },
   {
     id: "sci-f1-c3-bm-q15",
@@ -212,7 +245,12 @@ export const scienceF1C3QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Easy",
     question: "Apakah fungsi sel pengawal?",
-    options: ["Mengawal pembukaan dan penutupan stoma", "Menghasilkan peluh", "Menghasilkan air kencing", "Mengawal bulu roma manusia"],
+    options: [
+      "Mengawal pembukaan dan penutupan stoma",
+      "Menyerap air dan garam mineral dari tanah",
+      "Mengangkut air ke atas melalui batang",
+      "Menyokong daun dengan membentuk dinding sel yang tegar",
+    ],
     answerIndex: 0,
     explanation: "Sel pengawal mengawal sama ada stoma terbuka atau tertutup.",
   },
@@ -225,13 +263,14 @@ export const scienceF1C3QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     question: "Apakah mekanisme pembetulan dalam homeostasis?",
     options: [
-      "Tindak balas yang mengembalikan keadaan badan kepada normal",
-      "Proses yang menjadikan badan lebih panas sahaja",
-      "Proses menghasilkan makanan dalam daun",
-      "Perubahan yang tidak dapat dikawal oleh badan",
+      "Mengembalikan keadaan dalaman ke arah aras normal",
+      "Mengekalkan keadaan dalaman yang berubah pada aras baharunya",
+      "Meningkatkan perbezaan daripada aras dalaman normal",
+      "Menjadikan keadaan dalaman mengikut persekitaran luar",
     ],
     answerIndex: 0,
-    explanation: "Mekanisme pembetulan ialah tindak balas badan untuk mengembalikan keadaan dalaman kepada julat normal.",
+    explanation:
+      "Mekanisme pembetulan ialah tindak balas badan untuk mengembalikan keadaan dalaman kepada julat normal.",
   },
   {
     id: "sci-f1-c3-bm-q17",
@@ -240,7 +279,8 @@ export const scienceF1C3QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 3",
     lang: "bm",
     difficulty: "Medium",
-    question: "Seorang murid berada di padang pada tengah hari yang panas. Apakah gerak balas badan yang membantu menurunkan suhu badannya?",
+    question:
+      "Seorang murid berada di padang pada tengah hari yang panas. Apakah gerak balas badan yang membantu menurunkan suhu badannya?",
     options: [
       "Salur darah mengecut dan murid menggigil",
       "Penghasilan peluh meningkat dan salur darah mengembang",
@@ -248,7 +288,8 @@ export const scienceF1C3QuizzesBM: QuizQuestion[] = [
       "Salur darah mengecut dan bulu roma berdiri",
     ],
     answerIndex: 1,
-    explanation: "Penyejatan peluh menyingkirkan haba, manakala pengembangan salur darah meningkatkan kehilangan haba melalui kulit.",
+    explanation:
+      "Penyejatan peluh menyingkirkan haba, manakala pengembangan salur darah meningkatkan kehilangan haba melalui kulit.",
   },
   {
     id: "sci-f1-c3-bm-q18",
@@ -259,13 +300,14 @@ export const scienceF1C3QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     question: "Antara berikut, yang manakah tindak balas badan dalam persekitaran sejuk?",
     options: [
-      "Salur darah mengembang dan banyak peluh dihasilkan",
-      "Bulu roma condong pada kulit dan metabolisme menurun",
-      "Salur darah mengecut, bulu roma menegak dan menggigil",
-      "Stoma terbuka dan transpirasi meningkat",
+      "Menggigil, salur darah kulit mengecut dan bulu roma menegak",
+      "Menggigil, salur darah kulit mengembang dan bulu roma condong",
+      "Berpeluh, salur darah kulit mengecut dan bulu roma condong",
+      "Berpeluh, salur darah kulit mengembang dan bulu roma menegak",
     ],
-    answerIndex: 2,
-    explanation: "Dalam cuaca sejuk, badan mengurangkan kehilangan haba melalui pengecutan salur darah, bulu roma menegak dan menggigil.",
+    answerIndex: 0,
+    explanation:
+      "Menggigil menghasilkan haba melalui aktiviti otot. Salur darah kulit yang mengecut dan udara yang terperangkap oleh bulu roma menegak mengurangkan kehilangan haba.",
   },
   {
     id: "sci-f1-c3-bm-q19",
@@ -276,13 +318,14 @@ export const scienceF1C3QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     question: "Apakah hubungan antara metabolisme dan suhu sejuk dalam manusia?",
     options: [
-      "Metabolisme meningkat untuk menghasilkan lebih haba",
-      "Metabolisme berhenti sepenuhnya",
-      "Metabolisme menurun untuk menyejukkan badan",
-      "Metabolisme hanya berlaku dalam tumbuhan",
+      "Kadar metabolisme meningkat, menghasilkan lebih banyak haba",
+      "Kadar metabolisme menurun, menghasilkan lebih banyak haba",
+      "Kadar metabolisme meningkat, menghasilkan kurang haba",
+      "Kadar metabolisme menurun, menghasilkan kurang haba",
     ],
     answerIndex: 0,
-    explanation: "Dalam keadaan sejuk, metabolisme meningkat supaya badan dapat menghasilkan lebih banyak haba.",
+    explanation:
+      "Dalam keadaan sejuk, metabolisme meningkat supaya badan dapat menghasilkan lebih banyak haba.",
   },
   {
     id: "sci-f1-c3-bm-q20",
@@ -293,13 +336,14 @@ export const scienceF1C3QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     question: "Apakah yang berlaku apabila kandungan air badan rendah selepas banyak berpeluh?",
     options: [
-      "Ginjal menghasilkan lebih banyak air kencing",
-      "Ginjal menghasilkan kurang air kencing dan badan berasa dahaga",
-      "Salur darah mengembang untuk membuang air",
-      "Stoma terbuka pada kulit manusia",
+      "Kurang air kencing dihasilkan dan rasa dahaga mendorong minum",
+      "Lebih banyak air kencing dihasilkan dan rasa dahaga mendorong minum",
+      "Kurang air kencing dihasilkan dan rasa dahaga berkurang",
+      "Lebih banyak air kencing dihasilkan dan rasa dahaga berkurang",
     ],
-    answerIndex: 1,
-    explanation: "Apabila air badan rendah, ginjal menghasilkan kurang air kencing dan rasa dahaga mendorong kita minum air.",
+    answerIndex: 0,
+    explanation:
+      "Apabila air badan rendah, ginjal menghasilkan kurang air kencing dan rasa dahaga mendorong kita minum air.",
   },
   {
     id: "sci-f1-c3-bm-q21",
@@ -309,7 +353,12 @@ export const scienceF1C3QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question: "Bagaimanakah kucing menyejukkan badannya dalam cuaca panas?",
-    options: ["Menjilat bulu", "Menutup spirakel", "Menghasilkan air kencing", "Menutup stoma"],
+    options: [
+      "Menjilat bulunya membolehkan bendalir tersejat dan menyingkirkan haba",
+      "Menjilat bulunya memerangkap lebih banyak udara dan mengurangkan kehilangan haba",
+      "Menegakkan bulunya membolehkan lebih banyak haba meninggalkan kulit",
+      "Menegakkan bulunya menurunkan suhu badan melalui penebatan",
+    ],
     answerIndex: 0,
     explanation: "Kucing menjilat bulu; air liur yang mengewap membantu menyejukkan badan.",
   },
@@ -320,7 +369,8 @@ export const scienceF1C3QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 3",
     lang: "bm",
     difficulty: "Medium",
-    question: "Seekor anjing menjelirkan lidah dan tercungap-cungap pada hari yang panas. Apakah tujuan gerak balas ini?",
+    question:
+      "Seekor anjing menjelirkan lidah dan tercungap-cungap pada hari yang panas. Apakah tujuan gerak balas ini?",
     options: [
       "Meningkatkan kehilangan haba daripada badan",
       "Meningkatkan penghasilan haba melalui pengecutan otot",
@@ -328,7 +378,8 @@ export const scienceF1C3QuizzesBM: QuizQuestion[] = [
       "Mengurangkan kehilangan haba dengan memperlahankan penyejatan air",
     ],
     answerIndex: 0,
-    explanation: "Tercungap-cungap meningkatkan kehilangan haba dan membantu anjing mengawal suhu badannya.",
+    explanation:
+      "Tercungap-cungap meningkatkan kehilangan haba dan membantu anjing mengawal suhu badannya.",
   },
   {
     id: "sci-f1-c3-bm-q23",
@@ -337,10 +388,16 @@ export const scienceF1C3QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 3",
     lang: "bm",
     difficulty: "Medium",
-    question: "Mengapakah siput menghasilkan lendir dan mencari tempat lembap?",
-    options: ["Untuk mengelakkan kehilangan air berlebihan", "Untuk meningkatkan suhu badan", "Untuk menghasilkan peluh", "Untuk menutup salur darah"],
+    question: "Gerak balas manakah membantu siput mengurangkan kehilangan air?",
+    options: [
+      "Menghasilkan bendalir dan mencari tempat lembap mengurangkan kehilangan air",
+      "Menghasilkan bendalir dan mencari tempat kering mengurangkan kehilangan air",
+      "Menghentikan penghasilan bendalir di tempat kering mengurangkan penyejatan",
+      "Mencari tempat terdedah menghalang air daripada tersejat",
+    ],
     answerIndex: 0,
-    explanation: "Lendir dan tempat lembap membantu siput mengekalkan air badan dan mengelakkan kekeringan.",
+    explanation:
+      "Siput kehilangan air melalui penyejatan daripada kulit. Siput menghasilkan bendalir dan mencari tempat lembap untuk mengurangkan kehilangan air.",
   },
   {
     id: "sci-f1-c3-bm-q24",
@@ -351,10 +408,10 @@ export const scienceF1C3QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     question: "Apakah fungsi lapisan lilin dan spirakel pada lebah?",
     options: [
-      "Mengurangkan kehilangan air",
-      "Menghasilkan lebih banyak peluh",
-      "Mengawal pembukaan stoma",
-      "Meningkatkan air kencing",
+      "Lapisan luar berlilin dan penutupan spirakel antara pernafasan mengurangkan kehilangan air",
+      "Lapisan luar berlilin dan spirakel yang sentiasa terbuka mengurangkan kehilangan air",
+      "Lapisan luar berlilin meningkatkan penyejatan manakala spirakel tertutup membebaskan air",
+      "Lapisan luar berlilin menyerap wap air manakala spirakel terbuka menghalang kehilangannya",
     ],
     answerIndex: 0,
     explanation: "Lapisan lilin dan penutupan spirakel membantu lebah mengurangkan kehilangan air.",
@@ -366,15 +423,17 @@ export const scienceF1C3QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 3",
     lang: "bm",
     difficulty: "Medium",
-    question: "Pada waktu siang dengan bekalan air yang mencukupi, apakah fungsi utama stoma yang biasanya terbuka?",
+    question:
+      "Pada waktu siang dengan bekalan air yang mencukupi, apakah fungsi utama stoma yang biasanya terbuka?",
     options: [
-      "Membenarkan pertukaran gas untuk fotosintesis serta transpirasi",
-      "Mengekalkan ruang udara daun tertutup supaya gas tidak bertukar",
-      "Mengangkut air dari akar melalui salur xilem ke seluruh tumbuhan",
-      "Menghasilkan glukosa secara langsung tanpa bantuan kloroplas",
+      "Pertukaran gas untuk fotosintesis boleh berlaku, tetapi wap air juga boleh keluar",
+      "Pertukaran gas untuk fotosintesis boleh berlaku, tetapi wap air tidak boleh keluar",
+      "Wap air boleh keluar, tetapi karbon dioksida tidak boleh masuk",
+      "Wap air tidak boleh keluar dan karbon dioksida tidak boleh masuk",
     ],
     answerIndex: 0,
-    explanation: "Stoma biasanya terbuka pada waktu siang apabila air mencukupi untuk membenarkan pertukaran gas dan kehilangan wap air melalui transpirasi. Stoma boleh tertutup semasa kekurangan air atau panas melampau.",
+    explanation:
+      "Stoma biasanya terbuka pada waktu siang apabila air mencukupi untuk membenarkan pertukaran gas dan kehilangan wap air melalui transpirasi. Stoma boleh tertutup semasa kekurangan air atau panas melampau.",
   },
   {
     id: "sci-f1-c3-bm-q26",
@@ -383,7 +442,8 @@ export const scienceF1C3QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 3",
     lang: "bm",
     difficulty: "Medium",
-    question: "Kadar denyutan nadi seorang murid meningkat selepas berjoging. Apakah sebab yang paling tepat?",
+    question:
+      "Kadar denyutan nadi seorang murid meningkat selepas berjoging. Apakah sebab yang paling tepat?",
     options: [
       "Sel badan memerlukan lebih banyak oksigen dan nutrien semasa aktiviti fizikal",
       "Sel badan memerlukan kurang oksigen kerana otot memperoleh tenaga daripada haba badan",
@@ -391,7 +451,8 @@ export const scienceF1C3QuizzesBM: QuizQuestion[] = [
       "Jantung perlu mengurangkan aliran darah ke otot supaya tenaga dapat dijimatkan",
     ],
     answerIndex: 0,
-    explanation: "Semasa aktiviti fizikal, sel otot memerlukan lebih banyak tenaga. Jantung berdenyut lebih cepat untuk meningkatkan bekalan oksigen dan bahan yang diperlukan oleh sel.",
+    explanation:
+      "Semasa aktiviti fizikal, sel otot memerlukan lebih banyak tenaga. Jantung berdenyut lebih cepat untuk meningkatkan bekalan oksigen dan bahan yang diperlukan oleh sel.",
   },
   {
     id: "sci-f1-c3-bm-q27",
@@ -400,7 +461,8 @@ export const scienceF1C3QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 3",
     lang: "bm",
     difficulty: "Medium",
-    question: "Pada cuaca yang sangat panas, stoma pada daun boleh tertutup. Mengapakah gerak balas ini penting?",
+    question:
+      "Pada cuaca yang sangat panas, stoma pada daun boleh tertutup. Mengapakah gerak balas ini penting?",
     options: [
       "Meningkatkan kehilangan air melalui transpirasi",
       "Mengurangkan kehilangan air melalui transpirasi",
@@ -408,7 +470,8 @@ export const scienceF1C3QuizzesBM: QuizQuestion[] = [
       "Meningkatkan kehilangan haba melalui penyejatan air",
     ],
     answerIndex: 1,
-    explanation: "Penutupan stoma mengurangkan kehilangan wap air melalui transpirasi semasa keadaan sangat panas.",
+    explanation:
+      "Penutupan stoma mengurangkan kehilangan wap air melalui transpirasi semasa keadaan sangat panas.",
   },
   {
     id: "sci-f1-c3-bm-q28",
@@ -416,16 +479,18 @@ export const scienceF1C3QuizzesBM: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 3",
     lang: "bm",
-    difficulty: "Hard",
-    question: "Seekor cicak bergerak jauh lebih perlahan pada suhu persekitaran 15°C berbanding 30°C. Apakah penjelasan yang paling tepat?",
+    difficulty: "Medium",
+    question:
+      "Seekor cicak bergerak jauh lebih perlahan pada suhu persekitaran 15°C berbanding 30°C. Apakah penjelasan yang paling tepat?",
     options: [
-      "Suhu badan cicak dipengaruhi persekitaran, lalu kadar metabolismenya menurun dalam keadaan sejuk",
-      "Suhu badan cicak kekal 37°C, tetapi suhu sejuk menghentikan semua tindak balas ototnya",
-      "Suhu sejuk menyebabkan cicak berpeluh lebih banyak untuk menurunkan suhu badan",
-      "Suhu sejuk meningkatkan kadar metabolismenya tetapi menghentikan penghasilan tenaga",
+      "Aktiviti dan kadar metabolismenya menurun apabila suhu badannya menurun",
+      "Aktiviti dan kadar metabolismenya meningkat apabila suhu badannya menurun",
+      "Aktivitinya menurun manakala kadar metabolismenya meningkat",
+      "Aktivitinya meningkat manakala kadar metabolismenya menurun",
     ],
     answerIndex: 0,
-    explanation: "Cicak ialah haiwan ektoterma. Suhu persekitaran yang lebih rendah menyebabkan suhu badan dan kadar tindak balas metabolismenya menurun.",
+    explanation:
+      "Dalam persekitaran sejuk, cicak bergerak lebih perlahan serta mempunyai kadar metabolisme dan suhu badan yang lebih rendah.",
   },
   {
     id: "sci-f1-c3-bm-q29",
@@ -433,16 +498,18 @@ export const scienceF1C3QuizzesBM: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 3",
     lang: "bm",
-    difficulty: "Hard",
-    question: "Jika salur darah tidak mengembang dalam cuaca panas, apakah kesan yang mungkin berlaku?",
+    difficulty: "Medium",
+    question:
+      "Jika salur darah tidak mengembang dalam cuaca panas, apakah kesan yang mungkin berlaku?",
     options: [
-      "Badan sukar membebaskan haba dan suhu badan boleh meningkat",
-      "Badan menghasilkan kurang haba dengan serta-merta",
-      "Ginjal berhenti berfungsi sepenuhnya",
-      "Tumbuhan kehilangan semua stomanya",
+      "Kurang haba hilang melalui kulit, maka badan lebih mudah menjadi terlalu panas",
+      "Lebih banyak haba hilang melalui kulit, maka badan lebih mudah menjadi terlalu panas",
+      "Kurang haba hilang melalui kulit, maka suhu badan menurun",
+      "Lebih banyak haba hilang melalui kulit, maka suhu badan menurun",
     ],
     answerIndex: 0,
-    explanation: "Pengembangan salur darah membantu membebaskan haba. Jika tidak berlaku, badan lebih sukar menyejukkan diri.",
+    explanation:
+      "Pengembangan salur darah membantu membebaskan haba. Jika tidak berlaku, badan lebih sukar menyejukkan diri.",
   },
   {
     id: "sci-f1-c3-bm-q30",
@@ -451,14 +518,16 @@ export const scienceF1C3QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 3",
     lang: "bm",
     difficulty: "Hard",
-    question: "Pilih pasangan organisma dan tindak balas homeostasis yang betul.",
+    question:
+      "Dua tumbuhan serupa menerima cahaya yang sama. P diletakkan dalam persekitaran panas tanpa air; Q diletakkan dalam persekitaran sejuk serta disiram. Lebih banyak stoma P tertutup. Bolehkah perbezaan ini dikaitkan hanya dengan suhu?",
     options: [
-      "Anjing - menutup stoma semasa panas",
-      "Lebah - menutup spirakel untuk mengurangkan kehilangan air",
-      "Manusia - menghasilkan lendir pada kulit untuk kekal lembap",
-      "Tumbuhan - menggigil untuk menjana haba",
+      "Tidak; bekalan air juga berbeza, maka bekalan air perlu dimalarkan",
+      "Ya; cahaya yang sama mengawal semua faktor yang mempengaruhi stoma",
+      "Ya; bekalan air tidak boleh mempengaruhi pembukaan stoma",
+      "Tidak; kedua-dua tumbuhan mesti menerima keamatan cahaya yang berbeza",
     ],
-    answerIndex: 1,
-    explanation: "Lebah boleh menutup spirakel dan mempunyai lapisan lilin untuk mengurangkan kehilangan air.",
+    answerIndex: 0,
+    explanation:
+      "Beberapa keadaan berbeza. Untuk menyiasat suhu, malarkan bekalan air dan cahaya; penutupan stoma mengurangkan kehilangan air.",
   },
 ];

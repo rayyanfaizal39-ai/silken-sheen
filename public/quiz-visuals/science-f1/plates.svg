@@ -4,4 +4,4 @@
 <line x1="175" y1="70" x2="274" y2="70" stroke="#0284C7" stroke-width="6" stroke-linecap="round"/><polygon points="274,70 253,58 253,82" fill="#0284C7"/>
 <line x1="462" y1="70" x2="363" y2="70" stroke="#0284C7" stroke-width="6" stroke-linecap="round"/><polygon points="363,70 384,58 384,82" fill="#0284C7"/>
 <path d="M306 99 L318 118 L307 142 L333 164 L323 206" fill="none" stroke="#EA580C" stroke-width="6"/>
-<text x="318" y="237" font-family="Arial,sans-serif" font-size="17" font-weight="600" fill="#475569" text-anchor="middle">Plate boundary / Sempadan plat</text></svg>
+<text x="318" y="237" font-family="Arial,sans-serif" font-size="26" font-weight="600" fill="#475569" text-anchor="middle">Plate boundary / Sempadan plat</text></svg>
