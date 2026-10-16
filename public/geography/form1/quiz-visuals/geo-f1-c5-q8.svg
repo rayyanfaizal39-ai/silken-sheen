@@ -7,7 +7,7 @@
   <circle cx="358" cy="180" r="151" fill="#dbd2a1" stroke="#f3e3b3" stroke-width="5"/>
   <circle cx="358" cy="180" r="139" fill="#c5653b"/>
   <circle cx="358" cy="180" r="61" fill="#f4ad40"/>
-  <circle cx="358" cy="180" r="24" fill="#f8db8c"/>
+  
   <path d="M205 80L145 54H87 M247 250L159 293H87 M360 180L539 180H631" fill="none" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="5 5"/>
   <g font-family="Arial,sans-serif" font-size="20" fill="#f8fafc"><text x="85" y="45">Lapisan luar</text><text x="87" y="319">Lapisan tengah</text><text x="557" y="167">Bahagian pusat</text></g>
   <text x="40" y="346" font-family="Arial,sans-serif" fill="#94a3b8" font-size="17">Keratan rentas skematik • tidak mengikut skala</text>
