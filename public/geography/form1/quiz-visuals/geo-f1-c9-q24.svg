@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" role="img" aria-labelledby="title description">
+  <title id="title">Tiga pola petempatan</title>
+  <desc id="description">Tiga panel X Y dan Z menunjukkan susunan rumah: X berbaris sepanjang alur sungai, Y berjauhan tidak teratur, Z tersusun rapat dalam satu kelompok. Nama pola tidak ditulis.</desc>
+  <defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#111f38"/><stop offset="1" stop-color="#091528"/></linearGradient></defs>
+  <rect x="2" y="2" width="716" height="356" rx="22" fill="url(#bg)" stroke="#35506d" stroke-width="3"/>
+  
+  <g fill="#12283c" stroke="#456584" stroke-width="2"><rect x="34" y="53" width="210" height="242" rx="12"/><rect x="255" y="53" width="210" height="242" rx="12"/><rect x="476" y="53" width="210" height="242" rx="12"/></g>
+  <g fill="#fbbf24" font-family="Arial,sans-serif" font-size="28" text-anchor="middle" font-weight="bold"><text x="139" y="37">X</text><text x="360" y="37">Y</text><text x="581" y="37">Z</text></g>
+  <path d="M70 97C130 126 150 204 203 252" stroke="#4c9ecb" stroke-width="21" fill="none"/>
+  <g fill="#94c4ae" stroke="#e4f1d7" stroke-width="2">
+    <rect x="100" y="104" width="28" height="24" rx="3"/><rect x="117" y="149" width="28" height="24" rx="3"/><rect x="150" y="183" width="28" height="24" rx="3"/><rect x="165" y="229" width="28" height="24" rx="3"/>
+    <rect x="284" y="88" width="28" height="24" rx="3"/><rect x="395" y="115" width="28" height="24" rx="3"/><rect x="331" y="207" width="28" height="24" rx="3"/><rect x="415" y="246" width="28" height="24" rx="3"/><rect x="282" y="260" width="28" height="24" rx="3"/>
+    <rect x="529" y="127" width="30" height="25" rx="3"/><rect x="574" y="127" width="30" height="25" rx="3"/><rect x="618" y="127" width="30" height="25" rx="3"/><rect x="529" y="174" width="30" height="25" rx="3"/><rect x="574" y="174" width="30" height="25" rx="3"/><rect x="618" y="174" width="30" height="25" rx="3"/>
+  </g>
+  <text x="37" y="337" font-family="Arial,sans-serif" font-size="19" fill="#cbd5e1">Kelaskan pola petempatan X, Y dan Z.</text>
+
+</svg>
