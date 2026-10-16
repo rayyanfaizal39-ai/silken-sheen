@@ -5769,9 +5769,9 @@ function FlashcardsPage() {
       (chapter && hasSelectedChapterFlashcards))
   );
 
-  // Form 2 Maths Chapters 1–6 use one combined deck per chapter with three review modes.
+  // Form 2 Maths Chapters 1–7 use one combined deck per chapter with three review modes.
   // Other subjects continue using their existing three-set selection.
-  const isMathF2C1Combined = subject === "math" && form === "Form 2" && (chapter === "Chapter 1" || chapter === "Chapter 2" || chapter === "Chapter 3" || chapter === "Chapter 4" || chapter === "Chapter 5" || chapter === "Chapter 6");
+  const isMathF2C1Combined = subject === "math" && form === "Form 2" && (chapter === "Chapter 1" || chapter === "Chapter 2" || chapter === "Chapter 3" || chapter === "Chapter 4" || chapter === "Chapter 5" || chapter === "Chapter 6" || chapter === "Chapter 7");
   const flashcardSets = useMemo(
     () => isMathF2C1Combined ? [rawPool, rawPool, rawPool] : splitFlashcardDeck(rawPool),
     [rawPool, isMathF2C1Combined],
