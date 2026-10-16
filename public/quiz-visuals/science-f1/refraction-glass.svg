@@ -1,9 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 250" role="img" aria-label="Light arriving at the air-glass boundary without an outgoing ray"><rect width="640" height="250" rx="20" fill="#F8FAFC"/><rect x="7" y="7" width="626" height="236" rx="15" fill="none" stroke="#CBD5E1" stroke-width="2"/>
-<rect x="84" y="143" width="473" height="86" rx="0" fill="#DBEAFE" stroke="none" stroke-width="3"/>
-<rect x="84" y="37" width="473" height="105" rx="0" fill="#F8FAFC" stroke="none" stroke-width="3"/>
-<line x1="84" y1="143" x2="557" y2="143" stroke="#0F172A" stroke-width="4" stroke-linecap="round"/>
-<line x1="320" y1="35" x2="320" y2="227" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" stroke-dasharray="8 8"/>
-<line x1="212" y1="45" x2="320" y2="143" stroke="#2563EB" stroke-width="6" stroke-linecap="round"/><polygon points="320,143 297,133 306,122" fill="#2563EB"/>
-<text x="480" y="89" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#334155" text-anchor="middle">AIR / UDARA</text>
-<text x="480" y="194" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#334155" text-anchor="middle">GLASS / KACA</text>
-<text x="320" y="239" font-family="Arial,sans-serif" font-size="15" font-weight="600" fill="#475569" text-anchor="middle">Normal</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300" role="img" aria-label="Incident ray at a labelled boundary; outgoing ray intentionally omitted"><rect width="640" height="300" rx="20" fill="#F8FAFC"/><g font-family="Arial,sans-serif" font-size="26" fill="#0F172A"><rect x="35" y="150" width="570" height="125" fill="#BAE6FD"/><line x1="35" y1="150" x2="605" y2="150" stroke="#334155" stroke-width="4" /><line x1="320" y1="42" x2="320" y2="275" stroke="#64748B" stroke-width="4" stroke-dasharray="8 7"/><line x1="210" y1="55" x2="320" y2="150" stroke="#2563EB" stroke-width="4" /><polygon points="320,150 312.4,132.8 301.9,144.9" fill="#2563EB"/><text x="480" y="90" text-anchor="middle">Air / Udara</text><text x="480" y="225" text-anchor="middle">Glass / Kaca</text><text x="320" y="30" text-anchor="middle">Normal</text></g></svg>

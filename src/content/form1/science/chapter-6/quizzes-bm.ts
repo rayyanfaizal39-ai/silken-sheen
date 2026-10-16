@@ -57,7 +57,12 @@ export const scienceF1C6QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Easy",
     question: "Di manakah proton dan neutron berada dalam atom?",
-    options: ["Nukleus", "Petala elektron", "Luar atom", "Dalam molekul sahaja"],
+    options: [
+      "Kedua-duanya berada dalam nukleus",
+      "Kedua-duanya beredar mengelilingi nukleus",
+      "Proton berada dalam nukleus; neutron beredar mengelilinginya",
+      "Neutron berada dalam nukleus; proton beredar mengelilinginya",
+    ],
     answerIndex: 0,
     explanation: "Nukleus terletak di pusat atom dan mengandungi proton serta neutron.",
   },
@@ -68,10 +73,16 @@ export const scienceF1C6QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 6",
     lang: "bm",
     difficulty: "Easy",
-    question: "Di manakah elektron bergerak mengelilingi nukleus?",
-    options: ["Dalam petala", "Dalam proton", "Dalam neutron", "Dalam sebatian sahaja"],
+    question: "Huraian manakah menunjukkan kedudukan elektron dalam atom dengan betul?",
+    options: [
+      "Elektron beredar mengelilingi nukleus",
+      "Elektron kekal bersama proton di dalam nukleus",
+      "Elektron berada di pusat neutron",
+      "Elektron membentuk pusat atom yang positif",
+    ],
     answerIndex: 0,
-    explanation: "Elektron bergerak mengelilingi nukleus dalam petala tertentu.",
+    explanation:
+      "Elektron beredar mengelilingi nukleus, manakala proton dan neutron berada di dalam nukleus.",
   },
   {
     id: "sci-f1-c6-bm-q7",
@@ -105,7 +116,8 @@ export const scienceF1C6QuizzesBM: QuizQuestion[] = [
       "Petala yang mengelilingi atom",
     ],
     answerIndex: 0,
-    explanation: "Molekul ialah zarah neutral yang terdiri daripada dua atau lebih atom yang bergabung secara kimia.",
+    explanation:
+      "Molekul ialah zarah neutral yang terdiri daripada dua atau lebih atom yang bergabung secara kimia.",
   },
   {
     id: "sci-f1-c6-bm-q9",
@@ -148,7 +160,8 @@ export const scienceF1C6QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 6",
     lang: "bm",
     difficulty: "Easy",
-    question: "Antara pernyataan berikut, yang manakah paling tepat tentang pengelasan unsur dalam Jadual Berkala?",
+    question:
+      "Antara pernyataan berikut, yang manakah paling tepat tentang pengelasan unsur dalam Jadual Berkala?",
     options: [
       "Logam, bukan logam dan gas nadir dapat dikenal pasti berdasarkan kedudukan unsur dalam Jadual Berkala",
       "Semua unsur di sebelah kiri Jadual Berkala ialah bukan logam",
@@ -156,7 +169,8 @@ export const scienceF1C6QuizzesBM: QuizQuestion[] = [
       "Unsur dan sebatian disusun bersama dalam Jadual Berkala",
     ],
     answerIndex: 0,
-    explanation: "Jadual Berkala menyusun unsur secara sistematik dan membolehkan unsur seperti logam, bukan logam dan gas nadir dikenal pasti mengikut kedudukannya.",
+    explanation:
+      "Jadual Berkala menyusun unsur secara sistematik dan membolehkan unsur seperti logam, bukan logam dan gas nadir dikenal pasti mengikut kedudukannya.",
   },
   {
     id: "sci-f1-c6-bm-q12",
@@ -201,15 +215,12 @@ export const scienceF1C6QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 6",
     lang: "bm",
     difficulty: "Easy",
-    question: "Satu bahan mempunyai permukaan berkilat, boleh ditempa dan mengkonduksikan elektrik dengan baik. Bagaimanakah bahan tersebut paling sesuai dikelaskan?",
-    options: [
-      "Bukan logam",
-      "Gas nadir",
-      "Logam",
-      "Sebatian bukan logam",
-    ],
+    question:
+      "Satu bahan mempunyai permukaan berkilat, boleh ditempa dan mengkonduksikan elektrik dengan baik. Bagaimanakah bahan tersebut paling sesuai dikelaskan?",
+    options: ["Bukan logam", "Gas nadir", "Logam", "Sebatian bukan logam"],
     answerIndex: 2,
-    explanation: "Permukaan berkilat, boleh ditempa dan kekonduksian elektrik yang baik ialah ciri umum logam.",
+    explanation:
+      "Permukaan berkilat, boleh ditempa dan kekonduksian elektrik yang baik ialah ciri umum logam.",
   },
   {
     id: "sci-f1-c6-bm-q16",
@@ -218,7 +229,8 @@ export const scienceF1C6QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 6",
     lang: "bm",
     difficulty: "Medium",
-    question: "Campuran serbuk besi dan sulfur masih boleh diasingkan menggunakan magnet sebelum dipanaskan. Apakah yang ditunjukkan oleh pemerhatian ini?",
+    question:
+      "Campuran serbuk besi dan sulfur masih boleh diasingkan menggunakan magnet sebelum dipanaskan. Apakah yang ditunjukkan oleh pemerhatian ini?",
     options: [
       "Campuran mengekalkan sifat asal komponennya",
       "Campuran telah menghasilkan bahan baharu melalui gabungan kimia",
@@ -226,7 +238,8 @@ export const scienceF1C6QuizzesBM: QuizQuestion[] = [
       "Campuran hanya boleh diasingkan melalui kaedah kimia",
     ],
     answerIndex: 0,
-    explanation: "Dalam campuran, bahan tidak bergabung secara kimia dan masih mengekalkan sifat asal masing-masing.",
+    explanation:
+      "Dalam campuran, bahan tidak bergabung secara kimia dan masih mengekalkan sifat asal masing-masing.",
   },
   {
     id: "sci-f1-c6-bm-q17",
@@ -243,7 +256,8 @@ export const scienceF1C6QuizzesBM: QuizQuestion[] = [
       "Unsur dan sebatian kedua-duanya terdiri daripada satu jenis atom sahaja",
     ],
     answerIndex: 0,
-    explanation: "Unsur terdiri daripada satu jenis atom. Sebatian terbentuk apabila unsur yang berbeza bergabung secara kimia.",
+    explanation:
+      "Unsur terdiri daripada satu jenis atom. Sebatian terbentuk apabila unsur yang berbeza bergabung secara kimia.",
   },
   {
     id: "sci-f1-c6-bm-q18",
@@ -251,13 +265,13 @@ export const scienceF1C6QuizzesBM: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     lang: "bm",
-    difficulty: "Medium",
+    difficulty: "Easy",
     question: "Apakah maksud kemuluran?",
     options: [
       "Boleh ditarik menjadi dawai",
-      "Boleh terapung di atas air",
-      "Boleh larut dalam semua cecair",
-      "Boleh bertukar menjadi gas nadir",
+      "Boleh diketuk menjadi kepingan",
+      "Boleh mengkonduksikan haba dengan baik",
+      "Mempunyai permukaan berkilat",
     ],
     answerIndex: 0,
     explanation: "Kemuluran ialah kebolehan bahan ditarik menjadi dawai.",
@@ -268,13 +282,13 @@ export const scienceF1C6QuizzesBM: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     lang: "bm",
-    difficulty: "Medium",
+    difficulty: "Easy",
     question: "Apakah maksud kebolehtempaan?",
     options: [
-      "Boleh diketuk atau dibentuk tanpa pecah",
-      "Boleh ditarik menjadi cecair",
-      "Boleh menghasilkan cahaya",
-      "Boleh dipisahkan dengan magnet sahaja",
+      "Boleh diketuk menjadi bentuk tanpa pecah",
+      "Boleh ditarik menjadi dawai",
+      "Boleh mengkonduksikan elektrik dengan baik",
+      "Mempunyai permukaan berkilat",
     ],
     answerIndex: 0,
     explanation: "Kebolehtempaan ialah kebolehan bahan dibentuk atau ditempa tanpa pecah.",
@@ -294,7 +308,8 @@ export const scienceF1C6QuizzesBM: QuizQuestion[] = [
       "Bahan yang hanya boleh diasingkan secara elektrolisis",
     ],
     answerIndex: 0,
-    explanation: "Campuran terbentuk apabila bahan dicampur secara fizikal tanpa menghasilkan bahan baharu.",
+    explanation:
+      "Campuran terbentuk apabila bahan dicampur secara fizikal tanpa menghasilkan bahan baharu.",
   },
   {
     id: "sci-f1-c6-bm-q21",
@@ -315,15 +330,12 @@ export const scienceF1C6QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 6",
     lang: "bm",
     difficulty: "Medium",
-    question: "Satu campuran mengandungi serbuk besi dan pasir. Apakah kaedah paling mudah untuk mengasingkan kedua-duanya?",
-    options: [
-      "Penurasan",
-      "Menggunakan magnet",
-      "Penyulingan",
-      "Pengapungan",
-    ],
+    question:
+      "Satu campuran mengandungi serbuk besi dan pasir. Apakah kaedah paling mudah untuk mengasingkan kedua-duanya?",
+    options: ["Penurasan", "Menggunakan magnet", "Penyulingan", "Pengapungan"],
     answerIndex: 1,
-    explanation: "Besi tertarik kepada magnet tetapi pasir tidak, maka perbezaan sifat ini boleh digunakan untuk pengasingan.",
+    explanation:
+      "Besi tertarik kepada magnet tetapi pasir tidak, maka perbezaan sifat ini boleh digunakan untuk pengasingan.",
   },
   {
     id: "sci-f1-c6-bm-q23",
@@ -332,7 +344,8 @@ export const scienceF1C6QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 6",
     lang: "bm",
     difficulty: "Medium",
-    question: "Mengapakah penyulingan sesuai digunakan untuk mendapatkan air tulen daripada air garam?",
+    question:
+      "Mengapakah penyulingan sesuai digunakan untuk mendapatkan air tulen daripada air garam?",
     options: [
       "Garam yang terlarut tertinggal pada kertas turas semasa pemanasan",
       "Air dan garam mempunyai takat didih yang berbeza",
@@ -340,7 +353,8 @@ export const scienceF1C6QuizzesBM: QuizQuestion[] = [
       "Garam menyejat dahulu dan wapnya dikondensasikan menjadi air tulen",
     ],
     answerIndex: 1,
-    explanation: "Penyulingan mengasingkan bahan berdasarkan perbezaan takat didih. Air tersejat dan kemudian dikondensasikan semula.",
+    explanation:
+      "Penyulingan mengasingkan bahan berdasarkan perbezaan takat didih. Air tersejat dan kemudian dikondensasikan semula.",
   },
   {
     id: "sci-f1-c6-bm-q24",
@@ -349,15 +363,17 @@ export const scienceF1C6QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 6",
     lang: "bm",
     difficulty: "Medium",
-    question: "Seorang murid ingin mengetahui sama ada dakwat hitam mengandungi beberapa pewarna berlainan. Kaedah manakah paling sesuai?",
+    question:
+      "Sampel dakwat hitam menghasilkan empat tompok berwarna yang terpisah dalam kromatografi kertas. Kesimpulan manakah disokong?",
     options: [
-      "Penurasan",
-      "Pengapungan",
-      "Kromatografi",
-      "Pemisahan menggunakan magnet",
+      "Dakwat mengandungi sekurang-kurangnya empat pewarna yang diasingkan oleh kaedah ini",
+      "Dakwat ialah bahan tulen kerana bermula sebagai satu tompok",
+      "Empat pewarna baharu terbentuk melalui tindak balas kimia",
+      "Empat tompok menunjukkan dakwat mengandungi empat unsur",
     ],
-    answerIndex: 2,
-    explanation: "Kromatografi boleh digunakan untuk mengasingkan dan mengenal pasti komponen pewarna dalam campuran.",
+    answerIndex: 0,
+    explanation:
+      "Tompok berwarna yang terpisah memberikan bukti komponen pewarna berbeza dalam campuran dakwat. Kromatografi ialah kaedah pengasingan fizikal.",
   },
   {
     id: "sci-f1-c6-bm-q25",
@@ -374,7 +390,8 @@ export const scienceF1C6QuizzesBM: QuizQuestion[] = [
       "Kedua-duanya tiada komposisi",
     ],
     answerIndex: 0,
-    explanation: "Campuran mempunyai komposisi tidak tetap, manakala sebatian mempunyai komposisi tetap.",
+    explanation:
+      "Campuran mempunyai komposisi tidak tetap, manakala sebatian mempunyai komposisi tetap.",
   },
   {
     id: "sci-f1-c6-bm-q26",
@@ -382,16 +399,12 @@ export const scienceF1C6QuizzesBM: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     lang: "bm",
-    difficulty: "Hard",
+    difficulty: "Easy",
     question: "Antara berikut, yang manakah merupakan perubahan kimia?",
-    options: [
-      "Ais melebur",
-      "Garam larut dalam air",
-      "Besi berkarat",
-      "Air membeku",
-    ],
+    options: ["Ais melebur", "Garam larut dalam air", "Besi berkarat", "Air membeku"],
     answerIndex: 2,
-    explanation: "Pengaratan menghasilkan bahan baharu, maka ia ialah perubahan kimia. Peleburan, pelarutan dan pembekuan ialah perubahan fizik.",
+    explanation:
+      "Pengaratan menghasilkan bahan baharu, maka ia ialah perubahan kimia. Peleburan, pelarutan dan pembekuan ialah perubahan fizik.",
   },
   {
     id: "sci-f1-c6-bm-q27",
@@ -399,8 +412,9 @@ export const scienceF1C6QuizzesBM: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     lang: "bm",
-    difficulty: "Hard",
-    question: "Mengapakah sebatian tidak boleh diasingkan kepada unsur-unsurnya menggunakan kaedah fizikal seperti penurasan atau magnet?",
+    difficulty: "Medium",
+    question:
+      "Mengapakah sebatian tidak boleh diasingkan kepada unsur-unsurnya menggunakan kaedah fizikal seperti penurasan atau magnet?",
     options: [
       "Unsur dalam sebatian telah bergabung secara kimia",
       "Unsur dalam sebatian bercampur secara fizikal tetapi mempunyai saiz zarah yang sama",
@@ -408,7 +422,8 @@ export const scienceF1C6QuizzesBM: QuizQuestion[] = [
       "Unsur dalam sebatian boleh dipisahkan secara fizikal jika saiz sampel ditambah",
     ],
     answerIndex: 0,
-    explanation: "Unsur dalam sebatian terikat secara kimia, maka kaedah kimia diperlukan untuk mengasingkannya.",
+    explanation:
+      "Unsur dalam sebatian terikat secara kimia, maka kaedah kimia diperlukan untuk mengasingkannya.",
   },
   {
     id: "sci-f1-c6-bm-q28",
@@ -416,16 +431,13 @@ export const scienceF1C6QuizzesBM: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     lang: "bm",
-    difficulty: "Hard",
-    question: "Empat bahan diuji untuk membuat wayar elektrik: P mengalirkan elektrik tetapi rapuh; Q mengalirkan elektrik dan boleh ditarik menjadi dawai; R tidak mengalirkan elektrik tetapi mulur; S mengalirkan elektrik tetapi mudah patah. Pilih bahan paling sesuai.",
-    options: [
-      "Bahan Q",
-      "Bahan P",
-      "Bahan R",
-      "Bahan S",
-    ],
+    difficulty: "Medium",
+    question:
+      "Empat bahan diuji untuk membuat wayar elektrik: P mengalirkan elektrik tetapi rapuh; Q mengalirkan elektrik dan boleh ditarik menjadi dawai; R tidak mengalirkan elektrik tetapi mulur; S mengalirkan elektrik tetapi mudah patah. Pilih bahan paling sesuai.",
+    options: ["Bahan Q", "Bahan P", "Bahan R", "Bahan S"],
     answerIndex: 0,
-    explanation: "Wayar memerlukan bahan yang mempunyai kekonduksian elektrik yang baik dan kemuluran yang membolehkannya ditarik menjadi dawai. Hanya Q memenuhi kedua-dua ciri.",
+    explanation:
+      "Wayar memerlukan bahan yang mempunyai kekonduksian elektrik yang baik dan kemuluran yang membolehkannya ditarik menjadi dawai. Hanya Q memenuhi kedua-dua ciri.",
   },
   {
     id: "sci-f1-c6-bm-q29",
@@ -434,15 +446,12 @@ export const scienceF1C6QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 6",
     lang: "bm",
     difficulty: "Medium",
-    question: "Dalam bekas tertutup, 10 g bahan X bertindak balas sepenuhnya dengan 6 g bahan Y. Jika 12 g pepejal terbentuk dan baki produk ialah gas, berapakah jisim gas itu?",
-    options: [
-      "4 g",
-      "6 g",
-      "12 g",
-      "16 g",
-    ],
+    question:
+      "Dalam bekas tertutup, 10 g bahan X bertindak balas sepenuhnya dengan 6 g bahan Y. Jika 12 g pepejal terbentuk dan baki produk ialah gas, berapakah jisim gas itu?",
+    options: ["4 g", "6 g", "12 g", "16 g"],
     answerIndex: 0,
-    explanation: "Jumlah jisim dalam sistem tertutup kekal 10 + 6 = 16 g. Maka jisim gas = 16 − 12 = 4 g.",
+    explanation:
+      "Jumlah jisim dalam sistem tertutup kekal 10 + 6 = 16 g. Maka jisim gas = 16 − 12 = 4 g.",
   },
   {
     id: "sci-f1-c6-bm-q30",
@@ -450,8 +459,9 @@ export const scienceF1C6QuizzesBM: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     lang: "bm",
-    difficulty: "Hard",
-    question: "Apabila besi dan sulfur dipanaskan bersama sehingga membentuk bahan baharu, mengapakah bahan yang terhasil dikategorikan sebagai sebatian?",
+    difficulty: "Medium",
+    question:
+      "Apabila besi dan sulfur dipanaskan bersama sehingga membentuk bahan baharu, mengapakah bahan yang terhasil dikategorikan sebagai sebatian?",
     options: [
       "Besi dan sulfur bercampur secara fizikal dan mengekalkan sifat asal masing-masing",
       "Bahan baharu terbentuk melalui gabungan kimia dan mempunyai sifat berbeza daripada bahan asal",
@@ -459,6 +469,7 @@ export const scienceF1C6QuizzesBM: QuizQuestion[] = [
       "Bahan yang terhasil boleh diasingkan semula kepada besi dan sulfur melalui kaedah fizikal",
     ],
     answerIndex: 1,
-    explanation: "Sebatian terbentuk apabila unsur bergabung secara kimia dan menghasilkan bahan baharu dengan sifat yang berbeza.",
+    explanation:
+      "Sebatian terbentuk apabila unsur bergabung secara kimia dan menghasilkan bahan baharu dengan sifat yang berbeza.",
   },
 ];

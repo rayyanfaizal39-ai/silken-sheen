@@ -16,7 +16,8 @@ export const scienceF1C4QuizzesBM: QuizQuestion[] = [
       "Proses pernafasan",
     ],
     answerIndex: 0,
-    explanation: "Pembiakan ialah proses organisma hidup menghasilkan individu baharu untuk memastikan kelangsungan spesies.",
+    explanation:
+      "Pembiakan ialah proses organisma hidup menghasilkan individu baharu untuk memastikan kelangsungan spesies.",
   },
   {
     id: "sci-f1-c4-bm-q2",
@@ -25,7 +26,8 @@ export const scienceF1C4QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 4",
     lang: "bm",
     difficulty: "Medium",
-    question: "Pernyataan manakah yang betul tentang perbandingan antara pembiakan seks dan pembiakan aseks?",
+    question:
+      "Pernyataan manakah yang betul tentang perbandingan antara pembiakan seks dan pembiakan aseks?",
     options: [
       "Pembiakan seks berlaku tanpa persenyawaan, manakala pembiakan aseks melibatkan percantuman gamet",
       "Pembiakan seks melibatkan percantuman gamet, manakala pembiakan aseks berlaku tanpa persenyawaan",
@@ -33,7 +35,8 @@ export const scienceF1C4QuizzesBM: QuizQuestion[] = [
       "Pembiakan seks menghasilkan anak tanpa gamet, manakala pembiakan aseks menghasilkan anak daripada zigot",
     ],
     answerIndex: 1,
-    explanation: "Pembiakan seks melibatkan percantuman gamet jantan dan gamet betina, manakala pembiakan aseks tidak melibatkan persenyawaan.",
+    explanation:
+      "Pembiakan seks melibatkan percantuman gamet jantan dan gamet betina, manakala pembiakan aseks tidak melibatkan persenyawaan.",
   },
   {
     id: "sci-f1-c4-bm-q3",
@@ -62,7 +65,8 @@ export const scienceF1C4QuizzesBM: QuizQuestion[] = [
       "Memastikan setiap individu dapat menyesuaikan diri dengan semua perubahan persekitaran",
     ],
     answerIndex: 1,
-    explanation: "Pembiakan menghasilkan individu baharu dan memastikan sesuatu spesies dapat terus wujud dari satu generasi ke generasi seterusnya.",
+    explanation:
+      "Pembiakan menghasilkan individu baharu dan memastikan sesuatu spesies dapat terus wujud dari satu generasi ke generasi seterusnya.",
   },
   {
     id: "sci-f1-c4-bm-q5",
@@ -86,7 +90,8 @@ export const scienceF1C4QuizzesBM: QuizQuestion[] = [
     question: "Persenyawaan manakah biasanya berlaku di luar badan, selalunya di dalam air?",
     options: ["Persenyawaan luar", "Persenyawaan dalam", "Penempelan", "Pertunasan"],
     answerIndex: 0,
-    explanation: "Persenyawaan luar berlaku di luar badan dan biasa berlaku pada sesetengah haiwan akuatik.",
+    explanation:
+      "Persenyawaan luar berlaku di luar badan dan biasa berlaku pada sesetengah haiwan akuatik.",
   },
   {
     id: "sci-f1-c4-bm-q7",
@@ -110,9 +115,9 @@ export const scienceF1C4QuizzesBM: QuizQuestion[] = [
     question: "Apakah pertunasan?",
     options: [
       "Individu baharu tumbuh daripada tunas kecil pada induk",
-      "Biji benih mula tumbuh",
-      "Gamet bercantum",
-      "Debunga berpindah ke stigma",
+      "Satu sel induk membahagi menjadi dua sel anak",
+      "Cebisan badan yang terputus berkembang menjadi individu baharu",
+      "Spora dibebaskan dan berkembang menjadi individu baharu",
     ],
     answerIndex: 0,
     explanation: "Dalam pertunasan, organisma baharu tumbuh sebagai tunas pada induknya.",
@@ -150,13 +155,14 @@ export const scienceF1C4QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     question: "Apakah akil baligh?",
     options: [
-      "Peringkat apabila badan menjadi matang secara seksual",
-      "Peringkat apabila badan berhenti membesar sepenuhnya",
-      "Sejenis pembiakan aseks",
-      "Kaedah pencegahan kehamilan",
+      "Sistem pembiakan mula matang dan menghasilkan sel pembiakan",
+      "Sistem pembiakan berhenti menghasilkan sel pembiakan",
+      "Sistem pembiakan mula berkembang hanya selepas persenyawaan",
+      "Sistem pembiakan menjadi matang hanya semasa kehamilan",
     ],
     answerIndex: 0,
-    explanation: "Akil baligh ialah peringkat organ pembiakan matang dan ciri seks sekunder mula kelihatan.",
+    explanation:
+      "Akil baligh ialah peringkat organ pembiakan matang dan ciri seks sekunder mula kelihatan.",
   },
   {
     id: "sci-f1-c4-bm-q12",
@@ -173,7 +179,8 @@ export const scienceF1C4QuizzesBM: QuizQuestion[] = [
       "Sperma bersaiz lebih besar daripada ovum, manakala ovum boleh berenang secara aktif",
     ],
     answerIndex: 1,
-    explanation: "Sperma mempunyai ekor yang membolehkannya bergerak ke arah ovum, manakala ovum lebih besar dan mempunyai simpanan nutrien.",
+    explanation:
+      "Sperma mempunyai ekor yang membolehkannya bergerak ke arah ovum, manakala ovum lebih besar dan mempunyai simpanan nutrien.",
   },
   {
     id: "sci-f1-c4-bm-q13",
@@ -182,7 +189,8 @@ export const scienceF1C4QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 4",
     lang: "bm",
     difficulty: "Hard",
-    question: "Kedua-dua tiub Falopio seorang wanita tersumbat, tetapi ovarinya masih menghasilkan ovum dan uterusnya normal. Apakah kesan paling langsung, dan mengapa?",
+    question:
+      "Kedua-dua tiub Falopio seorang wanita tersumbat, tetapi ovarinya masih menghasilkan ovum dan uterusnya normal. Apakah kesan paling langsung, dan mengapa?",
     options: [
       "Persenyawaan sukar berlaku kerana sperma dan ovum sukar bertemu di tiub Falopio",
       "Ovum tidak dapat terbentuk kerana ovari bergantung pada tiub Falopio untuk menghasilkan ovum",
@@ -190,7 +198,8 @@ export const scienceF1C4QuizzesBM: QuizQuestion[] = [
       "Lapisan uterus tidak dapat menebal kerana tiub Falopio membekalkan hormon terus kepadanya",
     ],
     answerIndex: 0,
-    explanation: "Persenyawaan lazimnya berlaku di tiub Falopio. Penyumbatan kedua-dua tiub menyukarkan pertemuan sperma dengan ovum walaupun ovari masih menghasilkan ovum.",
+    explanation:
+      "Persenyawaan lazimnya berlaku di tiub Falopio. Penyumbatan kedua-dua tiub menyukarkan pertemuan sperma dengan ovum walaupun ovari masih menghasilkan ovum.",
   },
   {
     id: "sci-f1-c4-bm-q14",
@@ -215,11 +224,18 @@ export const scienceF1C4QuizzesBM: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 4",
     lang: "bm",
-    difficulty: "Easy",
-    question: "Apakah syarat percambahan biji benih?",
-    options: ["Air, oksigen dan suhu yang sesuai", "Cahaya, susu dan tanah sahaja", "Sperma, ovum dan rahim", "Angin, haiwan dan manusia"],
+    difficulty: "Hard",
+    question:
+      "Biji benih serupa diuji: P mempunyai air, oksigen dan suhu sesuai; Q tiada air tetapi mempunyai oksigen dan suhu sesuai; R mempunyai air dan suhu sesuai tetapi tiada oksigen. Hanya P bercambah. Kesimpulan manakah disokong?",
+    options: [
+      "Air dan oksigen kedua-duanya diperlukan dalam keadaan ini",
+      "Air sahaja mencukupi dalam keadaan ini",
+      "Oksigen sahaja mencukupi dalam keadaan ini",
+      "Ujian menunjukkan cahaya diperlukan untuk percambahan",
+    ],
     answerIndex: 0,
-    explanation: "Biji benih memerlukan air, oksigen dan suhu yang sesuai untuk bercambah.",
+    explanation:
+      "P berbeza daripada Q dari segi bekalan air dan daripada R dari segi bekalan oksigen. Perbandingan menyokong keperluan air dan oksigen pada suhu sesuai; cahaya tidak diuji.",
   },
   {
     id: "sci-f1-c4-bm-q16",
@@ -230,13 +246,14 @@ export const scienceF1C4QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     question: "Apakah penjanaan semula dalam pembiakan aseks?",
     options: [
-      "Organisma baharu tumbuh daripada bahagian badan yang terputus",
-      "Satu sel membahagi menjadi dua sel sama",
-      "Debunga dipindahkan ke stigma",
-      "Embrio melekat pada rahim",
+      "Organisma baharu berkembang daripada cebisan badan yang terputus",
+      "Satu sel membahagi menjadi dua sel yang serupa",
+      "Organisma baharu tumbuh sebagai tunas pada induknya",
+      "Tumbuhan baharu tumbuh daripada bahagian vegetatif induknya",
     ],
     answerIndex: 0,
-    explanation: "Penjanaan semula membolehkan sesetengah organisma membentuk individu atau bahagian badan baharu daripada cebisan badan.",
+    explanation:
+      "Penjanaan semula membolehkan sesetengah organisma membentuk individu atau bahagian badan baharu daripada cebisan badan.",
   },
   {
     id: "sci-f1-c4-bm-q17",
@@ -245,15 +262,17 @@ export const scienceF1C4QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 4",
     lang: "bm",
     difficulty: "Medium",
-    question: "Mengapakah spora berguna dalam pembiakan?",
+    question:
+      "Kulat roti membebaskan struktur kecil yang berkembang menjadi kulat baharu dalam keadaan sesuai. Bukti manakah mengenal pasti pembentukan spora dan bukannya pertunasan?",
     options: [
-      "Spora boleh tumbuh menjadi organisma baharu apabila keadaan sesuai",
-      "Spora mengangkut darah dalam badan",
-      "Spora melindungi fetus",
-      "Spora menghasilkan semen",
+      "Individu baharu berkembang daripada spora yang dibebaskan, bukan tunas yang melekat pada induk",
+      "Individu baharu berkembang daripada tunas yang kekal melekat pada induk",
+      "Sel induk membahagi terus menjadi dua sel anak yang sama",
+      "Dua sel pembiakan bercantum sebelum setiap kulat baharu berkembang",
     ],
     answerIndex: 0,
-    explanation: "Spora ialah unit pembiakan yang boleh berkembang menjadi organisma baharu dalam keadaan sesuai.",
+    explanation:
+      "Pembentukan spora membebaskan spora yang boleh berkembang menjadi individu baharu dalam keadaan sesuai. Pertunasan bermula sebagai tunas pada induk.",
   },
   {
     id: "sci-f1-c4-bm-q18",
@@ -263,7 +282,12 @@ export const scienceF1C4QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question: "Yang manakah contoh pembiakan vegetatif?",
-    options: ["Ubi kentang tumbuh menjadi tumbuhan baharu", "Percantuman sperma dan ovum", "Bayi membesar dalam rahim", "Suara menjadi garau"],
+    options: [
+      "Ubi kentang tumbuh menjadi tumbuhan baharu",
+      "Biji benih berkembang menjadi anak benih",
+      "Debunga berpindah dari anter ke stigma",
+      "Gamet jantan dan betina bercantum di dalam ovul",
+    ],
     answerIndex: 0,
     explanation: "Ubi kentang boleh tumbuh menjadi tumbuhan baharu melalui pembiakan vegetatif.",
   },
@@ -282,7 +306,8 @@ export const scienceF1C4QuizzesBM: QuizQuestion[] = [
       "Lapisan tersebut menebal untuk menerima ovum yang tidak disenyawakan",
     ],
     answerIndex: 1,
-    explanation: "Jika persenyawaan tidak berlaku, lapisan dinding uterus yang menebal akan luruh dan disingkirkan semasa haid.",
+    explanation:
+      "Jika persenyawaan tidak berlaku, lapisan dinding uterus yang menebal akan luruh dan disingkirkan semasa haid.",
   },
   {
     id: "sci-f1-c4-bm-q20",
@@ -299,7 +324,8 @@ export const scienceF1C4QuizzesBM: QuizQuestion[] = [
       "Mengandungi protein tetapi tiada lemak supaya lebih mudah dicernakan oleh bayi",
     ],
     answerIndex: 0,
-    explanation: "Susu ibu membekalkan nutrien yang sesuai serta antibodi yang membantu pertumbuhan dan pertahanan badan bayi.",
+    explanation:
+      "Susu ibu membekalkan nutrien yang sesuai serta antibodi yang membantu pertumbuhan dan pertahanan badan bayi.",
   },
   {
     id: "sci-f1-c4-bm-q21",
@@ -308,7 +334,8 @@ export const scienceF1C4QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 4",
     lang: "bm",
     difficulty: "Medium",
-    question: "Mengapakah persenyawaan lebih berkemungkinan berlaku semasa waktu subur dalam kitar haid?",
+    question:
+      "Mengapakah persenyawaan lebih berkemungkinan berlaku semasa waktu subur dalam kitar haid?",
     options: [
       "Lapisan dinding uterus luruh untuk memudahkan sperma bertemu dengan ovum",
       "Ovum yang matang dibebaskan daripada ovari",
@@ -316,7 +343,8 @@ export const scienceF1C4QuizzesBM: QuizQuestion[] = [
       "Ovum yang matang dibebaskan daripada uterus ke dalam faraj",
     ],
     answerIndex: 1,
-    explanation: "Semasa pengovulan, ovum matang dibebaskan daripada ovari. Persenyawaan lebih berkemungkinan berlaku jika terdapat sperma dalam tempoh ini.",
+    explanation:
+      "Semasa pengovulan, ovum matang dibebaskan daripada ovari. Persenyawaan lebih berkemungkinan berlaku jika terdapat sperma dalam tempoh ini.",
   },
   {
     id: "sci-f1-c4-bm-q22",
@@ -325,7 +353,8 @@ export const scienceF1C4QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 4",
     lang: "bm",
     difficulty: "Medium",
-    question: "Apakah perubahan pada lapisan dinding uterus semasa fasa prahaid jika persenyawaan mungkin berlaku?",
+    question:
+      "Apakah perubahan pada lapisan dinding uterus semasa fasa prahaid jika persenyawaan mungkin berlaku?",
     options: [
       "Lapisan uterus menebal dan menjadi kaya dengan salur darah bagi kemungkinan penempelan",
       "Lapisan uterus luruh sepenuhnya bersama darah haid yang sedang keluar",
@@ -333,7 +362,8 @@ export const scienceF1C4QuizzesBM: QuizQuestion[] = [
       "Lapisan uterus bertukar menjadi plasenta walaupun belum berlaku persenyawaan",
     ],
     answerIndex: 0,
-    explanation: "Semasa fasa prahaid, lapisan endometrium terus menebal dan kaya dengan salur darah sebagai persediaan untuk kemungkinan penempelan embrio.",
+    explanation:
+      "Semasa fasa prahaid, lapisan endometrium terus menebal dan kaya dengan salur darah sebagai persediaan untuk kemungkinan penempelan embrio.",
   },
   {
     id: "sci-f1-c4-bm-q23",
@@ -345,12 +375,13 @@ export const scienceF1C4QuizzesBM: QuizQuestion[] = [
     question: "Apakah persenyawaan dalam manusia?",
     options: [
       "Percantuman nukleus sperma dan nukleus ovum",
-      "Embrio melekat pada rahim",
-      "Darah keluar semasa haid",
-      "Debunga dipindahkan ke stigma",
+      "Penempelan embrio pada dinding uterus",
+      "Pembebasan ovum matang daripada ovari",
+      "Pembahagian zigot menjadi lebih banyak sel",
     ],
     answerIndex: 0,
-    explanation: "Persenyawaan manusia berlaku apabila nukleus sperma bercantum dengan nukleus ovum.",
+    explanation:
+      "Persenyawaan manusia berlaku apabila nukleus sperma bercantum dengan nukleus ovum.",
   },
   {
     id: "sci-f1-c4-bm-q24",
@@ -359,15 +390,17 @@ export const scienceF1C4QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 4",
     lang: "bm",
     difficulty: "Medium",
-    question: "Apakah penempelan?",
+    question:
+      "Ovum yang disenyawakan membahagi semasa bergerak ke arah uterus. Urutan manakah memadankan peringkat seterusnya dengan lokasinya dengan betul?",
     options: [
-      "Embrio melekat pada dinding rahim",
-      "Ovum dilepaskan daripada ovari",
-      "Debunga bergerak ke stigma",
-      "Tunas baharu tumbuh pada induk",
+      "Embrio → penempelan pada dinding uterus",
+      "Embrio → penempelan di dalam ovari",
+      "Ovum → penempelan pada tiub Falopio",
+      "Sperma → penempelan pada serviks",
     ],
     answerIndex: 0,
-    explanation: "Penempelan ialah proses embrio melekat pada dinding rahim.",
+    explanation:
+      "Selepas persenyawaan, zigot membahagi untuk membentuk embrio. Embrio bergerak ke arah uterus dan menempel pada dindingnya.",
   },
   {
     id: "sci-f1-c4-bm-q25",
@@ -384,7 +417,8 @@ export const scienceF1C4QuizzesBM: QuizQuestion[] = [
       "Fetus → Embrio → Zigot → Bayi",
     ],
     answerIndex: 1,
-    explanation: "Selepas persenyawaan, zigot terbentuk dan berkembang menjadi embrio, kemudian fetus dan seterusnya bayi.",
+    explanation:
+      "Selepas persenyawaan, zigot terbentuk dan berkembang menjadi embrio, kemudian fetus dan seterusnya bayi.",
   },
   {
     id: "sci-f1-c4-bm-q26",
@@ -393,7 +427,8 @@ export const scienceF1C4QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 4",
     lang: "bm",
     difficulty: "Medium",
-    question: "Sepasang suami isteri sukar mendapatkan anak kerana bilangan sperma suami terlalu rendah. Apakah tindakan yang paling sesuai?",
+    question:
+      "Sepasang suami isteri sukar mendapatkan anak kerana bilangan sperma suami terlalu rendah. Apakah tindakan yang paling sesuai?",
     options: [
       "Dapatkan rawatan untuk isteri sahaja kerana kesuburan hanya bergantung pada wanita",
       "Dapatkan pemeriksaan kesihatan dan rawatan daripada pakar perubatan",
@@ -401,7 +436,8 @@ export const scienceF1C4QuizzesBM: QuizQuestion[] = [
       "Pilih rawatan kesuburan berdasarkan pengalaman pasangan lain tanpa pemeriksaan",
     ],
     answerIndex: 1,
-    explanation: "Masalah kemandulan boleh berpunca daripada lelaki, wanita atau kedua-duanya. Pemeriksaan perubatan membantu mengenal pasti punca dan rawatan yang sesuai.",
+    explanation:
+      "Masalah kemandulan boleh berpunca daripada lelaki, wanita atau kedua-duanya. Pemeriksaan perubatan membantu mengenal pasti punca dan rawatan yang sesuai.",
   },
   {
     id: "sci-f1-c4-bm-q27",
@@ -418,7 +454,8 @@ export const scienceF1C4QuizzesBM: QuizQuestion[] = [
       "Membolehkan fetus menerima oksigen terus daripada udara di luar badan ibu",
     ],
     answerIndex: 1,
-    explanation: "Plasenta membolehkan pertukaran bahan antara ibu dengan fetus, manakala tali pusat menghubungkan fetus dengan plasenta.",
+    explanation:
+      "Plasenta membolehkan pertukaran bahan antara ibu dengan fetus, manakala tali pusat menghubungkan fetus dengan plasenta.",
   },
   {
     id: "sci-f1-c4-bm-q28",
@@ -435,7 +472,8 @@ export const scienceF1C4QuizzesBM: QuizQuestion[] = [
       "Bahan berbahaya hanya menjejaskan fetus jika ibu turut mengalami gejala keracunan",
     ],
     answerIndex: 1,
-    explanation: "Bahan berbahaya boleh memasuki badan fetus dan mengganggu pertumbuhan serta perkembangannya.",
+    explanation:
+      "Bahan berbahaya boleh memasuki badan fetus dan mengganggu pertumbuhan serta perkembangannya.",
   },
   {
     id: "sci-f1-c4-bm-q29",
@@ -452,7 +490,8 @@ export const scienceF1C4QuizzesBM: QuizQuestion[] = [
       "Boleh menghasilkan biji benih tanpa percantuman gamet jantan dan gamet betina",
     ],
     answerIndex: 1,
-    explanation: "Pendebungaan kacuk boleh menghasilkan anak yang mempunyai gabungan ciri-ciri baik daripada induk yang berbeza.",
+    explanation:
+      "Pendebungaan kacuk boleh menghasilkan anak yang mempunyai gabungan ciri-ciri baik daripada induk yang berbeza.",
   },
   {
     id: "sci-f1-c4-bm-q30",
@@ -461,7 +500,8 @@ export const scienceF1C4QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 4",
     lang: "bm",
     difficulty: "Hard",
-    question: "Satu ovari bunga mengandungi enam ovul. Hanya empat ovul berjaya disenyawakan dan berkembang dengan normal. Hasil manakah paling munasabah?",
+    question:
+      "Satu ovari bunga mengandungi enam ovul. Hanya empat ovul berjaya disenyawakan dan berkembang dengan normal. Hasil manakah paling munasabah?",
     options: [
       "Satu buah boleh terbentuk dengan empat biji benih",
       "Empat buah terbentuk dengan satu biji benih setiap satu",
@@ -469,6 +509,7 @@ export const scienceF1C4QuizzesBM: QuizQuestion[] = [
       "Satu biji benih terbentuk kerana satu bunga mempunyai satu ovari",
     ],
     answerIndex: 0,
-    explanation: "Ovari berkembang menjadi buah manakala setiap ovul yang disenyawakan berpotensi berkembang menjadi biji benih. Satu ovari dengan empat ovul yang berkembang boleh menghasilkan satu buah dengan empat biji benih.",
+    explanation:
+      "Ovari berkembang menjadi buah manakala setiap ovul yang disenyawakan berpotensi berkembang menjadi biji benih. Satu ovari dengan empat ovul yang berkembang boleh menghasilkan satu buah dengan empat biji benih.",
   },
 ];
