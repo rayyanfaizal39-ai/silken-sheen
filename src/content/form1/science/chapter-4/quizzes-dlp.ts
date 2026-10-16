@@ -16,7 +16,8 @@ export const scienceF1C4QuizzesDLP: QuizQuestion[] = [
       "The process of breathing",
     ],
     answerIndex: 0,
-    explanation: "Reproduction is the process by which living organisms produce new individuals to ensure the survival of their species.",
+    explanation:
+      "Reproduction is the process by which living organisms produce new individuals to ensure the survival of their species.",
   },
   {
     id: "sci-f1-c4-dlp-q2",
@@ -33,7 +34,8 @@ export const scienceF1C4QuizzesDLP: QuizQuestion[] = [
       "Sexual reproduction produces offspring without gametes, while asexual reproduction produces offspring from a zygote",
     ],
     answerIndex: 1,
-    explanation: "Sexual reproduction involves the fusion of male and female gametes, whereas asexual reproduction does not involve fertilisation.",
+    explanation:
+      "Sexual reproduction involves the fusion of male and female gametes, whereas asexual reproduction does not involve fertilisation.",
   },
   {
     id: "sci-f1-c4-dlp-q3",
@@ -62,7 +64,8 @@ export const scienceF1C4QuizzesDLP: QuizQuestion[] = [
       "It ensures that each individual can adapt to all environmental changes",
     ],
     answerIndex: 1,
-    explanation: "Reproduction produces new individuals and helps ensure that a species continues from one generation to the next.",
+    explanation:
+      "Reproduction produces new individuals and helps ensure that a species continues from one generation to the next.",
   },
   {
     id: "sci-f1-c4-dlp-q5",
@@ -86,7 +89,8 @@ export const scienceF1C4QuizzesDLP: QuizQuestion[] = [
     question: "Which type of fertilisation usually occurs outside the body, often in water?",
     options: ["External fertilisation", "Internal fertilisation", "Implantation", "Budding"],
     answerIndex: 0,
-    explanation: "External fertilisation happens outside the body and is common in some aquatic animals.",
+    explanation:
+      "External fertilisation happens outside the body and is common in some aquatic animals.",
   },
   {
     id: "sci-f1-c4-dlp-q7",
@@ -110,9 +114,9 @@ export const scienceF1C4QuizzesDLP: QuizQuestion[] = [
     question: "What is budding?",
     options: [
       "A new individual grows from a small outgrowth on the parent",
-      "A seed starts to grow",
-      "Gametes fuse together",
-      "Pollen moves to the stigma",
+      "One parent cell divides into two daughter cells",
+      "A detached body fragment develops into a new individual",
+      "Spores are released and develop into new individuals",
     ],
     answerIndex: 0,
     explanation: "In budding, a new organism grows as a bud on the parent.",
@@ -150,13 +154,14 @@ export const scienceF1C4QuizzesDLP: QuizQuestion[] = [
     difficulty: "Easy",
     question: "What is puberty?",
     options: [
-      "A stage when the body becomes sexually mature",
-      "A stage when the body stops growing completely",
-      "A type of asexual reproduction",
-      "A method of contraception",
+      "The reproductive system begins to mature and produce sex cells",
+      "The reproductive system stops producing sex cells",
+      "The reproductive system begins developing only after fertilisation",
+      "The reproductive system becomes mature only during pregnancy",
     ],
     answerIndex: 0,
-    explanation: "Puberty is the stage when reproductive organs mature and secondary sexual characteristics appear.",
+    explanation:
+      "Puberty is the stage when reproductive organs mature and secondary sexual characteristics appear.",
   },
   {
     id: "sci-f1-c4-dlp-q12",
@@ -173,7 +178,8 @@ export const scienceF1C4QuizzesDLP: QuizQuestion[] = [
       "Sperm is larger than the ovum, while the ovum can swim actively",
     ],
     answerIndex: 1,
-    explanation: "A sperm cell has a tail that allows it to swim towards the ovum, while the ovum is larger and contains stored nutrients.",
+    explanation:
+      "A sperm cell has a tail that allows it to swim towards the ovum, while the ovum is larger and contains stored nutrients.",
   },
   {
     id: "sci-f1-c4-dlp-q13",
@@ -182,15 +188,17 @@ export const scienceF1C4QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 4",
     lang: "dlp",
     difficulty: "Hard",
-    question: "A blockage occurs in both Fallopian tubes of a woman. Which process is most directly affected?",
+    question:
+      "Both Fallopian tubes are blocked, but the ovaries still release ova and the uterus is normal. What is the most direct effect, and why?",
     options: [
-      "Production of ova",
-      "Fertilisation between sperm and ovum",
-      "Development of the fetus in the uterus",
-      "Production of female hormones",
+      "Fertilisation is less likely because sperm and ovum cannot easily meet in the Fallopian tube",
+      "Ova can no longer form because the ovaries need Fallopian tubes to produce eggs",
+      "An embryo forms normally but cannot pass out through the cervix",
+      "The uterine lining cannot thicken because the tubes directly supply its hormones",
     ],
-    answerIndex: 1,
-    explanation: "Fertilisation normally occurs in the Fallopian tube. A blockage can prevent sperm from meeting the ovum.",
+    answerIndex: 0,
+    explanation:
+      "Fertilisation normally occurs in a Fallopian tube. Blocking both tubes makes it difficult for sperm to meet the ovum even if ovulation continues.",
   },
   {
     id: "sci-f1-c4-dlp-q14",
@@ -207,7 +215,8 @@ export const scienceF1C4QuizzesDLP: QuizQuestion[] = [
       "Germination of a seed into a seedling",
     ],
     answerIndex: 1,
-    explanation: "Pollination is the transfer of pollen grains from the anther to the stigma of a flower.",
+    explanation:
+      "Pollination is the transfer of pollen grains from the anther to the stigma of a flower.",
   },
   {
     id: "sci-f1-c4-dlp-q15",
@@ -215,11 +224,18 @@ export const scienceF1C4QuizzesDLP: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 4",
     lang: "dlp",
-    difficulty: "Easy",
-    question: "What are the requirements for germination?",
-    options: ["Water, oxygen and suitable temperature", "Light, milk and soil only", "Sperm, ovum and uterus", "Wind, animals and humans"],
+    difficulty: "Hard",
+    question:
+      "Identical seeds are tested: P has water, oxygen and warmth; Q has no water but has oxygen and warmth; R has water and warmth but no oxygen. Only P germinates. Which conclusion is supported?",
+    options: [
+      "Both water and oxygen are needed under these conditions",
+      "Water alone is sufficient under these conditions",
+      "Oxygen alone is sufficient under these conditions",
+      "The test shows that light is essential for germination",
+    ],
     answerIndex: 0,
-    explanation: "Seeds need water, oxygen and a suitable temperature to germinate.",
+    explanation:
+      "P differs from Q in water supply and from R in oxygen supply. The comparisons support the need for both water and oxygen at a suitable temperature; light was not tested.",
   },
   {
     id: "sci-f1-c4-dlp-q16",
@@ -230,13 +246,14 @@ export const scienceF1C4QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     question: "What is regeneration in asexual reproduction?",
     options: [
-      "A new organism grows from a broken body part",
-      "A cell divides into two equal cells",
-      "Pollen is transferred to a stigma",
-      "An embryo attaches to the uterus",
+      "A new organism develops from a detached body fragment",
+      "One cell divides into two similar cells",
+      "A new organism grows as an outgrowth on its parent",
+      "A new plant grows from a vegetative part of its parent",
     ],
     answerIndex: 0,
-    explanation: "Regeneration allows some organisms to grow new individuals or body parts from fragments.",
+    explanation:
+      "Regeneration allows some organisms to grow new individuals or body parts from fragments.",
   },
   {
     id: "sci-f1-c4-dlp-q17",
@@ -245,15 +262,17 @@ export const scienceF1C4QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 4",
     lang: "dlp",
     difficulty: "Medium",
-    question: "Why are spores useful in reproduction?",
+    question:
+      "A bread mould releases tiny structures that develop into new mould in suitable conditions. Which evidence identifies spore formation rather than budding?",
     options: [
-      "They can grow into new organisms when conditions are suitable",
-      "They carry blood around the body",
-      "They protect the fetus",
-      "They produce semen",
+      "New individuals develop from released spores rather than an outgrowth attached to the parent",
+      "New individuals develop from an outgrowth that stays attached to the parent",
+      "A parent cell divides directly into two equal daughter cells",
+      "Two sex cells fuse before each new mould develops",
     ],
     answerIndex: 0,
-    explanation: "Spores are reproductive units that can develop into new organisms in suitable conditions.",
+    explanation:
+      "Spore formation releases spores that can develop into new individuals in suitable conditions. Budding begins as an outgrowth on the parent.",
   },
   {
     id: "sci-f1-c4-dlp-q18",
@@ -263,7 +282,12 @@ export const scienceF1C4QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Medium",
     question: "Which is an example of vegetative reproduction?",
-    options: ["Potato tuber growing into a new plant", "Fusion of sperm and ovum", "A baby growing in the uterus", "Voice becoming deeper"],
+    options: [
+      "A potato tuber grows into a new plant",
+      "A seed develops into a seedling",
+      "Pollen moves from an anther to a stigma",
+      "Male and female gametes fuse in an ovule",
+    ],
     answerIndex: 0,
     explanation: "A potato tuber can grow into a new plant by vegetative reproduction.",
   },
@@ -282,7 +306,8 @@ export const scienceF1C4QuizzesDLP: QuizQuestion[] = [
       "It thickens to receive an unfertilised ovum",
     ],
     answerIndex: 1,
-    explanation: "If fertilisation does not occur, the thickened uterine lining breaks down and is removed from the body during menstruation.",
+    explanation:
+      "If fertilisation does not occur, the thickened uterine lining breaks down and is removed from the body during menstruation.",
   },
   {
     id: "sci-f1-c4-dlp-q20",
@@ -299,7 +324,8 @@ export const scienceF1C4QuizzesDLP: QuizQuestion[] = [
       "It contains protein but no fat so that the baby can digest it more easily",
     ],
     answerIndex: 0,
-    explanation: "Breast milk provides suitable nutrients and antibodies that support the baby's growth and immune protection.",
+    explanation:
+      "Breast milk provides suitable nutrients and antibodies that support the baby's growth and immune protection.",
   },
   {
     id: "sci-f1-c4-dlp-q21",
@@ -308,7 +334,8 @@ export const scienceF1C4QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 4",
     lang: "dlp",
     difficulty: "Medium",
-    question: "Why is fertilisation more likely to occur around the fertile period of the menstrual cycle?",
+    question:
+      "Why is fertilisation more likely to occur around the fertile period of the menstrual cycle?",
     options: [
       "The uterine lining breaks down to help sperm meet the ovum",
       "A mature ovum is released from the ovary",
@@ -316,7 +343,8 @@ export const scienceF1C4QuizzesDLP: QuizQuestion[] = [
       "A mature ovum is released from the uterus into the vagina",
     ],
     answerIndex: 1,
-    explanation: "Ovulation releases a mature ovum. Fertilisation is more likely if sperm is present around this period.",
+    explanation:
+      "Ovulation releases a mature ovum. Fertilisation is more likely if sperm is present around this period.",
   },
   {
     id: "sci-f1-c4-dlp-q22",
@@ -325,15 +353,17 @@ export const scienceF1C4QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 4",
     lang: "dlp",
     difficulty: "Medium",
-    question: "What happens during the premenstrual phase?",
+    question:
+      "How does the uterine lining change during the premenstrual phase when fertilisation may occur?",
     options: [
-      "The uterus prepares for implantation",
-      "Binary fission occurs",
-      "The sperm duct produces ova",
-      "The sepals become seeds",
+      "The lining thickens and becomes richly supplied with blood vessels in preparation for possible implantation",
+      "The lining is completely shed with menstrual blood during the same phase",
+      "The lining becomes progressively thinner as all nutrients are reabsorbed",
+      "The lining becomes a placenta even if fertilisation has not occurred",
     ],
     answerIndex: 0,
-    explanation: "During the premenstrual phase, the uterus is prepared in case an embryo implants.",
+    explanation:
+      "In the premenstrual phase, the endometrium continues to thicken and develops a rich blood supply in preparation for possible implantation.",
   },
   {
     id: "sci-f1-c4-dlp-q23",
@@ -344,10 +374,10 @@ export const scienceF1C4QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     question: "What is fertilisation in humans?",
     options: [
-      "Fusion of sperm nucleus and ovum nucleus",
-      "Attachment of embryo to the uterus",
-      "Release of blood during menstruation",
-      "Transfer of pollen to stigma",
+      "Fusion of the sperm nucleus and ovum nucleus",
+      "Attachment of the embryo to the uterine wall",
+      "Release of a mature ovum from an ovary",
+      "Division of a zygote into more cells",
     ],
     answerIndex: 0,
     explanation: "Human fertilisation occurs when the sperm nucleus fuses with the ovum nucleus.",
@@ -359,15 +389,17 @@ export const scienceF1C4QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 4",
     lang: "dlp",
     difficulty: "Medium",
-    question: "What is implantation?",
+    question:
+      "A fertilised ovum divides as it moves towards the uterus. Which sequence correctly matches the next stage and its location?",
     options: [
-      "The embryo attaches to the uterus wall",
-      "The ovum is released from the ovary",
-      "Pollen moves to the stigma",
-      "A new bud grows from a parent",
+      "Embryo → attachment to the uterine wall",
+      "Embryo → attachment inside the ovary",
+      "Ovum → attachment to the Fallopian tube",
+      "Sperm → attachment to the cervix",
     ],
     answerIndex: 0,
-    explanation: "Implantation is when the embryo attaches to the wall of the uterus.",
+    explanation:
+      "After fertilisation, the zygote divides to form an embryo. The embryo moves towards the uterus and implants in its wall.",
   },
   {
     id: "sci-f1-c4-dlp-q25",
@@ -384,7 +416,8 @@ export const scienceF1C4QuizzesDLP: QuizQuestion[] = [
       "Fetus → Embryo → Zygote → Baby",
     ],
     answerIndex: 1,
-    explanation: "After fertilisation, a zygote forms and develops into an embryo, then a fetus, and eventually a baby.",
+    explanation:
+      "After fertilisation, a zygote forms and develops into an embryo, then a fetus, and eventually a baby.",
   },
   {
     id: "sci-f1-c4-dlp-q26",
@@ -393,7 +426,8 @@ export const scienceF1C4QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 4",
     lang: "dlp",
     difficulty: "Medium",
-    question: "A married couple has difficulty having a child because the man's sperm count is very low. What is the most appropriate action?",
+    question:
+      "A married couple has difficulty having a child because the man's sperm count is very low. What is the most appropriate action?",
     options: [
       "Seek treatment for the woman only because fertility depends only on women",
       "Seek medical examination and professional treatment",
@@ -401,7 +435,8 @@ export const scienceF1C4QuizzesDLP: QuizQuestion[] = [
       "Choose fertility treatment based on another couple's experience without an examination",
     ],
     answerIndex: 1,
-    explanation: "Infertility can involve either partner. Medical examination can help identify the cause and suitable treatment.",
+    explanation:
+      "Infertility can involve either partner. Medical examination can help identify the cause and suitable treatment.",
   },
   {
     id: "sci-f1-c4-dlp-q27",
@@ -418,7 +453,8 @@ export const scienceF1C4QuizzesDLP: QuizQuestion[] = [
       "To allow the fetus to receive oxygen directly from the air outside the mother's body",
     ],
     answerIndex: 1,
-    explanation: "The placenta allows exchange of useful substances and wastes between the mother and fetus, while the umbilical cord connects the fetus to the placenta.",
+    explanation:
+      "The placenta allows exchange of useful substances and wastes between the mother and fetus, while the umbilical cord connects the fetus to the placenta.",
   },
   {
     id: "sci-f1-c4-dlp-q28",
@@ -435,7 +471,8 @@ export const scienceF1C4QuizzesDLP: QuizQuestion[] = [
       "Harmful substances only affect the fetus if the mother also shows symptoms of poisoning",
     ],
     answerIndex: 1,
-    explanation: "Harmful substances can reach the fetus and interfere with normal growth and development.",
+    explanation:
+      "Harmful substances can reach the fetus and interfere with normal growth and development.",
   },
   {
     id: "sci-f1-c4-dlp-q29",
@@ -452,7 +489,8 @@ export const scienceF1C4QuizzesDLP: QuizQuestion[] = [
       "It can produce seeds without the fusion of male and female gametes",
     ],
     answerIndex: 1,
-    explanation: "Cross-pollination can produce offspring with a combination of useful characteristics, which may be beneficial in crop improvement.",
+    explanation:
+      "Cross-pollination can produce offspring with a combination of useful characteristics, which may be beneficial in crop improvement.",
   },
   {
     id: "sci-f1-c4-dlp-q30",
@@ -460,15 +498,17 @@ export const scienceF1C4QuizzesDLP: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 4",
     lang: "dlp",
-    difficulty: "Medium",
-    question: "After fertilisation occurs in a flowering plant, which change is correct?",
+    difficulty: "Hard",
+    question:
+      "A flower's ovary contains six ovules. Only four ovules are successfully fertilised and develop normally. Which outcome is most likely?",
     options: [
-      "Ovule develops into a seed and the ovary develops into a fruit",
-      "Ovary develops into a seed and the ovule develops into a fruit",
-      "Ovule develops into a seed and the stigma develops into a fruit",
-      "Anther develops into a seed and the ovary develops into a fruit",
+      "One fruit may form containing four seeds",
+      "Four fruits form, each containing one seed",
+      "Six fruits form because there were six original ovules",
+      "One seed forms because the flower has only one ovary",
     ],
     answerIndex: 0,
-    explanation: "After fertilisation, the ovule develops into a seed while the ovary develops into a fruit.",
+    explanation:
+      "The ovary develops into a fruit, while each fertilised ovule may develop into a seed. Four normally developing fertilised ovules can produce one fruit with four seeds.",
   },
 ];

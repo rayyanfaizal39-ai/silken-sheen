@@ -85,10 +85,10 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     question: "An engineer uses knowledge of energy to develop a robot that helps with household tasks. Which pairing best links the science field and the benefit of this innovation?",
     options: [
-      "Biology — identifying rocks",
+      "Biology — helping solve daily-life problems",
       "Physics — helping solve daily-life problems",
-      "Chemistry — predicting weather",
-      "Geology — studying microorganisms"
+      "Chemistry — helping solve daily-life problems",
+      "Geology — helping solve daily-life problems",
     ],
     answerIndex: 1,
     explanation: "Physics studies energy and its effects on matter and is linked to engineering. Scientific innovations such as robots help solve daily-life problems."
@@ -120,9 +120,9 @@ export const quizzes: QuizQuestion[] = [
     question: "Solid P has mass 12 g and volume 20 cm³. Solid Q has mass 18 g and volume 15 cm³. Neither dissolves in water. Which statement is correct in water of density 1.0 g cm⁻³?",
     options: [
       "P floats and Q sinks because P is less dense and Q is more dense than water",
-      "Both float because both masses are smaller than 20 g",
-      "Both sink because both are solids",
-      "P sinks and Q floats because P has the larger volume"
+      "Both float because their masses, rather than their densities, are less than 20 g",
+      "Both sink because being solid, rather than relative density, determines sinking",
+      "P sinks and Q floats because a larger volume always means a greater density",
     ],
     answerIndex: 0,
     explanation: "P has density 12 ÷ 20 = 0.6 g cm⁻³; Q has density 18 ÷ 15 = 1.2 g cm⁻³. Compare each density with water, not mass or volume alone."
@@ -268,10 +268,10 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     question: "Two laboratories compare masses but one reports only '5' and the other only '5000', without units. Which practice makes the comparison meaningful?",
     options: [
-      "Assume the larger number always means a larger mass",
+      "Compare the numbers directly because both laboratories measured mass",
       "State the units and convert both masses to the same standard unit, such as kilogram",
-      "Change both numbers to 5 without checking the units",
-      "Compare only the measuring instruments' brand names"
+      "Write kilogram after both numbers without checking the original units",
+      "Divide the larger number by 1000 without finding its original unit",
     ],
     answerIndex: 1,
     explanation: "Numbers without units do not identify the measured mass. Standard units allow measurements to be communicated and compared consistently."
@@ -581,10 +581,10 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     question: "Seorang jurutera menggunakan pengetahuan tentang tenaga untuk menghasilkan robot yang membantu kerja rumah. Padanan manakah menghubungkan bidang sains dengan manfaat inovasi ini?",
     options: [
-      "Biologi — mengenal pasti batuan",
+      "Biologi — membantu menyelesaikan masalah kehidupan harian",
       "Fizik — membantu menyelesaikan masalah kehidupan harian",
-      "Kimia — meramalkan cuaca",
-      "Geologi — mengkaji mikroorganisma"
+      "Kimia — membantu menyelesaikan masalah kehidupan harian",
+      "Geologi — membantu menyelesaikan masalah kehidupan harian",
     ],
     answerIndex: 1,
     explanation: "Fizik mengkaji tenaga dan kesannya terhadap jirim serta berkaitan dengan kejuruteraan. Inovasi sains seperti robot membantu menyelesaikan masalah kehidupan harian."
@@ -616,9 +616,9 @@ export const quizzes: QuizQuestion[] = [
     question: "Pepejal P berjisim 12 g dan berisi padu 20 cm³. Pepejal Q berjisim 18 g dan berisi padu 15 cm³. Kedua-duanya tidak larut dalam air. Pernyataan manakah betul dalam air berketumpatan 1.0 g cm⁻³?",
     options: [
       "P terapung dan Q tenggelam kerana P kurang tumpat dan Q lebih tumpat daripada air",
-      "Kedua-duanya terapung kerana jisim masing-masing kurang daripada 20 g",
-      "Kedua-duanya tenggelam kerana kedua-duanya pepejal",
-      "P tenggelam dan Q terapung kerana isi padu P lebih besar"
+      "Kedua-duanya terapung kerana jisimnya, bukan ketumpatannya, kurang daripada 20 g",
+      "Kedua-duanya tenggelam kerana keadaan pepejal, bukan ketumpatan relatif, menentukan tenggelam",
+      "P tenggelam dan Q terapung kerana isi padu lebih besar sentiasa bermaksud ketumpatan lebih besar",
     ],
     answerIndex: 0,
     explanation: "Ketumpatan P = 12 ÷ 20 = 0.6 g cm⁻³; ketumpatan Q = 18 ÷ 15 = 1.2 g cm⁻³. Bandingkan setiap ketumpatan dengan air, bukan jisim atau isi padu sahaja."
@@ -764,10 +764,10 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     question: "Dua makmal membandingkan jisim tetapi satu melaporkan '5' dan satu lagi '5000' tanpa unit. Amalan manakah membolehkan perbandingan yang bermakna?",
     options: [
-      "Anggap nombor yang lebih besar sentiasa bermaksud jisim lebih besar",
+      "Bandingkan nombor terus kerana kedua-dua makmal mengukur jisim",
       "Nyatakan unit dan tukarkan kedua-dua jisim kepada unit piawai yang sama, seperti kilogram",
-      "Tukar kedua-dua nombor kepada 5 tanpa menyemak unit",
-      "Bandingkan nama jenama alat pengukur sahaja"
+      "Tulis kilogram selepas kedua-dua nombor tanpa menyemak unit asal",
+      "Bahagi nombor lebih besar dengan 1000 tanpa mengetahui unit asalnya",
     ],
     answerIndex: 1,
     explanation: "Nombor tanpa unit tidak menyatakan jisim yang diukur. Unit piawai membolehkan ukuran disampaikan dan dibandingkan secara seragam."

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 250" role="img" aria-label="Two crustal plates at a fault boundary with arrows approaching each other"><rect width="640" height="250" rx="20" fill="#F8FAFC"/><rect x="7" y="7" width="626" height="236" rx="15" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+<rect x="78" y="105" width="226" height="96" rx="5" fill="#D6D3D1" stroke="#78716C" stroke-width="3"/><rect x="337" y="105" width="226" height="96" rx="5" fill="#D6D3D1" stroke="#78716C" stroke-width="3"/>
+<rect x="78" y="104" width="226" height="26" rx="1" fill="#65A30D" stroke="none" stroke-width="3"/><rect x="337" y="104" width="226" height="26" rx="1" fill="#65A30D" stroke="none" stroke-width="3"/>
+<line x1="175" y1="70" x2="274" y2="70" stroke="#0284C7" stroke-width="6" stroke-linecap="round"/><polygon points="274,70 253,58 253,82" fill="#0284C7"/>
+<line x1="462" y1="70" x2="363" y2="70" stroke="#0284C7" stroke-width="6" stroke-linecap="round"/><polygon points="363,70 384,58 384,82" fill="#0284C7"/>
+<path d="M306 99 L318 118 L307 142 L333 164 L323 206" fill="none" stroke="#EA580C" stroke-width="6"/>
+<text x="318" y="237" font-family="Arial,sans-serif" font-size="26" font-weight="600" fill="#475569" text-anchor="middle">Plate boundary / Sempadan plat</text></svg>

@@ -21,7 +21,12 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Easy",
     question: "Bagaimanakah cahaya bergerak?",
-    options: ["Dalam garis lurus", "Dalam bulatan sahaja", "Secara beralun perlahan", "Mengikut arah angin"],
+    options: [
+      "Sepanjang laluan lurus dalam medium yang sama",
+      "Sepanjang laluan melengkung dalam medium yang sama",
+      "Hanya sepanjang laluan menegak",
+      "Hanya sepanjang laluan mengufuk",
+    ],
     answerIndex: 0,
     explanation: "Cahaya bergerak dalam garis lurus.",
   },
@@ -45,7 +50,12 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Easy",
     question: "Bilakah bayang-bayang terbentuk?",
-    options: ["Apabila cahaya dihalang oleh objek legap", "Apabila cahaya melalui kaca jernih", "Apabila bunyi dipantulkan", "Apabila air mendidih"],
+    options: [
+      "Cahaya dihalang oleh objek legap",
+      "Semua cahaya menembusi objek",
+      "Cahaya dipisahkan kepada spektrumnya oleh prisma",
+      "Cahaya berubah arah antara udara dengan air",
+    ],
     answerIndex: 0,
     explanation: "Bayang-bayang terbentuk apabila cahaya dihalang oleh objek legap.",
   },
@@ -59,7 +69,8 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
     question: "Pada waktu bilakah bayang-bayang biasanya paling pendek?",
     options: ["Tengah hari", "Awal pagi", "Lewat petang", "Tengah malam"],
     answerIndex: 0,
-    explanation: "Bayang-bayang paling pendek pada waktu tengah hari kerana Matahari berada tinggi di langit.",
+    explanation:
+      "Bayang-bayang paling pendek pada waktu tengah hari kerana Matahari berada tinggi di langit.",
   },
   {
     id: "sci-f1-c8-bm-q6",
@@ -76,7 +87,8 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
       "Imej sahih dan imej maya kedua-duanya tidak boleh terbentuk pada skrin",
     ],
     answerIndex: 0,
-    explanation: "Imej sahih boleh diproyeksikan pada skrin, manakala imej maya tidak dapat terbentuk pada skrin.",
+    explanation:
+      "Imej sahih boleh diproyeksikan pada skrin, manakala imej maya tidak dapat terbentuk pada skrin.",
   },
   {
     id: "sci-f1-c8-bm-q7",
@@ -85,7 +97,8 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 8",
     lang: "bm",
     difficulty: "Easy",
-    question: "Apakah yang terhasil apabila cahaya merah, hijau dan biru dengan keamatan yang sesuai ditambahkan bersama?",
+    question:
+      "Apakah yang terhasil apabila cahaya merah, hijau dan biru dengan keamatan yang sesuai ditambahkan bersama?",
     options: [
       "Cahaya putih",
       "Cahaya biru sahaja",
@@ -93,7 +106,8 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
       "Cahaya kuning sahaja",
     ],
     answerIndex: 0,
-    explanation: "Merah, hijau dan biru ialah warna primer cahaya. Apabila ketiga-tiganya ditambahkan pada keamatan yang sesuai, cahaya putih terhasil.",
+    explanation:
+      "Merah, hijau dan biru ialah warna primer cahaya. Apabila ketiga-tiganya ditambahkan pada keamatan yang sesuai, cahaya putih terhasil.",
   },
   {
     id: "sci-f1-c8-bm-q8",
@@ -102,15 +116,12 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 8",
     lang: "bm",
     difficulty: "Easy",
-    question: "Seorang murid berdiri 2 m di hadapan sebuah cermin satah. Berapakah jarak imej murid itu di belakang cermin?",
-    options: [
-      "1 m",
-      "2 m",
-      "4 m",
-      "6 m",
-    ],
+    question:
+      "Seorang murid berdiri 2 m di hadapan sebuah cermin satah. Berapakah jarak imej murid itu di belakang cermin?",
+    options: ["1 m", "2 m", "4 m", "6 m"],
     answerIndex: 1,
-    explanation: "Bagi cermin satah, jarak imej dari cermin adalah sama dengan jarak objek dari cermin.",
+    explanation:
+      "Bagi cermin satah, jarak imej dari cermin adalah sama dengan jarak objek dari cermin.",
   },
   {
     id: "sci-f1-c8-bm-q9",
@@ -120,9 +131,10 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Easy",
     question: "Apakah ciri imej dalam cermin satah?",
-    options: ["Tegak dan maya", "Sentiasa lebih kecil", "Boleh terbentuk pada skrin", "Sentiasa berwarna merah"],
+    options: ["Tegak dan maya", "Tegak dan sahih", "Songsang dan maya", "Songsang dan sahih"],
     answerIndex: 0,
-    explanation: "Cermin satah menghasilkan imej tegak, maya, songsang sisi dan sama saiz dengan objek.",
+    explanation:
+      "Cermin satah menghasilkan imej tegak, maya, songsang sisi dan sama saiz dengan objek.",
   },
   {
     id: "sci-f1-c8-bm-q10",
@@ -131,7 +143,8 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 8",
     lang: "bm",
     difficulty: "Easy",
-    question: "Mengapakah cermin cekung sesuai digunakan sebagai cermin solek apabila muka berada dekat dengan cermin?",
+    question:
+      "Mengapakah cermin cekung sesuai digunakan sebagai cermin solek apabila muka berada dekat dengan cermin?",
     options: [
       "Ia boleh menghasilkan imej maya yang diperbesar",
       "Ia boleh menghasilkan imej sahih yang tegak dan lebih kecil",
@@ -139,7 +152,8 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
       "Ia boleh menghasilkan imej sahih yang songsang untuk memudahkan solekan",
     ],
     answerIndex: 0,
-    explanation: "Pada kedudukan objek yang sesuai, cermin cekung menghasilkan imej maya yang tegak dan diperbesar.",
+    explanation:
+      "Pada kedudukan objek yang sesuai, cermin cekung menghasilkan imej maya yang tegak dan diperbesar.",
   },
   {
     id: "sci-f1-c8-bm-q11",
@@ -156,7 +170,8 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
       "Menghasilkan imej sama saiz supaya seluruh kawasan belakang dapat dilihat",
     ],
     answerIndex: 0,
-    explanation: "Cermin cembung memberikan medan pandangan yang lebih luas, membolehkan pemandu melihat kawasan yang lebih besar di belakang dan sisi kenderaan.",
+    explanation:
+      "Cermin cembung memberikan medan pandangan yang lebih luas, membolehkan pemandu melihat kawasan yang lebih besar di belakang dan sisi kenderaan.",
   },
   {
     id: "sci-f1-c8-bm-q12",
@@ -165,7 +180,8 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 8",
     lang: "bm",
     difficulty: "Easy",
-    question: "Mengapakah jalur pemantul cahaya dipasang pada jaket keselamatan pekerja jalan raya?",
+    question:
+      "Mengapakah jalur pemantul cahaya dipasang pada jaket keselamatan pekerja jalan raya?",
     options: [
       "Untuk memantulkan cahaya supaya pekerja lebih mudah dilihat pada waktu gelap",
       "Untuk menyerap cahaya supaya jaket kelihatan lebih terang tanpa memantulkannya",
@@ -173,7 +189,8 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
       "Untuk menyebarkan cahaya kepada spektrum warna supaya jaket menghasilkan cahaya sendiri",
     ],
     answerIndex: 0,
-    explanation: "Jalur tersebut memantulkan cahaya daripada lampu kenderaan dan membantu meningkatkan keterlihatan pekerja.",
+    explanation:
+      "Jalur tersebut memantulkan cahaya daripada lampu kenderaan dan membantu meningkatkan keterlihatan pekerja.",
   },
   {
     id: "sci-f1-c8-bm-q13",
@@ -183,7 +200,7 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Easy",
     question: "Apakah formula hukum pantulan?",
-    options: ["i = r", "v = u", "F = ma", "d = m/V"],
+    options: ["i = r", "i = 2r", "r = 2i", "i + r = 90°"],
     answerIndex: 0,
     explanation: "Dalam hukum pantulan, sudut tuju sama dengan sudut pantulan, iaitu i = r.",
   },
@@ -194,7 +211,8 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 8",
     lang: "bm",
     difficulty: "Easy",
-    question: "Mengapakah penyedut minuman kelihatan bengkok apabila sebahagiannya berada di dalam air?",
+    question:
+      "Mengapakah penyedut minuman kelihatan bengkok apabila sebahagiannya berada di dalam air?",
     options: [
       "Cahaya dibiaskan apabila bergerak antara air dengan udara",
       "Cahaya dipantulkan sepenuhnya pada permukaan air sebelum sampai ke mata",
@@ -202,7 +220,8 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
       "Cahaya diserakkan oleh zarah udara sehingga bentuk penyedut berubah",
     ],
     answerIndex: 0,
-    explanation: "Cahaya berubah arah apabila bergerak antara medium yang mempunyai ketumpatan optik berbeza.",
+    explanation:
+      "Cahaya berubah arah apabila bergerak antara medium yang mempunyai ketumpatan optik berbeza.",
   },
   {
     id: "sci-f1-c8-bm-q15",
@@ -219,7 +238,8 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
       "Cahaya putih diserap sepenuhnya sehingga tiada cahaya keluar",
     ],
     answerIndex: 0,
-    explanation: "Prisma menyebabkan cahaya putih tersebar kepada warna-warna komponennya kerana setiap warna dibiaskan pada kadar yang berbeza.",
+    explanation:
+      "Prisma menyebabkan cahaya putih tersebar kepada warna-warna komponennya kerana setiap warna dibiaskan pada kadar yang berbeza.",
   },
   {
     id: "sci-f1-c8-bm-q16",
@@ -229,7 +249,12 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question: "Apakah yang dimaksudkan dengan imej songsang sisi?",
-    options: ["Bahagian kiri dan kanan imej tertukar", "Imej menjadi lebih panas", "Imej menjadi lebih berat", "Imej hilang warna"],
+    options: [
+      "Kiri dan kanan kelihatan tertukar manakala imej kekal tegak",
+      "Atas dan bawah kelihatan tertukar manakala kiri dan kanan tidak berubah",
+      "Seluruh imej berputar sebanyak suku pusingan",
+      "Imej tegak tanpa perubahan orientasi kiri dan kanan",
+    ],
     answerIndex: 0,
     explanation: "Songsang sisi bermaksud bahagian kiri dan kanan imej kelihatan tertukar.",
   },
@@ -252,10 +277,17 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 8",
     lang: "bm",
     difficulty: "Medium",
-    question: "Apakah fungsi garis normal dalam pantulan cahaya?",
-    options: ["Garis rujukan untuk mengukur sudut tuju dan sudut pantulan", "Garis yang menghasilkan warna", "Garis yang menghalang cahaya", "Garis yang menyerap semua cahaya"],
+    question:
+      "Sinar tuju membentuk sudut 35° dengan normal kepada cermin satah. Murid merekodkan 55° sebagai sudut tuju. Apakah punca ralat ini?",
+    options: [
+      "Murid mengukur dari permukaan cermin dan bukannya normal",
+      "Murid menggunakan sudut antara sinar dengan normal dengan betul",
+      "Normal sepatutnya dilukis selari dengan permukaan cermin",
+      "Sudut tuju sepatutnya dua kali sudut yang ditunjukkan",
+    ],
     answerIndex: 0,
-    explanation: "Garis normal digunakan sebagai rujukan untuk mengukur sudut tuju dan sudut pantulan.",
+    explanation:
+      "Normal berserenjang dengan cermin. Sudut tuju diukur dari normal, maka nilainya 35°, bukan sudut pelengkap 55° yang diukur dari permukaan.",
   },
   {
     id: "sci-f1-c8-bm-q19",
@@ -264,7 +296,8 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 8",
     lang: "bm",
     difficulty: "Medium",
-    question: "Apabila cahaya bergerak secara serong dari udara ke dalam kaca, apakah yang berlaku kepada sinar cahaya yang memasuki kaca?",
+    question:
+      "Apabila cahaya bergerak secara serong dari udara ke dalam kaca, apakah yang berlaku kepada sinar cahaya yang memasuki kaca?",
     options: [
       "Terbias mendekati garis normal",
       "Terbias menjauhi garis normal",
@@ -272,7 +305,7 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
       "Dipantulkan sepenuhnya tanpa memasuki kaca",
     ],
     answerIndex: 0,
-    explanation: "Apabila cahaya memasuki medium yang lebih tumpat secara optik secara serong, kelajuannya berkurang dan sinar dibiaskan mendekati garis normal.",
+    explanation: "Sinar yang memasuki medium lebih tumpat secara serong terbias mendekati normal.",
   },
   {
     id: "sci-f1-c8-bm-q20",
@@ -281,7 +314,8 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 8",
     lang: "bm",
     difficulty: "Medium",
-    question: "Apabila sinar cahaya melalui air ke udara secara serong dan keluar ke udara, bagaimanakah arah sinar itu berubah?",
+    question:
+      "Apabila sinar cahaya melalui air ke udara secara serong dan keluar ke udara, bagaimanakah arah sinar itu berubah?",
     options: [
       "Sinar terbias menjauhi garis normal",
       "Sinar terbias mendekati garis normal",
@@ -289,7 +323,8 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
       "Sinar keluar sepanjang permukaan air dalam semua keadaan",
     ],
     answerIndex: 0,
-    explanation: "Bagi sinar yang keluar secara serong dari air ke udara, cahaya bergerak dari medium lebih tumpat secara optik ke medium kurang tumpat secara optik lalu terbias menjauhi garis normal.",
+    explanation:
+      "Bagi sinar yang keluar secara serong dari air ke udara, cahaya bergerak dari medium lebih tumpat secara optik ke medium kurang tumpat secara optik lalu terbias menjauhi garis normal.",
   },
   {
     id: "sci-f1-c8-bm-q21",
@@ -298,7 +333,8 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 8",
     lang: "bm",
     difficulty: "Medium",
-    question: "Sinar cahaya memasuki kaca dari udara. Dalam keadaan manakah arah sinar tidak berubah walaupun kelajuannya berubah?",
+    question:
+      "Sinar cahaya memasuki kaca dari udara. Dalam keadaan manakah arah sinar tidak berubah?",
     options: [
       "Sinar masuk sepanjang garis normal",
       "Sinar masuk pada sudut 30 darjah terhadap garis normal",
@@ -306,7 +342,8 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
       "Sinar masuk pada sudut 60 darjah terhadap garis normal",
     ],
     answerIndex: 0,
-    explanation: "Apabila cahaya memasuki kaca sepanjang garis normal, arah pergerakannya tidak berubah walaupun kelajuannya berkurang.",
+    explanation:
+      "Apabila sinar tuju bergerak sepanjang normal, arah sinar tidak berubah pada sempadan.",
   },
   {
     id: "sci-f1-c8-bm-q22",
@@ -314,11 +351,17 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     lang: "bm",
-    difficulty: "Medium",
-    question: "Apakah turutan warna spektrum yang betul?",
-    options: ["Merah, jingga, kuning, hijau, biru, indigo, ungu", "Biru, merah, hijau, ungu, kuning, jingga, indigo", "Hitam, putih, merah, biru, hijau, ungu, jingga", "Merah, biru, kuning, hitam, putih, indigo, ungu"],
+    difficulty: "Easy",
+    question: "Urutan manakah menyenaraikan spektrum cahaya daripada merah kepada ungu?",
+    options: [
+      "Merah, jingga, kuning, hijau, biru, indigo, ungu",
+      "Merah, kuning, jingga, hijau, biru, indigo, ungu",
+      "Merah, jingga, kuning, biru, hijau, indigo, ungu",
+      "Merah, jingga, kuning, hijau, indigo, biru, ungu",
+    ],
     answerIndex: 0,
-    explanation: "Spektrum cahaya terdiri daripada merah, jingga, kuning, hijau, biru, indigo dan ungu.",
+    explanation:
+      "Spektrum cahaya terdiri daripada merah, jingga, kuning, hijau, biru, indigo dan ungu.",
   },
   {
     id: "sci-f1-c8-bm-q23",
@@ -326,7 +369,7 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     lang: "bm",
-    difficulty: "Medium",
+    difficulty: "Easy",
     question: "Warna cahaya manakah paling kurang dibiaskan?",
     options: ["Merah", "Ungu", "Biru", "Indigo"],
     answerIndex: 0,
@@ -338,7 +381,7 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     lang: "bm",
-    difficulty: "Medium",
+    difficulty: "Easy",
     question: "Apakah hasil gabungan cahaya merah dan hijau?",
     options: ["Kuning", "Magenta", "Sian", "Hitam"],
     answerIndex: 0,
@@ -351,10 +394,17 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 8",
     lang: "bm",
     difficulty: "Medium",
-    question: "Apakah fungsi dua cermin satah dalam periskop?",
-    options: ["Memantulkan cahaya supaya objek di luar pandangan boleh dilihat", "Menyebarkan cahaya kepada tujuh warna", "Menyerap semua cahaya", "Menghasilkan haba"],
+    question:
+      "Dalam periskop, cahaya masuk di A, mengenai cermin satah atas kemudian cermin satah bawah sebelum sampai ke B. Proses manakah membolehkan objek terlindung dilihat?",
+    options: [
+      "Pantulan pada kedua-dua cermin mengubah arah cahaya ke pemerhati",
+      "Pembiasan pada kedua-dua cermin mengubah arah cahaya ke pemerhati",
+      "Pantulan pada cermin atas dan penyerapan pada cermin bawah",
+      "Penyerapan pada cermin atas dan pantulan pada cermin bawah",
+    ],
     answerIndex: 0,
-    explanation: "Periskop menggunakan dua cermin satah untuk memantulkan cahaya ke mata pemerhati.",
+    explanation:
+      "Cermin atas memantulkan cahaya ke bawah dan cermin bawah memantulkannya ke arah pemerhati. Kedua-dua pantulan diperlukan.",
   },
   {
     id: "sci-f1-c8-bm-q26",
@@ -362,11 +412,18 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     lang: "bm",
-    difficulty: "Hard",
-    question: "Mengapakah kilat dilihat sebelum guruh didengar?",
-    options: ["Cahaya bergerak lebih laju daripada bunyi", "Bunyi bergerak lebih laju daripada cahaya", "Kilat tidak menghasilkan bunyi", "Guruh berlaku sebelum kilat"],
+    difficulty: "Medium",
+    question:
+      "Seorang murid melihat kilat dahulu dan mendengar guruh beberapa saat kemudian walaupun kedua-duanya berlaku semasa peristiwa yang sama. Kesimpulan manakah paling tepat?",
+    options: [
+      "Cahaya mengambil masa jauh lebih singkat berbanding bunyi untuk sampai",
+      "Bunyi hanya dihasilkan selepas cahaya kilat tiba di mata pemerhati",
+      "Cahaya dan bunyi bergerak sama laju tetapi telinga bertindak lebih lambat",
+      "Bunyi tidak boleh merambat dalam udara semasa kilat berlaku",
+    ],
     answerIndex: 0,
-    explanation: "Cahaya daripada kilat sampai ke mata lebih cepat kerana cahaya bergerak lebih laju daripada bunyi.",
+    explanation:
+      "Cahaya bergerak jauh lebih cepat daripada bunyi, jadi cahaya daripada kilat tiba terlebih dahulu walaupun kedua-duanya dihasilkan hampir serentak.",
   },
   {
     id: "sci-f1-c8-bm-q27",
@@ -374,11 +431,17 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     lang: "bm",
-    difficulty: "Hard",
+    difficulty: "Medium",
     question: "Mengapakah kolam renang kelihatan lebih cetek daripada keadaan sebenar?",
-    options: ["Cahaya terbias apabila bergerak dari air ke udara", "Air memantulkan semua bunyi", "Dasar kolam naik ke atas", "Air menyerap semua cahaya"],
+    options: [
+      "Pembiasan pada sempadan air-udara mengubah kedudukan ketara dasar",
+      "Pantulan pada sempadan air-udara menaikkan kedudukan sebenar dasar",
+      "Penyebaran memisahkan imej dasar kepada tujuh warna",
+      "Penyerakan mengubah kedalaman sebenar air",
+    ],
     answerIndex: 0,
-    explanation: "Pembiasan cahaya dari air ke udara menyebabkan dasar kolam kelihatan lebih dekat dengan permukaan.",
+    explanation:
+      "Pembiasan cahaya dari air ke udara menyebabkan dasar kolam kelihatan lebih dekat dengan permukaan.",
   },
   {
     id: "sci-f1-c8-bm-q28",
@@ -386,7 +449,7 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     lang: "bm",
-    difficulty: "Hard",
+    difficulty: "Easy",
     question: "Fenomena manakah paling berkaitan dengan penyebaran cahaya?",
     options: [
       "Pembentukan pelangi",
@@ -395,7 +458,8 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
       "Langit kelihatan biru pada waktu siang",
     ],
     answerIndex: 0,
-    explanation: "Pelangi terbentuk apabila cahaya putih Matahari mengalami proses termasuk pembiasan dan penyebaran oleh titisan air.",
+    explanation:
+      "Pelangi terbentuk apabila cahaya putih Matahari mengalami proses termasuk pembiasan dan penyebaran oleh titisan air.",
   },
   {
     id: "sci-f1-c8-bm-q29",
@@ -404,15 +468,17 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 8",
     lang: "bm",
     difficulty: "Hard",
-    question: "Mengapakah langit biasanya kelihatan biru pada waktu siang?",
+    question:
+      "Langit kelihatan biru pada tengah hari, tetapi cahaya matahari kelihatan merah-jingga pada senja. Perbandingan manakah menerangkan kedua-dua pemerhatian?",
     options: [
-      "Cahaya biru diserakkan dengan lebih banyak oleh zarah dalam atmosfera",
-      "Cahaya biru dipantulkan oleh laut lalu memberikan warna kepada seluruh langit",
-      "Cahaya biru disebarkan daripada cahaya putih oleh atmosfera seperti prisma",
-      "Cahaya merah diserakkan lebih banyak lalu seluruh langit kelihatan biru",
+      "Cahaya biru lebih banyak diserak; cahaya merah-jingga kurang diserak dan kekal dalam lintasan terus ketika senja",
+      "Cahaya biru kurang diserak; cahaya merah-jingga lebih banyak diserak dan kekal dalam lintasan terus ketika senja",
+      "Semua warna diserak sama banyak; Matahari mengubah warna yang dihasilkannya",
+      "Udara bertindak hanya sebagai prisma pada tengah hari dan hanya sebagai cermin satah pada senja",
     ],
     answerIndex: 0,
-    explanation: "Cahaya dengan panjang gelombang yang lebih pendek seperti biru lebih banyak diserakkan dalam atmosfera.",
+    explanation:
+      "Cahaya biru banyak diserak oleh zarah udara. Pada senja, banyak cahaya biru diserak keluar daripada lintasan terus, manakala cahaya merah dan jingga yang kurang diserak sampai kepada pemerhati.",
   },
   {
     id: "sci-f1-c8-bm-q30",
@@ -420,10 +486,17 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     lang: "bm",
-    difficulty: "Hard",
-    question: "Mengapakah objek hitam terasa lebih panas di bawah cahaya matahari?",
-    options: ["Objek hitam menyerap semua warna cahaya", "Objek hitam memantulkan semua warna", "Objek hitam menghasilkan cahaya sendiri", "Objek hitam tidak menyerap tenaga"],
+    difficulty: "Medium",
+    question:
+      "Mengapakah pakaian hitam biasanya terasa lebih panas daripada pakaian putih apabila terdedah kepada cahaya Matahari yang sama?",
+    options: [
+      "Permukaan hitam menyerap bahagian sinaran tuju yang lebih besar",
+      "Permukaan hitam memantulkan lebih banyak sinaran tuju berbanding putih",
+      "Permukaan hitam tidak boleh kehilangan haba melalui persekitaran",
+      "Permukaan putih menghalang semua sinaran Matahari daripada sampai",
+    ],
     answerIndex: 0,
-    explanation: "Objek hitam menyerap kebanyakan cahaya dan tenaga haba, maka terasa lebih panas.",
+    explanation:
+      "Permukaan hitam biasanya menyerap lebih banyak sinaran cahaya yang mengenainya berbanding permukaan putih, lalu boleh menjadi lebih panas. Ia bukan bererti semua tenaga diserap dalam semua keadaan.",
   },
 ];

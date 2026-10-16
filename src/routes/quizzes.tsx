@@ -1,3 +1,5 @@
+import { ScienceF1QuizVisual } from "@/components/quiz/ScienceF1QuizVisual";
+import { scienceF1QuizVisualById } from "@/content/form1/science/quiz-visuals";
 import { getGeographyF1QuizImageAlt } from "@/content/form1/geography/quiz-visuals";
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -22086,7 +22088,9 @@ function QuizzesPage() {
 
                 {/* ── Question text ── */}
                 <div className="px-4 pb-3 pt-4 sm:px-10 sm:pb-5 sm:pt-7">
-                  {current.image ? (
+                  {current.id && scienceF1QuizVisualById[current.id] ? (
+                    <ScienceF1QuizVisual question={current} />
+                  ) : current.image ? (
                     <img
                       src={current.image}
                       alt={getGeographyF1QuizImageAlt(current.image)}

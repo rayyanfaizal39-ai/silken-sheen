@@ -9,14 +9,10 @@ export const scienceF1C7QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "Which gas is present in the largest proportion in air?",
-    options: [
-      "Oxygen",
-      "Carbon dioxide",
-      "Nitrogen",
-      "Helium",
-    ],
+    options: ["Oxygen", "Carbon dioxide", "Nitrogen", "Helium"],
     answerIndex: 2,
-    explanation: "Nitrogen is the most abundant gas in air, while oxygen is the second most abundant.",
+    explanation:
+      "Nitrogen is the most abundant gas in air, while oxygen is the second most abundant.",
   },
   {
     id: "sci-f1-c7-dlp-q2",
@@ -45,7 +41,8 @@ export const scienceF1C7QuizzesDLP: QuizQuestion[] = [
       "The components of air can only be separated by chemical methods",
     ],
     answerIndex: 1,
-    explanation: "Air is a mixture of gases such as nitrogen, oxygen, carbon dioxide and noble gases, together with components such as water vapour and dust.",
+    explanation:
+      "Air is a mixture of gases such as nitrogen, oxygen, carbon dioxide and noble gases, together with components such as water vapour and dust.",
   },
   {
     id: "sci-f1-c7-dlp-q4",
@@ -74,12 +71,13 @@ export const scienceF1C7QuizzesDLP: QuizQuestion[] = [
     question: "What are the main components of air?",
     options: [
       "Nitrogen, oxygen, carbon dioxide and noble gases",
-      "Oxygen only",
-      "Carbon dioxide only",
-      "Smoke and dust only",
+      "Oxygen, hydrogen, carbon monoxide and noble gases",
+      "Nitrogen, hydrogen, carbon monoxide and sulfur dioxide",
+      "Oxygen, carbon dioxide, sulfur dioxide and chlorine",
     ],
     answerIndex: 0,
-    explanation: "Air is a mixture of gases including nitrogen, oxygen, carbon dioxide and noble gases.",
+    explanation:
+      "Air is a mixture of gases including nitrogen, oxygen, carbon dioxide and noble gases.",
   },
   {
     id: "sci-f1-c7-dlp-q6",
@@ -113,7 +111,8 @@ export const scienceF1C7QuizzesDLP: QuizQuestion[] = [
       "Oxygen is used to replace the need for food in organisms",
     ],
     answerIndex: 0,
-    explanation: "Oxygen is required during cellular respiration to help release energy from glucose.",
+    explanation:
+      "Oxygen is required during cellular respiration to help release energy from glucose.",
   },
   {
     id: "sci-f1-c7-dlp-q8",
@@ -123,7 +122,12 @@ export const scienceF1C7QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "Why is carbon dioxide important to plants?",
-    options: ["It is used in photosynthesis", "It is used for human respiration", "It helps fire burn", "It is the main gas in air"],
+    options: [
+      "It is used in photosynthesis to produce food",
+      "It is absorbed during respiration to release energy",
+      "It is released by roots during water absorption",
+      "It is converted directly into mineral salts by leaves",
+    ],
     answerIndex: 0,
     explanation: "Plants use carbon dioxide during photosynthesis to make food.",
   },
@@ -160,13 +164,14 @@ export const scienceF1C7QuizzesDLP: QuizQuestion[] = [
     difficulty: "Easy",
     question: "What is combustion?",
     options: [
-      "A reaction between fuel and oxygen that produces heat and light",
-      "The process plants use to make food",
-      "The process of gas changing into liquid",
-      "The process of separating mixtures",
+      "A heated substance reacts in oxygen and releases heat and light energy",
+      "A heated substance reacts in nitrogen and releases heat and light energy",
+      "A heated substance changes state without forming new substances",
+      "A heated substance absorbs oxygen without releasing heat or light",
     ],
     answerIndex: 0,
-    explanation: "Combustion occurs when fuel reacts with oxygen and produces heat and light.",
+    explanation:
+      "Combustion occurs when a substance is heated in the presence of oxygen and releases heat energy and light energy.",
   },
   {
     id: "sci-f1-c7-dlp-q12",
@@ -229,7 +234,8 @@ export const scienceF1C7QuizzesDLP: QuizQuestion[] = [
       "The evaporation of water from a lake",
     ],
     answerIndex: 0,
-    explanation: "Open burning releases smoke and suspended particles into the atmosphere, which can contribute to haze.",
+    explanation:
+      "Open burning releases smoke and suspended particles into the atmosphere, which can contribute to haze.",
   },
   {
     id: "sci-f1-c7-dlp-q16",
@@ -246,7 +252,8 @@ export const scienceF1C7QuizzesDLP: QuizQuestion[] = [
       "They release oxygen during combustion",
     ],
     answerIndex: 1,
-    explanation: "Photosynthesis releases oxygen into the atmosphere and helps maintain the oxygen cycle.",
+    explanation:
+      "Photosynthesis releases oxygen into the atmosphere and helps maintain the oxygen cycle.",
   },
   {
     id: "sci-f1-c7-dlp-q17",
@@ -256,9 +263,15 @@ export const scienceF1C7QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Medium",
     question: "Which processes add carbon dioxide to the atmosphere?",
-    options: ["Respiration, decomposition and combustion", "Photosynthesis only", "Reforestation only", "Use of helium"],
+    options: [
+      "Respiration, decomposition and combustion",
+      "Photosynthesis, decomposition and combustion",
+      "Respiration, photosynthesis and combustion",
+      "Respiration, decomposition and photosynthesis",
+    ],
     answerIndex: 0,
-    explanation: "Respiration, decomposition and combustion release carbon dioxide into the atmosphere.",
+    explanation:
+      "Respiration, decomposition and combustion release carbon dioxide into the atmosphere.",
   },
   {
     id: "sci-f1-c7-dlp-q18",
@@ -270,7 +283,8 @@ export const scienceF1C7QuizzesDLP: QuizQuestion[] = [
     question: "Which action helps maintain the balance of oxygen and carbon dioxide?",
     options: ["Reforestation", "Illegal logging", "Open burning", "Increasing factory smoke"],
     answerIndex: 0,
-    explanation: "Reforestation increases plants that carry out photosynthesis and helps balance gases.",
+    explanation:
+      "Reforestation increases plants that carry out photosynthesis and helps balance gases.",
   },
   {
     id: "sci-f1-c7-dlp-q19",
@@ -280,7 +294,12 @@ export const scienceF1C7QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Medium",
     question: "What is the cooling method in fire extinguishing?",
-    options: ["Lowering the temperature of burning material", "Adding oxygen", "Adding fuel", "Adding smoke"],
+    options: [
+      "Lowering the temperature of burning material",
+      "Cutting off oxygen from burning material",
+      "Removing fuel from burning material",
+      "Separating unburnt material from the fire",
+    ],
     answerIndex: 0,
     explanation: "Cooling lowers the temperature so the fire cannot continue burning.",
   },
@@ -299,7 +318,8 @@ export const scienceF1C7QuizzesDLP: QuizQuestion[] = [
       "The blanket changes the fuel into a substance that cannot burn",
     ],
     answerIndex: 1,
-    explanation: "Removing the oxygen supply removes one of the conditions required for combustion, so the fire goes out.",
+    explanation:
+      "Removing the oxygen supply removes one of the conditions required for combustion, so the fire goes out.",
   },
   {
     id: "sci-f1-c7-dlp-q21",
@@ -308,15 +328,17 @@ export const scienceF1C7QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 7",
     lang: "dlp",
     difficulty: "Medium",
-    question: "What is the function of a carbon dioxide fire extinguisher?",
+    question:
+      "The textbook lists spraying a layer of carbon dioxide as a cooling technique. Which combustion condition does cooling remove?",
     options: [
-      "It extinguishes fire by reducing oxygen around the fire",
-      "It adds oxygen to the fire",
-      "It produces drinking water",
-      "It produces new fuel",
+      "Sufficient heat",
+      "The source of fuel",
+      "The presence of oxygen only",
+      "The flammability of the fuel",
     ],
     answerIndex: 0,
-    explanation: "Carbon dioxide smothers fire and reduces oxygen supply.",
+    explanation:
+      "Cooling lowers the temperature of the burning material, removing sufficient heat needed for continued combustion.",
   },
   {
     id: "sci-f1-c7-dlp-q22",
@@ -337,15 +359,16 @@ export const scienceF1C7QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 7",
     lang: "dlp",
     difficulty: "Medium",
-    question: "What is the effect of carbon monoxide on humans?",
+    question: "Which effect of carbon monoxide is described in the chapter?",
     options: [
-      "It reduces the ability of blood to carry oxygen",
-      "It helps photosynthesis",
-      "It fertilises plants",
-      "It cools Earth",
+      "Headache and potentially death",
+      "Formation of holes in the ozone layer",
+      "Corrosion of limestone buildings",
+      "Reduced light reaching plant leaves",
     ],
     answerIndex: 0,
-    explanation: "Carbon monoxide is dangerous because it affects oxygen transport in blood.",
+    explanation:
+      "Carbon monoxide is an air pollutant that can cause headache and may be fatal. Other pollutants have different effects on the environment.",
   },
   {
     id: "sci-f1-c7-dlp-q24",
@@ -354,7 +377,8 @@ export const scienceF1C7QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 7",
     lang: "dlp",
     difficulty: "Medium",
-    question: "What may happen if the amount of carbon dioxide in the atmosphere increases excessively?",
+    question:
+      "What may happen if the amount of carbon dioxide in the atmosphere increases excessively?",
     options: [
       "The greenhouse effect becomes stronger and Earth's temperature may rise",
       "The greenhouse effect becomes weaker and Earth's temperature may fall",
@@ -362,7 +386,8 @@ export const scienceF1C7QuizzesDLP: QuizQuestion[] = [
       "The greenhouse effect remains unchanged because only oxygen affects heat retention",
     ],
     answerIndex: 0,
-    explanation: "Increased carbon dioxide can strengthen the greenhouse effect and contribute to a rise in global temperature.",
+    explanation:
+      "Increased carbon dioxide can strengthen the greenhouse effect and contribute to a rise in global temperature.",
   },
   {
     id: "sci-f1-c7-dlp-q25",
@@ -379,7 +404,8 @@ export const scienceF1C7QuizzesDLP: QuizQuestion[] = [
       "Delay engine maintenance on vehicles that emit excessive smoke",
     ],
     answerIndex: 0,
-    explanation: "Public transport can reduce the number of individual vehicles on the road and therefore reduce pollutant emissions.",
+    explanation:
+      "Public transport can reduce the number of individual vehicles on the road and therefore reduce pollutant emissions.",
   },
   {
     id: "sci-f1-c7-dlp-q26",
@@ -388,15 +414,17 @@ export const scienceF1C7QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 7",
     lang: "dlp",
     difficulty: "Hard",
-    question: "Why is oxygen important for combustion?",
+    question:
+      "A student compares identical candles in sealed jars containing different volumes of the same air. Which plan best tests whether air volume affects burning duration?",
     options: [
-      "Oxygen allows fuel to burn and produce heat",
-      "Oxygen extinguishes all fires",
-      "Oxygen changes fire into water",
-      "Oxygen is the main fuel",
+      "Keep candle size and starting conditions the same; change air volume and measure burning duration",
+      "Keep air volume the same; change candle size and measure burning duration",
+      "Change air volume and candle size together; measure burning duration",
+      "Change air volume; compare only the final amount of wax, not burning duration",
     ],
     answerIndex: 0,
-    explanation: "Combustion needs oxygen. Without oxygen, fire cannot continue burning.",
+    explanation:
+      "Changing air volume while controlling candle size and starting conditions allows its effect on burning duration to be tested. The same air composition means larger air volumes contain more oxygen.",
   },
   {
     id: "sci-f1-c7-dlp-q27",
@@ -404,7 +432,7 @@ export const scienceF1C7QuizzesDLP: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 7",
     lang: "dlp",
-    difficulty: "Hard",
+    difficulty: "Medium",
     question: "Why can severe haze affect human health?",
     options: [
       "Pollutants and fine particles can enter the respiratory system",
@@ -413,7 +441,8 @@ export const scienceF1C7QuizzesDLP: QuizQuestion[] = [
       "Haze particles only affect health when visibility falls to zero",
     ],
     answerIndex: 0,
-    explanation: "Fine particles and other pollutants can enter the respiratory tract and affect the respiratory system.",
+    explanation:
+      "Fine particles and other pollutants can enter the respiratory tract and affect the respiratory system.",
   },
   {
     id: "sci-f1-c7-dlp-q28",
@@ -422,15 +451,17 @@ export const scienceF1C7QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 7",
     lang: "dlp",
     difficulty: "Hard",
-    question: "Large-scale deforestation can increase the amount of carbon dioxide in the atmosphere. What is the best explanation?",
+    question:
+      "A forest is cleared and the cut trees are burned. Which pair explains the combined immediate effect on atmospheric carbon dioxide?",
     options: [
-      "Fewer plants are available to absorb carbon dioxide during photosynthesis",
-      "Fewer plants cause all animals to stop respiring",
-      "Fewer plants cause the overall rate of photosynthesis to increase",
-      "Fewer plants cause the remaining plants to absorb more carbon dioxide overall",
+      "Fewer trees remove less carbon dioxide; burning releases more carbon dioxide",
+      "Less photosynthesis releases carbon dioxide; combustion removes carbon dioxide",
+      "Less photosynthesis removes more carbon dioxide; combustion releases carbon dioxide",
+      "Less photosynthesis removes carbon dioxide; combustion converts it into oxygen",
     ],
     answerIndex: 0,
-    explanation: "With fewer plants, less carbon dioxide is removed from the atmosphere through photosynthesis.",
+    explanation:
+      "Fewer trees means less removal of carbon dioxide through photosynthesis, while burning releases additional carbon dioxide.",
   },
   {
     id: "sci-f1-c7-dlp-q29",
@@ -438,8 +469,9 @@ export const scienceF1C7QuizzesDLP: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 7",
     lang: "dlp",
-    difficulty: "Hard",
-    question: "A residential area experiences air pollution because rubbish is regularly burned in the open. What is the most appropriate solution?",
+    difficulty: "Medium",
+    question:
+      "A residential area experiences air pollution because rubbish is regularly burned in the open. What is the most appropriate solution?",
     options: [
       "Move the rubbish burning to an open area near the houses",
       "Stop open burning and manage the waste through proper disposal or recycling",
@@ -447,7 +479,8 @@ export const scienceF1C7QuizzesDLP: QuizQuestion[] = [
       "Burn small piles of rubbish every day without changing the disposal method",
     ],
     answerIndex: 1,
-    explanation: "Preventing open burning and using proper waste-management methods reduces smoke and pollutant emissions.",
+    explanation:
+      "Preventing open burning and using proper waste-management methods reduces smoke and pollutant emissions.",
   },
   {
     id: "sci-f1-c7-dlp-q30",
@@ -456,14 +489,16 @@ export const scienceF1C7QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 7",
     lang: "dlp",
     difficulty: "Hard",
-    question: "Why does acid rain damage buildings and plants?",
+    question:
+      "Similar limestone samples are kept for the same time in equal volumes of acidic rainwater and clean water. The acidic sample erodes more. Which conclusion is supported, and why is clean water included?",
     options: [
-      "Its acidity corrodes materials and damages plant tissues",
-      "It contains helium",
-      "It increases oxygen to 78%",
-      "It changes all soil into water",
+      "Acidic rainwater increases erosion; clean water provides a comparison",
+      "All water erodes limestone equally; clean water provides a comparison",
+      "Acidic rainwater increases erosion; clean water supplies the acid",
+      "Acidic rainwater prevents erosion; clean water changes the rock type",
     ],
     answerIndex: 0,
-    explanation: "Acid rain can corrode buildings and damage leaves and soil.",
+    explanation:
+      "The comparison supports the textbook effect that acid rain erodes limestone structures. The clean-water sample helps distinguish this effect from exposure to water alone.",
   },
 ];

@@ -21,7 +21,12 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "How does light travel?",
-    options: ["In a straight line", "In circles only", "As slow waves", "Following wind direction"],
+    options: [
+      "Along straight paths in the same medium",
+      "Along curved paths in the same medium",
+      "Only along a vertical path",
+      "Only along a horizontal path",
+    ],
     answerIndex: 0,
     explanation: "Light travels in a straight line.",
   },
@@ -45,7 +50,12 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "When is a shadow formed?",
-    options: ["When light is blocked by an opaque object", "When light passes through clear glass", "When sound is reflected", "When water boils"],
+    options: [
+      "Light is blocked by an opaque object",
+      "All the light passes through an object",
+      "Light is separated into its spectrum by a prism",
+      "Light changes direction between air and water",
+    ],
     answerIndex: 0,
     explanation: "A shadow is formed when light is blocked by an opaque object.",
   },
@@ -76,7 +86,8 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
       "Neither real nor virtual images can be formed on a screen",
     ],
     answerIndex: 0,
-    explanation: "A real image can be projected onto a screen, whereas a virtual image cannot be formed on a screen.",
+    explanation:
+      "A real image can be projected onto a screen, whereas a virtual image cannot be formed on a screen.",
   },
   {
     id: "sci-f1-c8-dlp-q7",
@@ -85,15 +96,12 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 8",
     lang: "dlp",
     difficulty: "Easy",
-    question: "What is produced when red, green and blue light of suitable intensities are added together?",
-    options: [
-      "White light",
-      "Blue light only",
-      "Magenta light only",
-      "Yellow light only",
-    ],
+    question:
+      "What is produced when red, green and blue light of suitable intensities are added together?",
+    options: ["White light", "Blue light only", "Magenta light only", "Yellow light only"],
     answerIndex: 0,
-    explanation: "Red, green and blue are the primary colours of light. When all three are added at suitable intensities, white light is produced.",
+    explanation:
+      "Red, green and blue are the primary colours of light. When all three are added at suitable intensities, white light is produced.",
   },
   {
     id: "sci-f1-c8-dlp-q8",
@@ -102,15 +110,12 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 8",
     lang: "dlp",
     difficulty: "Easy",
-    question: "A student stands 2 m in front of a plane mirror. How far behind the mirror does the image appear?",
-    options: [
-      "1 m",
-      "2 m",
-      "4 m",
-      "6 m",
-    ],
+    question:
+      "A student stands 2 m in front of a plane mirror. How far behind the mirror does the image appear?",
+    options: ["1 m", "2 m", "4 m", "6 m"],
     answerIndex: 1,
-    explanation: "For a plane mirror, the image distance behind the mirror is equal to the object distance in front of the mirror.",
+    explanation:
+      "For a plane mirror, the image distance behind the mirror is equal to the object distance in front of the mirror.",
   },
   {
     id: "sci-f1-c8-dlp-q9",
@@ -120,9 +125,15 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "What is a characteristic of an image in a plane mirror?",
-    options: ["Upright and virtual", "Always smaller", "Can be formed on a screen", "Always red"],
+    options: [
+      "Upright and virtual",
+      "Upright and real",
+      "Inverted and virtual",
+      "Inverted and real",
+    ],
     answerIndex: 0,
-    explanation: "A plane mirror forms an upright, virtual, laterally inverted image with the same size as the object.",
+    explanation:
+      "A plane mirror forms an upright, virtual, laterally inverted image with the same size as the object.",
   },
   {
     id: "sci-f1-c8-dlp-q10",
@@ -131,7 +142,8 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 8",
     lang: "dlp",
     difficulty: "Easy",
-    question: "Why is a concave mirror useful as a make-up mirror when the face is positioned close to it?",
+    question:
+      "Why is a concave mirror useful as a make-up mirror when the face is positioned close to it?",
     options: [
       "It can produce an enlarged virtual image",
       "It can produce an upright, smaller real image",
@@ -139,7 +151,8 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
       "It can produce an inverted real image to make applying make-up easier",
     ],
     answerIndex: 0,
-    explanation: "At a suitable close distance, a concave mirror forms an upright, enlarged virtual image.",
+    explanation:
+      "At a suitable close distance, a concave mirror forms an upright, enlarged virtual image.",
   },
   {
     id: "sci-f1-c8-dlp-q11",
@@ -156,7 +169,8 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
       "They produce images of the same size as the objects so the whole area behind can be seen",
     ],
     answerIndex: 0,
-    explanation: "Convex mirrors provide a wider field of view, allowing drivers to see a larger area behind and beside the vehicle.",
+    explanation:
+      "Convex mirrors provide a wider field of view, allowing drivers to see a larger area behind and beside the vehicle.",
   },
   {
     id: "sci-f1-c8-dlp-q12",
@@ -173,7 +187,8 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
       "They disperse light into a spectrum so that the jackets produce their own light",
     ],
     answerIndex: 0,
-    explanation: "Reflective strips return light from vehicle headlights and increase the visibility of workers.",
+    explanation:
+      "Reflective strips return light from vehicle headlights and increase the visibility of workers.",
   },
   {
     id: "sci-f1-c8-dlp-q13",
@@ -183,7 +198,7 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "What is the formula for the law of reflection?",
-    options: ["i = r", "v = u", "F = ma", "d = m/V"],
+    options: ["i = r", "i = 2r", "r = 2i", "i + r = 90°"],
     answerIndex: 0,
     explanation: "In reflection, the angle of incidence equals the angle of reflection, so i = r.",
   },
@@ -202,7 +217,8 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
       "Light is scattered by air particles until the shape of the straw changes",
     ],
     answerIndex: 0,
-    explanation: "Light changes direction when it travels between media of different optical densities.",
+    explanation:
+      "Light changes direction when it travels between media of different optical densities.",
   },
   {
     id: "sci-f1-c8-dlp-q15",
@@ -219,7 +235,8 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
       "White light is completely absorbed so that no light emerges",
     ],
     answerIndex: 0,
-    explanation: "A prism disperses white light into its component colours because different colours are refracted by different amounts.",
+    explanation:
+      "A prism disperses white light into its component colours because different colours are refracted by different amounts.",
   },
   {
     id: "sci-f1-c8-dlp-q16",
@@ -229,7 +246,12 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Medium",
     question: "What does laterally inverted image mean?",
-    options: ["The left and right sides of the image are reversed", "The image becomes hotter", "The image becomes heavier", "The image loses colour"],
+    options: [
+      "Left and right appear reversed while the image remains upright",
+      "Top and bottom appear reversed while left and right stay unchanged",
+      "The whole image rotates through a quarter turn",
+      "The image is upright with no change in left-right orientation",
+    ],
     answerIndex: 0,
     explanation: "Laterally inverted means the left and right sides of the image appear reversed.",
   },
@@ -243,7 +265,8 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
     question: "If the angle of incidence is 35°, what is the angle of reflection?",
     options: ["35°", "45°", "70°", "90°"],
     answerIndex: 0,
-    explanation: "According to the law of reflection, the angle of incidence equals the angle of reflection.",
+    explanation:
+      "According to the law of reflection, the angle of incidence equals the angle of reflection.",
   },
   {
     id: "sci-f1-c8-dlp-q18",
@@ -252,10 +275,17 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 8",
     lang: "dlp",
     difficulty: "Medium",
-    question: "What is the function of the normal line in reflection?",
-    options: ["A reference line to measure the angle of incidence and angle of reflection", "A line that produces colours", "A line that blocks light", "A line that absorbs all light"],
+    question:
+      "The incident ray makes 35° with the normal to a plane mirror. A student records 55° as the angle of incidence. What explains the error?",
+    options: [
+      "The student measured from the mirror surface instead of the normal",
+      "The student correctly used the angle between the ray and the normal",
+      "The normal should be drawn parallel to the mirror surface",
+      "The angle of incidence should be twice the angle shown",
+    ],
     answerIndex: 0,
-    explanation: "The normal line is used as a reference to measure the angle of incidence and angle of reflection.",
+    explanation:
+      "The normal is perpendicular to the mirror. The angle of incidence is measured from the normal, so it is 35°, not the complementary 55° measured from the surface.",
   },
   {
     id: "sci-f1-c8-dlp-q19",
@@ -264,7 +294,8 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 8",
     lang: "dlp",
     difficulty: "Medium",
-    question: "When light travels obliquely from air into glass, what happens to the ray that enters the glass?",
+    question:
+      "When light travels obliquely from air into glass, what happens to the ray that enters the glass?",
     options: [
       "It bends towards the normal",
       "It bends away from the normal",
@@ -272,7 +303,7 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
       "It is completely reflected without entering the glass",
     ],
     answerIndex: 0,
-    explanation: "When light enters an optically denser medium obliquely, its speed decreases and the ray bends towards the normal.",
+    explanation: "A ray entering a denser medium obliquely bends towards the normal.",
   },
   {
     id: "sci-f1-c8-dlp-q20",
@@ -281,7 +312,8 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 8",
     lang: "dlp",
     difficulty: "Medium",
-    question: "When a light ray passes obliquely from water into air and emerges into the air, how does its direction change?",
+    question:
+      "When a light ray passes obliquely from water into air and emerges into the air, how does its direction change?",
     options: [
       "It bends away from the normal",
       "It bends towards the normal",
@@ -289,7 +321,8 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
       "It emerges along the water surface in all cases",
     ],
     answerIndex: 0,
-    explanation: "A ray emerging obliquely from water into air travels from an optically denser medium to a less optically dense medium and bends away from the normal.",
+    explanation:
+      "A ray emerging obliquely from water into air travels from an optically denser medium to a less optically dense medium and bends away from the normal.",
   },
   {
     id: "sci-f1-c8-dlp-q21",
@@ -298,7 +331,8 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 8",
     lang: "dlp",
     difficulty: "Medium",
-    question: "A light ray enters glass from air. In which situation does its direction remain unchanged even though its speed changes?",
+    question:
+      "A light ray enters glass from air. In which situation does its direction remain unchanged?",
     options: [
       "It enters along the normal",
       "It enters at 30 degrees to the normal",
@@ -306,7 +340,8 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
       "It enters at 60 degrees to the normal",
     ],
     answerIndex: 0,
-    explanation: "When light enters glass along the normal, its direction remains unchanged even though its speed decreases.",
+    explanation:
+      "When the incident ray travels along the normal, its direction remains unchanged at the boundary.",
   },
   {
     id: "sci-f1-c8-dlp-q22",
@@ -314,11 +349,17 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     lang: "dlp",
-    difficulty: "Medium",
-    question: "Which sequence of spectrum colours is correct?",
-    options: ["Red, orange, yellow, green, blue, indigo, violet", "Blue, red, green, violet, yellow, orange, indigo", "Black, white, red, blue, green, violet, orange", "Red, blue, yellow, black, white, indigo, violet"],
+    difficulty: "Easy",
+    question: "Which sequence lists the visible spectrum from red to violet?",
+    options: [
+      "Red, orange, yellow, green, blue, indigo, violet",
+      "Red, yellow, orange, green, blue, indigo, violet",
+      "Red, orange, yellow, blue, green, indigo, violet",
+      "Red, orange, yellow, green, indigo, blue, violet",
+    ],
     answerIndex: 0,
-    explanation: "The light spectrum consists of red, orange, yellow, green, blue, indigo and violet.",
+    explanation:
+      "The light spectrum consists of red, orange, yellow, green, blue, indigo and violet.",
   },
   {
     id: "sci-f1-c8-dlp-q23",
@@ -326,7 +367,7 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     lang: "dlp",
-    difficulty: "Medium",
+    difficulty: "Easy",
     question: "Which colour of light refracts the least?",
     options: ["Red", "Violet", "Blue", "Indigo"],
     answerIndex: 0,
@@ -338,7 +379,7 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     lang: "dlp",
-    difficulty: "Medium",
+    difficulty: "Easy",
     question: "What is produced when red light and green light are added?",
     options: ["Yellow", "Magenta", "Cyan", "Black"],
     answerIndex: 0,
@@ -351,10 +392,17 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 8",
     lang: "dlp",
     difficulty: "Medium",
-    question: "What is the function of two plane mirrors in a periscope?",
-    options: ["To reflect light so objects outside direct view can be seen", "To disperse light into seven colours", "To absorb all light", "To produce heat"],
+    question:
+      "In a periscope, light enters at A, meets the upper plane mirror and then the lower plane mirror before reaching B. Which process makes the hidden object visible?",
+    options: [
+      "Reflection at both mirrors redirects light towards the observer",
+      "Refraction at both mirrors redirects light towards the observer",
+      "Reflection at the upper mirror and absorption at the lower mirror",
+      "Absorption at the upper mirror and reflection at the lower mirror",
+    ],
     answerIndex: 0,
-    explanation: "A periscope uses two plane mirrors to reflect light to the observer's eye.",
+    explanation:
+      "The upper mirror reflects light downwards and the lower mirror reflects it towards the observer. Both reflections are needed.",
   },
   {
     id: "sci-f1-c8-dlp-q26",
@@ -362,11 +410,18 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     lang: "dlp",
-    difficulty: "Hard",
-    question: "Why is lightning seen before thunder is heard?",
-    options: ["Light travels faster than sound", "Sound travels faster than light", "Lightning does not produce sound", "Thunder happens before lightning"],
+    difficulty: "Medium",
+    question:
+      "A student sees lightning first and hears thunder several seconds later although both originate from the same event. Which conclusion best explains this?",
+    options: [
+      "Light takes much less time than sound to reach the observer",
+      "Sound is produced only after lightning light reaches the observer's eyes",
+      "Light and sound travel equally fast, but hearing always responds later",
+      "Sound cannot travel through air while lightning occurs",
+    ],
     answerIndex: 0,
-    explanation: "Light from lightning reaches our eyes faster because light travels faster than sound.",
+    explanation:
+      "Light travels much faster than sound, so the light from lightning arrives first even though the two originate almost simultaneously.",
   },
   {
     id: "sci-f1-c8-dlp-q27",
@@ -374,11 +429,17 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     lang: "dlp",
-    difficulty: "Hard",
+    difficulty: "Medium",
     question: "Why does a swimming pool appear shallower than it really is?",
-    options: ["Light is refracted when it travels from water to air", "Water reflects all sound", "The pool floor moves upwards", "Water absorbs all light"],
+    options: [
+      "Refraction at the water-air boundary changes the apparent position of the floor",
+      "Reflection at the water-air boundary raises the actual position of the floor",
+      "Dispersion separates the floor image into seven colours",
+      "Scattering changes the actual depth of the water",
+    ],
     answerIndex: 0,
-    explanation: "Refraction of light from water to air makes the pool floor appear closer to the surface.",
+    explanation:
+      "Refraction of light from water to air makes the pool floor appear closer to the surface.",
   },
   {
     id: "sci-f1-c8-dlp-q28",
@@ -386,7 +447,7 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     lang: "dlp",
-    difficulty: "Hard",
+    difficulty: "Easy",
     question: "Which phenomenon is most closely associated with the dispersion of light?",
     options: [
       "Formation of a rainbow",
@@ -395,7 +456,8 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
       "The sky appearing blue during the day",
     ],
     answerIndex: 0,
-    explanation: "A rainbow forms when sunlight undergoes processes including refraction and dispersion in water droplets.",
+    explanation:
+      "A rainbow forms when sunlight undergoes processes including refraction and dispersion in water droplets.",
   },
   {
     id: "sci-f1-c8-dlp-q29",
@@ -404,15 +466,17 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 8",
     lang: "dlp",
     difficulty: "Hard",
-    question: "Why does the sky usually appear blue during the day?",
+    question:
+      "The sky appears blue at midday, but sunlight appears red-orange near sunset. Which comparison explains both observations?",
     options: [
-      "Blue light is scattered more strongly by particles in the atmosphere",
-      "Blue light is reflected by the sea and gives the entire sky its colour",
-      "Blue light is dispersed from white light by the atmosphere acting like a prism",
-      "Red light is scattered more strongly, making the entire sky appear blue",
+      "Blue light is scattered more; red-orange light is scattered less and remains in the direct sunset path",
+      "Blue light is scattered less; red-orange light is scattered more and remains in the direct sunset path",
+      "All colours scatter equally; the Sun changes the colours it produces",
+      "Air acts only as a prism at midday and only as a plane mirror at sunset",
     ],
     answerIndex: 0,
-    explanation: "Shorter-wavelength light such as blue is scattered more strongly in the atmosphere.",
+    explanation:
+      "Blue light is scattered strongly by air particles. At sunset, much blue light is scattered out of the direct path, while less-scattered red and orange light reaches the observer.",
   },
   {
     id: "sci-f1-c8-dlp-q30",
@@ -420,10 +484,17 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 8",
     lang: "dlp",
-    difficulty: "Hard",
-    question: "Why do black objects feel hotter under sunlight?",
-    options: ["Black objects absorb all colours of light", "Black objects reflect all colours", "Black objects produce their own light", "Black objects do not absorb energy"],
+    difficulty: "Medium",
+    question:
+      "Why does black clothing generally feel hotter than white clothing under the same sunlight?",
+    options: [
+      "A black surface absorbs a greater fraction of the incoming radiation",
+      "A black surface reflects more incoming radiation than a white one",
+      "A black surface cannot release heat to its surroundings",
+      "A white surface blocks all sunlight from arriving",
+    ],
     answerIndex: 0,
-    explanation: "Black objects absorb most light and heat energy, so they feel hotter.",
+    explanation:
+      "A black surface generally absorbs a greater proportion of incoming light than a white one and may become hotter. This does not mean that it absorbs all radiation in every situation.",
   },
 ];

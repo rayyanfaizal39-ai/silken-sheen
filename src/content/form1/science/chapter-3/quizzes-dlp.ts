@@ -10,13 +10,14 @@ export const scienceF1C3QuizzesDLP: QuizQuestion[] = [
     difficulty: "Easy",
     question: "What is homeostasis?",
     options: [
-      "Production of energy by the body",
+      "Adjustment of internal conditions to match every external change",
       "Maintenance of a stable internal environment",
-      "Reproduction process of organisms",
-      "Body movement towards stimuli",
+      "Maintenance of an unchanging external environment",
+      "Prevention of all changes inside the body",
     ],
     answerIndex: 1,
-    explanation: "Homeostasis is the process of maintaining a balanced and stable internal environment.",
+    explanation:
+      "Homeostasis is the process of maintaining a balanced and stable internal environment.",
   },
   {
     id: "sci-f1-c3-dlp-q2",
@@ -33,7 +34,8 @@ export const scienceF1C3QuizzesDLP: QuizQuestion[] = [
       "It prevents all internal changes, including those needed during physical activity",
     ],
     answerIndex: 1,
-    explanation: "Homeostasis maintains suitable internal conditions so that cells, enzymes and metabolic processes can function efficiently.",
+    explanation:
+      "Homeostasis maintains suitable internal conditions so that cells, enzymes and metabolic processes can function efficiently.",
   },
   {
     id: "sci-f1-c3-dlp-q3",
@@ -43,9 +45,15 @@ export const scienceF1C3QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "Which is an example of the body's internal environment?",
-    options: ["Clothing colour", "Body temperature and water content", "The weather outside", "Shoe size"],
+    options: [
+      "Air temperature and humidity around the body",
+      "Body temperature and water content",
+      "Room temperature and body temperature",
+      "Air humidity and body water content",
+    ],
     answerIndex: 1,
-    explanation: "The internal environment includes conditions inside the body such as temperature and water content.",
+    explanation:
+      "The internal environment includes conditions inside the body such as temperature and water content.",
   },
   {
     id: "sci-f1-c3-dlp-q4",
@@ -56,13 +64,14 @@ export const scienceF1C3QuizzesDLP: QuizQuestion[] = [
     difficulty: "Easy",
     question: "What does a stable and balanced condition mean in homeostasis?",
     options: [
-      "The body changes without control",
+      "Internal conditions always follow external conditions",
       "Internal conditions are kept within a normal range",
-      "The organism stops moving",
-      "The body does not produce heat",
+      "Internal conditions never vary during activity",
+      "Internal conditions change without corrective responses",
     ],
     answerIndex: 1,
-    explanation: "A stable condition means the internal environment is controlled within a suitable normal range.",
+    explanation:
+      "A stable condition means the internal environment is controlled within a suitable normal range.",
   },
   {
     id: "sci-f1-c3-dlp-q5",
@@ -74,7 +83,8 @@ export const scienceF1C3QuizzesDLP: QuizQuestion[] = [
     question: "Which organ acts as the control centre in human homeostasis?",
     options: ["Stomach", "Brain", "Lungs", "Skin"],
     answerIndex: 1,
-    explanation: "The brain acts as a control centre that detects changes and sends corrective instructions.",
+    explanation:
+      "The brain acts as a control centre that detects changes and sends corrective instructions.",
   },
   {
     id: "sci-f1-c3-dlp-q6",
@@ -96,7 +106,12 @@ export const scienceF1C3QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "What happens to blood vessels in the skin in a hot environment?",
-    options: ["They dilate", "They constrict", "They close completely", "They become hard"],
+    options: [
+      "Blood vessels near the skin dilate, increasing heat loss",
+      "Blood vessels near the skin constrict, increasing heat loss",
+      "Blood vessels near the skin dilate, reducing heat loss",
+      "Blood vessels near the skin constrict, reducing heat loss",
+    ],
     answerIndex: 0,
     explanation: "In a hot environment, blood vessels dilate so more heat can be released.",
   },
@@ -109,12 +124,12 @@ export const scienceF1C3QuizzesDLP: QuizQuestion[] = [
     difficulty: "Easy",
     question: "What is the function of sweating in a hot environment?",
     options: [
-      "To increase body temperature",
-      "To cool the body when sweat evaporates",
-      "To produce urine",
-      "To close stomata",
+      "Evaporation of sweat removes heat from the body",
+      "Evaporation of sweat supplies heat to the body",
+      "Sweat traps an insulating air layer above the skin",
+      "Sweat prevents heat from leaving the skin",
     ],
-    answerIndex: 1,
+    answerIndex: 0,
     explanation: "Sweat evaporates from the skin and helps remove heat from the body.",
   },
   {
@@ -125,8 +140,13 @@ export const scienceF1C3QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "What happens to fine hairs on human skin in a hot environment?",
-    options: ["They stand erect", "They lie flat", "They become longer", "They produce sweat"],
-    answerIndex: 1,
+    options: [
+      "Hairs lie flat, reducing the trapped-air layer",
+      "Hairs stand erect, reducing the trapped-air layer",
+      "Hairs lie flat, increasing the trapped-air layer",
+      "Hairs stand erect, increasing the trapped-air layer",
+    ],
+    answerIndex: 0,
     explanation: "In a hot environment, fine hairs lie flat to reduce heat trapping.",
   },
   {
@@ -137,8 +157,13 @@ export const scienceF1C3QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "What happens to blood vessels in the skin in a cold environment?",
-    options: ["They dilate", "They constrict", "They burst", "They produce sweat"],
-    answerIndex: 1,
+    options: [
+      "Blood vessels near the skin constrict, reducing heat loss",
+      "Blood vessels near the skin dilate, reducing heat loss",
+      "Blood vessels near the skin constrict, increasing heat loss",
+      "Blood vessels near the skin dilate, increasing heat loss",
+    ],
+    answerIndex: 0,
     explanation: "In a cold environment, blood vessels constrict to reduce heat loss.",
   },
   {
@@ -156,7 +181,8 @@ export const scienceF1C3QuizzesDLP: QuizQuestion[] = [
       "Muscle contraction and relaxation increase heat loss through the skin",
     ],
     answerIndex: 2,
-    explanation: "Rapid contraction and relaxation of skeletal muscles during shivering produce heat and help return body temperature towards the normal range.",
+    explanation:
+      "Rapid contraction and relaxation of skeletal muscles during shivering produce heat and help return body temperature towards the normal range.",
   },
   {
     id: "sci-f1-c3-dlp-q12",
@@ -179,13 +205,14 @@ export const scienceF1C3QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     question: "After a person drinks a large amount of water, what usually happens?",
     options: [
-      "Less water is removed through urine so that body water content continues to increase",
-      "More excess water is removed through urine",
-      "All excess water is stored in the body without any change in urine production",
-      "Excess water is removed mainly through sweat even when the body is not overheated",
+      "More urine is produced and less water is retained",
+      "Less urine is produced and more water is retained",
+      "More urine is produced and more water is retained",
+      "Less urine is produced and less water is retained",
     ],
-    answerIndex: 1,
-    explanation: "The body regulates its water content to maintain balance. When there is excess water, more water is removed through urine.",
+    answerIndex: 0,
+    explanation:
+      "The body regulates its water content to maintain balance. When there is excess water, more water is removed through urine.",
   },
   {
     id: "sci-f1-c3-dlp-q14",
@@ -196,10 +223,10 @@ export const scienceF1C3QuizzesDLP: QuizQuestion[] = [
     difficulty: "Easy",
     question: "What is transpiration?",
     options: [
-      "Loss of water vapour from plants through stomata",
-      "Production of food by roots",
-      "Breathing through spiracles in animals",
-      "Production of sweat by skin",
+      "Loss of water vapour through stomata",
+      "Absorption of water through root hairs",
+      "Transport of water upwards through the stem",
+      "Use of water to produce food during photosynthesis",
     ],
     answerIndex: 0,
     explanation: "Transpiration is the loss of water vapour from plants, mainly through stomata.",
@@ -212,7 +239,12 @@ export const scienceF1C3QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "What is the function of guard cells?",
-    options: ["Control the opening and closing of stomata", "Produce sweat", "Produce urine", "Control human fine hairs"],
+    options: [
+      "Control the opening and closing of stomata",
+      "Absorb water and mineral salts from soil",
+      "Transport water upwards through the stem",
+      "Support the leaf by forming a rigid cell wall",
+    ],
     answerIndex: 0,
     explanation: "Guard cells control whether stomata are open or closed.",
   },
@@ -225,13 +257,14 @@ export const scienceF1C3QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     question: "What is a corrective mechanism in homeostasis?",
     options: [
-      "A response that returns body conditions to normal",
-      "A process that only makes the body hotter",
-      "A process that produces food in leaves",
-      "A change that cannot be controlled by the body",
+      "Return internal conditions towards their normal level",
+      "Keep the changed internal condition at its new level",
+      "Increase the difference from the normal internal level",
+      "Make internal conditions follow the external environment",
     ],
     answerIndex: 0,
-    explanation: "A corrective mechanism is a body response that returns internal conditions to the normal range.",
+    explanation:
+      "A corrective mechanism is a body response that returns internal conditions to the normal range.",
   },
   {
     id: "sci-f1-c3-dlp-q17",
@@ -240,7 +273,8 @@ export const scienceF1C3QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 3",
     lang: "dlp",
     difficulty: "Medium",
-    question: "A student is standing on a field during a hot afternoon. Which body response helps to lower the student's body temperature?",
+    question:
+      "A student is standing on a field during a hot afternoon. Which body response helps to lower the student's body temperature?",
     options: [
       "Blood vessels constrict and the student shivers",
       "Sweating increases and blood vessels dilate",
@@ -248,7 +282,8 @@ export const scienceF1C3QuizzesDLP: QuizQuestion[] = [
       "Blood vessels constrict and body hairs stand upright",
     ],
     answerIndex: 1,
-    explanation: "Sweat evaporates from the skin and removes heat, while dilation of blood vessels increases heat loss through the skin.",
+    explanation:
+      "Sweat evaporates from the skin and removes heat, while dilation of blood vessels increases heat loss through the skin.",
   },
   {
     id: "sci-f1-c3-dlp-q18",
@@ -259,13 +294,14 @@ export const scienceF1C3QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     question: "Which is the correct body response in a cold environment?",
     options: [
-      "Blood vessels dilate and more sweat is produced",
-      "Fine hairs lie flat and metabolism decreases",
-      "Blood vessels constrict, fine hairs stand erect and shivering occurs",
-      "Stomata open and transpiration increases",
+      "Shivering, constricted skin blood vessels and erect hairs",
+      "Shivering, dilated skin blood vessels and flat hairs",
+      "Sweating, constricted skin blood vessels and flat hairs",
+      "Sweating, dilated skin blood vessels and erect hairs",
     ],
-    answerIndex: 2,
-    explanation: "In cold conditions, the body reduces heat loss through blood vessel constriction, erect fine hairs and shivering.",
+    answerIndex: 0,
+    explanation:
+      "Shivering produces heat through muscle activity. Constricted skin blood vessels and the air trapped by erect hairs reduce heat loss.",
   },
   {
     id: "sci-f1-c3-dlp-q19",
@@ -276,10 +312,10 @@ export const scienceF1C3QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     question: "What is the link between metabolism and cold conditions in humans?",
     options: [
-      "Metabolism increases to produce more heat",
-      "Metabolism stops completely",
-      "Metabolism decreases to cool the body",
-      "Metabolism only happens in plants",
+      "Metabolic rate increases, producing more heat",
+      "Metabolic rate decreases, producing more heat",
+      "Metabolic rate increases, producing less heat",
+      "Metabolic rate decreases, producing less heat",
     ],
     answerIndex: 0,
     explanation: "In cold conditions, metabolism increases so the body can produce more heat.",
@@ -293,13 +329,14 @@ export const scienceF1C3QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     question: "What happens when body water content is low after heavy sweating?",
     options: [
-      "Kidneys produce more urine",
-      "Kidneys produce less urine and thirst is triggered",
-      "Blood vessels dilate to remove water",
-      "Stomata open on human skin",
+      "Less urine is produced and thirst encourages drinking",
+      "More urine is produced and thirst encourages drinking",
+      "Less urine is produced and thirst is reduced",
+      "More urine is produced and thirst is reduced",
     ],
-    answerIndex: 1,
-    explanation: "When body water is low, kidneys produce less urine and thirst encourages us to drink water.",
+    answerIndex: 0,
+    explanation:
+      "When body water is low, kidneys produce less urine and thirst encourages us to drink water.",
   },
   {
     id: "sci-f1-c3-dlp-q21",
@@ -309,7 +346,12 @@ export const scienceF1C3QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Medium",
     question: "How does a cat cool its body in hot weather?",
-    options: ["It licks its fur", "It closes spiracles", "It produces urine", "It closes stomata"],
+    options: [
+      "Licking its fur allows fluid to evaporate and remove heat",
+      "Licking its fur traps more air and reduces heat loss",
+      "Erecting its fur allows more heat to leave the skin",
+      "Erecting its fur lowers its body temperature by insulation",
+    ],
     answerIndex: 0,
     explanation: "A cat licks its fur; evaporation of saliva helps cool the body.",
   },
@@ -320,7 +362,8 @@ export const scienceF1C3QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 3",
     lang: "dlp",
     difficulty: "Medium",
-    question: "A dog pants and sticks out its tongue on a hot day. What is the purpose of this response?",
+    question:
+      "A dog pants and sticks out its tongue on a hot day. What is the purpose of this response?",
     options: [
       "To increase heat loss from the body",
       "To increase heat production through muscle contraction",
@@ -337,10 +380,16 @@ export const scienceF1C3QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 3",
     lang: "dlp",
     difficulty: "Medium",
-    question: "Why do snails produce mucus and move to damp places?",
-    options: ["To avoid excessive water loss", "To increase body temperature", "To produce sweat", "To close blood vessels"],
+    question: "Which response helps a snail reduce water loss?",
+    options: [
+      "Producing fluid and seeking humid places reduces water loss",
+      "Producing fluid and seeking dry places reduces water loss",
+      "Stopping fluid production in dry places reduces evaporation",
+      "Seeking exposed places prevents water from evaporating",
+    ],
     answerIndex: 0,
-    explanation: "Mucus and damp places help snails keep body moisture and prevent drying out.",
+    explanation:
+      "Snails lose water by evaporation from their skin. They produce fluid and seek humid places to reduce water loss.",
   },
   {
     id: "sci-f1-c3-dlp-q24",
@@ -350,7 +399,12 @@ export const scienceF1C3QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Medium",
     question: "What is the function of the waxy layer and spiracles in bees?",
-    options: ["Reduce water loss", "Produce more sweat", "Control stomata opening", "Increase urine production"],
+    options: [
+      "A waxy outer layer and closing spiracles between breaths reduce water loss",
+      "A waxy outer layer and keeping spiracles open continuously reduce water loss",
+      "A waxy outer layer increases evaporation while closed spiracles release water",
+      "A waxy outer layer absorbs water vapour while open spiracles prevent its loss",
+    ],
     answerIndex: 0,
     explanation: "The waxy layer and closing of spiracles help bees reduce water loss.",
   },
@@ -361,15 +415,17 @@ export const scienceF1C3QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 3",
     lang: "dlp",
     difficulty: "Medium",
-    question: "What happens to stomata during the day?",
+    question:
+      "During the day when water is sufficient, what is the main function of stomata that are usually open?",
     options: [
-      "Stomata open for gas exchange and transpiration",
-      "Stomata stay closed all day",
-      "Stomata produce urine",
-      "Stomata cause humans to sweat",
+      "Gas exchange for photosynthesis can occur, but water vapour can also escape",
+      "Gas exchange for photosynthesis can occur, but water vapour cannot escape",
+      "Water vapour can escape, but carbon dioxide cannot enter",
+      "Water vapour cannot escape and carbon dioxide cannot enter",
     ],
     answerIndex: 0,
-    explanation: "During the day, stomata usually open for gas exchange and transpiration.",
+    explanation:
+      "Stomata are usually open in daytime when water is adequate, allowing gas exchange and water vapour loss. They can close under water stress or extreme heat.",
   },
   {
     id: "sci-f1-c3-dlp-q26",
@@ -378,7 +434,8 @@ export const scienceF1C3QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 3",
     lang: "dlp",
     difficulty: "Medium",
-    question: "A student's pulse rate increases after jogging. What is the best explanation for this change?",
+    question:
+      "A student's pulse rate increases after jogging. What is the best explanation for this change?",
     options: [
       "Body cells require more oxygen and nutrients during physical activity",
       "Body cells require less oxygen because muscles obtain energy from body heat",
@@ -386,7 +443,8 @@ export const scienceF1C3QuizzesDLP: QuizQuestion[] = [
       "The heart needs to reduce blood flow to the muscles to conserve energy",
     ],
     answerIndex: 0,
-    explanation: "During physical activity, muscle cells require more energy. The heart beats faster to increase the supply of oxygen and other substances needed by the cells.",
+    explanation:
+      "During physical activity, muscle cells require more energy. The heart beats faster to increase the supply of oxygen and other substances needed by the cells.",
   },
   {
     id: "sci-f1-c3-dlp-q27",
@@ -395,7 +453,8 @@ export const scienceF1C3QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 3",
     lang: "dlp",
     difficulty: "Medium",
-    question: "During very hot weather, the stomata of a plant may close. Why is this response important?",
+    question:
+      "During very hot weather, the stomata of a plant may close. Why is this response important?",
     options: [
       "To increase water loss through transpiration",
       "To reduce water loss through transpiration",
@@ -403,7 +462,8 @@ export const scienceF1C3QuizzesDLP: QuizQuestion[] = [
       "To increase heat loss through water evaporation",
     ],
     answerIndex: 1,
-    explanation: "Closing the stomata reduces the loss of water vapour through transpiration when environmental conditions are very hot.",
+    explanation:
+      "Closing the stomata reduces the loss of water vapour through transpiration when environmental conditions are very hot.",
   },
   {
     id: "sci-f1-c3-dlp-q28",
@@ -411,16 +471,18 @@ export const scienceF1C3QuizzesDLP: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 3",
     lang: "dlp",
-    difficulty: "Hard",
-    question: "A lizard is in a cold place and becomes less active. What is the best explanation?",
+    difficulty: "Medium",
+    question:
+      "A lizard moves much more slowly at an environmental temperature of 15°C than at 30°C. Which explanation best fits?",
     options: [
-      "Its metabolism decreases because it is a cold-blooded animal",
-      "It produces a lot of sweat",
-      "Its kidneys produce more urine",
-      "Its stomata close to save water",
+      "Its activity and metabolic rate decrease as its body temperature falls",
+      "Its activity and metabolic rate increase as its body temperature falls",
+      "Its activity decreases while its metabolic rate increases",
+      "Its activity increases while its metabolic rate decreases",
     ],
     answerIndex: 0,
-    explanation: "A lizard is cold-blooded; when the surrounding temperature is low, its metabolism and activity decrease.",
+    explanation:
+      "In cold surroundings, a lizard moves more slowly and has a lower metabolic rate and body temperature.",
   },
   {
     id: "sci-f1-c3-dlp-q29",
@@ -428,16 +490,17 @@ export const scienceF1C3QuizzesDLP: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 3",
     lang: "dlp",
-    difficulty: "Hard",
+    difficulty: "Medium",
     question: "If blood vessels do not dilate in hot weather, what may happen?",
     options: [
-      "The body has difficulty releasing heat and body temperature may rise",
-      "The body immediately produces less heat",
-      "Kidneys stop working completely",
-      "Plants lose all their stomata",
+      "Less heat is lost through the skin, so overheating becomes more likely",
+      "More heat is lost through the skin, so overheating becomes more likely",
+      "Less heat is lost through the skin, so body temperature falls",
+      "More heat is lost through the skin, so body temperature falls",
     ],
     answerIndex: 0,
-    explanation: "Blood vessel dilation helps release heat. Without it, the body has more difficulty cooling down.",
+    explanation:
+      "Blood vessel dilation helps release heat. Without it, the body has more difficulty cooling down.",
   },
   {
     id: "sci-f1-c3-dlp-q30",
@@ -446,14 +509,16 @@ export const scienceF1C3QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 3",
     lang: "dlp",
     difficulty: "Hard",
-    question: "Choose the correct organism and homeostatic response pair.",
+    question:
+      "Two similar plants receive equal light. P is kept in hot surroundings without water; Q is kept in cool surroundings and watered. P closes more stomata. Can the difference be attributed only to temperature?",
     options: [
-      "Dog - closes stomata during hot weather",
-      "Bee - closes spiracles to reduce water loss",
-      "Human - produces mucus on the skin to stay moist",
-      "Plant - shivers to generate heat",
+      "No; water supply also differs, so it should be controlled",
+      "Yes; equal light controls all factors affecting stomata",
+      "Yes; water supply cannot affect stomatal opening",
+      "No; both plants must receive different light intensities",
     ],
-    answerIndex: 1,
-    explanation: "Bees can close their spiracles and have a waxy layer to reduce water loss.",
+    answerIndex: 0,
+    explanation:
+      "Several conditions differ. To investigate temperature, keep water supply and light the same; closing stomata reduces water loss.",
   },
 ];

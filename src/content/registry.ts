@@ -3810,6 +3810,7 @@ export function getChapterQuizQuestions(
       (!lang || (question.lang ?? defaultQuizLanguage(question.subjectId)) === lang),
   );
 
+  // Preserve canonical object identity; presentation-only visuals resolve in the quiz view.
   const resolvedQuestions = registeredQuestions.length > 0 ? registeredQuestions : legacyQuestions;
   const language = lang ?? defaultQuizLanguage(subjectId);
   const identity = {
