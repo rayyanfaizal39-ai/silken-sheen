@@ -29,11 +29,19 @@ export type GeometryPanel = {
     anchor?: "start" | "middle" | "end";
   }[];
   grid?: { origin: GeometryPoint; columns: number; rows: number; step: number };
+  /** Canvas [width, height] the coordinates are drawn in; defaults to 300 × 240. */
+  viewBox?: [number, number];
 };
 export type MathGeometryVisual = {
   kind: "geometry-diagram";
   title: LocalizedText;
   panels: GeometryPanel[];
+  /**
+   * "compact" draws a small textbook-style figure sized to its content: thin
+   * outline, panel title as the caption, labels beneath. Omit for the standard
+   * layout used by quizzes and other chapters.
+   */
+  layout?: "compact";
 };
 export function describeMathGeometryVisual(
   visual: MathGeometryVisual,

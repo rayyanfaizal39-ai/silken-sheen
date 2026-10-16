@@ -17,8 +17,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -34,16 +34,16 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    18,
+                    138.35
                   ],
                   [
-                    77.71281292110204,
-                    66
+                    90,
+                    13.65
                   ],
                   [
-                    22.28718707889797,
-                    66.00000000000001
+                    162,
+                    138.35
                   ]
                 ],
                 "closed": true
@@ -52,14 +52,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 3"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -86,8 +91,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -103,20 +108,20 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
-                  ],
-                  [
-                    82,
-                    50
-                  ],
-                  [
-                    50,
-                    82
+                    18,
+                    148
                   ],
                   [
                     18,
-                    50.00000000000001
+                    4
+                  ],
+                  [
+                    162,
+                    4
+                  ],
+                  [
+                    162,
+                    148
                   ]
                 ],
                 "closed": true
@@ -125,14 +130,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 4"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -159,8 +169,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -176,24 +186,24 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    45.5,
+                    144.48
                   ],
                   [
-                    80.43380852144492,
-                    40.11145618000168
+                    18,
+                    59.83
                   ],
                   [
-                    68.80912807335915,
-                    75.88854381999832
+                    90,
+                    7.52
                   ],
                   [
-                    31.190871926640863,
-                    75.88854381999832
+                    162,
+                    59.83
                   ],
                   [
-                    19.566191478555083,
-                    40.11145618000169
+                    134.5,
+                    144.48
                   ]
                 ],
                 "closed": true
@@ -202,14 +212,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 5"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -236,8 +251,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -253,28 +268,28 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    54,
+                    138.35
                   ],
                   [
-                    77.71281292110203,
-                    34
+                    18,
+                    76
                   ],
                   [
-                    77.71281292110204,
-                    66
+                    54,
+                    13.65
                   ],
                   [
-                    50,
-                    82
+                    126,
+                    13.65
                   ],
                   [
-                    22.28718707889797,
-                    66.00000000000001
+                    162,
+                    76
                   ],
                   [
-                    22.287187078897965,
-                    34
+                    126,
+                    138.35
                   ]
                 ],
                 "closed": true
@@ -283,14 +298,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 6"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -317,8 +337,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -334,32 +354,32 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    57.96,
+                    146.19
                   ],
                   [
-                    75.01860743897696,
-                    30.04832634052053
+                    18,
+                    96.09
                   ],
                   [
-                    81.19769318981835,
-                    57.12066988660206
+                    32.26,
+                    33.61
                   ],
                   [
-                    63.88427965176186,
-                    78.83100377287741
+                    90,
+                    5.81
                   ],
                   [
-                    36.11572034823814,
-                    78.83100377287741
+                    147.74,
+                    33.61
                   ],
                   [
-                    18.802306810181644,
-                    57.120669886602066
+                    162,
+                    96.09
                   ],
                   [
-                    24.981392561023043,
-                    30.048326340520532
+                    122.04,
+                    146.19
                   ]
                 ],
                 "closed": true
@@ -368,14 +388,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 7"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -402,8 +427,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -419,36 +444,36 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
-                  ],
-                  [
-                    72.62741699796952,
-                    27.37258300203048
-                  ],
-                  [
-                    82,
-                    50
-                  ],
-                  [
-                    72.62741699796952,
-                    72.62741699796952
-                  ],
-                  [
-                    50,
-                    82
-                  ],
-                  [
-                    27.37258300203048,
-                    72.62741699796952
+                    60.18,
+                    148
                   ],
                   [
                     18,
-                    50.00000000000001
+                    105.82
                   ],
                   [
-                    27.372583002030474,
-                    27.37258300203048
+                    18,
+                    46.18
+                  ],
+                  [
+                    60.18,
+                    4
+                  ],
+                  [
+                    119.82,
+                    4
+                  ],
+                  [
+                    162,
+                    46.18
+                  ],
+                  [
+                    162,
+                    105.82
+                  ],
+                  [
+                    119.82,
+                    148
                   ]
                 ],
                 "closed": true
@@ -457,14 +482,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 8"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -491,8 +521,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -508,40 +538,40 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    64.99,
+                    146.91
                   ],
                   [
-                    70.56920350996926,
-                    25.486577820192704
+                    26.68,
+                    114.76
                   ],
                   [
-                    81.51384809639066,
-                    44.44325831465823
+                    18,
+                    65.51
                   ],
                   [
-                    77.71281292110204,
-                    66
+                    43.01,
+                    22.2
                   ],
                   [
-                    60.944644586421404,
-                    80.07016386514907
+                    90,
+                    5.09
                   ],
                   [
-                    39.0553554135786,
-                    80.07016386514907
+                    136.99,
+                    22.2
                   ],
                   [
-                    22.28718707889797,
-                    66.00000000000001
+                    162,
+                    65.51
                   ],
                   [
-                    18.48615190360934,
-                    44.44325831465824
+                    153.32,
+                    114.76
                   ],
                   [
-                    29.430796490030737,
-                    25.486577820192707
+                    115.01,
+                    146.91
                   ]
                 ],
                 "closed": true
@@ -550,14 +580,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 9"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -584,8 +619,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -601,44 +636,44 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    67.75,
+                    144.48
                   ],
                   [
-                    68.80912807335915,
-                    24.11145618000168
+                    31.75,
+                    118.32
                   ],
                   [
-                    80.43380852144492,
-                    40.11145618000168
+                    18,
+                    76
                   ],
                   [
-                    80.43380852144492,
-                    59.88854381999832
+                    31.75,
+                    33.68
                   ],
                   [
-                    68.80912807335915,
-                    75.88854381999832
+                    67.75,
+                    7.52
                   ],
                   [
-                    50,
-                    82
+                    112.25,
+                    7.52
                   ],
                   [
-                    31.190871926640863,
-                    75.88854381999832
+                    148.25,
+                    33.68
                   ],
                   [
-                    19.566191478555087,
-                    59.88854381999832
+                    162,
+                    76
                   ],
                   [
-                    19.566191478555083,
-                    40.11145618000169
+                    148.25,
+                    118.32
                   ],
                   [
-                    31.190871926640856,
-                    24.111456180001685
+                    112.25,
+                    144.48
                   ]
                 ],
                 "closed": true
@@ -647,14 +682,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 10"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -681,8 +721,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -698,52 +738,52 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    70.71,
+                    148
                   ],
                   [
-                    66,
-                    22.28718707889796
-                  ],
-                  [
-                    77.71281292110203,
-                    34
-                  ],
-                  [
-                    82,
-                    50
-                  ],
-                  [
-                    77.71281292110204,
-                    66
-                  ],
-                  [
-                    66,
-                    77.71281292110204
-                  ],
-                  [
-                    50,
-                    82
-                  ],
-                  [
-                    34.00000000000001,
-                    77.71281292110204
-                  ],
-                  [
-                    22.28718707889797,
-                    66.00000000000001
+                    37.29,
+                    128.71
                   ],
                   [
                     18,
-                    50.00000000000001
+                    95.29
                   ],
                   [
-                    22.287187078897965,
-                    34
+                    18,
+                    56.71
                   ],
                   [
-                    33.999999999999986,
-                    22.287187078897972
+                    37.29,
+                    23.29
+                  ],
+                  [
+                    70.71,
+                    4
+                  ],
+                  [
+                    109.29,
+                    4
+                  ],
+                  [
+                    142.71,
+                    23.29
+                  ],
+                  [
+                    162,
+                    56.71
+                  ],
+                  [
+                    162,
+                    95.29
+                  ],
+                  [
+                    142.71,
+                    128.71
+                  ],
+                  [
+                    109.29,
+                    148
                   ]
                 ],
                 "closed": true
@@ -752,14 +792,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 12"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -786,8 +831,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -803,24 +848,24 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    45.5,
+                    144.48
                   ],
                   [
-                    80.43380852144492,
-                    40.11145618000168
+                    18,
+                    59.83
                   ],
                   [
-                    68.80912807335915,
-                    75.88854381999832
+                    90,
+                    7.52
                   ],
                   [
-                    31.190871926640863,
-                    75.88854381999832
+                    162,
+                    59.83
                   ],
                   [
-                    19.566191478555083,
-                    40.11145618000169
+                    134.5,
+                    144.48
                   ]
                 ],
                 "closed": true
@@ -829,14 +874,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 5"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -863,8 +913,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -880,28 +930,28 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    54,
+                    138.35
                   ],
                   [
-                    77.71281292110203,
-                    34
+                    18,
+                    76
                   ],
                   [
-                    77.71281292110204,
-                    66
+                    54,
+                    13.65
                   ],
                   [
-                    50,
-                    82
+                    126,
+                    13.65
                   ],
                   [
-                    22.28718707889797,
-                    66.00000000000001
+                    162,
+                    76
                   ],
                   [
-                    22.287187078897965,
-                    34
+                    126,
+                    138.35
                   ]
                 ],
                 "closed": true
@@ -910,14 +960,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 6"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -944,8 +999,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -961,36 +1016,36 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
-                  ],
-                  [
-                    72.62741699796952,
-                    27.37258300203048
-                  ],
-                  [
-                    82,
-                    50
-                  ],
-                  [
-                    72.62741699796952,
-                    72.62741699796952
-                  ],
-                  [
-                    50,
-                    82
-                  ],
-                  [
-                    27.37258300203048,
-                    72.62741699796952
+                    60.18,
+                    148
                   ],
                   [
                     18,
-                    50.00000000000001
+                    105.82
                   ],
                   [
-                    27.372583002030474,
-                    27.37258300203048
+                    18,
+                    46.18
+                  ],
+                  [
+                    60.18,
+                    4
+                  ],
+                  [
+                    119.82,
+                    4
+                  ],
+                  [
+                    162,
+                    46.18
+                  ],
+                  [
+                    162,
+                    105.82
+                  ],
+                  [
+                    119.82,
+                    148
                   ]
                 ],
                 "closed": true
@@ -999,14 +1054,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 8"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -1033,8 +1093,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -1050,44 +1110,44 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    67.75,
+                    144.48
                   ],
                   [
-                    68.80912807335915,
-                    24.11145618000168
+                    31.75,
+                    118.32
                   ],
                   [
-                    80.43380852144492,
-                    40.11145618000168
+                    18,
+                    76
                   ],
                   [
-                    80.43380852144492,
-                    59.88854381999832
+                    31.75,
+                    33.68
                   ],
                   [
-                    68.80912807335915,
-                    75.88854381999832
+                    67.75,
+                    7.52
                   ],
                   [
-                    50,
-                    82
+                    112.25,
+                    7.52
                   ],
                   [
-                    31.190871926640863,
-                    75.88854381999832
+                    148.25,
+                    33.68
                   ],
                   [
-                    19.566191478555087,
-                    59.88854381999832
+                    162,
+                    76
                   ],
                   [
-                    19.566191478555083,
-                    40.11145618000169
+                    148.25,
+                    118.32
                   ],
                   [
-                    31.190871926640856,
-                    24.111456180001685
+                    112.25,
+                    144.48
                   ]
                 ],
                 "closed": true
@@ -1096,14 +1156,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 10"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -1130,8 +1195,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -1147,52 +1212,52 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    70.71,
+                    148
                   ],
                   [
-                    66,
-                    22.28718707889796
-                  ],
-                  [
-                    77.71281292110203,
-                    34
-                  ],
-                  [
-                    82,
-                    50
-                  ],
-                  [
-                    77.71281292110204,
-                    66
-                  ],
-                  [
-                    66,
-                    77.71281292110204
-                  ],
-                  [
-                    50,
-                    82
-                  ],
-                  [
-                    34.00000000000001,
-                    77.71281292110204
-                  ],
-                  [
-                    22.28718707889797,
-                    66.00000000000001
+                    37.29,
+                    128.71
                   ],
                   [
                     18,
-                    50.00000000000001
+                    95.29
                   ],
                   [
-                    22.287187078897965,
-                    34
+                    18,
+                    56.71
                   ],
                   [
-                    33.999999999999986,
-                    22.287187078897972
+                    37.29,
+                    23.29
+                  ],
+                  [
+                    70.71,
+                    4
+                  ],
+                  [
+                    109.29,
+                    4
+                  ],
+                  [
+                    142.71,
+                    23.29
+                  ],
+                  [
+                    162,
+                    56.71
+                  ],
+                  [
+                    162,
+                    95.29
+                  ],
+                  [
+                    142.71,
+                    128.71
+                  ],
+                  [
+                    109.29,
+                    148
                   ]
                 ],
                 "closed": true
@@ -1201,14 +1266,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 12"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -1235,8 +1305,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -1252,32 +1322,32 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    57.96,
+                    146.19
                   ],
                   [
-                    75.01860743897696,
-                    30.04832634052053
+                    18,
+                    96.09
                   ],
                   [
-                    81.19769318981835,
-                    57.12066988660206
+                    32.26,
+                    33.61
                   ],
                   [
-                    63.88427965176186,
-                    78.83100377287741
+                    90,
+                    5.81
                   ],
                   [
-                    36.11572034823814,
-                    78.83100377287741
+                    147.74,
+                    33.61
                   ],
                   [
-                    18.802306810181644,
-                    57.120669886602066
+                    162,
+                    96.09
                   ],
                   [
-                    24.981392561023043,
-                    30.048326340520532
+                    122.04,
+                    146.19
                   ]
                 ],
                 "closed": true
@@ -1286,14 +1356,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 7"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -1320,8 +1395,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -1337,40 +1412,40 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    64.99,
+                    146.91
                   ],
                   [
-                    70.56920350996926,
-                    25.486577820192704
+                    26.68,
+                    114.76
                   ],
                   [
-                    81.51384809639066,
-                    44.44325831465823
+                    18,
+                    65.51
                   ],
                   [
-                    77.71281292110204,
-                    66
+                    43.01,
+                    22.2
                   ],
                   [
-                    60.944644586421404,
-                    80.07016386514907
+                    90,
+                    5.09
                   ],
                   [
-                    39.0553554135786,
-                    80.07016386514907
+                    136.99,
+                    22.2
                   ],
                   [
-                    22.28718707889797,
-                    66.00000000000001
+                    162,
+                    65.51
                   ],
                   [
-                    18.48615190360934,
-                    44.44325831465824
+                    153.32,
+                    114.76
                   ],
                   [
-                    29.430796490030737,
-                    25.486577820192707
+                    115.01,
+                    146.91
                   ]
                 ],
                 "closed": true
@@ -1379,14 +1454,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 9"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -1435,8 +1515,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -1452,20 +1532,20 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
-                  ],
-                  [
-                    82,
-                    50
-                  ],
-                  [
-                    50,
-                    82
+                    18,
+                    148
                   ],
                   [
                     18,
-                    50.00000000000001
+                    4
+                  ],
+                  [
+                    162,
+                    4
+                  ],
+                  [
+                    162,
+                    148
                   ]
                 ],
                 "closed": true
@@ -1474,14 +1554,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 4"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -1530,8 +1615,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -1547,28 +1632,28 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    54,
+                    138.35
                   ],
                   [
-                    77.71281292110203,
-                    34
+                    18,
+                    76
                   ],
                   [
-                    77.71281292110204,
-                    66
+                    54,
+                    13.65
                   ],
                   [
-                    50,
-                    82
+                    126,
+                    13.65
                   ],
                   [
-                    22.28718707889797,
-                    66.00000000000001
+                    162,
+                    76
                   ],
                   [
-                    22.287187078897965,
-                    34
+                    126,
+                    138.35
                   ]
                 ],
                 "closed": true
@@ -1577,14 +1662,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 6"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -1633,8 +1723,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -1650,36 +1740,36 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
-                  ],
-                  [
-                    72.62741699796952,
-                    27.37258300203048
-                  ],
-                  [
-                    82,
-                    50
-                  ],
-                  [
-                    72.62741699796952,
-                    72.62741699796952
-                  ],
-                  [
-                    50,
-                    82
-                  ],
-                  [
-                    27.37258300203048,
-                    72.62741699796952
+                    60.18,
+                    148
                   ],
                   [
                     18,
-                    50.00000000000001
+                    105.82
                   ],
                   [
-                    27.372583002030474,
-                    27.37258300203048
+                    18,
+                    46.18
+                  ],
+                  [
+                    60.18,
+                    4
+                  ],
+                  [
+                    119.82,
+                    4
+                  ],
+                  [
+                    162,
+                    46.18
+                  ],
+                  [
+                    162,
+                    105.82
+                  ],
+                  [
+                    119.82,
+                    148
                   ]
                 ],
                 "closed": true
@@ -1688,14 +1778,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 8"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -1744,8 +1839,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -1761,44 +1856,44 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    67.75,
+                    144.48
                   ],
                   [
-                    68.80912807335915,
-                    24.11145618000168
+                    31.75,
+                    118.32
                   ],
                   [
-                    80.43380852144492,
-                    40.11145618000168
+                    18,
+                    76
                   ],
                   [
-                    80.43380852144492,
-                    59.88854381999832
+                    31.75,
+                    33.68
                   ],
                   [
-                    68.80912807335915,
-                    75.88854381999832
+                    67.75,
+                    7.52
                   ],
                   [
-                    50,
-                    82
+                    112.25,
+                    7.52
                   ],
                   [
-                    31.190871926640863,
-                    75.88854381999832
+                    148.25,
+                    33.68
                   ],
                   [
-                    19.566191478555087,
-                    59.88854381999832
+                    162,
+                    76
                   ],
                   [
-                    19.566191478555083,
-                    40.11145618000169
+                    148.25,
+                    118.32
                   ],
                   [
-                    31.190871926640856,
-                    24.111456180001685
+                    112.25,
+                    144.48
                   ]
                 ],
                 "closed": true
@@ -1807,14 +1902,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 10"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -1863,8 +1963,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -1880,28 +1980,28 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    54,
+                    138.35
                   ],
                   [
-                    77.71281292110203,
-                    34
+                    18,
+                    76
                   ],
                   [
-                    77.71281292110204,
-                    66
+                    54,
+                    13.65
                   ],
                   [
-                    50,
-                    82
+                    126,
+                    13.65
                   ],
                   [
-                    22.28718707889797,
-                    66.00000000000001
+                    162,
+                    76
                   ],
                   [
-                    22.287187078897965,
-                    34
+                    126,
+                    138.35
                   ]
                 ],
                 "closed": true
@@ -1910,14 +2010,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 6"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -1944,8 +2049,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -1961,32 +2066,32 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    57.96,
+                    146.19
                   ],
                   [
-                    75.01860743897696,
-                    30.04832634052053
+                    18,
+                    96.09
                   ],
                   [
-                    81.19769318981835,
-                    57.12066988660206
+                    32.26,
+                    33.61
                   ],
                   [
-                    63.88427965176186,
-                    78.83100377287741
+                    90,
+                    5.81
                   ],
                   [
-                    36.11572034823814,
-                    78.83100377287741
+                    147.74,
+                    33.61
                   ],
                   [
-                    18.802306810181644,
-                    57.120669886602066
+                    162,
+                    96.09
                   ],
                   [
-                    24.981392561023043,
-                    30.048326340520532
+                    122.04,
+                    146.19
                   ]
                 ],
                 "closed": true
@@ -1995,14 +2100,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 7"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -2029,8 +2139,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -2046,36 +2156,36 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
-                  ],
-                  [
-                    72.62741699796952,
-                    27.37258300203048
-                  ],
-                  [
-                    82,
-                    50
-                  ],
-                  [
-                    72.62741699796952,
-                    72.62741699796952
-                  ],
-                  [
-                    50,
-                    82
-                  ],
-                  [
-                    27.37258300203048,
-                    72.62741699796952
+                    60.18,
+                    148
                   ],
                   [
                     18,
-                    50.00000000000001
+                    105.82
                   ],
                   [
-                    27.372583002030474,
-                    27.37258300203048
+                    18,
+                    46.18
+                  ],
+                  [
+                    60.18,
+                    4
+                  ],
+                  [
+                    119.82,
+                    4
+                  ],
+                  [
+                    162,
+                    46.18
+                  ],
+                  [
+                    162,
+                    105.82
+                  ],
+                  [
+                    119.82,
+                    148
                   ]
                 ],
                 "closed": true
@@ -2084,14 +2194,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 8"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -2118,8 +2233,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -2135,40 +2250,40 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    64.99,
+                    146.91
                   ],
                   [
-                    70.56920350996926,
-                    25.486577820192704
+                    26.68,
+                    114.76
                   ],
                   [
-                    81.51384809639066,
-                    44.44325831465823
+                    18,
+                    65.51
                   ],
                   [
-                    77.71281292110204,
-                    66
+                    43.01,
+                    22.2
                   ],
                   [
-                    60.944644586421404,
-                    80.07016386514907
+                    90,
+                    5.09
                   ],
                   [
-                    39.0553554135786,
-                    80.07016386514907
+                    136.99,
+                    22.2
                   ],
                   [
-                    22.28718707889797,
-                    66.00000000000001
+                    162,
+                    65.51
                   ],
                   [
-                    18.48615190360934,
-                    44.44325831465824
+                    153.32,
+                    114.76
                   ],
                   [
-                    29.430796490030737,
-                    25.486577820192707
+                    115.01,
+                    146.91
                   ]
                 ],
                 "closed": true
@@ -2177,14 +2292,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 9"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -2211,8 +2331,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -2228,44 +2348,44 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    67.75,
+                    144.48
                   ],
                   [
-                    68.80912807335915,
-                    24.11145618000168
+                    31.75,
+                    118.32
                   ],
                   [
-                    80.43380852144492,
-                    40.11145618000168
+                    18,
+                    76
                   ],
                   [
-                    80.43380852144492,
-                    59.88854381999832
+                    31.75,
+                    33.68
                   ],
                   [
-                    68.80912807335915,
-                    75.88854381999832
+                    67.75,
+                    7.52
                   ],
                   [
-                    50,
-                    82
+                    112.25,
+                    7.52
                   ],
                   [
-                    31.190871926640863,
-                    75.88854381999832
+                    148.25,
+                    33.68
                   ],
                   [
-                    19.566191478555087,
-                    59.88854381999832
+                    162,
+                    76
                   ],
                   [
-                    19.566191478555083,
-                    40.11145618000169
+                    148.25,
+                    118.32
                   ],
                   [
-                    31.190871926640856,
-                    24.111456180001685
+                    112.25,
+                    144.48
                   ]
                 ],
                 "closed": true
@@ -2274,14 +2394,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 10"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -2308,8 +2433,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -2325,52 +2450,52 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    70.71,
+                    148
                   ],
                   [
-                    66,
-                    22.28718707889796
-                  ],
-                  [
-                    77.71281292110203,
-                    34
-                  ],
-                  [
-                    82,
-                    50
-                  ],
-                  [
-                    77.71281292110204,
-                    66
-                  ],
-                  [
-                    66,
-                    77.71281292110204
-                  ],
-                  [
-                    50,
-                    82
-                  ],
-                  [
-                    34.00000000000001,
-                    77.71281292110204
-                  ],
-                  [
-                    22.28718707889797,
-                    66.00000000000001
+                    37.29,
+                    128.71
                   ],
                   [
                     18,
-                    50.00000000000001
+                    95.29
                   ],
                   [
-                    22.287187078897965,
-                    34
+                    18,
+                    56.71
                   ],
                   [
-                    33.999999999999986,
-                    22.287187078897972
+                    37.29,
+                    23.29
+                  ],
+                  [
+                    70.71,
+                    4
+                  ],
+                  [
+                    109.29,
+                    4
+                  ],
+                  [
+                    142.71,
+                    23.29
+                  ],
+                  [
+                    162,
+                    56.71
+                  ],
+                  [
+                    162,
+                    95.29
+                  ],
+                  [
+                    142.71,
+                    128.71
+                  ],
+                  [
+                    109.29,
+                    148
                   ]
                 ],
                 "closed": true
@@ -2379,14 +2504,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 12"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -2413,8 +2543,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -2430,24 +2560,24 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    45.5,
+                    144.48
                   ],
                   [
-                    80.43380852144492,
-                    40.11145618000168
+                    18,
+                    59.83
                   ],
                   [
-                    68.80912807335915,
-                    75.88854381999832
+                    90,
+                    7.52
                   ],
                   [
-                    31.190871926640863,
-                    75.88854381999832
+                    162,
+                    59.83
                   ],
                   [
-                    19.566191478555083,
-                    40.11145618000169
+                    134.5,
+                    144.48
                   ]
                 ],
                 "closed": true
@@ -2456,14 +2586,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 5"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -2490,8 +2625,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -2507,28 +2642,28 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    54,
+                    138.35
                   ],
                   [
-                    77.71281292110203,
-                    34
+                    18,
+                    76
                   ],
                   [
-                    77.71281292110204,
-                    66
+                    54,
+                    13.65
                   ],
                   [
-                    50,
-                    82
+                    126,
+                    13.65
                   ],
                   [
-                    22.28718707889797,
-                    66.00000000000001
+                    162,
+                    76
                   ],
                   [
-                    22.287187078897965,
-                    34
+                    126,
+                    138.35
                   ]
                 ],
                 "closed": true
@@ -2537,14 +2672,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 6"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -2571,8 +2711,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -2588,36 +2728,36 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
-                  ],
-                  [
-                    72.62741699796952,
-                    27.37258300203048
-                  ],
-                  [
-                    82,
-                    50
-                  ],
-                  [
-                    72.62741699796952,
-                    72.62741699796952
-                  ],
-                  [
-                    50,
-                    82
-                  ],
-                  [
-                    27.37258300203048,
-                    72.62741699796952
+                    60.18,
+                    148
                   ],
                   [
                     18,
-                    50.00000000000001
+                    105.82
                   ],
                   [
-                    27.372583002030474,
-                    27.37258300203048
+                    18,
+                    46.18
+                  ],
+                  [
+                    60.18,
+                    4
+                  ],
+                  [
+                    119.82,
+                    4
+                  ],
+                  [
+                    162,
+                    46.18
+                  ],
+                  [
+                    162,
+                    105.82
+                  ],
+                  [
+                    119.82,
+                    148
                   ]
                 ],
                 "closed": true
@@ -2626,14 +2766,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 8"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -2660,8 +2805,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -2677,44 +2822,44 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    67.75,
+                    144.48
                   ],
                   [
-                    68.80912807335915,
-                    24.11145618000168
+                    31.75,
+                    118.32
                   ],
                   [
-                    80.43380852144492,
-                    40.11145618000168
+                    18,
+                    76
                   ],
                   [
-                    80.43380852144492,
-                    59.88854381999832
+                    31.75,
+                    33.68
                   ],
                   [
-                    68.80912807335915,
-                    75.88854381999832
+                    67.75,
+                    7.52
                   ],
                   [
-                    50,
-                    82
+                    112.25,
+                    7.52
                   ],
                   [
-                    31.190871926640863,
-                    75.88854381999832
+                    148.25,
+                    33.68
                   ],
                   [
-                    19.566191478555087,
-                    59.88854381999832
+                    162,
+                    76
                   ],
                   [
-                    19.566191478555083,
-                    40.11145618000169
+                    148.25,
+                    118.32
                   ],
                   [
-                    31.190871926640856,
-                    24.111456180001685
+                    112.25,
+                    144.48
                   ]
                 ],
                 "closed": true
@@ -2723,14 +2868,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 10"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -2757,8 +2907,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -2774,52 +2924,52 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    70.71,
+                    148
                   ],
                   [
-                    66,
-                    22.28718707889796
-                  ],
-                  [
-                    77.71281292110203,
-                    34
-                  ],
-                  [
-                    82,
-                    50
-                  ],
-                  [
-                    77.71281292110204,
-                    66
-                  ],
-                  [
-                    66,
-                    77.71281292110204
-                  ],
-                  [
-                    50,
-                    82
-                  ],
-                  [
-                    34.00000000000001,
-                    77.71281292110204
-                  ],
-                  [
-                    22.28718707889797,
-                    66.00000000000001
+                    37.29,
+                    128.71
                   ],
                   [
                     18,
-                    50.00000000000001
+                    95.29
                   ],
                   [
-                    22.287187078897965,
-                    34
+                    18,
+                    56.71
                   ],
                   [
-                    33.999999999999986,
-                    22.287187078897972
+                    37.29,
+                    23.29
+                  ],
+                  [
+                    70.71,
+                    4
+                  ],
+                  [
+                    109.29,
+                    4
+                  ],
+                  [
+                    142.71,
+                    23.29
+                  ],
+                  [
+                    162,
+                    56.71
+                  ],
+                  [
+                    162,
+                    95.29
+                  ],
+                  [
+                    142.71,
+                    128.71
+                  ],
+                  [
+                    109.29,
+                    148
                   ]
                 ],
                 "closed": true
@@ -2828,14 +2978,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 12"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -2862,8 +3017,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -2879,32 +3034,32 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    57.96,
+                    146.19
                   ],
                   [
-                    75.01860743897696,
-                    30.04832634052053
+                    18,
+                    96.09
                   ],
                   [
-                    81.19769318981835,
-                    57.12066988660206
+                    32.26,
+                    33.61
                   ],
                   [
-                    63.88427965176186,
-                    78.83100377287741
+                    90,
+                    5.81
                   ],
                   [
-                    36.11572034823814,
-                    78.83100377287741
+                    147.74,
+                    33.61
                   ],
                   [
-                    18.802306810181644,
-                    57.120669886602066
+                    162,
+                    96.09
                   ],
                   [
-                    24.981392561023043,
-                    30.048326340520532
+                    122.04,
+                    146.19
                   ]
                 ],
                 "closed": true
@@ -2913,14 +3068,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 7"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -2947,8 +3107,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -2964,40 +3124,40 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    64.99,
+                    146.91
                   ],
                   [
-                    70.56920350996926,
-                    25.486577820192704
+                    26.68,
+                    114.76
                   ],
                   [
-                    81.51384809639066,
-                    44.44325831465823
+                    18,
+                    65.51
                   ],
                   [
-                    77.71281292110204,
-                    66
+                    43.01,
+                    22.2
                   ],
                   [
-                    60.944644586421404,
-                    80.07016386514907
+                    90,
+                    5.09
                   ],
                   [
-                    39.0553554135786,
-                    80.07016386514907
+                    136.99,
+                    22.2
                   ],
                   [
-                    22.28718707889797,
-                    66.00000000000001
+                    162,
+                    65.51
                   ],
                   [
-                    18.48615190360934,
-                    44.44325831465824
+                    153.32,
+                    114.76
                   ],
                   [
-                    29.430796490030737,
-                    25.486577820192707
+                    115.01,
+                    146.91
                   ]
                 ],
                 "closed": true
@@ -3006,14 +3166,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 9"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -3040,8 +3205,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -3057,20 +3222,20 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
-                  ],
-                  [
-                    82,
-                    50
-                  ],
-                  [
-                    50,
-                    82
+                    18,
+                    148
                   ],
                   [
                     18,
-                    50.00000000000001
+                    4
+                  ],
+                  [
+                    162,
+                    4
+                  ],
+                  [
+                    162,
+                    148
                   ]
                 ],
                 "closed": true
@@ -3079,14 +3244,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 4"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -3113,8 +3283,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -3130,28 +3300,28 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    54,
+                    138.35
                   ],
                   [
-                    77.71281292110203,
-                    34
+                    18,
+                    76
                   ],
                   [
-                    77.71281292110204,
-                    66
+                    54,
+                    13.65
                   ],
                   [
-                    50,
-                    82
+                    126,
+                    13.65
                   ],
                   [
-                    22.28718707889797,
-                    66.00000000000001
+                    162,
+                    76
                   ],
                   [
-                    22.287187078897965,
-                    34
+                    126,
+                    138.35
                   ]
                 ],
                 "closed": true
@@ -3160,14 +3330,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 6"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -3194,8 +3369,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -3211,36 +3386,36 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
-                  ],
-                  [
-                    72.62741699796952,
-                    27.37258300203048
-                  ],
-                  [
-                    82,
-                    50
-                  ],
-                  [
-                    72.62741699796952,
-                    72.62741699796952
-                  ],
-                  [
-                    50,
-                    82
-                  ],
-                  [
-                    27.37258300203048,
-                    72.62741699796952
+                    60.18,
+                    148
                   ],
                   [
                     18,
-                    50.00000000000001
+                    105.82
                   ],
                   [
-                    27.372583002030474,
-                    27.37258300203048
+                    18,
+                    46.18
+                  ],
+                  [
+                    60.18,
+                    4
+                  ],
+                  [
+                    119.82,
+                    4
+                  ],
+                  [
+                    162,
+                    46.18
+                  ],
+                  [
+                    162,
+                    105.82
+                  ],
+                  [
+                    119.82,
+                    148
                   ]
                 ],
                 "closed": true
@@ -3249,14 +3424,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 8"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -3305,8 +3485,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -3322,44 +3502,44 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    67.75,
+                    144.48
                   ],
                   [
-                    68.80912807335915,
-                    24.11145618000168
+                    31.75,
+                    118.32
                   ],
                   [
-                    80.43380852144492,
-                    40.11145618000168
+                    18,
+                    76
                   ],
                   [
-                    80.43380852144492,
-                    59.88854381999832
+                    31.75,
+                    33.68
                   ],
                   [
-                    68.80912807335915,
-                    75.88854381999832
+                    67.75,
+                    7.52
                   ],
                   [
-                    50,
-                    82
+                    112.25,
+                    7.52
                   ],
                   [
-                    31.190871926640863,
-                    75.88854381999832
+                    148.25,
+                    33.68
                   ],
                   [
-                    19.566191478555087,
-                    59.88854381999832
+                    162,
+                    76
                   ],
                   [
-                    19.566191478555083,
-                    40.11145618000169
+                    148.25,
+                    118.32
                   ],
                   [
-                    31.190871926640856,
-                    24.111456180001685
+                    112.25,
+                    144.48
                   ]
                 ],
                 "closed": true
@@ -3368,14 +3548,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 10"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -3424,8 +3609,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -3441,16 +3626,16 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    18,
+                    138.35
                   ],
                   [
-                    77.71281292110204,
-                    66
+                    90,
+                    13.65
                   ],
                   [
-                    22.28718707889797,
-                    66.00000000000001
+                    162,
+                    138.35
                   ]
                 ],
                 "closed": true
@@ -3459,14 +3644,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 3"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -3515,8 +3705,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -3532,20 +3722,20 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
-                  ],
-                  [
-                    82,
-                    50
-                  ],
-                  [
-                    50,
-                    82
+                    18,
+                    148
                   ],
                   [
                     18,
-                    50.00000000000001
+                    4
+                  ],
+                  [
+                    162,
+                    4
+                  ],
+                  [
+                    162,
+                    148
                   ]
                 ],
                 "closed": true
@@ -3554,14 +3744,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 4"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -3610,8 +3805,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -3627,24 +3822,24 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    45.5,
+                    144.48
                   ],
                   [
-                    80.43380852144492,
-                    40.11145618000168
+                    18,
+                    59.83
                   ],
                   [
-                    68.80912807335915,
-                    75.88854381999832
+                    90,
+                    7.52
                   ],
                   [
-                    31.190871926640863,
-                    75.88854381999832
+                    162,
+                    59.83
                   ],
                   [
-                    19.566191478555083,
-                    40.11145618000169
+                    134.5,
+                    144.48
                   ]
                 ],
                 "closed": true
@@ -3653,14 +3848,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 5"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -3709,8 +3909,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -3726,40 +3926,40 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    64.99,
+                    146.91
                   ],
                   [
-                    70.56920350996926,
-                    25.486577820192704
+                    26.68,
+                    114.76
                   ],
                   [
-                    81.51384809639066,
-                    44.44325831465823
+                    18,
+                    65.51
                   ],
                   [
-                    77.71281292110204,
-                    66
+                    43.01,
+                    22.2
                   ],
                   [
-                    60.944644586421404,
-                    80.07016386514907
+                    90,
+                    5.09
                   ],
                   [
-                    39.0553554135786,
-                    80.07016386514907
+                    136.99,
+                    22.2
                   ],
                   [
-                    22.28718707889797,
-                    66.00000000000001
+                    162,
+                    65.51
                   ],
                   [
-                    18.48615190360934,
-                    44.44325831465824
+                    153.32,
+                    114.76
                   ],
                   [
-                    29.430796490030737,
-                    25.486577820192707
+                    115.01,
+                    146.91
                   ]
                 ],
                 "closed": true
@@ -3768,14 +3968,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 9"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -3802,8 +4007,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -3819,44 +4024,44 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    67.75,
+                    144.48
                   ],
                   [
-                    68.80912807335915,
-                    24.11145618000168
+                    31.75,
+                    118.32
                   ],
                   [
-                    80.43380852144492,
-                    40.11145618000168
+                    18,
+                    76
                   ],
                   [
-                    80.43380852144492,
-                    59.88854381999832
+                    31.75,
+                    33.68
                   ],
                   [
-                    68.80912807335915,
-                    75.88854381999832
+                    67.75,
+                    7.52
                   ],
                   [
-                    50,
-                    82
+                    112.25,
+                    7.52
                   ],
                   [
-                    31.190871926640863,
-                    75.88854381999832
+                    148.25,
+                    33.68
                   ],
                   [
-                    19.566191478555087,
-                    59.88854381999832
+                    162,
+                    76
                   ],
                   [
-                    19.566191478555083,
-                    40.11145618000169
+                    148.25,
+                    118.32
                   ],
                   [
-                    31.190871926640856,
-                    24.111456180001685
+                    112.25,
+                    144.48
                   ]
                 ],
                 "closed": true
@@ -3865,14 +4070,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 10"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -3899,8 +4109,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -3916,52 +4126,52 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    70.71,
+                    148
                   ],
                   [
-                    66,
-                    22.28718707889796
-                  ],
-                  [
-                    77.71281292110203,
-                    34
-                  ],
-                  [
-                    82,
-                    50
-                  ],
-                  [
-                    77.71281292110204,
-                    66
-                  ],
-                  [
-                    66,
-                    77.71281292110204
-                  ],
-                  [
-                    50,
-                    82
-                  ],
-                  [
-                    34.00000000000001,
-                    77.71281292110204
-                  ],
-                  [
-                    22.28718707889797,
-                    66.00000000000001
+                    37.29,
+                    128.71
                   ],
                   [
                     18,
-                    50.00000000000001
+                    95.29
                   ],
                   [
-                    22.287187078897965,
-                    34
+                    18,
+                    56.71
                   ],
                   [
-                    33.999999999999986,
-                    22.287187078897972
+                    37.29,
+                    23.29
+                  ],
+                  [
+                    70.71,
+                    4
+                  ],
+                  [
+                    109.29,
+                    4
+                  ],
+                  [
+                    142.71,
+                    23.29
+                  ],
+                  [
+                    162,
+                    56.71
+                  ],
+                  [
+                    162,
+                    95.29
+                  ],
+                  [
+                    142.71,
+                    128.71
+                  ],
+                  [
+                    109.29,
+                    148
                   ]
                 ],
                 "closed": true
@@ -3970,14 +4180,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 12"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -4004,8 +4219,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -4021,24 +4236,24 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    45.5,
+                    144.48
                   ],
                   [
-                    80.43380852144492,
-                    40.11145618000168
+                    18,
+                    59.83
                   ],
                   [
-                    68.80912807335915,
-                    75.88854381999832
+                    90,
+                    7.52
                   ],
                   [
-                    31.190871926640863,
-                    75.88854381999832
+                    162,
+                    59.83
                   ],
                   [
-                    19.566191478555083,
-                    40.11145618000169
+                    134.5,
+                    144.48
                   ]
                 ],
                 "closed": true
@@ -4047,14 +4262,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 5"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -4081,8 +4301,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -4098,28 +4318,28 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    54,
+                    138.35
                   ],
                   [
-                    77.71281292110203,
-                    34
+                    18,
+                    76
                   ],
                   [
-                    77.71281292110204,
-                    66
+                    54,
+                    13.65
                   ],
                   [
-                    50,
-                    82
+                    126,
+                    13.65
                   ],
                   [
-                    22.28718707889797,
-                    66.00000000000001
+                    162,
+                    76
                   ],
                   [
-                    22.287187078897965,
-                    34
+                    126,
+                    138.35
                   ]
                 ],
                 "closed": true
@@ -4128,14 +4348,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 6"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -4162,8 +4387,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -4179,36 +4404,36 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
-                  ],
-                  [
-                    72.62741699796952,
-                    27.37258300203048
-                  ],
-                  [
-                    82,
-                    50
-                  ],
-                  [
-                    72.62741699796952,
-                    72.62741699796952
-                  ],
-                  [
-                    50,
-                    82
-                  ],
-                  [
-                    27.37258300203048,
-                    72.62741699796952
+                    60.18,
+                    148
                   ],
                   [
                     18,
-                    50.00000000000001
+                    105.82
                   ],
                   [
-                    27.372583002030474,
-                    27.37258300203048
+                    18,
+                    46.18
+                  ],
+                  [
+                    60.18,
+                    4
+                  ],
+                  [
+                    119.82,
+                    4
+                  ],
+                  [
+                    162,
+                    46.18
+                  ],
+                  [
+                    162,
+                    105.82
+                  ],
+                  [
+                    119.82,
+                    148
                   ]
                 ],
                 "closed": true
@@ -4217,14 +4442,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 8"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -4251,8 +4481,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -4268,44 +4498,44 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    67.75,
+                    144.48
                   ],
                   [
-                    68.80912807335915,
-                    24.11145618000168
+                    31.75,
+                    118.32
                   ],
                   [
-                    80.43380852144492,
-                    40.11145618000168
+                    18,
+                    76
                   ],
                   [
-                    80.43380852144492,
-                    59.88854381999832
+                    31.75,
+                    33.68
                   ],
                   [
-                    68.80912807335915,
-                    75.88854381999832
+                    67.75,
+                    7.52
                   ],
                   [
-                    50,
-                    82
+                    112.25,
+                    7.52
                   ],
                   [
-                    31.190871926640863,
-                    75.88854381999832
+                    148.25,
+                    33.68
                   ],
                   [
-                    19.566191478555087,
-                    59.88854381999832
+                    162,
+                    76
                   ],
                   [
-                    19.566191478555083,
-                    40.11145618000169
+                    148.25,
+                    118.32
                   ],
                   [
-                    31.190871926640856,
-                    24.111456180001685
+                    112.25,
+                    144.48
                   ]
                 ],
                 "closed": true
@@ -4314,14 +4544,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 10"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -4348,8 +4583,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -4365,52 +4600,52 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    70.71,
+                    148
                   ],
                   [
-                    66,
-                    22.28718707889796
-                  ],
-                  [
-                    77.71281292110203,
-                    34
-                  ],
-                  [
-                    82,
-                    50
-                  ],
-                  [
-                    77.71281292110204,
-                    66
-                  ],
-                  [
-                    66,
-                    77.71281292110204
-                  ],
-                  [
-                    50,
-                    82
-                  ],
-                  [
-                    34.00000000000001,
-                    77.71281292110204
-                  ],
-                  [
-                    22.28718707889797,
-                    66.00000000000001
+                    37.29,
+                    128.71
                   ],
                   [
                     18,
-                    50.00000000000001
+                    95.29
                   ],
                   [
-                    22.287187078897965,
-                    34
+                    18,
+                    56.71
                   ],
                   [
-                    33.999999999999986,
-                    22.287187078897972
+                    37.29,
+                    23.29
+                  ],
+                  [
+                    70.71,
+                    4
+                  ],
+                  [
+                    109.29,
+                    4
+                  ],
+                  [
+                    142.71,
+                    23.29
+                  ],
+                  [
+                    162,
+                    56.71
+                  ],
+                  [
+                    162,
+                    95.29
+                  ],
+                  [
+                    142.71,
+                    128.71
+                  ],
+                  [
+                    109.29,
+                    148
                   ]
                 ],
                 "closed": true
@@ -4419,14 +4654,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 12"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -4453,8 +4693,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -4470,32 +4710,32 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    57.96,
+                    146.19
                   ],
                   [
-                    75.01860743897696,
-                    30.04832634052053
+                    18,
+                    96.09
                   ],
                   [
-                    81.19769318981835,
-                    57.12066988660206
+                    32.26,
+                    33.61
                   ],
                   [
-                    63.88427965176186,
-                    78.83100377287741
+                    90,
+                    5.81
                   ],
                   [
-                    36.11572034823814,
-                    78.83100377287741
+                    147.74,
+                    33.61
                   ],
                   [
-                    18.802306810181644,
-                    57.120669886602066
+                    162,
+                    96.09
                   ],
                   [
-                    24.981392561023043,
-                    30.048326340520532
+                    122.04,
+                    146.19
                   ]
                 ],
                 "closed": true
@@ -4504,14 +4744,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 7"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -4538,8 +4783,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -4555,40 +4800,40 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    64.99,
+                    146.91
                   ],
                   [
-                    70.56920350996926,
-                    25.486577820192704
+                    26.68,
+                    114.76
                   ],
                   [
-                    81.51384809639066,
-                    44.44325831465823
+                    18,
+                    65.51
                   ],
                   [
-                    77.71281292110204,
-                    66
+                    43.01,
+                    22.2
                   ],
                   [
-                    60.944644586421404,
-                    80.07016386514907
+                    90,
+                    5.09
                   ],
                   [
-                    39.0553554135786,
-                    80.07016386514907
+                    136.99,
+                    22.2
                   ],
                   [
-                    22.28718707889797,
-                    66.00000000000001
+                    162,
+                    65.51
                   ],
                   [
-                    18.48615190360934,
-                    44.44325831465824
+                    153.32,
+                    114.76
                   ],
                   [
-                    29.430796490030737,
-                    25.486577820192707
+                    115.01,
+                    146.91
                   ]
                 ],
                 "closed": true
@@ -4597,14 +4842,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 9"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -4631,8 +4881,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -4648,20 +4898,20 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
-                  ],
-                  [
-                    82,
-                    50
-                  ],
-                  [
-                    50,
-                    82
+                    18,
+                    148
                   ],
                   [
                     18,
-                    50.00000000000001
+                    4
+                  ],
+                  [
+                    162,
+                    4
+                  ],
+                  [
+                    162,
+                    148
                   ]
                 ],
                 "closed": true
@@ -4670,14 +4920,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 4"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -4704,8 +4959,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -4721,28 +4976,28 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    54,
+                    138.35
                   ],
                   [
-                    77.71281292110203,
-                    34
+                    18,
+                    76
                   ],
                   [
-                    77.71281292110204,
-                    66
+                    54,
+                    13.65
                   ],
                   [
-                    50,
-                    82
+                    126,
+                    13.65
                   ],
                   [
-                    22.28718707889797,
-                    66.00000000000001
+                    162,
+                    76
                   ],
                   [
-                    22.287187078897965,
-                    34
+                    126,
+                    138.35
                   ]
                 ],
                 "closed": true
@@ -4751,14 +5006,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 6"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -4785,8 +5045,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -4802,36 +5062,36 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
-                  ],
-                  [
-                    72.62741699796952,
-                    27.37258300203048
-                  ],
-                  [
-                    82,
-                    50
-                  ],
-                  [
-                    72.62741699796952,
-                    72.62741699796952
-                  ],
-                  [
-                    50,
-                    82
-                  ],
-                  [
-                    27.37258300203048,
-                    72.62741699796952
+                    60.18,
+                    148
                   ],
                   [
                     18,
-                    50.00000000000001
+                    105.82
                   ],
                   [
-                    27.372583002030474,
-                    27.37258300203048
+                    18,
+                    46.18
+                  ],
+                  [
+                    60.18,
+                    4
+                  ],
+                  [
+                    119.82,
+                    4
+                  ],
+                  [
+                    162,
+                    46.18
+                  ],
+                  [
+                    162,
+                    105.82
+                  ],
+                  [
+                    119.82,
+                    148
                   ]
                 ],
                 "closed": true
@@ -4840,14 +5100,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 8"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -4874,8 +5139,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -4891,44 +5156,44 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    67.75,
+                    144.48
                   ],
                   [
-                    68.80912807335915,
-                    24.11145618000168
+                    31.75,
+                    118.32
                   ],
                   [
-                    80.43380852144492,
-                    40.11145618000168
+                    18,
+                    76
                   ],
                   [
-                    80.43380852144492,
-                    59.88854381999832
+                    31.75,
+                    33.68
                   ],
                   [
-                    68.80912807335915,
-                    75.88854381999832
+                    67.75,
+                    7.52
                   ],
                   [
-                    50,
-                    82
+                    112.25,
+                    7.52
                   ],
                   [
-                    31.190871926640863,
-                    75.88854381999832
+                    148.25,
+                    33.68
                   ],
                   [
-                    19.566191478555087,
-                    59.88854381999832
+                    162,
+                    76
                   ],
                   [
-                    19.566191478555083,
-                    40.11145618000169
+                    148.25,
+                    118.32
                   ],
                   [
-                    31.190871926640856,
-                    24.111456180001685
+                    112.25,
+                    144.48
                   ]
                 ],
                 "closed": true
@@ -4937,14 +5202,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 10"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -4971,8 +5241,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -4988,16 +5258,16 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    18,
+                    138.35
                   ],
                   [
-                    77.71281292110204,
-                    66
+                    90,
+                    13.65
                   ],
                   [
-                    22.28718707889797,
-                    66.00000000000001
+                    162,
+                    138.35
                   ]
                 ],
                 "closed": true
@@ -5006,14 +5276,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 3"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -5040,8 +5315,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -5057,20 +5332,20 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
-                  ],
-                  [
-                    82,
-                    50
-                  ],
-                  [
-                    50,
-                    82
+                    18,
+                    148
                   ],
                   [
                     18,
-                    50.00000000000001
+                    4
+                  ],
+                  [
+                    162,
+                    4
+                  ],
+                  [
+                    162,
+                    148
                   ]
                 ],
                 "closed": true
@@ -5079,14 +5354,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 4"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -5135,8 +5415,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -5152,24 +5432,24 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    45.5,
+                    144.48
                   ],
                   [
-                    80.43380852144492,
-                    40.11145618000168
+                    18,
+                    59.83
                   ],
                   [
-                    68.80912807335915,
-                    75.88854381999832
+                    90,
+                    7.52
                   ],
                   [
-                    31.190871926640863,
-                    75.88854381999832
+                    162,
+                    59.83
                   ],
                   [
-                    19.566191478555083,
-                    40.11145618000169
+                    134.5,
+                    144.48
                   ]
                 ],
                 "closed": true
@@ -5178,14 +5458,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 5"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -5234,8 +5519,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -5251,28 +5536,28 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    54,
+                    138.35
                   ],
                   [
-                    77.71281292110203,
-                    34
+                    18,
+                    76
                   ],
                   [
-                    77.71281292110204,
-                    66
+                    54,
+                    13.65
                   ],
                   [
-                    50,
-                    82
+                    126,
+                    13.65
                   ],
                   [
-                    22.28718707889797,
-                    66.00000000000001
+                    162,
+                    76
                   ],
                   [
-                    22.287187078897965,
-                    34
+                    126,
+                    138.35
                   ]
                 ],
                 "closed": true
@@ -5281,14 +5566,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 6"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -5337,8 +5627,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -5354,32 +5644,32 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
+                    57.96,
+                    146.19
                   ],
                   [
-                    75.01860743897696,
-                    30.04832634052053
+                    18,
+                    96.09
                   ],
                   [
-                    81.19769318981835,
-                    57.12066988660206
+                    32.26,
+                    33.61
                   ],
                   [
-                    63.88427965176186,
-                    78.83100377287741
+                    90,
+                    5.81
                   ],
                   [
-                    36.11572034823814,
-                    78.83100377287741
+                    147.74,
+                    33.61
                   ],
                   [
-                    18.802306810181644,
-                    57.120669886602066
+                    162,
+                    96.09
                   ],
                   [
-                    24.981392561023043,
-                    30.048326340520532
+                    122.04,
+                    146.19
                   ]
                 ],
                 "closed": true
@@ -5388,14 +5678,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 7"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
@@ -5444,8 +5739,8 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
       {
         "kind": "geometry-diagram",
         "title": {
-          "dlp": "Polygon diagram (not to scale)",
-          "bm": "Rajah poligon (tidak mengikut skala)"
+          "dlp": "Polygon diagram",
+          "bm": "Rajah poligon"
         },
         "panels": [
           {
@@ -5461,36 +5756,36 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
               {
                 "points": [
                   [
-                    50,
-                    18
-                  ],
-                  [
-                    72.62741699796952,
-                    27.37258300203048
-                  ],
-                  [
-                    82,
-                    50
-                  ],
-                  [
-                    72.62741699796952,
-                    72.62741699796952
-                  ],
-                  [
-                    50,
-                    82
-                  ],
-                  [
-                    27.37258300203048,
-                    72.62741699796952
+                    60.18,
+                    148
                   ],
                   [
                     18,
-                    50.00000000000001
+                    105.82
                   ],
                   [
-                    27.372583002030474,
-                    27.37258300203048
+                    18,
+                    46.18
+                  ],
+                  [
+                    60.18,
+                    4
+                  ],
+                  [
+                    119.82,
+                    4
+                  ],
+                  [
+                    162,
+                    46.18
+                  ],
+                  [
+                    162,
+                    105.82
+                  ],
+                  [
+                    119.82,
+                    148
                   ]
                 ],
                 "closed": true
@@ -5499,14 +5794,19 @@ export const MATH_F2_C4_BANK: readonly MathF2C4Entry[] = [
             "labels": [
               {
                 "at": [
-                  50,
-                  91
+                  90,
+                  168
                 ],
                 "text": "n = 8"
               }
+            ],
+            "viewBox": [
+              180,
+              174
             ]
           }
-        ]
+        ],
+        "layout": "compact"
       }
     ],
     "dlp": {
