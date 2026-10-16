@@ -3950,10 +3950,10 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     question: "Apakah dua bandar terancang yang terkenal dalam Tamadun Indus?",
     options: [
-      "Ur, Babylon dan Akkad",
+      "Ur dan Babylon",
       "Memphis dan Thebes",
       "Mohenjo-Daro dan Harappa",
-      "Anyang, Zhou dan Xia",
+      "Anyang dan Zhengzhou",
     ],
     answerIndex: 2,
     explanation:
@@ -4090,11 +4090,11 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     difficulty: "Hard",
     question:
-      "Seorang pengkaji menemui bukti bandar terancang, batu bata berukuran seragam dan sistem pembetungan. Tamadun manakah paling sesuai dengan bukti ini?",
+      "Seorang pengkaji meneliti petempatan di barat laut India yang mengalami banjir luar jangkaan dan kemarau. Bukti juga menunjukkan perdagangan dengan selatan Mesopotamia. Tamadun manakah yang dikaji?",
     options: ["Mesopotamia", "Mesir Purba", "Indus", "Huang He"],
     answerIndex: 2,
     explanation:
-      "Bandar terancang, ukuran bata yang tepat serta sistem paip dan pembetungan dikaitkan dengan Mohenjo-Daro dan Harappa dalam Tamadun Indus.",
+      "Tamadun Indus muncul di barat laut dan utara India. Buku teks menerangkan dua musim yang ekstrem, banjir luar jangkaan dan kemarau, serta hubungan dagang dengan selatan Mesopotamia.",
   },
   {
     id: "sej-f1-c5-q23",
@@ -4114,12 +4114,12 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 5",
     difficulty: "Easy",
-    question: "Apakah tiga tahap kerajaan dalam sejarah Mesir Purba?",
+    question: "Urutan manakah yang betul bagi tiga tahap kerajaan dalam sejarah Mesir Purba?",
     options: [
-      "Kerajaan Sumer, Kerajaan Akkad dan Kerajaan Babylon",
-      "Dinasti Xia, Dinasti Shang dan Dinasti Zhou",
+      "Kerajaan Baru, Kerajaan Pertengahan dan Kerajaan Purba",
+      "Kerajaan Pertengahan, Kerajaan Purba dan Kerajaan Baru",
       "Kerajaan Purba, Kerajaan Pertengahan dan Kerajaan Baru",
-      "Kerajaan Purba, Kerajaan Tengah dan Kerajaan Moden",
+      "Kerajaan Purba, Kerajaan Baru dan Kerajaan Pertengahan",
     ],
     answerIndex: 2,
     explanation:
