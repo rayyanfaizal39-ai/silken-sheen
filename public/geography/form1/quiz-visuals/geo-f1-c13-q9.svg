@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" role="img" aria-labelledby="title description">
+  <title id="title">Longkang tersumbat oleh sisa domestik</title>
+  <desc id="description">Longkang bawah permukaan jalan mengandungi sisa seperti botol plastik dan beg yang menghalang aliran air. Air bertakung di sebelah hulu.</desc>
+  <defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#111f38"/><stop offset="1" stop-color="#091528"/></linearGradient></defs>
+  <rect x="2" y="2" width="716" height="356" rx="22" fill="url(#bg)" stroke="#35506d" stroke-width="3"/>
+  
+  <rect x="38" y="98" width="644" height="44" fill="#657079"/><path d="M38 142H682" stroke="#d9e1e9" stroke-width="8"/>
+  <rect x="83" y="147" width="555" height="167" rx="28" fill="#142b3a" stroke="#a1b6c1" stroke-width="8"/>
+  <path d="M95 215H390Q420 215 428 257H622V303H95Z" fill="#2d8ab4"/>
+  <g transform="rotate(-16 405 249)"><rect x="384" y="219" width="47" height="60" rx="9" fill="#ffc65e"/><rect x="395" y="211" width="22" height="10" rx="2" fill="#f6e8ce"/></g>
+  <path d="M435 245Q477 215 495 252L481 294L439 290Z" fill="#c1dcaa" stroke="#7a9e70" stroke-width="4"/>
+  <path d="M508 243L545 268L531 304L484 287Z" fill="#eac5bb" stroke="#da9182" stroke-width="4"/>
+  <path d="M312 249L356 249M343 239L359 249L343 259" stroke="#a5e6ff" stroke-width="5" stroke-linecap="round" fill="none"/>
+  <g font-family="Arial,sans-serif" fill="#f8fafc" font-size="22"><text x="76" y="56">Air dan sampah di dalam longkang</text><text x="423" y="345">Sisa menyekat laluan air</text></g>
+
+</svg>
