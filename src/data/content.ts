@@ -6946,7 +6946,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 2",
     difficulty: "Easy",
     question:
-      "Dengan masjid sebagai titik rujukan, bank berada di hadapan, hospital di belakang dan sekolah di sebelah kiri. Di manakah pejabat pos?",
+      "Dengan masjid sebagai titik rujukan, bank berada di hadapan, hospital di belakang dan sekolah di sebelah kiri. Pejabat pos berada bertentangan dengan sekolah merentasi masjid. Di manakah pejabat pos?",
     options: [
       "Hadapan masjid.",
       "Belakang masjid.",
@@ -6955,7 +6955,7 @@ export const quizzes: QuizQuestion[] = [
     ],
     answerIndex: 3,
     explanation:
-      "Pejabat pos berada di sebelah kanan masjid, kerana hadapan, belakang dan kiri telah diduduki oleh bank, hospital dan sekolah.",
+      "Sekolah berada di sebelah kiri masjid dan pejabat pos terletak bertentangan dengannya merentasi masjid. Oleh itu, pejabat pos berada di sebelah kanan masjid. Kedudukan tidak boleh ditentukan hanya dengan menolak tiga arah lain.",
   },
   {
     id: "geo-f1-c2-q29",
@@ -11627,9 +11627,9 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 13",
     question: "Antara berikut, yang manakah penyakit yang boleh menular akibat timbunan sampah?",
     options: [
-      "Darah tinggi dan kencing manis",
-      "Sakit jantung dan strok",
-      "Rabun jauh dan rabun dekat",
+      "Taun, demam denggi dan asma",
+      "Malaria, demam denggi dan diabetes",
+      "Taun, rabun malam dan malaria",
       "Taun, demam denggi dan malaria",
     ],
     answerIndex: 3,
