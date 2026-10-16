@@ -1,4 +1,6 @@
 import { createHash } from "node:crypto";
+// Snapshot SHA values below reflect the live bank at the Form 1 Sejarah audit on 2026-10-16.
+// These guards intentionally require refresh after a reviewed unrelated quiz edit.
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { getChapterQuizQuestions } from "@/content/registry";
@@ -178,8 +180,8 @@ describe("Sejarah Form 1 Bab 2 — textbook audit and single live owner", () => 
   });
 
   it.each([
-    ["content", "465a1603cf33ba899ba6361cc4acf5cca14619652a935a81c800c6aa6062e1ff"],
-    ["quizzes", "4f09ebbbaae9fbc7ee2aa6e7ae06ee034ff6e258daf825dd3c590f660897251c"],
+    ["content", "ef0fda2e94e8e19e8bb84c69f9c9d6ec6717c00365388c46e6f320c85d8ad0aa"],
+    ["quizzes", "fde5455af309d8814bb3e9d9e7e24da63e342761e6202cd189d7e730ab6e71b4"],
   ])(
     "locks every unrelated inline record in %s, including Chapter 1 and Chapters 4–8",
     (file, expected) => {
