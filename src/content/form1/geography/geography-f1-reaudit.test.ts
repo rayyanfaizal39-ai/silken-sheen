@@ -34,13 +34,13 @@ describe("Geography Form 1 repeat audit and visual integration", () => {
     const question = source.find((q) => q.id === "geo-f1-c2-q28");
     expect(question?.question).toContain("Pejabat pos berada bertentangan dengan sekolah");
     expect(question?.question).toContain("sekolah di sebelah kiri");
-    expect(question?.options[question.answerIndex]).toBe("Sebelah kanan masjid.");
+    expect(question?.options.at(question?.answerIndex ?? -1)).toBe("Sebelah kanan masjid.");
     expect(question?.explanation).toContain("Kedudukan tidak boleh ditentukan hanya dengan menolak tiga arah lain.");
   });
 
   it("makes Chapter 13 disease distractors plausible without changing the key", () => {
     const q = source.find((question) => question.id === "geo-f1-c13-q25");
-    expect(q?.options[q.answerIndex]).toBe("Taun, demam denggi dan malaria");
+    expect(q?.options.at(q?.answerIndex ?? -1)).toBe("Taun, demam denggi dan malaria");
     expect(q?.options).toHaveLength(4);
     expect(q?.options.some((option) => option.includes("asma"))).toBe(true);
     expect(q?.options.some((option) => option.includes("diabetes"))).toBe(true);
@@ -67,7 +67,7 @@ describe("Geography Form 1 repeat audit and visual integration", () => {
       expect(svg).toMatch(/<title id="title">/);
       expect(svg).toMatch(/<desc id="description">/);
       expect(svg).toMatch(/<\/svg>/);
-      expect(svg).not.toMatch(/<script|foreignObject|https?:\/\//);
+      expect(svg).not.toMatch(/<script|foreignObject|<image|href=/);
     }
   });
 });
