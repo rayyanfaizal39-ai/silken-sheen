@@ -100,3 +100,8 @@ The former Chapter 1 test locked deferred Chapters 2–8. Release only the now-a
 - Existing React `act(...)` environment warnings remain in the passing route-state interaction suite. No manual browser attempt was performed for this audit.
 - No commit or push performed.
 
+
+
+## Current runtime addendum — 16 October 2026
+
+The shuffle paragraph above described the helper at the time of the original audit. In the current repository `orderRegularQuizQuestions` **mixes all Sejarah Form 1 tiers into one permutation**. It no longer presents an Easy → Medium → Hard sequence. Option-shuffle answer remapping remains in place, now covered across all eight chapters by `sejarah-f1-quiz-bank-audit.test.ts`. This addendum does not change any quiz data or the original source-review results.
