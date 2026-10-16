@@ -1,5 +1,29 @@
 import { numericPairedSeed as n, pairedSeed as q, type PairedQuizSeed } from "../paired-quiz-bank";
 
+const f2 = (value: number) => `${Number(value.toFixed(2))}`;
+/**
+ * Numeric item whose first distractors are named misconceptions (e.g. averaging
+ * the speeds, ignoring a stop, skipping a unit conversion); generic near-misses
+ * only fill any remaining slots.
+ */
+const trapSeed = (
+  bm: string,
+  dlp: string,
+  answer: number,
+  unit: string,
+  traps: number[],
+  bmExplanation: string,
+  dlpExplanation: string,
+): PairedQuizSeed => {
+  const correct = f2(answer);
+  const pool = [...traps, answer + 5, answer - 5, answer * 2, answer / 2]
+    .map(f2)
+    .filter((value, index, all) => value !== correct && Number(value) > 0 && all.indexOf(value) === index)
+    .slice(0, 3)
+    .map((value) => `${value}${unit}`);
+  return q(bm, dlp, `${correct}${unit}`, pool as [string, string, string], bmExplanation, dlpExplanation);
+};
+
 const foundation: PairedQuizSeed[] = [
   q(
     "Apakah maksud laju?",
@@ -192,17 +216,18 @@ const foundation: PairedQuizSeed[] = [
 const practice: PairedQuizSeed[] = [];
 [
   [60, 1, 90, 1.5],
-  [80, 1.2, 40, 0.8],
-  [45, 0.75, 75, 1.25],
-  [100, 2, 50, 0.5],
+  [80, 1.2, 52, 0.8],
+  [45, 0.75, 75, 1.75],
+  [100, 2, 50, 1],
   [72, 1.5, 108, 2],
 ].forEach(([d1, t1, d2, t2], i) =>
   practice.push(
-    n(
+    trapSeed(
       `Perjalanan ${i + 1} meliputi ${d1} km dalam ${t1} jam dan ${d2} km dalam ${t2} jam. Cari laju purata.`,
       `Journey ${i + 1} covers ${d1} km in ${t1} hours and ${d2} km in ${t2} hours. Find the average speed.`,
       (d1 + d2) / (t1 + t2),
       " km/h",
+      [(d1 / t1 + d2 / t2) / 2],
       "Bahagikan jumlah jarak dengan jumlah masa.",
       "Divide total distance by total time.",
     ),
@@ -210,17 +235,18 @@ const practice: PairedQuizSeed[] = [];
 );
 [
   [120, 2, 0.5],
-  [180, 3, 0.75],
-  [96, 1.5, 0.5],
+  [180, 3, 0.6],
+  [96, 1.5, 0.1],
   [210, 3.5, 1],
   [150, 2.5, 0.25],
 ].forEach(([d, moving, stop], i) =>
   practice.push(
-    n(
+    trapSeed(
       `Bas ${i + 1} menempuh ${d} km dalam ${moving} jam dan berhenti ${stop} jam. Cari laju purata bagi seluruh perjalanan.`,
       `Bus ${i + 1} covers ${d} km in ${moving} hours and stops for ${stop} hours. Find the average speed for the whole journey.`,
       d / (moving + stop),
       " km/h",
+      [d / moving],
       "Masa berhenti termasuk dalam jumlah masa.",
       "Stopping time is included in total time.",
     ),
@@ -234,11 +260,12 @@ const practice: PairedQuizSeed[] = [];
   [22, 30],
 ].forEach(([speed, time], i) =>
   practice.push(
-    n(
+    trapSeed(
       `Mesin ${i + 1} bergerak pada ${speed} m/s selama ${time} s. Cari jarak dalam kilometer.`,
       `Machine ${i + 1} moves at ${speed} m/s for ${time} s. Find the distance in kilometres.`,
       (speed * time) / 1000,
       " km",
+      [(speed * time) / 100, (speed * 3.6 * time) / 1000],
       "Cari jarak dalam meter, kemudian bahagi 1000.",
       "Find the distance in metres, then divide by 1000.",
     ),
@@ -308,11 +335,12 @@ const challenge: PairedQuizSeed[] = [];
   [100, 55, 110],
 ].forEach(([d, out, back], i) =>
   challenge.push(
-    n(
+    trapSeed(
       `Seorang penunggang ${i + 1} pergi sejauh ${d} km pada ${out} km/h dan pulang melalui jarak sama pada ${back} km/h. Cari laju purata.`,
       `Rider ${i + 1} travels ${d} km outward at ${out} km/h and returns the same distance at ${back} km/h. Find the average speed.`,
       (2 * d) / (d / out + d / back),
       " km/h",
+      [(out + back) / 2],
       "Jumlah jarak ialah dua kali jarak sehala; tambah kedua-dua masa.",
       "Total distance is twice the one-way distance; add both travel times.",
     ),
@@ -326,11 +354,12 @@ const challenge: PairedQuizSeed[] = [];
   [210, 3.5, 0.5],
 ].forEach(([d, planned, delay], i) =>
   challenge.push(
-    n(
+    trapSeed(
       `Perjalanan ${i + 1} sejauh ${d} km dirancang dalam ${planned} jam. Selepas kelewatan ${delay} jam sebelum bergerak, apakah laju tetap diperlukan untuk tiba mengikut masa asal?`,
       `Journey ${i + 1} of ${d} km was planned for ${planned} hours. After a ${delay}-hour delay before departure, what constant speed is needed to arrive on time?`,
       d / (planned - delay),
       " km/h",
+      [d / planned, d / (planned + delay)],
       "Masa bergerak yang tinggal = masa dirancang − kelewatan.",
       "Remaining travel time = planned time − delay.",
     ),
@@ -344,11 +373,12 @@ const challenge: PairedQuizSeed[] = [];
   [64, 0.8, 80, 1, 48, 1.2],
 ].forEach(([s1, t1, s2, t2, s3, t3], i) =>
   challenge.push(
-    n(
+    trapSeed(
       `Robot ${i + 1} bergerak pada ${s1} km/h selama ${t1} jam, ${s2} km/h selama ${t2} jam dan ${s3} km/h selama ${t3} jam. Cari laju purata.`,
       `Robot ${i + 1} moves at ${s1} km/h for ${t1} hours, ${s2} km/h for ${t2} hours and ${s3} km/h for ${t3} hours. Find the average speed.`,
       (s1 * t1 + s2 * t2 + s3 * t3) / (t1 + t2 + t3),
       " km/h",
+      [(s1 + s2 + s3) / 3],
       "Jumlahkan jarak setiap peringkat dan bahagi dengan jumlah masa.",
       "Sum the distance for each stage and divide by total time.",
     ),
@@ -375,36 +405,38 @@ const challenge: PairedQuizSeed[] = [];
 });
 [
   [72, 18, 10],
-  [90, 25, 12],
-  [54, 15, 8],
-  [108, 30, 15],
-  [63, 17.5, 9],
+  [90, 19, 12],
+  [54, 7, 8],
+  [108, 24, 15],
+  [63, 11.2, 9],
 ].forEach(([kmh, u, t], i) => {
   const v = kmh / 3.6;
   challenge.push(
-    n(
+    trapSeed(
       `Laju akhir kereta ${i + 1} ialah ${kmh} km/h. Jika laju awal ${u} m/s dicapai selepas ${t} s, cari pecutan dalam m/s².`,
       `The final speed of car ${i + 1} is ${kmh} km/h. If it starts at ${u} m/s and reaches that speed after ${t} s, find the acceleration in m/s².`,
       (v - u) / t,
       " m/s²",
-      "Tukar laju akhir kepada m/s sebelum menggunakan rumus pecutan.",
-      "Convert final speed to m/s before using the acceleration formula.",
+      [(kmh - u) / t, v / t],
+      `Laju akhir = ${kmh} ÷ 3.6 = ${f2(v)} m/s. a = (${f2(v)} − ${u}) ÷ ${t} = ${f2((v - u) / t)} m/s².`,
+      `Final speed = ${kmh} ÷ 3.6 = ${f2(v)} m/s. a = (${f2(v)} − ${u}) ÷ ${t} = ${f2((v - u) / t)} m/s².`,
     ),
   );
 });
 [
   [120, 60, 90, 45],
-  [150, 75, 100, 50],
-  [96, 48, 72, 36],
+  [150, 75, 100, 40],
+  [96, 64, 72, 48],
   [180, 90, 120, 80],
   [210, 70, 140, 56],
 ].forEach(([d1, s1, d2, s2], i) =>
   challenge.push(
-    n(
+    trapSeed(
       `Laluan A ${i + 1} ialah ${d1} km pada ${s1} km/h, diikuti laluan B ${d2} km pada ${s2} km/h. Berapa minitkah keseluruhan perjalanan?`,
       `Route A ${i + 1} is ${d1} km at ${s1} km/h, followed by route B of ${d2} km at ${s2} km/h. How many minutes does the whole journey take?`,
       (d1 / s1 + d2 / s2) * 60,
       " min",
+      [(d1 + d2) / ((s1 + s2) / 2) * 60, (d1 / s1) * 60],
       "Tambah masa kedua-dua laluan dalam jam, kemudian darab 60.",
       "Add both route times in hours, then multiply by 60.",
     ),

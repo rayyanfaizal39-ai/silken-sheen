@@ -43,8 +43,12 @@ export const mathF2C3PairedSeeds: readonly PairedQuizSeed[] = [
   q(
     "Dalam rumus P = 2l + 2w, yang manakah pemboleh ubah?",
     "In the formula P = 2l + 2w, which are the variables?",
-    "P, l dan w",
-    ["2 sahaja", "P dan 2", "l dan 2w"],
+    ["P, l dan w", "P, l and w"],
+    [
+      ["2 sahaja", "2 only"],
+      ["P dan 2", "P and 2"],
+      ["l dan 2w", "l and 2w"],
+    ],
     "P, l dan w boleh berubah nilainya, manakala 2 ialah pemalar.",
     "P, l and w can change in value, while 2 is a constant.",
   ),
@@ -734,7 +738,7 @@ export const mathF2C3PairedSeeds: readonly PairedQuizSeed[] = [
     "Jika y = √(3x + 1) dan y = 5, tentukan x.",
     "If y = √(3x + 1) and y = 5, determine x.",
     "8",
-    ["4/3", "24/3", "26/3"],
+    ["4/3", "24", "26/3"],
     "Kuasa duakan: 25 = 3x + 1. Maka 3x = 24 dan x = 8.",
     "Square both sides: 25 = 3x + 1. Hence 3x = 24 and x = 8.",
   ),

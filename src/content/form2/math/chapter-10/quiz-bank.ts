@@ -1,5 +1,47 @@
 import { numericPairedSeed as n, pairedSeed as q, type PairedQuizSeed } from "../paired-quiz-bank";
 
+const f2 = (value: number) => `${Number(value.toFixed(2))}`;
+/** Gradient item whose distractors are the usual slips: Δx/Δy, a sign error, and Δy alone. */
+const gradientSeed = (
+  bm: string,
+  dlp: string,
+  x1: number,
+  y1: number,
+  x2: number,
+  y2: number,
+): PairedQuizSeed => {
+  const m = (y2 - y1) / (x2 - x1);
+  const correct = f2(m);
+  const wrong = [(x2 - x1) / (y2 - y1), -m, y2 - y1, m + 1, m - 1]
+    .map(f2)
+    .filter((value, index, all) => value !== correct && all.indexOf(value) === index)
+    .slice(0, 3) as [string, string, string];
+  const working = `m = (${y2} − (${y1}))/(${x2} − (${x1})) = ${y2 - y1}/${x2 - x1} = ${correct}.`;
+  return q(bm, dlp, correct, wrong, working, working);
+};
+/** A duration with BM/DLP units; distractors omit the stop, omit the return, or reuse the outward time. */
+const durationSeed = (
+  bm: string,
+  dlp: string,
+  answer: number,
+  traps: number[],
+  bmExplanation: string,
+  dlpExplanation: string,
+): PairedQuizSeed => {
+  const unit = (value: number): readonly [string, string] => [
+    `${f2(value)} jam`,
+    `${f2(value)} hours`,
+  ];
+  const wrong = traps
+    .filter(
+      (value, index, all) =>
+        f2(value) !== f2(answer) && all.findIndex((v) => f2(v) === f2(value)) === index,
+    )
+    .slice(0, 3)
+    .map(unit) as [readonly [string, string], readonly [string, string], readonly [string, string]];
+  return q(bm, dlp, unit(answer), wrong, bmExplanation, dlpExplanation);
+};
+
 const foundation: PairedQuizSeed[] = [
   q(
     "Rumus kecerunan antara dua titik ialah apa?",
@@ -25,7 +67,7 @@ const foundation: PairedQuizSeed[] = [
     "Apakah kecerunan garis mengufuk?",
     "What is the gradient of a horizontal line?",
     "0",
-    ["1", "−1", "Tidak ditentukan"],
+    ["1", "−1", ["Tak tertakrif", "Undefined"]],
     "Perubahan menegak ialah sifar.",
     "The vertical change is zero.",
   ),
@@ -113,19 +155,19 @@ const foundation: PairedQuizSeed[] = [
 
 [
   [0, 1, 4, 9],
-  [2, 3, 8, 15],
+  [2, 3, 6, 15],
   [-3, 5, 5, -7],
-  [1, -4, 7, 8],
+  [1, -4, 7, 5],
   [-6, -2, 2, 2],
 ].forEach(([x1, y1, x2, y2], i) =>
   foundation.push(
-    n(
+    gradientSeed(
       `Garis ${i + 1} melalui (${x1},${y1}) dan (${x2},${y2}). Cari kecerunan.`,
       `Line ${i + 1} passes through (${x1},${y1}) and (${x2},${y2}). Find its gradient.`,
-      (y2 - y1) / (x2 - x1),
-      "",
-      `m=(${y2}−${y1})/(${x2}−${x1}).`,
-      `m=(${y2}−${y1})/(${x2}−${x1}).`,
+      x1,
+      y1,
+      x2,
+      y2,
     ),
   ),
 );
@@ -209,34 +251,32 @@ const practice: PairedQuizSeed[] = [];
   [-3, 6, 5, 6],
   [1, -2, 1, 9],
   [-4, 10, 2, -2],
-].forEach(([x1, y1, x2, y2], i) =>
+].forEach(([x1, y1, x2, y2], i) => {
+  const classes: [string, string][] = [
+    ["Positif", "Positive"],
+    ["Negatif", "Negative"],
+    ["Sifar", "Zero"],
+    ["Tak tertakrif", "Undefined"],
+  ];
+  const k = x2 === x1 ? 3 : y2 === y1 ? 2 : (y2 - y1) / (x2 - x1) > 0 ? 0 : 1;
+  const [correct, ...wrong] = [classes[k], ...classes.filter((_, j) => j !== k)];
   practice.push(
     q(
       `Kelaskan kecerunan garis ${i + 1} melalui (${x1},${y1}) dan (${x2},${y2}).`,
       `Classify the gradient of line ${i + 1} through (${x1},${y1}) and (${x2},${y2}).`,
-      x2 === x1
-        ? ["Tidak ditentukan", "Undefined"]
-        : y2 === y1
-          ? ["Sifar", "Zero"]
-          : (y2 - y1) / (x2 - x1) > 0
-            ? ["Positif", "Positive"]
-            : ["Negatif", "Negative"],
-      [
-        ["Sentiasa satu", "Always one"],
-        ["Sentiasa positif", "Always positive"],
-        ["Tidak boleh dikelaskan", "Cannot be classified"],
-      ],
-      "Bandingkan perubahan menegak dan mengufuk.",
-      "Compare vertical and horizontal changes.",
+      correct,
+      wrong as [[string, string], [string, string], [string, string]],
+      `Perubahan menegak = ${y2 - y1}; perubahan mengufuk = ${x2 - x1}.`,
+      `Vertical change = ${y2 - y1}; horizontal change = ${x2 - x1}.`,
     ),
-  ),
-);
+  );
+});
 [
   [40, 1, 70, 2.5],
   [30, 0.5, 90, 2],
-  [60, 1.5, 120, 3],
-  [25, 0.25, 85, 1.75],
-  [80, 2, 140, 3.5],
+  [60, 1.5, 150, 3],
+  [25, 0.25, 70, 1.75],
+  [80, 2, 155, 3.5],
 ].forEach(([d1, t1, d2, t2], i) =>
   practice.push(
     n(
@@ -307,26 +347,56 @@ const practice: PairedQuizSeed[] = [];
 const challenge: PairedQuizSeed[] = [];
 [
   [0, 0, 3, 6, 7, 14],
-  [1, 5, 4, -1, 8, -9],
+  [1, 5, 4, -1, 8, -8],
   [-2, 3, 2, 11, 5, 17],
   [0, 8, 5, 8, 9, 8],
-  [-4, -6, 0, 2, 6, 14],
-].forEach(([x1, y1, x2, y2, x3, y3], i) =>
+  [-4, -6, 0, 2, 6, 15],
+].forEach(([x1, y1, x2, y2, x3, y3], i) => {
+  const [mAB, mBC] = [(y2 - y1) / (x2 - x1), (y3 - y2) / (x3 - x2)];
+  const yes = [
+    "Ya; kecerunan AB sama dengan kecerunan BC",
+    "Yes; the gradient of AB equals the gradient of BC",
+  ] as const;
+  const no = [
+    "Tidak; kecerunan AB berbeza daripada kecerunan BC",
+    "No; the gradient of AB differs from the gradient of BC",
+  ] as const;
+  const unsure = [
+    "Tidak dapat ditentukan tanpa melukis graf",
+    "Cannot be determined without drawing a graph",
+  ] as const;
+  // Distractors always carry the opposite verdict: no option is "right for the wrong reason".
+  const [correct, ...wrong] =
+    mAB === mBC
+      ? [
+          yes,
+          no,
+          [
+            "Tidak; kerana garis itu tidak melalui asalan",
+            "No; because the line does not pass through the origin",
+          ] as const,
+          unsure,
+        ]
+      : [
+          no,
+          yes,
+          [
+            "Ya; kerana ketiga-tiga koordinat-x berbeza",
+            "Yes; because all three x-coordinates differ",
+          ] as const,
+          unsure,
+        ];
   challenge.push(
     q(
       `Adakah titik (${x1},${y1}), (${x2},${y2}) dan (${x3},${y3}) segaris bagi kes ${i + 1}?`,
       `Are (${x1},${y1}), (${x2},${y2}) and (${x3},${y3}) collinear in case ${i + 1}?`,
-      ["Ya", "Yes"],
-      [
-        ["Tidak", "No"],
-        ["Hanya dua titik segaris", "Only two points are collinear"],
-        ["Tidak dapat ditentukan", "Cannot be determined"],
-      ],
-      "Kecerunan pasangan titik berturutan adalah sama.",
-      "The gradients of consecutive pairs are equal.",
+      correct,
+      wrong as [[string, string], [string, string], [string, string]],
+      `Kecerunan AB = ${f2(mAB)} dan kecerunan BC = ${f2(mBC)}.`,
+      `Gradient of AB = ${f2(mAB)} and gradient of BC = ${f2(mBC)}.`,
     ),
-  ),
-);
+  );
+});
 [
   [2, 4, 7],
   [3, -5, 11],
@@ -348,10 +418,10 @@ const challenge: PairedQuizSeed[] = [];
 });
 [
   [0, 15, 5, 15, 4],
-  [5, 25, 4, 10, 3],
+  [5, 25, 4, 25, 3],
   [8, 20, 6, 20, 5],
-  [0, 24, 8, 12, 4],
-  [10, 30, 5, 15, 6],
+  [0, 24, 8, 24, 4],
+  [10, 30, 5, 30, 6],
 ].forEach(([u, v, t1, s2, t2], i) =>
   challenge.push(
     n(
@@ -368,7 +438,7 @@ const challenge: PairedQuizSeed[] = [];
   [0, 20, 5, 4],
   [10, 30, 4, 6],
   [5, 25, 8, 3],
-  [12, 0, 6, 5],
+  [12, 30, 6, 5],
   [8, 32, 3, 7],
 ].forEach(([u, v, t1, t2], i) =>
   challenge.push(
@@ -390,11 +460,11 @@ const challenge: PairedQuizSeed[] = [];
   [150, 2.5, 0.5, 50],
 ].forEach(([d, t, stop, returnSpeed], i) =>
   challenge.push(
-    n(
+    durationSeed(
       `Graf jarak-masa perjalanan ${i + 1} menunjukkan ${d} km ditempuh dalam ${t} jam, berhenti ${stop} jam, kemudian pulang ${d} km pada ${returnSpeed} km/h. Cari tempoh keseluruhan.`,
       `Distance-time graph ${i + 1} shows ${d} km travelled in ${t} hours, a ${stop}-hour stop, then ${d} km returned at ${returnSpeed} km/h. Find total duration.`,
       t + stop + d / returnSpeed,
-      " jam",
+      [t + d / returnSpeed, t + stop, 2 * t + stop, t + stop + returnSpeed / d],
       "Jumlahkan masa pergi, berhenti dan pulang.",
       "Add outward, stopping and return times.",
     ),
@@ -403,9 +473,9 @@ const challenge: PairedQuizSeed[] = [];
 [
   [10, 50, 8],
   [12, 72, 10],
-  [15, 90, 12],
-  [8, 48, 6],
-  [20, 100, 5],
+  [15, 120, 12],
+  [8, 60, 6],
+  [20, 120, 5],
 ].forEach(([height, area, base], i) =>
   challenge.push(
     n(

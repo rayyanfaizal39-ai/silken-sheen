@@ -1,4 +1,5 @@
 import type { QuizQuestion } from "@/data/content";
+import { MATH_F2_C2_QUIZ_VISUALS } from "./quiz-visuals";
 
 export const mathF2C2FoundationQuizzesBM: QuizQuestion[] = [
   {
@@ -65,6 +66,7 @@ export const mathF2C2FoundationQuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 2",
     lang: "bm",
+    visual: MATH_F2_C2_QUIZ_VISUALS["F5"],
     question: "Kembangkan (x + 2)(x + 3).",
     options: ["x² + 6", "x² + 5x + 6", "x² + 6x + 5", "x² + x + 6"],
     answerIndex: 1,
@@ -91,6 +93,7 @@ export const mathF2C2FoundationQuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     chapter: "Chapter 2",
     lang: "bm",
+    visual: MATH_F2_C2_QUIZ_VISUALS["F7"],
     question: "Kembangkan (a + 5)².",
     options: ["a² + 25", "a² + 5a + 25", "a² + 10a + 25", "a² + 10a + 10"],
     answerIndex: 2,
@@ -474,6 +477,7 @@ export const mathF2C2PracticeQuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 2",
     lang: "bm",
+    visual: MATH_F2_C2_QUIZ_VISUALS["P6"],
     question:
       "Sebuah segi empat tepat mempunyai panjang (3x + 2) cm dan lebar (x + 4) cm. Apakah luasnya?",
     options: ["3x² + 8", "3x² + 14x + 8", "3x² + 12x + 8", "4x² + 14x + 8"],
@@ -488,6 +492,7 @@ export const mathF2C2PracticeQuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 2",
     lang: "bm",
+    visual: MATH_F2_C2_QUIZ_VISUALS["P7"],
     question: "Sebuah segi empat sama mempunyai sisi (2y − 3) cm. Apakah luasnya?",
     options: ["4y² − 9", "4y² − 6y + 9", "4y² − 12y + 9", "2y² − 12y + 9"],
     answerIndex: 2,
@@ -842,6 +847,7 @@ export const mathF2C2ChallengeQuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     chapter: "Chapter 2",
     lang: "bm",
+    visual: MATH_F2_C2_QUIZ_VISUALS["C4"],
     question:
       "Sebuah kawasan segi empat sama mempunyai sisi (x + 5) m. Sebuah segi empat sama bersisi x m dikeluarkan dari tengahnya. Apakah luas kawasan yang tinggal?",
     options: ["5x + 25", "10x + 25", "x² + 10x + 25", "25"],
@@ -1117,6 +1123,7 @@ export const mathF2C2ChallengeQuizzesBM: QuizQuestion[] = [
     difficulty: "Hard",
     chapter: "Chapter 2",
     lang: "bm",
+    visual: MATH_F2_C2_QUIZ_VISUALS["C25"],
     question:
       "Luas sebuah segi empat tepat ialah x² + 6x + 8 dan lebarnya (x + 2). Apakah panjangnya?",
     options: ["x + 4", "x + 1", "x + 6", "x + 8"],

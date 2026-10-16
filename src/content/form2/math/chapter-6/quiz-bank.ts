@@ -78,8 +78,8 @@ const foundation: PairedQuizSeed[] = [
     "A cube has 6 square faces, 12 edges and 8 vertices.",
   ),
   q(
-    "Bentuk manakah mempunyai satu permukaan melengkung dan tiada bucu?",
-    "Which shape has one curved surface and no vertices?",
+    "Bentuk manakah hanya mempunyai satu permukaan, iaitu permukaan melengkung, tanpa rusuk atau bucu?",
+    "Which solid has only one surface, a curved one, with no edges or vertices?",
     ["Sfera", "Sphere"],
     [
       ["Kon", "Cone"],
@@ -460,9 +460,9 @@ pyramids.forEach(([a, h], i) =>
 );
 const missing = [
   [240, 8, 5],
-  [360, 10, 6],
-  [504, 12, 7],
-  [270, 9, 5],
+  [360, 10, 4],
+  [504, 12, 6],
+  [270, 9, 3],
   [420, 14, 6],
 ];
 missing.forEach(([v, l, w], i) =>
@@ -487,12 +487,12 @@ practice.push(
     "Tank volume = 3 m³; half = 1.5 m³.",
   ),
   calc(
-    "Sebuah kubus berisi padu 343 cm³. Cari panjang sisinya.",
-    "A cube has volume 343 cm³. Find its side length.",
-    7,
+    "Sebuah kubus berisi padu 512 cm³. Cari panjang sisinya.",
+    "A cube has volume 512 cm³. Find its side length.",
+    8,
     " cm",
-    "Sisi = ∛343 = 7 cm.",
-    "Side = ∛343 = 7 cm.",
+    "Sisi = ∛512 = 8 cm.",
+    "Side = ∛512 = 8 cm.",
   ),
   calc(
     "Sebuah silinder berisi padu 616 cm³ dan tinggi 4 cm. Cari jejari. Gunakan π = 22/7.",
@@ -503,12 +503,12 @@ practice.push(
     "r² = 616 ÷ [(22/7)(4)] = 49; r = 7 cm.",
   ),
   calc(
-    "Luas permukaan kubus ialah 294 cm². Cari sisinya.",
-    "A cube has surface area 294 cm². Find its side.",
-    7,
+    "Luas permukaan kubus ialah 216 cm². Cari sisinya.",
+    "A cube has surface area 216 cm². Find its side.",
+    6,
     " cm",
-    "6s² = 294; s² = 49; s = 7 cm.",
-    "6s² = 294; s² = 49; s = 7 cm.",
+    "6s² = 216; s² = 36; s = 6 cm.",
+    "6s² = 216; s² = 36; s = 6 cm.",
   ),
   calc(
     "Sebuah prisma segi tiga mempunyai tapak segi tiga 8 cm, tinggi segi tiga 5 cm dan panjang prisma 12 cm. Cari isi padu.",
@@ -535,8 +535,8 @@ tanks.forEach(([l, w, h, f], i) =>
       `Tank ${i + 1} measures ${l} m × ${w} m × ${h} m and is ${f * 100}% full. Find the empty volume.`,
       l * w * h * (1 - f),
       " m³",
-      `Ruang kosong = ${l * w * h}(1 − ${f}) = ${l * w * h * (1 - f)} m³.`,
-      `Empty volume = ${l * w * h}(1 − ${f}) = ${l * w * h * (1 - f)} m³.`,
+      `Ruang kosong = ${l * w * h}(1 − ${f}) = ${n(l * w * h * (1 - f))} m³.`,
+      `Empty volume = ${l * w * h}(1 − ${f}) = ${n(l * w * h * (1 - f))} m³.`,
     ),
   ),
 );
@@ -587,34 +587,59 @@ const costs = [
 ];
 costs.forEach(([l, w, h, c], i) => {
   const area = 2 * (l * w + w * h + l * h);
+  const [correct, ...wrong] = numeric(area * c).map((value) => `RM${value}`);
   challenge.push(
-    calc(
+    q(
       `Kotak tertutup ${i + 1} berukuran ${l} m × ${w} m × ${h} m dicat pada RM${c}/m². Cari kos.`,
       `Closed box ${i + 1} measures ${l} m × ${w} m × ${h} m and is painted at RM${c}/m². Find the cost.`,
-      area * c,
-      "",
+      correct,
+      wrong as [string, string, string],
       `Luas = ${area} m²; kos = ${area}(${c}) = RM${n(area * c)}.`,
       `Area = ${area} m²; cost = ${area}(${c}) = RM${n(area * c)}.`,
     ),
   );
 });
-const coneCylinder = [
-  [3, 8],
-  [5, 6],
-  [7, 9],
-  [4, 12],
-  [6, 10],
-];
-coneCylinder.forEach(([r, h], i) =>
-  challenge.push(
-    calc(
-      `Kon dan silinder ${i + 1} mempunyai jejari ${r} cm dan tinggi ${h} cm yang sama. Cari nisbah isi padu kon kepada silinder sebagai peratus.`,
-      `Cone and cylinder ${i + 1} have the same radius ${r} cm and height ${h} cm. Express cone volume as a percentage of cylinder volume.`,
-      33.33,
-      "%",
-      "Kon ialah ⅓ silinder, iaitu 33.33%.",
-      "A cone is ⅓ of the cylinder, or 33.33%.",
-    ),
+// Five distinct curved-solid problems; each distractor is a specific formula slip.
+challenge.push(
+  q(
+    "Sebuah kon padu mempunyai jejari 6 cm dan tinggi sendeng 10 cm. Cari jumlah luas permukaannya dalam sebutan π.",
+    "A solid cone has radius 6 cm and slant height 10 cm. Find its total surface area in terms of π.",
+    "96π cm²",
+    ["60π cm²", "132π cm²", "156π cm²"],
+    "Luas = πj² + πjs = 36π + 60π = 96π cm².",
+    "Area = πr² + πrs = 36π + 60π = 96π cm².",
+  ),
+  q(
+    "Cari isi padu sebuah sfera berjejari 3 cm dalam sebutan π.",
+    "Find the volume of a sphere of radius 3 cm in terms of π.",
+    "36π cm³",
+    ["12π cm³", "27π cm³", "108π cm³"],
+    "V = 4/3 πj³ = 4/3 π(27) = 36π cm³.",
+    "V = 4/3 πr³ = 4/3 π(27) = 36π cm³.",
+  ),
+  q(
+    "Sebuah hemisfera padu mempunyai jejari 7 cm. Cari jumlah luas permukaannya. Gunakan π = 22/7.",
+    "A solid hemisphere has radius 7 cm. Find its total surface area. Use π = 22/7.",
+    "462 cm²",
+    ["308 cm²", "616 cm²", "770 cm²"],
+    "Permukaan melengkung = 2πj² = 308 cm²; tapak bulat = πj² = 154 cm². Jumlah = 462 cm².",
+    "Curved surface = 2πr² = 308 cm²; circular base = πr² = 154 cm². Total = 462 cm².",
+  ),
+  q(
+    "Sebuah gabungan pepejal terdiri daripada kon di atas silinder. Kedua-duanya berjejari 3 cm; tinggi silinder 10 cm dan tinggi kon 4 cm. Cari isi padu dalam sebutan π.",
+    "A composite solid is a cone on top of a cylinder. Both have radius 3 cm; the cylinder is 10 cm high and the cone is 4 cm high. Find the volume in terms of π.",
+    "102π cm³",
+    ["42π cm³", "108π cm³", "126π cm³"],
+    "Silinder = π(3²)(10) = 90π; kon = ⅓π(3²)(4) = 12π. Jumlah = 102π cm³.",
+    "Cylinder = π(3²)(10) = 90π; cone = ⅓π(3²)(4) = 12π. Total = 102π cm³.",
+  ),
+  q(
+    "Sebuah bekas silinder tanpa penutup berjejari 7 cm dan tinggi 10 cm. Cari luas permukaan luarnya. Gunakan π = 22/7.",
+    "An open cylindrical container without a lid has radius 7 cm and height 10 cm. Find its outer surface area. Use π = 22/7.",
+    "594 cm²",
+    ["440 cm²", "748 cm²", "1034 cm²"],
+    "Tapak = πj² = 154 cm²; permukaan melengkung = 2πjt = 440 cm². Jumlah = 594 cm².",
+    "Base = πr² = 154 cm²; curved surface = 2πrh = 440 cm². Total = 594 cm².",
   ),
 );
 challenge.push(

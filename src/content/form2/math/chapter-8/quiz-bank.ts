@@ -14,6 +14,12 @@ const q = (
   explanation: [bmExplanation, dlpExplanation],
 });
 const fmt = (value: number) => `${Number(value.toFixed(2))}`;
+/** " + 3", " − 4" or "" for 0, so rules never read "+ 0" or "+ -3". */
+const signed = (c: number) => (c === 0 ? "" : ` ${c < 0 ? "−" : "+"} ${Math.abs(c)}`);
+/** "3x", "x", "−x", "−2x²" — no "1x" or hyphen-minus coefficients. */
+const term = (m: number, v = "x") =>
+  m === 1 ? v : m === -1 ? `−${v}` : `${String(m).replace("-", "−")}${v}`;
+const lin = (m: number, c: number, v = "x") => `${term(m, v)}${signed(c)}`;
 const calc = (
   bm: string,
   dlp: string,
@@ -167,17 +173,17 @@ const foundation: PairedQuizSeed[] = [
   const answer = a * x + b;
   foundation.push(
     calc(
-      `Diberi f(x) = ${a}x ${b < 0 ? "−" : "+"} ${Math.abs(b)}, cari f(${x}).`,
-      `Given f(x) = ${a}x ${b < 0 ? "−" : "+"} ${Math.abs(b)}, find f(${x}).`,
+      `Diberi f(x) = ${lin(a, b)}, cari f(${x}).`,
+      `Given f(x) = ${lin(a, b)}, find f(${x}).`,
       answer,
-      `Gantikan x = ${x}: f(${x}) = ${a}(${x}) ${b < 0 ? "−" : "+"} ${Math.abs(b)} = ${answer}.`,
-      `Substitute x = ${x}: f(${x}) = ${a}(${x}) ${b < 0 ? "−" : "+"} ${Math.abs(b)} = ${answer}.`,
+      `Gantikan x = ${x}: f(${x}) = ${a}(${x})${signed(b)} = ${answer}.`,
+      `Substitute x = ${x}: f(${x}) = ${a}(${x})${signed(b)} = ${answer}.`,
     ),
   );
 });
 [
   [1, 2, 3],
-  [2, 0, 4],
+  [0, 2, 4],
   [-2, 1, 3],
   [3, -1, 2],
   [-1, 4, 5],
@@ -210,8 +216,8 @@ const foundation: PairedQuizSeed[] = [
   const ys = xs.map((x) => m * x + c);
   foundation.push(
     q(
-      `Jadual ${i + 1} bagi y=${m}x ${c < 0 ? "−" : "+"} ${Math.abs(c)} menggunakan x = −1, 0, 1. Baris y yang betul ialah?`,
-      `Table ${i + 1} for y=${m}x ${c < 0 ? "−" : "+"} ${Math.abs(c)} uses x = −1, 0, 1. Which y-row is correct?`,
+      `Jadual ${i + 1} bagi y=${lin(m, c)} menggunakan x = −1, 0, 1. Baris y yang betul ialah?`,
+      `Table ${i + 1} for y=${lin(m, c)} uses x = −1, 0, 1. Which y-row is correct?`,
       ys.join(", "),
       [xs.join(", "), ys.map((y) => y + 1).join(", "), ys.slice().reverse().join(", ")],
       "Kira y bagi setiap nilai x mengikut turutan.",
@@ -289,8 +295,8 @@ const practice: PairedQuizSeed[] = [];
 ].forEach(([m, c, x], i) =>
   practice.push(
     calc(
-      `Mesin fungsi ${i + 1} menggunakan f(x)=${m}x ${c < 0 ? "−" : "+"} ${Math.abs(c)}. Cari output apabila x=${x}.`,
-      `Function machine ${i + 1} uses f(x)=${m}x ${c < 0 ? "−" : "+"} ${Math.abs(c)}. Find the output when x=${x}.`,
+      `Mesin fungsi ${i + 1} menggunakan f(x)=${lin(m, c)}. Cari output apabila x=${x}.`,
+      `Function machine ${i + 1} uses f(x)=${lin(m, c)}. Find the output when x=${x}.`,
       m * x + c,
       "Gantikan input ke dalam peraturan fungsi.",
       "Substitute the input into the function rule.",
@@ -298,8 +304,8 @@ const practice: PairedQuizSeed[] = [];
   ),
 );
 [
-  [2, 3, 17],
-  [3, -1, 20],
+  [2, 3, 21],
+  [3, -1, 14],
   [-2, 5, -9],
   [4, -6, 18],
   [-3, 2, 23],
@@ -307,11 +313,11 @@ const practice: PairedQuizSeed[] = [];
   const x = (y - c) / m;
   practice.push(
     calc(
-      `Diberi f(x)=${m}x ${c < 0 ? "−" : "+"} ${Math.abs(c)} dan f(x)=${y}, cari x.`,
-      `Given f(x)=${m}x ${c < 0 ? "−" : "+"} ${Math.abs(c)} and f(x)=${y}, find x.`,
+      `Diberi f(x)=${lin(m, c)} dan f(x)=${y}, cari x.`,
+      `Given f(x)=${lin(m, c)} and f(x)=${y}, find x.`,
       x,
-      `Selesaikan ${m}x ${c < 0 ? "−" : "+"} ${Math.abs(c)}=${y}; x=${x}.`,
-      `Solve ${m}x ${c < 0 ? "−" : "+"} ${Math.abs(c)}=${y}; x=${x}.`,
+      `Selesaikan ${lin(m, c)}=${y}; x=${x}.`,
+      `Solve ${lin(m, c)}=${y}; x=${x}.`,
     ),
   );
 });
@@ -324,8 +330,8 @@ const practice: PairedQuizSeed[] = [];
 ].forEach(([m, c, x], i) =>
   practice.push(
     calc(
-      `Lengkapkan nilai yang hilang dalam jadual ${i + 1}: y=${m}x ${c < 0 ? "−" : "+"} ${Math.abs(c)}, x=${x}.`,
-      `Complete the missing value in table ${i + 1}: y=${m}x ${c < 0 ? "−" : "+"} ${Math.abs(c)}, x=${x}.`,
+      `Lengkapkan nilai yang hilang dalam jadual ${i + 1}: y=${lin(m, c)}, x=${x}.`,
+      `Complete the missing value in table ${i + 1}: y=${lin(m, c)}, x=${x}.`,
       m * x + c,
       "Gunakan peraturan jadual untuk nilai x yang diberi.",
       "Use the table rule for the given x-value.",
@@ -333,10 +339,10 @@ const practice: PairedQuizSeed[] = [];
   ),
 );
 [
-  [1, 3, 3],
+  [1, 5, 3],
   [2, 5, 2],
   [-1, 4, -2],
-  [0, -3, 4],
+  [1, -3, 4],
   [-2, 2, -3],
 ].forEach(([x1, y1, m], i) => {
   const c = y1 - m * x1;
@@ -344,8 +350,8 @@ const practice: PairedQuizSeed[] = [];
     q(
       `Garis ${i + 1} berkecerunan ${m} melalui (${x1},${y1}). Apakah persamaannya?`,
       `Line ${i + 1} has gradient ${m} and passes through (${x1},${y1}). What is its equation?`,
-      `y = ${m}x ${c < 0 ? "−" : "+"} ${Math.abs(c)}`,
-      [`y = ${c}x + ${m}`, `y = ${m}x ${c < 0 ? "+" : "−"} ${Math.abs(c)}`, `y = ${x1}x + ${y1}`],
+      `y = ${lin(m, c)}`,
+      [`y = ${lin(c, m)}`, `y = ${lin(m, -c)}`, `y = ${lin(m, y1)}`],
       `Gunakan c = y − mx = ${c}.`,
       `Use c = y − mx = ${c}.`,
     ),
@@ -353,26 +359,34 @@ const practice: PairedQuizSeed[] = [];
 });
 [
   [2, 1, 3, 7],
-  [-1, 5, 2, 3],
+  [-1, 5, 2, 4],
   [3, -4, 0, -4],
-  [4, 2, -2, -6],
-  [-2, -1, 5, -11],
-].forEach(([m, c, x, y], i) =>
+  [4, 2, -2, -7],
+  [-2, -1, 5, -10],
+].forEach(([m, c, x, y], i) => {
+  const onGraph = m * x + c;
+  const verdicts: [string, string][] = [
+    [
+      "Ya; nilai y pada graf sama dengan koordinat-y titik",
+      "Yes; the graph's y-value equals the point's y-coordinate",
+    ],
+    ["Tidak; titik itu berada di atas graf", "No; the point lies above the graph"],
+    ["Tidak; titik itu berada di bawah graf", "No; the point lies below the graph"],
+    ["Tidak dapat ditentukan tanpa melukis graf", "Cannot be determined without drawing the graph"],
+  ];
+  const verdict = y === onGraph ? 0 : y > onGraph ? 1 : 2;
+  const [correct, ...wrong] = [verdicts[verdict], ...verdicts.filter((_, k) => k !== verdict)];
   practice.push(
     q(
-      `Adakah titik (${x},${y}) terletak pada graf y=${m}x ${c < 0 ? "−" : "+"} ${Math.abs(c)}?`,
-      `Does (${x},${y}) lie on y=${m}x ${c < 0 ? "−" : "+"} ${Math.abs(c)}?`,
-      ["Ya", "Yes"],
-      [
-        ["Tidak", "No"],
-        ["Hanya pada paksi-x", "Only on the x-axis"],
-        ["Tidak dapat ditentukan", "Cannot be determined"],
-      ],
-      `Apabila x=${x}, y=${m * x + c}, sepadan dengan titik itu.`,
-      `When x=${x}, y=${m * x + c}, matching the point.`,
+      `Adakah titik (${x},${y}) terletak pada graf y=${lin(m, c)}?`,
+      `Does (${x},${y}) lie on y=${lin(m, c)}?`,
+      correct,
+      wrong as [[string, string], [string, string], [string, string]],
+      `Apabila x = ${x}, graf memberi y = ${onGraph}; titik itu mempunyai y = ${y}.`,
+      `When x = ${x}, the graph gives y = ${onGraph}; the point has y = ${y}.`,
     ),
-  ),
-);
+  );
+});
 
 const challenge: PairedQuizSeed[] = [];
 [
@@ -386,10 +400,10 @@ const challenge: PairedQuizSeed[] = [];
     y = m1 * x + c1;
   challenge.push(
     q(
-      `Cari titik persilangan y=${m1}x ${c1 < 0 ? "−" : "+"} ${Math.abs(c1)} dan y=${m2}x ${c2 < 0 ? "−" : "+"} ${Math.abs(c2)}.`,
-      `Find the intersection of y=${m1}x ${c1 < 0 ? "−" : "+"} ${Math.abs(c1)} and y=${m2}x ${c2 < 0 ? "−" : "+"} ${Math.abs(c2)}.`,
+      `Cari titik persilangan y=${lin(m1, c1)} dan y=${lin(m2, c2)}.`,
+      `Find the intersection of y=${lin(m1, c1)} and y=${lin(m2, c2)}.`,
       `(${fmt(x)}, ${fmt(y)})`,
-      [`(${fmt(y)}, ${fmt(x)})`, `(${fmt(x + 1)}, ${fmt(y)})`, `(${fmt(x)}, ${fmt(y + 1)})`],
+      [`(${fmt(y)}, ${fmt(x)})`, `(${fmt(-x)}, ${fmt(m1 * -x + c1)})`, `(${fmt(x)}, ${fmt(c1)})`],
       "Samakan kedua-dua ungkapan y, cari x, kemudian y.",
       "Equate both expressions for y, solve x, then y.",
     ),
@@ -398,18 +412,18 @@ const challenge: PairedQuizSeed[] = [];
 [
   [2, 3, 11],
   [4, -1, 19],
-  [-3, 5, -7],
-  [5, 2, 27],
-  [-2, -4, -14],
+  [-3, 5, -13],
+  [5, 2, 17],
+  [-2, -4, -18],
 ].forEach(([x, c, y], i) => {
   const a = (y - c) / x;
   challenge.push(
     calc(
-      `Diberi f(x)=ax ${c < 0 ? "−" : "+"} ${Math.abs(c)} dan f(${x})=${y}. Cari a.`,
-      `Given f(x)=ax ${c < 0 ? "−" : "+"} ${Math.abs(c)} and f(${x})=${y}. Find a.`,
+      `Diberi f(x)=ax${signed(c)} dan f(${x})=${y}. Cari a.`,
+      `Given f(x)=ax${signed(c)} and f(${x})=${y}. Find a.`,
       a,
-      `Daripada ${a}(${x}) ${c < 0 ? "−" : "+"} ${Math.abs(c)}=${y}, a=${a}.`,
-      `From a(${x}) ${c < 0 ? "−" : "+"} ${Math.abs(c)}=${y}, a=${a}.`,
+      `Daripada a(${x})${signed(c)} = ${y}, a = ${a}.`,
+      `From a(${x})${signed(c)} = ${y}, a = ${a}.`,
     ),
   );
 });
@@ -422,8 +436,8 @@ const challenge: PairedQuizSeed[] = [];
 ].forEach(([a, c, x], i) =>
   challenge.push(
     calc(
-      `Bagi g(x)=${a}x² ${c < 0 ? "−" : "+"} ${Math.abs(c)}, cari g(${x}).`,
-      `For g(x)=${a}x² ${c < 0 ? "−" : "+"} ${Math.abs(c)}, find g(${x}).`,
+      `Bagi g(x)=${lin(a, c, "x²")}, cari g(${x}).`,
+      `For g(x)=${lin(a, c, "x²")}, find g(${x}).`,
       a * x * x + c,
       "Kuasa duakan x dahulu, kemudian darab dan tambah pemalar.",
       "Square x first, then multiply and add the constant.",
@@ -436,17 +450,19 @@ const challenge: PairedQuizSeed[] = [];
   [2.5, 10, 12],
   [7, 0, 6],
   [3, 12, 9],
-].forEach(([rate, fixed, hours], i) =>
+].forEach(([rate, fixed, hours], i) => {
+  const { correct, distractors } = calc("", "", rate * hours + fixed, "", "");
   challenge.push(
-    calc(
-      `Kos C bagi situasi ${i + 1} diberi C=${rate}t+${fixed}. Cari kos apabila t=${hours}.`,
-      `Cost C in situation ${i + 1} is C=${rate}t+${fixed}. Find the cost when t=${hours}.`,
-      rate * hours + fixed,
-      "Gantikan masa ke dalam model linear.",
-      "Substitute the time into the linear model.",
+    q(
+      `Kos C (RM) bagi situasi ${i + 1} diberi C = ${lin(rate, fixed, "t")}, dengan t dalam jam. Cari kos apabila t = ${hours}.`,
+      `Cost C (RM) in situation ${i + 1} is C = ${lin(rate, fixed, "t")}, where t is in hours. Find the cost when t = ${hours}.`,
+      `RM${correct}`,
+      distractors.map((value) => `RM${value}`) as [string, string, string],
+      `C = ${rate}(${hours})${signed(fixed)} = RM${fmt(rate * hours + fixed)}.`,
+      `C = ${rate}(${hours})${signed(fixed)} = RM${fmt(rate * hours + fixed)}.`,
     ),
-  ),
-);
+  );
+});
 [
   [2, 3, 4],
   [-1, 5, -2],
@@ -457,8 +473,8 @@ const challenge: PairedQuizSeed[] = [];
   const original = m * k + c;
   challenge.push(
     calc(
-      `Graf y=${m}x ${c < 0 ? "−" : "+"} ${Math.abs(c)} dialih 3 unit ke atas. Cari nilai y baharu apabila x=${k}.`,
-      `The graph y=${m}x ${c < 0 ? "−" : "+"} ${Math.abs(c)} is shifted 3 units upward. Find the new y-value when x=${k}.`,
+      `Graf y=${lin(m, c)} dialih 3 unit ke atas. Cari nilai y baharu apabila x=${k}.`,
+      `The graph y=${lin(m, c)} is shifted 3 units upward. Find the new y-value when x=${k}.`,
       original + 3,
       "Nilai asal ditambah 3 kerana anjakan menegak ke atas.",
       "Add 3 to the original value for an upward vertical shift.",
@@ -497,8 +513,12 @@ challenge.push(
   q(
     "Bagi y=x²−4, apakah pintasan-x?",
     "For y=x²−4, what are the x-intercepts?",
-    "x = −2 dan x = 2",
-    ["x = −4 dan x = 4", "x = 0 sahaja", "x = 2 sahaja"],
+    ["x = −2 dan x = 2", "x = −2 and x = 2"],
+    [
+      ["x = −4 dan x = 4", "x = −4 and x = 4"],
+      ["x = 0 sahaja", "x = 0 only"],
+      ["x = 2 sahaja", "x = 2 only"],
+    ],
     "Tetapkan y=0: x²=4, jadi x=±2.",
     "Set y=0: x²=4, so x=±2.",
   ),

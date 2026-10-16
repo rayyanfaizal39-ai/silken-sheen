@@ -16,6 +16,7 @@ import { describeMathGeometryVisual, type MathGeometryVisual } from "./mathGeome
 import { describeMathAlgebraVisual, type MathAlgebraVisual } from "./mathAlgebraVisual";
 import { describeMathEquationVisual, type MathEquationVisual } from "./mathEquationVisual";
 import { describeMathInequalityVisual, type MathInequalityVisual } from "./mathInequalityVisual";
+import { describeMathMotionGraphVisual, type MathMotionGraphVisual } from "./mathMotionGraphVisual";
 
 export type MathVisualLang = "bm" | "dlp";
 export type LocalizedText = Record<MathVisualLang, string>;
@@ -27,6 +28,7 @@ export type MathQuestionVisual =
   | MathEquationVisual
   | MathInequalityVisual
   | MathGeometryVisual
+  | MathMotionGraphVisual
   | MathFinanceVisual
   | MathIndicesVisual
   | MathStandardFormVisual
@@ -195,6 +197,7 @@ const KIND_NAMES: Record<MathQuestionVisual["kind"], LocalizedText> = {
   "value-pairs": { bm: "Jadual nilai berkaitan", dlp: "Corresponding values table" },
   "percentage-strip": { bm: "Model peratus", dlp: "Percentage strip" },
   "geometry-diagram": { bm: "Rajah geometri", dlp: "Geometry diagram" },
+  "motion-graph": { bm: "Graf gerakan", dlp: "Motion graph" },
   "finance-model": { bm: "Model kewangan", dlp: "Finance model" },
   "place-value": { bm: "Nilai tempat", dlp: "Place value" },
   "standard-form-parts": { bm: "Bentuk piawai", dlp: "Standard form" },
@@ -248,6 +251,8 @@ export function describeMathQuestionVisual(visual: MathQuestionVisual, lang: Mat
       return describeMathCoordinateVisual(visual, lang);
     case "geometry-diagram":
       return describeMathGeometryVisual(visual, lang);
+    case "motion-graph":
+      return describeMathMotionGraphVisual(visual, lang);
     case "finance-model":
       return describeMathFinanceVisual(visual, lang);
     case "place-value":
