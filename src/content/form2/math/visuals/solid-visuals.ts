@@ -304,18 +304,23 @@ function coneOnCylinder(r: number, hCyl: number, hCone: number) {
   );
 }
 
-function openCylinder(r: number, h: number) {
+function openCylinder(r: number, h: number, open = true) {
   const s = Math.min(95 / r, 150 / h);
   const rx = r1(r * s),
     ry = r1(rx * 0.26);
   const top: P = [150, r1(120 - (h * s) / 2)];
   const bottom: P = [150, r1(120 + (h * s) / 2)];
   return solid(
-    t("Silinder tanpa penutup", "Open cylinder"),
-    t(
-      "Bahagian atas terbuka (tiada penutup); tapak tertutup. Jejari dan tinggi diberi.",
-      "The top is open (no lid); the base is closed. Radius and height are given.",
-    ),
+    open ? t("Silinder tanpa penutup", "Open cylinder") : t("Silinder", "Cylinder"),
+    open
+      ? t(
+          "Bahagian atas terbuka (tiada penutup); tapak tertutup. Jejari dan tinggi diberi.",
+          "The top is open (no lid); the base is closed. Radius and height are given.",
+        )
+      : t(
+          "Silinder tertutup; jejari dan tinggi diberi.",
+          "A closed cylinder; the radius and height are given.",
+        ),
     [
       { points: ellipse(top, rx, ry, 0, 360, 48) },
       ...base(bottom, rx, ry),
@@ -334,7 +339,7 @@ function openCylinder(r: number, h: number) {
       { points: [top, [top[0] + rx, top[1]]] },
     ],
     [
-      { at: [r1(top[0] + rx / 2), top[1] - 6], text: `${r} cm` },
+      { at: [r1(top[0] + rx / 2), r1(top[1] - ry - 6)], text: `${r} cm` },
       { at: [r1(top[0] + rx + 8), 125], text: `${h} cm`, anchor: "start" },
     ],
   );
@@ -342,7 +347,17 @@ function openCylinder(r: number, h: number) {
 
 /** Called with the BM stem of a Chapter 6 seed. */
 export function solidVisualForSeed(bm: string): MathQuestionVisual | undefined {
+  const box =
+    /^Kotak \d+ berukuran (\d+) cm × (\d+) cm × (\d+) cm\. Cari luas permukaannya\.$/.exec(bm);
+  if (box) return cuboid(Number(box[1]), Number(box[2]), Number(box[3]));
+  const closed =
+    /^Silinder tertutup \d+ berjejari (\d+) cm dan tinggi (\d+) cm\. Cari luas permukaan\./.exec(
+      bm,
+    );
+  if (closed) return openCylinder(Number(closed[1]), Number(closed[2]), false);
   switch (bm) {
+    case "Cari isi padu silinder berjejari 7 cm dan tinggi 5 cm. Gunakan π = 22/7.":
+      return openCylinder(7, 5, false);
     case "Sebuah kuboid berukuran 6 cm × 4 cm × 3 cm. Cari isi padunya.":
       return cuboid(6, 4, 3);
     case "Cari luas permukaan kuboid 5 cm × 3 cm × 2 cm.":

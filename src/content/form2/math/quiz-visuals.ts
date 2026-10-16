@@ -1,7 +1,12 @@
 import type { MathQuestionVisual } from "@/features/quiz/visuals/mathQuestionVisual";
 import type { GeometryPanel } from "@/features/quiz/visuals/mathGeometryVisual";
 import { chordFigure, circleVisualForSeed } from "./visuals/circle-visuals";
-import { coordinateShapeVisualForSeed, outward, transformationVisualForSeed } from "./visuals/coordinate-visuals";
+import {
+  coordinateShapeVisualForSeed,
+  gradientLineVisualForSeed,
+  outward,
+  transformationVisualForSeed,
+} from "./visuals/coordinate-visuals";
 import { motionVisualForSeed } from "./visuals/motion-visuals";
 import { polygonVisualForSeed } from "./visuals/polygon-visuals";
 import { solidVisualForSeed } from "./visuals/solid-visuals";
@@ -170,7 +175,7 @@ export function mathF2VisualForSeed(chapter: number, bmQuestion: string): MathQu
     case 10:
       if (bmQuestion === "Kecerunan graf jarak-masa mewakili apa?") return graph(true);
       if (bmQuestion === "Luas di bawah graf laju-masa mewakili apa?") return graph(false);
-      return motionVisualForSeed(bmQuestion);
+      return motionVisualForSeed(bmQuestion) ?? gradientLineVisualForSeed(bmQuestion);
     case 11: {
       const m = /^Pantulkan titik P\d+\((-?\d+),(-?\d+)\) pada paksi-x\.$/.exec(bmQuestion);
       if (m) {

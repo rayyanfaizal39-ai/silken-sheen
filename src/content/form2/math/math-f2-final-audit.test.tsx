@@ -177,8 +177,8 @@ describe("Math Form 2 final audit: every visual is answer-neutral and renders", 
       .map((q) => ({ c, q })),
   );
 
-  it("covers 165 paired-bank question pairs with identical BM and DLP visuals", () => {
-    expect(withVisuals).toHaveLength(165);
+  it("covers 206 paired-bank question pairs with identical BM and DLP visuals", () => {
+    expect(withVisuals).toHaveLength(206);
     for (const c of chapters) {
       const dlp = bank(c, "dlp");
       for (const [i, q] of bank(c).entries()) expect(dlp[i].visual).toEqual(q.visual);
@@ -271,7 +271,7 @@ describe("Math Form 2 final audit: every visual is answer-neutral and renders", 
 
   it("plots Chapter 10 graphs from the question's own numbers with axes from zero", () => {
     const graphs = withVisuals.filter(({ q }) => q.visual!.kind === "motion-graph");
-    expect(graphs).toHaveLength(30);
+    expect(graphs).toHaveLength(40);
     for (const { q } of graphs) {
       if (q.visual!.kind !== "motion-graph") continue;
       const v = q.visual!;

@@ -55,6 +55,32 @@ const objectOnly = t(
 export function transformationVisualForSeed(bm: string): MathQuestionVisual | undefined {
   let m: RegExpExecArray | null;
 
+  if (
+    (m = new RegExp(`^Titik A\\d+${pair} ditranslasi oleh vektor ${pair}\\. Cari imejnya\\.$`).exec(
+      bm,
+    ))
+  )
+    return plane(t("Translasi titik", "Translating a point"), objectOnly, [
+      { at: xy(m, 1), name: "A" },
+    ]);
+
+  if (
+    (m = new RegExp(
+      `^Titik G\\d+${pair} dipetakan kepada G′${pair} oleh translasi\\. Cari vektornya\\.$`,
+    ).exec(bm))
+  )
+    return plane(
+      t("Objek dan imej translasi", "Object and translated image"),
+      t(
+        "G dan imejnya G′ ditanda; vektor translasi tidak dilukis.",
+        "G and its image G′ are marked; the translation vector is not drawn.",
+      ),
+      [
+        { at: xy(m, 1), name: "G" },
+        { at: xy(m, 3), name: "G′" },
+      ],
+    );
+
   if ((m = new RegExp(`^Putarkan titik B\\d+${pair} sebanyak 180° pada asalan\\.$`).exec(bm)))
     return plane(t("Putaran 180° pada asalan", "180° rotation about the origin"), objectOnly, [
       { at: xy(m, 1), name: "B" },
@@ -221,4 +247,24 @@ export function coordinateShapeVisualForSeed(bm: string): MathQuestionVisual | u
   }
 
   return undefined;
+}
+
+/** Chapter 10: a line segment through the two given points; its gradient is not written. */
+export function gradientLineVisualForSeed(bm: string): MathQuestionVisual | undefined {
+  const m = new RegExp(`^Garis \\d+ melalui ${pair} dan ${pair}\\. Cari kecerunan\\.$`).exec(bm);
+  if (!m) return undefined;
+  const v: Coordinate[] = [xy(m, 1), xy(m, 3)];
+  return plane(
+    t("Dua titik pada garis lurus", "Two points on a straight line"),
+    t(
+      "Kedua-dua titik diplot; kecerunan tidak dilabel.",
+      "Both points are plotted; the gradient is not labelled.",
+    ),
+    [
+      { at: v[0], name: "A" },
+      { at: v[1], name: "B" },
+    ],
+    { paths: [{ points: v }] },
+    windowAround(v),
+  );
 }

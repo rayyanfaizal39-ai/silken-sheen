@@ -46,7 +46,7 @@ Deliberately unchanged: Chapters 1–2 mathematics (every item re-checked and co
 
 ## 3. Visuals
 
-**Total: 171 visual question pairs (342 BM/DLP instances)**, up from 54. That is **117 new** pairs, and **9 existing diagrams were rebuilt to scale**.
+**Total after the first pass: 171 visual question pairs (342 BM/DLP instances); after the second pass: 212 (424)**, up from 54. That is **117 new** pairs, and **9 existing diagrams were rebuilt to scale**.
 
 | Ch | New | Notes |
 |---|---:|---|
@@ -82,3 +82,23 @@ Results: all Math F2 tests pass (10 files, 113 tests). The required `npm test --
 2. The geometry renderer always prints "Diagram not to scale", even though the new figures are to scale.
 3. The shared coordinate renderer's "−2" and "0" tick labels graze at the origin at 320 px (pre-existing, under 2 px).
 4. A page-by-page check against the official KSSM textbook/DSKP was not possible offline. Curriculum judgements (surds, shoelace, combined events) are based on the KSSM Form 2 learning standards.
+
+## 6. Second pass (16 October): Chapters 5, 6, 10 and 11, question by question
+
+All 360 BM/DLP question pairs in these chapters (IDs `f01–f30`, `p01–p30`, `c01–c30`) were re-read. For each one, the answer, explanation, distractors and BM/DLP equivalence were checked again; the answer re-solver test also covers every generated family. No further mathematical errors were found in this pass. **41 diagrams were added**, bringing the total to **212 visual pairs (424 instances)**.
+
+| Ch | Diagrams added in this pass | Already had diagrams | Deliberately text-only, and why |
+|---|---|---|---|
+| 5 | p16 circular mat with a square hole (to scale), p20 minute hand 12→2, p22 240° major arc, p26 shaded 45° sector, c28 150° sprinkler sector | f12, f27, p01, p06–p09, p24, p29, p30, c01, c02, c04, c21–c25 | f01–f11, f13–f26, f28–f30, p02–p05: definitions, formulas or radius↔diameter conversions. p10–p15, p17–p19, p21, p23, p25, p27, p28, c06–c20, c26, c27, c29, c30: one-line numeric relations whose figure would only repeat the stem. c03, c05: a figure would need the answer's position. |
+| 6 | p01–p05 cuboids drawn to true proportions; p11–p15 closed cylinders; f21 cylinder | f13, f14, p30, c21, c23–c25, c27, c28 | f01–f12, f15–f20, f22–f30: concepts, units and formulas. p06–p10, p16–p20: area × length given directly. p21–p29, c01–c20, c22, c26, c29, c30: no geometry is needed beyond the numbers, or a diagram would need the unknown dimension. |
+| 10 | f11–f15 the line through two points; f26–f30 constant-speed rectangle; p26–p30 two constant-speed sections | f05, f08, f16–f25, p11–p20, c11–c20 | f01–f04, f06, f07, f09, f10: concepts. p01–p10: algebraic. **p21–p25** (final distance), **c21–c25** (total time) and **c26–c30** (final speed): the graph would have to show the answer on an axis. **c01–c05** (collinearity): plotting the points answers the question visually. c06–c10: the second point is the unknown. |
+| 11 | f16–f20 the point to be translated; p21–p25 G and G′ (the vector is not drawn) | f11–f15, f21–f25, p01–p20, c01–c25 | f01–f10: definitions and rules. f26–f30, p26–p30, c26–c30: congruence is decided by comparing side lengths, and a drawing adds nothing (near-miss triangles such as 7, 24, 25 versus 7, 23, 25 would look identical). |
+
+Layout fixes made during browser QA in this pass: the 240° label now sits on the angle's bisector, the 45° sector has a radius line under its "8 cm" label, and the cylinder radius label is lifted above the rim.
+
+## 7. Vercel check failure: configuration, not code
+
+- The `Vercel` status fails on this PR's commits **and on `main`**: every sampled `main` commit back to 10 October 2026 fails, before this work began.
+- On the same commits, the `Cloudflare Pages` check **succeeds** and `npm run build` passes locally.
+- The repo has no `vercel.json`, and the build targets Cloudflare Pages (`wrangler.jsonc`, `_worker.js`, `_routes.json`), so the Vercel project's build or output settings don't match this app.
+- Conclusion: this is a deployment-configuration failure, not a failure in this PR's code. The Vercel log (`npx vercel inspect <deployment> --logs`) needs the account owner's Vercel access. Fix it by disconnecting the unused Vercel integration, or by configuring Vercel for this framework.

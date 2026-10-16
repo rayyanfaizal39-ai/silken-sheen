@@ -173,5 +173,56 @@ export function motionVisualForSeed(bm: string): MathQuestionVisual | undefined 
     );
   }
 
+  m = new RegExp(
+    `^Graf laju-masa \\d+ mengufuk pada ${num} m/s selama ${num} s\\. Cari luas di bawah graf\\.$`,
+  ).exec(bm);
+  if (m) {
+    const segment: MotionPoint[] = [
+      [0, n(m[1])],
+      [n(m[2]), n(m[1])],
+    ];
+    return graph(
+      speedAxes,
+      t(
+        "Laju malar; rantau berlorek di bawah graf tidak dikira.",
+        "Constant speed; the shaded region under the graph is not calculated.",
+      ),
+      [segment],
+      under(segment),
+    );
+  }
+
+  m = new RegExp(
+    `^Graf laju-masa \\d+ mempunyai dua bahagian mengufuk: ${num} m/s selama ${num} s dan ${num} m/s selama ${num} s\\. Cari jumlah jarak\\.$`,
+  ).exec(bm);
+  if (m) {
+    const [s1, t1, s2, t2] = [n(m[1]), n(m[2]), n(m[3]), n(m[4])];
+    return graph(
+      speedAxes,
+      t(
+        "Dua bahagian laju malar; jumlah luas tidak ditulis.",
+        "Two constant-speed sections; the total area is not written.",
+      ),
+      [
+        [
+          [0, s1],
+          [t1, s1],
+        ],
+        [
+          [t1, s2],
+          [t1 + t2, s2],
+        ],
+      ],
+      [
+        [0, 0],
+        [0, s1],
+        [t1, s1],
+        [t1, s2],
+        [t1 + t2, s2],
+        [t1 + t2, 0],
+      ],
+    );
+  }
+
   return undefined;
 }

@@ -119,20 +119,22 @@ function parallelChords(radius: number, d1: number, d2: number, c1: string, c2: 
 }
 
 /** A sector drawn as two radii and its arc only (no full circle), for perimeter questions. */
-function sectorOnly(angle: number, radius: string) {
-  const O: P = [96, 186];
-  const R = 140;
-  const end = pt(
-    O[0] + R * Math.cos((-angle * Math.PI) / 180),
-    O[1] + R * Math.sin((-angle * Math.PI) / 180),
-  );
+function sectorOnly(angle: number, radius: string, description?: ReturnType<typeof t>) {
+  // Angles above 90° sweep left, so they need a centred vertex and a smaller radius.
+  const wide = angle > 90;
+  const O: P = wide ? [150, 172] : [96, 186];
+  const R = wide ? 112 : 140;
+  const at = (deg: number, r = R): P =>
+    pt(O[0] + r * Math.cos((-deg * Math.PI) / 180), O[1] + r * Math.sin((-deg * Math.PI) / 180));
+  const end = at(angle);
   return single(
     t("Sektor bulatan", "Circle sector"),
     t(`Sektor ${angle}°`, `${angle}° sector`),
-    t(
-      "Sempadan sektor ialah dua jejari dan satu lengkok. Panjang lengkok tidak ditanda.",
-      "The sector's boundary is two radii and one arc. The arc length is not marked.",
-    ),
+    description ??
+      t(
+        "Sempadan sektor ialah dua jejari dan satu lengkok. Panjang lengkok tidak ditanda.",
+        "The sector's boundary is two radii and one arc. The arc length is not marked.",
+      ),
     {
       arcs: [{ centre: O, radius: R, start: -angle, end: 0 }],
       paths: [
@@ -143,8 +145,7 @@ function sectorOnly(angle: number, radius: string) {
       labels: [
         { at: [O[0] - 6, O[1] + 16], text: "O", anchor: "end" },
         { at: [O[0] + R / 2, O[1] + 20], text: radius },
-        { at: [O[0] - 10, O[1] - R / 2], text: radius, anchor: "end" },
-        { at: [O[0] + 28, O[1] - 22], text: `${angle}°`, anchor: "start" },
+        { at: at(angle / 2, wide ? 34 : 40), text: `${angle}°` },
       ],
     },
   );
@@ -172,7 +173,14 @@ function arcInCircle(angle: number, radius: string) {
       labels: [
         { at: [O[0] - 6, O[1] + 16], text: "O", anchor: "end" },
         { at: [O[0] + R / 2, O[1] + 20], text: radius },
-        { at: [O[0] + 22, O[1] - 12], text: `${angle}°`, anchor: "start" },
+        // On the bisector of the marked angle, so a reflex angle is never read as the minor one.
+        {
+          at: pt(
+            O[0] + 36 * Math.cos((-angle * Math.PI) / 360),
+            O[1] + 36 * Math.sin((-angle * Math.PI) / 360) + 5,
+          ),
+          text: `${angle}°`,
+        },
       ],
     },
   );
@@ -422,6 +430,94 @@ const sectorRemoved = (() => {
   );
 })();
 
+/** Circle with a filled sector of `angle`° (e.g. a coloured or removed part). */
+function shadedSector(
+  angle: number,
+  radius: string,
+  title: ReturnType<typeof t>,
+  description: ReturnType<typeof t>,
+) {
+  const O: P = [150, 120];
+  const R = 95;
+  const at = (deg: number, r = R): P =>
+    pt(O[0] + r * Math.cos((-deg * Math.PI) / 180), O[1] + r * Math.sin((-deg * Math.PI) / 180));
+  const wedge: P[] = [O, ...Array.from({ length: 13 }, (_, i) => at((angle * i) / 12))];
+  return single(title, t(`Sektor ${angle}° berlorek`, `Shaded ${angle}° sector`), description, {
+    circles: [{ centre: O, radius: R, fill: false }],
+    paths: [{ points: wedge, closed: true, fill: true }, { points: [O, [O[0] - R, O[1]]] }],
+    labels: [
+      { at: [O[0] - 6, O[1] + 16], text: "O", anchor: "end" },
+      { at: at(angle / 2, 52), text: `${angle}°` },
+      { at: [O[0] - R / 2, O[1] - 7], text: radius },
+    ],
+    ...{},
+  });
+}
+
+/** Minute hand of length 21 cm moving from 12 to 2 (60°), with only the clock positions marked. */
+const minuteHand = (() => {
+  const O: P = [150, 128];
+  const R = 92;
+  const at = (clockDeg: number, r = R): P =>
+    pt(
+      O[0] + r * Math.sin((clockDeg * Math.PI) / 180),
+      O[1] - r * Math.cos((clockDeg * Math.PI) / 180),
+    );
+  return single(
+    t("Pergerakan jarum minit", "Movement of the minute hand"),
+    t("Dari 12 ke 2", "From 12 to 2"),
+    t(
+      "Hujung jarum bergerak di sepanjang lengkok biru. Sudut dan panjang lengkok tidak ditanda.",
+      "The tip moves along the blue arc. The angle and the arc length are not marked.",
+    ),
+    {
+      circles: [{ centre: O, radius: R, fill: false }],
+      arcs: [{ centre: O, radius: R, start: -90, end: -30 }],
+      paths: [{ points: [O, at(0)] }, { points: [O, at(60)] }],
+      labels: [
+        { at: [at(0, R + 14)[0], at(0, R + 14)[1] + 4], text: "12" },
+        { at: [at(60, R + 14)[0] + 2, at(60, R + 14)[1] + 4], text: "2", anchor: "start" },
+        { at: [at(-20, 48)[0], at(-20, 48)[1]], text: "21 cm", anchor: "end" },
+      ],
+    },
+  );
+})();
+
+/** Circular mat (radius 12 cm) with a central square hole of side 6 cm, drawn to scale. */
+const matWithHole = (() => {
+  const O: P = [150, 118];
+  const R = 96; // 8 px per cm
+  const h = 24; // half of the 6 cm side
+  return single(
+    t("Alas bulat berlubang", "Circular mat with a hole"),
+    t("Lubang segi empat sama di tengah", "Square hole at the centre"),
+    t(
+      "Bahan yang tinggal ialah bulatan tolak lubang segi empat sama.",
+      "The remaining material is the circle minus the square hole.",
+    ),
+    {
+      circles: [{ centre: O, radius: R }],
+      paths: [
+        {
+          points: [
+            [O[0] - h, O[1] - h],
+            [O[0] + h, O[1] - h],
+            [O[0] + h, O[1] + h],
+            [O[0] - h, O[1] + h],
+          ],
+          closed: true,
+          dashed: true,
+        },
+        { points: [O, [O[0] + R, O[1]]] },
+      ],
+      labels: [
+        { at: [O[0] + 60, O[1] - 7], text: "12 cm" },
+        { at: [O[0], O[1] - h - 8], text: "6 cm" },
+      ],
+    },
+  );
+})();
+
 const chordGiven = t(
   "Hanya ukuran yang diberi ditanda; nilai yang dicari bertanda ?.",
   "Only the given measurements are labelled; the unknown is marked ?.",
@@ -499,6 +595,31 @@ export function circleVisualForSeed(bm: string): MathQuestionVisual | undefined 
       return squareWithCircle;
     case "Sebuah bentuk terdiri daripada segi empat tepat 12 cm × 7 cm dan sebuah semibulatan berdiameter 12 cm pada satu hujung. Cari luas dalam sebutan π.":
       return rectangleSemicircle;
+    case "Sebuah alas bulat berjejari 12 cm dipotong lubang segi empat sama bersisi 6 cm di tengahnya. Cari luas bahan yang tinggal dalam sebutan π.":
+      return matWithHole;
+    case "Hujung jarum minit sepanjang 21 cm bergerak dari nombor 12 ke nombor 2. Cari jarak yang dilalui hujung jarum. Gunakan π = 22/7.":
+      return minuteHand;
+    case "Lengkok major yang sepadan dengan sudut pusat 240° berada dalam bulatan berjejari 9 cm. Cari panjangnya dalam sebutan π.":
+      return arcInCircle(240, "9 cm");
+    case "Daripada bulatan berjejari 8 cm, sektor 45° diwarnakan. Cari luas bahagian yang tidak diwarnakan dalam sebutan π.":
+      return shadedSector(
+        45,
+        "8 cm",
+        t("Sektor berwarna", "Coloured sector"),
+        t(
+          "Sektor 45° diwarnakan; bahagian bulatan yang lain tidak berwarna.",
+          "The 45° sector is coloured; the rest of the circle is not.",
+        ),
+      );
+    case "Sebuah penyiram meliputi sektor 150° berjejari 6 m. Cari kawasan disiram dalam sebutan π.":
+      return sectorOnly(
+        150,
+        "6 m",
+        t(
+          "Kawasan siraman berbentuk sektor; luasnya tidak ditanda.",
+          "The watered region is a sector; its area is not marked.",
+        ),
+      );
     case "Sebuah gelang dibentuk oleh dua bulatan sepusat berjejari 10 cm dan 6 cm. Cari luas gelang dalam sebutan π.":
       return annulus;
     case "Sebuah segi empat sama bersisi 20 cm mempunyai empat suku bulatan berjejari 10 cm, satu di setiap bucu. Cari luas di luar keempat-empat suku bulatan dalam sebutan π.":
