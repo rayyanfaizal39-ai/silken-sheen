@@ -5,10 +5,15 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import * as registry from "@/content/registry";
 import { ContentRegistryContext } from "@/hooks/use-content-registry";
 import { orderRegularQuizQuestions } from "@/features/quiz/difficulty/quizDifficulty";
+import {
+  scienceF1QuizVisualById,
+  scienceF1QuizVisualDescriptions,
+} from "@/content/form1/science/quiz-visuals";
 import { Route } from "@/routes/quizzes";
 
 const mocks = vi.hoisted(() => ({
   lang: "dlp" as "bm" | "dlp",
+  chapter: "Chapter 1",
   progress: { xp: 0, quizzesTaken: 0, quizHistory: [] },
   record: vi.fn(() => Promise.resolve({ awarded: false, xpEarned: 0, reason: "guest" })),
   mark: vi.fn(),
@@ -20,7 +25,7 @@ vi.mock("@tanstack/react-router", async (importOriginal) => ({
   ...(await importOriginal<typeof import("@tanstack/react-router")>()),
   createFileRoute: () => (options: unknown) => ({
     options,
-    useSearch: () => ({ subject: "science", form: 1, chapter: "Chapter 1" }),
+    useSearch: () => ({ subject: "science", form: 1, chapter: mocks.chapter }),
     useNavigate: () => mocks.navigate,
   }),
 }));
@@ -125,6 +130,7 @@ beforeEach(async () => {
   if (Page.preload) await Page.preload();
   vi.clearAllMocks();
   mocks.lang = "dlp";
+  mocks.chapter = "Chapter 1";
   vi.useFakeTimers();
   vi.spyOn(Math, "random").mockReturnValue(0);
   Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: true });
@@ -142,29 +148,40 @@ afterEach(() => {
 });
 
 describe("actual Science Form 1 quiz attempt lifecycle", () => {
-  it.each(["bm", "dlp"] as const)(
-    "renders the mapped diagram on the actual %s quiz screen without modifying its source object",
-    (lang) => {
-      mocks.lang = lang;
+  it.each(Object.entries(scienceF1QuizVisualById))(
+    "renders mapped diagram %s in the actual quiz without mutating the canonical bank",
+    (id, src) => {
+      const [, chapter, lang] = id.match(/^sci-f1-c(\d)-(bm|dlp)-/)!;
+      mocks.lang = lang as "bm" | "dlp";
+      mocks.chapter = `Chapter ${chapter}`;
       act(render);
-      const source = registry.getChapterQuizQuestions("science", "Form 1", "Chapter 1", lang);
-      const question = source.find((q) => q.id === `sci-f1-c1-${lang}-q4`)!;
-      const snapshot = JSON.stringify(question);
+      const source = registry.getChapterQuizQuestions(
+        "science",
+        "Form 1",
+        mocks.chapter,
+        mocks.lang,
+      );
+      const question = source.find((q) => q.id === id)!;
+      const snapshot = JSON.stringify(source);
       vi.mocked(orderRegularQuizQuestions).mockImplementationOnce(() => ({
         questions: [question, ...source.filter((q) => q !== question)],
         issues: [],
       }));
       start();
       expect(document.querySelector("h2")?.textContent).toBe(question.question);
-      const diagram = document.querySelector('img[src="/quiz-visuals/science-f1/measurement.svg"]');
+      const diagram = document.querySelector(`img[src="${src}"]`);
       expect(diagram).not.toBeNull();
-      expect(diagram?.getAttribute("alt")).toContain(
-        lang === "bm" ? "ditenggelamkan" : "submerging",
-      );
-      expect(JSON.stringify(question)).toBe(snapshot);
+      const name = src
+        .split("/")
+        .at(-1)!
+        .replace(/\.svg$/, "");
+      expect(diagram?.getAttribute("alt")).toBe(scienceF1QuizVisualDescriptions[name][mocks.lang]);
+      expect(diagram?.classList.contains("w-full")).toBe(true);
+      expect(diagram?.classList.contains("max-w-xl")).toBe(true);
+      expect(JSON.stringify(source)).toBe(snapshot);
       expect(
         registry
-          .getChapterQuizQuestions("science", "Form 1", "Chapter 1", lang)
+          .getChapterQuizQuestions("science", "Form 1", mocks.chapter, mocks.lang)
           .find((q) => q.id === question.id),
       ).toBe(question);
     },
