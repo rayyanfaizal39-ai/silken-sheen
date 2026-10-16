@@ -3,6 +3,7 @@ import { companionSvg } from "./artwork";
 import { barcodeSvg, qrDataUrl, svgUrl } from "./codes";
 import { evolution, STAGES, type NovaCard as Card } from "./model";
 import { downloadCard } from "./download";
+import { getCardForExport } from "./server";
 
 export function NovaCard({ card, url }: { card: Card; url: string }) {
   const [flipped, setFlipped] = useState(false);
@@ -179,7 +180,10 @@ export function NovaCard({ card, url }: { card: Card; url: string }) {
           onClick={async () => {
             setDownloading(true);
             try {
-              await downloadCard(card, url);
+              const current = card.artworkUrl
+                ? await getCardForExport({ data: card.publicId })
+                : card;
+              await downloadCard(current, url);
               setNotice("Card image downloaded.");
             } catch (e) {
               setNotice((e as Error).message);

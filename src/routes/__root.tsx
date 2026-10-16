@@ -243,6 +243,7 @@ function RootComponent() {
     pathname.startsWith("/card/c/") ||
     pathname === "/nova" ||
     pathname === "/nova/demo" ||
+    pathname === "/nova/studio" ||
     pathname === "/explore-academy" ||
     pathname.startsWith("/academy/");
   const isMinimalPublicPage = isMarketingPage || isPublicAuthRoute(pathname);

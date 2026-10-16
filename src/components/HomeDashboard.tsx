@@ -48,6 +48,7 @@ import { PlanetCardArt, subjectPlanetStyles, type SubjectPlanetId } from "@/comp
 import type { FormStat } from "@/content/registry";
 import { NextMissionCard } from "@/components/NextMissionCard";
 import { studyResumeSearch } from "@/lib/study-routing";
+import { NovaStatusLink } from "@/features/nova-cards/NovaStatusLink";
 
 // getSubjectFormStats (@/content/registry) and analyzeProgress (@/lib/tracker,
 // via @/data/content's getSubjectChapters) each pull in several MB of
@@ -787,6 +788,7 @@ export function HomeDashboard() {
       {/* ════════════════════════════════════════════════════════════
           TODAY'S MISSION + AVATAR COMMAND
           ════════════════════════════════════════════════════════════ */}
+      <NovaStatusLink />
       <section className="grid gap-4 lg:grid-cols-[1fr_300px]">
         {/* Today's Mission */}
         <div className="rounded-[2rem] border border-white/[0.08] bg-[#0B1220]/62 p-5 backdrop-blur-2xl sm:p-6">

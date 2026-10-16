@@ -289,7 +289,7 @@ describe("Nova migration running in PostgreSQL with real API roles and RLS", () 
   it("never schedules unpaid or skipped evolution artwork", async () => {
     await expect(as("anon",null,"select public.request_nova_evolution(2)")).rejects.toThrow(/permission/);
     await expect(as("authenticated",A,"select public.request_nova_evolution(5)")).rejects.toThrow(/Previous approved/);
-    const jobs=await db.query("select count(*)::integer as count from public.nova_generation_jobs");
+    const jobs=await db.query<{count:number}>("select count(*)::integer as count from public.nova_generation_jobs");
     expect(jobs.rows[0].count).toBe(1); // Existing Stage 2 job; no skipped Stage 5 job.
     await db.exec(`update public.subscriptions set status='cancelled' where user_id='${A}';`);
     await expect(as("authenticated", A,

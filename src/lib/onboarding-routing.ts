@@ -4,6 +4,7 @@ const ONBOARDING_EXEMPT_ROUTES = new Set([
   "/card",
   "/nova",
   "/nova/demo",
+  "/nova/studio",
   "/contact",
   "/command-center-preview",
   "/explore-academy",

@@ -1,0 +1,10 @@
+# Server only. Copy into approved server secret configuration, never VITE_*.
+# Existing Supabase URL/anon/session settings are reused by the app.
+NOVA_AI_ENABLED=false
+NOVA_AI_BATCH_ENABLED=false
+
+# Edge Function only (leave unset until explicit staging activation approval).
+# OPENAI_API_KEY=
+# SUPABASE_SERVICE_ROLE_KEY=
+# NOVA_WORKER_SECRET=  # dedicated random value, at least 32 characters
+# Database nova_generation_settings flags also default false and monthly cap is zero.

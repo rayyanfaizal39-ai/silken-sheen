@@ -39,6 +39,7 @@ import { Route as CardRouteImport } from './routes/card'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as NovaStudioRouteImport } from './routes/nova_.studio'
 import { Route as NovaDemoRouteImport } from './routes/nova_.demo'
 import { Route as CardContactDotvcfRouteImport } from './routes/card.contact[.]vcf'
 import { Route as AuthResetPasswordRouteImport } from './routes/auth.reset-password'
@@ -208,6 +209,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AdminRoute,
 } as any)
+const NovaStudioRoute = NovaStudioRouteImport.update({
+  id: '/nova_/studio',
+  path: '/nova/studio',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const NovaDemoRoute = NovaDemoRouteImport.update({
   id: '/nova_/demo',
   path: '/nova/demo',
@@ -345,6 +351,7 @@ export interface FileRoutesByFullPath {
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/card/contact.vcf': typeof CardContactDotvcfRoute
   '/nova/demo': typeof NovaDemoRoute
+  '/nova/studio': typeof NovaStudioRoute
   '/admin/': typeof AdminIndexRoute
   '/admin/content/quiz-importer': typeof AdminContentQuizImporterRoute
   '/card/c/$publicId': typeof CardCPublicIdRoute
@@ -394,6 +401,7 @@ export interface FileRoutesByTo {
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/card/contact.vcf': typeof CardContactDotvcfRoute
   '/nova/demo': typeof NovaDemoRoute
+  '/nova/studio': typeof NovaStudioRoute
   '/admin': typeof AdminIndexRoute
   '/admin/content/quiz-importer': typeof AdminContentQuizImporterRoute
   '/card/c/$publicId': typeof CardCPublicIdRoute
@@ -445,6 +453,7 @@ export interface FileRoutesById {
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/card/contact.vcf': typeof CardContactDotvcfRoute
   '/nova_/demo': typeof NovaDemoRoute
+  '/nova_/studio': typeof NovaStudioRoute
   '/admin/': typeof AdminIndexRoute
   '/admin/content/quiz-importer': typeof AdminContentQuizImporterRoute
   '/card_/c/$publicId': typeof CardCPublicIdRoute
@@ -497,6 +506,7 @@ export interface FileRouteTypes {
     | '/auth/reset-password'
     | '/card/contact.vcf'
     | '/nova/demo'
+    | '/nova/studio'
     | '/admin/'
     | '/admin/content/quiz-importer'
     | '/card/c/$publicId'
@@ -546,6 +556,7 @@ export interface FileRouteTypes {
     | '/auth/reset-password'
     | '/card/contact.vcf'
     | '/nova/demo'
+    | '/nova/studio'
     | '/admin'
     | '/admin/content/quiz-importer'
     | '/card/c/$publicId'
@@ -596,6 +607,7 @@ export interface FileRouteTypes {
     | '/auth/reset-password'
     | '/card/contact.vcf'
     | '/nova_/demo'
+    | '/nova_/studio'
     | '/admin/'
     | '/admin/content/quiz-importer'
     | '/card_/c/$publicId'
@@ -639,6 +651,7 @@ export interface RootRouteChildren {
   AuthConfirmRoute: typeof AuthConfirmRoute
   AuthResetPasswordRoute: typeof AuthResetPasswordRoute
   NovaDemoRoute: typeof NovaDemoRoute
+  NovaStudioRoute: typeof NovaStudioRoute
   CardCPublicIdRoute: typeof CardCPublicIdRoute
   EnglishForm1GrammarRoute: typeof EnglishForm1GrammarRoute
 }
@@ -855,6 +868,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/nova_/studio': {
+      id: '/nova_/studio'
+      path: '/nova/studio'
+      fullPath: '/nova/studio'
+      preLoaderRoute: typeof NovaStudioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/nova_/demo': {
       id: '/nova_/demo'
       path: '/nova/demo'
@@ -1057,6 +1077,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthConfirmRoute: AuthConfirmRoute,
   AuthResetPasswordRoute: AuthResetPasswordRoute,
   NovaDemoRoute: NovaDemoRoute,
+  NovaStudioRoute: NovaStudioRoute,
   CardCPublicIdRoute: CardCPublicIdRoute,
   EnglishForm1GrammarRoute: EnglishForm1GrammarRoute,
 }

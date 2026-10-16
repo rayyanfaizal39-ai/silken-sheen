@@ -132,3 +132,23 @@ export const setSharing = createServerFn({ method: "POST" })
     if (error) throw new Error("Sharing could not be updated. Please try again.");
     return (await withArtwork(db, data as NovaCard))!;
   });
+
+// Re-authorize at export time: short-lived private URLs may have expired since page load.
+export const getCardForExport = createServerFn({ method: "GET" })
+  .validator((input: unknown) => z.string().max(64).parse(input))
+  .handler(async ({ data: id }): Promise<NovaCard> => {
+    const demo = DEMO_CARDS.find((c) => c.publicId === id);
+    if (demo) return demo;
+    if (!validPublicId(id)) throw new Error("Card is unavailable.");
+    const db = client();
+    const { data: auth } = await db.auth.getUser();
+    if (auth.user && !auth.user.is_anonymous) {
+      const { data: mine, error } = await db.rpc("get_my_nova_card");
+      if (!error && (mine as NovaCard | null)?.publicId === id)
+        return (await withArtwork(db, mine as NovaCard))!;
+    }
+    const { data, error } = await db.rpc("get_public_nova_card", { requested_public_id: id });
+    if (error || !data)
+      throw new Error("This card is private or unavailable. Refresh to check access.");
+    return (await withArtwork(db, data as NovaCard))!;
+  });
