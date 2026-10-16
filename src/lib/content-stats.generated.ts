@@ -9,8 +9,8 @@ export const CONTENT_STATS = {
   publishedNotes: 200,
   publishedQuizzes: 154,
   publishedFlashcards: 166,
-  publishedMindmaps: 292,
-  missingContent: 153,
+  publishedMindmaps: 288,
+  missingContent: 157,
 } as const;
 
 export type SubjectFormSummary = {
@@ -194,7 +194,7 @@ export const SUBJECT_FORM_SUMMARY: Record<string, SubjectFormSummary[]> = {
       "form": "Form 2",
       "chapterCount": 10,
       "notesChapters": 10,
-      "mindMapChapters": 10,
+      "mindMapChapters": 6,
       "resources": {
         "notes": true,
         "quiz": true,

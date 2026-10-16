@@ -146,12 +146,12 @@ export const mathF2C5PairedSeeds: readonly PairedQuizSeed[] = [
 
   // Chord symmetry and properties (5)
   q(
-    "Garis OP dari pusat bulatan O berserenjang dengan perentas AB di P. Apakah hubungan AP dengan PB?",
-    "Line OP from the centre O is perpendicular to chord AB at P. What is the relationship between AP and PB?",
+    "Jejari OP berserenjang dengan perentas AB di P. Apakah hubungan AP dengan PB?",
+    "Radius OP is perpendicular to chord AB at P. What is the relationship between AP and PB?",
     "AP = PB",
     ["AP = 2PB", "AP < PB", "AP + PB = OP"],
-    "Garis dari pusat yang berserenjang dengan perentas membahagi dua perentas itu.",
-    "A line from the centre perpendicular to a chord bisects that chord.",
+    "Jejari yang berserenjang dengan perentas membahagi dua sama perentas itu.",
+    "A radius perpendicular to a chord bisects that chord.",
   ),
   q(
     "Dua perentas sama panjang dalam bulatan yang sama menghasilkan apa?",

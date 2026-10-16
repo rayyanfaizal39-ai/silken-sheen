@@ -1,5 +1,4 @@
 import type { Difficulty, QuizQuestion } from "@/data/content";
-import { mathF2VisualForSeed } from "./quiz-visuals";
 
 export type LocalisedText = string | readonly [bm: string, dlp: string];
 
@@ -108,7 +107,6 @@ export function buildPairedQuizBank(
     const options = [...wrong] as string[];
     options.splice(answerIndex, 0, correct);
     const objective = index < 30 ? "f" : index < 60 ? "p" : "c";
-    const visual = mathF2VisualForSeed(chapter, seed.question[0]);
 
     return {
       id: `${language}-f2-c${chapter}-${objective}${String(objectiveIndex + 1).padStart(2, "0")}`,
@@ -121,7 +119,6 @@ export function buildPairedQuizBank(
       options,
       answerIndex,
       explanation: seed.explanation[language === "bm" ? 0 : 1],
-      ...(visual ? { visual } : {}),
     };
   });
 }
