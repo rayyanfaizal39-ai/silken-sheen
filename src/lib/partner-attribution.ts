@@ -5,6 +5,9 @@
 
 export const PARTNER_ATTRIBUTION_KEY = "academy:partner-attribution";
 export const PARTNER_ATTRIBUTION_TTL = 60 * 24 * 60 * 60 * 1000;
+export const PARTNER_CHOICE_KEY = "academy:partner-account-choice";
+export const PARTNER_REVIEW_EVENT = "academy:review-partner-account";
+export type PartnerIntent = { code: string; expiresAt: number };
 type StorageLike = Pick<Storage, "getItem" | "setItem" | "removeItem">;
 
 export function normalizePartnerCode(value: unknown): string | undefined {
@@ -14,7 +17,10 @@ export function normalizePartnerCode(value: unknown): string | undefined {
 }
 
 /** The stored, unexpired code, or undefined (clearing expired/malformed data). */
-export function storedPartnerCode(storage: StorageLike, now = Date.now()) {
+export function storedPartnerIntent(
+  storage: StorageLike,
+  now = Date.now(),
+): PartnerIntent | undefined {
   try {
     const raw = storage.getItem(PARTNER_ATTRIBUTION_KEY);
     if (!raw) return undefined;
@@ -29,7 +35,7 @@ export function storedPartnerCode(storage: StorageLike, now = Date.now()) {
       storage.removeItem(PARTNER_ATTRIBUTION_KEY);
       return undefined;
     }
-    return code;
+    return { code, expiresAt: saved.expiresAt };
   } catch {
     try {
       storage.removeItem(PARTNER_ATTRIBUTION_KEY);
@@ -38,6 +44,10 @@ export function storedPartnerCode(storage: StorageLike, now = Date.now()) {
     }
     return undefined;
   }
+}
+
+export function storedPartnerCode(storage: StorageLike, now = Date.now()) {
+  return storedPartnerIntent(storage, now)?.code;
 }
 
 /**
@@ -64,10 +74,7 @@ export function capturePartnerReference(href: string, storage: StorageLike, now 
 
 /** Code to submit for a signed-in student: stored first-touch, else the URL. */
 export function checkoutPartnerCode(href: string, storage: StorageLike, now = Date.now()) {
-  return (
-    capturePartnerReference(href, storage, now) ??
-    storedPartnerCode(storage, now)
-  );
+  return capturePartnerReference(href, storage, now) ?? storedPartnerCode(storage, now);
 }
 
 export function clearPartnerReference(storage: StorageLike) {
@@ -78,14 +85,43 @@ export function clearPartnerReference(storage: StorageLike) {
   }
 }
 
-/** Server answers after which the stored code has served its purpose. */
-export function isFinalClaimResult(result: unknown) {
-  if (!result || typeof result !== "object") return false;
-  const { claimed, reason } = result as { claimed?: unknown; reason?: unknown };
-  return (
-    claimed === true ||
-    ["already_attributed", "invalid_code", "self_referral", "not_student", "existing_customer"].includes(
-      String(reason),
-    )
-  );
+/** Consent is account-bound and tab-local. The original intent is never consumed. */
+export function rememberPartnerChoice(
+  intent: PartnerIntent,
+  choices: StorageLike,
+  userId: string,
+  partnerCode: string,
+) {
+  choices.setItem(PARTNER_CHOICE_KEY, JSON.stringify({ ...intent, userId, partnerCode }));
+}
+
+export function clearPartnerChoice(choices: StorageLike) {
+  choices.removeItem(PARTNER_CHOICE_KEY);
+}
+
+export function confirmedPartnerCode(
+  intents: StorageLike,
+  choices: StorageLike,
+  userId: string,
+  now = Date.now(),
+) {
+  const intent = storedPartnerIntent(intents, now);
+  if (!intent) return undefined;
+  try {
+    const choice = JSON.parse(choices.getItem(PARTNER_CHOICE_KEY) || "null");
+    return choice?.userId === userId &&
+      choice.code === intent.code &&
+      choice.expiresAt === intent.expiresAt
+      ? normalizePartnerCode(choice.partnerCode)
+      : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+/** Keep a referral in the safe, same-origin OAuth/onboarding return destination. */
+export function partnerReturnTo(href: string, code: string) {
+  const destination = new URL(href, "https://www.myacademy.my");
+  destination.searchParams.set("ref", code);
+  return `${destination.pathname}${destination.search}${destination.hash}`;
 }

@@ -101,6 +101,52 @@ beforeEach(async () => {
 });
 
 describe("partner referral commissions", () => {
+  it("keeps two Google accounts independent when a newly confirmed student pays after an account switch", async () => {
+    // Even a historical mistaken claim on account A must not consume the
+    // explicit, independent claim on the new paying account B.
+    await claim(STUDENT, "ACAPARTNER1");
+    const aBefore = await db.query(
+      `select * from public.partner_referrals where customer_reference = $1`,
+      [STUDENT],
+    );
+    await claim(SECOND_STUDENT, "ACAPARTNER1");
+    const payment = await createCheckout(SECOND_STUDENT, "premium");
+    await verifiedCallback(payment);
+    await verifiedCallback(payment);
+    expect(await commissions(STUDENT)).toHaveLength(0);
+    expect(await commissions(SECOND_STUDENT)).toMatchObject([
+      { commission_amount: "17.70", status: "pending", partner_user_id: PARTNER },
+    ]);
+    const aAfter = await db.query(
+      `select * from public.partner_referrals where customer_reference = $1`,
+      [STUDENT],
+    );
+    expect(aAfter.rows).toEqual(aBefore.rows);
+  });
+
+  it("does not repair an already-paid unattributed sandbox payment without a separately approved correction", async () => {
+    const payment = await createCheckout(SECOND_STUDENT, "premium");
+    await verifiedCallback(payment);
+    const paidBefore = await db.query(`select * from public.payment_transactions where id = $1`, [
+      payment.id,
+    ]);
+    expect(await claim(SECOND_STUDENT, "ACAPARTNER1")).toEqual({
+      claimed: false,
+      reason: "existing_customer",
+    });
+    await verifiedCallback(payment);
+    const replay = await db.query<{ r: { credited: boolean; reason: string } }>(
+      `select public.partner_credit_verified_payment($1) as r`,
+      [payment.id],
+    );
+    expect(replay.rows[0].r).toEqual({ credited: false, reason: "no_attribution" });
+    expect(await commissions(SECOND_STUDENT)).toHaveLength(0);
+    expect(
+      (await db.query(`select * from public.payment_transactions where id = $1`, [payment.id]))
+        .rows,
+    ).toEqual(paidBefore.rows);
+  });
+
   it("records a pending RM17.70 commission for a verified RM59 payment", async () => {
     expect(await claim(STUDENT, "acapartner1")).toEqual({ claimed: true });
     const payment = await createCheckout(STUDENT, "premium");

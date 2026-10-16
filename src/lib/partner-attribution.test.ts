@@ -3,7 +3,11 @@ import {
   capturePartnerReference,
   checkoutPartnerCode,
   clearPartnerReference,
-  isFinalClaimResult,
+  clearPartnerChoice,
+  confirmedPartnerCode,
+  partnerReturnTo,
+  rememberPartnerChoice,
+  storedPartnerIntent,
   normalizePartnerCode,
   PARTNER_ATTRIBUTION_KEY,
   PARTNER_ATTRIBUTION_TTL,
@@ -49,12 +53,40 @@ describe("checkout partner attribution", () => {
     expect(normalizePartnerCode("a".repeat(41))).toBeUndefined();
     expect(capturePartnerReference("/?ref=%3Cscript%3E", storage())).toBeUndefined();
   });
-  it("clears the stored code only after a final server answer", () => {
-    expect(isFinalClaimResult({ claimed: true })).toBe(true);
-    expect(isFinalClaimResult({ claimed: false, reason: "already_attributed" })).toBe(true);
-    expect(isFinalClaimResult({ claimed: false, reason: "self_referral" })).toBe(true);
-    expect(isFinalClaimResult(null)).toBe(false);
-    expect(isFinalClaimResult({ claimed: false, reason: "something_new" })).toBe(false);
+  it("keeps intent after account A confirms and requires fresh consent after switching to B", () => {
+    const local = storage();
+    const tab = storage();
+    capturePartnerReference("/?ref=ACA1234567", local);
+    rememberPartnerChoice(storedPartnerIntent(local)!, tab, "account-A", "ACA1234567");
+    expect(confirmedPartnerCode(local, tab, "account-A")).toBe("ACA1234567");
+    expect(confirmedPartnerCode(local, tab, "account-B")).toBeUndefined();
+    clearPartnerChoice(tab);
+    expect(checkoutPartnerCode("/auth/callback?next=/profile", local)).toBe("ACA1234567");
+    rememberPartnerChoice(storedPartnerIntent(local)!, tab, "account-B", "ACA1234567");
+    expect(confirmedPartnerCode(local, tab, "account-B")).toBe("ACA1234567");
+    expect(confirmedPartnerCode(local, tab, "account-A")).toBeUndefined();
+    expect(checkoutPartnerCode("/upgrade", local)).toBe("ACA1234567");
+  });
+  it("preserves the reference through OAuth destinations and registration without extending first-touch expiry", () => {
+    const local = storage();
+    capturePartnerReference("/?ref=ACA1234567", local, 1000);
+    const original = local.getItem(PARTNER_ATTRIBUTION_KEY);
+    expect(partnerReturnTo("/upgrade?plan=premium#plans", "ACA1234567")).toBe(
+      "/upgrade?plan=premium&ref=ACA1234567#plans",
+    );
+    for (const path of ["/auth/callback", "/profile", "/onboarding", "/upgrade"]) {
+      expect(checkoutPartnerCode(path, local, 2000)).toBe("ACA1234567");
+    }
+    expect(local.getItem(PARTNER_ATTRIBUTION_KEY)).toBe(original);
+  });
+  it("rejects a choice from another intent or after the original intent expires", () => {
+    const local = storage();
+    const tab = storage();
+    capturePartnerReference("/?ref=ACA1234567", local, 1000);
+    rememberPartnerChoice(storedPartnerIntent(local, 1000)!, tab, "A", "ACA1234567");
+    expect(confirmedPartnerCode(local, tab, "A", 1000 + PARTNER_ATTRIBUTION_TTL)).toBeUndefined();
+    capturePartnerReference("/?ref=ACA7654321", local, 1000 + PARTNER_ATTRIBUTION_TTL);
+    expect(confirmedPartnerCode(local, tab, "A", 1000 + PARTNER_ATTRIBUTION_TTL)).toBeUndefined();
   });
   it("can use a direct reference when browser storage is unavailable", () => {
     const blocked = {

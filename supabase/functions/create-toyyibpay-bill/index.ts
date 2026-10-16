@@ -5,6 +5,7 @@ declare const Deno: any;
 
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.108.1";
 import { requestToyyibPayBill, ToyyibPayUnavailableError } from "../_shared/toyyibpay-response.ts";
+import { validPartnerReceipt } from "../_shared/partner-confirmation.ts";
 import {
   BILLING_CURRENCY,
   CHECKOUT_PLANS,
@@ -63,6 +64,8 @@ Deno.serve(async (request: Request) => {
     const body = (await request.json()) as {
       plan?: unknown;
       idempotencyKey?: unknown;
+      partnerCode?: unknown;
+      referralConfirmation?: unknown;
     };
     if (!isCheckoutPlan(body.plan)) {
       return response({ error: "A supported billing plan is required" }, 400);
@@ -75,6 +78,44 @@ Deno.serve(async (request: Request) => {
     const admin = createClient(supabaseUrl, serviceRoleKey, {
       auth: { persistSession: false, autoRefreshToken: false },
     });
+    let confirmedPartnerId: string | undefined;
+    if (body.partnerCode !== undefined || body.referralConfirmation !== undefined) {
+      if (
+        typeof body.partnerCode !== "string" ||
+        typeof body.referralConfirmation !== "string" ||
+        !validPartnerReceipt(
+          body.referralConfirmation,
+          user.id,
+          body.partnerCode,
+          requiredEnv("PARTNER_CONFIRMATION_SECRET"),
+        )
+      ) {
+        return response({ error: "referral_confirmation_required" }, 409);
+      }
+      const referral = await admin
+        .from("partner_referrals")
+        .select("partner_user_id")
+        .eq("customer_reference", user.id)
+        .is("deleted_at", null)
+        .maybeSingle();
+      if (referral.error || !referral.data || referral.data.partner_user_id === user.id) {
+        return response({ error: "referral_attribution_unverified" }, 409);
+      }
+      const partner = await admin
+        .from("partner_profiles")
+        .select("partner_code,status")
+        .eq("user_id", referral.data.partner_user_id)
+        .is("deleted_at", null)
+        .maybeSingle();
+      if (
+        partner.error ||
+        partner.data?.status !== "active" ||
+        partner.data.partner_code !== body.partnerCode
+      ) {
+        return response({ error: "referral_attribution_unverified" }, 409);
+      }
+      confirmedPartnerId = referral.data.partner_user_id;
+    }
     const insert = await admin.from("payment_transactions").upsert(
       {
         user_id: user.id,
@@ -89,7 +130,6 @@ Deno.serve(async (request: Request) => {
       { onConflict: "idempotency_key", ignoreDuplicates: true },
     );
     if (insert.error) throw insert.error;
-  
 
     const paymentResult = await admin
       .from("payment_transactions")
@@ -101,6 +141,22 @@ Deno.serve(async (request: Request) => {
       .single();
     if (paymentResult.error) throw paymentResult.error;
     const payment = paymentResult.data;
+    if (confirmedPartnerId) {
+      // The insert trigger is deliberately fail-open for legacy callers.
+      // Referred checkout must additionally verify its actual link before a bill.
+      const link = await admin
+        .from("partner_sandbox_checkout_links")
+        .select("customer_user_id,partner_user_id")
+        .eq("payment_id", payment.id)
+        .maybeSingle();
+      if (
+        link.error ||
+        link.data?.customer_user_id !== user.id ||
+        link.data?.partner_user_id !== confirmedPartnerId
+      ) {
+        return response({ error: "referral_payment_link_unverified" }, 409);
+      }
+    }
     if (
       payment.provider !== "toyyibpay" ||
       payment.plan !== selected.plan ||
