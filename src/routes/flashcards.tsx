@@ -5823,9 +5823,11 @@ function FlashcardsPage() {
   const reviewModes = useMemo(() => getReviewModes(selectedSetCards), [selectedSetCards]);
   const setUsesReviewModes = reviewModes.length > 0;
   const activeReviewMode =
-    setUsesReviewModes && selectedReviewMode && reviewModes.includes(selectedReviewMode)
-      ? selectedReviewMode
-      : null;
+    setUsesReviewModes && isMathF2C1Combined && selectedSetIsValid && selectedFlashcardSet !== null
+      ? (["concept", "practice", "challenge"] as const)[selectedFlashcardSet]
+      : setUsesReviewModes && selectedReviewMode && reviewModes.includes(selectedReviewMode)
+        ? selectedReviewMode
+        : null;
   const pool = useMemo(() => {
     // Session guard: no active deck without a known Form, and no card tagged
     // with another Form may enter the active deck.
@@ -6541,6 +6543,11 @@ function FlashcardsPage() {
     // picker, a Math category to its categories, anything else to chapters.
     const exitStudySession = () => {
       // A review mode returns to its subtopic's mode picker.
+      if (activeReviewMode && isMathF2C1Combined) {
+        resetSession();
+        updateFlashcardSearch({ set: null, mode: null });
+        return;
+      }
       if (activeReviewMode) {
         selectReviewMode(null);
         return;
@@ -6594,7 +6601,9 @@ function FlashcardsPage() {
         ? activeReviewMode
           ? {
               title: `${setTitleFor(nextSetIndex)} · ${modeTitleFor(reviewModes[0])}`,
-              go: () => selectFlashcardSet(nextSetIndex, reviewModes[0]),
+              go: () => selectFlashcardSet(nextSetIndex, isMathF2C1Combined
+                ? (["concept", "practice", "challenge"] as const)[nextSetIndex]
+                : reviewModes[0]),
             }
           : { title: setTitleFor(nextSetIndex), go: () => selectFlashcardSet(nextSetIndex) }
         : null;
@@ -7198,7 +7207,7 @@ function FlashcardsPage() {
           })}
           onBack={() => {
             resetSession();
-            updateFlashcardSearch({ set: null });
+            updateFlashcardSearch({ set: null, mode: null });
           }}
           onSelect={selectReviewMode}
         />
