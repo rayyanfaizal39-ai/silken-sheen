@@ -27,6 +27,20 @@ const FLASHCARD_ARENA_CSS = `
     --fc-surface-deep: color-mix(in srgb, var(--arena-accent) 3%, #090e10);
     --fc-border: color-mix(in srgb, var(--arena-accent) 25%, transparent);
   }
+  /* Mathematics: a gold accent tints a dark surface brown, so the card is a
+     neutral charcoal on a deep navy arena and gold stays in borders, labels
+     and symbols. */
+  .flashcard-arena.flashcard-arena-math {
+    background-color: #050816;
+    --fc-surface: #121620;
+    --fc-surface-deep: #07090f;
+  }
+  /* The world scene is pinned to the viewport: as an absolute layer it ended
+     at the first screen, so scrolling a long card uncovered a second colour. */
+  .flashcard-arena-math .world-scene-math {
+    position: fixed;
+    background-color: #050816;
+  }
   /* Desktop: the card takes what the viewport leaves after the header and the
      rest of the stage (progress, ratings, secondary row and breathing room),
      capped at flashcard proportions. */
@@ -156,6 +170,20 @@ const FLASHCARD_ARENA_CSS = `
     background:
       linear-gradient(135deg, color-mix(in srgb, var(--arena-accent) 13%, transparent), rgba(0, 0, 0, 0.45)),
       var(--fc-surface);
+  }
+  /* Mathematics: one dark gradient on both faces, a dark drop shadow with only
+     a faint gold halo, and stack layers that read as dark cards. */
+  .flashcard-arena-math .fc-face {
+    box-shadow:
+      0 24px 60px -30px rgba(0, 0, 0, 0.9),
+      0 0 36px -20px color-mix(in srgb, var(--arena-accent) 35%, transparent);
+  }
+  .flashcard-arena-math .fc-face.flashcard-back {
+    background: linear-gradient(180deg, var(--fc-surface), var(--fc-surface-deep));
+  }
+  .flashcard-arena-math .fc-stack-layer {
+    background: var(--fc-surface-deep);
+    border: 1px solid color-mix(in srgb, var(--arena-accent) 18%, transparent);
   }
   /* Both faces share one geometry: a fixed header, a flexible content region
      and a fixed footer, so the text centres in the same box on either side. */
@@ -409,7 +437,7 @@ export function FlashcardArena({
   return (
     <LearningArena
       subjectId={subjectId}
-      className="flashcard-arena"
+      className={subjectId === "math" ? "flashcard-arena flashcard-arena-math" : "flashcard-arena"}
       label="AcadeMY Flashcard Arena"
       atmosphere="planet"
       keepMobileNav
