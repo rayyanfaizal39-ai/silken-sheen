@@ -10,7 +10,7 @@ export interface MathF2C2Entry {
   bm: { prompt: string; parts?: string[]; answer: string[][] };
 }
 
-export const MATH_F2_C2_BANK: readonly MathF2C2Entry[] = [
+export const MATH_F2_C2_BANK: readonly MathF2C2Entry[] =  [
   {
     "subtopic": "2.1",
     "mode": "concept",
@@ -271,7 +271,36 @@ export const MATH_F2_C2_BANK: readonly MathF2C2Entry[] = [
           "Sebutan pemalar ialah 4 × 2 = 8."
         ]
       ]
-    }
+    },
+    "visuals": [
+      {
+        "kind": "term-table",
+        "title": {
+          "dlp": "Information given",
+          "bm": "Maklumat diberi"
+        },
+        "rows": [
+          {
+            "label": "Length",
+            "cells": [
+              "x + 4 m"
+            ]
+          },
+          {
+            "label": "Width",
+            "cells": [
+              "x + 2 m"
+            ]
+          },
+          {
+            "label": "Given x",
+            "cells": [
+              "3"
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "subtopic": "2.1",
@@ -313,7 +342,36 @@ export const MATH_F2_C2_BANK: readonly MathF2C2Entry[] = [
           "45 pensel."
         ]
       ]
-    }
+    },
+    "visuals": [
+      {
+        "kind": "term-table",
+        "title": {
+          "dlp": "Information given",
+          "bm": "Maklumat diberi"
+        },
+        "rows": [
+          {
+            "label": "Packs A",
+            "cells": [
+              "3 × (2x + 5)"
+            ]
+          },
+          {
+            "label": "Packs B",
+            "cells": [
+              "2 × (x − 1)"
+            ]
+          },
+          {
+            "label": "Given x",
+            "cells": [
+              "4"
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "subtopic": "2.1",
@@ -355,7 +413,36 @@ export const MATH_F2_C2_BANK: readonly MathF2C2Entry[] = [
           "Salah kerana 5 × (−1) = −5."
         ]
       ]
-    }
+    },
+    "visuals": [
+      {
+        "kind": "term-table",
+        "title": {
+          "dlp": "Information given",
+          "bm": "Maklumat diberi"
+        },
+        "rows": [
+          {
+            "label": "Width",
+            "cells": [
+              "x + 5 cm"
+            ]
+          },
+          {
+            "label": "Height",
+            "cells": [
+              "2x − 1 cm"
+            ]
+          },
+          {
+            "label": "Given x",
+            "cells": [
+              "6"
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "subtopic": "2.1",
@@ -397,7 +484,36 @@ export const MATH_F2_C2_BANK: readonly MathF2C2Entry[] = [
           "102 kerusi."
         ]
       ]
-    }
+    },
+    "visuals": [
+      {
+        "kind": "term-table",
+        "title": {
+          "dlp": "Information given",
+          "bm": "Maklumat diberi"
+        },
+        "rows": [
+          {
+            "label": "Rows",
+            "cells": [
+              "x"
+            ]
+          },
+          {
+            "label": "Chairs/row",
+            "cells": [
+              "x + 4"
+            ]
+          },
+          {
+            "label": "Spare chairs",
+            "cells": [
+              "6"
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "subtopic": "2.2",
@@ -659,7 +775,36 @@ export const MATH_F2_C2_BANK: readonly MathF2C2Entry[] = [
           "9 m."
         ]
       ]
-    }
+    },
+    "visuals": [
+      {
+        "kind": "term-table",
+        "title": {
+          "dlp": "Information given",
+          "bm": "Maklumat diberi"
+        },
+        "rows": [
+          {
+            "label": "Area",
+            "cells": [
+              "x² + 7x + 12 m²"
+            ]
+          },
+          {
+            "label": "Length",
+            "cells": [
+              "x + 3 m"
+            ]
+          },
+          {
+            "label": "Given x",
+            "cells": [
+              "5"
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "subtopic": "2.2",
@@ -701,7 +846,36 @@ export const MATH_F2_C2_BANK: readonly MathF2C2Entry[] = [
           "33 m²."
         ]
       ]
-    }
+    },
+    "visuals": [
+      {
+        "kind": "term-table",
+        "title": {
+          "dlp": "Information given",
+          "bm": "Maklumat diberi"
+        },
+        "rows": [
+          {
+            "label": "Area",
+            "cells": [
+              "x² − 16 m²"
+            ]
+          },
+          {
+            "label": "Length",
+            "cells": [
+              "x + 4 m"
+            ]
+          },
+          {
+            "label": "Given x",
+            "cells": [
+              "7"
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "subtopic": "2.2",
@@ -743,7 +917,36 @@ export const MATH_F2_C2_BANK: readonly MathF2C2Entry[] = [
           "25 cm²."
         ]
       ]
-    }
+    },
+    "visuals": [
+      {
+        "kind": "term-table",
+        "title": {
+          "dlp": "Information given",
+          "bm": "Maklumat diberi"
+        },
+        "rows": [
+          {
+            "label": "Area",
+            "cells": [
+              "2x² + 7x + 3 cm²"
+            ]
+          },
+          {
+            "label": "Given x",
+            "cells": [
+              "2"
+            ]
+          },
+          {
+            "label": "Find",
+            "cells": [
+              "Side lengths"
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "subtopic": "2.2",
@@ -785,7 +988,36 @@ export const MATH_F2_C2_BANK: readonly MathF2C2Entry[] = [
           "55 cm²."
         ]
       ]
-    }
+    },
+    "visuals": [
+      {
+        "kind": "term-table",
+        "title": {
+          "dlp": "Information given",
+          "bm": "Maklumat diberi"
+        },
+        "rows": [
+          {
+            "label": "Large square",
+            "cells": [
+              "x² cm²"
+            ]
+          },
+          {
+            "label": "Cut-out",
+            "cells": [
+              "9 cm²"
+            ]
+          },
+          {
+            "label": "Given x",
+            "cells": [
+              "8"
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "subtopic": "2.3",
@@ -1047,7 +1279,36 @@ export const MATH_F2_C2_BANK: readonly MathF2C2Entry[] = [
           "4 m."
         ]
       ]
-    }
+    },
+    "visuals": [
+      {
+        "kind": "term-table",
+        "title": {
+          "dlp": "Information given",
+          "bm": "Maklumat diberi"
+        },
+        "rows": [
+          {
+            "label": "Total ribbon",
+            "cells": [
+              "6x²/5 m"
+            ]
+          },
+          {
+            "label": "Number of pieces",
+            "cells": [
+              "3x/2"
+            ]
+          },
+          {
+            "label": "Given x",
+            "cells": [
+              "5"
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "subtopic": "2.3",
@@ -1089,7 +1350,36 @@ export const MATH_F2_C2_BANK: readonly MathF2C2Entry[] = [
           "5 m."
         ]
       ]
-    }
+    },
+    "visuals": [
+      {
+        "kind": "term-table",
+        "title": {
+          "dlp": "Information given",
+          "bm": "Maklumat diberi"
+        },
+        "rows": [
+          {
+            "label": "Garden area",
+            "cells": [
+              "x² − 9 m²"
+            ]
+          },
+          {
+            "label": "Length",
+            "cells": [
+              "x + 3 m"
+            ]
+          },
+          {
+            "label": "Given x",
+            "cells": [
+              "8"
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "subtopic": "2.3",
@@ -1131,7 +1421,36 @@ export const MATH_F2_C2_BANK: readonly MathF2C2Entry[] = [
           "Jumlahnya 2 liter, tidak bergantung pada x."
         ]
       ]
-    }
+    },
+    "visuals": [
+      {
+        "kind": "term-table",
+        "title": {
+          "dlp": "Information given",
+          "bm": "Maklumat diberi"
+        },
+        "rows": [
+          {
+            "label": "Ink per batch",
+            "cells": [
+              "3x/4 L"
+            ]
+          },
+          {
+            "label": "Batches",
+            "cells": [
+              "8/(3x)"
+            ]
+          },
+          {
+            "label": "Given",
+            "cells": [
+              "x > 0"
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "subtopic": "2.3",
@@ -1173,7 +1492,36 @@ export const MATH_F2_C2_BANK: readonly MathF2C2Entry[] = [
           "x ≠ 2."
         ]
       ]
-    }
+    },
+    "visuals": [
+      {
+        "kind": "term-table",
+        "title": {
+          "dlp": "Information given",
+          "bm": "Maklumat diberi"
+        },
+        "rows": [
+          {
+            "label": "Numerator",
+            "cells": [
+              "x² − 4"
+            ]
+          },
+          {
+            "label": "Denominator",
+            "cells": [
+              "x − 2"
+            ]
+          },
+          {
+            "label": "Restriction",
+            "cells": [
+              "x ≠ 2"
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "subtopic": "2.4",
@@ -1435,7 +1783,36 @@ export const MATH_F2_C2_BANK: readonly MathF2C2Entry[] = [
           "7 m."
         ]
       ]
-    }
+    },
+    "visuals": [
+      {
+        "kind": "term-table",
+        "title": {
+          "dlp": "Information given",
+          "bm": "Maklumat diberi"
+        },
+        "rows": [
+          {
+            "label": "Ribbon 1",
+            "cells": [
+              "x/3 m"
+            ]
+          },
+          {
+            "label": "Ribbon 2",
+            "cells": [
+              "x/4 m"
+            ]
+          },
+          {
+            "label": "Given x",
+            "cells": [
+              "12"
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "subtopic": "2.4",
@@ -1477,7 +1854,36 @@ export const MATH_F2_C2_BANK: readonly MathF2C2Entry[] = [
           "12 L."
         ]
       ]
-    }
+    },
+    "visuals": [
+      {
+        "kind": "term-table",
+        "title": {
+          "dlp": "Information given",
+          "bm": "Maklumat diberi"
+        },
+        "rows": [
+          {
+            "label": "Morning",
+            "cells": [
+              "x/2 L"
+            ]
+          },
+          {
+            "label": "Afternoon",
+            "cells": [
+              "x/3 L"
+            ]
+          },
+          {
+            "label": "Loss",
+            "cells": [
+              "x/6 L"
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "subtopic": "2.4",
@@ -1519,7 +1925,36 @@ export const MATH_F2_C2_BANK: readonly MathF2C2Entry[] = [
           "13/3 kg."
         ]
       ]
-    }
+    },
+    "visuals": [
+      {
+        "kind": "term-table",
+        "title": {
+          "dlp": "Information given",
+          "bm": "Maklumat diberi"
+        },
+        "rows": [
+          {
+            "label": "Flour",
+            "cells": [
+              "(x + 2)/4 kg"
+            ]
+          },
+          {
+            "label": "Sugar",
+            "cells": [
+              "(x − 2)/6 kg"
+            ]
+          },
+          {
+            "label": "Given x",
+            "cells": [
+              "10"
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "subtopic": "2.4",
@@ -1561,6 +1996,35 @@ export const MATH_F2_C2_BANK: readonly MathF2C2Entry[] = [
           "3x/6 + 2x/6 = 5x/6."
         ]
       ]
-    }
+    },
+    "visuals": [
+      {
+        "kind": "term-table",
+        "title": {
+          "dlp": "Information given",
+          "bm": "Maklumat diberi"
+        },
+        "rows": [
+          {
+            "label": "First fraction",
+            "cells": [
+              "x/2"
+            ]
+          },
+          {
+            "label": "Second fraction",
+            "cells": [
+              "x/3"
+            ]
+          },
+          {
+            "label": "Claim",
+            "cells": [
+              "2x/5"
+            ]
+          }
+        ]
+      }
+    ]
   }
 ];
