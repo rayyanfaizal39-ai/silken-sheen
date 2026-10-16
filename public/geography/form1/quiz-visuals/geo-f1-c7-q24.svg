@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" role="img" aria-labelledby="title description">
+  <title id="title">Likuan sungai terpenggal</title>
+  <desc id="description">Rajah pelan menunjukkan sungai dengan likuan dan aliran baharu yang memotong pangkal likuan. Dua hujung likuan lama belum tertutup sepenuhnya.</desc>
+  <defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#111f38"/><stop offset="1" stop-color="#091528"/></linearGradient></defs>
+  <rect x="2" y="2" width="716" height="356" rx="22" fill="url(#bg)" stroke="#35506d" stroke-width="3"/>
+  
+  <path d="M92 103H245C370 103 375 252 490 252S596 180 626 180" stroke="#d8c8a4" stroke-width="76" stroke-linecap="round" fill="none"/>
+  <path d="M92 103H245C370 103 375 252 490 252S596 180 626 180" stroke="#2979a6" stroke-width="43" stroke-linecap="round" fill="none"/>
+  <path d="M312 112C355 143 410 166 460 192" stroke="#9dddf5" stroke-width="23" stroke-linecap="round" fill="none"/>
+  <path d="M438 181l20 11-25 7" fill="none" stroke="#fbbf24" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <g font-family="Arial,sans-serif" fill="#f8fafc" font-size="23"><text x="70" y="51">Aliran sungai</text><text x="465" y="76">Aliran pintasan</text></g>
+  <path d="M514 83L432 148" stroke="#fbbf24" stroke-width="3"/>
+  <text x="70" y="326" font-family="Arial,sans-serif" font-size="19" fill="#cbd5e1">Apakah proses seterusnya sebelum tasik ladam lengkap terbentuk?</text>
+
+</svg>
