@@ -16,7 +16,19 @@ export type GeometryPanel = {
     dashed?: boolean;
     fill?: boolean;
   }[];
-  circles?: { centre: GeometryPoint; radius: number }[];
+  circles?: {
+    centre: GeometryPoint;
+    radius: number;
+    /** "none" leaves the inside clear, "shade" marks an area; default is a faint tint. */
+    fill?: "none" | "shade";
+    /** "accent" draws a sky-blue outline (e.g. a pond) instead of gold. */
+    tone?: "accent";
+    dashed?: boolean;
+  }[];
+  /** Shaded ring between two concentric circles (the region left over). */
+  rings?: { centre: GeometryPoint; outer: number; inner: number }[];
+  /** Small solid points, e.g. a circle's centre. */
+  dots?: GeometryPoint[];
   arcs?: {
     centre: GeometryPoint;
     radius: number;
@@ -42,10 +54,13 @@ export type MathGeometryVisual = {
    * layout used by quizzes and other chapters.
    */
   layout?: "compact";
+  /** false omits the "not to scale" note, e.g. for unmeasured vocabulary sketches. */
+  notToScale?: boolean;
 };
 export function describeMathGeometryVisual(
   visual: MathGeometryVisual,
   lang: MathVisualLang,
 ) {
-  return `${visual.title[lang]}. ${visual.panels.map((p) => `${p.title[lang]}. ${p.description[lang]}. ${p.labels.map((l) => textFor(l.text, lang)).join("; ")}`).join(". ")}. ${lang === "bm" ? "Rajah tidak mengikut skala" : "Diagram not to scale"}.`;
+  const scale = visual.notToScale === false ? "" : ` ${lang === "bm" ? "Rajah tidak mengikut skala" : "Diagram not to scale"}.`;
+  return `${visual.title[lang]}. ${visual.panels.map((p) => `${p.title[lang] ? `${p.title[lang]}. ` : ""}${p.description[lang]}. ${p.labels.map((l) => textFor(l.text, lang)).join("; ")}`).join(". ")}.${scale}`;
 }

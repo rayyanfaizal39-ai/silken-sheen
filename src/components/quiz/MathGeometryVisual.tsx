@@ -22,6 +22,49 @@ function PanelDrawing({
   const stroke = compact ? 1.5 : 2;
   const vectorEffect = compact ? "non-scaling-stroke" : undefined;
   const [width, height] = p.viewBox ?? [300, 240];
+  // Compact figures draw filled regions first so lines (radii, chords) sit on
+  // top of shading; the standard layout keeps its original paint order.
+  const lines = (
+    <>
+      {p.paths?.map((path, i) => (
+        <path
+          key={`p${i}`}
+          d={`${path.points.map(([x, y], j) => `${j ? "L" : "M"}${x},${y}`).join(" ")}${path.closed ? " Z" : ""}`}
+          fill={path.fill || (compact && path.closed) ? "#fbbf2412" : "none"}
+          stroke="#fbbf24"
+          strokeWidth={stroke}
+          strokeLinejoin="round"
+          strokeDasharray={path.dashed ? "5 4" : undefined}
+          vectorEffect={vectorEffect}
+        />
+      ))}
+    </>
+  );
+  const regions = (
+    <>
+      {p.rings?.map((ring, i) => {
+        const [x, y] = ring.centre;
+        const loop = (r: number) =>
+          `M${x - r},${y} a${r},${r} 0 1,0 ${2 * r},0 a${r},${r} 0 1,0 ${-2 * r},0 Z`;
+        return (
+          <path key={`r${i}`} d={`${loop(ring.outer)} ${loop(ring.inner)}`} fill="#fbbf2433" fillRule="evenodd" />
+        );
+      })}
+      {p.circles?.map((c, i) => (
+        <circle
+          key={`c${i}`}
+          cx={c.centre[0]}
+          cy={c.centre[1]}
+          r={c.radius}
+          fill={c.fill === "none" ? "none" : c.fill === "shade" ? "#fbbf2433" : "#fbbf2412"}
+          stroke={c.tone === "accent" ? "#38bdf8" : "#fbbf24"}
+          strokeWidth={stroke}
+          strokeDasharray={c.dashed ? "5 4" : undefined}
+          vectorEffect={vectorEffect}
+        />
+      ))}
+    </>
+  );
   return (
     <svg
       viewBox={`0 0 ${width} ${height}`}
@@ -51,29 +94,9 @@ function PanelDrawing({
           ))}
         </g>
       )}
-      {p.paths?.map((path, i) => (
-        <path
-          key={`p${i}`}
-          d={`${path.points.map(([x, y], j) => `${j ? "L" : "M"}${x},${y}`).join(" ")}${path.closed ? " Z" : ""}`}
-          fill={path.fill || (compact && path.closed) ? "#fbbf2412" : "none"}
-          stroke="#fbbf24"
-          strokeWidth={stroke}
-          strokeLinejoin="round"
-          strokeDasharray={path.dashed ? "5 4" : undefined}
-          vectorEffect={vectorEffect}
-        />
-      ))}
-      {p.circles?.map((c, i) => (
-        <circle
-          key={`c${i}`}
-          cx={c.centre[0]}
-          cy={c.centre[1]}
-          r={c.radius}
-          fill="#fbbf2412"
-          stroke="#fbbf24"
-          strokeWidth={stroke}
-          vectorEffect={vectorEffect}
-        />
+      {compact ? <>{regions}{lines}</> : <>{lines}{regions}</>}
+      {p.dots?.map(([x, y], i) => (
+        <circle key={`d${i}`} cx={x} cy={y} r={compact ? 2.5 : 3} fill="#fbbf24" />
       ))}
       {p.arcs?.map((a, i) => {
         const point = (angle: number) => [
@@ -150,9 +173,11 @@ export function MathGeometryVisual({
       >
         {visual.panels.map((p, index) => (
           <div key={index} className="flex flex-col items-center">
-            <p className="mb-1.5 text-center text-sm font-semibold text-amber-200">
-              {p.title[lang]}
-            </p>
+            {p.title[lang] && (
+              <p className="mb-1.5 text-center text-sm font-semibold text-amber-200">
+                {p.title[lang]}
+              </p>
+            )}
             <PanelDrawing
               panel={p}
               lang={lang}
@@ -161,7 +186,7 @@ export function MathGeometryVisual({
             />
           </div>
         ))}
-        <NotToScale lang={lang} className="mt-1" />
+        {visual.notToScale !== false && <NotToScale lang={lang} className="mt-1" />}
       </figure>
     );
   }

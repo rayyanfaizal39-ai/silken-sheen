@@ -1,4 +1,9 @@
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
+import { MathGeometryVisual } from "@/components/quiz/MathGeometryVisual";
+import type { MathGeometryVisual as GeometryVisual } from "@/features/quiz/visuals/mathGeometryVisual";
+import { textFor } from "@/features/quiz/visuals/mathQuestionVisual";
 import { MATH_F2_C5_BANK } from "./flashcard-bank";
 import { mathF2C5FlashcardsDLP } from "./flashcards-dlp";
 import { mathF2C5FlashcardsBM } from "./flashcards-bm";
@@ -30,5 +35,62 @@ describe("Form 2 Maths Chapter 5 flashcards", () => {
         expect(bm.structured?.answer).toHaveLength(3);
       }
     });
+  });
+
+  it("adds compact circle diagrams to every practice and challenge card and 11 of 12 concepts", () => {
+    const withVisual = (mode: string) =>
+      mathF2C5FlashcardsDLP.filter(card => card.reviewMode === mode && card.structured?.visuals?.length);
+    expect(withVisual("practice")).toHaveLength(33);
+    expect(withVisual("challenge")).toHaveLength(15);
+    expect(withVisual("concept")).toHaveLength(11);
+    // The cm² unit question gains nothing from a picture.
+    expect(mathF2C5FlashcardsDLP[42].structured?.visuals).toBeUndefined();
+    mathF2C5FlashcardsDLP.forEach((dlp, i) => {
+      expect(mathF2C5FlashcardsBM[i].structured?.visuals).toEqual(dlp.structured?.visuals);
+      const visual = dlp.structured?.visuals?.[0] as GeometryVisual | undefined;
+      if (!visual) return;
+      expect(visual.kind).toBe("geometry-diagram");
+      expect(visual.layout).toBe("compact");
+      const [panel] = visual.panels;
+      const [width, height] = panel.viewBox!;
+      expect(width).toBe(180);
+      expect(height).toBeLessThanOrEqual(160);
+      for (const l of panel.labels) {
+        expect(l.at[0]).toBeGreaterThanOrEqual(0);
+        expect(l.at[0]).toBeLessThanOrEqual(width);
+        expect(l.at[1]).toBeLessThanOrEqual(height);
+      }
+    });
+  });
+  it("labels diagrams only with the question's own givens, never the answer", () => {
+    MATH_F2_C5_BANK.forEach((entry, i) => {
+      const visual = mathF2C5FlashcardsDLP[i].structured?.visuals?.[0] as GeometryVisual | undefined;
+      if (!visual) return;
+      for (const lang of ["dlp", "bm"] as const) {
+        const side = entry[lang];
+        const question = [side.prompt, ...(side.parts ?? [])].join(" ");
+        const answer = side.answer.flat().join(" ");
+        for (const l of visual.panels[0].labels) {
+          const value = textFor(l.text, lang);
+          const measure = /^(\d+) (cm|mm|m)$/.exec(value);
+          if (measure) expect(question).toContain(value);
+          else expect(value).toMatch(/^(O|\?|r|d|2r|[rdCA] = \?|1 (lap|pusingan) = \?)$/);
+          if (value.length > 1 && value !== "O") expect(answer).not.toContain(`= ${value}`);
+        }
+      }
+    });
+  });
+  it("renders compact markup, with the scale note only on measured diagrams", () => {
+    const html = (i: number, lang: "dlp" | "bm") =>
+      renderToStaticMarkup(createElement(MathGeometryVisual, {
+        visual: mathF2C5FlashcardsDLP[i].structured!.visuals![0] as GeometryVisual,
+        lang,
+      })).replace(/aria-label="[^"]*"/, "");
+    expect(html(0, "dlp")).toContain('data-layout="compact"');
+    expect(html(0, "dlp")).not.toContain("not to scale");
+    expect(html(0, "bm")).not.toContain("tidak mengikut skala");
+    expect(html(57, "dlp").split("not to scale")).toHaveLength(2);
+    expect(html(57, "bm")).toContain("Taman bulat dengan kolam");
+    expect(html(57, "bm")).toContain('fill-rule="evenodd"');
   });
 });
