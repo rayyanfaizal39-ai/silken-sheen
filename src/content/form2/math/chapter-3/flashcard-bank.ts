@@ -872,7 +872,7 @@ export const MATH_F2_C3_BANK: readonly MathF2C3Entry[] = [
     "subtopic": "3.3",
     "mode": "practice",
     "dlp": {
-      "prompt": "A machine does work W = Ft. Find W for F = 15 N and t = 8 m.",
+      "prompt": "A machine does work W = Fd. Find W for F = 15 N and d = 8 m.",
       "answer": [
         [
           "W = 15 × 8 = 120 J."
@@ -880,7 +880,7 @@ export const MATH_F2_C3_BANK: readonly MathF2C3Entry[] = [
       ]
     },
     "bm": {
-      "prompt": "Mesin melakukan kerja W = Ft. Cari W apabila F = 15 N dan t = 8 m.",
+      "prompt": "Mesin melakukan kerja W = Fd. Cari W apabila F = 15 N dan d = 8 m.",
       "answer": [
         [
           "W = 15 × 8 = 120 J."
