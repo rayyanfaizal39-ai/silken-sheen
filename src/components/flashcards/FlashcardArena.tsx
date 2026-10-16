@@ -152,19 +152,6 @@ const FLASHCARD_ARENA_CSS = `
   .fc-face.flashcard-front {
     background: linear-gradient(180deg, var(--fc-surface), var(--fc-surface-deep));
   }
-  /* Chapter 1 Challenge Review: keep the gold zone down to the card midpoint,
-     then transition cleanly into the normal dark arena surface. Using the face
-     background (rather than a content panel) keeps the split at 50% even when
-     long structured questions make the flashcard taller. */
-  .fc-face.flashcard-front:has(.fc-mode-badge[data-mode="challenge"]) {
-    background: linear-gradient(
-      to bottom,
-      #755612 0%,
-      #755612 50%,
-      var(--fc-surface-deep) 50%,
-      var(--fc-surface-deep) 100%
-    );
-  }
   .fc-face.flashcard-back {
     background:
       linear-gradient(135deg, color-mix(in srgb, var(--arena-accent) 13%, transparent), rgba(0, 0, 0, 0.45)),
