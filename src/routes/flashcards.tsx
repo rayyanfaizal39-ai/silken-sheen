@@ -5769,12 +5769,25 @@ function FlashcardsPage() {
       (chapter && hasSelectedChapterFlashcards))
   );
 
-  const flashcardSets = useMemo(() => splitFlashcardDeck(rawPool), [rawPool]);
+  // Form 2 Maths Chapter 1 uses one combined deck with three review modes.
+  // Other subjects continue using their existing three-set selection.
+  const isMathF2C1Combined = subject === "math" && form === "Form 2" && chapter === "Chapter 1";
+  const flashcardSets = useMemo(
+    () => isMathF2C1Combined ? [rawPool, rawPool, rawPool] : splitFlashcardDeck(rawPool),
+    [rawPool, isMathF2C1Combined],
+  );
   const shouldSplitFlashcards = flashcardSets.length > 1;
   const selectedSetIsValid =
     selectedFlashcardSet !== null && selectedFlashcardSet < flashcardSets.length;
   const flashcardSetOptions: FlashcardSetOption[] =
-    subject === "sejarah" && form === "Form 3"
+    isMathF2C1Combined
+      ? (["concept", "practice", "challenge"] as const).map((mode, index) => ({
+          index: index as FlashcardSetIndex,
+          title: REVIEW_MODE_COPY[mode][scienceLang ?? "dlp"].title,
+          range: `${cardsForReviewMode(rawPool, mode).length} cards`,
+          badge: REVIEW_MODE_COPY[mode].icon,
+        }))
+    : subject === "sejarah" && form === "Form 3"
       ? SEJARAH_F3_FLASHCARD_OPTIONS.slice(0, flashcardSets.length)
       : subject === "sejarah" && form === "Form 2" && chapter === "Chapter 2"
         ? SEJARAH_F2_C2_FLASHCARD_SET_OPTIONS
@@ -6257,15 +6270,24 @@ function FlashcardsPage() {
   ) {
     resetSession();
     setSelectedFlashcardSet(setIndex);
-    setSelectedReviewMode(mode);
-    updateFlashcardSearch({ set: setIndex, mode });
+    const combinedMode = isMathF2C1Combined
+      ? (["concept", "practice", "challenge"] as const)[setIndex]
+      : mode;
+    setSelectedReviewMode(combinedMode);
+    updateFlashcardSearch({ set: setIndex, mode: combinedMode });
   }
 
   /** Switch Concept / Practice / Challenge inside the current subtopic set. */
   function selectReviewMode(mode: FlashcardReviewMode | null) {
     if (mode === selectedReviewMode) return;
     setSelectedReviewMode(mode);
-    updateFlashcardSearch({ mode });
+    if (isMathF2C1Combined && mode) {
+      const index = (["concept", "practice", "challenge"] as const).indexOf(mode);
+      setSelectedFlashcardSet(index as FlashcardSetIndex);
+      updateFlashcardSearch({ set: index as FlashcardSetIndex, mode });
+    } else {
+      updateFlashcardSearch({ mode });
+    }
   }
 
   function resetMathFlashcardFlow() {
@@ -6563,7 +6585,7 @@ function FlashcardsPage() {
         : null;
     // After a review mode: the next mode of this subtopic, then the next
     // subtopic's first mode. Other decks keep "next set".
-    const nextModeInSet = activeReviewMode
+    const nextModeInSet = activeReviewMode && !isMathF2C1Combined
       ? (reviewModes[reviewModes.indexOf(activeReviewMode) + 1] ?? null)
       : null;
     const completionNext: { title: string; go: () => void } | null = nextModeInSet
@@ -6660,7 +6682,7 @@ function FlashcardsPage() {
                 ))}
               </div>
             )}
-          {activeReviewMode && (
+          {activeReviewMode && !isMathF2C1Combined && (
             <div
               className="mt-2 flex gap-1.5 overflow-x-auto pb-1"
               role="group"
