@@ -46,3 +46,8 @@ KEEP means the entire live record remains unchanged. CORRECT retains the concept
 ## Validation
 
 Pending implementation and final checks.
+
+
+## Repository status addendum — 16 October 2026
+
+The pending-implementation line above is a historical snapshot of the pre-edit audit. The current repository imports `sejarahF1Chapter3Quizzes` from `src/data/quizzes.ts` into the live `src/data/content.ts` collection; `sej3-quiz.test.ts` contains Chapter 3 registry, answer, coverage and shuffle checks. A subsequent source-level review found 30 questions, four distinct nonempty choices and a valid answer index for each, with an 8 Easy / 15 Medium / 7 Hard split. **Tests and build were not executed as part of the October 16 review**, so this addendum is not a fresh execution sign-off or a page-by-page historical proofread.
