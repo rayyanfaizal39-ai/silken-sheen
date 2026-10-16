@@ -1,83 +1,257 @@
 import type { Flashcard } from "@/data/content";
 
-type FlashcardSeed = [string, string];
+// Form 2 Maths Chapter 1: 1.1 Patterns, 1.2 Sequences, 1.3 Patterns and Sequences.
+// Each subtopic contains 4 recognition, 11 practice and 5 application/error cards.
+// Maintain IDs to preserve existing flashcard progress. Do not regenerate from generic templates.
+const cards: ReadonlyArray<readonly [string, string]> = [
+  [
+    "Which pattern doubles each time: 3, 6, 12, 24 or 3, 6, 9, 12?",
+    "3, 6, 12, 24. Multiply each term by 2."
+  ],
+  [
+    "How many dots follow the triangular pattern 1, 3, 6, 10, ...?",
+    "15 dots. Add 5 to the previous 10."
+  ],
+  [
+    "In Pascal's Triangle, what sits below 3 and 3?",
+    "6, because adjacent entries above are added."
+  ],
+  [
+    "For 1, 1, 2, 3, 5, 8, which rule gives the next term?",
+    "Add the preceding two terms."
+  ],
+  [
+    "Continue: −8, −3, 2, 7, __.",
+    "12. Add 5 each time."
+  ],
+  [
+    "Find the next two terms: 96, 48, 24, __, __.",
+    "12, 6. Divide by 2 repeatedly."
+  ],
+  [
+    "Continue: 2.5, 2.0, 1.5, __, __.",
+    "1.0, 0.5. Subtract 0.5 each time."
+  ],
+  [
+    "Find the 6th term: 4, 9, 14, 19, ...",
+    "29. The 5th term is 24; the 6th is 29."
+  ],
+  [
+    "What comes after 5, 15, 45, 135?",
+    "405. Multiply by 3."
+  ],
+  [
+    "Complete: −12, −6, 0, __, 12.",
+    "6. Add 6 each time."
+  ],
+  [
+    "Pascal's Triangle: complete 1, 4, __, 4, 1.",
+    "6. Add 3 + 3 from the preceding row."
+  ],
+  [
+    "What is the next triangular number after 21?",
+    "28. The successive differences are 2, 3, 4, 5, 6, 7."
+  ],
+  [
+    "Continue the Fibonacci pattern: 2, 3, 5, 8, 13, __.",
+    "21. Add the previous two terms."
+  ],
+  [
+    "Find the missing term: 81, 27, __, 3, 1.",
+    "9. Divide by 3 each time."
+  ],
+  [
+    "What follows: 1, 4, 9, 16, 25, __?",
+    "36 = 6². The terms are consecutive square numbers."
+  ],
+  [
+    "A student says 4, 8, 16, 32 follows +4. Correct?",
+    "No. The rule is ×2, not +4."
+  ],
+  [
+    "Spot the error: 1, 3, 6, 10, 14 are triangular numbers.",
+    "The fifth term is 15, not 14 (add 5 to 10)."
+  ],
+  [
+    "A student calculates Fibonacci 3, 5, 8, 13, 20. Fix it.",
+    "The next term is 21, because 8 + 13 = 21."
+  ],
+  [
+    "A tile design adds 4 tiles per stage. Stage 1 has 5. Stage 4?",
+    "17 tiles: 5 + 3 × 4."
+  ],
+  [
+    "A plant grows 2 cm weekly from 6 cm. Height after 4 weeks?",
+    "14 cm: 6 + 4 × 2."
+  ],
+  [
+    "Which is arithmetic: 2, 5, 8, 11 or 2, 4, 8, 16?",
+    "2, 5, 8, 11. The difference is constantly +3."
+  ],
+  [
+    "Does 50, 40, 30, 20 have a constant difference?",
+    "Yes. Each consecutive difference is −10."
+  ],
+  [
+    "Which term position is immediately before T₈?",
+    "T₇, the seventh term."
+  ],
+  [
+    "Sequence 1, 4, 9, 16: which visual model fits?",
+    "Squares of side lengths 1, 2, 3, 4."
+  ],
+  [
+    "Complete: 7, 11, __, 19, 23.",
+    "15. Common difference = 4."
+  ],
+  [
+    "Find T₇ if T₁ = 3 and the difference is +5.",
+    "33: 3 + 6(5)."
+  ],
+  [
+    "Find T₆: 90, 82, 74, ...",
+    "50: 90 − 5(8)."
+  ],
+  [
+    "Find T₅: 2, 6, 18, 54, ...",
+    "162: multiply by 3 four times from T₁."
+  ],
+  [
+    "What is T₄ in 64, 32, 16, ...?",
+    "8. Halve each term."
+  ],
+  [
+    "The sequence starts −5 and adds 7. Find T₄.",
+    "16: −5 + 3(7)."
+  ],
+  [
+    "Find the missing term: 3, __, 15, 21, 27.",
+    "9. Each term increases by 6."
+  ],
+  [
+    "Find T₁₀ if T₁ = 2 and common difference = 3.",
+    "29: 2 + 9(3)."
+  ],
+  [
+    "Find the position of 25 in 5, 9, 13, 17, ...",
+    "T₆. Solve 5 + 4(n−1) = 25."
+  ],
+  [
+    "Find T₆: 1.2, 2.4, 3.6, ...",
+    "7.2. Add 1.2 five times to T₁."
+  ],
+  [
+    "A sequence decreases by 6: 31, 25, 19, ... Find T₈.",
+    "−11: 31 − 7(6)."
+  ],
+  [
+    "Spot the error: 5, 10, 15, ... has T₆ = 25.",
+    "Incorrect. T₆ = 30."
+  ],
+  [
+    "Why is 2, 5, 9, 14 not an arithmetic sequence?",
+    "Differences are 3, 4, 5, not a constant."
+  ],
+  [
+    "A student finds T₅ = 20 for 3, 7, 11, ... Correct?",
+    "No. T₅ = 19: 3, 7, 11, 15, 19."
+  ],
+  [
+    "Bus departures every 15 minutes start 08:00. Fifth departure?",
+    "09:00. Four intervals pass after the first departure."
+  ],
+  [
+    "A game scores 10, 15, 20 points in rounds 1–3. Round 8?",
+    "45 points: 10 + 7(5)."
+  ],
+  [
+    "For 4, 7, 10, 13, ... what is the common difference?",
+    "3."
+  ],
+  [
+    "Which formula gives 4, 7, 10, 13 when n starts at 1?",
+    "Tₙ = 3n + 1."
+  ],
+  [
+    "Which expression represents the 1st, 2nd, 3rd terms: 2n + 3?",
+    "5, 7, 9 for n = 1, 2, 3."
+  ],
+  [
+    "For Tₙ = 5n − 2, what is T₁?",
+    "3: 5(1) − 2."
+  ],
+  [
+    "Find T₈ for Tₙ = 3n + 4.",
+    "28: 3(8) + 4."
+  ],
+  [
+    "Find a formula for 6, 10, 14, 18, ...",
+    "Tₙ = 4n + 2, where n starts at 1."
+  ],
+  [
+    "Find a formula for 12, 9, 6, 3, ...",
+    "Tₙ = 15 − 3n, where n starts at 1."
+  ],
+  [
+    "Which term is 41 in Tₙ = 4n + 1?",
+    "T₁₀: 4n + 1 = 41, so n = 10."
+  ],
+  [
+    "Tₙ = 2n − 7. Find T₆.",
+    "5: 2(6) − 7."
+  ],
+  [
+    "Tₙ = 7n. What is the sum of T₁ and T₄?",
+    "35: 7 + 28."
+  ],
+  [
+    "The nth term is 5n + 2. Find the 12th term.",
+    "62: 5(12) + 2."
+  ],
+  [
+    "Find n if Tₙ = 3n − 1 and Tₙ = 20.",
+    "n = 7: 3n − 1 = 20."
+  ],
+  [
+    "A hall has 8 seats in row 1, then +2 per row. Row 10?",
+    "26 seats: 8 + 9(2)."
+  ],
+  [
+    "A staircase has 3, 6, 9, 12 blocks. Formula for stage n?",
+    "3n blocks."
+  ],
+  [
+    "A student uses Tₙ = 4n + 4 for 4, 8, 12, ... Fix it.",
+    "Tₙ = 4n if the first term is n = 1."
+  ],
+  [
+    "For 1, 9, 17, ... is Tₙ = 1 + 8n correct with n = 1?",
+    "No. Use Tₙ = 8n − 7, or 1 + 8n with n = 0."
+  ],
+  [
+    "Spot the mistake: T₅ of 3n + 2 is 3 + 5 + 2.",
+    "Substitute n = 5: 3(5) + 2 = 17."
+  ],
+  [
+    "Ticket prices rise RM2 each year from RM10 in year 1. Year 6?",
+    "RM20: 10 + 5(2)."
+  ],
+  [
+    "A savings plan deposits RM5 in week 1, then +RM3 weekly. Week 8?",
+    "RM26: 5 + 7(3)."
+  ],
+  [
+    "Is 2n + 1 an odd number for every whole n ≥ 0?",
+    "Yes. Twice a whole number is even; adding 1 makes it odd."
+  ]
+];
 
-function buildFlashcards(items: FlashcardSeed[]): Flashcard[] {
-  return items.map(([front, back], index) => ({
-    id: `math-f2-c1-dlp-f${index + 1}`,
-    subjectId: "math",
-    form: "Form 2",
-    chapter: "Chapter 1",
-    lang: "dlp",
-    front,
-    back,
-  }));
-}
-
-export const mathF2C1FlashcardsDLP: Flashcard[] = buildFlashcards([
-  // Deck 1: Patterns (Cards 1-20)
-  ["What is a pattern?", "A list of numbers or objects arranged based on a rule or design."],
-  ["How is an object pattern recognised?", "Observe how the arrangement of previous objects changes."],
-  ["How is a number pattern recognised?", "Compare one number with the next number to find the rule."],
-  ["What are the four basic operations for number patterns?", "Addition, subtraction, multiplication and division."],
-  ["What are even numbers?", "Numbers that can be divided by 2 exactly."],
-  ["What are odd numbers?", "Numbers that cannot be divided by 2 exactly."],
-  ["What is the pattern for -10, -4, 2, 8, ...?", "Add 6 to the previous number."],
-  ["What is the pattern for 17, 7, -3, -13, ...?", "Subtract 10 from the previous number."],
-  ["What is the pattern for 2, 6, 18, 54, ...?", "Multiply the previous number by 3."],
-  ["What is the pattern for 81, 27, 9, 3, ...?", "Divide the previous number by 3."],
-  ["What is the pattern for -2.3, -2.6, -2.9, -3.2, ...?", "Subtract 0.3 from the previous number."],
-  ["What is the first step to find a number pattern?", "Compare consecutive terms."],
-  ["What is Pascal's Triangle?", "A triangular arrangement of numbers that starts with 1."],
-  ["What number is at both ends of each Pascal's Triangle row?", "Each row starts and ends with 1."],
-  ["How is a middle number in Pascal's Triangle obtained?", "Add the two numbers directly above it."],
-  ["What is the row after 1, 3, 3, 1?", "1, 4, 6, 4, 1."],
-  ["What are Fibonacci Numbers?", "A number pattern where each next term is the sum of the previous two terms."],
-  ["How do the Fibonacci Numbers in the notes begin?", "0, 1, 1."],
-  ["What is the term after 0, 1, 1, 2, 3, 5?", "8."],
-  ["What is a common mistake in Fibonacci Numbers?", "Adding only one previous term instead of the previous two terms."],
-
-  // Deck 2: Sequences (Cards 21-40)
-  ["What is a sequence?", "A set of numbers or objects arranged according to a certain pattern."],
-  ["When is a set of numbers a sequence?", "When it follows a certain pattern."],
-  ["What is the main condition of a sequence rule?", "The same rule must continue throughout the sequence."],
-  ["Is -10, -6, -2, 2, 6, ... a sequence?", "Yes, because the pattern is add 4."],
-  ["What is the pattern of a sequence?", "The rule that links one term to the next."],
-  ["How is a missing term found?", "Apply the same rule from the known terms."],
-  ["Complete: 7, 13, __, 25, ...", "19."],
-  ["Complete: 88, __, 64, 52, ...", "76."],
-  ["What sequence starts with 96 and subtracts 4?", "96, 92, 88, 84, 80, 76, ..."],
-  ["What sequence starts with 7 and multiplies by 3?", "7, 21, 63, 189, 567, 1701, ..."],
-  ["What sequence starts with 21.3 and subtracts 8?", "21.3, 13.3, 5.3, -2.7, -10.7, ..."],
-  ["What sequence starts with 400 and divides by 5?", "400, 80, 16, 3.2, 0.64, 0.128, ..."],
-  ["What is a number sequence?", "A sequence made of numbers."],
-  ["What types of numbers can be in number sequences?", "Whole numbers, negative numbers, decimals and fractions."],
-  ["What are triangular numbers?", "Numbers represented by dots that form equilateral triangles."],
-  ["State the early triangular numbers.", "1, 3, 6, 10, 15, 21, 28, 36, ..."],
-  ["If an add-7 pattern starts with 42, what is T2?", "49."],
-  ["If an add-7 pattern starts with 42, what is T6?", "77."],
-  ["What is a tip for division patterns?", "Check by multiplying backward."],
-  ["What is a common mistake in number sequences?", "Changing the rule halfway through the sequence."],
-
-  // Deck 3: Patterns and Sequences (Cards 41-60)
-  ["What are the three ways to describe a sequence pattern?", "Using numbers, words and algebraic expressions."],
-  ["What does describing a pattern using numbers mean?", "Showing the operation between terms, such as +8."],
-  ["What does describing a pattern using words mean?", "Writing the rule in a sentence, such as add 8 to the previous number."],
-  ["What is an algebraic expression?", "An expression involving numbers, variables or mathematical entities."],
-  ["What is the number pattern for 1, 9, 17, 25, 33, ...?", "+8, +8, +8, +8."],
-  ["What is the word pattern for 1, 9, 17, 25, 33, ...?", "Add 8 to the previous number."],
-  ["What is the algebraic expression for 1, 9, 17, 25, 33, ...?", "1 + 8n, where n = 0, 1, 2, 3, ..."],
-  ["In 1 + 8n, what is n for the first term?", "n = 0."],
-  ["What is the formula for a fixed-addition pattern?", "a + dn, where n = 0, 1, 2, 3, ..."],
-  ["What does Tn mean?", "The n-th term."],
-  ["What does T1 mean?", "The first term."],
-  ["What does T2 mean?", "The second term."],
-  ["For 4, 8, 12, 16, ..., what is T3?", "12."],
-  ["For 2, 10, 18, ..., what is the 5th term?", "34."],
-  ["For 65, 60, 55, 50, ..., which term is 40?", "The 6th term."],
-  ["What are the steps to solve sequence problems?", "Understand, plan, implement and write a conclusion."],
-  ["What is the time interval formula?", "Interval = total time / number of equal parts."],
-  ["If fish are fed 4 times a day, what is the interval?", "24 / 4 = 6 hours."],
-  ["If T1 = 7:35 a.m. and the interval is 6 hours, what is T3?", "7:35 p.m."],
-  ["What is a common mistake with Tn terms?", "Confusing the term number with the term value."],
-]);
+export const mathF2C1FlashcardsDLP: Flashcard[] = cards.map(([front, back], index) => ({
+  id: `math-f2-c1-dlp-f${index + 1}`,
+  subjectId: "math",
+  form: "Form 2",
+  chapter: "Chapter 1",
+  lang: "dlp",
+  front,
+  back,
+}));
