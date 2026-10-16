@@ -88,6 +88,7 @@ All retained SVGs were rasterised and inspected together at desktop and 320-pixe
 - `npm run build`: **passed**, including client/server builds and Cloudflare Pages packaging.
 - `npx tsc --noEmit`: **not green**. Remaining diagnostics are in untouched files: Form 2 Science `chapter-7-9-10-visual-integration.test.tsx:305` and `chapter-9/chapter-9-heat-visuals.test.tsx:523` (`string | undefined`), plus missing `jsqr`/`pngjs` declarations in `features/business-card/qr-code.test.ts`. The optional-ID errors introduced during this audit were fixed.
 - Full targeted ESLint also reports repository formatting/line-ending errors. A separate semantic lint run with only `prettier/prettier` disabled reports **zero errors, three existing route hook/fast-refresh warnings**. This is not described as an unqualified lint pass; no shared files were reformatted wholesale.
+- Final image-width change: all **47 visual/live-route tests passed again**; production build passed again. Full ESLint passes for the new renderer, its test, visual map, re-audit test and live-route test after line-ending normalization.
 - `git diff --check`: passed.
 
 These checks support code/content review, **not merge/release approval**. Remaining gates: outstanding TypeScript/formatting checks and deployment-log verification. Exhaustive browser review of every mapping is not claimed. Full independent textbook verification of every retained sentence is not claimed.
