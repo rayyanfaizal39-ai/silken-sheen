@@ -13,7 +13,7 @@ import {
  * fraction tokens without changing stored card text or progress IDs.
  */
 export function MathFlashcardText({ value }: { value: string }) {
-  const fraction = /(\\([^()]+\\)|[A-Za-z0-9²³]+)\\/(\\([^()]+\\)|[A-Za-z0-9²³]+)/g;
+  const fraction = /(\([^()]+\)|[A-Za-z0-9²³]+)\/(\([^()]+\)|[A-Za-z0-9²³]+)/g;
   const parts: Array<string | { top: string; bottom: string }> = [];
   let last = 0;
   for (const match of value.matchAll(fraction)) {
