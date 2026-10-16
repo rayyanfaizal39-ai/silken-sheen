@@ -9,14 +9,10 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Easy",
     question: "Gas manakah terdapat dalam kuantiti paling banyak dalam udara?",
-    options: [
-      "Oksigen",
-      "Karbon dioksida",
-      "Nitrogen",
-      "Helium",
-    ],
+    options: ["Oksigen", "Karbon dioksida", "Nitrogen", "Helium"],
     answerIndex: 2,
-    explanation: "Nitrogen merupakan gas yang paling banyak dalam udara, manakala oksigen ialah gas kedua paling banyak.",
+    explanation:
+      "Nitrogen merupakan gas yang paling banyak dalam udara, manakala oksigen ialah gas kedua paling banyak.",
   },
   {
     id: "sci-f1-c7-bm-q2",
@@ -45,7 +41,8 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
       "Komponen udara hanya boleh diasingkan melalui kaedah kimia",
     ],
     answerIndex: 1,
-    explanation: "Udara ialah campuran beberapa jenis gas seperti nitrogen, oksigen, karbon dioksida dan gas nadir serta komponen lain seperti wap air dan habuk.",
+    explanation:
+      "Udara ialah campuran beberapa jenis gas seperti nitrogen, oksigen, karbon dioksida dan gas nadir serta komponen lain seperti wap air dan habuk.",
   },
   {
     id: "sci-f1-c7-bm-q4",
@@ -74,12 +71,13 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
     question: "Apakah komponen utama udara?",
     options: [
       "Nitrogen, oksigen, karbon dioksida dan gas nadir",
-      "Oksigen sahaja",
-      "Karbon dioksida sahaja",
-      "Asap dan habuk sahaja",
+      "Oksigen, hidrogen, karbon monoksida dan gas nadir",
+      "Nitrogen, hidrogen, karbon monoksida dan sulfur dioksida",
+      "Oksigen, karbon dioksida, sulfur dioksida dan klorin",
     ],
     answerIndex: 0,
-    explanation: "Udara ialah campuran beberapa gas termasuk nitrogen, oksigen, karbon dioksida dan gas nadir.",
+    explanation:
+      "Udara ialah campuran beberapa gas termasuk nitrogen, oksigen, karbon dioksida dan gas nadir.",
   },
   {
     id: "sci-f1-c7-bm-q6",
@@ -88,7 +86,8 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 7",
     lang: "bm",
     difficulty: "Easy",
-    question: "Jika salah satu daripada tiga syarat pembakaran disingkirkan, apakah yang akan berlaku?",
+    question:
+      "Jika salah satu daripada tiga syarat pembakaran disingkirkan, apakah yang akan berlaku?",
     options: [
       "Pembakaran akan berterusan selagi salah satu syarat masih tersedia",
       "Pembakaran akan berhenti",
@@ -96,7 +95,8 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
       "Pembakaran akan menjadi lebih cepat kerana kurang syarat diperlukan",
     ],
     answerIndex: 1,
-    explanation: "Pembakaran hanya boleh berlaku jika oksigen, haba dan bahan api semuanya tersedia.",
+    explanation:
+      "Pembakaran hanya boleh berlaku jika oksigen, haba dan bahan api semuanya tersedia.",
   },
   {
     id: "sci-f1-c7-bm-q7",
@@ -113,7 +113,8 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
       "Oksigen digunakan untuk menggantikan keperluan organisma terhadap makanan",
     ],
     answerIndex: 0,
-    explanation: "Oksigen diperlukan dalam respirasi sel bagi membantu membebaskan tenaga daripada glukosa.",
+    explanation:
+      "Oksigen diperlukan dalam respirasi sel bagi membantu membebaskan tenaga daripada glukosa.",
   },
   {
     id: "sci-f1-c7-bm-q8",
@@ -123,7 +124,12 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Easy",
     question: "Apakah kepentingan karbon dioksida kepada tumbuhan?",
-    options: ["Digunakan dalam fotosintesis", "Digunakan untuk respirasi manusia", "Membantu api menyala", "Menjadi gas utama udara"],
+    options: [
+      "Digunakan dalam fotosintesis untuk menghasilkan makanan",
+      "Diserap semasa respirasi untuk membebaskan tenaga",
+      "Dibebaskan oleh akar semasa penyerapan air",
+      "Ditukarkan terus kepada garam mineral oleh daun",
+    ],
     answerIndex: 0,
     explanation: "Tumbuhan menggunakan karbon dioksida semasa fotosintesis untuk membuat makanan.",
   },
@@ -149,7 +155,8 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
     question: "Gas nadir manakah digunakan dalam lampu papan tanda berwarna?",
     options: ["Neon", "Helium", "Nitrogen", "Oksigen"],
     answerIndex: 0,
-    explanation: "Neon digunakan dalam lampu papan tanda kerana menghasilkan cahaya berwarna terang.",
+    explanation:
+      "Neon digunakan dalam lampu papan tanda kerana menghasilkan cahaya berwarna terang.",
   },
   {
     id: "sci-f1-c7-bm-q11",
@@ -160,13 +167,14 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     question: "Apakah pembakaran?",
     options: [
-      "Tindak balas bahan api dengan oksigen yang menghasilkan haba dan cahaya",
-      "Proses tumbuhan membuat makanan",
-      "Proses gas menjadi cecair",
-      "Proses mengasingkan campuran",
+      "Bahan yang dipanaskan bertindak balas dalam oksigen dan membebaskan tenaga haba dan cahaya",
+      "Bahan yang dipanaskan bertindak balas dalam nitrogen dan membebaskan tenaga haba dan cahaya",
+      "Bahan yang dipanaskan berubah keadaan tanpa menghasilkan bahan baharu",
+      "Bahan yang dipanaskan menyerap oksigen tanpa membebaskan haba atau cahaya",
     ],
     answerIndex: 0,
-    explanation: "Pembakaran berlaku apabila bahan api bertindak balas dengan oksigen dan menghasilkan haba serta cahaya.",
+    explanation:
+      "Pembakaran bermaksud tindak balas yang berlaku apabila suatu bahan dipanaskan dengan kehadiran oksigen dan membebaskan tenaga haba dan tenaga cahaya.",
   },
   {
     id: "sci-f1-c7-bm-q12",
@@ -200,7 +208,8 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
       "Pergerakan udara dari kawasan bertekanan tinggi ke kawasan bertekanan rendah",
     ],
     answerIndex: 0,
-    explanation: "Pencemaran udara berlaku apabila bahan pencemar hadir dalam atmosfera pada tahap yang boleh menyebabkan kemudaratan.",
+    explanation:
+      "Pencemaran udara berlaku apabila bahan pencemar hadir dalam atmosfera pada tahap yang boleh menyebabkan kemudaratan.",
   },
   {
     id: "sci-f1-c7-bm-q14",
@@ -229,7 +238,8 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
       "Penyejatan air dari permukaan tasik",
     ],
     answerIndex: 0,
-    explanation: "Pembakaran terbuka menghasilkan asap dan zarah terampai yang boleh menyebabkan jerebu.",
+    explanation:
+      "Pembakaran terbuka menghasilkan asap dan zarah terampai yang boleh menyebabkan jerebu.",
   },
   {
     id: "sci-f1-c7-bm-q16",
@@ -246,7 +256,8 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
       "Membebaskan oksigen semasa pembakaran",
     ],
     answerIndex: 1,
-    explanation: "Fotosintesis membebaskan oksigen ke atmosfera dan membantu mengekalkan keseimbangan kitar oksigen.",
+    explanation:
+      "Fotosintesis membebaskan oksigen ke atmosfera dan membantu mengekalkan keseimbangan kitar oksigen.",
   },
   {
     id: "sci-f1-c7-bm-q17",
@@ -256,7 +267,12 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question: "Proses manakah menambahkan karbon dioksida ke atmosfera?",
-    options: ["Respirasi, pereputan dan pembakaran", "Fotosintesis sahaja", "Penghutanan semula sahaja", "Penggunaan helium"],
+    options: [
+      "Respirasi, pereputan dan pembakaran",
+      "Fotosintesis, pereputan dan pembakaran",
+      "Respirasi, fotosintesis dan pembakaran",
+      "Respirasi, pereputan dan fotosintesis",
+    ],
     answerIndex: 0,
     explanation: "Respirasi, pereputan dan pembakaran membebaskan karbon dioksida ke atmosfera.",
   },
@@ -268,9 +284,15 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question: "Apakah cara mengekalkan keseimbangan oksigen dan karbon dioksida?",
-    options: ["Penghutanan semula", "Pembalakan haram", "Pembakaran terbuka", "Meningkatkan asap kilang"],
+    options: [
+      "Penghutanan semula",
+      "Pembalakan haram",
+      "Pembakaran terbuka",
+      "Meningkatkan asap kilang",
+    ],
     answerIndex: 0,
-    explanation: "Penghutanan semula menambah tumbuhan yang menjalankan fotosintesis dan membantu keseimbangan gas.",
+    explanation:
+      "Penghutanan semula menambah tumbuhan yang menjalankan fotosintesis dan membantu keseimbangan gas.",
   },
   {
     id: "sci-f1-c7-bm-q19",
@@ -280,7 +302,12 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question: "Apakah kaedah memadam api secara penyejukan?",
-    options: ["Menurunkan suhu bahan terbakar", "Menambah oksigen", "Menambah bahan api", "Menambah asap"],
+    options: [
+      "Menurunkan suhu bahan yang terbakar",
+      "Memutuskan bekalan oksigen kepada bahan yang terbakar",
+      "Memutuskan bahan api daripada bahan yang terbakar",
+      "Mengasingkan bahan yang belum terbakar daripada api",
+    ],
     answerIndex: 0,
     explanation: "Kaedah penyejukan menurunkan suhu supaya api tidak terus menyala.",
   },
@@ -299,7 +326,8 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
       "Selimut menukarkan bahan api kepada bahan yang tidak boleh terbakar",
     ],
     answerIndex: 1,
-    explanation: "Apabila bekalan oksigen terputus, salah satu syarat pembakaran tidak lagi dipenuhi lalu api terpadam.",
+    explanation:
+      "Apabila bekalan oksigen terputus, salah satu syarat pembakaran tidak lagi dipenuhi lalu api terpadam.",
   },
   {
     id: "sci-f1-c7-bm-q21",
@@ -308,15 +336,17 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 7",
     lang: "bm",
     difficulty: "Medium",
-    question: "Apakah fungsi alat pemadam api karbon dioksida?",
+    question:
+      "Buku teks menyenaraikan semburan lapisan karbon dioksida sebagai teknik mendinginkan. Syarat pembakaran manakah disingkirkan melalui penyejukan?",
     options: [
-      "Memadam api dengan mengurangkan oksigen di sekitar api",
-      "Menambah oksigen kepada api",
-      "Menghasilkan air minuman",
-      "Menghasilkan bahan api baharu",
+      "Haba yang mencukupi",
+      "Sumber bahan api",
+      "Kehadiran oksigen sahaja",
+      "Kebolehbakaran bahan api",
     ],
     answerIndex: 0,
-    explanation: "Karbon dioksida menyelimut api dan mengurangkan bekalan oksigen.",
+    explanation:
+      "Penyejukan menurunkan suhu bahan yang terbakar, menyingkirkan haba mencukupi yang diperlukan untuk pembakaran berterusan.",
   },
   {
     id: "sci-f1-c7-bm-q22",
@@ -337,15 +367,16 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 7",
     lang: "bm",
     difficulty: "Medium",
-    question: "Apakah kesan karbon monoksida kepada manusia?",
+    question: "Kesan karbon monoksida manakah diterangkan dalam bab ini?",
     options: [
-      "Mengurangkan keupayaan darah membawa oksigen",
-      "Membantu fotosintesis",
-      "Menyuburkan tumbuhan",
-      "Menyejukkan Bumi",
+      "Sakit kepala dan kemungkinan membawa maut",
+      "Pembentukan lubang pada lapisan ozon",
+      "Pengakisan bangunan batu kapur",
+      "Pengurangan cahaya yang sampai ke daun tumbuhan",
     ],
     answerIndex: 0,
-    explanation: "Karbon monoksida berbahaya kerana mengganggu pengangkutan oksigen dalam darah.",
+    explanation:
+      "Karbon monoksida ialah bahan pencemar udara yang boleh menyebabkan sakit kepala dan membawa maut. Bahan pencemar lain mempunyai kesan berbeza terhadap alam sekitar.",
   },
   {
     id: "sci-f1-c7-bm-q24",
@@ -354,7 +385,8 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 7",
     lang: "bm",
     difficulty: "Medium",
-    question: "Apakah kesan yang boleh berlaku jika kandungan karbon dioksida dalam atmosfera meningkat secara berlebihan?",
+    question:
+      "Apakah kesan yang boleh berlaku jika kandungan karbon dioksida dalam atmosfera meningkat secara berlebihan?",
     options: [
       "Kesan rumah hijau menjadi lebih kuat dan suhu Bumi boleh meningkat",
       "Kesan rumah hijau menjadi lebih lemah dan suhu Bumi boleh menurun",
@@ -362,7 +394,8 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
       "Kesan rumah hijau tidak berubah kerana hanya oksigen mempengaruhi pengekalan haba",
     ],
     answerIndex: 0,
-    explanation: "Peningkatan karbon dioksida boleh menguatkan kesan rumah hijau dan menyumbang kepada peningkatan suhu global.",
+    explanation:
+      "Peningkatan karbon dioksida boleh menguatkan kesan rumah hijau dan menyumbang kepada peningkatan suhu global.",
   },
   {
     id: "sci-f1-c7-bm-q25",
@@ -371,7 +404,8 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 7",
     lang: "bm",
     difficulty: "Medium",
-    question: "Langkah manakah paling sesuai untuk membantu mengurangkan pencemaran udara daripada kenderaan?",
+    question:
+      "Langkah manakah paling sesuai untuk membantu mengurangkan pencemaran udara daripada kenderaan?",
     options: [
       "Menggalakkan penggunaan pengangkutan awam",
       "Menggalakkan setiap penumpang menggunakan kereta berasingan",
@@ -379,7 +413,8 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
       "Menangguhkan penyelenggaraan enjin yang mengeluarkan asap berlebihan",
     ],
     answerIndex: 0,
-    explanation: "Penggunaan pengangkutan awam boleh mengurangkan bilangan kenderaan di jalan raya dan seterusnya mengurangkan pelepasan bahan pencemar.",
+    explanation:
+      "Penggunaan pengangkutan awam boleh mengurangkan bilangan kenderaan di jalan raya dan seterusnya mengurangkan pelepasan bahan pencemar.",
   },
   {
     id: "sci-f1-c7-bm-q26",
@@ -388,15 +423,17 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 7",
     lang: "bm",
     difficulty: "Hard",
-    question: "Mengapakah oksigen penting untuk pembakaran?",
+    question:
+      "Murid membandingkan lilin serupa dalam balang tertutup yang mengandungi isi padu udara yang sama komposisi tetapi berbeza isi padu. Pelan manakah paling baik menguji kesan isi padu udara terhadap tempoh nyalaan?",
     options: [
-      "Oksigen membolehkan bahan api terbakar dan menghasilkan haba",
-      "Oksigen memadam semua api",
-      "Oksigen menukar api kepada air",
-      "Oksigen ialah bahan api utama",
+      "Malarkan saiz lilin dan keadaan awal; ubah isi padu udara dan ukur tempoh nyalaan",
+      "Malarkan isi padu udara; ubah saiz lilin dan ukur tempoh nyalaan",
+      "Ubah isi padu udara dan saiz lilin serentak; ukur tempoh nyalaan",
+      "Ubah isi padu udara; bandingkan hanya baki lilin, bukan tempoh nyalaan",
     ],
     answerIndex: 0,
-    explanation: "Pembakaran memerlukan oksigen. Tanpa oksigen, api tidak dapat terus menyala.",
+    explanation:
+      "Mengubah isi padu udara sambil mengawal saiz lilin dan keadaan awal membolehkan kesannya terhadap tempoh nyalaan diuji. Bagi komposisi udara yang sama, isi padu udara lebih besar mengandungi lebih banyak oksigen.",
   },
   {
     id: "sci-f1-c7-bm-q27",
@@ -404,7 +441,7 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 7",
     lang: "bm",
-    difficulty: "Hard",
+    difficulty: "Medium",
     question: "Mengapakah jerebu yang teruk boleh menjejaskan kesihatan manusia?",
     options: [
       "Zarah dan bahan pencemar dalam udara boleh memasuki sistem respirasi",
@@ -413,7 +450,8 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
       "Zarah jerebu hanya menjejaskan kesihatan apabila jarak penglihatan menjadi sifar",
     ],
     answerIndex: 0,
-    explanation: "Zarah halus dan bahan pencemar boleh memasuki salur pernafasan dan menjejaskan sistem respirasi.",
+    explanation:
+      "Zarah halus dan bahan pencemar boleh memasuki salur pernafasan dan menjejaskan sistem respirasi.",
   },
   {
     id: "sci-f1-c7-bm-q28",
@@ -422,15 +460,17 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 7",
     lang: "bm",
     difficulty: "Hard",
-    question: "Penebangan hutan secara besar-besaran boleh meningkatkan kandungan karbon dioksida di atmosfera. Apakah sebab yang paling tepat?",
+    question:
+      "Hutan ditebang dan pokok yang ditebang dibakar. Pasangan manakah menerangkan kesan serta-merta gabungan ini terhadap karbon dioksida atmosfera?",
     options: [
-      "Lebih sedikit tumbuhan tersedia untuk menyerap karbon dioksida semasa fotosintesis",
-      "Lebih sedikit tumbuhan menyebabkan semua haiwan berhenti menjalankan respirasi",
-      "Lebih sedikit tumbuhan menyebabkan kadar fotosintesis keseluruhan meningkat",
-      "Lebih sedikit tumbuhan menyebabkan lebih banyak karbon dioksida diserap oleh tumbuhan yang tinggal",
+      "Pokok yang berkurang menyingkirkan kurang karbon dioksida; pembakaran membebaskan lebih banyak karbon dioksida",
+      "Kurang fotosintesis membebaskan karbon dioksida; pembakaran menyingkirkan karbon dioksida",
+      "Kurang fotosintesis menyingkirkan lebih banyak karbon dioksida; pembakaran membebaskan karbon dioksida",
+      "Kurang fotosintesis menyingkirkan karbon dioksida; pembakaran menukarkannya kepada oksigen",
     ],
     answerIndex: 0,
-    explanation: "Apabila bilangan tumbuhan berkurang, kurang karbon dioksida diserap melalui fotosintesis.",
+    explanation:
+      "Pokok yang berkurang menyebabkan kurang penyingkiran karbon dioksida melalui fotosintesis, manakala pembakaran membebaskan karbon dioksida tambahan.",
   },
   {
     id: "sci-f1-c7-bm-q29",
@@ -438,8 +478,9 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 7",
     lang: "bm",
-    difficulty: "Hard",
-    question: "Sebuah kawasan perumahan mengalami pencemaran udara akibat pembakaran sampah secara terbuka. Apakah tindakan paling sesuai?",
+    difficulty: "Medium",
+    question:
+      "Sebuah kawasan perumahan mengalami pencemaran udara akibat pembakaran sampah secara terbuka. Apakah tindakan paling sesuai?",
     options: [
       "Memindahkan pembakaran sampah ke kawasan lapang berhampiran rumah",
       "Menghentikan pembakaran terbuka dan mengurus sisa melalui kaedah pelupusan atau kitar semula yang sesuai",
@@ -447,7 +488,8 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
       "Membakar sampah dalam timbunan kecil setiap hari tanpa mengubah kaedah pelupusan",
     ],
     answerIndex: 1,
-    explanation: "Menghentikan pembakaran terbuka dan menggunakan kaedah pengurusan sisa yang betul dapat mengurangkan pelepasan asap dan bahan pencemar.",
+    explanation:
+      "Menghentikan pembakaran terbuka dan menggunakan kaedah pengurusan sisa yang betul dapat mengurangkan pelepasan asap dan bahan pencemar.",
   },
   {
     id: "sci-f1-c7-bm-q30",
@@ -456,14 +498,16 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 7",
     lang: "bm",
     difficulty: "Hard",
-    question: "Mengapakah hujan asid merosakkan bangunan dan tumbuhan?",
+    question:
+      "Sampel batu kapur serupa dibiarkan untuk masa yang sama dalam isi padu air hujan berasid dan air bersih yang sama. Sampel berasid lebih terhakis. Kesimpulan manakah disokong, dan mengapakah air bersih digunakan?",
     options: [
-      "Sifat berasidnya menghakis bahan dan merosakkan tisu tumbuhan",
-      "Ia mengandungi helium",
-      "Ia meningkatkan oksigen kepada 78%",
-      "Ia menukar semua tanah menjadi air",
+      "Air hujan berasid meningkatkan pengakisan; air bersih menyediakan perbandingan",
+      "Semua air mengakis batu kapur secara sama; air bersih menyediakan perbandingan",
+      "Air hujan berasid meningkatkan pengakisan; air bersih membekalkan asid",
+      "Air hujan berasid menghalang pengakisan; air bersih mengubah jenis batuan",
     ],
     answerIndex: 0,
-    explanation: "Hujan asid boleh menghakis bangunan dan merosakkan daun serta tanah.",
+    explanation:
+      "Perbandingan menyokong kesan dalam buku teks bahawa hujan asid mengakis struktur batu kapur. Sampel air bersih membantu membezakan kesan ini daripada pendedahan kepada air sahaja.",
   },
 ];

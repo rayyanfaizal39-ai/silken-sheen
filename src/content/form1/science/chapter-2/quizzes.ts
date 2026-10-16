@@ -618,7 +618,7 @@ const pairs: Chapter2QuizPair[] = [
         "Sistem pencernaan → perut → sel; sistem pengangkutan → daun → sel",
       ],
       answerIndex: 0,
-      explanation: "Kedua-dua laluan pertama bergerak daripada sel kepada tisu dan kemudian organ.",
+      explanation: "Kedua-dua laluan dalam jawapan yang betul bergerak daripada sel kepada tisu dan kemudian organ.",
     },
     dlp: {
       question: "Which paired pathways preserve the same organisation levels in animal and plant?",
@@ -629,7 +629,7 @@ const pairs: Chapter2QuizPair[] = [
         "Digestive system → stomach → cell; transport system → leaf → cell",
       ],
       answerIndex: 0,
-      explanation: "Both first pathways move from cell to tissue and then organ.",
+      explanation: "Both pathways in the correct answer move from cell to tissue and then organ.",
     },
   },
   {

@@ -33,7 +33,8 @@ export const scienceF1C5QuizzesBM: QuizQuestion[] = [
       "Udara mempunyai jisim tetapi tidak memenuhi ruang",
     ],
     answerIndex: 2,
-    explanation: "Jirim ialah sesuatu yang mempunyai jisim dan memenuhi ruang. Udara memenuhi kedua-dua ciri tersebut.",
+    explanation:
+      "Jirim ialah sesuatu yang mempunyai jisim dan memenuhi ruang. Udara memenuhi kedua-dua ciri tersebut.",
   },
   {
     id: "sci-f1-c5-bm-q3",
@@ -74,9 +75,9 @@ export const scienceF1C5QuizzesBM: QuizQuestion[] = [
     question: "Apakah maksud memenuhi ruang?",
     options: [
       "Mempunyai isi padu",
-      "Tidak boleh dilihat",
-      "Tidak mempunyai berat",
-      "Menghasilkan cahaya",
+      "Mempunyai bentuk tetap",
+      "Mempunyai suhu tetap",
+      "Mempunyai ketumpatan tinggi",
     ],
     answerIndex: 0,
     explanation: "Objek yang memenuhi ruang mempunyai isi padu.",
@@ -91,7 +92,8 @@ export const scienceF1C5QuizzesBM: QuizQuestion[] = [
     question: "Antara berikut, yang manakah sifat fizik jirim?",
     options: ["Takat lebur", "Kebolehbakaran", "Pengaratan", "Penguraian"],
     answerIndex: 0,
-    explanation: "Takat lebur ialah sifat fizik kerana boleh dikenal pasti tanpa menghasilkan bahan baharu.",
+    explanation:
+      "Takat lebur ialah sifat fizik kerana boleh dikenal pasti tanpa menghasilkan bahan baharu.",
   },
   {
     id: "sci-f1-c5-bm-q7",
@@ -103,7 +105,8 @@ export const scienceF1C5QuizzesBM: QuizQuestion[] = [
     question: "Antara berikut, yang manakah sifat kimia jirim?",
     options: ["Kebolehbakaran", "Takat didih", "Ketumpatan", "Keterlarutan"],
     answerIndex: 0,
-    explanation: "Kebolehbakaran ialah sifat kimia kerana bahan boleh berubah kepada bahan baharu apabila terbakar.",
+    explanation:
+      "Kebolehbakaran ialah sifat kimia kerana bahan boleh berubah kepada bahan baharu apabila terbakar.",
   },
   {
     id: "sci-f1-c5-bm-q8",
@@ -112,8 +115,13 @@ export const scienceF1C5QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 5",
     lang: "bm",
     difficulty: "Easy",
-    question: "Apakah keadaan jirim yang mempunyai bentuk tetap dan isi padu tetap?",
-    options: ["Pepejal", "Cecair", "Gas", "Wap"],
+    question: "Gabungan manakah menerangkan pepejal?",
+    options: [
+      "Bentuk tetap dan isi padu tetap",
+      "Bentuk tetap dan isi padu berubah",
+      "Bentuk berubah dan isi padu tetap",
+      "Bentuk berubah dan isi padu berubah",
+    ],
     answerIndex: 0,
     explanation: "Pepejal mempunyai bentuk tetap dan isi padu tetap.",
   },
@@ -141,8 +149,14 @@ export const scienceF1C5QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 5",
     lang: "bm",
     difficulty: "Easy",
-    question: "Apakah keadaan jirim yang mengikut bentuk bekas tetapi mempunyai isi padu tetap?",
-    options: ["Cecair", "Pepejal", "Gas", "Cahaya"],
+    question:
+      "Air dituang dari botol sempit ke dalam mangkuk lebar tanpa kehilangan air. Perubahan manakah dijangka?",
+    options: [
+      "Bentuk berubah tetapi isi padu kekal sama",
+      "Bentuk kekal sama tetapi isi padu berubah",
+      "Bentuk dan isi padu kedua-duanya kekal sama",
+      "Bentuk dan isi padu kedua-duanya bertambah",
+    ],
     answerIndex: 0,
     explanation: "Cecair mengikut bentuk bekas tetapi isi padunya tetap.",
   },
@@ -161,7 +175,8 @@ export const scienceF1C5QuizzesBM: QuizQuestion[] = [
       "Jisim setiap zarah gas berkurang apabila tekanan dikenakan",
     ],
     answerIndex: 0,
-    explanation: "Ruang yang besar antara zarah gas membolehkan zarah-zarahnya dirapatkan apabila tekanan dikenakan.",
+    explanation:
+      "Ruang yang besar antara zarah gas membolehkan zarah-zarahnya dirapatkan apabila tekanan dikenakan.",
   },
   {
     id: "sci-f1-c5-bm-q12",
@@ -178,7 +193,8 @@ export const scienceF1C5QuizzesBM: QuizQuestion[] = [
       "Penghasilan bahan baharu",
     ],
     answerIndex: 0,
-    explanation: "Resapan berlaku apabila zarah bergerak dari kawasan berkepekatan tinggi ke kawasan berkepekatan rendah.",
+    explanation:
+      "Resapan berlaku apabila zarah bergerak dari kawasan berkepekatan tinggi ke kawasan berkepekatan rendah.",
   },
   {
     id: "sci-f1-c5-bm-q13",
@@ -187,8 +203,13 @@ export const scienceF1C5QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 5",
     lang: "bm",
     difficulty: "Easy",
-    question: "Dalam keadaan jirim manakah resapan berlaku paling cepat?",
-    options: ["Gas", "Cecair", "Pepejal", "Ais"],
+    question: "Urutan manakah menunjukkan resapan daripada paling cepat kepada paling perlahan?",
+    options: [
+      "Gas → cecair → pepejal",
+      "Cecair → gas → pepejal",
+      "Pepejal → cecair → gas",
+      "Gas → pepejal → cecair",
+    ],
     answerIndex: 0,
     explanation: "Resapan paling cepat dalam gas kerana zarah gas bergerak bebas dan laju.",
   },
@@ -212,7 +233,12 @@ export const scienceF1C5QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Easy",
     question: "Apakah rumus ketumpatan?",
-    options: ["Ketumpatan = Jisim / Isi padu", "Ketumpatan = Isi padu / Jisim", "Ketumpatan = Jisim x Suhu", "Ketumpatan = Daya / Luas"],
+    options: [
+      "Ketumpatan = Jisim / Isi padu",
+      "Ketumpatan = Isi padu / Jisim",
+      "Ketumpatan = Jisim x Suhu",
+      "Ketumpatan = Daya / Luas",
+    ],
     answerIndex: 0,
     explanation: "Ketumpatan dikira dengan membahagikan jisim dengan isi padu.",
   },
@@ -223,15 +249,12 @@ export const scienceF1C5QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 5",
     lang: "bm",
     difficulty: "Medium",
-    question: "Dua bahan mempunyai warna yang sama tetapi takat didih yang berbeza. Sifat manakah paling sesuai digunakan untuk membezakan kedua-dua bahan tersebut?",
-    options: [
-      "Warna bahan",
-      "Takat didih",
-      "Bentuk bekas",
-      "Kuantiti bahan",
-    ],
+    question:
+      "Dua bahan mempunyai warna yang sama tetapi takat didih yang berbeza. Sifat manakah paling sesuai digunakan untuk membezakan kedua-dua bahan tersebut?",
+    options: ["Warna bahan", "Takat didih", "Bentuk bekas", "Kuantiti bahan"],
     answerIndex: 1,
-    explanation: "Takat didih ialah sifat fizik yang boleh digunakan untuk mengenal pasti dan mengelaskan bahan.",
+    explanation:
+      "Takat didih ialah sifat fizik yang boleh digunakan untuk mengenal pasti dan mengelaskan bahan.",
   },
   {
     id: "sci-f1-c5-bm-q17",
@@ -242,10 +265,10 @@ export const scienceF1C5QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     question: "Mengapakah gas mengikut bentuk dan isi padu bekas?",
     options: [
-      "Zarah gas berjauhan dan bergerak bebas",
-      "Zarah gas tersusun rapat dan tetap",
-      "Gas tidak mempunyai zarah",
-      "Gas sentiasa menjadi pepejal",
+      "Zarah berjauhan dan bergerak bebas ke seluruh bekas",
+      "Zarah rapat dan bergetar pada kedudukan tetap",
+      "Zarah rapat dan menggelongsor antara satu sama lain",
+      "Zarah berjauhan tetapi kekal pada kedudukan tetap",
     ],
     answerIndex: 0,
     explanation: "Zarah gas berjauhan dan bergerak bebas, jadi gas memenuhi seluruh bekas.",
@@ -257,7 +280,8 @@ export const scienceF1C5QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 5",
     lang: "bm",
     difficulty: "Medium",
-    question: "Apakah yang berlaku kepada zarah pepejal apabila pepejal dipanaskan sehingga melebur?",
+    question:
+      "Apakah yang berlaku kepada zarah pepejal apabila pepejal dipanaskan sehingga melebur?",
     options: [
       "Zarah membebaskan haba lalu bergetar semakin perlahan pada kedudukan tetap",
       "Zarah menyerap haba, bergerak lebih aktif dan akhirnya dapat bergerak antara satu sama lain",
@@ -265,7 +289,8 @@ export const scienceF1C5QuizzesBM: QuizQuestion[] = [
       "Zarah membebaskan haba lalu susunannya menjadi semakin teratur",
     ],
     answerIndex: 1,
-    explanation: "Semasa pemanasan, zarah menyerap tenaga haba. Pergerakannya meningkat sehingga susunan tetap pepejal tidak lagi dapat dikekalkan.",
+    explanation:
+      "Semasa pemanasan, zarah menyerap tenaga haba. Pergerakannya meningkat sehingga susunan tetap pepejal tidak lagi dapat dikekalkan.",
   },
   {
     id: "sci-f1-c5-bm-q19",
@@ -273,7 +298,7 @@ export const scienceF1C5QuizzesBM: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 5",
     lang: "bm",
-    difficulty: "Medium",
+    difficulty: "Easy",
     question: "Perubahan cecair kepada gas pada takat didih dikenali sebagai apa?",
     options: ["Pendidihan", "Pembekuan", "Kondensasi", "Peleburan"],
     answerIndex: 0,
@@ -286,7 +311,8 @@ export const scienceF1C5QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 5",
     lang: "bm",
     difficulty: "Medium",
-    question: "Wap air membentuk titisan air pada permukaan luar gelas yang sejuk. Apakah yang berlaku kepada zarah wap air?",
+    question:
+      "Wap air membentuk titisan air pada permukaan luar gelas yang sejuk. Apakah yang berlaku kepada zarah wap air?",
     options: [
       "Zarah menyerap haba, bergerak lebih cepat dan menjadi lebih berjauhan",
       "Zarah membebaskan haba, bergerak lebih cepat dan menjadi lebih berjauhan",
@@ -294,7 +320,8 @@ export const scienceF1C5QuizzesBM: QuizQuestion[] = [
       "Zarah menyerap haba, bergerak lebih perlahan dan menjadi lebih rapat",
     ],
     answerIndex: 2,
-    explanation: "Semasa kondensasi, gas membebaskan haba. Zarah kehilangan tenaga kinetik, bergerak lebih perlahan dan menjadi lebih rapat untuk membentuk cecair.",
+    explanation:
+      "Semasa kondensasi, gas membebaskan haba. Zarah kehilangan tenaga kinetik, bergerak lebih perlahan dan menjadi lebih rapat untuk membentuk cecair.",
   },
   {
     id: "sci-f1-c5-bm-q21",
@@ -315,7 +342,8 @@ export const scienceF1C5QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 5",
     lang: "bm",
     difficulty: "Medium",
-    question: "Ais sedang melebur pada takat leburnya. Walaupun haba terus dibekalkan, suhu ais dan air kekal sama untuk suatu tempoh. Mengapakah hal ini berlaku?",
+    question:
+      "Ais sedang melebur pada takat leburnya. Walaupun haba terus dibekalkan, suhu ais dan air kekal sama untuk suatu tempoh. Mengapakah hal ini berlaku?",
     options: [
       "Tenaga haba digunakan untuk mengatasi daya tarikan antara zarah semasa perubahan keadaan",
       "Tenaga haba digunakan untuk menambahkan jisim setiap zarah ais",
@@ -323,7 +351,8 @@ export const scienceF1C5QuizzesBM: QuizQuestion[] = [
       "Tenaga haba tidak lagi diserap selagi masih terdapat ais",
     ],
     answerIndex: 0,
-    explanation: "Semasa perubahan keadaan, tenaga haba digunakan untuk mengatasi daya tarikan antara zarah, bukannya meningkatkan suhu.",
+    explanation:
+      "Semasa perubahan keadaan, tenaga haba digunakan untuk mengatasi daya tarikan antara zarah, bukannya meningkatkan suhu.",
   },
   {
     id: "sci-f1-c5-bm-q23",
@@ -332,15 +361,12 @@ export const scienceF1C5QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 5",
     lang: "bm",
     difficulty: "Medium",
-    question: "100 g air dibekukan sepenuhnya menjadi ais tanpa kehilangan bahan daripada bekas. Apakah jisim ais yang terbentuk?",
-    options: [
-      "Kurang daripada 100 g",
-      "Lebih daripada 100 g",
-      "0 g",
-      "100 g",
-    ],
+    question:
+      "100 g air dibekukan sepenuhnya menjadi ais tanpa kehilangan bahan daripada bekas. Apakah jisim ais yang terbentuk?",
+    options: ["Kurang daripada 100 g", "Lebih daripada 100 g", "0 g", "100 g"],
     answerIndex: 3,
-    explanation: "Jisim kekal tidak berubah semasa perubahan fizik jika tiada bahan masuk atau keluar daripada sistem.",
+    explanation:
+      "Jisim kekal tidak berubah semasa perubahan fizik jika tiada bahan masuk atau keluar daripada sistem.",
   },
   {
     id: "sci-f1-c5-bm-q24",
@@ -361,15 +387,12 @@ export const scienceF1C5QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 5",
     lang: "bm",
     difficulty: "Medium",
-    question: "Pakaian basah menjadi kering apabila dijemur. Proses manakah yang menyebabkan air pada pakaian berubah menjadi wap air?",
-    options: [
-      "Kondensasi",
-      "Penyejatan",
-      "Pembekuan",
-      "Pemejalwapan",
-    ],
+    question:
+      "Pakaian basah menjadi kering apabila dijemur. Proses manakah yang menyebabkan air pada pakaian berubah menjadi wap air?",
+    options: ["Kondensasi", "Penyejatan", "Pembekuan", "Pemejalwapan"],
     answerIndex: 1,
-    explanation: "Penyejatan ialah perubahan cecair kepada gas yang berlaku pada permukaan cecair.",
+    explanation:
+      "Penyejatan menukarkan air cecair kepada wap air dan boleh berlaku pada sebarang suhu.",
   },
   {
     id: "sci-f1-c5-bm-q26",
@@ -378,15 +401,17 @@ export const scienceF1C5QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 5",
     lang: "bm",
     difficulty: "Hard",
-    question: "Mengapakah gas meresap lebih cepat berbanding pepejal?",
+    question:
+      "Kuprum(II) sulfat merebak lebih cepat dalam air berbanding agar-agar pada suhu yang sama. Kesimpulan dan syarat ujian manakah wajar?",
     options: [
-      "Zarah gas berjauhan dan bergerak lebih bebas",
-      "Zarah gas tersusun rapat",
-      "Gas mempunyai isi padu tetap",
-      "Pepejal tidak mempunyai zarah",
+      "Resapan lebih cepat dalam cecair; suhu perlu dimalarkan",
+      "Resapan lebih cepat dalam pepejal; suhu perlu dimalarkan",
+      "Resapan lebih cepat dalam cecair; gunakan suhu berbeza untuk perbandingan",
+      "Resapan sama cepat; masa penyebaran yang berbeza boleh diabaikan",
     ],
     answerIndex: 0,
-    explanation: "Zarah gas berjauhan dan bergerak laju, jadi resapan berlaku lebih cepat.",
+    explanation:
+      "Pemerhatian menyokong resapan lebih cepat dalam cecair berbanding pepejal. Suhu yang sama membolehkan medium resapan dibandingkan.",
   },
   {
     id: "sci-f1-c5-bm-q27",
@@ -394,16 +419,17 @@ export const scienceF1C5QuizzesBM: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 5",
     lang: "bm",
-    difficulty: "Hard",
+    difficulty: "Medium",
     question: "Mengapakah ais terapung di atas air?",
     options: [
       "Ais kurang tumpat daripada air",
       "Ais lebih tumpat daripada air",
-      "Ais tidak mempunyai jisim",
-      "Air bukan jirim",
+      "Ais dan air mempunyai ketumpatan yang sama",
+      "Ais terapung kerana semua pepejal terapung dalam cecair",
     ],
     answerIndex: 0,
-    explanation: "Objek kurang tumpat daripada cecair akan terapung. Ais kurang tumpat daripada air.",
+    explanation:
+      "Objek kurang tumpat daripada cecair akan terapung. Ais kurang tumpat daripada air.",
   },
   {
     id: "sci-f1-c5-bm-q28",
@@ -411,16 +437,18 @@ export const scienceF1C5QuizzesBM: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 5",
     lang: "bm",
-    difficulty: "Hard",
-    question: "Jika haba terus dibekalkan kepada cecair, apakah ramalan terbaik tentang zarahnya?",
+    difficulty: "Medium",
+    question:
+      "Cecair sedang mendidih sambil haba terus dibekalkan. Suhunya kekal malar. Pernyataan manakah tentang haba dan zarah adalah betul?",
     options: [
-      "Zarah bergerak lebih laju dan boleh berubah menjadi gas",
-      "Zarah menjadi lebih rapat dan tetap",
-      "Zarah hilang sepenuhnya",
-      "Zarah bertukar menjadi bunyi",
+      "Haba mengatasi daya tarikan antara zarah semasa cecair berubah menjadi gas",
+      "Haba membesarkan setiap zarah manakala cecair tidak berubah",
+      "Haba tidak lagi diserap sehingga semua cecair hilang",
+      "Haba terus meningkatkan tenaga kinetik zarah sepanjang suhu malar",
     ],
     answerIndex: 0,
-    explanation: "Haba meningkatkan tenaga kinetik zarah. Cecair boleh berubah menjadi gas melalui pendidihan atau penyejatan.",
+    explanation:
+      "Semasa pendidihan, haba digunakan untuk mengatasi daya tarikan antara zarah. Suhu kekal malar semasa perubahan keadaan.",
   },
   {
     id: "sci-f1-c5-bm-q29",
@@ -428,11 +456,18 @@ export const scienceF1C5QuizzesBM: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 5",
     lang: "bm",
-    difficulty: "Hard",
-    question: "Ali mahu menguji sama ada sesuatu bahan mudah terbakar. Apakah jenis sifat yang diuji?",
-    options: ["Sifat kimia", "Sifat fizik", "Isi padu", "Jisim sahaja"],
+    difficulty: "Medium",
+    question:
+      "Dua ujikaji dijalankan: P meleburkan lilin, manakala Q membakar pita magnesium sehingga terbentuk serbuk putih. Pernyataan manakah membezakan perubahan kimia daripada perubahan fizik?",
+    options: [
+      "Q menghasilkan bahan baharu, manakala P hanya mengalami peleburan",
+      "P menghasilkan bahan baharu, manakala Q hanya mengalami peleburan",
+      "Kedua-duanya menghasilkan bahan baharu kerana haba digunakan",
+      "Kedua-duanya hanya berubah bentuk tanpa menghasilkan bahan baharu",
+    ],
     answerIndex: 0,
-    explanation: "Kebolehbakaran ialah sifat kimia kerana pembakaran menghasilkan bahan baharu.",
+    explanation:
+      "Pembakaran magnesium menghasilkan magnesium oksida, iaitu bahan baharu; peleburan lilin terutama melibatkan perubahan keadaan fizik tanpa menghasilkan bahan baharu.",
   },
   {
     id: "sci-f1-c5-bm-q30",
@@ -441,14 +476,16 @@ export const scienceF1C5QuizzesBM: QuizQuestion[] = [
     chapter: "Chapter 5",
     lang: "bm",
     difficulty: "Hard",
-    question: "Sebuah objek tenggelam dalam air. Apakah kesimpulan paling sesuai?",
+    question:
+      "Objek X berjisim 24 g dan berisi padu 30 cm³, manakala objek Y berjisim 42 g dan berisi padu 30 cm³. Kedua-duanya dimasukkan ke dalam air berketumpatan 1.0 g cm⁻³. Apakah ramalan yang betul?",
     options: [
-      "Objek itu lebih tumpat daripada air",
-      "Objek itu kurang tumpat daripada air",
-      "Objek itu bukan jirim",
-      "Objek itu tidak mempunyai isi padu",
+      "X terapung manakala Y tenggelam",
+      "X tenggelam manakala Y terapung",
+      "Kedua-dua objek terapung",
+      "Kedua-dua objek tenggelam",
     ],
     answerIndex: 0,
-    explanation: "Objek yang lebih tumpat daripada cecair akan tenggelam.",
+    explanation:
+      "Ketumpatan X = 24 ÷ 30 = 0.8 g cm⁻³ (kurang daripada air), manakala Y = 42 ÷ 30 = 1.4 g cm⁻³ (lebih daripada air). Oleh itu X terapung dan Y tenggelam.",
   },
 ];

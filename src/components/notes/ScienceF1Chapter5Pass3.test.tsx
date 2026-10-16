@@ -242,7 +242,7 @@ describe("Chapter 5 final pass", () => {
         /changesOfState\s*[:=]\s*\[|conservationExperiments\s*[:=]\s*\[|everydayExamples\s*[:=]\s*\[|"Mass remains|"Jisim kekal/,
       );
   });
-  it("keeps approved Pass 1 and Pass 2 component files byte-for-byte unchanged", () => {
+  it("keeps approved Pass 1 and Pass 2 content unchanged across LF and CRLF checkouts", () => {
     const hashes = {
       Chapter5MatterInNature: "d4e49a586aed670523b72548cbb7c341b13dba9c3cec880809048f6e072dece2",
       Chapter5ParticleStates: "78888866cd8cb796167f1cc7c1adea39f9b2a380f6581f44a49d9a51d10a555e",
@@ -251,7 +251,10 @@ describe("Chapter 5 final pass", () => {
     for (const [file, hash] of Object.entries(hashes))
       expect(
         createHash("sha256")
-          .update(readFileSync(`src/components/notes/blocks/${file}.tsx`))
+          .update(
+            // Git may convert LF to CRLF on Windows; retain every other byte.
+            readFileSync(`src/components/notes/blocks/${file}.tsx`, "utf8").replace(/\r\n/g, "\n"),
+          )
           .digest("hex"),
       ).toBe(hash);
   });
