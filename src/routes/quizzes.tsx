@@ -1,3 +1,4 @@
+import { getGeographyF1QuizImageAlt } from "@/content/form1/geography/quiz-visuals";
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { subjects, forms, type Form } from "@/data/subjects-meta";
@@ -22088,7 +22089,7 @@ function QuizzesPage() {
                   {current.image ? (
                     <img
                       src={current.image}
-                      alt=""
+                      alt={getGeographyF1QuizImageAlt(current.image)}
                       className="mb-4 block w-full rounded-xl object-contain"
                     />
                   ) : current.visualKey ? (
@@ -23150,7 +23151,7 @@ function EnglishQuizScreen({
           {current.image ? (
             <img
               src={current.image}
-              alt=""
+              alt={getGeographyF1QuizImageAlt(current.image)}
               className="mb-4 block w-full rounded-xl object-contain"
             />
           ) : current.visualKey ? (

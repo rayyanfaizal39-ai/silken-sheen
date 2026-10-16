@@ -6946,7 +6946,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 2",
     difficulty: "Easy",
     question:
-      "Dengan masjid sebagai titik rujukan, bank berada di hadapan, hospital di belakang dan sekolah di sebelah kiri. Di manakah pejabat pos?",
+      "Dengan masjid sebagai titik rujukan, bank berada di hadapan, hospital di belakang dan sekolah di sebelah kiri. Pejabat pos berada bertentangan dengan sekolah merentasi masjid. Di manakah pejabat pos?",
     options: [
       "Hadapan masjid.",
       "Belakang masjid.",
@@ -6955,7 +6955,7 @@ export const quizzes: QuizQuestion[] = [
     ],
     answerIndex: 3,
     explanation:
-      "Pejabat pos berada di sebelah kanan masjid, kerana hadapan, belakang dan kiri telah diduduki oleh bank, hospital dan sekolah.",
+      "Sekolah berada di sebelah kiri masjid dan pejabat pos terletak bertentangan dengannya merentasi masjid. Oleh itu, pejabat pos berada di sebelah kanan masjid. Kedudukan tidak boleh ditentukan hanya dengan menolak tiga arah lain.",
   },
   {
     id: "geo-f1-c2-q29",
@@ -9278,14 +9278,14 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 7",
     question: "Pernyataan manakah yang membandingkan kepentingan sungai dan tasik dengan betul?",
     options: [
-      "Kedua-duanya menjana hidroelektrik; hanya sungai menjadi sempadan semula jadi",
+      "Kedua-duanya penting untuk hidroelektrik; Sungai Bernam menjadi sempadan Perak–Selangor",
       "Kedua-duanya menjadi sempadan semula jadi; hanya tasik menjana hidroelektrik",
       "Kedua-duanya menjadi sumber protein; hanya tasik digunakan untuk pengangkutan",
       "Kedua-duanya digunakan untuk pengangkutan; hanya sungai menjadi sumber protein",
     ],
     answerIndex: 0,
     explanation:
-      "Sungai dan tasik sama-sama penting untuk hidroelektrik, sumber protein, rekreasi dan kegunaan domestik. Sempadan semula jadi, pengairan serta pengangkutan dan perhubungan ialah kepentingan sungai, contohnya Sungai Bernam, Sungai Muda dan Sungai Rajang.",
+      "Sungai dan tasik sama-sama penting untuk hidroelektrik, sumber protein dan rekreasi. Sungai Bernam menjadi sempadan semula jadi antara Perak dengan Selangor. Ini tidak bermaksud tasik di tempat lain tidak boleh membentuk sempadan.",
   },
 
   // Geografi Form 1 Chapter 8 - Penduduk di Malaysia
@@ -11627,9 +11627,9 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 13",
     question: "Antara berikut, yang manakah penyakit yang boleh menular akibat timbunan sampah?",
     options: [
-      "Darah tinggi dan kencing manis",
-      "Sakit jantung dan strok",
-      "Rabun jauh dan rabun dekat",
+      "Taun, demam denggi dan asma",
+      "Malaria, demam denggi dan diabetes",
+      "Taun, rabun malam dan malaria",
       "Taun, demam denggi dan malaria",
     ],
     answerIndex: 3,

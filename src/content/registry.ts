@@ -39,6 +39,7 @@ import {
 } from "@/data/content";
 import { getSejarahF1Subtopics } from "@/data/sejarah-f1-subtopics";
 import { getEducationalVideo } from "@/data/educationalVideos";
+import { attachGeographyF1QuizVisuals } from "@/content/form1/geography/quiz-visuals";
 import { getGeographyF1Subtopics } from "@/data/geography-f1-subtopics";
 import { getQuizQuestionCount } from "@/lib/quiz-counts";
 import {
@@ -3830,6 +3831,9 @@ export function getChapterQuizQuestions(
     return [];
   }
 
+  if (subjectId === "geography" && form === "Form 1") {
+    return attachGeographyF1QuizVisuals(resolvedQuestions);
+  }
   return resolvedQuestions;
 }
 
