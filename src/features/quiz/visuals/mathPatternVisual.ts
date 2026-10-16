@@ -70,11 +70,13 @@ export type MathPatternVisual =
       missingLabel?: VisualText;
     }
   | {
-      /** k squares in a row made of matchsticks: 3k + 1 sticks. */
+      /** k squares in a row made of matchsticks or rods: 3k + 1 sticks. */
       kind: "matchstick-squares";
       title: LocalizedText;
       stages: number[];
       showCounts?: boolean;
+      /** "rod" draws plain wooden rods (fences, frames); default matchsticks. */
+      material?: "matchstick" | "rod";
     };
 
 export type MathPatternVisualKind = MathPatternVisual["kind"];
@@ -128,6 +130,22 @@ export function matchstickCount(squares: number) {
   return 3 * squares + 1;
 }
 
+/** Shared by the renderer and the screen-reader text so both say the same thing. */
+export function matchstickWords(material: "matchstick" | "rod", lang: MathVisualLang) {
+  const bm = lang === "bm";
+  return material === "rod"
+    ? {
+        shape: bm ? "bingkai" : "frame",
+        shapes: bm ? "bingkai" : "frames",
+        sticks: bm ? "batang kayu" : "rods",
+      }
+    : {
+        shape: bm ? "segi empat" : "square",
+        shapes: bm ? "segi empat" : "squares",
+        sticks: bm ? "batang mancis" : "sticks",
+      };
+}
+
 /** Proper minus sign for negative numbers; decimals keep their digits. */
 export function formatPatternNumber(value: number | string) {
   if (typeof value === "string") return value;
@@ -160,7 +178,7 @@ export function describeMathPatternVisual(visual: MathPatternVisual, lang: MathV
         if (stage === visual.missingStage) return `${label}: ?`;
         return visual.showCounts === false
           ? label
-          : `${label}: ${dotCount(visual.shape, stage)} ${bm ? "titik" : "dots"}`;
+          : `${label}: ${dotCount(visual.shape, stage)} ${bm ? "titik" : dotCount(visual.shape, stage) === 1 ? "dot" : "dots"}`;
       });
       return `${head} ${stages.join("; ")}.`;
     }
@@ -213,15 +231,17 @@ export function describeMathPatternVisual(visual: MathPatternVisual, lang: MathV
       if (visual.missingLabel) stages.push(`${textOf(visual.missingLabel, lang)}: ?`);
       return `${head} ${stages.join("; ")}.`;
     }
-    case "matchstick-squares":
+    case "matchstick-squares": {
+      const words = matchstickWords(visual.material ?? "matchstick", lang);
       return `${head} ${visual.stages
         .map((squares) => {
-          const label = `${squares} ${bm ? "segi empat" : squares === 1 ? "square" : "squares"}`;
+          const label = `${squares} ${squares === 1 ? words.shape : words.shapes}`;
           return visual.showCounts === false
             ? label
-            : `${label}: ${matchstickCount(squares)} ${bm ? "batang mancis" : "matchsticks"}`;
+            : `${label}: ${matchstickCount(squares)} ${words.sticks}`;
         })
         .join("; ")}.`;
+    }
   }
 }
 

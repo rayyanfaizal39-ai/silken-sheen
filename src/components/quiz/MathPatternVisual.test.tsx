@@ -117,7 +117,9 @@ describe("MathPatternVisual rendering", () => {
       object: "chair",
       stages: [{ label: "Row 1", count: 8 }],
     });
-    expect(chairs.match(/<svg/g)).toHaveLength(8);
+    // One row is one SVG (it never wraps); each chair is one shape inside it.
+    expect(chairs.match(/<svg/g)).toHaveLength(1);
+    expect(chairs.match(/<g transform="translate\(/g)).toHaveLength(8);
     const sticks = render({ kind: "matchstick-squares", title, stages: [3], showCounts: false });
     expect(sticks.match(/<line/g)).toHaveLength(10);
   });

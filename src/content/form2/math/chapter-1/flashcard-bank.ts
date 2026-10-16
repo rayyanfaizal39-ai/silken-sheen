@@ -167,6 +167,13 @@ const patterns: MathF2C1FlashcardEntry[] = [
         highlight: [4, 5],
       },
     ],
+    visuals: [
+      {
+        kind: "sequence-steps",
+        title: t("Number pattern", "Corak nombor"),
+        terms: [-8, -3, 2, 7, null, null],
+      },
+    ],
     dlp: {
       prompt: "The number pattern is −8, −3, 2, 7, …",
       parts: ["State the pattern.", "Find the next two numbers."],
@@ -366,6 +373,13 @@ const patterns: MathF2C1FlashcardEntry[] = [
   {
     subtopic: "1.1",
     mode: "practice",
+    visuals: [
+      {
+        kind: "fibonacci-chain",
+        title: t("Fibonacci-type pattern", "Corak jenis Fibonacci"),
+        terms: [1, 3, 4, 7, 11, null, null],
+      },
+    ],
     dlp: {
       prompt: "A Fibonacci-type pattern is 1, 3, 4, 7, 11, …",
       parts: ["Show how 11 is obtained.", "Find the next two numbers."],
@@ -448,99 +462,53 @@ const patterns: MathF2C1FlashcardEntry[] = [
     mode: "challenge",
     visuals: [
       {
-        kind: "pascal-triangle",
-        title: t("Pascal's Triangle, Rows 1–6", "Segi Tiga Pascal, Baris 1–6"),
-        rows: 6,
-        labelRows: true,
-      },
-    ],
-    answerVisuals: [
-      {
-        kind: "term-table",
-        title: t("Sums of the rows", "Hasil tambah baris"),
-        rows: [
-          { label: t("Row", "Baris"), cells: ["1", "2", "3", "4", "7"] },
-          { label: t("Sum", "Hasil tambah"), cells: ["1", "2", "4", "8", "64"] },
-        ],
-      },
-    ],
-    dlp: {
-      prompt: "Pascal's Triangle is shown for Rows 1 to 6.",
-      parts: [
-        "Write Row 7.",
-        "Find the sum of each of Rows 1 to 4 and describe the pattern of the sums.",
-        "Use your pattern to predict the sum of Row 7, then check it with (a).",
-      ],
-      answer: [
-        ["Row 6 is 1, 5, 10, 10, 5, 1.", "Row 7: 1, 6, 15, 20, 15, 6, 1"],
-        ["Sums: 1, 2, 4, 8", "Each sum is the previous sum × 2."],
-        [
-          "Prediction: 8 × 2 × 2 × 2 = 64 (Rows 5, 6, 7 are 16, 32, 64).",
-          "Check: 1 + 6 + 15 + 20 + 15 + 6 + 1 = 64 ✓",
-        ],
-      ],
-      note: "Common error: adding all the numbers of a row to build the next row. Only two neighbouring numbers are added.",
-    },
-    bm: {
-      prompt: "Segi Tiga Pascal ditunjukkan bagi Baris 1 hingga 6.",
-      parts: [
-        "Tulis Baris 7.",
-        "Cari hasil tambah setiap Baris 1 hingga 4 dan huraikan corak hasil tambah itu.",
-        "Gunakan corak itu untuk meramal hasil tambah Baris 7, kemudian semak dengan (a).",
-      ],
-      answer: [
-        ["Baris 6 ialah 1, 5, 10, 10, 5, 1.", "Baris 7: 1, 6, 15, 20, 15, 6, 1"],
-        ["Hasil tambah: 1, 2, 4, 8", "Setiap hasil tambah ialah hasil tambah sebelumnya × 2."],
-        [
-          "Ramalan: 8 × 2 × 2 × 2 = 64 (Baris 5, 6, 7 ialah 16, 32, 64).",
-          "Semak: 1 + 6 + 15 + 20 + 15 + 6 + 1 = 64 ✓",
-        ],
-      ],
-      note: "Kesilapan biasa: menambah semua nombor dalam satu baris untuk membina baris seterusnya. Hanya dua nombor bersebelahan ditambah.",
-    },
-  },
-  {
-    subtopic: "1.1",
-    mode: "challenge",
-    visuals: [
-      {
         kind: "fibonacci-chain",
-        title: t("Flowers in each ring", "Bunga dalam setiap gelang"),
-        terms: [2, 3, 5, 8, null, null],
+        title: t("Seedlings in each flower bed", "Anak benih dalam setiap batas bunga"),
+        terms: [2, 3, 5, 8, null, null, null],
         showSums: true,
       },
     ],
     dlp: {
       prompt:
-        "A garden has rings of flowers. Rings 1 to 4 have 2, 3, 5 and 8 flowers. Each ring has the sum of the flowers in the previous two rings.",
+        "The school gardening club plants seedlings in a row of flower beds. Bed 1 has 2 seedlings and Bed 2 has 3. Each following bed has as many seedlings as the previous two beds together.",
       parts: [
-        "Find the number of flowers in Rings 5 and 6.",
-        "Find the total number of flowers in Rings 1 to 6.",
-        "Sarah says Ring 7 has 29 flowers because she added 8 to Ring 6. Explain her mistake and find the correct number.",
+        "Find the number of seedlings in Beds 5, 6 and 7.",
+        "The club has 100 seedlings and plants the beds in order. How many beds can be completed, and how many seedlings are left over?",
+        "A teacher suggests a simpler plan: start with 2 and add 5 seedlings for each new bed. For 6 beds, which plan uses fewer seedlings, and by how many?",
       ],
       answer: [
-        ["Ring 5: 5 + 8 = 13", "Ring 6: 8 + 13 = 21"],
-        ["2 + 3 + 5 + 8 + 13 + 21 = 52 flowers"],
+        ["Bed 5: 5 + 8 = 13", "Bed 6: 8 + 13 = 21", "Bed 7: 13 + 21 = 34"],
         [
-          "Sarah added a fixed number. The rule adds the previous two rings.",
-          "Ring 7: 13 + 21 = 34 flowers",
+          "Running totals: 2, 5, 10, 18, 31, 52, 86",
+          "Bed 8 needs 21 + 34 = 55, but only 100 − 86 = 14 are left.",
+          "7 beds can be completed, with 14 seedlings left over.",
+        ],
+        [
+          "Fibonacci plan, 6 beds: 2 + 3 + 5 + 8 + 13 + 21 = 52",
+          "Teacher's plan: 2, 7, 12, 17, 22, 27 → total 87",
+          "The Fibonacci plan uses 87 − 52 = 35 fewer seedlings.",
         ],
       ],
     },
     bm: {
       prompt:
-        "Sebuah taman mempunyai beberapa gelang bunga. Gelang 1 hingga 4 mempunyai 2, 3, 5 dan 8 kuntum bunga. Setiap gelang mempunyai hasil tambah bunga dalam dua gelang sebelumnya.",
+        "Kelab berkebun sekolah menanam anak benih dalam sebaris batas bunga. Batas 1 mempunyai 2 anak benih dan Batas 2 mempunyai 3. Setiap batas berikutnya mempunyai bilangan anak benih yang sama dengan jumlah dua batas sebelumnya.",
       parts: [
-        "Cari bilangan bunga dalam Gelang 5 dan Gelang 6.",
-        "Cari jumlah bunga dalam Gelang 1 hingga 6.",
-        "Sarah berkata Gelang 7 mempunyai 29 kuntum bunga kerana dia menambah 8 kepada Gelang 6. Terangkan kesilapannya dan cari bilangan yang betul.",
+        "Cari bilangan anak benih dalam Batas 5, 6 dan 7.",
+        "Kelab itu mempunyai 100 anak benih dan menanam batas mengikut urutan. Berapakah batas yang dapat disiapkan, dan berapakah anak benih yang berbaki?",
+        "Seorang guru mencadangkan pelan yang lebih mudah: mula dengan 2 dan tambah 5 anak benih bagi setiap batas baharu. Bagi 6 batas, pelan manakah menggunakan lebih sedikit anak benih, dan berapa banyak kurangnya?",
       ],
       answer: [
-        ["Gelang 5: 5 + 8 = 13", "Gelang 6: 8 + 13 = 21"],
-        ["2 + 3 + 5 + 8 + 13 + 21 = 52 kuntum"],
+        ["Batas 5: 5 + 8 = 13", "Batas 6: 8 + 13 = 21", "Batas 7: 13 + 21 = 34"],
         [
-          "Sarah menambah nombor tetap. Peraturannya ialah menambah dua gelang sebelumnya.",
-          "Gelang 7: 13 + 21 = 34 kuntum",
+          "Jumlah terkumpul: 2, 5, 10, 18, 31, 52, 86",
+          "Batas 8 memerlukan 21 + 34 = 55, tetapi hanya 100 − 86 = 14 yang tinggal.",
+          "7 batas dapat disiapkan, dengan 14 anak benih berbaki.",
+        ],
+        [
+          "Pelan Fibonacci, 6 batas: 2 + 3 + 5 + 8 + 13 + 21 = 52",
+          "Pelan guru: 2, 7, 12, 17, 22, 27 → jumlah 87",
+          "Pelan Fibonacci menggunakan 87 − 52 = 35 anak benih kurang.",
         ],
       ],
     },
@@ -551,53 +519,63 @@ const patterns: MathF2C1FlashcardEntry[] = [
     visuals: [
       {
         kind: "dot-pattern",
-        title: t("Cans stacked in triangles", "Tin disusun berbentuk segi tiga"),
+        title: t(
+          "Stage n has n rows (each dot is one can)",
+          "Peringkat n mempunyai n baris (setiap titik ialah satu tin)",
+        ),
         shape: "triangle",
-        stages: [1, 2, 3],
+        stages: [1, 2, 3, 4],
+        missingStage: 4,
       },
       {
         kind: "term-table",
         title: t("Cans in each stack", "Tin dalam setiap susunan"),
         rows: [
-          { label: t("Stage", "Peringkat"), cells: ["1", "2", "3", "4", "5", "6"] },
+          { label: t("Rows", "Baris"), cells: ["1", "2", "3", "4", "5", "6"] },
           { label: t("Cans", "Tin"), cells: ["1", "3", "6", null, null, null] },
         ],
       },
     ],
     dlp: {
       prompt:
-        "A shop stacks cans in triangles. Each new bottom row has one more can than the row above it.",
+        "For Canteen Week, the school canteen stacks drink cans in a triangle. The top row has 1 can and each row below has 1 more can than the row above it.",
       parts: [
-        "Complete the table for Stages 4 to 6.",
-        "The shop has 50 cans. What is the largest complete stage it can build, and how many cans are left?",
-        "How many more cans are needed to build the next stage?",
+        "Complete the table for stacks with 4, 5 and 6 rows.",
+        "The canteen has 50 cans. What is the tallest complete stack it can build, and how many cans are left?",
+        "The manager wants a complete stack that uses exactly 40 cans. Explain whether this is possible.",
       ],
       answer: [
-        ["Add 4, 5, 6: Stage 4 = 10, Stage 5 = 15, Stage 6 = 21"],
+        ["Add the new bottom row each time: 6 + 4 = 10, 10 + 5 = 15, 15 + 6 = 21"],
         [
-          "Continue: 28, 36, 45, 55",
-          "Stage 9 uses 45 cans; Stage 10 needs 55, which is more than 50.",
-          "Largest: Stage 9, with 50 − 45 = 5 cans left.",
+          "Continue: 7 rows 28, 8 rows 36, 9 rows 45, 10 rows 55",
+          "55 is more than 50, so the tallest stack has 9 rows.",
+          "Cans left: 50 − 45 = 5",
         ],
-        ["55 − 50 = 5 more cans"],
+        [
+          "The totals jump from 36 (8 rows) to 45 (9 rows).",
+          "40 is not one of the totals, so a complete stack of exactly 40 cans is not possible.",
+        ],
       ],
     },
     bm: {
       prompt:
-        "Sebuah kedai menyusun tin berbentuk segi tiga. Setiap baris bawah yang baharu mempunyai satu tin lebih daripada baris di atasnya.",
+        "Sempena Minggu Kantin, kantin sekolah menyusun tin minuman berbentuk segi tiga. Baris teratas mempunyai 1 tin dan setiap baris di bawahnya mempunyai 1 tin lebih daripada baris di atasnya.",
       parts: [
-        "Lengkapkan jadual bagi Peringkat 4 hingga 6.",
-        "Kedai itu mempunyai 50 tin. Apakah peringkat lengkap terbesar yang boleh dibina, dan berapakah tin yang tinggal?",
-        "Berapakah tin lagi yang diperlukan untuk membina peringkat seterusnya?",
+        "Lengkapkan jadual bagi susunan dengan 4, 5 dan 6 baris.",
+        "Kantin itu mempunyai 50 tin. Apakah susunan lengkap yang paling tinggi dapat dibina, dan berapakah tin yang tinggal?",
+        "Pengurus mahu susunan lengkap yang menggunakan tepat 40 tin. Terangkan sama ada ini mungkin.",
       ],
       answer: [
-        ["Tambah 4, 5, 6: Peringkat 4 = 10, Peringkat 5 = 15, Peringkat 6 = 21"],
+        ["Tambah baris bawah yang baharu setiap kali: 6 + 4 = 10, 10 + 5 = 15, 15 + 6 = 21"],
         [
-          "Teruskan: 28, 36, 45, 55",
-          "Peringkat 9 menggunakan 45 tin; Peringkat 10 memerlukan 55, iaitu lebih daripada 50.",
-          "Terbesar: Peringkat 9, dengan 50 − 45 = 5 tin tinggal.",
+          "Teruskan: 7 baris 28, 8 baris 36, 9 baris 45, 10 baris 55",
+          "55 lebih daripada 50, maka susunan paling tinggi mempunyai 9 baris.",
+          "Tin yang tinggal: 50 − 45 = 5",
         ],
-        ["55 − 50 = 5 tin lagi"],
+        [
+          "Jumlahnya melonjak daripada 36 (8 baris) kepada 45 (9 baris).",
+          "40 bukan salah satu jumlah itu, maka susunan lengkap dengan tepat 40 tin tidak mungkin.",
+        ],
       ],
     },
   },
@@ -606,44 +584,54 @@ const patterns: MathF2C1FlashcardEntry[] = [
     mode: "challenge",
     visuals: [
       {
-        kind: "dot-pattern",
-        title: t("Odd numbers as L-shaped layers", "Nombor ganjil sebagai lapisan berbentuk L"),
-        shape: "square",
-        stages: [1, 2, 3, 4],
-        layers: true,
+        kind: "pascal-triangle",
+        title: t("Display board, Rows 1–7", "Papan pameran, Baris 1–7"),
+        rows: 7,
+        labelRows: true,
+        hidden: [
+          { row: 6, position: 3, label: "P" },
+          { row: 7, position: 4, label: "Q" },
+        ],
       },
     ],
     dlp: {
-      prompt: "Each coloured L-shaped layer adds the next odd number of dots: 1, 3, 5, 7, …",
+      prompt:
+        "The Mathematics Society is making a Pascal's Triangle display board for Open Day. Each number is printed on its own card.",
       parts: [
-        "Find 1 + 3, 1 + 3 + 5 and 1 + 3 + 5 + 7.",
-        "Describe the pattern of these sums using the diagram.",
-        "Hence, find the sum of the first 10 odd numbers without adding them one by one.",
+        "Find the numbers on cards P and Q.",
+        "How many cards are needed for Rows 1 to 7?",
+        "The sum of each row is double the sum of the row above. A teacher says the cards in Row 8 add up to 256. Is the teacher correct? Show your working.",
       ],
       answer: [
-        ["1 + 3 = 4", "1 + 3 + 5 = 9", "1 + 3 + 5 + 7 = 16"],
         [
-          "The sums are square numbers: 2², 3², 4².",
-          "Adding the first k odd numbers completes a k × k square.",
+          "P = 4 + 6 = 10 (the two cards above it in Row 5)",
+          "Q = 10 + 10 = 20 (the two cards above it in Row 6)",
         ],
-        ["10² = 100", "Check: 1 + 3 + 5 + … + 19 = 100 ✓"],
+        ["Row k has k cards.", "1 + 2 + 3 + 4 + 5 + 6 + 7 = 28 cards"],
+        [
+          "Row sums: 1, 2, 4, 8, 16, 32, 64, 128",
+          "Row 8 adds up to 128, not 256. The teacher is not correct; 256 is the sum of Row 9.",
+        ],
       ],
     },
     bm: {
       prompt:
-        "Setiap lapisan berwarna berbentuk L menambah nombor ganjil seterusnya: 1, 3, 5, 7, …",
+        "Persatuan Matematik sedang membina papan pameran Segi Tiga Pascal untuk Hari Terbuka. Setiap nombor dicetak pada kad tersendiri.",
       parts: [
-        "Cari 1 + 3, 1 + 3 + 5 dan 1 + 3 + 5 + 7.",
-        "Huraikan corak hasil tambah ini menggunakan rajah.",
-        "Seterusnya, cari hasil tambah 10 nombor ganjil yang pertama tanpa menambahnya satu demi satu.",
+        "Cari nombor pada kad P dan kad Q.",
+        "Berapakah kad yang diperlukan bagi Baris 1 hingga 7?",
+        "Hasil tambah setiap baris ialah dua kali hasil tambah baris di atasnya. Seorang guru berkata kad dalam Baris 8 berjumlah 256. Adakah guru itu betul? Tunjukkan jalan kerja.",
       ],
       answer: [
-        ["1 + 3 = 4", "1 + 3 + 5 = 9", "1 + 3 + 5 + 7 = 16"],
         [
-          "Hasil tambahnya ialah nombor kuasa dua: 2², 3², 4².",
-          "Menambah k nombor ganjil yang pertama melengkapkan segi empat sama k × k.",
+          "P = 4 + 6 = 10 (dua kad di atasnya dalam Baris 5)",
+          "Q = 10 + 10 = 20 (dua kad di atasnya dalam Baris 6)",
         ],
-        ["10² = 100", "Semak: 1 + 3 + 5 + … + 19 = 100 ✓"],
+        ["Baris k mempunyai k kad.", "1 + 2 + 3 + 4 + 5 + 6 + 7 = 28 kad"],
+        [
+          "Hasil tambah baris: 1, 2, 4, 8, 16, 32, 64, 128",
+          "Baris 8 berjumlah 128, bukan 256. Guru itu tidak betul; 256 ialah hasil tambah Baris 9.",
+        ],
       ],
     },
   },
@@ -652,57 +640,112 @@ const patterns: MathF2C1FlashcardEntry[] = [
     mode: "challenge",
     visuals: [
       {
-        kind: "sequence-steps",
-        title: t("Aiman's pattern", "Corak Aiman"),
-        terms: [3, 6, 12, 24, 48],
-        steps: ["×2", "×2", "×2", "×2"],
-        continues: false,
-      },
-      {
-        kind: "sequence-steps",
-        title: t("Mei Ling's pattern", "Corak Mei Ling"),
-        terms: [3, 6, 12, 21, 33],
-        steps: ["+3", "+6", "+9", "+12"],
-        continues: false,
+        kind: "term-table",
+        title: t("The first lockers in the corridor", "Lokar pertama di koridor"),
+        rows: [
+          { label: t("Locker", "Lokar"), cells: ["1", "2", "3", "4", "5", "6"] },
+          {
+            label: t("Wall", "Dinding"),
+            cells: [
+              t("Left", "Kiri"),
+              t("Right", "Kanan"),
+              t("Left", "Kiri"),
+              t("Right", "Kanan"),
+              t("Left", "Kiri"),
+              t("Right", "Kanan"),
+            ],
+          },
+        ],
       },
     ],
     dlp: {
-      prompt: "A pattern starts 3, 6, 12, … Aiman and Mei Ling continue it differently.",
+      prompt:
+        "A school corridor has 60 lockers numbered 1 to 60. Odd-numbered lockers are on the left wall and even-numbered lockers are on the right wall.",
       parts: [
-        "Describe each student's rule.",
-        "Explain why the first three numbers are not enough to decide the pattern.",
-        "The teacher says the 4th number is 24. Find the 6th number.",
+        "Write the first five locker numbers on the left wall and describe the pattern.",
+        "How many lockers are on the left wall? Explain.",
+        "Mei Ling's locker is number 47. State which wall it is on and its position along that wall.",
       ],
       answer: [
+        ["1, 3, 5, 7, 9", "Add 2 to the previous locker number (odd numbers)."],
+        ["Half of the numbers 1 to 60 are odd.", "60 ÷ 2 = 30 lockers"],
         [
-          "Aiman: multiply the previous number by 2.",
-          "Mei Ling: add 3, 6, 9, 12, … (each increase is 3 more).",
+          "47 is odd, so it is on the left wall.",
+          "Odd numbers before 47: 1, 3, …, 45, that is (45 + 1) ÷ 2 = 23 lockers.",
+          "Mei Ling's locker is the 24th locker on the left wall.",
         ],
-        [
-          "Both rules give 3, 6, 12, so both fit the given numbers.",
-          "More terms or a stated rule are needed.",
-        ],
-        ["24 = 12 × 2, so the rule is × 2.", "5th: 24 × 2 = 48", "6th: 48 × 2 = 96"],
       ],
     },
     bm: {
-      prompt: "Suatu corak bermula 3, 6, 12, … Aiman dan Mei Ling meneruskannya secara berbeza.",
+      prompt:
+        "Sebuah koridor sekolah mempunyai 60 lokar bernombor 1 hingga 60. Lokar bernombor ganjil berada di dinding kiri dan lokar bernombor genap berada di dinding kanan.",
       parts: [
-        "Huraikan peraturan setiap murid.",
-        "Terangkan mengapa tiga nombor pertama tidak cukup untuk menentukan corak.",
-        "Guru berkata nombor ke-4 ialah 24. Cari nombor ke-6.",
+        "Tulis lima nombor lokar pertama di dinding kiri dan huraikan coraknya.",
+        "Berapakah bilangan lokar di dinding kiri? Terangkan.",
+        "Lokar Mei Ling bernombor 47. Nyatakan dinding lokar itu dan kedudukannya di sepanjang dinding itu.",
+      ],
+      answer: [
+        ["1, 3, 5, 7, 9", "Tambah 2 kepada nombor lokar sebelumnya (nombor ganjil)."],
+        ["Separuh daripada nombor 1 hingga 60 ialah nombor ganjil.", "60 ÷ 2 = 30 lokar"],
+        [
+          "47 ialah nombor ganjil, maka lokar itu di dinding kiri.",
+          "Nombor ganjil sebelum 47: 1, 3, …, 45, iaitu (45 + 1) ÷ 2 = 23 lokar.",
+          "Lokar Mei Ling ialah lokar ke-24 di dinding kiri.",
+        ],
+      ],
+    },
+  },
+  {
+    subtopic: "1.1",
+    mode: "challenge",
+    visuals: [
+      {
+        kind: "matchstick-squares",
+        title: t("Fence frames made of wooden rods", "Bingkai pagar daripada batang kayu"),
+        stages: [1, 2, 3],
+        material: "rod",
+      },
+    ],
+    dlp: {
+      prompt:
+        "The gardening club builds a fence from square frames in a row. Neighbouring frames share one wooden rod: 1 frame needs 4 rods, 2 frames need 7 rods and 3 frames need 10 rods.",
+      parts: [
+        "Describe the pattern of the number of rods in words, then find the number of rods for 6 frames.",
+        "The garden edge needs 12 frames. How many rods are needed?",
+        "The club has 50 rods. Check whether this is enough for 17 frames. If not, find the greatest number of frames it can build and the number of rods left.",
+      ],
+      answer: [
+        ["Add 3 rods for each new frame.", "4 frames: 13, 5 frames: 16, 6 frames: 19 rods"],
+        ["12 frames is 11 frames more than 1 frame.", "4 + 11 × 3 = 37 rods"],
+        [
+          "k frames need 3k + 1 rods.",
+          "17 frames: 3 × 17 + 1 = 52 rods, so 50 rods are not enough.",
+          "16 frames: 3 × 16 + 1 = 49 rods. The club can build 16 frames, with 50 − 49 = 1 rod left.",
+        ],
+      ],
+      note: "Common error: 4 rods for every frame gives 4 × 12 = 48 rods. Neighbouring frames share a rod.",
+    },
+    bm: {
+      prompt:
+        "Kelab berkebun membina pagar daripada bingkai segi empat sama dalam satu baris. Bingkai yang bersebelahan berkongsi satu batang kayu: 1 bingkai memerlukan 4 batang kayu, 2 bingkai memerlukan 7 batang kayu dan 3 bingkai memerlukan 10 batang kayu.",
+      parts: [
+        "Huraikan corak bilangan batang kayu dalam perkataan, kemudian cari bilangan batang kayu bagi 6 bingkai.",
+        "Tepi taman memerlukan 12 bingkai. Berapakah batang kayu yang diperlukan?",
+        "Kelab itu mempunyai 50 batang kayu. Semak sama ada jumlah ini cukup untuk 17 bingkai. Jika tidak, cari bilangan bingkai yang paling banyak dapat dibina dan bilangan batang kayu yang berbaki.",
       ],
       answer: [
         [
-          "Aiman: darab nombor sebelumnya dengan 2.",
-          "Mei Ling: tambah 3, 6, 9, 12, … (setiap pertambahan bertambah 3).",
+          "Tambah 3 batang kayu bagi setiap bingkai baharu.",
+          "4 bingkai: 13, 5 bingkai: 16, 6 bingkai: 19 batang kayu",
         ],
+        ["12 bingkai ialah 11 bingkai lebih daripada 1 bingkai.", "4 + 11 × 3 = 37 batang kayu"],
         [
-          "Kedua-dua peraturan memberikan 3, 6, 12, maka kedua-duanya sesuai dengan nombor yang diberi.",
-          "Lebih banyak sebutan atau peraturan yang dinyatakan diperlukan.",
+          "k bingkai memerlukan 3k + 1 batang kayu.",
+          "17 bingkai: 3 × 17 + 1 = 52 batang kayu, maka 50 batang kayu tidak cukup.",
+          "16 bingkai: 3 × 16 + 1 = 49 batang kayu. Kelab itu boleh membina 16 bingkai, dengan 50 − 49 = 1 batang kayu berbaki.",
         ],
-        ["24 = 12 × 2, maka peraturannya ialah × 2.", "Ke-5: 24 × 2 = 48", "Ke-6: 48 × 2 = 96"],
       ],
+      note: "Kesilapan biasa: 4 batang kayu bagi setiap bingkai memberikan 4 × 12 = 48 batang kayu. Bingkai yang bersebelahan berkongsi satu batang kayu.",
     },
   },
 ];
@@ -800,6 +843,13 @@ const sequences: MathF2C1FlashcardEntry[] = [
   {
     subtopic: "1.2",
     mode: "practice",
+    visuals: [
+      {
+        kind: "sequence-steps",
+        title: t("Sequence", "Jujukan"),
+        terms: [7, 11, null, 19, 23],
+      },
+    ],
     dlp: {
       prompt: "The sequence is 7, 11, __, 19, 23, …",
       parts: ["State the pattern.", "Find the missing term."],
@@ -875,6 +925,19 @@ const sequences: MathF2C1FlashcardEntry[] = [
   {
     subtopic: "1.2",
     mode: "practice",
+    visuals: [
+      {
+        kind: "number-line",
+        title: t(
+          "The first three terms on a number line",
+          "Tiga sebutan pertama pada garis nombor",
+        ),
+        min: -20,
+        max: 5,
+        ticks: [-20, -15, -10, -5, 0, 5].map((value) => ({ value })),
+        points: [-20, -14, -8].map((value) => ({ value })),
+      },
+    ],
     dlp: {
       prompt: "The sequence is −20, −14, −8, …",
       parts: ["Show that the pattern is add 6.", "Find the first positive term."],
@@ -1061,55 +1124,57 @@ const sequences: MathF2C1FlashcardEntry[] = [
     visuals: [
       {
         kind: "term-table",
-        title: t("Bus departures", "Waktu bas bertolak"),
+        title: t("School bus departures", "Waktu bas sekolah bertolak"),
         rows: [
           { label: t("Bus", "Bas"), cells: ["1", "2", "3", "4", "5"] },
           {
-            label: t("Time", "Masa"),
+            label: t("Leaves", "Bertolak"),
             cells: [t("6:40 a.m.", "6:40 pagi"), t("7:05 a.m.", "7:05 pagi"), null, null, null],
           },
         ],
       },
     ],
     dlp: {
-      prompt: "The first bus leaves at 6:40 a.m. A bus leaves every 25 minutes.",
+      prompt:
+        "The first school bus leaves the housing-area bus stop at 6:40 a.m. A bus leaves every 25 minutes.",
       parts: [
-        "Complete the times for Buses 3 to 5.",
-        "Aiman arrives at the stop at 8:05 a.m. When does the next bus leave, and how long does he wait?",
-        "How many buses leave from 6:40 a.m. to 9:00 a.m.?",
+        "Complete the departure times for Buses 3 to 5.",
+        "The journey to school takes 35 minutes and Aiman must arrive by 7:45 a.m. Which is the latest bus he can take? Justify your answer.",
+        "One morning Aiman reaches the stop at 8:05 a.m. When does the next bus leave, and how long does he wait?",
       ],
       answer: [
         ["Add 25 minutes each time: 7:30 a.m., 7:55 a.m., 8:20 a.m."],
         [
-          "7:55 a.m. is before 8:05 a.m.; the next bus is 8:20 a.m.",
-          "Wait: 8:20 − 8:05 = 15 minutes",
+          "He must leave by 7:45 a.m. − 35 minutes = 7:10 a.m.",
+          "Buses leave at 7:05 a.m. and 7:30 a.m.; 7:30 a.m. is too late.",
+          "The 7:05 a.m. bus (Bus 2) is the latest he can take. It arrives at 7:40 a.m.",
         ],
         [
-          "Continue: 8:45 a.m., then 9:10 a.m. (after 9:00 a.m.).",
-          "Buses 1 to 6 leave by 9:00 a.m.: 6 buses.",
+          "The 7:55 a.m. bus has already left, so the next bus is at 8:20 a.m.",
+          "Wait: 8:20 − 8:05 = 15 minutes",
         ],
       ],
-      note: "Check: 6:40 a.m. + 5 × 25 minutes = 6:40 a.m. + 2 hours 5 minutes = 8:45 a.m. (Bus 6).",
     },
     bm: {
-      prompt: "Bas pertama bertolak pada 6:40 pagi. Sebuah bas bertolak setiap 25 minit.",
+      prompt:
+        "Bas sekolah pertama bertolak dari perhentian bas taman perumahan pada 6:40 pagi. Sebuah bas bertolak setiap 25 minit.",
       parts: [
-        "Lengkapkan masa bagi Bas 3 hingga 5.",
-        "Aiman tiba di perhentian pada 8:05 pagi. Bilakah bas seterusnya bertolak, dan berapa lama dia menunggu?",
-        "Berapakah bilangan bas yang bertolak dari 6:40 pagi hingga 9:00 pagi?",
+        "Lengkapkan masa bertolak bagi Bas 3 hingga 5.",
+        "Perjalanan ke sekolah mengambil masa 35 minit dan Aiman mesti tiba selewat-lewatnya pada 7:45 pagi. Bas manakah yang paling lewat dia boleh naik? Wajarkan jawapan anda.",
+        "Pada suatu pagi Aiman tiba di perhentian pada 8:05 pagi. Bilakah bas seterusnya bertolak, dan berapa lama dia menunggu?",
       ],
       answer: [
         ["Tambah 25 minit setiap kali: 7:30 pagi, 7:55 pagi, 8:20 pagi."],
         [
-          "7:55 pagi adalah sebelum 8:05 pagi; bas seterusnya ialah 8:20 pagi.",
-          "Menunggu: 8:20 − 8:05 = 15 minit",
+          "Dia mesti bertolak selewat-lewatnya 7:45 pagi − 35 minit = 7:10 pagi.",
+          "Bas bertolak pada 7:05 pagi dan 7:30 pagi; 7:30 pagi terlalu lewat.",
+          "Bas 7:05 pagi (Bas 2) ialah yang paling lewat dia boleh naik. Bas itu tiba pada 7:40 pagi.",
         ],
         [
-          "Teruskan: 8:45 pagi, kemudian 9:10 pagi (selepas 9:00 pagi).",
-          "Bas 1 hingga 6 bertolak sebelum 9:00 pagi: 6 buah bas.",
+          "Bas 7:55 pagi sudah bertolak, maka bas seterusnya pada 8:20 pagi.",
+          "Menunggu: 8:20 − 8:05 = 15 minit",
         ],
       ],
-      note: "Semak: 6:40 pagi + 5 × 25 minit = 6:40 pagi + 2 jam 5 minit = 8:45 pagi (Bas 6).",
     },
   },
   {
@@ -1128,43 +1193,45 @@ const sequences: MathF2C1FlashcardEntry[] = [
     ],
     dlp: {
       prompt:
-        "A tank holds 500 litres of water. 45 litres are used each day and the tank is not refilled.",
+        "The school's rainwater tank holds 500 litres at the start of the dry season. The gardening club uses 45 litres each day and it does not rain.",
       parts: [
         "Find the volume left at the end of Day 3.",
         "At the end of which day is the volume first less than 100 litres?",
-        "Will the tank be empty within 11 days? Justify your answer.",
+        "The dry season is forecast to last 12 days. Will the water last the whole season? Justify your answer.",
       ],
       answer: [
-        ["410 − 45 = 365 litres"],
+        ["500, 455, 410, 365", "365 litres are left at the end of Day 3."],
         [
           "After d days: 500 − 45d litres.",
           "Day 8: 500 − 360 = 140; Day 9: 500 − 405 = 95",
-          "First below 100 litres at the end of Day 9.",
+          "The volume is first below 100 litres at the end of Day 9.",
         ],
         [
-          "Day 11: 500 − 45 × 11 = 500 − 495 = 5 litres.",
-          "No. 5 litres are still left after 11 days; the tank runs out during Day 12.",
+          "Day 11: 500 − 495 = 5 litres left.",
+          "Day 12 needs 45 litres but only 5 litres remain.",
+          "No. The tank runs out during Day 12, so the water does not last the whole season.",
         ],
       ],
     },
     bm: {
       prompt:
-        "Sebuah tangki mengandungi 500 liter air. 45 liter digunakan setiap hari dan tangki itu tidak diisi semula.",
+        "Tangki air hujan sekolah mengandungi 500 liter pada awal musim kemarau. Kelab berkebun menggunakan 45 liter setiap hari dan hujan tidak turun.",
       parts: [
         "Cari isi padu air yang tinggal pada akhir Hari 3.",
         "Pada akhir hari keberapakah isi padu air mula-mula kurang daripada 100 liter?",
-        "Adakah tangki itu akan kosong dalam masa 11 hari? Wajarkan jawapan anda.",
+        "Musim kemarau dijangka berlarutan selama 12 hari. Adakah air itu cukup untuk seluruh musim? Wajarkan jawapan anda.",
       ],
       answer: [
-        ["410 − 45 = 365 liter"],
+        ["500, 455, 410, 365", "365 liter tinggal pada akhir Hari 3."],
         [
           "Selepas d hari: 500 − 45d liter.",
           "Hari 8: 500 − 360 = 140; Hari 9: 500 − 405 = 95",
-          "Mula-mula kurang daripada 100 liter pada akhir Hari 9.",
+          "Isi padu mula-mula kurang daripada 100 liter pada akhir Hari 9.",
         ],
         [
-          "Hari 11: 500 − 45 × 11 = 500 − 495 = 5 liter.",
-          "Tidak. Masih ada 5 liter selepas 11 hari; tangki itu kehabisan air semasa Hari 12.",
+          "Hari 11: 500 − 495 = 5 liter tinggal.",
+          "Hari 12 memerlukan 45 liter tetapi hanya 5 liter yang tinggal.",
+          "Tidak. Air dalam tangki habis semasa Hari 12, maka air itu tidak cukup untuk seluruh musim.",
         ],
       ],
     },
@@ -1185,7 +1252,7 @@ const sequences: MathF2C1FlashcardEntry[] = [
     ],
     dlp: {
       prompt:
-        "Aiman has RM20 at the end of Week 1 and saves RM8 more each week. Sarah has RM60 at the end of Week 1 and saves RM4 more each week.",
+        "Aiman and Sarah are saving for the class trip. Aiman has RM20 at the end of Week 1 and saves RM8 more each week. Sarah has RM60 at the end of Week 1 and saves RM4 more each week.",
       parts: [
         "Complete the table for Weeks 3 to 5.",
         "In which week do they first have the same amount? Explain your method.",
@@ -1207,7 +1274,7 @@ const sequences: MathF2C1FlashcardEntry[] = [
     },
     bm: {
       prompt:
-        "Aiman mempunyai RM20 pada akhir Minggu 1 dan menyimpan RM8 lagi setiap minggu. Sarah mempunyai RM60 pada akhir Minggu 1 dan menyimpan RM4 lagi setiap minggu.",
+        "Aiman dan Sarah menyimpan wang untuk lawatan kelas. Aiman mempunyai RM20 pada akhir Minggu 1 dan menyimpan RM8 lagi setiap minggu. Sarah mempunyai RM60 pada akhir Minggu 1 dan menyimpan RM4 lagi setiap minggu.",
       parts: [
         "Lengkapkan jadual bagi Minggu 3 hingga 5.",
         "Pada minggu keberapakah mereka mula-mula mempunyai jumlah wang yang sama? Terangkan kaedah anda.",
@@ -1233,56 +1300,64 @@ const sequences: MathF2C1FlashcardEntry[] = [
     mode: "challenge",
     visuals: [
       {
-        kind: "sequence-steps",
-        title: t("The given terms", "Sebutan yang diberi"),
-        terms: [31, 25, 19, 13],
-        steps: ["−6", "−6", "−6"],
-        showPositions: true,
-      },
-    ],
-    answerVisuals: [
-      {
-        kind: "sequence-steps",
-        title: t(
-          "Seven steps of −6 from the first to the 8th term",
-          "Tujuh langkah −6 dari sebutan pertama ke sebutan ke-8",
-        ),
-        terms: [31, 25, 19, 13, 7, 1, -5, -11],
-        steps: ["−6", "−6", "−6", "−6", "−6", "−6", "−6"],
-        highlight: [6, 7],
-        continues: false,
+        kind: "term-table",
+        title: t("Nasi lemak price at the carnival", "Harga nasi lemak di karnival"),
+        rows: [
+          {
+            label: t("Time", "Masa"),
+            cells: [
+              t("2:00 p.m.", "2:00 petang"),
+              t("2:30 p.m.", "2:30 petang"),
+              t("3:00 p.m.", "3:00 petang"),
+              t("3:30 p.m.", "3:30 petang"),
+            ],
+          },
+          { label: t("Price (RM)", "Harga (RM)"), cells: ["4.50", "4.10", null, null] },
+        ],
       },
     ],
     dlp: {
-      prompt: "For 31, 25, 19, 13, …, a student writes: 8th term = 31 − 8 × 6 = −17.",
+      prompt:
+        "At the school carnival, a nasi lemak stall charges RM4.50 at 2:00 p.m. Every 30 minutes, the price drops by RM0.40.",
       parts: [
-        "Find the 8th term by listing the terms.",
-        "Explain the student's mistake.",
-        "Find the first negative term and its position.",
+        "Complete the prices at 3:00 p.m. and 3:30 p.m.",
+        "At what time does the price first fall below RM2.50?",
+        "The stall closes at 6:00 p.m. A student says the last price is RM0.90. Check the claim and explain the student's mistake.",
       ],
       answer: [
-        ["31, 25, 19, 13, 7, 1, −5, −11", "The 8th term is −11."],
+        ["3:00 p.m.: RM4.10 − RM0.40 = RM3.70", "3:30 p.m.: RM3.70 − RM0.40 = RM3.30"],
         [
-          "From the first term to the 8th term there are only 7 steps.",
-          "Correct: 31 − 7 × 6 = 31 − 42 = −11",
+          "4:00 p.m.: RM2.90; 4:30 p.m.: RM2.50 (not below RM2.50)",
+          "5:00 p.m.: RM2.50 − RM0.40 = RM2.10",
+          "The price first falls below RM2.50 at 5:00 p.m.",
         ],
-        ["The first negative term is −5, the 7th term."],
+        [
+          "From 2:00 p.m. to 6:00 p.m. there are 4 × 2 = 8 drops, one every 30 minutes.",
+          "RM4.50 − 8 × RM0.40 = RM4.50 − RM3.20 = RM1.30",
+          "The claim is wrong. RM0.90 comes from 9 drops; the student also counted the 2:00 p.m. price as a drop.",
+        ],
       ],
     },
     bm: {
-      prompt: "Bagi 31, 25, 19, 13, …, seorang murid menulis: sebutan ke-8 = 31 − 8 × 6 = −17.",
+      prompt:
+        "Di karnival sekolah, sebuah gerai nasi lemak mengenakan harga RM4.50 pada 2:00 petang. Setiap 30 minit, harganya turun sebanyak RM0.40.",
       parts: [
-        "Cari sebutan ke-8 dengan menyenaraikan sebutan.",
-        "Terangkan kesilapan murid itu.",
-        "Cari sebutan negatif yang pertama dan kedudukannya.",
+        "Lengkapkan harga pada 3:00 petang dan 3:30 petang.",
+        "Pada pukul berapakah harga mula-mula turun di bawah RM2.50?",
+        "Gerai itu ditutup pada 6:00 petang. Seorang murid berkata harga terakhir ialah RM0.90. Semak dakwaan itu dan terangkan kesilapan murid itu.",
       ],
       answer: [
-        ["31, 25, 19, 13, 7, 1, −5, −11", "Sebutan ke-8 ialah −11."],
+        ["3:00 petang: RM4.10 − RM0.40 = RM3.70", "3:30 petang: RM3.70 − RM0.40 = RM3.30"],
         [
-          "Dari sebutan pertama ke sebutan ke-8 hanya ada 7 langkah.",
-          "Betul: 31 − 7 × 6 = 31 − 42 = −11",
+          "4:00 petang: RM2.90; 4:30 petang: RM2.50 (bukan di bawah RM2.50)",
+          "5:00 petang: RM2.50 − RM0.40 = RM2.10",
+          "Harga mula-mula turun di bawah RM2.50 pada 5:00 petang.",
         ],
-        ["Sebutan negatif yang pertama ialah −5, iaitu sebutan ke-7."],
+        [
+          "Dari 2:00 petang hingga 6:00 petang terdapat 4 × 2 = 8 penurunan, satu setiap 30 minit.",
+          "RM4.50 − 8 × RM0.40 = RM4.50 − RM3.20 = RM1.30",
+          "Dakwaan itu salah. RM0.90 terhasil daripada 9 penurunan; murid itu turut mengira harga 2:00 petang sebagai satu penurunan.",
+        ],
       ],
     },
   },
@@ -1292,7 +1367,7 @@ const sequences: MathF2C1FlashcardEntry[] = [
     visuals: [
       {
         kind: "term-table",
-        title: t("Views of a school video", "Tontonan video sekolah"),
+        title: t("Views of the recycling-campaign video", "Tontonan video kempen kitar semula"),
         rows: [
           {
             label: t("Time", "Masa"),
@@ -1310,10 +1385,10 @@ const sequences: MathF2C1FlashcardEntry[] = [
     ],
     dlp: {
       prompt:
-        "The number of views of a school video doubles every hour. It has 150 views at 9 a.m.",
+        "The school posts a recycling-campaign video. The number of views doubles every hour. It has 150 views at 9 a.m.",
       parts: [
         "Complete the table up to 1 p.m.",
-        "At what time does the number of views first exceed 5000?",
+        "The campaign team celebrates when the video passes 5000 views. At what time does this first happen?",
         "A student says there are 150 + 4 × 150 = 750 views at 1 p.m. Explain the error.",
       ],
       answer: [
@@ -1321,7 +1396,7 @@ const sequences: MathF2C1FlashcardEntry[] = [
         [
           "2 p.m.: 2400 × 2 = 4800",
           "3 p.m.: 4800 × 2 = 9600",
-          "The views first exceed 5000 at 3 p.m.",
+          "The views first pass 5000 at 3 p.m.",
         ],
         [
           "The student added 150 each hour, but the rule is multiply by 2.",
@@ -1331,10 +1406,10 @@ const sequences: MathF2C1FlashcardEntry[] = [
     },
     bm: {
       prompt:
-        "Bilangan tontonan suatu video sekolah berganda dua setiap jam. Video itu mempunyai 150 tontonan pada 9 pagi.",
+        "Sekolah memuat naik video kempen kitar semula. Bilangan tontonan berganda dua setiap jam. Video itu mempunyai 150 tontonan pada 9 pagi.",
       parts: [
         "Lengkapkan jadual hingga 1 petang.",
-        "Pada pukul berapakah bilangan tontonan mula-mula melebihi 5000?",
+        "Pasukan kempen meraikan apabila video itu melebihi 5000 tontonan. Pada pukul berapakah ini mula-mula berlaku?",
         "Seorang murid berkata terdapat 150 + 4 × 150 = 750 tontonan pada 1 petang. Terangkan kesilapannya.",
       ],
       answer: [
@@ -1342,7 +1417,7 @@ const sequences: MathF2C1FlashcardEntry[] = [
         [
           "2 petang: 2400 × 2 = 4800",
           "3 petang: 4800 × 2 = 9600",
-          "Bilangan tontonan mula-mula melebihi 5000 pada 3 petang.",
+          "Tontonan mula-mula melebihi 5000 pada 3 petang.",
         ],
         [
           "Murid itu menambah 150 setiap jam, tetapi peraturannya ialah darab dengan 2.",
@@ -1544,6 +1619,14 @@ const patternsAndSequences: MathF2C1FlashcardEntry[] = [
   {
     subtopic: "1.3",
     mode: "practice",
+    visuals: [
+      {
+        kind: "sequence-steps",
+        title: t("Sequence", "Jujukan"),
+        terms: [80, 74, 68, 62],
+        showPositions: true,
+      },
+    ],
     dlp: {
       prompt: "The sequence is 80, 74, 68, 62, …",
       parts: ["State the pattern.", "Which term is 44?"],
@@ -1584,6 +1667,14 @@ const patternsAndSequences: MathF2C1FlashcardEntry[] = [
   {
     subtopic: "1.3",
     mode: "practice",
+    visuals: [
+      {
+        kind: "sequence-steps",
+        title: t("Term positions", "Kedudukan sebutan"),
+        terms: [null, null, null, null, null, 42],
+        showPositions: true,
+      },
+    ],
     dlp: {
       prompt: "In a sequence, 5 is added each time and T₆ = 42.",
       parts: ["Find T₁.", "Find T₁₂."],
@@ -1604,6 +1695,15 @@ const patternsAndSequences: MathF2C1FlashcardEntry[] = [
   {
     subtopic: "1.3",
     mode: "practice",
+    visuals: [
+      {
+        kind: "sequence-steps",
+        title: t("Term positions", "Kedudukan sebutan"),
+        terms: [null, null, 20, null, null, null, 44],
+        showPositions: true,
+        continues: false,
+      },
+    ],
     dlp: {
       prompt: "The same number is added each time in a sequence. T₃ = 20 and T₇ = 44.",
       parts: ["Find the number that is added each time.", "Find T₁."],
@@ -1624,6 +1724,16 @@ const patternsAndSequences: MathF2C1FlashcardEntry[] = [
   {
     subtopic: "1.3",
     mode: "practice",
+    visuals: [
+      {
+        kind: "term-table",
+        title: t("Feeding times", "Masa pemberian makanan"),
+        rows: [
+          { label: t("Feeding", "Pemberian"), cells: ["1", "2", "3"] },
+          { label: t("Time", "Masa"), cells: [t("6:00 a.m.", "6:00 pagi"), null, null] },
+        ],
+      },
+    ],
     dlp: {
       prompt:
         "An automatic fish feeder feeds the fish 3 times a day at equal intervals. The first feeding is at 6:00 a.m.",
@@ -1764,46 +1874,50 @@ const patternsAndSequences: MathF2C1FlashcardEntry[] = [
     mode: "challenge",
     visuals: [
       {
-        kind: "matchstick-squares",
-        title: t("Squares made from matchsticks", "Segi empat sama daripada batang mancis"),
-        stages: [1, 2, 3],
+        kind: "term-table",
+        title: t("Seats in one stadium section", "Tempat duduk dalam satu bahagian stadium"),
+        rows: [
+          { label: t("Row", "Baris"), cells: ["1", "2", "3", "4", "5"] },
+          { label: "n", cells: ["0", "1", "2", "3", "4"] },
+          { label: t("Seats", "Tempat duduk"), cells: ["20", "24", null, null, null] },
+        ],
       },
     ],
     dlp: {
       prompt:
-        "Matchsticks are used to make squares in a row: 1 square needs 4 sticks, 2 squares need 7 and 3 squares need 10.",
+        "In one section of the school stadium, Row 1 has 20 seats and each row behind it has 4 more seats than the row in front.",
       parts: [
-        "Write an algebraic expression for the number of sticks, using n = 0, 1, 2, … where n = 0 is 1 square.",
-        "How many sticks are needed for 15 squares?",
-        "What is the greatest number of squares that can be made with 100 sticks? Are any sticks left over?",
+        "Write an algebraic expression for the number of seats in a row, using n = 0, 1, 2, … where n = 0 is Row 1.",
+        "How many seats are in Row 15?",
+        "A group of 30 friends wants to sit together in one row. Which is the first row that can seat all of them? Justify your answer.",
       ],
       answer: [
-        ["Each new square adds 3 sticks: 4 + 3n"],
-        ["15 squares means n = 14.", "4 + 3(14) = 46 sticks"],
+        ["Start with 20 and add 4 for each row: 20 + 4n"],
+        ["Row 15 means n = 14.", "20 + 4(14) = 76 seats"],
         [
-          "4 + 3n = 100 gives 3n = 96, so n = 32.",
-          "n = 32 is 33 squares, using exactly 100 sticks. No sticks are left over.",
+          "20 + 4n ≥ 30 gives 4n ≥ 10, so n ≥ 2.5.",
+          "n = 2 (Row 3): 28 seats, not enough; n = 3 (Row 4): 32 seats.",
+          "Row 4 is the first row that can seat all 30 friends.",
         ],
       ],
-      note: "Common error: 4 sticks per square gives 4 × 15 = 60. Neighbouring squares share a stick.",
     },
     bm: {
       prompt:
-        "Batang mancis digunakan untuk membina segi empat sama dalam satu baris: 1 segi empat sama memerlukan 4 batang, 2 segi empat sama memerlukan 7 dan 3 segi empat sama memerlukan 10.",
+        "Dalam satu bahagian stadium sekolah, Baris 1 mempunyai 20 tempat duduk dan setiap baris di belakangnya mempunyai 4 tempat duduk lebih daripada baris di hadapannya.",
       parts: [
-        "Tulis ungkapan algebra bagi bilangan batang mancis, menggunakan n = 0, 1, 2, … dengan n = 0 ialah 1 segi empat sama.",
-        "Berapakah batang mancis yang diperlukan untuk 15 segi empat sama?",
-        "Berapakah bilangan segi empat sama yang terbanyak boleh dibina dengan 100 batang mancis? Adakah batang mancis yang berbaki?",
+        "Tulis ungkapan algebra bagi bilangan tempat duduk dalam satu baris, menggunakan n = 0, 1, 2, … dengan n = 0 ialah Baris 1.",
+        "Berapakah bilangan tempat duduk dalam Baris 15?",
+        "Sekumpulan 30 orang sahabat mahu duduk bersama dalam satu baris. Baris manakah yang pertama dapat memuatkan mereka semua? Wajarkan jawapan anda.",
       ],
       answer: [
-        ["Setiap segi empat sama baharu menambah 3 batang: 4 + 3n"],
-        ["15 segi empat sama bermaksud n = 14.", "4 + 3(14) = 46 batang"],
+        ["Mula dengan 20 dan tambah 4 bagi setiap baris: 20 + 4n"],
+        ["Baris 15 bermaksud n = 14.", "20 + 4(14) = 76 tempat duduk"],
         [
-          "4 + 3n = 100 memberikan 3n = 96, maka n = 32.",
-          "n = 32 ialah 33 segi empat sama, menggunakan tepat 100 batang. Tiada batang yang berbaki.",
+          "20 + 4n ≥ 30 memberikan 4n ≥ 10, maka n ≥ 2.5.",
+          "n = 2 (Baris 3): 28 tempat duduk, tidak mencukupi; n = 3 (Baris 4): 32 tempat duduk.",
+          "Baris 4 ialah baris pertama yang dapat memuatkan kesemua 30 orang sahabat.",
         ],
       ],
-      note: "Kesilapan biasa: 4 batang bagi setiap segi empat sama memberikan 4 × 15 = 60. Segi empat sama yang bersebelahan berkongsi satu batang.",
     },
   },
   {
@@ -1811,51 +1925,52 @@ const patternsAndSequences: MathF2C1FlashcardEntry[] = [
     mode: "challenge",
     visuals: [
       {
-        kind: "term-table",
-        title: t("Three expressions for 5, 9, 13, 17, …", "Tiga ungkapan bagi 5, 9, 13, 17, …"),
-        rows: [
-          { label: t("Student", "Murid"), cells: ["Aiman", "Mei Ling", "Daniel"] },
-          { label: t("Expression", "Ungkapan"), cells: ["5 + 4n", "4n + 1", "4n + 5"] },
-          { label: t("Starts at", "Bermula"), cells: ["n = 0", "n = 1", "n = 1"] },
-        ],
+        kind: "sequence-steps",
+        title: t(
+          "Distance of each tree from the gate (m)",
+          "Jarak setiap pokok dari pintu pagar (m)",
+        ),
+        terms: [2, 6, 10, 14, null],
+        steps: ["+4", "+4", "+4", "+4"],
       },
     ],
     dlp: {
-      prompt: "Three students write an expression for 5, 9, 13, 17, …",
+      prompt:
+        "The gardening club plants trees along a 60 m path. The first tree is 2 m from the gate and the trees are 4 m apart.",
       parts: [
-        "Show that Aiman's and Mei Ling's expressions both give the first three terms.",
-        "Use each of their expressions to find T₁₀.",
-        "Explain Daniel's error.",
+        "Write an algebraic expression for the distance of a tree from the gate, using n = 0, 1, 2, … where n = 0 is the first tree.",
+        "How far from the gate is the 10th tree?",
+        "No tree may be planted beyond the 60 m mark. How many trees can be planted, and how far from the gate is the last one? Justify your answer.",
       ],
       answer: [
-        ["Aiman, n = 0, 1, 2: 5, 9, 13", "Mei Ling, n = 1, 2, 3: 5, 9, 13"],
-        ["Aiman: T₁₀ uses n = 9: 5 + 4(9) = 41", "Mei Ling: T₁₀ uses n = 10: 4(10) + 1 = 41"],
+        ["Start at 2 m and add 4 m for each tree: 2 + 4n metres"],
+        ["The 10th tree is n = 9.", "2 + 4(9) = 38 m"],
         [
-          "Daniel, n = 1: 4(1) + 5 = 9. His sequence starts at the second term, 9, 13, 17, …",
-          "With n starting at 1, the expression must give 5 when n = 1.",
+          "2 + 4n ≤ 60 gives 4n ≤ 58, so n ≤ 14.5.",
+          "The largest whole number is n = 14: 2 + 4(14) = 58 m.",
+          "n = 0 to 14 gives 15 trees; the last tree is 58 m from the gate.",
         ],
       ],
-      note: "Always state where n starts, then test the first term.",
+      note: "Common error: counting only 14 trees. n starts at 0, so n = 0 to 14 is 15 trees.",
     },
     bm: {
-      prompt: "Tiga orang murid menulis ungkapan bagi 5, 9, 13, 17, …",
+      prompt:
+        "Kelab berkebun menanam pokok di sepanjang laluan sepanjang 60 m. Pokok pertama berada 2 m dari pintu pagar dan jarak antara pokok ialah 4 m.",
       parts: [
-        "Tunjukkan bahawa ungkapan Aiman dan Mei Ling kedua-duanya memberikan tiga sebutan pertama.",
-        "Gunakan setiap ungkapan mereka untuk mencari T₁₀.",
-        "Terangkan kesilapan Daniel.",
+        "Tulis ungkapan algebra bagi jarak sebatang pokok dari pintu pagar, menggunakan n = 0, 1, 2, … dengan n = 0 ialah pokok pertama.",
+        "Berapakah jarak pokok ke-10 dari pintu pagar?",
+        "Tiada pokok boleh ditanam melepasi tanda 60 m. Berapakah bilangan pokok yang dapat ditanam, dan berapakah jarak pokok terakhir dari pintu pagar? Wajarkan jawapan anda.",
       ],
       answer: [
-        ["Aiman, n = 0, 1, 2: 5, 9, 13", "Mei Ling, n = 1, 2, 3: 5, 9, 13"],
+        ["Mula pada 2 m dan tambah 4 m bagi setiap pokok: 2 + 4n meter"],
+        ["Pokok ke-10 ialah n = 9.", "2 + 4(9) = 38 m"],
         [
-          "Aiman: T₁₀ menggunakan n = 9: 5 + 4(9) = 41",
-          "Mei Ling: T₁₀ menggunakan n = 10: 4(10) + 1 = 41",
-        ],
-        [
-          "Daniel, n = 1: 4(1) + 5 = 9. Jujukannya bermula pada sebutan kedua, 9, 13, 17, …",
-          "Jika n bermula dengan 1, ungkapan itu mesti memberikan 5 apabila n = 1.",
+          "2 + 4n ≤ 60 memberikan 4n ≤ 58, maka n ≤ 14.5.",
+          "Nombor bulat terbesar ialah n = 14: 2 + 4(14) = 58 m.",
+          "n = 0 hingga 14 memberikan 15 batang pokok; pokok terakhir berada 58 m dari pintu pagar.",
         ],
       ],
-      note: "Sentiasa nyatakan nilai permulaan n, kemudian uji sebutan pertama.",
+      note: "Kesilapan biasa: mengira hanya 14 batang pokok. n bermula dengan 0, maka n = 0 hingga 14 ialah 15 batang pokok.",
     },
   },
   {
@@ -1876,10 +1991,10 @@ const patternsAndSequences: MathF2C1FlashcardEntry[] = [
     ],
     dlp: {
       prompt:
-        "A clinic's morning appointment slots start every 20 minutes from 8:30 a.m. The last slot must start by 12:00 noon.",
+        "A community clinic's morning appointment slots start every 20 minutes from 8:30 a.m. The last slot must start by 12:00 noon.",
       parts: [
         "Find the start time of the 7th slot.",
-        "How many morning slots are there?",
+        "How many morning slots are there? Explain why the answer is not 10.",
         "26 patients book a morning slot. How many must be moved to the afternoon?",
       ],
       answer: [
@@ -1891,17 +2006,18 @@ const patternsAndSequences: MathF2C1FlashcardEntry[] = [
           "From 8:30 a.m. to 12:00 noon is 210 minutes.",
           "210 ÷ 20 = 10.5, so 10 full steps after Slot 1.",
           "Slot 11 starts at 11:50 a.m. There are 11 slots.",
+          "It is not 10: the 10 steps come after Slot 1, so Slot 1 must be added.",
         ],
-        ["26 − 11 = 15 patients"],
+        ["26 − 11 = 15 patients must be moved to the afternoon."],
       ],
       note: "Common error: 210 ÷ 20 = 10.5 → 10 slots. Slot 1 itself must also be counted.",
     },
     bm: {
       prompt:
-        "Slot temu janji waktu pagi sebuah klinik bermula setiap 20 minit dari 8:30 pagi. Slot terakhir mesti bermula selewat-lewatnya pada 12:00 tengah hari.",
+        "Slot temu janji waktu pagi sebuah klinik komuniti bermula setiap 20 minit dari 8:30 pagi. Slot terakhir mesti bermula selewat-lewatnya pada 12:00 tengah hari.",
       parts: [
         "Cari masa mula slot ke-7.",
-        "Berapakah bilangan slot waktu pagi?",
+        "Berapakah bilangan slot waktu pagi? Terangkan mengapa jawapannya bukan 10.",
         "26 orang pesakit menempah slot waktu pagi. Berapa orang yang mesti dipindahkan ke waktu petang?",
       ],
       answer: [
@@ -1913,8 +2029,9 @@ const patternsAndSequences: MathF2C1FlashcardEntry[] = [
           "Dari 8:30 pagi hingga 12:00 tengah hari ialah 210 minit.",
           "210 ÷ 20 = 10.5, maka 10 langkah penuh selepas Slot 1.",
           "Slot 11 bermula pada 11:50 pagi. Terdapat 11 slot.",
+          "Jawapannya bukan 10: 10 langkah itu berlaku selepas Slot 1, maka Slot 1 mesti ditambah.",
         ],
-        ["26 − 11 = 15 orang pesakit"],
+        ["26 − 11 = 15 orang pesakit mesti dipindahkan ke waktu petang."],
       ],
       note: "Kesilapan biasa: 210 ÷ 20 = 10.5 → 10 slot. Slot 1 juga mesti dikira.",
     },
@@ -1925,46 +2042,47 @@ const patternsAndSequences: MathF2C1FlashcardEntry[] = [
     visuals: [
       {
         kind: "term-table",
-        title: t("Weekly deposits (RM)", "Simpanan mingguan (RM)"),
+        title: t("Recyclable bottles collected (kg)", "Botol kitar semula yang dikumpul (kg)"),
         rows: [
           { label: t("Week", "Minggu"), cells: ["1", "2", "3", "4"] },
           { label: "n", cells: ["0", "1", "2", "3"] },
-          { label: "RM", cells: ["5", "8", "11", null] },
+          { label: "kg", cells: ["35", "41", null, null] },
         ],
       },
     ],
     dlp: {
-      prompt: "Mei Ling saves RM5 in Week 1 and increases her deposit by RM3 every week.",
+      prompt:
+        "During a community gotong-royong campaign, residents collect 35 kg of recyclable bottles in Week 1. The amount collected increases by 6 kg each week.",
       parts: [
-        "Find her deposit in Week 8.",
-        "Write the deposit as an algebraic expression, where n = 0 is Week 1.",
-        "In which week does her deposit first exceed RM60? Justify your answer.",
+        "Find the amount collected in Week 8.",
+        "Write the amount collected as an algebraic expression, where n = 0 is Week 1.",
+        "The recycling centre awards a certificate in the first week the collection reaches at least 100 kg. In which week is the certificate awarded? Justify your answer.",
       ],
       answer: [
-        ["Week 8 is n = 7: 5 + 3(7) = RM26"],
-        ["5 + 3n, where n = 0, 1, 2, …"],
+        ["Week 8 is 7 weeks after Week 1.", "35 + 7 × 6 = 77 kg"],
+        ["35 + 6n kg, where n = 0, 1, 2, …"],
         [
-          "5 + 3n > 60 means 3n > 55, so n > 55 ÷ 3 ≈ 18.3.",
-          "n = 18: 5 + 54 = RM59 (not yet); n = 19: 5 + 57 = RM62",
-          "n = 19 is Week 20.",
+          "35 + 6n ≥ 100 gives 6n ≥ 65, so n ≥ 65 ÷ 6 ≈ 10.8.",
+          "n = 10 (Week 11): 95 kg, not enough; n = 11 (Week 12): 101 kg.",
+          "The certificate is awarded in Week 12.",
         ],
       ],
     },
     bm: {
       prompt:
-        "Mei Ling menyimpan RM5 pada Minggu 1 dan menambah simpanannya sebanyak RM3 setiap minggu.",
+        "Semasa kempen gotong-royong komuniti, penduduk mengumpul 35 kg botol kitar semula pada Minggu 1. Jumlah yang dikumpul bertambah 6 kg setiap minggu.",
       parts: [
-        "Cari simpanannya pada Minggu 8.",
-        "Tulis simpanan itu sebagai ungkapan algebra, dengan n = 0 ialah Minggu 1.",
-        "Pada minggu keberapakah simpanannya mula-mula melebihi RM60? Wajarkan jawapan anda.",
+        "Cari jumlah yang dikumpul pada Minggu 8.",
+        "Tulis jumlah yang dikumpul sebagai ungkapan algebra, dengan n = 0 ialah Minggu 1.",
+        "Pusat kitar semula memberikan sijil pada minggu pertama kutipan mencapai sekurang-kurangnya 100 kg. Pada minggu keberapakah sijil itu diberikan? Wajarkan jawapan anda.",
       ],
       answer: [
-        ["Minggu 8 ialah n = 7: 5 + 3(7) = RM26"],
-        ["5 + 3n, dengan n = 0, 1, 2, …"],
+        ["Minggu 8 ialah 7 minggu selepas Minggu 1.", "35 + 7 × 6 = 77 kg"],
+        ["35 + 6n kg, dengan n = 0, 1, 2, …"],
         [
-          "5 + 3n > 60 bermaksud 3n > 55, maka n > 55 ÷ 3 ≈ 18.3.",
-          "n = 18: 5 + 54 = RM59 (belum); n = 19: 5 + 57 = RM62",
-          "n = 19 ialah Minggu 20.",
+          "35 + 6n ≥ 100 memberikan 6n ≥ 65, maka n ≥ 65 ÷ 6 ≈ 10.8.",
+          "n = 10 (Minggu 11): 95 kg, tidak mencukupi; n = 11 (Minggu 12): 101 kg.",
+          "Sijil itu diberikan pada Minggu 12.",
         ],
       ],
     },

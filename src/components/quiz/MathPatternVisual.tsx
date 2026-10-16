@@ -4,11 +4,16 @@ import {
   dotCount,
   formatPatternNumber,
   matchstickCount,
+  matchstickWords,
   pascalRow,
   termLabel,
   type MathPatternVisual as PatternData,
 } from "@/features/quiz/visuals/mathPatternVisual";
-import { textFor, type MathVisualLang } from "@/features/quiz/visuals/mathQuestionVisual";
+import {
+  textFor,
+  type MathVisualLang,
+  type VisualText as VisualTextLike,
+} from "@/features/quiz/visuals/mathQuestionVisual";
 
 /**
  * Pattern and sequence displays. Term chains, tables and object rows are HTML
@@ -145,7 +150,8 @@ function DotPattern({
               {bm ? "Peringkat" : "Stage"} {stage}
               {!missing && visual.showCounts !== false && (
                 <span className="block font-semibold text-amber-200">
-                  {dotCount(visual.shape, stage)} {bm ? "titik" : "dots"}
+                  {dotCount(visual.shape, stage)}{" "}
+                  {bm ? "titik" : dotCount(visual.shape, stage) === 1 ? "dot" : "dots"}
                 </span>
               )}
             </StageLabel>
@@ -390,12 +396,12 @@ function TermTable({
 
 /* ── Real-life objects ────────────────────────────────────────────────────── */
 
-function ObjectGlyph({ object }: { object: "chair" | "tile" | "block" | "can" }) {
-  const common = { width: 15, height: 15, viewBox: "0 0 16 16", className: "shrink-0" };
+/** One object drawn in a 16 × 16 cell at (x, 0). */
+function ObjectShape({ object, x }: { object: "chair" | "tile" | "block" | "can"; x: number }) {
   switch (object) {
     case "chair":
       return (
-        <svg {...common}>
+        <g transform={`translate(${x} 0)`}>
           <rect x="4" y="1.5" width="8" height="6" rx="1.5" fill={VIOLET} />
           <rect x="3" y="8" width="10" height="2.5" rx="1" fill={VIOLET} />
           <path
@@ -404,26 +410,24 @@ function ObjectGlyph({ object }: { object: "chair" | "tile" | "block" | "can" })
             strokeWidth="1.6"
             strokeLinecap="round"
           />
-        </svg>
+        </g>
       );
     case "tile":
       return (
-        <svg {...common}>
-          <rect
-            x="1.5"
-            y="1.5"
-            width="13"
-            height="13"
-            rx="2"
-            fill="rgba(125,211,252,0.25)"
-            stroke={SKY}
-            strokeWidth="1.4"
-          />
-        </svg>
+        <rect
+          x={x + 1.5}
+          y="1.5"
+          width="13"
+          height="13"
+          rx="2"
+          fill="rgba(125,211,252,0.25)"
+          stroke={SKY}
+          strokeWidth="1.4"
+        />
       );
     case "block":
       return (
-        <svg {...common}>
+        <g transform={`translate(${x} 0)`}>
           <path
             d="M8 1.5l6 3v7l-6 3-6-3v-7z"
             fill="rgba(251,191,36,0.22)"
@@ -431,11 +435,11 @@ function ObjectGlyph({ object }: { object: "chair" | "tile" | "block" | "can" })
             strokeWidth="1.2"
           />
           <path d="M2 4.5l6 3 6-3M8 7.5v7" stroke={AMBER} strokeWidth="1.1" fill="none" />
-        </svg>
+        </g>
       );
     case "can":
       return (
-        <svg {...common}>
+        <g transform={`translate(${x} 0)`}>
           <rect
             x="3.5"
             y="2.5"
@@ -447,11 +451,18 @@ function ObjectGlyph({ object }: { object: "chair" | "tile" | "block" | "can" })
             strokeWidth="1.3"
           />
           <path d="M3.5 5h9" stroke={EMERALD} strokeWidth="1.1" />
-        </svg>
+        </g>
       );
   }
 }
 
+const OBJECT_CELL = 18;
+
+/**
+ * Each stage is ONE row of objects that never wraps. Every row shares the
+ * same viewBox width (the longest row), so all rows use the same scale and
+ * their lengths compare honestly: a row of 11 always looks longer than 8.
+ */
 function ObjectStages({
   visual,
   lang,
@@ -459,41 +470,65 @@ function ObjectStages({
   visual: Extract<PatternData, { kind: "object-stages" }>;
   lang: MathVisualLang;
 }) {
+  const longest = Math.max(...visual.stages.map((stage) => stage.count));
+  const viewWidth = longest * OBJECT_CELL;
+  // Never draw a glyph larger than ~26px on wide screens.
+  const maxWidth = longest * 26;
+  const row = (label: VisualTextLike, body: ReactNode, count: ReactNode, key: string | number) => (
+    <div key={key} className="flex items-center gap-2.5">
+      <span className="w-16 shrink-0 text-xs font-semibold text-slate-200">
+        {textFor(label, lang)}
+      </span>
+      <span className="min-w-0 flex-1">{body}</span>
+      <span className="w-7 shrink-0 text-right text-xs font-bold tabular-nums text-amber-200">
+        {count}
+      </span>
+    </div>
+  );
   return (
     <div className="space-y-2">
-      {visual.stages.map((stage, index) => (
-        <div key={index} className="flex items-center gap-2.5">
-          <span className="w-16 shrink-0 text-xs font-semibold text-slate-200">
-            {textFor(stage.label, lang)}
-          </span>
-          <span className="flex min-w-0 flex-1 flex-wrap gap-[3px]">
+      {visual.stages.map((stage, index) =>
+        row(
+          stage.label,
+          <svg
+            viewBox={`0 0 ${viewWidth} 16`}
+            preserveAspectRatio="xMinYMid meet"
+            className="block w-full"
+            style={{ maxWidth }}
+          >
             {Array.from({ length: stage.count }, (_, i) => (
-              <ObjectGlyph key={i} object={visual.object} />
+              <ObjectShape key={i} object={visual.object} x={i * OBJECT_CELL} />
             ))}
-          </span>
-          <span className="w-7 shrink-0 text-right text-xs font-bold tabular-nums text-amber-200">
-            {stage.count}
-          </span>
-        </div>
-      ))}
-      {visual.missingLabel && (
-        <div className="flex items-center gap-2.5">
-          <span className="w-16 shrink-0 text-xs font-semibold text-slate-200">
-            {textFor(visual.missingLabel, lang)}
-          </span>
-          <span className="flex h-[15px] flex-1 items-center rounded-md border border-dashed border-amber-300/60 px-2 text-[11px] text-amber-200">
-            ?
-          </span>
-          <span className="w-7 shrink-0 text-right text-xs font-bold text-amber-200">?</span>
-        </div>
+          </svg>,
+          stage.count,
+          index,
+        ),
       )}
+      {visual.missingLabel &&
+        row(
+          visual.missingLabel,
+          <span
+            className="flex h-5 w-full items-center rounded-md border border-dashed border-amber-300/60 px-2 text-[11px] text-amber-200"
+            style={{ maxWidth }}
+          >
+            ?
+          </span>,
+          "?",
+          "missing",
+        )}
     </div>
   );
 }
 
-/* ── Matchstick squares ───────────────────────────────────────────────────── */
+/* ── Matchstick / rod squares ─────────────────────────────────────────────── */
 
-function MatchstickStage({ squares }: { squares: number }) {
+function MatchstickStage({
+  squares,
+  material,
+}: {
+  squares: number;
+  material: "matchstick" | "rod";
+}) {
   const S = 26;
   const pad = 5;
   const sticks: { x1: number; y1: number; x2: number; y2: number }[] = [];
@@ -502,32 +537,35 @@ function MatchstickStage({ squares }: { squares: number }) {
     sticks.push({ x1: k * S, y1: S, x2: (k + 1) * S, y2: S });
   }
   for (let k = 0; k <= squares; k += 1) sticks.push({ x1: k * S, y1: 0, x2: k * S, y2: S });
+  const rod = material === "rod";
   return (
     <svg
       viewBox={`${-pad} ${-pad} ${squares * S + pad * 2} ${S + pad * 2}`}
-      width={squares * S + pad * 2}
-      height={S + pad * 2}
+      width={(squares * S + pad * 2) * 1.25}
+      height={(S + pad * 2) * 1.25}
       className="mx-auto block max-w-full"
     >
-      {sticks.map((stick, index) => (
-        <g key={index}>
-          <line
-            x1={stick.x1 + (stick.x2 - stick.x1) * 0.08}
-            y1={stick.y1 + (stick.y2 - stick.y1) * 0.08}
-            x2={stick.x2 - (stick.x2 - stick.x1) * 0.08}
-            y2={stick.y2 - (stick.y2 - stick.y1) * 0.08}
-            stroke="#fcd34d"
-            strokeWidth={2.6}
-            strokeLinecap="round"
-          />
-          <circle
-            cx={stick.x2 - (stick.x2 - stick.x1) * 0.08}
-            cy={stick.y2 - (stick.y2 - stick.y1) * 0.08}
-            r={2.4}
-            fill="#f87171"
-          />
-        </g>
-      ))}
+      {sticks.map((stick, index) => {
+        const inset = rod ? 0.04 : 0.08;
+        const x1 = stick.x1 + (stick.x2 - stick.x1) * inset;
+        const y1 = stick.y1 + (stick.y2 - stick.y1) * inset;
+        const x2 = stick.x2 - (stick.x2 - stick.x1) * inset;
+        const y2 = stick.y2 - (stick.y2 - stick.y1) * inset;
+        return (
+          <g key={index}>
+            <line
+              x1={x1}
+              y1={y1}
+              x2={x2}
+              y2={y2}
+              stroke={rod ? "#d6a46b" : "#fcd34d"}
+              strokeWidth={rod ? 3.4 : 2.6}
+              strokeLinecap="round"
+            />
+            {!rod && <circle cx={x2} cy={y2} r={2.4} fill="#f87171" />}
+          </g>
+        );
+      })}
     </svg>
   );
 }
@@ -539,17 +577,17 @@ function MatchstickSquares({
   visual: Extract<PatternData, { kind: "matchstick-squares" }>;
   lang: MathVisualLang;
 }) {
-  const bm = lang === "bm";
+  const words = matchstickWords(visual.material ?? "matchstick", lang);
   return (
     <div className="flex flex-wrap items-end justify-center gap-x-6 gap-y-3">
       {visual.stages.map((squares) => (
         <div key={squares} className="flex flex-col items-center">
-          <MatchstickStage squares={squares} />
+          <MatchstickStage squares={squares} material={visual.material ?? "matchstick"} />
           <StageLabel>
-            {squares} {bm ? "segi empat" : squares === 1 ? "square" : "squares"}
+            {squares} {squares === 1 ? words.shape : words.shapes}
             {visual.showCounts !== false && (
               <span className="block font-semibold text-amber-200">
-                {matchstickCount(squares)} {bm ? "batang" : "sticks"}
+                {matchstickCount(squares)} {words.sticks}
               </span>
             )}
           </StageLabel>

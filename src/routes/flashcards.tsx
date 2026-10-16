@@ -6785,6 +6785,7 @@ function FlashcardsPage() {
                   ) : undefined
                 }
                 fitContent={!!current.structured}
+                cardId={current.id}
                 metaLabel={`${subj?.emoji ?? ""} ${subj?.name ?? subjectName} • ${current.form}`.trim()}
                 favourite={fav}
                 onToggleFavourite={() => toggleFavorite(current.id)}

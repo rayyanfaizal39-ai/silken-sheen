@@ -69,11 +69,23 @@ const EXPECTED_ANSWERS: Record<number, string[]> = {
   13: [fmt(fibonacci(1, 3, 6)[5]), fmt(fibonacci(1, 3, 7)[6])],
   14: [fmt(7 ** 2)],
   15: [fmt(ap(5, 4, 4)), "6"],
-  16: [[1, 2, 3, 4, 5, 6, 7].map((p) => pascalValue(7, p)).join(", "), "1, 2, 4, 8", "64"],
-  17: [fmt(fibonacci(2, 3, 5)[4]), fmt(fibonacci(2, 3, 6)[5]), "52", fmt(fibonacci(2, 3, 7)[6])],
-  18: [fmt(triangular(4)), fmt(triangular(5)), fmt(triangular(6)), fmt(triangular(9)), "5"],
-  19: ["4", "9", "16", "100"],
-  20: [fmt(gp(3, 2, 6))],
+  16: [
+    ...[5, 6, 7].map((n) => `= ${fibonacci(2, 3, n)[n - 1]}`),
+    `${fibonacci(2, 3, 7).reduce((a, b) => a + b, 0)}`, // 86 seedlings in 7 beds
+    `${100 - fibonacci(2, 3, 7).reduce((a, b) => a + b, 0)}`, // 14 left over
+    `= ${fibonacci(2, 3, 6).reduce((a, b) => a + b, 0)}`, // 52
+    `total ${[0, 1, 2, 3, 4, 5].map((k) => 2 + 5 * k).reduce((a, b) => a + b, 0)}|jumlah 87`,
+    "= 35",
+  ],
+  17: [
+    ...[4, 5, 6].map((n) => `= ${triangular(n)}`),
+    `9 baris|9 rows`,
+    `= ${50 - triangular(9)}`,
+    "not possible|tidak mungkin",
+  ],
+  18: [`= ${pascalValue(6, 3)}`, `= ${pascalValue(7, 4)}`, `= ${triangular(7)}`, `${2 ** 7}`],
+  19: ["1, 3, 5, 7, 9", "= 30", "= 23", "24"],
+  20: [`${3 * 6 + 1}`, `= ${3 * 12 + 1}`, `= ${3 * 16 + 1}`, `= ${50 - (3 * 16 + 1)}`],
   21: ["A."],
   22: ["10"],
   23: ["−2"],
@@ -89,8 +101,8 @@ const EXPECTED_ANSWERS: Record<number, string[]> = {
   33: ["27"],
   34: ["2½", "3"],
   35: [fmt(ap(3, 4, 6))],
-  36: [clock("6:40", 50), clock("6:40", 75), clock("6:40", 100), "15", "6"],
-  37: [fmt(500 - 3 * 45), fmt(500 - 9 * 45), fmt(500 - 11 * 45)],
+  36: [clock("6:40", 50), clock("6:40", 75), clock("6:40", 100), "7:10", "7:05", "= 15"],
+  37: [fmt(500 - 3 * 45), fmt(500 - 9 * 45), fmt(500 - 11 * 45), "Day 12|Hari 12"],
   38: [
     "36, 44, 52",
     "68, 72, 76",
@@ -99,7 +111,13 @@ const EXPECTED_ANSWERS: Record<number, string[]> = {
     fmt(ap(60, 4, 15)),
     "RM16",
   ],
-  39: [fmt(ap(31, -6, 8)), fmt(ap(31, -6, 7))],
+  39: [
+    ...[2, 3].map((k) => `RM${(4.5 - 0.4 * k).toFixed(2)}`),
+    `RM${(4.5 - 0.4 * 6).toFixed(2)}`,
+    "5:00",
+    `RM${(4.5 - 0.4 * 8).toFixed(2)}`,
+    `RM${(4.5 - 0.4 * 9).toFixed(2)}`,
+  ],
   40: ["600, 1200, 2400", fmt(gp(150, 2, 7))],
   41: ["+4"],
   42: ["T₁ = 4", "T₄ = 16", "T₃ = 12"],
@@ -117,10 +135,10 @@ const EXPECTED_ANSWERS: Record<number, string[]> = {
   54: ["n = 16", "T₁₇"],
   55: ["11.75", fmt(3 + 4 * 11), fmt(3 + 4 * 12)],
   56: ["8, 11, 14, 17, 20", fmt(ap(8, 3, 12)), fmt(ap(8, 3, 20))],
-  57: ["4 + 3n", fmt(3 * 15 + 1), "33"],
-  58: [fmt(5 + 4 * 9), "9"],
+  57: ["20 + 4n", `= ${20 + 4 * 14}`, "Row 4|Baris 4"],
+  58: ["2 + 4n", `= ${2 + 4 * 9} m`, "15", `${2 + 4 * 14} m`],
   59: [clock("8:30", 6 * 20), "11", fmt(26 - 11)],
-  60: [fmt(5 + 3 * 7), "5 + 3n", "Week 20|Minggu 20"],
+  60: [`= ${35 + 7 * 6} kg`, "35 + 6n", `${35 + 6 * 11} kg`, "Week 12|Minggu 12"],
 };
 
 describe("Form 2 Maths Chapter 1 flashcards", () => {
@@ -187,6 +205,14 @@ describe("Form 2 Maths Chapter 1 flashcards", () => {
         }
         if (card.reviewMode === "practice") {
           expect(s.parts?.length).toBe(2);
+        }
+        if (card.reviewMode === "challenge" && lang === "dlp") {
+          expect(
+            s.parts!.some((part) =>
+              /Explain|Justify|Show|correct|Check|whether|Which|which plan/i.test(part),
+            ),
+            `${card.id} needs a reasoning, decision or justification part`,
+          ).toBe(true);
         }
         if (card.reviewMode === "challenge") {
           expect(s.parts?.length).toBe(3);
@@ -277,8 +303,10 @@ describe("Form 2 Maths Chapter 1 flashcards", () => {
     for (const entry of MATH_F2_C1_FLASHCARD_BANK) {
       for (const visual of [...(entry.visuals ?? []), ...(entry.answerVisuals ?? [])]) {
         count += 1;
-        expect(isMathPatternVisual(visual), visual.kind).toBe(true);
-        if (!isMathPatternVisual(visual)) continue;
+        if (!isMathPatternVisual(visual)) {
+          expect(visual.kind).toBe("number-line");
+          continue;
+        }
         expect(validateMathPatternVisual(visual), JSON.stringify(visual.title)).toEqual([]);
         for (const lang of LANGS) {
           const description = describeMathPatternVisual(visual, lang);
@@ -299,16 +327,106 @@ describe("Form 2 Maths Chapter 1 flashcards", () => {
     expect(count).toBeGreaterThanOrEqual(35);
   });
 
-  it("matches each visual to its question data", () => {
-    // Spot-check that the diagrams show the numbers the questions state.
-    const front = (n: number) => MATH_F2_C1_FLASHCARD_BANK[n - 1].visuals ?? [];
-    expect(front(15)[0]).toMatchObject({ stages: [{ count: 5 }, { count: 9 }, { count: 13 }] });
-    expect(front(36)[0]).toMatchObject({
-      rows: [{}, { cells: [{ dlp: "6:40 a.m." }, { dlp: "7:05 a.m." }, null, null, null] }],
+  it("matches every Challenge diagram to the numbers its question states", () => {
+    const card = (n: number) => MATH_F2_C1_FLASHCARD_BANK[n - 1];
+    const front = (n: number) => card(n).visuals ?? [];
+    const prompt = (n: number) => card(n).dlp.prompt;
+    const cells = (visual: MathQuestionVisual, row: number) =>
+      visual.kind === "term-table"
+        ? visual.rows[row].cells.map((cell) =>
+            cell === null ? null : typeof cell === "string" ? cell : cell.dlp,
+          )
+        : [];
+
+    // 1.1
+    expect(front(16)[0]).toMatchObject({
+      kind: "fibonacci-chain",
+      terms: [2, 3, 5, 8, null, null, null],
     });
-    expect(front(56)[0]).toMatchObject({ stages: [{ count: 8 }, { count: 11 }] });
-    expect(front(57)[0]).toMatchObject({ kind: "matchstick-squares", stages: [1, 2, 3] });
-    expect(front(17)[0]).toMatchObject({ terms: [2, 3, 5, 8, null, null] });
+    expect(prompt(16)).toMatch(/Bed 1 has 2 seedlings and Bed 2 has 3/);
+    expect(front(17)[0]).toMatchObject({
+      kind: "dot-pattern",
+      shape: "triangle",
+      stages: [1, 2, 3, 4],
+      missingStage: 4,
+    });
+    expect(cells(front(17)[1], 1)).toEqual(["1", "3", "6", null, null, null]);
+    expect(front(18)[0]).toMatchObject({
+      kind: "pascal-triangle",
+      rows: 7,
+      hidden: [
+        { row: 6, position: 3, label: "P" },
+        { row: 7, position: 4, label: "Q" },
+      ],
+    });
+    expect(cells(front(19)[0], 1)).toEqual(["Left", "Right", "Left", "Right", "Left", "Right"]);
+    expect(
+      cells(front(19)[0], 0)
+        .map(Number)
+        .every((n, i) => (n % 2 === 1) === (i % 2 === 0)),
+    ).toBe(true);
+    expect(front(20)[0]).toMatchObject({
+      kind: "matchstick-squares",
+      material: "rod",
+      stages: [1, 2, 3],
+    });
+    expect(prompt(20)).toMatch(
+      /1 frame needs 4 rods, 2 frames need 7 rods and 3 frames need 10 rods/,
+    );
+
+    // 1.2
+    expect(cells(front(36)[0], 1).slice(0, 2)).toEqual(["6:40 a.m.", "7:05 a.m."]);
+    expect(prompt(36)).toMatch(/6:40 a.m. A bus leaves every 25 minutes/);
+    expect(front(37)[0]).toMatchObject({
+      terms: [500, 455, 410, null],
+      steps: ["−45", "−45", "−45"],
+    });
+    expect(cells(front(38)[0], 1).slice(0, 2)).toEqual(["20", "28"]);
+    expect(cells(front(38)[0], 2).slice(0, 2)).toEqual(["60", "64"]);
+    expect(cells(front(39)[0], 1)).toEqual(["4.50", "4.10", null, null]);
+    expect(prompt(39)).toMatch(/RM4.50 at 2:00 p.m. Every 30 minutes, the price drops by RM0.40/);
+    expect(cells(front(40)[0], 1)).toEqual(["150", "300", null, null, null]);
+
+    // 1.3
+    expect(front(56)[0]).toMatchObject({
+      kind: "object-stages",
+      stages: [{ count: 8 }, { count: 11 }],
+    });
+    expect(cells(front(56)[1], 1)).toEqual(["8", null, null, null, null]);
+    expect(cells(front(57)[0], 1)).toEqual(["0", "1", "2", "3", "4"]);
+    expect(cells(front(57)[0], 2)).toEqual(["20", "24", null, null, null]);
+    expect(front(58)[0]).toMatchObject({
+      terms: [2, 6, 10, 14, null],
+      steps: ["+4", "+4", "+4", "+4"],
+    });
+    expect(cells(front(59)[0], 1).slice(0, 2)).toEqual(["8:30 a.m.", "8:50 a.m."]);
+    expect(cells(front(60)[0], 2)).toEqual(["35", "41", null, null]);
+
+    // Tile pattern (Practice) keeps its stage counts.
+    expect(front(15)[0]).toMatchObject({ stages: [{ count: 5 }, { count: 9 }, { count: 13 }] });
+  });
+
+  it("gives every Challenge card its own real-life setting", () => {
+    const challenge = MATH_F2_C1_FLASHCARD_BANK.filter((entry) => entry.mode === "challenge");
+    expect(challenge).toHaveLength(15);
+    const settings = [
+      /gardening club plants seedlings/,
+      /canteen/,
+      /Open Day/,
+      /lockers/,
+      /fence/,
+      /school bus/,
+      /rainwater tank/,
+      /class trip/,
+      /carnival/,
+      /recycling-campaign video/,
+      /assembly/,
+      /stadium/,
+      /plants trees/,
+      /clinic/,
+      /gotong-royong/,
+    ];
+    challenge.forEach((entry, index) => expect(entry.dlp.prompt).toMatch(settings[index]));
   });
 });
 

@@ -563,6 +563,7 @@ export function FlashcardDeck({
   frontContent,
   backContent,
   fitContent = false,
+  cardId,
 }: {
   turnKey: string;
   front: string;
@@ -572,6 +573,8 @@ export function FlashcardDeck({
   backContent?: ReactNode;
   /** Grow the card to show the whole of the taller face instead of scrolling. */
   fitContent?: boolean;
+  /** Exposed as data-card-id for analytics and end-to-end checks. */
+  cardId?: string;
   metaLabel: string;
   favourite: boolean;
   onToggleFavourite: () => void;
@@ -630,6 +633,7 @@ export function FlashcardDeck({
           onPointerUp={onPointerUp}
           onPointerCancel={onPointerCancel}
           className="flashcard-study-card"
+          data-card-id={cardId}
           style={cardStyle}
         >
           {knowCueOpacity > 0 && (
