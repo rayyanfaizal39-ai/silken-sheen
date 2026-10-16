@@ -1,11 +1,13 @@
 import type { Flashcard } from "@/data/content";
 import { structuredBack, structuredFront } from "@/features/flashcards/structuredFlashcard";
 import { MATH_F2_C6_BANK } from "./flashcard-bank";
+import { MATH_F2_C6_VISUALS } from "./flashcard-visuals";
 
 export function buildMathF2C6Flashcards(lang: "dlp" | "bm"): Flashcard[] {
   return MATH_F2_C6_BANK.map((entry, index) => {
     const side = entry[lang];
-    const structured = { ...side, visuals: entry.visuals };
+    const visual = MATH_F2_C6_VISUALS.get(index);
+    const structured = { ...side, ...(visual ? { visuals: [visual] } : {}) };
     return {
       id: `math-f2-c6-${lang}-f${index + 1}`,
       subjectId: "math",

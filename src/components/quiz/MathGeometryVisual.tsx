@@ -30,8 +30,8 @@ function PanelDrawing({
         <path
           key={`p${i}`}
           d={`${path.points.map(([x, y], j) => `${j ? "L" : "M"}${x},${y}`).join(" ")}${path.closed ? " Z" : ""}`}
-          fill={path.fill || (compact && path.closed) ? "#fbbf2412" : "none"}
-          stroke="#fbbf24"
+          fill={path.shade ? "#fbbf2433" : path.fill || (compact && path.closed) ? "#fbbf2412" : "none"}
+          stroke={path.tone === "accent" ? "#38bdf8" : "#fbbf24"}
           strokeWidth={stroke}
           strokeLinejoin="round"
           strokeDasharray={path.dashed ? "5 4" : undefined}

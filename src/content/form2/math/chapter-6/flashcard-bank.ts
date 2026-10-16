@@ -1,13 +1,12 @@
 import type { FlashcardReviewMode } from "@/features/flashcards/structuredFlashcard";
-import type { MathQuestionVisual } from "@/features/quiz/visuals/mathQuestionVisual";
 export interface MathF2C6Entry {
  subtopic: "6.1" | "6.2" | "6.3";
  mode: FlashcardReviewMode;
- visuals?: MathQuestionVisual[];
  dlp: { prompt: string; parts?: string[]; answer: string[][] };
  bm: { prompt: string; parts?: string[]; answer: string[][] };
 }
-/** Form 2 Maths Chapter 6: one bilingual 60-card bank; 12 / 33 / 15 by mode. */
+/** Form 2 Maths Chapter 6: one bilingual 60-card bank; 12 / 33 / 15 by mode.
+ * Diagrams live in ./flashcard-visuals, keyed by bank index. */
 export const MATH_F2_C6_BANK: readonly MathF2C6Entry[] =  [
   {
     "subtopic": "6.1",
@@ -27,22 +26,7 @@ export const MATH_F2_C6_BANK: readonly MathF2C6Entry[] =  [
           "6 muka."
         ]
       ]
-    },
-    "visuals": [
-      {
-        "kind": "geometry-model",
-        "title": {
-          "dlp": "Solid and its measurements",
-          "bm": "Pepejal dan ukurannya"
-        },
-        "models": [
-          {
-            "shape": "cube",
-            "side": "3 cm"
-          }
-        ]
-      }
-    ]
+    }
   },
   {
     "subtopic": "6.1",
@@ -62,22 +46,7 @@ export const MATH_F2_C6_BANK: readonly MathF2C6Entry[] =  [
           "Segmen garis tempat dua muka bertemu."
         ]
       ]
-    },
-    "visuals": [
-      {
-        "kind": "geometry-model",
-        "title": {
-          "dlp": "Solid and its measurements",
-          "bm": "Pepejal dan ukurannya"
-        },
-        "models": [
-          {
-            "shape": "cube",
-            "side": "3 cm"
-          }
-        ]
-      }
-    ]
+    }
   },
   {
     "subtopic": "6.1",
@@ -97,22 +66,7 @@ export const MATH_F2_C6_BANK: readonly MathF2C6Entry[] =  [
           "Titik pertemuan tepi."
         ]
       ]
-    },
-    "visuals": [
-      {
-        "kind": "geometry-model",
-        "title": {
-          "dlp": "Solid and its measurements",
-          "bm": "Pepejal dan ukurannya"
-        },
-        "models": [
-          {
-            "shape": "cube",
-            "side": "3 cm"
-          }
-        ]
-      }
-    ]
+    }
   },
   {
     "subtopic": "6.1",
@@ -132,22 +86,7 @@ export const MATH_F2_C6_BANK: readonly MathF2C6Entry[] =  [
           "Silinder."
         ]
       ]
-    },
-    "visuals": [
-      {
-        "kind": "geometry-model",
-        "title": {
-          "dlp": "Solid and its measurements",
-          "bm": "Pepejal dan ukurannya"
-        },
-        "models": [
-          {
-            "shape": "cube",
-            "side": "3 cm"
-          }
-        ]
-      }
-    ]
+    }
   },
   {
     "subtopic": "6.1",
@@ -597,157 +536,7 @@ export const MATH_F2_C6_BANK: readonly MathF2C6Entry[] =  [
           "Susunan muka 2D yang boleh dilipat menjadi pepejal."
         ]
       ]
-    },
-    "visuals": [
-      {
-        "kind": "geometry-diagram",
-        "title": {
-          "dlp": "Unfolded square faces",
-          "bm": "Bentangan muka segi empat sama"
-        },
-        "panels": [
-          {
-            "title": {
-              "dlp": "Flat net",
-              "bm": "Bentangan rata"
-            },
-            "description": {
-              "dlp": "Each square is one face",
-              "bm": "Setiap segi empat sama ialah satu muka"
-            },
-            "paths": [
-              {
-                "points": [
-                  [
-                    36,
-                    8
-                  ],
-                  [
-                    53,
-                    8
-                  ],
-                  [
-                    53,
-                    25
-                  ],
-                  [
-                    36,
-                    25
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    36,
-                    25
-                  ],
-                  [
-                    53,
-                    25
-                  ],
-                  [
-                    53,
-                    42
-                  ],
-                  [
-                    36,
-                    42
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    36,
-                    42
-                  ],
-                  [
-                    53,
-                    42
-                  ],
-                  [
-                    53,
-                    59
-                  ],
-                  [
-                    36,
-                    59
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    36,
-                    59
-                  ],
-                  [
-                    53,
-                    59
-                  ],
-                  [
-                    53,
-                    76
-                  ],
-                  [
-                    36,
-                    76
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    19,
-                    25
-                  ],
-                  [
-                    36,
-                    25
-                  ],
-                  [
-                    36,
-                    42
-                  ],
-                  [
-                    19,
-                    42
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    53,
-                    25
-                  ],
-                  [
-                    70,
-                    25
-                  ],
-                  [
-                    70,
-                    42
-                  ],
-                  [
-                    53,
-                    42
-                  ]
-                ],
-                "closed": true
-              }
-            ],
-            "labels": []
-          }
-        ]
-      }
-    ]
+    }
   },
   {
     "subtopic": "6.2",
@@ -767,157 +556,7 @@ export const MATH_F2_C6_BANK: readonly MathF2C6Entry[] =  [
           "Enam segi empat sama."
         ]
       ]
-    },
-    "visuals": [
-      {
-        "kind": "geometry-diagram",
-        "title": {
-          "dlp": "Unfolded square faces",
-          "bm": "Bentangan muka segi empat sama"
-        },
-        "panels": [
-          {
-            "title": {
-              "dlp": "Flat net",
-              "bm": "Bentangan rata"
-            },
-            "description": {
-              "dlp": "Each square is one face",
-              "bm": "Setiap segi empat sama ialah satu muka"
-            },
-            "paths": [
-              {
-                "points": [
-                  [
-                    7,
-                    20
-                  ],
-                  [
-                    24,
-                    20
-                  ],
-                  [
-                    24,
-                    37
-                  ],
-                  [
-                    7,
-                    37
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    24,
-                    20
-                  ],
-                  [
-                    41,
-                    20
-                  ],
-                  [
-                    41,
-                    37
-                  ],
-                  [
-                    24,
-                    37
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    41,
-                    20
-                  ],
-                  [
-                    58,
-                    20
-                  ],
-                  [
-                    58,
-                    37
-                  ],
-                  [
-                    41,
-                    37
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    58,
-                    20
-                  ],
-                  [
-                    75,
-                    20
-                  ],
-                  [
-                    75,
-                    37
-                  ],
-                  [
-                    58,
-                    37
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    41,
-                    3
-                  ],
-                  [
-                    58,
-                    3
-                  ],
-                  [
-                    58,
-                    20
-                  ],
-                  [
-                    41,
-                    20
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    41,
-                    37
-                  ],
-                  [
-                    58,
-                    37
-                  ],
-                  [
-                    58,
-                    54
-                  ],
-                  [
-                    41,
-                    54
-                  ]
-                ],
-                "closed": true
-              }
-            ],
-            "labels": []
-          }
-        ]
-      }
-    ]
+    }
   },
   {
     "subtopic": "6.2",
@@ -937,157 +576,7 @@ export const MATH_F2_C6_BANK: readonly MathF2C6Entry[] =  [
           "Tiga segi empat tepat dan dua segi tiga."
         ]
       ]
-    },
-    "visuals": [
-      {
-        "kind": "geometry-diagram",
-        "title": {
-          "dlp": "Unfolded square faces",
-          "bm": "Bentangan muka segi empat sama"
-        },
-        "panels": [
-          {
-            "title": {
-              "dlp": "Flat net",
-              "bm": "Bentangan rata"
-            },
-            "description": {
-              "dlp": "Each square is one face",
-              "bm": "Setiap segi empat sama ialah satu muka"
-            },
-            "paths": [
-              {
-                "points": [
-                  [
-                    36,
-                    8
-                  ],
-                  [
-                    53,
-                    8
-                  ],
-                  [
-                    53,
-                    25
-                  ],
-                  [
-                    36,
-                    25
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    36,
-                    25
-                  ],
-                  [
-                    53,
-                    25
-                  ],
-                  [
-                    53,
-                    42
-                  ],
-                  [
-                    36,
-                    42
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    36,
-                    42
-                  ],
-                  [
-                    53,
-                    42
-                  ],
-                  [
-                    53,
-                    59
-                  ],
-                  [
-                    36,
-                    59
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    36,
-                    59
-                  ],
-                  [
-                    53,
-                    59
-                  ],
-                  [
-                    53,
-                    76
-                  ],
-                  [
-                    36,
-                    76
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    19,
-                    25
-                  ],
-                  [
-                    36,
-                    25
-                  ],
-                  [
-                    36,
-                    42
-                  ],
-                  [
-                    19,
-                    42
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    53,
-                    25
-                  ],
-                  [
-                    70,
-                    25
-                  ],
-                  [
-                    70,
-                    42
-                  ],
-                  [
-                    53,
-                    42
-                  ]
-                ],
-                "closed": true
-              }
-            ],
-            "labels": []
-          }
-        ]
-      }
-    ]
+    }
   },
   {
     "subtopic": "6.2",
@@ -1107,157 +596,7 @@ export const MATH_F2_C6_BANK: readonly MathF2C6Entry[] =  [
           "Ada muka bertindih atau tidak membentuk enam muka kubus yang berbeza."
         ]
       ]
-    },
-    "visuals": [
-      {
-        "kind": "geometry-diagram",
-        "title": {
-          "dlp": "Unfolded square faces",
-          "bm": "Bentangan muka segi empat sama"
-        },
-        "panels": [
-          {
-            "title": {
-              "dlp": "Flat net",
-              "bm": "Bentangan rata"
-            },
-            "description": {
-              "dlp": "Each square is one face",
-              "bm": "Setiap segi empat sama ialah satu muka"
-            },
-            "paths": [
-              {
-                "points": [
-                  [
-                    7,
-                    20
-                  ],
-                  [
-                    24,
-                    20
-                  ],
-                  [
-                    24,
-                    37
-                  ],
-                  [
-                    7,
-                    37
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    24,
-                    20
-                  ],
-                  [
-                    41,
-                    20
-                  ],
-                  [
-                    41,
-                    37
-                  ],
-                  [
-                    24,
-                    37
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    41,
-                    20
-                  ],
-                  [
-                    58,
-                    20
-                  ],
-                  [
-                    58,
-                    37
-                  ],
-                  [
-                    41,
-                    37
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    58,
-                    20
-                  ],
-                  [
-                    75,
-                    20
-                  ],
-                  [
-                    75,
-                    37
-                  ],
-                  [
-                    58,
-                    37
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    41,
-                    3
-                  ],
-                  [
-                    58,
-                    3
-                  ],
-                  [
-                    58,
-                    20
-                  ],
-                  [
-                    41,
-                    20
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    41,
-                    37
-                  ],
-                  [
-                    58,
-                    37
-                  ],
-                  [
-                    58,
-                    54
-                  ],
-                  [
-                    41,
-                    54
-                  ]
-                ],
-                "closed": true
-              }
-            ],
-            "labels": []
-          }
-        ]
-      }
-    ]
+    }
   },
   {
     "subtopic": "6.2",
@@ -1297,157 +636,7 @@ export const MATH_F2_C6_BANK: readonly MathF2C6Entry[] =  [
           "4 cm."
         ]
       ]
-    },
-    "visuals": [
-      {
-        "kind": "geometry-diagram",
-        "title": {
-          "dlp": "Unfolded square faces",
-          "bm": "Bentangan muka segi empat sama"
-        },
-        "panels": [
-          {
-            "title": {
-              "dlp": "Flat net",
-              "bm": "Bentangan rata"
-            },
-            "description": {
-              "dlp": "Each square is one face",
-              "bm": "Setiap segi empat sama ialah satu muka"
-            },
-            "paths": [
-              {
-                "points": [
-                  [
-                    36,
-                    8
-                  ],
-                  [
-                    53,
-                    8
-                  ],
-                  [
-                    53,
-                    25
-                  ],
-                  [
-                    36,
-                    25
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    36,
-                    25
-                  ],
-                  [
-                    53,
-                    25
-                  ],
-                  [
-                    53,
-                    42
-                  ],
-                  [
-                    36,
-                    42
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    36,
-                    42
-                  ],
-                  [
-                    53,
-                    42
-                  ],
-                  [
-                    53,
-                    59
-                  ],
-                  [
-                    36,
-                    59
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    36,
-                    59
-                  ],
-                  [
-                    53,
-                    59
-                  ],
-                  [
-                    53,
-                    76
-                  ],
-                  [
-                    36,
-                    76
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    19,
-                    25
-                  ],
-                  [
-                    36,
-                    25
-                  ],
-                  [
-                    36,
-                    42
-                  ],
-                  [
-                    19,
-                    42
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    53,
-                    25
-                  ],
-                  [
-                    70,
-                    25
-                  ],
-                  [
-                    70,
-                    42
-                  ],
-                  [
-                    53,
-                    42
-                  ]
-                ],
-                "closed": true
-              }
-            ],
-            "labels": []
-          }
-        ]
-      }
-    ]
+    }
   },
   {
     "subtopic": "6.2",
@@ -1547,157 +736,7 @@ export const MATH_F2_C6_BANK: readonly MathF2C6Entry[] =  [
           "Tidak; kubus mempunyai 6 muka segi empat sama."
         ]
       ]
-    },
-    "visuals": [
-      {
-        "kind": "geometry-diagram",
-        "title": {
-          "dlp": "Unfolded square faces",
-          "bm": "Bentangan muka segi empat sama"
-        },
-        "panels": [
-          {
-            "title": {
-              "dlp": "Flat net",
-              "bm": "Bentangan rata"
-            },
-            "description": {
-              "dlp": "Each square is one face",
-              "bm": "Setiap segi empat sama ialah satu muka"
-            },
-            "paths": [
-              {
-                "points": [
-                  [
-                    36,
-                    8
-                  ],
-                  [
-                    53,
-                    8
-                  ],
-                  [
-                    53,
-                    25
-                  ],
-                  [
-                    36,
-                    25
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    36,
-                    25
-                  ],
-                  [
-                    53,
-                    25
-                  ],
-                  [
-                    53,
-                    42
-                  ],
-                  [
-                    36,
-                    42
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    36,
-                    42
-                  ],
-                  [
-                    53,
-                    42
-                  ],
-                  [
-                    53,
-                    59
-                  ],
-                  [
-                    36,
-                    59
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    36,
-                    59
-                  ],
-                  [
-                    53,
-                    59
-                  ],
-                  [
-                    53,
-                    76
-                  ],
-                  [
-                    36,
-                    76
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    19,
-                    25
-                  ],
-                  [
-                    36,
-                    25
-                  ],
-                  [
-                    36,
-                    42
-                  ],
-                  [
-                    19,
-                    42
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    53,
-                    25
-                  ],
-                  [
-                    70,
-                    25
-                  ],
-                  [
-                    70,
-                    42
-                  ],
-                  [
-                    53,
-                    42
-                  ]
-                ],
-                "closed": true
-              }
-            ],
-            "labels": []
-          }
-        ]
-      }
-    ]
+    }
   },
   {
     "subtopic": "6.2",
@@ -1737,157 +776,7 @@ export const MATH_F2_C6_BANK: readonly MathF2C6Entry[] =  [
           "6 × 3² = 54 cm²."
         ]
       ]
-    },
-    "visuals": [
-      {
-        "kind": "geometry-diagram",
-        "title": {
-          "dlp": "Unfolded square faces",
-          "bm": "Bentangan muka segi empat sama"
-        },
-        "panels": [
-          {
-            "title": {
-              "dlp": "Flat net",
-              "bm": "Bentangan rata"
-            },
-            "description": {
-              "dlp": "Each square is one face",
-              "bm": "Setiap segi empat sama ialah satu muka"
-            },
-            "paths": [
-              {
-                "points": [
-                  [
-                    36,
-                    8
-                  ],
-                  [
-                    53,
-                    8
-                  ],
-                  [
-                    53,
-                    25
-                  ],
-                  [
-                    36,
-                    25
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    36,
-                    25
-                  ],
-                  [
-                    53,
-                    25
-                  ],
-                  [
-                    53,
-                    42
-                  ],
-                  [
-                    36,
-                    42
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    36,
-                    42
-                  ],
-                  [
-                    53,
-                    42
-                  ],
-                  [
-                    53,
-                    59
-                  ],
-                  [
-                    36,
-                    59
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    36,
-                    59
-                  ],
-                  [
-                    53,
-                    59
-                  ],
-                  [
-                    53,
-                    76
-                  ],
-                  [
-                    36,
-                    76
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    19,
-                    25
-                  ],
-                  [
-                    36,
-                    25
-                  ],
-                  [
-                    36,
-                    42
-                  ],
-                  [
-                    19,
-                    42
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    53,
-                    25
-                  ],
-                  [
-                    70,
-                    25
-                  ],
-                  [
-                    70,
-                    42
-                  ],
-                  [
-                    53,
-                    42
-                  ]
-                ],
-                "closed": true
-              }
-            ],
-            "labels": []
-          }
-        ]
-      }
-    ]
+    }
   },
   {
     "subtopic": "6.2",
@@ -1932,156 +821,6 @@ export const MATH_F2_C6_BANK: readonly MathF2C6Entry[] =  [
   {
     "subtopic": "6.2",
     "mode": "challenge",
-    "visuals": [
-      {
-        "kind": "geometry-diagram",
-        "title": {
-          "dlp": "Unfolded square faces",
-          "bm": "Bentangan muka segi empat sama"
-        },
-        "panels": [
-          {
-            "title": {
-              "dlp": "Flat net",
-              "bm": "Bentangan rata"
-            },
-            "description": {
-              "dlp": "Each square is one face",
-              "bm": "Setiap segi empat sama ialah satu muka"
-            },
-            "paths": [
-              {
-                "points": [
-                  [
-                    36,
-                    8
-                  ],
-                  [
-                    53,
-                    8
-                  ],
-                  [
-                    53,
-                    25
-                  ],
-                  [
-                    36,
-                    25
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    36,
-                    25
-                  ],
-                  [
-                    53,
-                    25
-                  ],
-                  [
-                    53,
-                    42
-                  ],
-                  [
-                    36,
-                    42
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    36,
-                    42
-                  ],
-                  [
-                    53,
-                    42
-                  ],
-                  [
-                    53,
-                    59
-                  ],
-                  [
-                    36,
-                    59
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    36,
-                    59
-                  ],
-                  [
-                    53,
-                    59
-                  ],
-                  [
-                    53,
-                    76
-                  ],
-                  [
-                    36,
-                    76
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    19,
-                    25
-                  ],
-                  [
-                    36,
-                    25
-                  ],
-                  [
-                    36,
-                    42
-                  ],
-                  [
-                    19,
-                    42
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    53,
-                    25
-                  ],
-                  [
-                    70,
-                    25
-                  ],
-                  [
-                    70,
-                    42
-                  ],
-                  [
-                    53,
-                    42
-                  ]
-                ],
-                "closed": true
-              }
-            ],
-            "labels": []
-          }
-        ]
-      }
-    ],
     "dlp": {
       "prompt": "A gift box is a cube of side 2 cm. The diagram shows one possible net layout.",
       "parts": [
@@ -2124,156 +863,6 @@ export const MATH_F2_C6_BANK: readonly MathF2C6Entry[] =  [
   {
     "subtopic": "6.2",
     "mode": "challenge",
-    "visuals": [
-      {
-        "kind": "geometry-diagram",
-        "title": {
-          "dlp": "Unfolded square faces",
-          "bm": "Bentangan muka segi empat sama"
-        },
-        "panels": [
-          {
-            "title": {
-              "dlp": "Flat net",
-              "bm": "Bentangan rata"
-            },
-            "description": {
-              "dlp": "Each square is one face",
-              "bm": "Setiap segi empat sama ialah satu muka"
-            },
-            "paths": [
-              {
-                "points": [
-                  [
-                    36,
-                    8
-                  ],
-                  [
-                    53,
-                    8
-                  ],
-                  [
-                    53,
-                    25
-                  ],
-                  [
-                    36,
-                    25
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    36,
-                    25
-                  ],
-                  [
-                    53,
-                    25
-                  ],
-                  [
-                    53,
-                    42
-                  ],
-                  [
-                    36,
-                    42
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    36,
-                    42
-                  ],
-                  [
-                    53,
-                    42
-                  ],
-                  [
-                    53,
-                    59
-                  ],
-                  [
-                    36,
-                    59
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    36,
-                    59
-                  ],
-                  [
-                    53,
-                    59
-                  ],
-                  [
-                    53,
-                    76
-                  ],
-                  [
-                    36,
-                    76
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    19,
-                    25
-                  ],
-                  [
-                    36,
-                    25
-                  ],
-                  [
-                    36,
-                    42
-                  ],
-                  [
-                    19,
-                    42
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    53,
-                    25
-                  ],
-                  [
-                    70,
-                    25
-                  ],
-                  [
-                    70,
-                    42
-                  ],
-                  [
-                    53,
-                    42
-                  ]
-                ],
-                "closed": true
-              }
-            ],
-            "labels": []
-          }
-        ]
-      }
-    ],
     "dlp": {
       "prompt": "A gift box is a cube of side 3 cm. The diagram shows one possible net layout.",
       "parts": [
@@ -2316,156 +905,6 @@ export const MATH_F2_C6_BANK: readonly MathF2C6Entry[] =  [
   {
     "subtopic": "6.2",
     "mode": "challenge",
-    "visuals": [
-      {
-        "kind": "geometry-diagram",
-        "title": {
-          "dlp": "Unfolded square faces",
-          "bm": "Bentangan muka segi empat sama"
-        },
-        "panels": [
-          {
-            "title": {
-              "dlp": "Flat net",
-              "bm": "Bentangan rata"
-            },
-            "description": {
-              "dlp": "Each square is one face",
-              "bm": "Setiap segi empat sama ialah satu muka"
-            },
-            "paths": [
-              {
-                "points": [
-                  [
-                    36,
-                    8
-                  ],
-                  [
-                    53,
-                    8
-                  ],
-                  [
-                    53,
-                    25
-                  ],
-                  [
-                    36,
-                    25
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    36,
-                    25
-                  ],
-                  [
-                    53,
-                    25
-                  ],
-                  [
-                    53,
-                    42
-                  ],
-                  [
-                    36,
-                    42
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    36,
-                    42
-                  ],
-                  [
-                    53,
-                    42
-                  ],
-                  [
-                    53,
-                    59
-                  ],
-                  [
-                    36,
-                    59
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    36,
-                    59
-                  ],
-                  [
-                    53,
-                    59
-                  ],
-                  [
-                    53,
-                    76
-                  ],
-                  [
-                    36,
-                    76
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    19,
-                    25
-                  ],
-                  [
-                    36,
-                    25
-                  ],
-                  [
-                    36,
-                    42
-                  ],
-                  [
-                    19,
-                    42
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    53,
-                    25
-                  ],
-                  [
-                    70,
-                    25
-                  ],
-                  [
-                    70,
-                    42
-                  ],
-                  [
-                    53,
-                    42
-                  ]
-                ],
-                "closed": true
-              }
-            ],
-            "labels": []
-          }
-        ]
-      }
-    ],
     "dlp": {
       "prompt": "A gift box is a cube of side 4 cm. The diagram shows one possible net layout.",
       "parts": [
@@ -2508,156 +947,6 @@ export const MATH_F2_C6_BANK: readonly MathF2C6Entry[] =  [
   {
     "subtopic": "6.2",
     "mode": "challenge",
-    "visuals": [
-      {
-        "kind": "geometry-diagram",
-        "title": {
-          "dlp": "Unfolded square faces",
-          "bm": "Bentangan muka segi empat sama"
-        },
-        "panels": [
-          {
-            "title": {
-              "dlp": "Flat net",
-              "bm": "Bentangan rata"
-            },
-            "description": {
-              "dlp": "Each square is one face",
-              "bm": "Setiap segi empat sama ialah satu muka"
-            },
-            "paths": [
-              {
-                "points": [
-                  [
-                    36,
-                    8
-                  ],
-                  [
-                    53,
-                    8
-                  ],
-                  [
-                    53,
-                    25
-                  ],
-                  [
-                    36,
-                    25
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    36,
-                    25
-                  ],
-                  [
-                    53,
-                    25
-                  ],
-                  [
-                    53,
-                    42
-                  ],
-                  [
-                    36,
-                    42
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    36,
-                    42
-                  ],
-                  [
-                    53,
-                    42
-                  ],
-                  [
-                    53,
-                    59
-                  ],
-                  [
-                    36,
-                    59
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    36,
-                    59
-                  ],
-                  [
-                    53,
-                    59
-                  ],
-                  [
-                    53,
-                    76
-                  ],
-                  [
-                    36,
-                    76
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    19,
-                    25
-                  ],
-                  [
-                    36,
-                    25
-                  ],
-                  [
-                    36,
-                    42
-                  ],
-                  [
-                    19,
-                    42
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    53,
-                    25
-                  ],
-                  [
-                    70,
-                    25
-                  ],
-                  [
-                    70,
-                    42
-                  ],
-                  [
-                    53,
-                    42
-                  ]
-                ],
-                "closed": true
-              }
-            ],
-            "labels": []
-          }
-        ]
-      }
-    ],
     "dlp": {
       "prompt": "A gift box is a cube of side 5 cm. The diagram shows one possible net layout.",
       "parts": [
@@ -2700,156 +989,6 @@ export const MATH_F2_C6_BANK: readonly MathF2C6Entry[] =  [
   {
     "subtopic": "6.2",
     "mode": "challenge",
-    "visuals": [
-      {
-        "kind": "geometry-diagram",
-        "title": {
-          "dlp": "Unfolded square faces",
-          "bm": "Bentangan muka segi empat sama"
-        },
-        "panels": [
-          {
-            "title": {
-              "dlp": "Flat net",
-              "bm": "Bentangan rata"
-            },
-            "description": {
-              "dlp": "Each square is one face",
-              "bm": "Setiap segi empat sama ialah satu muka"
-            },
-            "paths": [
-              {
-                "points": [
-                  [
-                    36,
-                    8
-                  ],
-                  [
-                    53,
-                    8
-                  ],
-                  [
-                    53,
-                    25
-                  ],
-                  [
-                    36,
-                    25
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    36,
-                    25
-                  ],
-                  [
-                    53,
-                    25
-                  ],
-                  [
-                    53,
-                    42
-                  ],
-                  [
-                    36,
-                    42
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    36,
-                    42
-                  ],
-                  [
-                    53,
-                    42
-                  ],
-                  [
-                    53,
-                    59
-                  ],
-                  [
-                    36,
-                    59
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    36,
-                    59
-                  ],
-                  [
-                    53,
-                    59
-                  ],
-                  [
-                    53,
-                    76
-                  ],
-                  [
-                    36,
-                    76
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    19,
-                    25
-                  ],
-                  [
-                    36,
-                    25
-                  ],
-                  [
-                    36,
-                    42
-                  ],
-                  [
-                    19,
-                    42
-                  ]
-                ],
-                "closed": true
-              },
-              {
-                "points": [
-                  [
-                    53,
-                    25
-                  ],
-                  [
-                    70,
-                    25
-                  ],
-                  [
-                    70,
-                    42
-                  ],
-                  [
-                    53,
-                    42
-                  ]
-                ],
-                "closed": true
-              }
-            ],
-            "labels": []
-          }
-        ]
-      }
-    ],
     "dlp": {
       "prompt": "A gift box is a cube of side 6 cm. The diagram shows one possible net layout.",
       "parts": [
@@ -2907,22 +1046,7 @@ export const MATH_F2_C6_BANK: readonly MathF2C6Entry[] =  [
           "Luas permukaan dalam unit persegi; isi padu ruang dalaman dalam unit padu."
         ]
       ]
-    },
-    "visuals": [
-      {
-        "kind": "geometry-model",
-        "title": {
-          "dlp": "Solid and its measurements",
-          "bm": "Pepejal dan ukurannya"
-        },
-        "models": [
-          {
-            "shape": "cube",
-            "side": "2 cm"
-          }
-        ]
-      }
-    ]
+    }
   },
   {
     "subtopic": "6.3",
@@ -2942,22 +1066,7 @@ export const MATH_F2_C6_BANK: readonly MathF2C6Entry[] =  [
           "V = panjang × lebar × tinggi."
         ]
       ]
-    },
-    "visuals": [
-      {
-        "kind": "geometry-model",
-        "title": {
-          "dlp": "Solid and its measurements",
-          "bm": "Pepejal dan ukurannya"
-        },
-        "models": [
-          {
-            "shape": "cube",
-            "side": "3 cm"
-          }
-        ]
-      }
-    ]
+    }
   },
   {
     "subtopic": "6.3",
@@ -2977,22 +1086,7 @@ export const MATH_F2_C6_BANK: readonly MathF2C6Entry[] =  [
           "6s²."
         ]
       ]
-    },
-    "visuals": [
-      {
-        "kind": "geometry-model",
-        "title": {
-          "dlp": "Solid and its measurements",
-          "bm": "Pepejal dan ukurannya"
-        },
-        "models": [
-          {
-            "shape": "cube",
-            "side": "4 cm"
-          }
-        ]
-      }
-    ]
+    }
   },
   {
     "subtopic": "6.3",
@@ -3012,22 +1106,7 @@ export const MATH_F2_C6_BANK: readonly MathF2C6Entry[] =  [
           "Luas keratan rentas × panjang."
         ]
       ]
-    },
-    "visuals": [
-      {
-        "kind": "geometry-model",
-        "title": {
-          "dlp": "Solid and its measurements",
-          "bm": "Pepejal dan ukurannya"
-        },
-        "models": [
-          {
-            "shape": "cube",
-            "side": "5 cm"
-          }
-        ]
-      }
-    ]
+    }
   },
   {
     "subtopic": "6.3",
@@ -3047,22 +1126,7 @@ export const MATH_F2_C6_BANK: readonly MathF2C6Entry[] =  [
           "V = 2³ = 8 cm³."
         ]
       ]
-    },
-    "visuals": [
-      {
-        "kind": "geometry-model",
-        "title": {
-          "dlp": "Solid and its measurements",
-          "bm": "Pepejal dan ukurannya"
-        },
-        "models": [
-          {
-            "shape": "cube",
-            "side": "2 cm"
-          }
-        ]
-      }
-    ]
+    }
   },
   {
     "subtopic": "6.3",
@@ -3082,22 +1146,7 @@ export const MATH_F2_C6_BANK: readonly MathF2C6Entry[] =  [
           "V = 3³ = 27 cm³."
         ]
       ]
-    },
-    "visuals": [
-      {
-        "kind": "geometry-model",
-        "title": {
-          "dlp": "Solid and its measurements",
-          "bm": "Pepejal dan ukurannya"
-        },
-        "models": [
-          {
-            "shape": "cube",
-            "side": "3 cm"
-          }
-        ]
-      }
-    ]
+    }
   },
   {
     "subtopic": "6.3",
@@ -3117,22 +1166,7 @@ export const MATH_F2_C6_BANK: readonly MathF2C6Entry[] =  [
           "V = 4³ = 64 cm³."
         ]
       ]
-    },
-    "visuals": [
-      {
-        "kind": "geometry-model",
-        "title": {
-          "dlp": "Solid and its measurements",
-          "bm": "Pepejal dan ukurannya"
-        },
-        "models": [
-          {
-            "shape": "cube",
-            "side": "4 cm"
-          }
-        ]
-      }
-    ]
+    }
   },
   {
     "subtopic": "6.3",
@@ -3152,22 +1186,7 @@ export const MATH_F2_C6_BANK: readonly MathF2C6Entry[] =  [
           "V = 5³ = 125 cm³."
         ]
       ]
-    },
-    "visuals": [
-      {
-        "kind": "geometry-model",
-        "title": {
-          "dlp": "Solid and its measurements",
-          "bm": "Pepejal dan ukurannya"
-        },
-        "models": [
-          {
-            "shape": "cube",
-            "side": "5 cm"
-          }
-        ]
-      }
-    ]
+    }
   },
   {
     "subtopic": "6.3",
@@ -3187,22 +1206,7 @@ export const MATH_F2_C6_BANK: readonly MathF2C6Entry[] =  [
           "A = 6 × 2² = 24 cm²."
         ]
       ]
-    },
-    "visuals": [
-      {
-        "kind": "geometry-model",
-        "title": {
-          "dlp": "Solid and its measurements",
-          "bm": "Pepejal dan ukurannya"
-        },
-        "models": [
-          {
-            "shape": "cube",
-            "side": "2 cm"
-          }
-        ]
-      }
-    ]
+    }
   },
   {
     "subtopic": "6.3",
@@ -3222,22 +1226,7 @@ export const MATH_F2_C6_BANK: readonly MathF2C6Entry[] =  [
           "A = 6 × 3² = 54 cm²."
         ]
       ]
-    },
-    "visuals": [
-      {
-        "kind": "geometry-model",
-        "title": {
-          "dlp": "Solid and its measurements",
-          "bm": "Pepejal dan ukurannya"
-        },
-        "models": [
-          {
-            "shape": "cube",
-            "side": "3 cm"
-          }
-        ]
-      }
-    ]
+    }
   },
   {
     "subtopic": "6.3",
@@ -3257,22 +1246,7 @@ export const MATH_F2_C6_BANK: readonly MathF2C6Entry[] =  [
           "A = 6 × 4² = 96 cm²."
         ]
       ]
-    },
-    "visuals": [
-      {
-        "kind": "geometry-model",
-        "title": {
-          "dlp": "Solid and its measurements",
-          "bm": "Pepejal dan ukurannya"
-        },
-        "models": [
-          {
-            "shape": "cube",
-            "side": "4 cm"
-          }
-        ]
-      }
-    ]
+    }
   },
   {
     "subtopic": "6.3",
@@ -3292,22 +1266,7 @@ export const MATH_F2_C6_BANK: readonly MathF2C6Entry[] =  [
           "A = 6 × 5² = 150 cm²."
         ]
       ]
-    },
-    "visuals": [
-      {
-        "kind": "geometry-model",
-        "title": {
-          "dlp": "Solid and its measurements",
-          "bm": "Pepejal dan ukurannya"
-        },
-        "models": [
-          {
-            "shape": "cube",
-            "side": "5 cm"
-          }
-        ]
-      }
-    ]
+    }
   },
   {
     "subtopic": "6.3",

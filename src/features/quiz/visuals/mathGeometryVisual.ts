@@ -15,6 +15,10 @@ export type GeometryPanel = {
     closed?: boolean;
     dashed?: boolean;
     fill?: boolean;
+    /** Stronger tint marking a face or region the question is about. */
+    shade?: boolean;
+    /** "accent" draws a sky-blue line (e.g. one highlighted edge) instead of gold. */
+    tone?: "accent";
   }[];
   circles?: {
     centre: GeometryPoint;
