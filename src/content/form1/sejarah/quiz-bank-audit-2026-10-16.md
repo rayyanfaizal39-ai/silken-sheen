@@ -4,7 +4,7 @@
 
 Inspected the **current GitHub `main`** Sejarah Form 1 question definitions for all **8 chapters × 30 questions = 240**. Read the actual live sources, not just the duplicated/older `src/data/quizzes.ts` copy. Reviewed the existing chapter-specific tests and the prior documented selective repairs (Bab 1–3, 6–8).
 
-**Disposition: no verified critical factual or structural defect in the reviewed live bank; do not replace sound questions just to produce a diff.** This PR adds cross-chapter regression coverage and records editorial follow-ups. It does **not** change any question, XP values, submission identity, payments, student records or deployment configuration.
+**Disposition: no confirmed critical structural defect in the reviewed live bank.** Following a second editorial pass, three specific Bab 5 items were selectively improved in the live source (q13, q22, q24) to address uneven distractors and redundant curriculum coverage. All IDs, answer indices, difficulty tiers, scoring, payment data and deployment configuration remain unchanged.
 
 ## Where the student-facing questions actually come from
 
@@ -39,7 +39,7 @@ Checks on the source definitions found four nonempty options and valid answer in
 - **Bab 2:** retain the original textbook's clearly scoped dates and its stated use of `pengglasieran` rather than silently substituting a modern geology definition. The chapter's known-edition qualifications are already in `chapter-2/quiz-source-audit.md`.
 - **Bab 3:** pre-edit decisions are documented; the file `chapter-3/quiz-source-audit.md` still says final validation was pending. Confirm the final historical evidence against the school textbook during the next dedicated content pass.
 - **Bab 4:** the textbook groups `civitas` under *bahasa Yunani*; do not automatically “fix” this based only on the classical etymology (which is a separate question). Watch the distinction between syllabus terminology and historical linguistics.
-- **Bab 5:** q12/q14/q22 all revisit Indus planned cities / uniform bricks / drainage. They are not exact duplicates, but q22 could be swapped for another **5.1** location/environment application if future student item-analysis data shows repetition or poor discrimination. q26 on priestly administration is explicitly backed by the Form 1 textbook.
+- **Bab 5:** q12/q14 formerly overlapped with q22 on Indus city planning; q22 now assesses Indus climatic hazards, location and trade using textbook p. 97 (book scan p. 108), without unseen visuals. q13 now has two locations in every answer choice, as requested in its stem. q24 now asks for the chronological order of Egyptian kingdoms with four plausible permutations. q26 on priestly administration remains supported by the textbook.
 - **Bab 6:** q8/q23 both ask about Athenian institutions, but Council and Jury are different bodies. Do not collapse them as semantic duplicates. Distinguish governance and civic participation.
 - **Bab 7:** staged examinations, Kalinga casualties versus property losses, Asoka's postwar policy and Gupta chronology already have targeted source-derived checks. Option-length balancing can be revisited after student answer-distribution data.
 - **Bab 8:** maintain separation between questions on economic leadership, military leadership and the Madinah charter. The chapter-specific tests already cover many likely factual confusions.
@@ -54,7 +54,7 @@ Reference for syllabus coverage: Jabatan Muzium Malaysia / DSKP versus KSSM Form
 3. Two seeded attempt permutations to catch accidental reversion to block-ordered difficulty shuffling.
 4. Preserved correct-answer text and four-choice membership after seeded choice shuffling.
 
-This new test complements — **does not replace** — the detailed chapter-level source-specific tests. The existing `orderRegularQuizQuestions` code explicitly mixes tiers for Sejarah Form 1. Older Bab 1/Bab 2 audit documents describing block-level shuffling are out of date.
+The Bab 5 chapter-specific test now includes extra checks for the three targeted editorial repairs. This new test complements — **does not replace** — the detailed chapter-level source-specific tests. The existing `orderRegularQuizQuestions` code explicitly mixes tiers for Sejarah Form 1. Older Bab 1/Bab 2 audit documents describing block-level shuffling are out of date.
 
 ## Validation status and pull workflow
 
@@ -70,3 +70,15 @@ This new test complements — **does not replace** — the detailed chapter-leve
 **P2:** Run item-response analysis once enough attempts exist (incorrect-answer frequency, question discrimination, questions rushed or skipped, time to answer). Target genuinely weak items rather than mass rewriting.
 
 **P3:** Finish the pending Bab 3 documentation/source-signoff and spot-check Bab 2's edition-specific terms before curriculum changes.
+
+## Subsequent selective repair — 16 October 2026
+
+Updated **only three Bab 5 records** in the live `src/data/content.ts` bank and their corresponding chapter-level Vitest assertions:
+
+| Item | Defect in prior live record | Correction | Answer index / difficulty |
+| --- | --- | --- | --- |
+| `sej-f1-c5-q13` | A question asking for **two** cities had distractors with **three** entries, including dynasty names rather than city pairs. | All four options are now pairs of actual place names; correct Mohenjo-Daro and Harappa unchanged. | 2 / Medium, unchanged |
+| `sej-f1-c5-q22` | Repeated q12 (standardised bricks) and q14 (sewerage) as additional direct clues for Indus. | New multi-evidence research scenario combining northwest India, unpredictable flooding, drought and trade with southern Mesopotamia. Source: the KSSM Form 1 textbook's Tamadun Indus introductory paragraph, `https://online.anyflip.com/tfnwp/agqs/files/basic-html/page108.html`. | 2 / Hard, unchanged |
+| `sej-f1-c5-q24` | Three options named dynasties outside Egypt or used a fictitious "Kerajaan Moden"; trivia could be solved by category alone. | Asks for the **chronological order** of the three Egyptian kingdom periods; all distractors use the same three periods in different orders. | 2 / Easy, unchanged |
+
+Post-edit GitHub source reread confirms Bab 4, 5, 6 and 8 still each have 30 inline records and valid four-option answer indices. Earlier full-bank structural checks are recorded above. **The user's 25/25 Vitest result predates this content repair**. Rerun the chapter and full-suite tests after pulling the latest commit.
