@@ -8,7 +8,7 @@ export interface MathF2C6Entry {
  bm: { prompt: string; parts?: string[]; answer: string[][] };
 }
 /** Form 2 Maths Chapter 6: one bilingual 60-card bank; 12 / 33 / 15 by mode. */
-export const MATH_F2_C6_BANK: readonly MathF2C6Entry[] = [
+export const MATH_F2_C6_BANK: readonly MathF2C6Entry[] =  [
   {
     "subtopic": "6.1",
     "mode": "concept",
@@ -3372,25 +3372,6 @@ export const MATH_F2_C6_BANK: readonly MathF2C6Entry[] = [
   {
     "subtopic": "6.3",
     "mode": "challenge",
-    "visuals": [
-      {
-        "kind": "geometry-model",
-        "title": {
-          "dlp": "Box dimensions",
-          "bm": "Ukuran kotak"
-        },
-        "models": [
-          {
-            "shape": "cube",
-            "side": "2 cm",
-            "label": {
-              "dlp": "Reference sketch; use measurements in question",
-              "bm": "Lakaran rujukan; guna ukuran dalam soalan"
-            }
-          }
-        ]
-      }
-    ],
     "dlp": {
       "prompt": "A closed rectangular package is 2 cm long, 3 cm wide and 4 cm high.",
       "parts": [
@@ -3433,25 +3414,6 @@ export const MATH_F2_C6_BANK: readonly MathF2C6Entry[] = [
   {
     "subtopic": "6.3",
     "mode": "challenge",
-    "visuals": [
-      {
-        "kind": "geometry-model",
-        "title": {
-          "dlp": "Box dimensions",
-          "bm": "Ukuran kotak"
-        },
-        "models": [
-          {
-            "shape": "cube",
-            "side": "3 cm",
-            "label": {
-              "dlp": "Reference sketch; use measurements in question",
-              "bm": "Lakaran rujukan; guna ukuran dalam soalan"
-            }
-          }
-        ]
-      }
-    ],
     "dlp": {
       "prompt": "A closed rectangular package is 3 cm long, 4 cm wide and 5 cm high.",
       "parts": [
@@ -3494,25 +3456,6 @@ export const MATH_F2_C6_BANK: readonly MathF2C6Entry[] = [
   {
     "subtopic": "6.3",
     "mode": "challenge",
-    "visuals": [
-      {
-        "kind": "geometry-model",
-        "title": {
-          "dlp": "Box dimensions",
-          "bm": "Ukuran kotak"
-        },
-        "models": [
-          {
-            "shape": "cube",
-            "side": "4 cm",
-            "label": {
-              "dlp": "Reference sketch; use measurements in question",
-              "bm": "Lakaran rujukan; guna ukuran dalam soalan"
-            }
-          }
-        ]
-      }
-    ],
     "dlp": {
       "prompt": "A closed rectangular package is 4 cm long, 5 cm wide and 6 cm high.",
       "parts": [
@@ -3555,25 +3498,6 @@ export const MATH_F2_C6_BANK: readonly MathF2C6Entry[] = [
   {
     "subtopic": "6.3",
     "mode": "challenge",
-    "visuals": [
-      {
-        "kind": "geometry-model",
-        "title": {
-          "dlp": "Box dimensions",
-          "bm": "Ukuran kotak"
-        },
-        "models": [
-          {
-            "shape": "cube",
-            "side": "3 cm",
-            "label": {
-              "dlp": "Reference sketch; use measurements in question",
-              "bm": "Lakaran rujukan; guna ukuran dalam soalan"
-            }
-          }
-        ]
-      }
-    ],
     "dlp": {
       "prompt": "A closed rectangular package is 3 cm long, 5 cm wide and 8 cm high.",
       "parts": [
@@ -3616,25 +3540,6 @@ export const MATH_F2_C6_BANK: readonly MathF2C6Entry[] = [
   {
     "subtopic": "6.3",
     "mode": "challenge",
-    "visuals": [
-      {
-        "kind": "geometry-model",
-        "title": {
-          "dlp": "Box dimensions",
-          "bm": "Ukuran kotak"
-        },
-        "models": [
-          {
-            "shape": "cube",
-            "side": "5 cm",
-            "label": {
-              "dlp": "Reference sketch; use measurements in question",
-              "bm": "Lakaran rujukan; guna ukuran dalam soalan"
-            }
-          }
-        ]
-      }
-    ],
     "dlp": {
       "prompt": "A closed rectangular package is 5 cm long, 6 cm wide and 9 cm high.",
       "parts": [
