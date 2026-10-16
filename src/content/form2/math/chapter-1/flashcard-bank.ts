@@ -473,7 +473,7 @@ const patterns: MathF2C1FlashcardEntry[] = [
         "The school gardening club plants seedlings in a row of flower beds. Bed 1 has 2 seedlings and Bed 2 has 3. Each following bed has as many seedlings as the previous two beds together.",
       parts: [
         "Find the number of seedlings in Beds 5, 6 and 7.",
-        "The club has 100 seedlings and plants the beds in order. How many beds can be completed, and how many seedlings are left over?",
+        "The club has exactly 100 seedlings and must fully plant each bed in order. How many complete beds can it plant, and how many seedlings remain?",
         "A teacher suggests a simpler plan: start with 2 and add 5 seedlings for each new bed. For 6 beds, which plan uses fewer seedlings, and by how many?",
       ],
       answer: [
@@ -1252,7 +1252,7 @@ const sequences: MathF2C1FlashcardEntry[] = [
     ],
     dlp: {
       prompt:
-        "Aiman and Sarah are saving for the class trip. Aiman has RM20 at the end of Week 1 and saves RM8 more each week. Sarah has RM60 at the end of Week 1 and saves RM4 more each week.",
+        "Aiman and Sarah are saving for a class trip. Their total savings at the end of Week 1 are RM20 and RM60 respectively. Aiman's balance increases by RM8 each following week; Sarah's increases by RM4.",
       parts: [
         "Complete the table for Weeks 3 to 5.",
         "In which week do they first have the same amount? Explain your method.",
@@ -1274,7 +1274,7 @@ const sequences: MathF2C1FlashcardEntry[] = [
     },
     bm: {
       prompt:
-        "Aiman dan Sarah menyimpan wang untuk lawatan kelas. Aiman mempunyai RM20 pada akhir Minggu 1 dan menyimpan RM8 lagi setiap minggu. Sarah mempunyai RM60 pada akhir Minggu 1 dan menyimpan RM4 lagi setiap minggu.",
+        "Aiman dan Sarah menabung untuk lawatan kelas. Baki simpanan mereka pada akhir Minggu 1 masing-masing ialah RM20 dan RM60. Baki Aiman meningkat RM8 setiap minggu berikutnya, manakala baki Sarah meningkat RM4.",
       parts: [
         "Lengkapkan jadual bagi Minggu 3 hingga 5.",
         "Pada minggu keberapakah mereka mula-mula mempunyai jumlah wang yang sama? Terangkan kaedah anda.",
@@ -1385,11 +1385,11 @@ const sequences: MathF2C1FlashcardEntry[] = [
     ],
     dlp: {
       prompt:
-        "The school posts a recycling-campaign video. The number of views doubles every hour. It has 150 views at 9 a.m.",
+        "The school tracks views of its recycling-campaign video at hourly checkpoints. For this mathematical model, the recorded total doubles every hour, starting with 150 views at 9 a.m.",
       parts: [
         "Complete the table up to 1 p.m.",
         "The campaign team celebrates when the video passes 5000 views. At what time does this first happen?",
-        "A student says there are 150 + 4 × 150 = 750 views at 1 p.m. Explain the error.",
+        "A student predicts 150 + 4 × 150 = 750 views at 1 p.m. Identify the incorrect assumption and calculate the correct total.",
       ],
       answer: [
         ["Multiply by 2 each hour: 600, 1200, 2400"],
