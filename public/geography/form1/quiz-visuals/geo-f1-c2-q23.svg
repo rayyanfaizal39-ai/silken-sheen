@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" role="img" aria-labelledby="title description">
+  <title id="title">Garisan latitud dan titik Q</title>
+  <desc id="description">Tiga garisan latitud mendatar. Garisan atas dilabel 12 darjah Utara, bawah dilabel 10 darjah Utara, dan garisan tengah mempunyai titik Q tanpa nilainya.</desc>
+  <defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#111f38"/><stop offset="1" stop-color="#091528"/></linearGradient></defs>
+  <rect x="2" y="2" width="716" height="356" rx="22" fill="url(#bg)" stroke="#35506d" stroke-width="3"/>
+  
+  <g fill="none" stroke="#5ba5d5" stroke-width="4"><path d="M125 82H575"/><path d="M125 180H575" stroke-dasharray="14 9"/><path d="M125 278H575"/></g>
+  <g font-family="Arial,sans-serif" fill="#f8fafc" font-size="25" font-weight="bold">
+    <text x="587" y="90">12° U</text><text x="587" y="287">10° U</text><text x="587" y="189">?</text>
+  </g>
+  <circle cx="350" cy="180" r="10" fill="#fbbf24" stroke="#fff2cc" stroke-width="2"/>
+  <text x="368" y="168" font-family="Arial,sans-serif" font-size="24" font-weight="bold" fill="#fbbf24">Q</text>
+  <g font-family="Arial,sans-serif" font-size="20" fill="#cbd5e1"><text x="40" y="68">Utara ↑</text><text x="39" y="334">Rajah skematik</text></g>
+
+</svg>
