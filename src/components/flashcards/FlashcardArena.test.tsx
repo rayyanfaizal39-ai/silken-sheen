@@ -7,6 +7,11 @@ import {
   FlashcardControls,
   FlashcardDeck,
 } from "@/components/flashcards/FlashcardArena";
+import {
+  StructuredFlashcardBack,
+  StructuredFlashcardFront,
+} from "@/components/flashcards/StructuredFlashcardFace";
+import { mathF2C1FlashcardsDLP } from "@/content/form2/math/chapter-1/flashcards-dlp";
 
 (globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
 
@@ -247,5 +252,77 @@ describe("FlashcardCompletion", () => {
     expect(first.className).toContain("fc-primary");
     expect(el.textContent).not.toContain("Continue to");
     expect(el.textContent).not.toContain("Activity XP");
+  });
+});
+
+describe("FlashcardDeck structured cards", () => {
+  const card = mathF2C1FlashcardsDLP[55].structured!; // 1.3 Challenge: assembly chairs
+
+  it("renders the structured question, parts and visuals instead of the plain text", () => {
+    const el = render(
+      deck({
+        front: "plain front",
+        back: "plain back",
+        frontContent: <StructuredFlashcardFront card={card} lang="dlp" mode="challenge" />,
+        backContent: <StructuredFlashcardBack card={card} lang="dlp" />,
+        fitContent: true,
+      }),
+    );
+    const front = el.querySelector(".flashcard-front")!;
+    expect(front.textContent).toContain("Challenge Review");
+    expect(front.textContent).toContain("A school arranges chairs");
+    expect([...front.querySelectorAll(".fc-part-label")].map((n) => n.textContent)).toEqual([
+      "(a)",
+      "(b)",
+      "(c)",
+    ]);
+    expect(front.querySelector('[data-math-visual="object-stages"]')).not.toBeNull();
+    expect(front.querySelector('[data-math-visual="term-table"] table')).not.toBeNull();
+    const back = el.querySelector(".flashcard-back")!;
+    expect(back.textContent).toContain("Worked solution");
+    // Equations render with non-breaking spaces around "=" (see mathText).
+    expect(back.textContent?.replace(/\s/g, " ")).toContain("T₁₂ = 8 + 11(3) = 41 chairs");
+    expect(back.querySelector(".fc-structured-note-label")?.textContent).toBe("Check");
+    expect(el.textContent).not.toContain("plain front");
+    expect(el.querySelector(".fc-card-slot")?.hasAttribute("data-fit")).toBe(true);
+  });
+
+  it("leaves plain cards exactly as before", () => {
+    const el = render(deck());
+    expect(el.querySelector(".fc-card-slot")?.hasAttribute("data-fit")).toBe(false);
+    expect(el.querySelector(".fc-question")?.textContent).toBe("What is a habitat?");
+    expect(el.querySelector(".fc-face-content")).toBeNull();
+  });
+
+  it("grows the slot to the taller face so long solutions are not clipped", () => {
+    // jsdom has no layout: give the faces measurable sizes.
+    const heights = new Map<string, number>([
+      ["fc-face", 440],
+      ["fc-face-content", 760],
+    ]);
+    const offset = vi
+      .spyOn(HTMLElement.prototype, "offsetHeight", "get")
+      .mockImplementation(function (this: HTMLElement) {
+        for (const [className, height] of heights)
+          if (this.classList.contains(className)) return height;
+        return 0;
+      });
+    const client = vi
+      .spyOn(HTMLElement.prototype, "clientHeight", "get")
+      .mockImplementation(function (this: HTMLElement) {
+        return this.classList.contains("fc-face-body") ? 300 : 0;
+      });
+    const el = render(
+      deck({
+        frontContent: <StructuredFlashcardFront card={card} lang="dlp" />,
+        backContent: <StructuredFlashcardBack card={card} lang="dlp" />,
+        fitContent: true,
+      }),
+    );
+    const slot = el.querySelector<HTMLElement>(".fc-card-slot")!;
+    // chrome (440 − 300) + content 760 (+ body padding, 0 in jsdom)
+    expect(slot.style.getPropertyValue("--fc-fit-h")).toBe("900px");
+    offset.mockRestore();
+    client.mockRestore();
   });
 });
