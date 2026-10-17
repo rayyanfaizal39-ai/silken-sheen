@@ -27,8 +27,23 @@ jobs:
           npm install --no-save --no-package-lock --ignore-scripts --no-audit --no-fund playwright@1.56.1
           npx playwright install --with-deps chromium
           cd ..
-      - name: Inspect Cloudflare Sejarah mobile quiz flow
+      - name: Install app from pinned lockfile
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Start anonymous, local Vite preview (no external auth or production writes)
+        run: |
+          npm run dev -- --host 127.0.0.1 --port 5173 > /tmp/sejarah-vite.log 2>&1 &
+          echo $! > /tmp/sejarah-vite.pid
+          for i in $(seq 1 100); do
+            if curl --fail --silent http://127.0.0.1:5173/quizzes >/dev/null; then exit 0; fi
+            sleep 2
+          done
+          cat /tmp/sejarah-vite.log
+          exit 1
+      - name: Inspect mobile Sejarah quiz flow
         run: node scripts/qa-sejarah-f1-mobile.mjs
+      - name: Print local-server diagnostics on QA failure
+        if: failure()
+        run: tail -100 /tmp/sejarah-vite.log || true
       - name: Preserve QA screenshots and results
         if: always()
         uses: actions/upload-artifact@v4

@@ -2,7 +2,7 @@ import { chromium } from "playwright";
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 
-const base = process.env.SEJARAH_QA_URL || "https://audit-sejarah-f1-quiz-neutra.academymy.pages.dev";
+const base = process.env.SEJARAH_QA_URL || "http://127.0.0.1:5173";
 const artifacts = "sejarah-mobile-qa";
 await mkdir(artifacts, { recursive: true });
 const browser = await chromium.launch({ headless: true });
@@ -17,12 +17,13 @@ for (const width of [320, 360, 390]) {
   try {
     const url = base + "/quizzes?subject=sejarah&form=1&chapter=Chapter%205";
     const response = await page.goto(url, { waitUntil: "domcontentloaded", timeout: 45000 });
-    await page.waitForTimeout(5500);
+    await page.getByRole("button", { name: /^No Timer/i }).first().waitFor({ state: "visible", timeout: 85000 }).catch(() => {});
     item.navigation = { status: response?.status(), url: page.url(), title: await page.title() };
     item.screenText = (await page.locator("body").innerText()).slice(0, 1400);
     await page.screenshot({ path: path.join(artifacts, `sejarah-${width}-entry.jpg`), type: "jpeg", quality: 72, fullPage: true });
     const mode = page.getByRole("button", { name: /^No Timer/i }).first();
     item.settings = { visible: await mode.isVisible().catch(() => false), startCount: await page.getByRole("button", { name: /Start Quiz/i }).count() };
+    if (!item.settings.visible) { item.errors.push("Cannot reach quiz settings; screenshot captured for diagnosis"); errors++; }
     if (item.settings.visible) {
       await mode.click();
       await page.getByRole("button", { name: /Start Quiz/i }).first().click();
@@ -32,11 +33,14 @@ for (const width of [320, 360, 390]) {
       await page.screenshot({ path: path.join(artifacts, `sejarah-${width}-quiz.jpg`), type: "jpeg", quality: 72, fullPage: true });
       const answerButtons = await page.locator("button.group.relative.flex.min-h-12.touch-manipulation").count();
       item.answerButtons = answerButtons;
+      if (answerButtons !== 4) { item.errors.push("Expected four answer buttons but found " + answerButtons); errors++; }
       if (answerButtons === 4) {
         for (let n = 0; n < 30; n++) {
           const imgs = await page.locator('img[src*="/quiz-visuals/sejarah-f1/"]').evaluateAll(nodes =>
             nodes.map(n => ({ src: n.getAttribute("src"), loaded: n.complete && n.naturalWidth > 0, width: n.getBoundingClientRect().width, right: n.getBoundingClientRect().right }))
           );
+          const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+          if (overflow > 2) item.errors.push("Quiz horizontal overflow " + overflow + "px at question " + (n + 1));
           for (const image of imgs) {
             item.imagePaths.push(image.src);
             if (!image.loaded || image.width < 80 || image.right > width + 1) item.missingImages.push({ question: n + 1, ...image });
@@ -57,6 +61,7 @@ for (const width of [320, 360, 390]) {
         }
       }
       item.questionsVisited = await page.locator(".quiz-hud").count() > 0 ? 30 : 0;
+      if (item.imagePaths.length === 0) { item.errors.push("No Sejarah diagram displayed in thirty live questions"); errors++; }
     }
     item.horizontalOverflow = await page.evaluate(() => ({
       scrollWidth: document.documentElement.scrollWidth,
