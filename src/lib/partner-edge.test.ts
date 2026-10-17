@@ -10,6 +10,8 @@ const fixture = vi.hoisted(() => ({
   upsert: vi.fn(),
   update: vi.fn(),
   rows: {} as Record<string, unknown>,
+  tables: [] as string[],
+  env: {} as Record<string, string | undefined>,
 }));
 vi.mock("https://esm.sh/@supabase/supabase-js@2.108.1", () => ({
   createClient: fixture.createClient,
@@ -22,18 +24,7 @@ let handle: (request: Request) => Promise<Response>;
 beforeAll(async () => {
   vi.stubGlobal("Deno", {
     env: {
-      get: (name: string) =>
-        (
-          ({
-            SUPABASE_URL: "https://example.supabase.co",
-            SUPABASE_ANON_KEY: "test-anon",
-            SUPABASE_SERVICE_ROLE_KEY: "test-service",
-            TOYYIBPAY_SECRET_KEY: "test-provider-secret",
-            TOYYIBPAY_CATEGORY_CODE: "test-category",
-            APPLICATION_URL: "https://www.myacademy.my",
-            PARTNER_CONFIRMATION_SECRET: "test-only-signing-secret",
-          }) as Record<string, string>
-        )[name],
+      get: (name: string) => fixture.env[name],
     },
     serve: (handler: typeof handle) => {
       handle = handler;
@@ -49,6 +40,16 @@ afterAll(() => {
 });
 beforeEach(() => {
   vi.clearAllMocks();
+  fixture.tables = [];
+  fixture.env = {
+    SUPABASE_URL: "https://example.supabase.co",
+    SUPABASE_ANON_KEY: "test-anon",
+    SUPABASE_SERVICE_ROLE_KEY: "test-service",
+    TOYYIBPAY_SECRET_KEY: "test-provider-secret",
+    TOYYIBPAY_CATEGORY_CODE: "test-category",
+    APPLICATION_URL: "https://www.myacademy.my",
+    PARTNER_CONFIRMATION_SECRET: "test-only-signing-secret",
+  };
   fixture.rows = {
     partner_referrals: { partner_user_id: A },
     partner_profiles: { partner_code: CODE, status: "active" },
@@ -73,6 +74,7 @@ beforeEach(() => {
       ? { auth: { getUser: async () => ({ data: { user: { id: B } }, error: null }) } }
       : {
           from: (table: string) => {
+            fixture.tables.push(table);
             const chain = {
               eq: () => chain,
               is: () => chain,
@@ -92,6 +94,17 @@ beforeEach(() => {
         },
   );
 });
+function normalRequest() {
+  // Exactly what the currently deployed web app sends: no referral fields.
+  return new Request("https://example.supabase.co/functions/v1/create-toyyibpay-bill", {
+    method: "POST",
+    headers: { authorization: "Bearer test-session", "content-type": "application/json" },
+    body: JSON.stringify({
+      plan: "premium_monthly",
+      idempotencyKey: "00000000-0000-4000-8000-000000000099",
+    }),
+  });
+}
 function request(confirmation = signPartnerReceipt(B, CODE, "test-only-signing-secret")) {
   return new Request("https://example.supabase.co/functions/v1/create-toyyibpay-bill", {
     method: "POST",
@@ -104,6 +117,29 @@ function request(confirmation = signPartnerReceipt(B, CODE, "test-only-signing-s
     }),
   });
 }
+
+describe("Edge normal checkout compatibility", () => {
+  it("creates an ordinary sandbox bill without referral fields or the confirmation secret", async () => {
+    fixture.env.PARTNER_CONFIRMATION_SECRET = undefined;
+    fixture.rows.partner_sandbox_checkout_links = null;
+    const result = await handle(normalRequest());
+    expect(result.status).toBe(200);
+    expect(await result.json()).toEqual({
+      paymentId: "test-payment",
+      checkoutUrl: "https://dev.toyyibpay.com/sandboxbill",
+    });
+    expect(fixture.upsert).toHaveBeenCalledTimes(1);
+    expect(fixture.provider).toHaveBeenCalledTimes(1);
+    expect(fixture.tables.filter((table) => table.startsWith("partner_"))).toEqual([]);
+  });
+  it("still returns the existing bill for a retried normal checkout", async () => {
+    (fixture.rows.payment_transactions as Record<string, unknown>).provider_bill_code =
+      "existingbill";
+    const result = await handle(normalRequest());
+    expect((await result.json()).checkoutUrl).toBe("https://dev.toyyibpay.com/existingbill");
+    expect(fixture.provider).not.toHaveBeenCalled();
+  });
+});
 
 describe("Edge bill creation referral gate", () => {
   it("rejects A's consent for B before even inserting a pending payment", async () => {
