@@ -10,6 +10,8 @@ const findings = [];
 let errors = 0;
 for (const width of [320, 360, 390]) {
   const context = await browser.newContext({ viewport: { width, height: 740 }, deviceScaleFactor: 1, isMobile: true, hasTouch: true });
+  // Use the app’s documented, non-authenticated guest mode; never forge a signed-in session.
+  await context.addInitScript(() => window.localStorage.setItem("academy_guest_mode", "1"));
   const page = await context.newPage();
   const item = { width, navigation: null, settings: null, enteredQuiz: false, imagePaths: [], missingImages: [], horizontalOverflow: null, errors: [] };
   findings.push(item);
@@ -17,7 +19,7 @@ for (const width of [320, 360, 390]) {
   try {
     const url = base + "/quizzes?subject=sejarah&form=1&chapter=Chapter%205";
     const response = await page.goto(url, { waitUntil: "domcontentloaded", timeout: 45000 });
-    await page.getByRole("button", { name: /^No Timer/i }).first().waitFor({ state: "visible", timeout: 85000 }).catch(() => {});
+    await page.getByRole("button", { name: /^No Timer/i }).first().waitFor({ state: "visible", timeout: 50000 }).catch(() => {});
     item.navigation = { status: response?.status(), url: page.url(), title: await page.title() };
     item.screenText = (await page.locator("body").innerText()).slice(0, 1400);
     await page.screenshot({ path: path.join(artifacts, `sejarah-${width}-entry.jpg`), type: "jpeg", quality: 72, fullPage: true });
