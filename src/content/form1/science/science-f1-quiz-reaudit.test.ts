@@ -69,6 +69,22 @@ describe("Form 1 Science chapter quiz audit regression", () => {
     }
   });
 
+  it("guards against obvious correct-answer length cues in all 540 bilingual questions", () => {
+    const outliers: string[] = [];
+    for (const chapter of chapters) {
+      for (const lang of languages) {
+        for (const question of getChapterQuizQuestions("science", "Form 1", `Chapter ${chapter}`, lang)) {
+          const sizes = question.options.map((option) => option.trim().length);
+          const correct = sizes[question.answerIndex];
+          const meanDistractor = (sizes.reduce((a, b) => a + b, 0) - correct) / 3;
+          const ratio = correct / meanDistractor;
+          if (ratio < 0.65 || ratio > 1.5) outliers.push(`${question.id}: ${ratio.toFixed(2)}`);
+        }
+      }
+    }
+    expect(outliers).toEqual([]);
+  });
+
   it("keeps chapter 8 black-surface and chapter 5 density corrections in both languages", () => {
     for (const lang of languages) {
       const chapter8 = getChapterQuizQuestions("science", "Form 1", "Chapter 8", lang);

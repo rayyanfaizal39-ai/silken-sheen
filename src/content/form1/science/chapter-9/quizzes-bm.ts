@@ -27,10 +27,10 @@ export const scienceF1C9QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     question: "Apakah biosfera?",
     options: [
-      "Semua air di Bumi",
+      "Semua sumber air di Bumi",
       "Semua benda hidup di Bumi",
-      "Semua udara di Bumi",
-      "Teras logam Bumi",
+      "Semua gas udara di Bumi",
+      "Semua bahan logam di Bumi",
     ],
     answerIndex: 1,
     explanation: "Biosfera merangkumi semua organisma hidup di Bumi.",
@@ -57,9 +57,9 @@ export const scienceF1C9QuizzesBM: QuizQuestion[] = [
     question:
       "Hujan turun ke permukaan tanah dan diserap oleh akar tumbuhan. Situasi ini menunjukkan interaksi terutamanya antara sistem yang mana?",
     options: [
-      "Hidrosfera dan geosfera sahaja",
-      "Hidrosfera dan biosfera sahaja",
-      "Geosfera dan biosfera sahaja",
+      "Atmosfera, geosfera dan biosfera",
+      "Hidrosfera, atmosfera dan biosfera",
+      "Atmosfera, hidrosfera dan geosfera",
       "Hidrosfera, geosfera dan biosfera",
     ],
     answerIndex: 3,
@@ -162,7 +162,7 @@ export const scienceF1C9QuizzesBM: QuizQuestion[] = [
     options: [
       "Air permukaan sentiasa masin, manakala air bawah tanah sentiasa tawar",
       "Air permukaan boleh tercemar, manakala air bawah tanah sentiasa bebas pencemaran",
-      "Air permukaan terdapat di permukaan Bumi, manakala air bawah tanah tersimpan di bawah permukaan Bumi",
+      "Air permukaan berada di atas tanah; air bawah tanah tersimpan di bawah tanah",
       "Air permukaan berasal daripada hujan, manakala air bawah tanah tidak pernah berasal daripada hujan",
     ],
     answerIndex: 2,
@@ -243,7 +243,7 @@ export const scienceF1C9QuizzesBM: QuizQuestion[] = [
     question: "Apakah litosfera?",
     options: [
       "Mantel dan teras luar",
-      "Kerak dan bahagian paling atas mantel",
+      "Kerak Bumi dan mantel paling atas",
       "Teras luar dan teras dalam",
       "Seluruh kerak dan seluruh mantel",
     ],
@@ -325,7 +325,7 @@ export const scienceF1C9QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     question: "Apakah hakisan?",
     options: [
-      "Penghausan dan penyingkiran tanah atau batuan oleh air, angin atau ais",
+      "Penghausan serta penyingkiran batuan oleh air, angin atau ais",
       "Pemecahan batuan di tempat asal tanpa disingkirkan",
       "Pengenapan bahan yang dibawa sungai apabila alirannya perlahan",
       "Perubahan batuan akibat haba dan tekanan dalam Bumi",
@@ -343,9 +343,9 @@ export const scienceF1C9QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     question: "Proses manakah tergolong sebagai proses endogen?",
     options: [
-      "Hakisan permukaan",
-      "Pemendapan bahan",
-      "Luluhawa batuan",
+      "Hakisan oleh sungai",
+      "Pemendapan sedimen sungai",
+      "Luluhawa permukaan",
       "Gerakan tektonik plat",
     ],
     answerIndex: 3,
@@ -379,10 +379,10 @@ export const scienceF1C9QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     question: "Apakah kegunaan skala masa geologi?",
     options: [
-      "Meramalkan tarikh tepat gempa bumi yang akan datang",
+      "Meramalkan tarikh tepat semua gempa bumi yang akan datang",
       "Menyusun sejarah Bumi kepada tempoh masa yang sangat panjang",
-      "Mengelaskan batuan mengikut kekerasannya",
-      "Membahagikan lapisan Bumi mengikut kedalamannya",
+      "Mengelaskan batuan mengikut kekerasan dan warna mineralnya",
+      "Membahagikan lapisan dalaman Bumi mengikut kedalamannya",
     ],
     answerIndex: 1,
     explanation:
@@ -472,7 +472,7 @@ export const scienceF1C9QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     question: "Bagaimanakah sistem amaran tsunami membantu menyelamatkan nyawa?",
     options: [
-      "Memberi amaran awal agar penduduk berpindah ke tempat selamat",
+      "Memberi amaran awal supaya penduduk sempat berpindah",
       "Menghalang pergerakan lanjut dasar lautan",
       "Mengurangkan ketinggian ombak yang menghampiri pantai",
       "Mengukuhkan bangunan pantai sebelum ombak tiba",

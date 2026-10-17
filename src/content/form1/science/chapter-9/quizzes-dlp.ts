@@ -27,10 +27,10 @@ export const scienceF1C9QuizzesDLP: QuizQuestion[] = [
     difficulty: "Easy",
     question: "What is the biosphere?",
     options: [
-      "All water on Earth",
+      "All water resources on Earth",
       "All living things on Earth",
-      "All air on Earth",
-      "Earth's metallic core",
+      "All atmospheric gases on Earth",
+      "All rocks and metals on Earth",
     ],
     answerIndex: 1,
     explanation: "The biosphere includes all living organisms on Earth.",
@@ -57,9 +57,9 @@ export const scienceF1C9QuizzesDLP: QuizQuestion[] = [
     question:
       "Rain falls onto the ground and is absorbed by the roots of a plant. This situation mainly shows interaction between which systems?",
     options: [
-      "Hydrosphere and geosphere only",
-      "Hydrosphere and biosphere only",
-      "Geosphere and biosphere only",
+      "Atmosphere, geosphere and biosphere",
+      "Hydrosphere, atmosphere and biosphere",
+      "Atmosphere, hydrosphere and geosphere",
       "Hydrosphere, geosphere and biosphere",
     ],
     answerIndex: 3,
@@ -161,7 +161,7 @@ export const scienceF1C9QuizzesDLP: QuizQuestion[] = [
     options: [
       "Surface water is always salty, while groundwater is always fresh",
       "Surface water can be polluted, while groundwater is always free from pollution",
-      "Surface water occurs on the Earth's surface, while groundwater is stored beneath the surface",
+      "Surface water is above ground, whereas groundwater is stored below ground",
       "Surface water comes from rain, while groundwater never comes from rain",
     ],
     answerIndex: 2,
@@ -340,7 +340,12 @@ export const scienceF1C9QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "Which process is an endogenic process?",
-    options: ["Erosion", "Sedimentation", "Weathering", "Plate tectonics"],
+    options: [
+      "Surface erosion",
+      "Sediment deposition",
+      "Surface weathering",
+      "Plate tectonics",
+    ],
     answerIndex: 3,
     explanation:
       "Plate tectonics is an endogenic process because it is caused by processes inside Earth.",
