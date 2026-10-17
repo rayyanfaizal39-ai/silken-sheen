@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import * as registry from "@/content/registry";
 import * as data from "@/data/content";
+import { flashcards as legacyMirror } from "@/data/flashcards";
 import { sej7Flashcards } from "@/content/form1/sejarah/chapter-7/sej7-revision";
 import { getFlashcardDeckCards, splitFlashcardDeck } from "@/lib/flashcard-availability";
 
@@ -20,6 +21,18 @@ const card = (chapter: number, index: number) =>
   deck(chapter).find((c) => c.id === `sej-f1-c${chapter}-fc${index}`)!;
 
 describe("Sejarah Form 1 — every flashcard chapter is playable", () => {
+  it("keeps the legacy flashcard mirror synchronized with the actual learner-facing source", () => {
+    const inScope = (c: { id: string; subjectId: string; form: string }) =>
+      c.subjectId === "sejarah" && c.form === "Form 1" && /^sej-f1-c[1-8]-fc\\d+$/.test(c.id);
+    const snapshot = (cards: typeof data.flashcards) =>
+      cards.filter(inScope)
+        .map(({ id, front, back }) => ({ id, front, back }))
+        .sort((a, b) => a.id.localeCompare(b.id));
+
+    expect(snapshot(data.flashcards)).toEqual(snapshot(legacyMirror));
+    expect(snapshot(data.flashcards)).toHaveLength(480);
+  });
+
   it("serves 480 original, form-scoped cards across all eight chapters", () => {
     const all = Array.from({ length: 8 }, (_, i) => deck(i + 1)).flat();
     expect(all).toHaveLength(480);
