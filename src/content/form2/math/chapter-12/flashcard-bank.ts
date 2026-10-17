@@ -1,7 +1,7 @@
 import type { FlashcardReviewMode } from "@/features/flashcards/structuredFlashcard";
 import type { MathQuestionVisual } from "@/features/quiz/visuals/mathQuestionVisual";
 export interface Entry {subtopic:"12.1"|"12.2"|"12.3"|"12.4";mode:FlashcardReviewMode;visuals?:MathQuestionVisual[];dlp:{prompt:string;parts?:string[];answer:string[][]};bm:{prompt:string;parts?:string[];answer:string[][]}}
-export const MATH_F2_C12_BANK:readonly Entry[] = [
+export const MATH_F2_C12_BANK:readonly Entry[] =  [
   {
     "subtopic": "12.1",
     "mode": "concept",
@@ -250,22 +250,41 @@ export const MATH_F2_C12_BANK:readonly Entry[] = [
     "mode": "practice",
     "visuals": [
       {
-        "kind": "stem-leaf",
+        "kind": "frequency-table",
         "title": {
-          "dlp": "Ordered observations",
-          "bm": "Cerapan tersusun"
+          "dlp": "Frequency display",
+          "bm": "Paparan kekerapan"
         },
-        "values": [
-          25,
-          26,
-          27,
-          28,
-          29
-        ],
-        "key": {
-          "dlp": "2 | 3 means 23",
-          "bm": "2 | 3 bermaksud 23"
-        }
+        "valueHeading": {
+          "dlp": "Value",
+          "bm": "Nilai"
+        },
+        "frequencyHeading": {
+          "dlp": "Frequency",
+          "bm": "Kekerapan"
+        },
+        "rows": [
+          {
+            "value": "5",
+            "frequency": 1
+          },
+          {
+            "value": "6",
+            "frequency": 1
+          },
+          {
+            "value": "7",
+            "frequency": 1
+          },
+          {
+            "value": "8",
+            "frequency": 1
+          },
+          {
+            "value": "9",
+            "frequency": 1
+          }
+        ]
       }
     ],
     "dlp": {
@@ -442,22 +461,37 @@ export const MATH_F2_C12_BANK:readonly Entry[] = [
     "mode": "practice",
     "visuals": [
       {
-        "kind": "stem-leaf",
+        "kind": "frequency-table",
         "title": {
-          "dlp": "Ordered observations",
-          "bm": "Cerapan tersusun"
+          "dlp": "Frequency display",
+          "bm": "Paparan kekerapan"
         },
-        "values": [
-          23,
-          25,
-          25,
-          27,
-          30
-        ],
-        "key": {
-          "dlp": "2 | 3 means 23",
-          "bm": "2 | 3 bermaksud 23"
-        }
+        "valueHeading": {
+          "dlp": "Value",
+          "bm": "Nilai"
+        },
+        "frequencyHeading": {
+          "dlp": "Frequency",
+          "bm": "Kekerapan"
+        },
+        "rows": [
+          {
+            "value": "3",
+            "frequency": 1
+          },
+          {
+            "value": "5",
+            "frequency": 2
+          },
+          {
+            "value": "7",
+            "frequency": 1
+          },
+          {
+            "value": "10",
+            "frequency": 1
+          }
+        ]
       }
     ],
     "dlp": {
@@ -700,22 +734,37 @@ export const MATH_F2_C12_BANK:readonly Entry[] = [
     "mode": "challenge",
     "visuals": [
       {
-        "kind": "stem-leaf",
+        "kind": "frequency-table",
         "title": {
-          "dlp": "Ordered observations",
-          "bm": "Cerapan tersusun"
+          "dlp": "Frequency display",
+          "bm": "Paparan kekerapan"
         },
-        "values": [
-          24,
-          26,
-          26,
-          28,
-          31
-        ],
-        "key": {
-          "dlp": "2 | 3 means 23",
-          "bm": "2 | 3 bermaksud 23"
-        }
+        "valueHeading": {
+          "dlp": "Value",
+          "bm": "Nilai"
+        },
+        "frequencyHeading": {
+          "dlp": "Frequency",
+          "bm": "Kekerapan"
+        },
+        "rows": [
+          {
+            "value": "4",
+            "frequency": 1
+          },
+          {
+            "value": "6",
+            "frequency": 2
+          },
+          {
+            "value": "8",
+            "frequency": 1
+          },
+          {
+            "value": "11",
+            "frequency": 1
+          }
+        ]
       }
     ],
     "dlp": {
@@ -1005,22 +1054,41 @@ export const MATH_F2_C12_BANK:readonly Entry[] = [
     "mode": "practice",
     "visuals": [
       {
-        "kind": "stem-leaf",
+        "kind": "frequency-table",
         "title": {
-          "dlp": "Ordered observations",
-          "bm": "Cerapan tersusun"
+          "dlp": "Frequency display",
+          "bm": "Paparan kekerapan"
         },
-        "values": [
-          26,
-          27,
-          28,
-          29,
-          30
-        ],
-        "key": {
-          "dlp": "2 | 3 means 23",
-          "bm": "2 | 3 bermaksud 23"
-        }
+        "valueHeading": {
+          "dlp": "Value",
+          "bm": "Nilai"
+        },
+        "frequencyHeading": {
+          "dlp": "Frequency",
+          "bm": "Kekerapan"
+        },
+        "rows": [
+          {
+            "value": "6",
+            "frequency": 1
+          },
+          {
+            "value": "7",
+            "frequency": 1
+          },
+          {
+            "value": "8",
+            "frequency": 1
+          },
+          {
+            "value": "9",
+            "frequency": 1
+          },
+          {
+            "value": "10",
+            "frequency": 1
+          }
+        ]
       }
     ],
     "dlp": {
@@ -1197,22 +1265,37 @@ export const MATH_F2_C12_BANK:readonly Entry[] = [
     "mode": "practice",
     "visuals": [
       {
-        "kind": "stem-leaf",
+        "kind": "frequency-table",
         "title": {
-          "dlp": "Ordered observations",
-          "bm": "Cerapan tersusun"
+          "dlp": "Frequency display",
+          "bm": "Paparan kekerapan"
         },
-        "values": [
-          24,
-          26,
-          26,
-          28,
-          31
-        ],
-        "key": {
-          "dlp": "2 | 3 means 23",
-          "bm": "2 | 3 bermaksud 23"
-        }
+        "valueHeading": {
+          "dlp": "Value",
+          "bm": "Nilai"
+        },
+        "frequencyHeading": {
+          "dlp": "Frequency",
+          "bm": "Kekerapan"
+        },
+        "rows": [
+          {
+            "value": "4",
+            "frequency": 1
+          },
+          {
+            "value": "6",
+            "frequency": 2
+          },
+          {
+            "value": "8",
+            "frequency": 1
+          },
+          {
+            "value": "11",
+            "frequency": 1
+          }
+        ]
       }
     ],
     "dlp": {
@@ -1455,22 +1538,37 @@ export const MATH_F2_C12_BANK:readonly Entry[] = [
     "mode": "challenge",
     "visuals": [
       {
-        "kind": "stem-leaf",
+        "kind": "frequency-table",
         "title": {
-          "dlp": "Ordered observations",
-          "bm": "Cerapan tersusun"
+          "dlp": "Frequency display",
+          "bm": "Paparan kekerapan"
         },
-        "values": [
-          25,
-          27,
-          27,
-          29,
-          32
-        ],
-        "key": {
-          "dlp": "2 | 3 means 23",
-          "bm": "2 | 3 bermaksud 23"
-        }
+        "valueHeading": {
+          "dlp": "Value",
+          "bm": "Nilai"
+        },
+        "frequencyHeading": {
+          "dlp": "Frequency",
+          "bm": "Kekerapan"
+        },
+        "rows": [
+          {
+            "value": "5",
+            "frequency": 1
+          },
+          {
+            "value": "7",
+            "frequency": 2
+          },
+          {
+            "value": "9",
+            "frequency": 1
+          },
+          {
+            "value": "12",
+            "frequency": 1
+          }
+        ]
       }
     ],
     "dlp": {
@@ -1752,22 +1850,41 @@ export const MATH_F2_C12_BANK:readonly Entry[] = [
     "mode": "practice",
     "visuals": [
       {
-        "kind": "stem-leaf",
+        "kind": "frequency-table",
         "title": {
-          "dlp": "Ordered observations",
-          "bm": "Cerapan tersusun"
+          "dlp": "Frequency display",
+          "bm": "Paparan kekerapan"
         },
-        "values": [
-          27,
-          28,
-          29,
-          30,
-          31
-        ],
-        "key": {
-          "dlp": "2 | 3 means 23",
-          "bm": "2 | 3 bermaksud 23"
-        }
+        "valueHeading": {
+          "dlp": "Value",
+          "bm": "Nilai"
+        },
+        "frequencyHeading": {
+          "dlp": "Frequency",
+          "bm": "Kekerapan"
+        },
+        "rows": [
+          {
+            "value": "7",
+            "frequency": 1
+          },
+          {
+            "value": "8",
+            "frequency": 1
+          },
+          {
+            "value": "9",
+            "frequency": 1
+          },
+          {
+            "value": "10",
+            "frequency": 1
+          },
+          {
+            "value": "11",
+            "frequency": 1
+          }
+        ]
       }
     ],
     "dlp": {
@@ -1944,22 +2061,37 @@ export const MATH_F2_C12_BANK:readonly Entry[] = [
     "mode": "practice",
     "visuals": [
       {
-        "kind": "stem-leaf",
+        "kind": "frequency-table",
         "title": {
-          "dlp": "Ordered observations",
-          "bm": "Cerapan tersusun"
+          "dlp": "Frequency display",
+          "bm": "Paparan kekerapan"
         },
-        "values": [
-          25,
-          27,
-          27,
-          29,
-          32
-        ],
-        "key": {
-          "dlp": "2 | 3 means 23",
-          "bm": "2 | 3 bermaksud 23"
-        }
+        "valueHeading": {
+          "dlp": "Value",
+          "bm": "Nilai"
+        },
+        "frequencyHeading": {
+          "dlp": "Frequency",
+          "bm": "Kekerapan"
+        },
+        "rows": [
+          {
+            "value": "5",
+            "frequency": 1
+          },
+          {
+            "value": "7",
+            "frequency": 2
+          },
+          {
+            "value": "9",
+            "frequency": 1
+          },
+          {
+            "value": "12",
+            "frequency": 1
+          }
+        ]
       }
     ],
     "dlp": {
@@ -2202,22 +2334,37 @@ export const MATH_F2_C12_BANK:readonly Entry[] = [
     "mode": "challenge",
     "visuals": [
       {
-        "kind": "stem-leaf",
+        "kind": "frequency-table",
         "title": {
-          "dlp": "Ordered observations",
-          "bm": "Cerapan tersusun"
+          "dlp": "Frequency display",
+          "bm": "Paparan kekerapan"
         },
-        "values": [
-          26,
-          28,
-          28,
-          30,
-          33
-        ],
-        "key": {
-          "dlp": "2 | 3 means 23",
-          "bm": "2 | 3 bermaksud 23"
-        }
+        "valueHeading": {
+          "dlp": "Value",
+          "bm": "Nilai"
+        },
+        "frequencyHeading": {
+          "dlp": "Frequency",
+          "bm": "Kekerapan"
+        },
+        "rows": [
+          {
+            "value": "6",
+            "frequency": 1
+          },
+          {
+            "value": "8",
+            "frequency": 2
+          },
+          {
+            "value": "10",
+            "frequency": 1
+          },
+          {
+            "value": "13",
+            "frequency": 1
+          }
+        ]
       }
     ],
     "dlp": {
@@ -2512,22 +2659,41 @@ export const MATH_F2_C12_BANK:readonly Entry[] = [
     "mode": "practice",
     "visuals": [
       {
-        "kind": "stem-leaf",
+        "kind": "frequency-table",
         "title": {
-          "dlp": "Ordered observations",
-          "bm": "Cerapan tersusun"
+          "dlp": "Frequency display",
+          "bm": "Paparan kekerapan"
         },
-        "values": [
-          28,
-          29,
-          30,
-          31,
-          32
-        ],
-        "key": {
-          "dlp": "2 | 3 means 23",
-          "bm": "2 | 3 bermaksud 23"
-        }
+        "valueHeading": {
+          "dlp": "Value",
+          "bm": "Nilai"
+        },
+        "frequencyHeading": {
+          "dlp": "Frequency",
+          "bm": "Kekerapan"
+        },
+        "rows": [
+          {
+            "value": "8",
+            "frequency": 1
+          },
+          {
+            "value": "9",
+            "frequency": 1
+          },
+          {
+            "value": "10",
+            "frequency": 1
+          },
+          {
+            "value": "11",
+            "frequency": 1
+          },
+          {
+            "value": "12",
+            "frequency": 1
+          }
+        ]
       }
     ],
     "dlp": {
@@ -2709,22 +2875,37 @@ export const MATH_F2_C12_BANK:readonly Entry[] = [
     "mode": "practice",
     "visuals": [
       {
-        "kind": "stem-leaf",
+        "kind": "frequency-table",
         "title": {
-          "dlp": "Ordered observations",
-          "bm": "Cerapan tersusun"
+          "dlp": "Frequency display",
+          "bm": "Paparan kekerapan"
         },
-        "values": [
-          26,
-          28,
-          28,
-          30,
-          33
-        ],
-        "key": {
-          "dlp": "2 | 3 means 23",
-          "bm": "2 | 3 bermaksud 23"
-        }
+        "valueHeading": {
+          "dlp": "Value",
+          "bm": "Nilai"
+        },
+        "frequencyHeading": {
+          "dlp": "Frequency",
+          "bm": "Kekerapan"
+        },
+        "rows": [
+          {
+            "value": "6",
+            "frequency": 1
+          },
+          {
+            "value": "8",
+            "frequency": 2
+          },
+          {
+            "value": "10",
+            "frequency": 1
+          },
+          {
+            "value": "13",
+            "frequency": 1
+          }
+        ]
       }
     ],
     "dlp": {
@@ -2976,23 +3157,41 @@ export const MATH_F2_C12_BANK:readonly Entry[] = [
     "mode": "challenge",
     "visuals": [
       {
-        "kind": "stem-leaf",
+        "kind": "frequency-table",
         "title": {
-          "dlp": "Ordered observations",
-          "bm": "Cerapan tersusun"
+          "dlp": "Frequency display",
+          "bm": "Paparan kekerapan"
         },
-        "values": [
-          27,
-          29,
-          29,
-          31,
-          34,
-          123
-        ],
-        "key": {
-          "dlp": "2 | 3 means 23",
-          "bm": "2 | 3 bermaksud 23"
-        }
+        "valueHeading": {
+          "dlp": "Value",
+          "bm": "Nilai"
+        },
+        "frequencyHeading": {
+          "dlp": "Frequency",
+          "bm": "Kekerapan"
+        },
+        "rows": [
+          {
+            "value": "7",
+            "frequency": 1
+          },
+          {
+            "value": "9",
+            "frequency": 2
+          },
+          {
+            "value": "11",
+            "frequency": 1
+          },
+          {
+            "value": "14",
+            "frequency": 1
+          },
+          {
+            "value": "103",
+            "frequency": 1
+          }
+        ]
       }
     ],
     "dlp": {
