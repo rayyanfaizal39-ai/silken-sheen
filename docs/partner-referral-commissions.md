@@ -27,6 +27,12 @@ snapshot of the live partner schema and the live `process_verified_payment`).
    `partner_sandbox_checkout_links` row before creating or returning a bill.
    A failed or missing confirmation blocks referred checkout; it never silently
    creates an unattributed bill. Normal no-referral checkout remains available.
+   Only a definitive server rejection for this account (`existing_customer`,
+   `self_referral`, `invalid_code`, `not_student`, inactive partner) returns
+   `ineligible` and offers "Continue without a referral". That choice is bound to
+   the account and tab like consent, keeps the intent for other accounts, and
+   sends no partner code, so the bill is an ordinary unattributed checkout.
+   Transient failures only offer retry.
 4. **Verified payment.** `toyyibpay-callback` verifies with ToyyibPay and calls
    `process_verified_payment`. When the payment becomes `successful`, the
    `partner_on_payment_status_change` trigger inserts a `partner_commissions` row:

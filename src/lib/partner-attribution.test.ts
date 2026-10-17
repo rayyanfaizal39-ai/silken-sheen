@@ -5,6 +5,8 @@ import {
   clearPartnerReference,
   clearPartnerChoice,
   confirmedPartnerCode,
+  declinePartnerReferral,
+  declinedPartnerReferral,
   partnerReturnTo,
   rememberPartnerChoice,
   storedPartnerIntent,
@@ -66,6 +68,18 @@ describe("checkout partner attribution", () => {
     expect(confirmedPartnerCode(local, tab, "account-B")).toBe("ACA1234567");
     expect(confirmedPartnerCode(local, tab, "account-A")).toBeUndefined();
     expect(checkoutPartnerCode("/upgrade", local)).toBe("ACA1234567");
+  });
+  it("binds an explicit decline to one account and never treats it as consent", () => {
+    const local = storage();
+    const tab = storage();
+    capturePartnerReference("/?ref=ACA1234567", local);
+    declinePartnerReferral(storedPartnerIntent(local)!, tab, "account-B");
+    expect(declinedPartnerReferral(local, tab, "account-B")).toBe(true);
+    expect(declinedPartnerReferral(local, tab, "account-A")).toBe(false);
+    expect(confirmedPartnerCode(local, tab, "account-B")).toBeUndefined();
+    expect(checkoutPartnerCode("/upgrade", local)).toBe("ACA1234567");
+    rememberPartnerChoice(storedPartnerIntent(local)!, tab, "account-B", "ACA1234567");
+    expect(declinedPartnerReferral(local, tab, "account-B")).toBe(false);
   });
   it("preserves the reference through OAuth destinations and registration without extending first-touch expiry", () => {
     const local = storage();

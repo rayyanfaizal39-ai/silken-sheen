@@ -6,9 +6,21 @@ export {
   validPartnerReceipt,
 } from "../../supabase/functions/_shared/partner-confirmation";
 
+// `ineligible` marks a definitive answer for this account (retrying cannot
+// succeed), so the learner may explicitly continue without the referral.
 export type ReferralConfirmation =
   | { confirmed: true; partnerCode: string }
-  | { confirmed: false; message: string; partnerCode?: string };
+  | { confirmed: false; message: string; partnerCode?: string; ineligible?: true };
+
+const INELIGIBLE_MESSAGES: Record<string, string> = {
+  existing_customer:
+    "This account has already paid for AcadeMY, so a referral cannot be added to it. Continue without the referral or choose a different Google account.",
+  self_referral: "Partners cannot use their own referral link. Continue without the referral.",
+  invalid_code:
+    "This referral link is not valid or is no longer active. Continue without the referral or contact the person who shared it.",
+  not_student:
+    "Referrals apply to learner accounts only. Choose a learner account or continue without the referral.",
+};
 
 /** Call only after explicit account choice, using the server-verified user ID. */
 export async function confirmReferralForAccount(
@@ -31,6 +43,9 @@ export async function confirmReferralForAccount(
       message: "Referral verification is unavailable. No payment bill was created. Please retry.",
     };
   if (claim.data?.claimed !== true && claim.data?.reason !== "already_attributed") {
+    const reason = String(claim.data?.reason || "");
+    if (INELIGIBLE_MESSAGES[reason])
+      return { confirmed: false, ineligible: true, message: INELIGIBLE_MESSAGES[reason] };
     return {
       confirmed: false,
       message: `Referral could not be confirmed (${String(claim.data?.reason || "unverified")}). Choose another account or contact support.`,
@@ -61,9 +76,13 @@ export async function confirmReferralForAccount(
     partner.data.status !== "active" ||
     referral.data.partner_user_id === userId
   ) {
+    // The insert trigger links only active, non-self partners, so a payment
+    // made without this referral is consistent with the database.
     return {
       confirmed: false,
-      message: "The referring partner is unavailable. Contact support before paying.",
+      ineligible: true,
+      message:
+        "The referring partner is no longer active. Continue without the referral or contact support.",
     };
   }
   if (partner.data.partner_code !== partnerCode) {

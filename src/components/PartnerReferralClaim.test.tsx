@@ -5,6 +5,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { PartnerReferralClaim } from "./PartnerReferralClaim";
 import {
   confirmedPartnerCode,
+  declinedPartnerReferral,
   PARTNER_ATTRIBUTION_KEY,
   storedPartnerCode,
   PARTNER_REVIEW_EVENT,
@@ -162,6 +163,28 @@ describe("two Google accounts in the same browser", () => {
       window.dispatchEvent(new Event(PARTNER_REVIEW_EVENT));
     });
     expect(container.querySelector('[role="dialog"]')).toBeTruthy();
+  });
+  it("offers to continue without the referral only after a definitive ineligible answer", async () => {
+    auth.confirm.mockResolvedValue({ confirmed: false, message: "Please retry" });
+    await render();
+    await click("Use this learner account");
+    expect(container.textContent).not.toContain("Continue without a referral");
+    auth.confirm.mockResolvedValue({
+      confirmed: false,
+      ineligible: true,
+      message: "This account has already paid",
+    });
+    await click("Use this learner account");
+    await click("Continue without a referral");
+    expect(container.querySelector('[role="dialog"]')).toBeNull();
+    expect(declinedPartnerReferral(localStorage, sessionStorage, "account-A")).toBe(true);
+    expect(confirmedPartnerCode(localStorage, sessionStorage, "account-A")).toBeUndefined();
+    expect(storedPartnerCode(localStorage)).toBe("ACA8B69613");
+    // Switching to a fresh account B requires its own explicit choice.
+    auth.user = { id: "account-B", email: "b@example.test" };
+    await render();
+    expect(declinedPartnerReferral(localStorage, sessionStorage, "account-B")).toBe(false);
+    expect(container.textContent).toContain("Use this learner account");
   });
   it("shows the immutable original partner and requires explicit reconfirmation", async () => {
     auth.confirm

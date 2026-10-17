@@ -95,6 +95,39 @@ export function rememberPartnerChoice(
   choices.setItem(PARTNER_CHOICE_KEY, JSON.stringify({ ...intent, userId, partnerCode }));
 }
 
+/**
+ * Explicit "continue without referral" after the server declared this account
+ * ineligible. Same binding as consent; the intent stays for other accounts.
+ */
+export function declinePartnerReferral(
+  intent: PartnerIntent,
+  choices: StorageLike,
+  userId: string,
+) {
+  choices.setItem(PARTNER_CHOICE_KEY, JSON.stringify({ ...intent, userId, declined: true }));
+}
+
+export function declinedPartnerReferral(
+  intents: StorageLike,
+  choices: StorageLike,
+  userId: string,
+  now = Date.now(),
+) {
+  const intent = storedPartnerIntent(intents, now);
+  if (!intent) return false;
+  try {
+    const choice = JSON.parse(choices.getItem(PARTNER_CHOICE_KEY) || "null");
+    return (
+      choice?.declined === true &&
+      choice.userId === userId &&
+      choice.code === intent.code &&
+      choice.expiresAt === intent.expiresAt
+    );
+  } catch {
+    return false;
+  }
+}
+
 export function clearPartnerChoice(choices: StorageLike) {
   choices.removeItem(PARTNER_CHOICE_KEY);
 }
@@ -110,6 +143,7 @@ export function confirmedPartnerCode(
   try {
     const choice = JSON.parse(choices.getItem(PARTNER_CHOICE_KEY) || "null");
     return choice?.userId === userId &&
+      choice.declined !== true &&
       choice.code === intent.code &&
       choice.expiresAt === intent.expiresAt
       ? normalizePartnerCode(choice.partnerCode)

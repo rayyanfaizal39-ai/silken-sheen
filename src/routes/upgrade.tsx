@@ -30,6 +30,7 @@ import { toCheckoutPlan } from "@/lib/billing-config";
 import {
   checkoutPartnerCode,
   confirmedPartnerCode,
+  declinedPartnerReferral,
   PARTNER_REVIEW_EVENT,
 } from "@/lib/partner-attribution";
 import { hasFeature } from "@/lib/feature-access";
@@ -277,7 +278,10 @@ function UpgradePage() {
       const intent = checkoutPartnerCode(window.location.href, window.localStorage);
       if (intent) {
         partnerCode = confirmedPartnerCode(window.localStorage, window.sessionStorage, user.id);
-        if (!partnerCode) {
+        if (
+          !partnerCode &&
+          !declinedPartnerReferral(window.localStorage, window.sessionStorage, user.id)
+        ) {
           window.dispatchEvent(new Event(PARTNER_REVIEW_EVENT));
           setCheckoutError("Confirm this referral for the learner account before paying.");
           setCheckoutPlan(null);

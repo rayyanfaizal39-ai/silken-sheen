@@ -6,6 +6,8 @@ import {
   capturePartnerReference,
   clearPartnerChoice,
   confirmedPartnerCode,
+  declinePartnerReferral,
+  declinedPartnerReferral,
   partnerReturnTo,
   PARTNER_REVIEW_EVENT,
   PARTNER_ATTRIBUTION_KEY,
@@ -33,6 +35,7 @@ export function PartnerReferralClaim() {
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState("");
   const [originalPartner, setOriginalPartner] = useState<string>();
+  const [ineligible, setIneligible] = useState(false);
 
   useEffect(() => {
     try {
@@ -45,13 +48,16 @@ export function PartnerReferralClaim() {
         clearPartnerChoice(window.sessionStorage);
         setMessage("");
         setOriginalPartner(undefined);
+        setIneligible(false);
       }
       previousUser.current = userId;
       referralUrl.current = linked ? href : null;
       setOpen(
         Boolean(
           pending &&
-          (!userId || !confirmedPartnerCode(window.localStorage, window.sessionStorage, userId)),
+          (!userId ||
+            (!confirmedPartnerCode(window.localStorage, window.sessionStorage, userId) &&
+              !declinedPartnerReferral(window.localStorage, window.sessionStorage, userId))),
         ),
       );
     } catch {
@@ -73,6 +79,7 @@ export function PartnerReferralClaim() {
         clearPartnerChoice(window.sessionStorage);
         setIntent(storedPartnerIntent(window.localStorage));
         setOriginalPartner(undefined);
+        setIneligible(false);
         setMessage("");
         setOpen(true);
       } catch {
@@ -107,6 +114,7 @@ export function PartnerReferralClaim() {
       if (!result.confirmed) {
         setMessage(result.message);
         setOriginalPartner(result.partnerCode);
+        setIneligible(result.ineligible === true);
         return;
       }
       rememberPartnerChoice(intent, window.sessionStorage, chosenUserId, result.partnerCode);
@@ -117,6 +125,18 @@ export function PartnerReferralClaim() {
       );
     } finally {
       setBusy(false);
+    }
+  }
+
+  // Offered only after the server says this account can never take the
+  // referral; transient failures must be retried instead.
+  function continueWithoutReferral() {
+    if (!userId || !intent || busy || !ineligible) return;
+    try {
+      declinePartnerReferral(intent, window.sessionStorage, userId);
+      setOpen(false);
+    } catch {
+      setMessage("Allow browser storage to continue without the referral.");
     }
   }
 
@@ -161,7 +181,12 @@ export function PartnerReferralClaim() {
           </p>
         )}
         {message && <p role="alert">{message}</p>}
-        {user && (
+        {user && ineligible && (
+          <Button disabled={busy} onClick={continueWithoutReferral}>
+            Continue without a referral
+          </Button>
+        )}
+        {user && !ineligible && (
           <Button disabled={busy} onClick={() => void chooseCurrentAccount()}>
             {originalPartner
               ? `Confirm original partner ${originalPartner}`

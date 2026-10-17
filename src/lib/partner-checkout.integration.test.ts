@@ -124,6 +124,22 @@ describe("server checkout account confirmation", () => {
       expect(fixture.invoke).not.toHaveBeenCalled();
     },
   );
+  it.each(["self_referral", "invalid_code", "not_student", "existing_customer"])(
+    "marks a definitive %s rejection as ineligible without issuing a receipt",
+    async (reason) => {
+      fixture.rpc.mockResolvedValue({ data: { claimed: false, reason }, error: null });
+      expect(
+        await confirmPartnerReferral({ data: { accountId: B, partnerCode: CODE } }),
+      ).toMatchObject({ confirmed: false, ineligible: true });
+      expect(fixture.cookieWrite).not.toHaveBeenCalled();
+    },
+  );
+  it("never offers to skip the referral after a transient failure", async () => {
+    fixture.rpc.mockResolvedValue({ data: null, error: { message: "offline" } });
+    const result = await confirmPartnerReferral({ data: { accountId: B, partnerCode: CODE } });
+    expect(result).toMatchObject({ confirmed: false });
+    expect(result).not.toHaveProperty("ineligible");
+  });
   it("does not turn a transient referral RPC failure into an unattributed bill", async () => {
     fixture.cookie = signPartnerReceipt(B, CODE, "test-only-signing-secret");
     fixture.rpc.mockResolvedValue({ data: null, error: { message: "offline" } });
