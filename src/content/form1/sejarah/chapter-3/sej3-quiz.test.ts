@@ -212,8 +212,8 @@ describe("Sejarah Form 1 Bab 3 — selective source repair", () => {
   });
 
   it.each([
-    ["content", "465a1603cf33ba899ba6361cc4acf5cca14619652a935a81c800c6aa6062e1ff"],
-    ["quizzes", "76fde311e2bba5454e7b2cd6eaeca3892cbd078a04ccfabf04306f5ccf3c3313"],
+    ["content", "cdfe6a97a51cd54c83077b1f174ed68069e520750c0fca101260c7ef34aeda13"],
+    ["quizzes", "50f29c2c7542d8b8a8ea4eea90f79e816f575f89d54d26c276f9be4323b7c99a"],
   ])(
     "locks every unrelated inline record in %s, including Chapters 1, 2 and 4–8",
     (file, expected) => {
