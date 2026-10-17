@@ -126,6 +126,13 @@ to a server-created pending transaction, and status/amount are re-fetched from
 ToyyibPay before the invoice transaction runs. Change only
 `TOYYIBPAY_API_URL` and credentials when moving to live mode.
 
+After payment ToyyibPay returns the learner's browser to `/payment-return` on the
+site that started checkout, so they keep their session. The web server sends its
+own request origin and `create-toyyibpay-bill` allowlists it: the production
+`APPLICATION_URL` origin, plus exact `https://<name>.academymy.pages.dev` previews
+listed in the Edge secret `PAYMENT_RETURN_PREVIEW_ORIGINS` (comma-separated).
+Anything else returns to production. The server callback is unaffected.
+
 Never expose `SUPABASE_SERVICE_ROLE_KEY`, `TOYYIBPAY_SECRET_KEY`, or
 `RESEND_API_KEY` through a `VITE_` variable.
 

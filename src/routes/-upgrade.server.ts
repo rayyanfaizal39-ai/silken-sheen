@@ -1,5 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
+import { createAccountCheckout } from "../lib/partner-checkout.server";
 import { areMockPaymentsEnabled, CHECKOUT_PLANS } from "../lib/billing-config";
 import {
   createPendingPayment,
@@ -17,9 +18,15 @@ import { getSupabaseServerClient } from "../lib/supabase.server";
 export type UpgradePlan = CheckoutPlan;
 
 const checkoutSchema = z.object({
+  accountId: z.string().uuid(),
   plan: z.enum(["pro_monthly", "premium_monthly"]),
   idempotencyKey: z.string().uuid(),
-  partnerCode: z.string().trim().toUpperCase().regex(/^[A-Z0-9][A-Z0-9_-]{2,39}$/).optional(),
+  partnerCode: z
+    .string()
+    .trim()
+    .toUpperCase()
+    .regex(/^[A-Z0-9][A-Z0-9_-]{2,39}$/)
+    .optional(),
 });
 
 const mockSchema = z.object({
@@ -43,63 +50,9 @@ async function requireUser() {
   return { supabase, user: data.user };
 }
 
-// The edge function answers 503 {error:"provider_unavailable"} when ToyyibPay
-// times out or returns something unusable; anything else stays a generic failure.
-async function isProviderUnavailable(error: unknown) {
-  const context = (error as { context?: unknown })?.context;
-  if (!(context instanceof Response) || context.status !== 503) return false;
-  try {
-    const body = (await context.json()) as { error?: unknown };
-    return body.error === "provider_unavailable";
-  } catch {
-    return false;
-  }
-}
-
 export const createCheckout = createServerFn({ method: "POST" })
   .validator((input: unknown) => checkoutSchema.parse(input))
-  .handler(async ({ data }) => {
-    const { supabase, user } = await requireUser();
-    const mock = areMockPaymentsEnabled();
-
-    // Lock the referring partner before the payment row exists: the database
-    // links new ToyyibPay payments to the student's referral on insert, so the
-    // attribution is fixed before any bill is created. Never blocks checkout.
-    if (data.partnerCode) {
-      const claim = await supabase.rpc("partner_claim_referral", { p_partner_code: data.partnerCode });
-      if (claim.error) console.warn("[partners] checkout referral claim failed:", claim.error.message);
-    }
-
-    if (mock) {
-      const payment = await createPendingPayment({
-        userId: user.id,
-        checkoutPlan: data.plan,
-        provider: "mock",
-        idempotencyKey: data.idempotencyKey,
-      });
-      return { mode: "mock" as const, paymentId: payment.id };
-    }
-
-    const checkout = await supabase.functions.invoke("create-toyyibpay-bill", {
-      body: { plan: data.plan, idempotencyKey: data.idempotencyKey },
-    });
-    if (checkout.error) {
-      if (await isProviderUnavailable(checkout.error)) {
-        console.error("[billing] payment provider unavailable:", checkout.error.message);
-        return { mode: "unavailable" as const };
-      }
-      throw new Error(`Checkout service failed: ${checkout.error.message}`);
-    }
-    const result = checkout.data as { paymentId?: unknown; checkoutUrl?: unknown };
-    if (typeof result.paymentId !== "string" || typeof result.checkoutUrl !== "string") {
-      throw new Error("Checkout service returned an invalid response");
-    }
-    return {
-      mode: "toyyibpay" as const,
-      paymentId: result.paymentId,
-      checkoutUrl: result.checkoutUrl,
-    };
-  });
+  .handler(async ({ data }) => createAccountCheckout(data));
 
 export const simulateMockPayment = createServerFn({ method: "POST" })
   .validator((input: unknown) => mockSchema.parse(input))

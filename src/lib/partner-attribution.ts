@@ -1,10 +1,11 @@
-// Client-side carrier for a partner ?ref= code between the landing page and
-// the first signed-in request. The database decides eligibility and locks the
-// first eligible partner (partner_claim_referral); this only remembers the code
-// through navigation and the Google OAuth round trip (same www origin).
+// Private client-side carrier for a partner ?ref= code. It is never shown to
+// the learner and never claims anything: the server claims it at checkout for
+// the authenticated purchaser (partner_claim_referral), so whichever account
+// happened to be signed in when the link was opened is never attributed.
 
 export const PARTNER_ATTRIBUTION_KEY = "academy:partner-attribution";
 export const PARTNER_ATTRIBUTION_TTL = 60 * 24 * 60 * 60 * 1000;
+export type PartnerIntent = { code: string; expiresAt: number };
 type StorageLike = Pick<Storage, "getItem" | "setItem" | "removeItem">;
 
 export function normalizePartnerCode(value: unknown): string | undefined {
@@ -14,7 +15,10 @@ export function normalizePartnerCode(value: unknown): string | undefined {
 }
 
 /** The stored, unexpired code, or undefined (clearing expired/malformed data). */
-export function storedPartnerCode(storage: StorageLike, now = Date.now()) {
+export function storedPartnerIntent(
+  storage: StorageLike,
+  now = Date.now(),
+): PartnerIntent | undefined {
   try {
     const raw = storage.getItem(PARTNER_ATTRIBUTION_KEY);
     if (!raw) return undefined;
@@ -29,7 +33,7 @@ export function storedPartnerCode(storage: StorageLike, now = Date.now()) {
       storage.removeItem(PARTNER_ATTRIBUTION_KEY);
       return undefined;
     }
-    return code;
+    return { code, expiresAt: saved.expiresAt };
   } catch {
     try {
       storage.removeItem(PARTNER_ATTRIBUTION_KEY);
@@ -38,6 +42,10 @@ export function storedPartnerCode(storage: StorageLike, now = Date.now()) {
     }
     return undefined;
   }
+}
+
+export function storedPartnerCode(storage: StorageLike, now = Date.now()) {
+  return storedPartnerIntent(storage, now)?.code;
 }
 
 /**
@@ -62,12 +70,9 @@ export function capturePartnerReference(href: string, storage: StorageLike, now 
   return code;
 }
 
-/** Code to submit for a signed-in student: stored first-touch, else the URL. */
+/** Code to submit for the purchaser: stored first-touch, else the URL. */
 export function checkoutPartnerCode(href: string, storage: StorageLike, now = Date.now()) {
-  return (
-    capturePartnerReference(href, storage, now) ??
-    storedPartnerCode(storage, now)
-  );
+  return capturePartnerReference(href, storage, now) ?? storedPartnerCode(storage, now);
 }
 
 export function clearPartnerReference(storage: StorageLike) {
@@ -78,14 +83,10 @@ export function clearPartnerReference(storage: StorageLike) {
   }
 }
 
-/** Server answers after which the stored code has served its purpose. */
-export function isFinalClaimResult(result: unknown) {
-  if (!result || typeof result !== "object") return false;
-  const { claimed, reason } = result as { claimed?: unknown; reason?: unknown };
-  return (
-    claimed === true ||
-    ["already_attributed", "invalid_code", "self_referral", "not_student", "existing_customer"].includes(
-      String(reason),
-    )
-  );
+/** Same-origin path without ?ref=, or undefined when there is nothing to hide. */
+export function withoutPartnerReference(href: string) {
+  const url = new URL(href, "https://www.myacademy.my");
+  if (!url.searchParams.has("ref")) return undefined;
+  url.searchParams.delete("ref");
+  return `${url.pathname}${url.search}${url.hash}`;
 }

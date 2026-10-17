@@ -3,8 +3,8 @@ import {
   capturePartnerReference,
   checkoutPartnerCode,
   clearPartnerReference,
-  isFinalClaimResult,
   normalizePartnerCode,
+  withoutPartnerReference,
   PARTNER_ATTRIBUTION_KEY,
   PARTNER_ATTRIBUTION_TTL,
 } from "./partner-attribution";
@@ -49,12 +49,30 @@ describe("checkout partner attribution", () => {
     expect(normalizePartnerCode("a".repeat(41))).toBeUndefined();
     expect(capturePartnerReference("/?ref=%3Cscript%3E", storage())).toBeUndefined();
   });
-  it("clears the stored code only after a final server answer", () => {
-    expect(isFinalClaimResult({ claimed: true })).toBe(true);
-    expect(isFinalClaimResult({ claimed: false, reason: "already_attributed" })).toBe(true);
-    expect(isFinalClaimResult({ claimed: false, reason: "self_referral" })).toBe(true);
-    expect(isFinalClaimResult(null)).toBe(false);
-    expect(isFinalClaimResult({ claimed: false, reason: "something_new" })).toBe(false);
+  it("is not bound to any account: the same private code reaches whoever finally purchases", () => {
+    const local = storage();
+    // Account A happened to be signed in when the link was opened.
+    capturePartnerReference("/?ref=ACA1234567", local, 1000);
+    // Sign-out, Google account switch, registration and onboarding of B.
+    for (const path of ["/auth/callback?next=%2Fhome", "/onboarding", "/home", "/upgrade"]) {
+      expect(checkoutPartnerCode(path, local, 2000)).toBe("ACA1234567");
+    }
+  });
+  it("preserves first-touch expiry through registration and login", () => {
+    const local = storage();
+    capturePartnerReference("/?ref=ACA1234567", local, 1000);
+    const original = local.getItem(PARTNER_ATTRIBUTION_KEY);
+    for (const path of ["/login", "/auth/callback", "/profile", "/onboarding", "/upgrade"]) {
+      expect(checkoutPartnerCode(path, local, 2000)).toBe("ACA1234567");
+    }
+    expect(local.getItem(PARTNER_ATTRIBUTION_KEY)).toBe(original);
+  });
+  it("removes the code from the visible address while keeping other parameters", () => {
+    expect(
+      withoutPartnerReference("https://www.myacademy.my/upgrade?ref=ACA1&plan=premium#plans"),
+    ).toBe("/upgrade?plan=premium#plans");
+    expect(withoutPartnerReference("/?ref=ACA1234567")).toBe("/");
+    expect(withoutPartnerReference("/upgrade?plan=premium")).toBeUndefined();
   });
   it("can use a direct reference when browser storage is unavailable", () => {
     const blocked = {

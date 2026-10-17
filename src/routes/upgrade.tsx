@@ -27,7 +27,7 @@ import {
   type SubscriptionOverviewState,
 } from "@/hooks/use-subscription-overview";
 import { toCheckoutPlan } from "@/lib/billing-config";
-import { checkoutPartnerCode } from "@/lib/partner-attribution";
+import { checkoutPartnerCode, clearPartnerReference } from "@/lib/partner-attribution";
 import { hasFeature } from "@/lib/feature-access";
 import type { BillingPlan } from "@/lib/billing.types";
 import { seoMeta } from "@/lib/seo";
@@ -239,7 +239,6 @@ const PRICING_PLANS: Array<{
   },
 ];
 
-
 function getActivePlan(state: SubscriptionOverviewState): BillingPlan | null {
   if (!state.resolved) return null;
   const subscription = state.overview?.subscription;
@@ -269,17 +268,31 @@ function UpgradePage() {
     setCheckoutError(null);
 
     try {
+      if (!user) throw new Error("Sign in to the learner account before paying.");
+      // Private first-touch partner code; the server attributes it to this
+      // purchaser only. Nothing about it is shown to the learner.
       let partnerCode: string | undefined;
-      try { partnerCode = checkoutPartnerCode(window.location.href, window.localStorage); } catch { /* Checkout can continue without referral storage. */ }
+      try {
+        partnerCode = checkoutPartnerCode(window.location.href, window.localStorage);
+      } catch {
+        partnerCode = undefined;
+      }
       const checkout = await createCheckout({
-        data: { plan, idempotencyKey: crypto.randomUUID(), partnerCode },
+        data: { plan, idempotencyKey: crypto.randomUUID(), partnerCode, accountId: user.id },
       });
+      if (checkout.mode === "retry") {
+        setCheckoutError(checkout.message);
+        setCheckoutPlan(null);
+        checkoutLock.current = false;
+        return;
+      }
       if (checkout.mode === "unavailable") {
         setCheckoutError(PROVIDER_UNAVAILABLE_MESSAGE);
         setCheckoutPlan(null);
         checkoutLock.current = false;
         return;
       }
+      if (checkout.clearReference) clearPartnerReference(window.localStorage);
       if (checkout.mode === "toyyibpay") {
         window.location.assign(checkout.checkoutUrl);
         return;
@@ -362,7 +375,6 @@ function UpgradePage() {
       <FeatureComparison />
       <FeedbackInvitation />
       <ReassuranceSection />
-
     </AcademyPageShell>
   );
 }
@@ -444,7 +456,6 @@ function UpgradeHero() {
     </header>
   );
 }
-
 
 function CurrentPlanCard({
   user,
@@ -823,8 +834,8 @@ function FeedbackInvitation() {
             <p className="upgrade-eyebrow">Built with real feedback</p>
             <h2 id="feedback-title">Your experience could help another family.</h2>
             <p>
-              Used AcadeMY for learning or keeping up with progress? Share an honest story. With your
-              permission, selected feedback may appear here in the future.
+              Used AcadeMY for learning or keeping up with progress? Share an honest story. With
+              your permission, selected feedback may appear here in the future.
             </p>
             <div className="upgrade-feedback-actions">
               <a href={feedbackEmail} className="upgrade-feedback-button upgrade-pressable">
