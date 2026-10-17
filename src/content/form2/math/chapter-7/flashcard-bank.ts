@@ -2225,7 +2225,7 @@ export const MATH_F2_C7_BANK: readonly MathF2C7Entry[] = [
           -10,
           10,
           -10,
-          10
+          12
         ],
         "step": 2,
         "points": [
