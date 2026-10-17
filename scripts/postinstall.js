@@ -12,8 +12,14 @@ import { readFileSync, writeFileSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
+import { applyBuildMemoryPatches } from './patch-build-memory.mjs';
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, '..');
+
+// Release per-environment Rollup graphs between client/SSR/nitro builds so the
+// Cloudflare Pages build fits in its heap (see scripts/patch-build-memory.mjs).
+applyBuildMemoryPatches(root);
 const pkgPath = join(root, 'node_modules/@tanstack/start-server-core/package.json');
 
 if (!existsSync(pkgPath)) {
