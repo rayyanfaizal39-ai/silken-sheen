@@ -102,3 +102,31 @@ financial triggers. Review the focused tests, full-suite/typecheck limitations a
 production build result in the PR before configuring the shared server-only signing
 secret and deploying. Neither a successful unit test nor the historical incident
 evidence establishes browser-to-provider end-to-end acceptance of undeployed code.
+
+## 17 October 2026 sandbox payment `TP2610172813821494`
+
+Read-only investigation of the shared production database. Nothing was modified,
+credited or backfilled.
+
+| Time (UTC) | Evidence                                                                                                                                                   |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 12:52:12   | Google OAuth started; the stored redirect is the bare Site URL `https://myacademy.my`, recorded only when the requested `redirect_to` is not allow-listed. |
+| 12:52:55   | New student account created (payment ID prefix `ece95628`). No `partner_referrals` row then or since.                                                      |
+| 12:54:07   | Second Google OAuth, again falling back to the Site URL.                                                                                                   |
+| 12:55:43   | RM59 Premium ToyyibPay payment created with no checkout link.                                                                                              |
+| 12:56:06   | Payment `successful` (sandbox). No commission. The test partner `ACA9AFD950` has no referrals at all.                                                      |
+
+Cause: the link was opened on a Cloudflare preview origin that is not on the
+Supabase Auth redirect allow-list. Google sign-in fell back to the Site URL, so
+the purchase happened on production (`main` at `66bd8b5`, before this PR), whose
+`www` origin storage never held the code. That build only claims when a code is
+present and logs, rather than blocks, a failed claim. The bill request therefore
+carried no partner code; deployed Edge v26 correctly created an ordinary bill.
+
+Fix: attribution is now claimed and verified on the server at checkout for the
+purchaser, every checkout reads the purchaser's database attribution, and any
+temporary verification failure blocks payment. Cross-origin loss of a link that
+was never opened on the purchasing origin cannot be recovered by code; preview
+origins must be allow-listed in Supabase Auth before preview end-to-end tests.
+The historical payment is not credited; any correction follows the approval
+process above.

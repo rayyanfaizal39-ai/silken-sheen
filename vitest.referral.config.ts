@@ -6,7 +6,7 @@ export default defineConfig({
   test: {
     include: [
       "src/lib/partner*.test.ts",
-      "src/components/PartnerReferralClaim.test.tsx",
+      "src/components/PartnerReferenceCapture.test.tsx",
       "src/lib/toyyibpay-response.test.ts",
       "src/lib/auth-return-to.test.ts",
     ],

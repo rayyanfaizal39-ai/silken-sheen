@@ -6,41 +6,42 @@ snapshot of the live partner schema and the live `process_verified_payment`).
 
 ## Flow
 
-1. **Landing.** `PartnerReferralClaim` (in `__root.tsx`) stores `?ref=CODE` in
-   `localStorage` for 60 days. First touch wins: a later link never replaces an
-   unexpired code. `myacademy.my` 301-redirects to `www` with the query intact,
-   and Google OAuth returns to the same `www` origin, so the code survives sign-in.
-2. **Account choice.** The component never claims automatically. It shows the
-   current account, an explicit "Use this learner account" action, Google account
-   switching, and a "Decide later" action. Intent is not consumed by a claim,
-   rejection, sign-out, OAuth return or registration. Google retains
-   `prompt=select_account` and a same-origin return path containing the reference.
-   Switching locally signs out only this browser; it does not revoke other devices.
-3. **Confirmation and checkout.** An explicit POST verifies `auth.getUser()` against
-   the chosen account, calls `partner_claim_referral`, and reads back that user's
-   immutable first-touch attribution server-side. A different original partner
-   requires a second explicit confirmation, not reassignment. Successful confirmation
-   issues a 10-minute HttpOnly, SameSite=Lax signed receipt bound to user and partner.
-   The 60-day intent remains separate and its expiry is not renewed by navigation.
-   Both `createCheckout` and `create-toyyibpay-bill` validate the receipt and current
-   attribution. The Edge Function also checks the actual payment's
-   `partner_sandbox_checkout_links` row before creating or returning a bill.
-   A failed or missing confirmation blocks referred checkout; it never silently
-   creates an unattributed bill. Normal no-referral checkout remains available.
-   Only a definitive server rejection for this account (`existing_customer`,
-   `self_referral`, `invalid_code`, `not_student`, inactive partner) returns
-   `ineligible` and offers "Continue without a referral". That choice is bound to
-   the account and tab like consent, keeps the intent for other accounts, and
-   sends no partner code, so the bill is an ordinary unattributed checkout.
-   Transient failures only offer retry.
-4. **Verified payment.** `toyyibpay-callback` verifies with ToyyibPay and calls
+1. **Landing (private).** `PartnerReferenceCapture` (in `__root.tsx`) stores
+   `?ref=CODE` in `localStorage` for 60 days and removes it from the address bar.
+   First touch wins: a later link never replaces an unexpired code. It renders
+   nothing and calls no server, so learners never see a code, dialog or referral
+   message, and the account signed in when the link was opened is never claimed.
+   Normal login, Google account switching, registration and onboarding are
+   unchanged; the code stays in the same origin's storage throughout.
+2. **Checkout (server).** For every checkout `createCheckout` verifies
+   `auth.getUser()` matches the page's account, then, before any payment row or
+   provider call, `resolveCheckoutAttribution`:
+   - with a stored code, calls `partner_claim_referral` in the purchaser's session
+     (the final authenticated student is the only account ever claimed);
+   - reads the purchaser's immutable first-touch referral and partner status, even
+     without a stored code, so renewals are verified from the database.
+     An attributed purchase gets a 10-minute receipt signed with
+     `PARTNER_CONFIRMATION_SECRET` for that user and partner, sent in the body to
+     `create-toyyibpay-bill`, which re-checks receipt, referral and the inserted
+     payment's `partner_sandbox_checkout_links` row before creating a bill.
+     Definitively ineligible purchasers (`existing_customer`, `self_referral`,
+     `invalid_code`, `not_student`, inactive partner) check out normally: the insert
+     trigger would not link them either. Any temporary failure (claim, lookup,
+     missing receipt key, Edge `referral_*` rejection) blocks payment with one
+     generic retry message, so a commission is never silently lost. The stored code
+     is cleared once a purchase is attributed.
+3. **Verified payment.** `toyyibpay-callback` verifies with ToyyibPay and calls
    `process_verified_payment`. When the payment becomes `successful`, the
    `partner_on_payment_status_change` trigger inserts a `partner_commissions` row:
    30% of the verified amount (RM59 → RM17.70, RM29 → RM8.70), status `pending`,
    `review_available_at = paid_at + 30 days`. The Partners dashboard shows it as
    Pending. Every renewal earns commission; there is no six-payment limit.
-5. **Payout.** Unchanged: the existing manual payout RPCs only accept commissions
+4. **Payout.** Unchanged: the existing manual payout RPCs only accept commissions
    past `review_available_at`.
+
+Live sandbox payment `TP2610172813821494` (17 October 2026) was unattributed
+because the code never reached production: see
+`docs/referral-account-switch-incident.md`.
 
 ## Guarantees
 

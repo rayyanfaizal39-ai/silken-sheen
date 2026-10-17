@@ -1,6 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
-import { confirmAccountPartner, createAccountCheckout } from "../lib/partner-checkout.server";
+import { createAccountCheckout } from "../lib/partner-checkout.server";
 import { areMockPaymentsEnabled, CHECKOUT_PLANS } from "../lib/billing-config";
 import {
   createPendingPayment,
@@ -29,14 +29,6 @@ const checkoutSchema = z.object({
     .optional(),
 });
 
-const partnerChoiceSchema = checkoutSchema.pick({ accountId: true }).extend({
-  partnerCode: z
-    .string()
-    .trim()
-    .toUpperCase()
-    .regex(/^[A-Z0-9][A-Z0-9_-]{2,39}$/),
-});
-
 const mockSchema = z.object({
   paymentId: z.string().uuid(),
   outcome: z.enum(["successful", "failed", "cancelled"]),
@@ -57,10 +49,6 @@ async function requireUser() {
   if (error || !data.user) throw new Error("Must be logged in");
   return { supabase, user: data.user };
 }
-
-export const confirmPartnerReferral = createServerFn({ method: "POST" })
-  .validator((input: unknown) => partnerChoiceSchema.parse(input))
-  .handler(async ({ data }) => confirmAccountPartner(data));
 
 export const createCheckout = createServerFn({ method: "POST" })
   .validator((input: unknown) => checkoutSchema.parse(input))

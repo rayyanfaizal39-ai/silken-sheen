@@ -27,12 +27,7 @@ import {
   type SubscriptionOverviewState,
 } from "@/hooks/use-subscription-overview";
 import { toCheckoutPlan } from "@/lib/billing-config";
-import {
-  checkoutPartnerCode,
-  confirmedPartnerCode,
-  declinedPartnerReferral,
-  PARTNER_REVIEW_EVENT,
-} from "@/lib/partner-attribution";
+import { checkoutPartnerCode, clearPartnerReference } from "@/lib/partner-attribution";
 import { hasFeature } from "@/lib/feature-access";
 import type { BillingPlan } from "@/lib/billing.types";
 import { seoMeta } from "@/lib/seo";
@@ -274,27 +269,19 @@ function UpgradePage() {
 
     try {
       if (!user) throw new Error("Sign in to the learner account before paying.");
+      // Private first-touch partner code; the server attributes it to this
+      // purchaser only. Nothing about it is shown to the learner.
       let partnerCode: string | undefined;
-      const intent = checkoutPartnerCode(window.location.href, window.localStorage);
-      if (intent) {
-        partnerCode = confirmedPartnerCode(window.localStorage, window.sessionStorage, user.id);
-        if (
-          !partnerCode &&
-          !declinedPartnerReferral(window.localStorage, window.sessionStorage, user.id)
-        ) {
-          window.dispatchEvent(new Event(PARTNER_REVIEW_EVENT));
-          setCheckoutError("Confirm this referral for the learner account before paying.");
-          setCheckoutPlan(null);
-          checkoutLock.current = false;
-          return;
-        }
+      try {
+        partnerCode = checkoutPartnerCode(window.location.href, window.localStorage);
+      } catch {
+        partnerCode = undefined;
       }
       const checkout = await createCheckout({
         data: { plan, idempotencyKey: crypto.randomUUID(), partnerCode, accountId: user.id },
       });
-      if (checkout.mode === "referral_required") {
+      if (checkout.mode === "retry") {
         setCheckoutError(checkout.message);
-        window.dispatchEvent(new Event(PARTNER_REVIEW_EVENT));
         setCheckoutPlan(null);
         checkoutLock.current = false;
         return;
@@ -305,6 +292,7 @@ function UpgradePage() {
         checkoutLock.current = false;
         return;
       }
+      if (checkout.clearReference) clearPartnerReference(window.localStorage);
       if (checkout.mode === "toyyibpay") {
         window.location.assign(checkout.checkoutUrl);
         return;

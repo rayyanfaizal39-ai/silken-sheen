@@ -3,14 +3,8 @@ import {
   capturePartnerReference,
   checkoutPartnerCode,
   clearPartnerReference,
-  clearPartnerChoice,
-  confirmedPartnerCode,
-  declinePartnerReferral,
-  declinedPartnerReferral,
-  partnerReturnTo,
-  rememberPartnerChoice,
-  storedPartnerIntent,
   normalizePartnerCode,
+  withoutPartnerReference,
   PARTNER_ATTRIBUTION_KEY,
   PARTNER_ATTRIBUTION_TTL,
 } from "./partner-attribution";
@@ -55,52 +49,30 @@ describe("checkout partner attribution", () => {
     expect(normalizePartnerCode("a".repeat(41))).toBeUndefined();
     expect(capturePartnerReference("/?ref=%3Cscript%3E", storage())).toBeUndefined();
   });
-  it("keeps intent after account A confirms and requires fresh consent after switching to B", () => {
+  it("is not bound to any account: the same private code reaches whoever finally purchases", () => {
     const local = storage();
-    const tab = storage();
-    capturePartnerReference("/?ref=ACA1234567", local);
-    rememberPartnerChoice(storedPartnerIntent(local)!, tab, "account-A", "ACA1234567");
-    expect(confirmedPartnerCode(local, tab, "account-A")).toBe("ACA1234567");
-    expect(confirmedPartnerCode(local, tab, "account-B")).toBeUndefined();
-    clearPartnerChoice(tab);
-    expect(checkoutPartnerCode("/auth/callback?next=/profile", local)).toBe("ACA1234567");
-    rememberPartnerChoice(storedPartnerIntent(local)!, tab, "account-B", "ACA1234567");
-    expect(confirmedPartnerCode(local, tab, "account-B")).toBe("ACA1234567");
-    expect(confirmedPartnerCode(local, tab, "account-A")).toBeUndefined();
-    expect(checkoutPartnerCode("/upgrade", local)).toBe("ACA1234567");
+    // Account A happened to be signed in when the link was opened.
+    capturePartnerReference("/?ref=ACA1234567", local, 1000);
+    // Sign-out, Google account switch, registration and onboarding of B.
+    for (const path of ["/auth/callback?next=%2Fhome", "/onboarding", "/home", "/upgrade"]) {
+      expect(checkoutPartnerCode(path, local, 2000)).toBe("ACA1234567");
+    }
   });
-  it("binds an explicit decline to one account and never treats it as consent", () => {
-    const local = storage();
-    const tab = storage();
-    capturePartnerReference("/?ref=ACA1234567", local);
-    declinePartnerReferral(storedPartnerIntent(local)!, tab, "account-B");
-    expect(declinedPartnerReferral(local, tab, "account-B")).toBe(true);
-    expect(declinedPartnerReferral(local, tab, "account-A")).toBe(false);
-    expect(confirmedPartnerCode(local, tab, "account-B")).toBeUndefined();
-    expect(checkoutPartnerCode("/upgrade", local)).toBe("ACA1234567");
-    rememberPartnerChoice(storedPartnerIntent(local)!, tab, "account-B", "ACA1234567");
-    expect(declinedPartnerReferral(local, tab, "account-B")).toBe(false);
-  });
-  it("preserves the reference through OAuth destinations and registration without extending first-touch expiry", () => {
+  it("preserves first-touch expiry through registration and login", () => {
     const local = storage();
     capturePartnerReference("/?ref=ACA1234567", local, 1000);
     const original = local.getItem(PARTNER_ATTRIBUTION_KEY);
-    expect(partnerReturnTo("/upgrade?plan=premium#plans", "ACA1234567")).toBe(
-      "/upgrade?plan=premium&ref=ACA1234567#plans",
-    );
-    for (const path of ["/auth/callback", "/profile", "/onboarding", "/upgrade"]) {
+    for (const path of ["/login", "/auth/callback", "/profile", "/onboarding", "/upgrade"]) {
       expect(checkoutPartnerCode(path, local, 2000)).toBe("ACA1234567");
     }
     expect(local.getItem(PARTNER_ATTRIBUTION_KEY)).toBe(original);
   });
-  it("rejects a choice from another intent or after the original intent expires", () => {
-    const local = storage();
-    const tab = storage();
-    capturePartnerReference("/?ref=ACA1234567", local, 1000);
-    rememberPartnerChoice(storedPartnerIntent(local, 1000)!, tab, "A", "ACA1234567");
-    expect(confirmedPartnerCode(local, tab, "A", 1000 + PARTNER_ATTRIBUTION_TTL)).toBeUndefined();
-    capturePartnerReference("/?ref=ACA7654321", local, 1000 + PARTNER_ATTRIBUTION_TTL);
-    expect(confirmedPartnerCode(local, tab, "A", 1000 + PARTNER_ATTRIBUTION_TTL)).toBeUndefined();
+  it("removes the code from the visible address while keeping other parameters", () => {
+    expect(
+      withoutPartnerReference("https://www.myacademy.my/upgrade?ref=ACA1&plan=premium#plans"),
+    ).toBe("/upgrade?plan=premium#plans");
+    expect(withoutPartnerReference("/?ref=ACA1234567")).toBe("/");
+    expect(withoutPartnerReference("/upgrade?plan=premium")).toBeUndefined();
   });
   it("can use a direct reference when browser storage is unavailable", () => {
     const blocked = {

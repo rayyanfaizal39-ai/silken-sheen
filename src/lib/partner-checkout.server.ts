@@ -1,15 +1,8 @@
-import { getCookie, setCookie, getRequestProtocol } from "@tanstack/start-server-core";
 import { areMockPaymentsEnabled } from "./billing-config";
 import { createPendingPayment, getSupabaseAdminClient } from "./billing.server";
 import type { CheckoutPlan } from "./billing.types";
 import { getSupabaseServerClient } from "./supabase.server";
-import {
-  confirmReferralForAccount,
-  PARTNER_RECEIPT_COOKIE,
-  PARTNER_RECEIPT_SECONDS,
-  signPartnerReceipt,
-  validPartnerReceipt,
-} from "./partner-referral.server";
+import { resolveCheckoutAttribution, signPartnerReceipt } from "./partner-referral.server";
 
 export type AccountCheckoutInput = {
   accountId: string;
@@ -17,6 +10,10 @@ export type AccountCheckoutInput = {
   idempotencyKey: string;
   partnerCode?: string;
 };
+
+// Learner-facing and deliberately generic: never mentions partners or referrals.
+export const CHECKOUT_RETRY_MESSAGE =
+  "We couldn't start checkout just now. Your plan was not changed. Please try again in a moment.";
 
 async function requireUser() {
   const supabase = getSupabaseServerClient();
@@ -26,32 +23,9 @@ async function requireUser() {
   return { supabase, user: data.user };
 }
 
-function referralReceiptSecret() {
-  const secret = process.env.PARTNER_CONFIRMATION_SECRET;
-  if (!secret) throw new Error("Referral confirmation is unavailable");
-  return secret;
-}
-
-export async function confirmAccountPartner(data: { accountId: string; partnerCode: string }) {
-  const { supabase, user } = await requireUser();
-  const secret = referralReceiptSecret();
-  const result = await confirmReferralForAccount(
-    supabase,
-    getSupabaseAdminClient(),
-    user.id,
-    data.accountId,
-    data.partnerCode,
-  );
-  if (result.confirmed) {
-    setCookie(PARTNER_RECEIPT_COOKIE, signPartnerReceipt(user.id, result.partnerCode, secret), {
-      httpOnly: true,
-      sameSite: "lax",
-      secure: getRequestProtocol({ xForwardedProto: true }) === "https",
-      path: "/",
-      maxAge: PARTNER_RECEIPT_SECONDS,
-    });
-  }
-  return result;
+function retry(reason: string) {
+  console.error("[billing] checkout blocked before payment creation:", reason);
+  return { mode: "retry" as const, message: CHECKOUT_RETRY_MESSAGE };
 }
 
 // The edge function answers 503 {error:"provider_unavailable"} when ToyyibPay
@@ -71,38 +45,16 @@ export async function createAccountCheckout(data: AccountCheckoutInput) {
   const { supabase, user } = await requireUser();
   const mock = areMockPaymentsEnabled();
 
-  if (user.id !== data.accountId) {
-    return {
-      mode: "referral_required" as const,
-      message: "Your signed-in account changed. Review the learner account before paying.",
-    };
-  }
-  // A referral-bearing purchase must fail closed BEFORE inserting a payment
-  // or contacting ToyyibPay. Consent cannot be reused for another account.
-  if (data.partnerCode) {
-    if (
-      !validPartnerReceipt(
-        getCookie(PARTNER_RECEIPT_COOKIE),
-        user.id,
-        data.partnerCode,
-        referralReceiptSecret(),
-      )
-    ) {
-      return {
-        mode: "referral_required" as const,
-        message: "Confirm the referral for this learner account before paying.",
-      };
-    }
-    const confirmed = await confirmReferralForAccount(
-      supabase,
-      getSupabaseAdminClient(),
-      user.id,
-      data.accountId,
-      data.partnerCode,
-    );
-    if (!confirmed.confirmed)
-      return { mode: "referral_required" as const, message: confirmed.message };
-  }
+  // The page was rendered for a different account than the session now holds.
+  if (user.id !== data.accountId) return retry("account_changed");
+
+  // Attribution is settled for the authenticated purchaser BEFORE a payment
+  // row exists or ToyyibPay is contacted, so it can never be silently lost.
+  const admin = getSupabaseAdminClient();
+  const attribution = await resolveCheckoutAttribution(supabase, admin, user.id, data.partnerCode);
+  if (attribution.status === "unverified") return retry(attribution.reason);
+  const attributed = attribution.status === "attributed";
+  const clearReference = Boolean(data.partnerCode) && attributed;
 
   if (mock) {
     const payment = await createPendingPayment({
@@ -111,33 +63,28 @@ export async function createAccountCheckout(data: AccountCheckoutInput) {
       provider: "mock",
       idempotencyKey: data.idempotencyKey,
     });
-    return { mode: "mock" as const, paymentId: payment.id };
+    return { mode: "mock" as const, paymentId: payment.id, clearReference };
+  }
+
+  let referral = {};
+  if (attributed) {
+    const secret = process.env.PARTNER_CONFIRMATION_SECRET;
+    if (!secret) return retry("receipt_secret_missing");
+    referral = {
+      partnerCode: attribution.partnerCode,
+      referralConfirmation: signPartnerReceipt(user.id, attribution.partnerCode, secret),
+    };
   }
 
   const checkout = await supabase.functions.invoke("create-toyyibpay-bill", {
-    body: {
-      plan: data.plan,
-      idempotencyKey: data.idempotencyKey,
-      ...(data.partnerCode
-        ? {
-            partnerCode: data.partnerCode,
-            referralConfirmation: getCookie(PARTNER_RECEIPT_COOKIE),
-          }
-        : {}),
-    },
+    body: { plan: data.plan, idempotencyKey: data.idempotencyKey, ...referral },
   });
   if (checkout.error) {
     const failureContext = (checkout.error as { context?: unknown }).context;
     if (failureContext instanceof Response && failureContext.status === 409) {
       try {
-        const failure = (await failureContext.json()) as { error?: string };
-        if (failure.error?.startsWith("referral_")) {
-          return {
-            mode: "referral_required" as const,
-            message:
-              "The payment service could not verify your referral. Confirm the account again before paying.",
-          };
-        }
+        const failure = (await failureContext.clone().json()) as { error?: string };
+        if (failure.error?.startsWith("referral_")) return retry(`edge_${failure.error}`);
       } catch {
         /* Other provider failures retain the normal error path. */
       }
@@ -156,5 +103,6 @@ export async function createAccountCheckout(data: AccountCheckoutInput) {
     mode: "toyyibpay" as const,
     paymentId: result.paymentId,
     checkoutUrl: result.checkoutUrl,
+    clearReference,
   };
 }

@@ -29,7 +29,7 @@ import { organizationSchema, educationalOrganizationSchema, websiteSchema } from
 import { JsonLd } from "@/components/seo/JsonLd";
 import { isPublicAuthRoute } from "@/lib/onboarding-routing";
 import { VisitorAnalytics } from "@/components/VisitorAnalytics";
-import { PartnerReferralClaim } from "@/components/PartnerReferralClaim";
+import { PartnerReferenceCapture } from "@/components/PartnerReferenceCapture";
 import {
   CHUNK_RECOVERY_INLINE_SCRIPT,
   recoverFromStaleChunk,
@@ -264,7 +264,7 @@ function RootComponent() {
       <JsonLd data={websiteSchema()} />
       <AuthProvider>
         <VisitorAnalytics />
-        <PartnerReferralClaim />
+        <PartnerReferenceCapture />
         <SignInModalProvider>
           <CikguProvider>
             <AppBootGate>

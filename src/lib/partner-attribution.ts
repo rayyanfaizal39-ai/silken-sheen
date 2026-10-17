@@ -1,12 +1,10 @@
-// Client-side carrier for a partner ?ref= code between the landing page and
-// the first signed-in request. The database decides eligibility and locks the
-// first eligible partner (partner_claim_referral); this only remembers the code
-// through navigation and the Google OAuth round trip (same www origin).
+// Private client-side carrier for a partner ?ref= code. It is never shown to
+// the learner and never claims anything: the server claims it at checkout for
+// the authenticated purchaser (partner_claim_referral), so whichever account
+// happened to be signed in when the link was opened is never attributed.
 
 export const PARTNER_ATTRIBUTION_KEY = "academy:partner-attribution";
 export const PARTNER_ATTRIBUTION_TTL = 60 * 24 * 60 * 60 * 1000;
-export const PARTNER_CHOICE_KEY = "academy:partner-account-choice";
-export const PARTNER_REVIEW_EVENT = "academy:review-partner-account";
 export type PartnerIntent = { code: string; expiresAt: number };
 type StorageLike = Pick<Storage, "getItem" | "setItem" | "removeItem">;
 
@@ -72,7 +70,7 @@ export function capturePartnerReference(href: string, storage: StorageLike, now 
   return code;
 }
 
-/** Code to submit for a signed-in student: stored first-touch, else the URL. */
+/** Code to submit for the purchaser: stored first-touch, else the URL. */
 export function checkoutPartnerCode(href: string, storage: StorageLike, now = Date.now()) {
   return capturePartnerReference(href, storage, now) ?? storedPartnerCode(storage, now);
 }
@@ -85,77 +83,10 @@ export function clearPartnerReference(storage: StorageLike) {
   }
 }
 
-/** Consent is account-bound and tab-local. The original intent is never consumed. */
-export function rememberPartnerChoice(
-  intent: PartnerIntent,
-  choices: StorageLike,
-  userId: string,
-  partnerCode: string,
-) {
-  choices.setItem(PARTNER_CHOICE_KEY, JSON.stringify({ ...intent, userId, partnerCode }));
-}
-
-/**
- * Explicit "continue without referral" after the server declared this account
- * ineligible. Same binding as consent; the intent stays for other accounts.
- */
-export function declinePartnerReferral(
-  intent: PartnerIntent,
-  choices: StorageLike,
-  userId: string,
-) {
-  choices.setItem(PARTNER_CHOICE_KEY, JSON.stringify({ ...intent, userId, declined: true }));
-}
-
-export function declinedPartnerReferral(
-  intents: StorageLike,
-  choices: StorageLike,
-  userId: string,
-  now = Date.now(),
-) {
-  const intent = storedPartnerIntent(intents, now);
-  if (!intent) return false;
-  try {
-    const choice = JSON.parse(choices.getItem(PARTNER_CHOICE_KEY) || "null");
-    return (
-      choice?.declined === true &&
-      choice.userId === userId &&
-      choice.code === intent.code &&
-      choice.expiresAt === intent.expiresAt
-    );
-  } catch {
-    return false;
-  }
-}
-
-export function clearPartnerChoice(choices: StorageLike) {
-  choices.removeItem(PARTNER_CHOICE_KEY);
-}
-
-export function confirmedPartnerCode(
-  intents: StorageLike,
-  choices: StorageLike,
-  userId: string,
-  now = Date.now(),
-) {
-  const intent = storedPartnerIntent(intents, now);
-  if (!intent) return undefined;
-  try {
-    const choice = JSON.parse(choices.getItem(PARTNER_CHOICE_KEY) || "null");
-    return choice?.userId === userId &&
-      choice.declined !== true &&
-      choice.code === intent.code &&
-      choice.expiresAt === intent.expiresAt
-      ? normalizePartnerCode(choice.partnerCode)
-      : undefined;
-  } catch {
-    return undefined;
-  }
-}
-
-/** Keep a referral in the safe, same-origin OAuth/onboarding return destination. */
-export function partnerReturnTo(href: string, code: string) {
-  const destination = new URL(href, "https://www.myacademy.my");
-  destination.searchParams.set("ref", code);
-  return `${destination.pathname}${destination.search}${destination.hash}`;
+/** Same-origin path without ?ref=, or undefined when there is nothing to hide. */
+export function withoutPartnerReference(href: string) {
+  const url = new URL(href, "https://www.myacademy.my");
+  if (!url.searchParams.has("ref")) return undefined;
+  url.searchParams.delete("ref");
+  return `${url.pathname}${url.search}${url.hash}`;
 }
