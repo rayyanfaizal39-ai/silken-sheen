@@ -2,7 +2,7 @@
 
 ## Scope and actual learner route
 
-- `src/data/flashcards.ts` owns the inline Bab 1–6 and Bab 8 records. Bab 7 is generated in `src/content/form1/sejarah/chapter-7/sej7-revision.ts` and spread into the common legacy array. Do not audit only a stale `silken-sheen-main/` copy.
+- **The live registry imports `flashcards` from `src/data/content.ts`, not `src/data/flashcards.ts`.** These two files contain separate copies of the Bab 1–6 and Bab 8 records. Bab 7 uses `src/content/form1/sejarah/chapter-7/sej7-revision.ts` and is spread into both. This PR updates **both** inline copies; the learner-facing source is `content.ts`. Do not audit only the legacy mirror or a stale `silken-sheen-main/` copy.
 - The student loader is `getFlashcardDeckCards` in `src/lib/flashcard-availability.ts`. It calls `standardizeFlashcardDeck(..., 20, 60)` for Sejarah Form 1. Decks of **55 or 40** cards are rejected as unavailable; tests that merely count records will not catch that.
 - Before this fix, Bab 1 had **55** original flashcards, Bab 7 had **40** source-derived cards and the other six chapters had 60 each: **455 records total**. Both incomplete decks could resolve to **empty** student-facing decks. This is a functional availability defect, not just an editorial preference.
 - After fixes: **8 × 60 = 480** original, unique IDs, covering Foundation/Practice/Challenge sets of 20 cards each. All existing IDs remain unchanged; 25 new IDs were appended.
@@ -47,3 +47,9 @@ npm run build
 
 - Browser smoke tests: open Form 1 Sejarah flashcards Bab 1 and Bab 7; ensure all three sets have 20 visible cards, flip, next/previous, favourites, reshuffle and completion work on mobile and desktop.
 - Do not assume the earlier Sejarah quiz PR #72 was merged; this flashcard branch is an independent change based on `main`.
+
+## CI validation and correction of live source ownership
+
+A dedicated GitHub Actions workflow `.github/workflows/sejarah-f1-flashcards-qa.yml` now runs on every audit branch push. The **first live Vitest run failed 6 assertions (37 passed)** in the new audit suite. It proved that updating only `src/data/flashcards.ts` had not updated the active learner-facing deck in `src/data/content.ts`: Bab 1 still resolved to an empty deck, Bab 2 had duplicate front prompts, and other factual fixes did not reach students. This was a substantive bug discovered by the new tests. The corrective commit mirrors all 23 edited records and 5 appended Bab 1 cards into **the actual live `content.ts` source**. Bab 7's 20 new records are already shared via `sej7-revision.ts`.
+
+**Do not claim CI green until the newly triggered workflow passes.** The production build runs after the flashcard tests. Both code copies should eventually be consolidated into a single owner in a dedicated refactor, not within this content audit.
