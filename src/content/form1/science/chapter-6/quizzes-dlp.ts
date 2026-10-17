@@ -233,10 +233,10 @@ export const scienceF1C6QuizzesDLP: QuizQuestion[] = [
     question:
       "A substance has a shiny surface, can be hammered into shape and conducts electricity well. How should it most likely be classified?",
     options: [
-      "Non-metal",
-      "Noble gas",
-      "Metal",
-      "Compound",
+      "Non-metal element",
+      "Noble gas element",
+      "Metal element",
+      "Chemical compound",
     ],
     answerIndex: 2,
     explanation:
@@ -435,7 +435,7 @@ export const scienceF1C6QuizzesDLP: QuizQuestion[] = [
     question:
       "Why can a compound not be separated into its elements using physical methods such as filtration or a magnet?",
     options: [
-      "The elements in a compound are chemically combined",
+      "The elements in a compound have chemical bonds that require a chemical method to break",
       "The elements in a compound are physically mixed but have particles of the same size",
       "The elements in a compound retain all their original properties but have the same boiling point",
       "The elements in a compound can be separated physically if the sample size is increased",

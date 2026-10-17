@@ -151,7 +151,12 @@ export const scienceF1C7QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "Which noble gas is used in colourful signboard lights?",
-    options: ["Neon", "Helium", "Nitrogen", "Oxygen"],
+    options: [
+      "Neon",
+      "Radon",
+      "Helium",
+      "Xenon",
+    ],
     answerIndex: 0,
     explanation: "Neon is used in signboard lights because it produces bright coloured light.",
   },
@@ -215,7 +220,12 @@ export const scienceF1C7QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "Which of the following is an air pollutant?",
-    options: ["Smoke", "Oxygen", "Helium", "Pure nitrogen"],
+    options: [
+      "Vehicle smoke",
+      "Oxygen gas",
+      "Helium gas",
+      "Nitrogen gas",
+    ],
     answerIndex: 0,
     explanation: "Smoke is an air pollutant that can affect health.",
   },
@@ -331,7 +341,7 @@ export const scienceF1C7QuizzesDLP: QuizQuestion[] = [
     question:
       "The textbook lists spraying a layer of carbon dioxide as a cooling technique. Which combustion condition does cooling remove?",
     options: [
-      "Sufficient heat",
+      "Sufficient heat for ignition",
       "The source of fuel",
       "The presence of oxygen only",
       "The flammability of the fuel",
@@ -403,7 +413,7 @@ export const scienceF1C7QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     question: "Which action would best help reduce air pollution from vehicles?",
     options: [
-      "Encourage the use of public transport",
+      "Encourage regular journeys by public transport",
       "Encourage each passenger to travel in a separate car",
       "Leave vehicle engines running while waiting for passengers",
       "Delay engine maintenance on vehicles that emit excessive smoke",

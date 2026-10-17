@@ -177,7 +177,12 @@ export const scienceF1C9QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Easy",
     question: "Apakah lapisan paling luar struktur dalaman Bumi?",
-    options: ["Mantel", "Kerak", "Teras luar", "Teras dalam"],
+    options: [
+      "Lapisan mantel",
+      "Lapisan kerak",
+      "Lapisan teras luar",
+      "Lapisan teras dalam",
+    ],
     answerIndex: 1,
     explanation: "Kerak ialah lapisan paling luar Bumi.",
   },

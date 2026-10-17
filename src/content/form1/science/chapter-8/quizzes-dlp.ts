@@ -72,7 +72,12 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "When is a shadow usually the shortest?",
-    options: ["At noon", "Early morning", "Late evening", "Midnight"],
+    options: [
+      "Around midday",
+      "Early morning",
+      "Late evening",
+      "After sunset",
+    ],
     answerIndex: 0,
     explanation: "The shortest shadow occurs at noon because the Sun is high in the sky.",
   },
@@ -150,7 +155,7 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
     question:
       "Why is a concave mirror useful as a make-up mirror when the face is positioned close to it?",
     options: [
-      "It can produce an enlarged virtual image",
+      "It can produce an enlarged, upright virtual image of the nearby face",
       "It can produce an upright, smaller real image",
       "It can produce a virtual image that is always the same size as the face",
       "It can produce an inverted real image to make applying make-up easier",
@@ -374,7 +379,12 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "Which colour of light refracts the least?",
-    options: ["Red", "Violet", "Blue", "Indigo"],
+    options: [
+      "Red light",
+      "Violet light",
+      "Blue light",
+      "Indigo light",
+    ],
     answerIndex: 0,
     explanation: "Red light refracts the least during dispersion.",
   },
@@ -455,7 +465,7 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
     difficulty: "Easy",
     question: "Which phenomenon is most closely associated with the dispersion of light?",
     options: [
-      "Formation of a rainbow",
+      "A rainbow formed as sunlight passes through droplets",
       "Formation of an image in a plane mirror",
       "A drinking straw appearing bent in water",
       "The sky appearing blue during the day",

@@ -338,7 +338,7 @@ export const scienceF1C4QuizzesBM: QuizQuestion[] = [
       "Mengapakah persenyawaan lebih berkemungkinan berlaku semasa waktu subur dalam kitar haid?",
     options: [
       "Lapisan dinding uterus luruh untuk memudahkan sperma bertemu dengan ovum",
-      "Ovum yang matang dibebaskan daripada ovari",
+      "Ovum matang dibebaskan daripada ovari ketika menghampiri waktu subur",
       "Embrio menempel pada lapisan dinding uterus sebelum ovum disenyawakan",
       "Ovum yang matang dibebaskan daripada uterus ke dalam faraj",
     ],

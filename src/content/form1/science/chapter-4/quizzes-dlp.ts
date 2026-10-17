@@ -343,7 +343,7 @@ export const scienceF1C4QuizzesDLP: QuizQuestion[] = [
       "Why is fertilisation more likely to occur around the fertile period of the menstrual cycle?",
     options: [
       "The uterine lining breaks down to help sperm meet the ovum",
-      "A mature ovum is released from the ovary",
+      "A mature ovum is released from the ovary around the fertile period",
       "An embryo implants in the uterine lining before the ovum is fertilised",
       "A mature ovum is released from the uterus into the vagina",
     ],

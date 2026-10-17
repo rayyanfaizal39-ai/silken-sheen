@@ -100,7 +100,7 @@ export const scienceF1C9QuizzesDLP: QuizQuestion[] = [
     difficulty: "Easy",
     question: "Which substance can damage the ozone layer?",
     options: [
-      "CFCs",
+      "CFC gases",
       "Oxygen gas",
       "Nitrogen gas",
       "Water vapour",
@@ -176,7 +176,12 @@ export const scienceF1C9QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "What is the outermost internal layer of Earth?",
-    options: ["Mantle", "Crust", "Outer core", "Inner core"],
+    options: [
+      "Earth's mantle",
+      "Earth's crust",
+      "Earth's outer core",
+      "Earth's inner core",
+    ],
     answerIndex: 1,
     explanation: "The crust is Earth's outermost layer.",
   },
@@ -349,7 +354,12 @@ export const scienceF1C9QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     question:
       "A strong earthquake occurs beneath the ocean floor and suddenly displaces a large volume of water. Which geohazard may occur next?",
-    options: ["Tsunami", "Flash flood", "Volcanic eruption", "Drought"],
+    options: [
+      "Tsunami waves",
+      "Flash floods",
+      "Volcanic eruption",
+      "Severe drought",
+    ],
     answerIndex: 0,
     explanation: "An undersea earthquake can displace seawater and generate a tsunami.",
   },

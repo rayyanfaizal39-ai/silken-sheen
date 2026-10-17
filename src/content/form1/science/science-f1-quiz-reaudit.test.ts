@@ -65,7 +65,7 @@ describe("Form 1 Science chapter quiz audit regression", () => {
     const paths = new Set(Object.values(scienceF1QuizVisualById));
     expect(paths.size).toBe(21);
     for (const path of paths) {
-      expect(path).toMatch(/\\.svg$/);
+      expect(path).toMatch(/\.svg$/);
     }
   });
 

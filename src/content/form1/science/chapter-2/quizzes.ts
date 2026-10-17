@@ -378,9 +378,9 @@ const pairs: Chapter2QuizPair[] = [
       question: "Perut dan usus kecil bekerjasama untuk mencerna makanan. Apakah aras organisasi yang diwakili oleh gabungan organ ini?",
       options: [
         "Sistem pencernaan",
-        "Tisu otot",
-        "Sel epitelium",
-        "Organisma",
+        "Tisu pencernaan",
+        "Sel pencernaan",
+        "Organ pencernaan",
       ],
       answerIndex: 0,
       explanation: "Beberapa organ yang bekerjasama menjalankan fungsi tertentu membentuk sistem. Perut dan usus kecil merupakan organ dalam sistem pencernaan.",

@@ -105,7 +105,7 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
     question:
       "Apakah yang terhasil apabila cahaya merah, hijau dan biru dengan keamatan yang sesuai ditambahkan bersama?",
     options: [
-      "Cahaya putih",
+      "Cahaya putih sahaja",
       "Cahaya biru sahaja",
       "Cahaya magenta sahaja",
       "Cahaya kuning sahaja",
@@ -169,10 +169,10 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     question: "Mengapakah cermin cembung digunakan sebagai cermin sisi kenderaan?",
     options: [
-      "Menghasilkan medan pandangan yang lebih luas",
-      "Menghasilkan imej diperbesar supaya jarak objek dapat diukur secara langsung",
-      "Menumpukan cahaya untuk menghasilkan imej sahih di hadapan cermin",
-      "Menghasilkan imej sama saiz supaya seluruh kawasan belakang dapat dilihat",
+      "Memberi medan pandangan yang lebih luas",
+      "Membesarkan imej pada semua jarak objek",
+      "Menghasilkan imej nyata pada sebuah skrin",
+      "Mengekalkan saiz sebenar semua objek jauh",
     ],
     answerIndex: 0,
     explanation:
@@ -341,7 +341,7 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
     question:
       "Sinar cahaya memasuki kaca dari udara. Dalam keadaan manakah arah sinar tidak berubah?",
     options: [
-      "Sinar masuk sepanjang garis normal",
+      "Sinar memasuki kaca pada sudut sifar terhadap garis normal",
       "Sinar masuk pada sudut 30 darjah terhadap garis normal",
       "Sinar masuk pada sudut 45 darjah terhadap garis normal",
       "Sinar masuk pada sudut 60 darjah terhadap garis normal",

@@ -239,10 +239,10 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     question: "A pupil needs to measure the diameter of a thin wire. Which instrument is most suitable for detecting small differences in its diameter?",
     options: [
-      "Metre rule",
+      "Vernier callipers",
       "Micrometer screw gauge",
       "Measuring tape",
-      "Measuring cylinder"
+      "Measuring cylinder",
     ],
     answerIndex: 1,
     explanation: "A micrometer screw gauge has fine scale divisions suited to measuring small dimensions such as the diameter of a thin wire."
@@ -520,10 +520,10 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Hard",
     question: "Two pupils disagree about a result. One proposes changing it to match the prediction; the other proposes checking the original records together and repeating the measurement. Which decision and reason best reflect scientific attitudes?",
     options: [
-      "Use the prediction because agreement matters more than evidence",
+      "Use the prediction because agreement between pupils matters more than observations or recorded evidence",
       "Check the records respectfully and repeat the measurement, because conclusions require honest, validated data",
-      "Use the higher reading because larger values are more accurate",
-      "Average the prediction with the reading because both have equal status as measurements"
+      "Select the higher reading without repeating the test because larger numerical values must be more accurate",
+      "Average the predicted value with the measured reading, treating both as equivalent experimental measurements",
     ],
     answerIndex: 1,
     explanation: "Respectful checking allows the group to validate its data without altering observations to fit expectations. Honesty and accuracy support an evidence-based conclusion."
@@ -701,9 +701,9 @@ export const quizzes: QuizQuestion[] = [
     question: "Sebuah kumpulan hampir selesai apabila bahan kimia tertumpah. Seorang ahli mencadangkan agar pengukuran disiapkan dahulu dan sisa dituang ke dalam sinki tanpa menyemak arahan. Pelan manakah paling baik mengimbangkan tanggungjawab dengan kerja saintifik?",
     options: [
       "Berhenti, maklumkan kepada guru, ikut arahan pelupusan yang betul dan sambung hanya apabila selamat",
-      "Siapkan pengukuran dahulu, kemudian laporkan tumpahan",
+      "Siapkan pengukuran yang berbaki terlebih dahulu, kemudian maklumkan kepada guru tentang tumpahan itu",
       "Bersihkan tumpahan tanpa memberitahu guru dan gunakan cara pelupusan yang dicadangkan",
-      "Tinggalkan tumpahan untuk kumpulan lain dan salin bacaannya"
+      "Tinggalkan tumpahan untuk kumpulan seterusnya dan salin bacaannya apabila kerja tamat",
     ],
     answerIndex: 0,
     explanation: "Tanggungjawab merangkumi keselamatan manusia dan alam sekitar. Melaporkan tumpahan dan mengikuti arahan pelupusan yang betul perlu didahulukan sebelum menyiapkan pengukuran."
@@ -1016,10 +1016,10 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Hard",
     question: "Dua orang murid tidak bersetuju tentang suatu keputusan. Seorang mencadangkan agar keputusan diubah mengikut ramalan; seorang lagi mencadangkan agar rekod asal disemak bersama dan pengukuran diulang. Keputusan dan alasan manakah paling mencerminkan sikap saintifik?",
     options: [
-      "Gunakan ramalan kerana persetujuan lebih penting daripada bukti",
+      "Gunakan ramalan yang dibuat bersama kerana persetujuan lebih utama daripada sebarang bukti eksperimen",
       "Semak rekod dengan sopan dan ulang pengukuran kerana kesimpulan memerlukan data yang jujur dan disahkan",
-      "Gunakan bacaan lebih tinggi kerana nilai lebih besar lebih jitu",
-      "Puratakan ramalan dengan bacaan kerana kedua-duanya sama taraf sebagai ukuran"
+      "Pilih bacaan yang lebih tinggi tanpa mengulangi ujian kerana nilai yang besar semestinya lebih jitu",
+      "Puratakan nilai ramalan dan nilai ukuran kerana kedua-duanya sama taraf sebagai data eksperimen",
     ],
     answerIndex: 1,
     explanation: "Semakan dengan sopan membolehkan kumpulan mengesahkan data tanpa mengubah pemerhatian agar sepadan dengan jangkaan. Kejujuran dan kejituan menyokong kesimpulan berdasarkan bukti."

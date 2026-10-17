@@ -74,10 +74,10 @@ export const scienceF1C5QuizzesDLP: QuizQuestion[] = [
     difficulty: "Easy",
     question: "What does occupying space mean?",
     options: [
-      "Having volume",
-      "Having a fixed shape",
-      "Having a fixed temperature",
-      "Having a high density",
+      "Having a measurable volume",
+      "Having a permanently fixed shape",
+      "Having a permanently fixed temperature",
+      "Having a very high density",
     ],
     answerIndex: 0,
     explanation: "An object that occupies space has volume.",
@@ -253,9 +253,9 @@ export const scienceF1C5QuizzesDLP: QuizQuestion[] = [
       "Two substances have the same colour but different boiling points. Which property is most suitable for distinguishing between them?",
     options: [
       "Colour of the substances",
-      "Boiling point",
-      "Shape of the container",
-      "Amount of substance",
+      "Boiling point of the substances",
+      "Shape of the storage containers",
+      "Amount of material in each sample",
     ],
     answerIndex: 1,
     explanation:

@@ -218,10 +218,10 @@ export const scienceF1C6QuizzesBM: QuizQuestion[] = [
     question:
       "Satu bahan mempunyai permukaan berkilat, boleh ditempa dan mengkonduksikan elektrik dengan baik. Bagaimanakah bahan tersebut paling sesuai dikelaskan?",
     options: [
-      "Bukan logam",
-      "Gas nadir",
-      "Logam",
-      "Sebatian",
+      "Unsur bukan logam",
+      "Unsur gas nadir",
+      "Unsur logam",
+      "Bahan sebatian",
     ],
     answerIndex: 2,
     explanation:
@@ -426,7 +426,7 @@ export const scienceF1C6QuizzesBM: QuizQuestion[] = [
     question:
       "Mengapakah sebatian tidak boleh diasingkan kepada unsur-unsurnya menggunakan kaedah fizikal seperti penurasan atau magnet?",
     options: [
-      "Unsur dalam sebatian telah bergabung secara kimia",
+      "Unsur dalam sebatian berikatan kimia dan memerlukan kaedah kimia untuk memutuskan ikatan itu",
       "Unsur dalam sebatian bercampur secara fizikal tetapi mempunyai saiz zarah yang sama",
       "Unsur dalam sebatian mengekalkan semua sifat asal tetapi mempunyai takat didih yang sama",
       "Unsur dalam sebatian boleh dipisahkan secara fizikal jika saiz sampel ditambah",
