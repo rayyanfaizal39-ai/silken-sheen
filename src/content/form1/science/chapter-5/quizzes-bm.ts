@@ -11,9 +11,9 @@ export const scienceF1C5QuizzesBM: QuizQuestion[] = [
     question: "Apakah maksud jirim?",
     options: [
       "Bahan yang mempunyai jisim dan memenuhi ruang",
-      "Bahan yang tidak mempunyai jisim",
-      "Tenaga yang boleh dilihat",
-      "Cahaya dan bunyi",
+      "Bahan yang memenuhi ruang tetapi tiada jisim",
+      "Bentuk tenaga yang tidak mempunyai jisim atau isi padu",
+      "Bunyi yang boleh didengar tetapi tidak memenuhi ruang",
     ],
     answerIndex: 0,
     explanation: "Jirim ialah bahan yang mempunyai jisim dan memenuhi ruang.",
@@ -188,9 +188,9 @@ export const scienceF1C5QuizzesBM: QuizQuestion[] = [
     question: "Apakah maksud resapan?",
     options: [
       "Pergerakan zarah dari kawasan berkepekatan tinggi ke rendah",
-      "Perubahan pepejal kepada cecair",
-      "Objek tenggelam dalam air",
-      "Penghasilan bahan baharu",
+      "Pergerakan zarah dari kawasan berkepekatan rendah ke tinggi",
+      "Pergerakan zarah hanya apabila bahan mengalami perubahan keadaan",
+      "Pergerakan zarah yang disebabkan oleh perubahan tekanan sahaja",
     ],
     answerIndex: 0,
     explanation:
@@ -363,7 +363,12 @@ export const scienceF1C5QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     question:
       "100 g air dibekukan sepenuhnya menjadi ais tanpa kehilangan bahan daripada bekas. Apakah jisim ais yang terbentuk?",
-    options: ["Kurang daripada 100 g", "Lebih daripada 100 g", "0 g", "100 g"],
+    options: [
+      "Kurang daripada 100 g",
+      "Lebih daripada 100 g",
+      "Tepat 0 g",
+      "Tepat 100 g",
+    ],
     answerIndex: 3,
     explanation:
       "Jisim kekal tidak berubah semasa perubahan fizik jika tiada bahan masuk atau keluar daripada sistem.",
