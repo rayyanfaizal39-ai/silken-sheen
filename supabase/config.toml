@@ -61,3 +61,7 @@ verify_jwt = false
 
 [storage.vector]
 enabled = false
+
+# Authenticated by a separate scheduler secret inside the handler.
+[functions.nova-batch-worker]
+verify_jwt = false

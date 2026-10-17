@@ -1,0 +1,1624 @@
+/* Adapted from the supplied Google AI Studio export. All visual styles are route scoped. */
+.nova-sanctuary {
+  --font-headline: "Bodoni Moda", Georgia, serif;
+  --font-body: "Plus Jakarta Sans", Inter, sans-serif;
+  --font-label: "Space Grotesk", sans-serif;
+  background: #05070f;
+  color: #dfe1f6;
+  min-height: 100svh;
+  font-family: var(--font-body);
+  isolation: isolate;
+  --preview-height: 0px;
+  --nova-gold: #f6ca78;
+  --nova-ivory: #dfe1f6;
+}
+.nova-sanctuary[data-fictional="true"] {
+  --preview-height: 48px;
+}
+.nova-sanctuary * {
+  box-sizing: border-box;
+}
+.nova-sanctuary h1,
+.nova-sanctuary h2,
+.nova-sanctuary h3 {
+  font-family: var(--font-headline);
+  text-wrap: balance;
+}
+.nova-sanctuary h1:focus {
+  outline: none;
+}
+.nova-sanctuary a {
+  color: inherit;
+}
+.nova-sanctuary button,
+.nova-sanctuary a,
+.nova-sanctuary input {
+  touch-action: manipulation;
+}
+.nova-sanctuary button:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+.nova-sanctuary :is(button, a, input):focus-visible {
+  outline: 3px solid #f6ca78;
+  outline-offset: 5px;
+}
+.nova-sanctuary ::selection {
+  background: #d8af60;
+  color: #412d00;
+}
+.nova-sanctuary .sanctuary-header {
+  position: fixed;
+  top: var(--preview-height);
+  inset-inline: 0;
+  z-index: 55;
+  min-height: 66px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 12px max(24px, calc((100vw - 1152px) / 2));
+  background: #090e1cd9;
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid #f6ca7833;
+  box-shadow: 0 4px 30px #070b19b3;
+}
+.sanctuary-brand {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  text-decoration: none;
+  white-space: nowrap;
+  font-family: var(--font-headline);
+  font-weight: 700;
+  font-size: 18px;
+}
+.sanctuary-brand img {
+  border-radius: 8px;
+}
+.sanctuary-header nav {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #d1c5b3;
+}
+.sanctuary-header nav i {
+  opacity: 0.3;
+}
+.sanctuary-header nav [aria-current] {
+  color: #f6ca78;
+  font-weight: 700;
+}
+.sanctuary-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.sanctuary-controls button,
+.sanctuary-controls a,
+.sanctuary-scene-controls button,
+.sanctuary-scene-controls a {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: #171b2a;
+  border: 1px solid #303444;
+  padding: 8px 10px;
+  border-radius: 10px;
+  font-size: 11px;
+  text-decoration: none;
+  cursor: pointer;
+  color: #d1c5b3;
+}
+.sanctuary-controls [aria-pressed="true"] {
+  color: #f6ca78;
+  border-color: #f6ca7880;
+  background: #d8af6022;
+}
+.sanctuary-opening,
+.sanctuary-flight {
+  top: var(--preview-height) !important;
+}
+.sanctuary-scene-controls {
+  position: fixed;
+  bottom: 16px;
+  left: 20px;
+  display: flex;
+  gap: 12px;
+  z-index: 60;
+}
+.sanctuary-scene-controls button[aria-pressed="true"] {
+  color: #f6ca78;
+}
+.sanctuary-fictional-note {
+  position: fixed;
+  bottom: 5px;
+  right: 14px;
+  z-index: 58;
+  color: #d1c5b3;
+  font-size: 10px;
+  pointer-events: none;
+  background: #05070f99;
+  padding: 5px 8px;
+  border-radius: 6px;
+}
+.sanctuary-preview-toolbar {
+  height: 48px;
+  position: fixed;
+  top: 0;
+  inset-inline: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  overflow-x: auto;
+  z-index: 80;
+  background: #171025;
+  border-bottom: 1px solid #f6ca7840;
+  padding: 7px 16px;
+  color: #e4d4b8;
+  font:
+    11px Inter,
+    system-ui,
+    sans-serif;
+}
+.sanctuary-preview-toolbar > span {
+  color: #f6ca78;
+  margin-right: 8px;
+  font-weight: 700;
+}
+.sanctuary-preview-toolbar button {
+  background: #252039;
+  border: 1px solid #4b3e60;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+.sanctuary-preview-toolbar [aria-pressed="true"] {
+  background: #f6ca78;
+  color: #412d00;
+}
+.sanctuary-preview-toolbar a {
+  margin-left: auto;
+  color: #f6ca78;
+  padding-left: 14px;
+}
+.sanctuary-preview-toolbar :focus-visible {
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+.sanctuary-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1160px;
+  margin: auto;
+  padding: calc(110px + var(--preview-height)) 24px 55px;
+  min-height: 90svh;
+}
+.sanctuary-content h1 {
+  font-size: clamp(30px, 4.7vw, 49px);
+  font-weight: 600;
+  line-height: 1.2;
+  color: #dfe1f6;
+  margin: 14px auto 20px;
+  max-width: 680px;
+}
+.sanctuary-content p {
+  color: #d1c5b3;
+  font-size: 15px;
+  line-height: 1.85;
+  max-width: 60ch;
+  margin: 16px auto;
+}
+.sanctuary-eyebrow {
+  font-family: var(--font-label);
+  letter-spacing: 0.25em;
+  font-size: 10px !important;
+  color: #f6ca78 !important;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.sanctuary-primary {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  padding: 15px 26px;
+  background: linear-gradient(100deg, #d8af60, #f6ca78, #ffdea5);
+  color: #412d00 !important;
+  font-family: var(--font-label);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 0;
+  border-radius: 13px;
+  box-shadow: 0 0 24px #f6ca7850;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    filter 0.2s,
+    transform 0.2s;
+}
+.sanctuary-primary:hover {
+  filter: brightness(1.1);
+}
+.sanctuary-primary:active {
+  transform: scale(0.97);
+}
+.sanctuary-subtle-link,
+.sanctuary-subtle-button {
+  display: block;
+  margin: 20px auto;
+  color: #d1c5b3;
+  background: none;
+  border: 0;
+  text-decoration: none;
+  font-size: 12px;
+  cursor: pointer;
+}
+.sanctuary-subtle-link:hover,
+.sanctuary-subtle-button:hover {
+  color: #f6ca78;
+}
+.sanctuary-access,
+.sanctuary-awakening {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.sanctuary-return {
+  font-family: var(--font-headline);
+  font-size: 23px !important;
+  color: #f6ca78 !important;
+}
+.sanctuary-status-box {
+  border: 1px solid #f6ca7830;
+  border-radius: 18px;
+  background: #171b2ae8;
+  padding: 22px 26px;
+  max-width: 580px;
+  margin: 22px auto;
+  color: #d1c5b3;
+  line-height: 1.7;
+  font-size: 13px;
+}
+.sanctuary-status-box p {
+  font-size: 13px;
+}
+.sanctuary-status-box small,
+.sanctuary-fine {
+  font-size: 11px !important;
+  color: #bfb5a9;
+}
+.sanctuary-notice:not([hidden]) {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 110;
+  background: #261a35;
+  border: 1px solid #f6ca7870;
+  color: #f5dcaa;
+  padding: 14px 22px;
+  border-radius: 12px;
+  width: max-content;
+  max-width: 90vw;
+  font-size: 13px;
+  box-shadow: 0 15px 50px #0008;
+}
+.sanctuary-preview-links {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 25px 0;
+  font-size: 12px;
+  color: #f6ca78;
+}
+.sanctuary-loading {
+  min-height: 100svh;
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+  background: #05070f;
+  color: #dfe1f6;
+}
+.sanctuary-loading > span {
+  color: #f6ca78;
+  font-size: 80px;
+}
+.sanctuary-footer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  border-top: 1px solid #30344480;
+  padding: 25px 20px 35px;
+  text-align: center;
+  color: #d1c5b3;
+  font-family: var(--font-label);
+  letter-spacing: 0.15em;
+  font-size: 10px;
+}
+.sanctuary-permanent-note {
+  text-align: center;
+  font-size: 11px !important;
+  color: #d1c5b3;
+}
+.sanctuary-owned {
+  padding-top: calc(90px + var(--preview-height));
+}
+.sanctuary-egg-scene {
+  position: relative;
+  width: 280px;
+  height: 330px;
+  display: grid;
+  place-items: center;
+  margin: 15px auto 20px;
+}
+.sanctuary-egg {
+  position: relative;
+  width: 176px;
+  height: 240px;
+  display: grid;
+  place-items: center;
+  border-radius: 50% 50% 50% 50%/60% 60% 40% 40%;
+  background: linear-gradient(45deg, #6001d1, #171b2a, #f6ca78);
+  border: 2px solid #f6ca78;
+  box-shadow:
+    0 0 80px #f6ca7880,
+    inset 0 0 40px #f6ca7866;
+  animation: nova-sanctuary-float-egg 5s ease-in-out infinite;
+  transition:
+    transform 1s,
+    filter 1s;
+}
+.sanctuary-egg-core {
+  position: absolute;
+  width: 80px;
+  height: 112px;
+  filter: blur(12px);
+  border-radius: 50%;
+  background: #f6ca7866;
+  animation: nova-sanctuary-pulse-glow 4s infinite;
+}
+.sanctuary-egg span {
+  position: relative;
+  z-index: 2;
+  font-size: 40px;
+  color: #f6ca78;
+}
+.sanctuary-egg-filigree {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  color: #f6ca7899;
+}
+.sanctuary-altar-ring {
+  position: absolute;
+  inset: 20px 0;
+  border: 1px solid #f6ca784d;
+  border-radius: 50%;
+  animation: nova-sanctuary-spin-slow 90s linear infinite;
+}
+.sanctuary-egg-halo {
+  position: absolute;
+  inset: 30px;
+  z-index: -1;
+  border-radius: 50%;
+  background: #6001d14d;
+  filter: blur(50px);
+}
+.sanctuary-egg-hatching .sanctuary-egg {
+  animation: none;
+  transform: scale(1.25) rotate(6deg);
+  filter: brightness(1.5) blur(1px);
+}
+.sanctuary-egg-ready .sanctuary-egg {
+  box-shadow:
+    0 0 90px #f6ca7890,
+    inset 0 0 50px #f6ca7866;
+}
+.sanctuary-identity {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 65px;
+  align-items: center;
+}
+.sanctuary-identity-intro {
+  text-align: center;
+}
+.sanctuary-identity .sanctuary-egg-scene {
+  transform: scale(0.72);
+  height: 235px;
+  margin: 0 auto;
+}
+.sanctuary-identity h1 {
+  font-size: clamp(30px, 3.5vw, 42px);
+}
+.sanctuary-nickname {
+  display: grid;
+  gap: 10px;
+  text-align: left;
+  margin: 24px auto;
+  max-width: 420px;
+  font-size: 13px;
+  color: #f6ca78;
+}
+.sanctuary-nickname input {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #f6ca7840;
+  border-radius: 12px;
+  background: #171b2a;
+  color: #dfe1f6;
+  font: inherit;
+}
+.sanctuary-nickname small {
+  font-size: 11px;
+  line-height: 1.6;
+  color: #d1c5b3;
+}
+.sanctuary-traits {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 24px;
+  background: #171b2ae6;
+  backdrop-filter: blur(20px);
+  border: 1px solid #d8af604d;
+  border-radius: 24px;
+  padding: 20px 26px;
+}
+.sanctuary-traits div {
+  padding: 18px 0;
+  border-bottom: 1px solid #303444;
+}
+.sanctuary-traits dt {
+  text-transform: uppercase;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: #d1c5b3;
+  margin-bottom: 8px;
+}
+.sanctuary-traits dd {
+  margin: 0;
+  font-family: var(--font-headline);
+  font-size: 18px;
+  color: #f6ca78;
+  line-height: 1.4;
+}
+.sanctuary-reveal {
+  position: relative;
+  z-index: 1;
+  padding: calc(125px + var(--preview-height)) 24px 40px;
+  max-width: 1040px;
+  margin: auto;
+  text-align: center;
+}
+.sanctuary-reveal > h1 {
+  font-family: var(--font-headline);
+  font-size: clamp(32px, 5vw, 50px);
+  text-transform: uppercase;
+  color: #f6ca78;
+  font-weight: 700;
+  margin: 12px 0;
+  text-shadow: 0 2px 18px #f6ca784d;
+}
+.sanctuary-reveal > p {
+  color: #d1c5b3;
+  line-height: 1.7;
+}
+.sanctuary-candidates {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin: 40px auto 24px;
+  max-width: 900px;
+}
+.sanctuary-candidates article {
+  border: 2px solid #d8af60;
+  border-radius: 24px;
+  background: #171b2af2;
+  backdrop-filter: blur(24px);
+  padding: 24px;
+  box-shadow: 0 20px 50px #070b19e6;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.3s;
+}
+.sanctuary-candidates article:hover {
+  box-shadow: 0 0 40px #f6ca7859;
+}
+.sanctuary-candidate-art {
+  display: block;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1/1.35;
+  border: 1px solid #d8af6099;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #090e1c;
+  text-decoration: none;
+}
+.sanctuary-candidate-art > img:first-child {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s;
+}
+.sanctuary-candidate-art:hover > img:first-child {
+  transform: scale(1.05);
+}
+.sanctuary-candidate-art:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, #090e1cf2, transparent 65%);
+  pointer-events: none;
+}
+.sanctuary-candidate-frame {
+  position: absolute;
+  z-index: 1;
+  inset: 9px;
+  border: 1px solid #d8af6080;
+  border-radius: 12px;
+  pointer-events: none;
+}
+.sanctuary-candidate-art .sanctuary-mini-logo {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  width: 28px;
+  height: 28px;
+  z-index: 2;
+  border-radius: 8px;
+}
+.sanctuary-element {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 2;
+  padding: 6px 12px;
+  border-radius: 99px;
+  background: #090e1ccc;
+  border: 1px solid #d8af6080;
+  color: #f6ca78;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.sanctuary-candidate-name {
+  position: absolute;
+  bottom: 20px;
+  inset-inline: 12px;
+  z-index: 2;
+}
+.sanctuary-candidate-name h2 {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #f6ca78;
+  margin: 8px 0;
+}
+.sanctuary-candidate-name span {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: #dfe1f6;
+}
+.sanctuary-candidates article > p {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #d1c5b3;
+  margin: 20px 5px;
+  flex: 1;
+}
+.sanctuary-candidates article > button {
+  width: 100%;
+}
+.sanctuary-dialog::backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: #090e1ce6;
+  backdrop-filter: blur(18px);
+}
+.sanctuary-dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  z-index: 100;
+  width: min(94vw, 460px);
+  max-height: 90svh;
+  overflow: auto;
+  border: 2px solid #d8af60;
+  border-radius: 24px;
+  padding: 30px;
+  background: #171b2a;
+  text-align: center;
+  box-shadow:
+    0 25px 60px #070b19fa,
+    0 0 50px #f6ca7866;
+}
+.sanctuary-dialog h2 {
+  font-family: var(--font-headline);
+  font-size: 27px;
+  font-weight: 700;
+  color: #f6ca78;
+  margin: 12px 0;
+}
+.sanctuary-dialog p {
+  font-size: 13px;
+  color: #d1c5b3;
+  line-height: 1.8;
+}
+.sanctuary-bond-seal {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  margin: auto;
+  border: 1px solid #f6ca7880;
+  border-radius: 16px;
+  background: #6001d166;
+  color: #f6ca78;
+  font-size: 32px;
+}
+.sanctuary-dialog-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.sanctuary-dialog-actions > button:not(.sanctuary-primary) {
+  border: 1px solid #303444;
+  border-radius: 12px;
+  padding: 12px 18px;
+  color: #d1c5b3;
+  background: #252939;
+  font-size: 12px;
+  cursor: pointer;
+}
+.sanctuary-confetti {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 70;
+}
+.sanctuary-confetti i {
+  position: absolute;
+  top: 40%;
+  left: var(--x);
+  width: 6px;
+  height: 12px;
+  animation: nova-sanctuary-confetti 1.8s var(--delay) cubic-bezier(0.15, 0.7, 0.8, 1) both;
+}
+@keyframes nova-sanctuary-confetti {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(0);
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--drift), 65vh) rotate(720deg);
+  }
+}
+.sanctuary-my-nova {
+  width: 100%;
+  max-width: 640px;
+  margin: auto;
+  padding: 5px 0 25px;
+  text-align: center;
+}
+.sanctuary-my-nova > h1 {
+  color: #f6ca78;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  text-shadow: 0 2px 18px #f6ca784d;
+  margin: 10px auto 18px;
+}
+.sanctuary-card-wrap {
+  width: 100%;
+  max-width: 400px;
+  margin: 26px auto 30px;
+}
+.nova-sanctuary .nova-viewer-sanctuary .nova-perspective {
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1/1.55;
+}
+.nova-sanctuary .nova-viewer-sanctuary .nova-card-object {
+  border-radius: 24px;
+}
+.nova-sanctuary .nova-viewer-sanctuary .nova-front {
+  border: 2px solid #d8af60;
+  padding: 4px;
+  border-radius: 24px;
+  background: #070b19;
+  box-shadow:
+    0 25px 60px #070b19f2,
+    0 0 40px #f6ca7859;
+  position: absolute;
+}
+.nova-sanctuary .nova-viewer-sanctuary .nova-front:after {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid #d8af6080;
+  border-radius: 12px;
+  pointer-events: none;
+  z-index: 3;
+}
+.nova-sanctuary .nova-viewer-sanctuary .nova-art-frame {
+  position: absolute;
+  inset: 4px;
+  width: auto;
+  height: auto;
+  aspect-ratio: auto;
+  border: 0;
+  border-radius: 18px;
+  overflow: hidden;
+}
+.nova-sanctuary .nova-viewer-sanctuary .nova-art {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* The export's sample images contain a decorative card frame and mock QR.
+   Reframe those fixtures only; approved student artwork keeps its full composition. */
+.nova-sanctuary .nova-design-fixture .nova-art,
+.nova-sanctuary .sanctuary-candidate-art > img.sanctuary-preview-art {
+  transform: scale(1.6);
+  transform-origin: 65% 15%;
+}
+.nova-sanctuary .sanctuary-candidate-art:hover > img.sanctuary-preview-art {
+  transform: scale(1.65);
+}
+.nova-sanctuary .nova-viewer-sanctuary .nova-art-label {
+  display: none;
+}
+.nova-sanctuary .nova-viewer-sanctuary .nova-card-header {
+  position: relative;
+  z-index: 4;
+  padding: 15px 16px;
+  border: 0;
+  background: transparent;
+}
+.nova-sanctuary .nova-viewer-sanctuary .nova-card-header > span {
+  display: none;
+}
+.nova-sanctuary .nova-viewer-sanctuary .nova-card-header small {
+  margin-left: auto;
+  background: #090e1ccc;
+  border: 1px solid #d8af6080;
+  border-radius: 99px;
+  color: #f6ca78;
+  padding: 5px 12px;
+  font-size: 10px;
+}
+.nova-sanctuary .nova-viewer-sanctuary .nova-card-content {
+  position: absolute;
+  bottom: 4px;
+  inset-inline: 4px;
+  z-index: 2;
+  background: linear-gradient(0deg, #070b19f7, #070b19aa 70%, transparent);
+  padding: 75px 24px 25px;
+  text-align: center;
+}
+.nova-sanctuary .nova-viewer-sanctuary .nova-card-content h2 {
+  font-family: var(--font-headline);
+  font-size: 36px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #f6ca78;
+  line-height: 1.2;
+}
+.nova-sanctuary .nova-viewer-sanctuary .nova-card-content h2 span {
+  font-size: 13px;
+  display: block;
+  letter-spacing: 0.2em;
+  margin-top: 9px;
+  color: #dfe1f6;
+}
+.nova-sanctuary .nova-viewer-sanctuary .nova-card-content > .nova-eyebrow {
+  color: #f6ca78;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+}
+.nova-sanctuary .nova-viewer-sanctuary .nova-description,
+.nova-sanctuary .nova-viewer-sanctuary .nova-species b {
+  display: none;
+}
+.nova-sanctuary .nova-viewer-sanctuary .nova-species {
+  justify-content: center;
+  font-size: 11px;
+  margin: 10px auto;
+}
+.nova-sanctuary .nova-viewer-sanctuary .nova-card-footer {
+  font-size: 10px;
+  border: 0;
+  color: #f6ca78;
+  justify-content: space-between;
+  margin-top: 18px;
+}
+.nova-sanctuary .nova-viewer-sanctuary .nova-back {
+  background: #070b19;
+  border: 2px solid #d8af60;
+  border-radius: 24px;
+  padding: 24px;
+}
+.nova-sanctuary .nova-viewer-sanctuary .nova-back h2 {
+  font-family: var(--font-headline);
+  color: #f6ca78;
+}
+.nova-sanctuary .nova-viewer-sanctuary .nova-back-copy {
+  font-size: 11px;
+  line-height: 1.65;
+}
+.nova-sanctuary .nova-viewer-sanctuary .nova-qr-box {
+  width: 40%;
+  max-width: 150px;
+  background: white;
+  border-radius: 13px;
+  padding: 8px;
+}
+.nova-sanctuary .nova-viewer-sanctuary .nova-barcode {
+  width: 70%;
+  max-height: 55px;
+  object-fit: contain;
+}
+.nova-sanctuary .nova-viewer-sanctuary .nova-earned-xp {
+  border-color: #d8af604d;
+  background: #171b2a;
+  color: #d1c5b3;
+  font-size: 11px;
+  padding: 12px 14px;
+  border-radius: 12px;
+}
+.nova-sanctuary .nova-viewer-sanctuary .nova-earned-xp progress {
+  accent-color: #f6ca78;
+}
+.nova-sanctuary .nova-viewer-sanctuary .nova-actions {
+  gap: 9px;
+  margin-top: 18px;
+}
+.nova-sanctuary .nova-viewer-sanctuary .nova-actions button {
+  border: 1px solid #d8af6066;
+  background: #171b2a;
+  border-radius: 12px;
+  color: #f6ca78;
+  font-family: var(--font-label);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  padding: 12px;
+}
+.nova-sanctuary .nova-viewer-sanctuary .nova-actions button:hover {
+  background: #252939;
+}
+.nova-sanctuary .nova-viewer-sanctuary .nova-public-address {
+  font-size: 10px;
+  line-height: 1.5;
+  word-break: break-word;
+}
+.sanctuary-description,
+.sanctuary-evolution {
+  background: #171b2ae6;
+  border: 1px solid #d8af604d;
+  border-radius: 24px;
+  padding: 26px 30px;
+  text-align: left;
+  backdrop-filter: blur(24px);
+  box-shadow: 0 20px 40px #0003;
+  margin: 24px auto;
+}
+.sanctuary-description h2 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #f6ca78;
+}
+.sanctuary-description > p {
+  font-size: 14px;
+  line-height: 1.9;
+  color: #dfe1f6;
+  font-style: italic;
+  margin: 15px 0 25px;
+}
+.sanctuary-description dl {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  border-top: 1px solid #30344499;
+  padding-top: 17px;
+}
+.sanctuary-description dt {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #d1c5b3;
+}
+.sanctuary-description dd {
+  margin: 6px 0 0;
+  font-family: var(--font-headline);
+  font-size: 16px;
+  color: #f6ca78;
+  line-height: 1.4;
+}
+.sanctuary-evolution {
+  background: #171b2ab3;
+  border-color: #30344499;
+  border-radius: 16px;
+  padding: 22px;
+}
+.sanctuary-evolution > div:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.sanctuary-evolution h2 {
+  font-family: var(--font-label);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #f6ca78;
+  font-weight: 700;
+}
+.sanctuary-evolution > div > span {
+  font-size: 11px;
+  color: #d1c5b3;
+}
+.sanctuary-evolution ol {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+  list-style: none;
+  padding: 0;
+  margin: 24px 0;
+}
+.sanctuary-evolution li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  font-size: 9px;
+  color: #d1c5b3;
+}
+.sanctuary-evolution li > b {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #303444;
+  border-radius: 50%;
+  background: #1b1f2e;
+  font-size: 12px;
+}
+.sanctuary-evolution li[aria-current] > b {
+  background: #f6ca78;
+  color: #412d00;
+  box-shadow:
+    0 0 0 4px #f6ca7840,
+    0 0 15px #f6ca7880;
+}
+.sanctuary-evolution li[aria-current] > span {
+  color: #f6ca78;
+}
+.sanctuary-evolution li > small {
+  font-size: 8px;
+  white-space: nowrap;
+}
+.sanctuary-study-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  border-top: 1px solid #30344466;
+  padding-top: 16px;
+}
+.sanctuary-study-link a {
+  font-size: 11px;
+  color: #f6ca78;
+}
+.sanctuary-collection-link {
+  font-size: 12px;
+  text-decoration: none;
+  color: #d1c5b3 !important;
+}
+.sanctuary-flight > canvas {
+  position: fixed;
+}
+.nova-sanctuary .sanctuary-flight {
+  overflow-y: auto !important;
+}
+.sanctuary-flight > div:last-child {
+  position: relative !important;
+  min-height: calc(100svh - var(--preview-height));
+  padding-top: 120px;
+  padding-bottom: 85px;
+}
+.sanctuary-flight > div:first-of-type:not(:last-child) {
+  min-width: 0;
+}
+@media (max-width: 1000px) {
+  .sanctuary-header nav {
+    gap: 10px;
+  }
+  .sanctuary-controls button span,
+  .sanctuary-controls a span {
+    display: none;
+  }
+  .sanctuary-identity {
+    gap: 30px;
+  }
+  .sanctuary-controls button,
+  .sanctuary-controls a {
+    min-width: 38px;
+    min-height: 38px;
+    justify-content: center;
+  }
+}
+@media (max-width: 767px) {
+  .sanctuary-header nav {
+    display: none;
+  }
+  .nova-sanctuary .sanctuary-header {
+    padding: 12px 18px;
+    gap: 12px;
+  }
+  .sanctuary-brand {
+    font-size: 16px;
+  }
+  .sanctuary-content {
+    padding-inline: 20px;
+  }
+  .sanctuary-identity {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .sanctuary-identity .sanctuary-egg-scene {
+    height: 190px;
+    transform: scale(0.62);
+    margin-bottom: 10px;
+  }
+  .sanctuary-traits {
+    padding: 12px 20px;
+    gap: 0 20px;
+  }
+  .sanctuary-traits dd {
+    font-size: 17px;
+  }
+  .sanctuary-candidates {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    gap: 26px;
+  }
+  .sanctuary-candidates article {
+    padding: 20px;
+  }
+  .sanctuary-reveal {
+    padding-top: calc(115px + var(--preview-height));
+  }
+  .sanctuary-egg-scene {
+    width: 250px;
+    height: 295px;
+    margin-bottom: 12px;
+  }
+  .sanctuary-egg {
+    width: 160px;
+    height: 218px;
+  }
+  .sanctuary-awakening .sanctuary-egg-scene {
+    transform: scale(0.86);
+    height: 265px;
+  }
+  .sanctuary-my-nova {
+    padding-inline: 0;
+  }
+  .sanctuary-card-wrap {
+    max-width: 360px;
+  }
+  .sanctuary-description {
+    padding: 23px;
+  }
+  .sanctuary-description dl {
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  .sanctuary-evolution {
+    padding: 20px 13px;
+  }
+  .sanctuary-evolution li {
+    font-size: 8px;
+    gap: 9px;
+  }
+  .sanctuary-evolution li b {
+    width: 30px;
+    height: 30px;
+  }
+  .sanctuary-evolution li > small {
+    font-size: 7px;
+  }
+  .sanctuary-status-box {
+    padding: 20px;
+  }
+  .sanctuary-fictional-note {
+    font-size: 8px;
+    max-width: 190px;
+    text-align: right;
+    bottom: 2px;
+  }
+  .sanctuary-scene-controls {
+    bottom: 20px;
+    left: 12px;
+    gap: 8px;
+  }
+  .sanctuary-scene-controls button,
+  .sanctuary-scene-controls a {
+    font-size: 9px;
+    padding: 8px;
+  }
+  .sanctuary-flight > div:last-child {
+    padding-top: 115px;
+    padding-bottom: 100px;
+  }
+  .sanctuary-flight h1 {
+    font-size: 25px;
+    line-height: 1.35;
+    margin-bottom: 24px;
+  }
+  .sanctuary-dialog-actions {
+    flex-direction: column;
+  }
+  .sanctuary-dialog-actions > button {
+    width: 100%;
+  }
+  .sanctuary-confetti i:nth-child(n + 41) {
+    display: none;
+  }
+  .sanctuary-preview-toolbar {
+    font-size: 10px;
+    padding-inline: 10px;
+  }
+  .nova-sanctuary .nova-viewer-sanctuary .nova-card-content h2 {
+    font-size: 30px;
+  }
+  .sanctuary-study-link {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+@media (max-height: 650px) {
+  .sanctuary-opening > div:nth-last-child(2) {
+    bottom: 65px;
+  }
+  .sanctuary-opening h1 {
+    font-size: 22px;
+    line-height: 1.4;
+    margin-bottom: 16px;
+  }
+  .sanctuary-opening .relative.z-20 {
+    transform: translateY(-70px);
+  }
+  .sanctuary-flight h1 {
+    margin-bottom: 20px;
+  }
+  .sanctuary-flight > div:last-child {
+    justify-content: flex-start;
+  }
+}
+.nova-sanctuary[data-calm="true"] *,
+.nova-sanctuary[data-calm="true"] *:before,
+.nova-sanctuary[data-calm="true"] *:after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+.nova-sanctuary[data-calm="true"] .sanctuary-flight [data-flight-question] {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+}
+.nova-sanctuary[data-calm="true"] .sanctuary-confetti {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .nova-sanctuary *,
+  .nova-sanctuary *:before,
+  .nova-sanctuary *:after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+.nova-sanctuary .font-headline {
+  font-family: var(--font-headline);
+}
+.nova-sanctuary .font-body {
+  font-family: var(--font-body);
+}
+.nova-sanctuary .font-label {
+  font-family: var(--font-label);
+}
+
+.nova-sanctuary .perspective-800 {
+  perspective: 800px;
+}
+.nova-sanctuary .perspective-1000 {
+  perspective: 1000px;
+}
+.nova-sanctuary .perspective-1200 {
+  perspective: 1200px;
+}
+.nova-sanctuary .transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
+.nova-sanctuary .backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.nova-sanctuary .rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Cinematic Keyframes */
+@keyframes nova-sanctuary-spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes nova-sanctuary-spin-slow-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes nova-sanctuary-pulse-glow {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes nova-sanctuary-float-gentle {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+@keyframes nova-sanctuary-float-egg {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(-1deg);
+  }
+  50% {
+    transform: translateY(-16px) rotate(1.5deg);
+  }
+}
+
+@keyframes nova-sanctuary-mist-drift {
+  0% {
+    transform: translateX(0%);
+  }
+  50% {
+    transform: translateX(-4%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes nova-sanctuary-portal-breathe {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.08) rotate(4deg);
+    opacity: 0.95;
+  }
+}
+
+@keyframes nova-sanctuary-beam-shimmer {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scaleY(1.05);
+  }
+}
+
+.nova-sanctuary .animate-spin-slow {
+  animation: nova-sanctuary-spin-slow 90s linear infinite;
+}
+.nova-sanctuary .animate-spin-slow-reverse {
+  animation: nova-sanctuary-spin-slow-reverse 75s linear infinite;
+}
+.nova-sanctuary .animate-pulse-glow {
+  animation: nova-sanctuary-pulse-glow 4s ease-in-out infinite;
+}
+.nova-sanctuary .animate-float {
+  animation: nova-sanctuary-float-gentle 6s ease-in-out infinite;
+}
+.nova-sanctuary .animate-float-egg {
+  animation: nova-sanctuary-float-egg 5s ease-in-out infinite;
+}
+.nova-sanctuary .animate-mist {
+  animation: nova-sanctuary-mist-drift 24s ease-in-out infinite;
+}
+.nova-sanctuary .animate-portal {
+  animation: nova-sanctuary-portal-breathe 8s ease-in-out infinite;
+}
+.nova-sanctuary .animate-beam {
+  animation: nova-sanctuary-beam-shimmer 6s ease-in-out infinite;
+}
+
+/* Original audio controls and text-only question choices. */
+.nova-sanctuary .sanctuary-audio-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  pointer-events: auto;
+}
+.nova-sanctuary .sanctuary-audio-controls > button {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  min-height: 36px;
+  padding: 8px 10px;
+  color: #d1c5b3;
+  background: #101626ed;
+  border: 1px solid #b59ce433;
+  border-radius: 11px;
+  cursor: pointer;
+  font-size: 10px;
+  white-space: nowrap;
+}
+.nova-sanctuary .sanctuary-audio-controls > button[aria-pressed="true"] {
+  color: #f6ca78;
+  border-color: #f6ca7866;
+  background: #d8af6017;
+}
+.nova-sanctuary .sanctuary-audio-controls b {
+  font-weight: 500;
+}
+.sanctuary-volume {
+  position: relative;
+  color: #d1c5b3;
+}
+.sanctuary-volume summary {
+  cursor: pointer;
+  list-style: none;
+  font-size: 20px;
+  border: 1px solid #b59ce433;
+  border-radius: 8px;
+  padding: 0 6px;
+  min-height: 36px;
+}
+.sanctuary-volume summary::-webkit-details-marker {
+  display: none;
+}
+.sanctuary-volume summary:focus-visible {
+  outline: 2px solid #f6ca78;
+  outline-offset: 3px;
+}
+.sanctuary-volume label {
+  position: absolute;
+  z-index: 90;
+  top: 45px;
+  right: 0;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 10px;
+  width: 200px;
+  padding: 16px;
+  border: 1px solid #c9ad7466;
+  border-radius: 14px;
+  background: #101626;
+  font-size: 12px;
+  box-shadow: 0 12px 45px #0009;
+}
+.sanctuary-volume input {
+  grid-column: 1/-1;
+  grid-row: 2;
+  width: 100%;
+  accent-color: #f6ca78;
+}
+.sanctuary-opening .sanctuary-audio-controls > button span {
+  display: inline;
+}
+.nova-sanctuary .sanctuary-flight > div:last-child {
+  padding-top: 110px;
+  padding-bottom: 85px;
+}
+.nova-sanctuary .sanctuary-flight [data-flight-question] {
+  max-width: 850px;
+}
+.nova-sanctuary .sanctuary-flight h1 {
+  font-size: clamp(26px, 3vw, 38px);
+  margin-bottom: 25px;
+  line-height: 1.25;
+}
+.nova-sanctuary .sanctuary-flight [data-flight-question] > p:last-child {
+  margin-top: 23px;
+  color: #c8bfaf;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+}
+.nova-question-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 672px;
+  pointer-events: auto;
+}
+.nova-text-choice {
+  padding: 20px;
+  min-height: 60px;
+  border: 1px solid #303444;
+  border-radius: 16px;
+  background: #090e1ccc;
+  color: #dfe1f6;
+  font: 400 15px var(--font-body);
+  line-height: 1.6;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background 0.25s,
+    border-color 0.25s,
+    color 0.25s;
+}
+.nova-text-choice:hover,
+.nova-text-choice:focus-visible {
+  background: #171b2af2;
+  border-color: #f6ca7899;
+}
+.nova-text-choice[data-selected="true"] {
+  background: #d8af6022;
+  border-color: #f6ca78;
+  color: #f6ca78;
+}
+@media (max-width: 1000px) {
+  .sanctuary-flight > div:first-of-type .hidden.sm\:flex {
+    display: none;
+  }
+  .nova-sanctuary .sanctuary-header {
+    gap: 12px;
+  }
+}
+@media (max-width: 639px) {
+  .nova-sanctuary .sanctuary-flight > div:last-child {
+    padding-top: 135px;
+    padding-bottom: 95px;
+    justify-content: center;
+  }
+  .sanctuary-flight > div:first-of-type {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .sanctuary-flight > div:first-of-type > div:first-child {
+    flex: 1;
+  }
+  .sanctuary-flight > div:first-of-type > div:last-child {
+    gap: 6px;
+  }
+  .sanctuary-flight > div:first-of-type > div:first-child > div > span:first-child {
+    font-size: 11px;
+  }
+  .sanctuary-flight > div:first-of-type > div:first-child > div > span:last-child {
+    font-size: 8px;
+  }
+  .nova-sanctuary .sanctuary-audio-controls > button span {
+    display: none;
+  }
+  .nova-sanctuary .sanctuary-audio-controls > button {
+    padding: 8px;
+  }
+  .nova-sanctuary .sanctuary-flight h1 {
+    font-size: 26px;
+    margin-bottom: 23px;
+    max-width: 330px;
+  }
+  .nova-sanctuary .sanctuary-flight [data-flight-question] > p:last-child {
+    font-size: 8px;
+    letter-spacing: 0.1em;
+    line-height: 1.8;
+    max-width: 290px;
+    margin-top: 24px;
+  }
+  .nova-sanctuary .sanctuary-opening > div:last-child {
+    right: 16px;
+    top: 16px;
+    gap: 8px;
+  }
+  .sanctuary-header .sanctuary-brand {
+    font-size: 15px;
+    gap: 8px;
+  }
+  .sanctuary-header .sanctuary-controls {
+    gap: 5px;
+  }
+  .sanctuary-header .sanctuary-controls > button,
+  .sanctuary-header .sanctuary-controls > a {
+    padding: 8px;
+  }
+  .sanctuary-volume summary {
+    padding-inline: 5px;
+  }
+}
+@media (max-width: 370px) {
+  .nova-sanctuary .sanctuary-flight > div:last-child {
+    padding-top: 145px;
+  }
+}
+@media (max-height: 650px) {
+  .nova-sanctuary .sanctuary-flight > div:last-child {
+    justify-content: flex-start;
+  }
+}
+@media (max-width: 639px) {
+  .nova-sanctuary .nova-flight-header {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 16px;
+  }
+  .nova-sanctuary .nova-flight-header > div:first-child {
+    width: 100%;
+    min-width: 0;
+  }
+  .nova-sanctuary .nova-flight-header > div:first-child > div > span:first-child {
+    white-space: nowrap;
+    font-size: 12px;
+  }
+  .nova-sanctuary .nova-flight-header > div:last-child {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 639px) {
+  .nova-text-choice {
+    padding: 16px;
+    min-height: 56px;
+    font-size: 14px;
+  }
+}

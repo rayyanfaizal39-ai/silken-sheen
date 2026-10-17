@@ -1,0 +1,31 @@
+name: Nova PR Validation
+on:
+  push:
+    branches:
+      - feature/nova-companion-cards
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  nova:
+    name: Nova Unit DB And Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+      - name: Use Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Nova model, SQL/RLS and visual preview tests
+        run: npx vitest run src/features/nova-cards src/features/business-card
+      - name: Nova Edge Function TypeScript contract
+        run: node scripts/check-nova-worker-types.mjs
+      - name: Production build (compile only; no deployment)
+        run: npm run build
