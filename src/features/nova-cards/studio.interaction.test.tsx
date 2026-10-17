@@ -104,19 +104,14 @@ async function click(host: HTMLElement, text: string) {
   await act(async () => button!.click());
 }
 describe("Standalone Nova Studio journey", () => {
-  it("renders exactly two accessible creature choices with local artwork and descriptions", async () => {
+  it("renders exactly two accessible text-only creature choices", async () => {
     const h = harness();
     h.set({ draft: { answers: [0], username: "Rayyan", revision: 1 } });
     const { host } = await h.mount();
     const choices = [...host.querySelectorAll<HTMLButtonElement>("[data-nova-answer]")];
-    expect(choices.map((c) => c.getAttribute("aria-label"))).toEqual(["Phoenix", "Magical Fox"]);
+    expect(choices.map((c) => c.textContent)).toEqual(["Phoenix", "Magical Fox"]);
     expect(choices.every((c) => c.type === "button" && !c.disabled)).toBe(true);
-    expect(choices.map((c) => c.querySelector("img")?.getAttribute("src"))).toEqual([
-      "/nova/creatures/phoenix.svg",
-      "/nova/creatures/fox.svg",
-    ]);
-    expect(host.textContent).toContain("A legendary companion born from magical flames.");
-    expect(host.textContent).toContain("A mystical companion filled with wisdom and wonder.");
+    expect(choices.every((c) => !c.querySelector("img, svg, canvas"))).toBe(true);
     expect(choices.every((c) => c.getAttribute("aria-pressed") === "false")).toBe(true);
   });
   it("resumes a complete legacy Phoenix draft without normalizing its original answers", async () => {
@@ -140,6 +135,10 @@ describe("Standalone Nova Studio journey", () => {
       for (let i = 0; i < 12; i++) {
         expect(host.querySelector("h1")?.textContent).toBe(QUESTIONS[i].label);
         const options = host.querySelectorAll<HTMLButtonElement>("[data-nova-answer]");
+        expect([...options].map((option) => option.textContent)).toEqual(QUESTIONS[i].options);
+        expect([...options].every((option) => !option.querySelector("img, svg, canvas"))).toBe(
+          true,
+        );
         await act(async () => options[answers[i]].click());
         if (i === 4) {
           await act(async () => root.unmount());

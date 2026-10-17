@@ -1389,7 +1389,7 @@
   animation: nova-sanctuary-beam-shimmer 6s ease-in-out infinite;
 }
 
-/* Original audio controls and illustrated question treatments. */
+/* Original audio controls and text-only question choices. */
 .nova-sanctuary .sanctuary-audio-controls {
   display: flex;
   align-items: center;
@@ -1483,244 +1483,38 @@
   letter-spacing: 0.15em;
 }
 .nova-question-options {
-  display: grid;
-  gap: 17px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   width: 100%;
+  max-width: 672px;
   pointer-events: auto;
 }
-.nova-creature-choices {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  max-width: 690px;
-}
-.nova-choice {
-  position: relative;
-  color: #e8e6f3;
-  background: linear-gradient(145deg, #1a1b30, #0b1020 75%);
-  border: 1px solid #b59ce44a;
-  overflow: hidden;
+.nova-text-choice {
+  padding: 20px;
+  min-height: 60px;
+  border: 1px solid #303444;
+  border-radius: 16px;
+  background: #090e1ccc;
+  color: #dfe1f6;
+  font: 400 15px var(--font-body);
+  line-height: 1.6;
+  text-align: left;
   cursor: pointer;
   transition:
-    transform 0.35s ease,
-    border-color 0.3s,
-    box-shadow 0.3s;
-  text-align: left;
-  border-radius: 22px;
-  padding: 0;
-  min-width: 0;
-  isolation: isolate;
+    background 0.25s,
+    border-color 0.25s,
+    color 0.25s;
 }
-.nova-choice::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  box-shadow: inset 0 0 45px -20px var(--choice-hue);
-  opacity: 0.5;
-  pointer-events: none;
-  transition: opacity 0.3s;
+.nova-text-choice:hover,
+.nova-text-choice:focus-visible {
+  background: #171b2af2;
+  border-color: #f6ca7899;
 }
-.nova-choice:hover,
-.nova-choice:focus-visible {
-  border-color: var(--choice-hue);
-  transform: translateY(-3px);
-  box-shadow:
-    0 12px 38px #0005,
-    0 0 25px -16px var(--choice-hue);
-}
-.nova-choice[data-selected="true"] {
+.nova-text-choice[data-selected="true"] {
+  background: #d8af6022;
   border-color: #f6ca78;
-  box-shadow:
-    0 0 0 1px #f6ca78,
-    0 0 36px -10px var(--choice-hue);
-  animation: nova-choice-bond 0.45s ease;
-}
-.nova-choice[data-selected="true"]::after {
-  opacity: 1;
-}
-.nova-creature-portrait {
-  position: relative;
-  height: 252px;
-  overflow: hidden;
-}
-.nova-creature-portrait img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-.nova-creature-choice:hover .nova-creature-portrait img {
-  transform: scale(1.035);
-}
-.nova-portrait-mist {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(0deg, #101426, transparent 38%);
-}
-.nova-creature-sigil {
-  position: absolute;
-  top: 14px;
-  left: 16px;
-  border: 1px solid #e1c89955;
-  border-radius: 50%;
-  width: 29px;
-  height: 29px;
-  display: grid;
-  place-items: center;
   color: #f6ca78;
-  background: #0b102077;
-  font-size: 14px;
-}
-.nova-creature-copy {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-  padding: 0 24px 25px;
-}
-.nova-creature-copy small {
-  font: 500 8px var(--font-label);
-  letter-spacing: 0.22em;
-  color: var(--choice-hue);
-}
-.nova-creature-copy strong {
-  font: 500 29px var(--font-headline);
-  color: #f1d9a5;
-}
-.nova-creature-copy > span {
-  font-size: 11px;
-  color: #c3c4d6;
-  line-height: 1.7;
-  max-width: 230px;
-}
-.nova-choice-check {
-  position: absolute;
-  bottom: 25px;
-  right: 19px;
-  width: 24px;
-  height: 24px;
-  border: 1px solid #d7bc7855;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  color: #b7afc8;
-  font-size: 14px;
-}
-.nova-creature-choice .nova-choice-check {
-  top: 16px;
-  right: 17px;
-  bottom: auto;
-}
-.nova-choice[data-selected="true"] .nova-choice-check {
-  background: #f6ca78;
-  color: #2e2442;
-  border-color: #f6ca78;
-}
-.nova-detail-choices {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  max-width: 720px;
-}
-.nova-detail-choice {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 17px;
-  padding: 27px 18px 53px;
-  min-height: 208px;
-  text-align: center;
-}
-.nova-detail-choice strong {
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 1.65;
-}
-.nova-detail-choice .nova-choice-check {
-  bottom: 16px;
-  right: calc(50% - 11px);
-  width: 22px;
-  height: 22px;
-  font-size: 12px;
-}
-.nova-option-symbol {
-  font-size: 39px;
-  color: var(--choice-hue);
-  line-height: 1.5;
-  filter: drop-shadow(0 0 12px var(--choice-hue));
-}
-.nova-element-art {
-  width: 90px;
-  height: 90px;
-  color: var(--choice-hue);
-  filter: drop-shadow(0 0 17px #7f6aba33);
-}
-.nova-colour-swatch {
-  position: relative;
-  width: 90px;
-  height: 70px;
-  border-radius: 50%;
-  display: block;
-  border: 1px solid #e9cd9e55;
-  box-shadow:
-    0 0 25px #a190df33,
-    inset 0 0 15px #fff2;
-}
-.nova-colour-swatch i {
-  display: block;
-  position: absolute;
-  inset: -8px;
-  border: 1px solid #d7c49a44;
-  border-radius: 50%;
-  transform: rotate(-20deg) scaleY(0.7);
-}
-.nova-colour-swatch i + i {
-  transform: rotate(55deg) scaleY(0.7);
-}
-.nova-habitat-art {
-  width: calc(100% + 36px);
-  max-width: none;
-  height: 122px;
-  object-fit: cover;
-  margin: -27px -18px 0;
-  mask-image: linear-gradient(#000 70%, transparent);
-}
-.nova-eye-detail {
-  width: 110px;
-  max-width: 100%;
-  height: 80px;
-  filter: drop-shadow(0 0 16px #8e94e733);
-}
-.nova-question-9 .nova-option-symbol {
-  font-size: 57px;
-  line-height: 1;
-  margin-bottom: 8px;
-}
-.nova-pact-symbol {
-  font-size: 44px;
-  border: 1px solid #f6ca7844;
-  border-radius: 50%;
-  width: 80px;
-  height: 80px;
-  display: grid;
-  place-items: center;
-  background: radial-gradient(#f6ca7817, transparent);
-}
-.nova-question-11 .nova-choice {
-  border-color: #e3bd7055;
-  background: radial-gradient(ellipse at top, #d8af6010, transparent), #0d1223;
-}
-.nova-companion-thread {
-  font: 500 11px var(--font-label);
-  color: #c4b7d8;
-  letter-spacing: 0.04em;
-  margin: 20px 0 0;
-}
-.nova-companion-thread span {
-  color: #f6ca78;
-  margin-right: 6px;
-}
-@keyframes nova-choice-bond {
-  50% {
-    transform: scale(1.025);
-  }
 }
 @media (max-width: 1000px) {
   .sanctuary-flight > div:first-of-type .hidden.sm\:flex {
@@ -1763,78 +1557,6 @@
     margin-bottom: 23px;
     max-width: 330px;
   }
-  .nova-creature-choices {
-    gap: 11px;
-  }
-  .nova-creature-portrait {
-    height: 171px;
-  }
-  .nova-creature-copy {
-    padding: 0 15px 19px;
-    gap: 8px;
-  }
-  .nova-creature-copy strong {
-    font-size: 23px;
-  }
-  .nova-creature-copy small {
-    font-size: 6px;
-    letter-spacing: 0.15em;
-  }
-  .nova-creature-copy > span {
-    font-size: 10px;
-    line-height: 1.6;
-  }
-  .nova-choice {
-    border-radius: 17px;
-  }
-  .nova-creature-sigil {
-    left: 11px;
-    top: 11px;
-    width: 22px;
-    height: 22px;
-    font-size: 11px;
-  }
-  .nova-creature-choice .nova-choice-check {
-    top: 11px;
-    right: 11px;
-    width: 21px;
-    height: 21px;
-  }
-  .nova-detail-choices {
-    gap: 9px;
-  }
-  .nova-detail-choice {
-    padding: 21px 10px 48px;
-    min-height: 190px;
-    gap: 16px;
-  }
-  .nova-detail-choice strong {
-    font-size: 11px;
-    line-height: 1.7;
-  }
-  .nova-option-symbol {
-    font-size: 33px;
-  }
-  .nova-element-art {
-    width: 65px;
-    height: 65px;
-  }
-  .nova-colour-swatch {
-    width: 57px;
-    height: 48px;
-  }
-  .nova-habitat-art {
-    width: calc(100% + 20px);
-    margin: -21px -10px 0;
-    height: 93px;
-  }
-  .nova-eye-detail {
-    height: 58px;
-  }
-  .nova-pact-symbol {
-    width: 57px;
-    height: 57px;
-  }
   .nova-sanctuary .sanctuary-flight [data-flight-question] > p:last-child {
     font-size: 8px;
     letter-spacing: 0.1em;
@@ -1863,15 +1585,6 @@
   }
 }
 @media (max-width: 370px) {
-  .nova-creature-portrait {
-    height: 144px;
-  }
-  .nova-creature-copy {
-    padding-inline: 11px;
-  }
-  .nova-creature-copy strong {
-    font-size: 21px;
-  }
   .nova-sanctuary .sanctuary-flight > div:last-child {
     padding-top: 145px;
   }
@@ -1880,9 +1593,6 @@
   .nova-sanctuary .sanctuary-flight > div:last-child {
     justify-content: flex-start;
   }
-}
-.nova-sanctuary[data-calm="true"] .nova-choice:hover {
-  transform: none;
 }
 @media (max-width: 639px) {
   .nova-sanctuary .nova-flight-header {
@@ -1902,5 +1612,13 @@
   .nova-sanctuary .nova-flight-header > div:last-child {
     width: 100%;
     justify-content: space-between;
+  }
+}
+
+@media (max-width: 639px) {
+  .nova-text-choice {
+    padding: 16px;
+    min-height: 56px;
+    font-size: 14px;
   }
 }

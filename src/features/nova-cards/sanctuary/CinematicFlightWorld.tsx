@@ -461,7 +461,7 @@ export const CinematicFlightWorld: React.FC<CinematicFlightWorldProps> = ({
       </div>
 
       {/* =========================================================================
-          Cinematic question and illustrated answer choices
+          Cinematic question with original text-only answer choices
       ========================================================================= */}
       <div className="absolute inset-0 z-30 flex flex-col items-center justify-center px-4 sm:px-6 pointer-events-none">
         <div
@@ -486,25 +486,14 @@ export const CinematicFlightWorld: React.FC<CinematicFlightWorldProps> = ({
             {currentQ.question}
           </h1>
 
-          {/* Illustrated choices from the shared question model */}
+          {/* Original answer text from the shared question model */}
           <QuestionOptions
             question={currentQ}
-            index={currentQuestionIndex}
             selected={selectedOptionIdx}
             clicked={clickedQuestion.current === currentQuestionIndex ? justClickedIdx : null}
             disabled={isTraveling || busy}
             onSelect={(answer) => void handleSelect(answer)}
           />
-          {currentQuestionIndex > 1 && (
-            <p className="nova-companion-thread">
-              <span aria-hidden="true">✦</span> Your {answers[2] === 1 ? "Magical Fox" : "Phoenix"}
-              {currentQuestionIndex > 2
-                ? ` · ${["Fire", "Water", "Starlight"][answers[3]]}`
-                : ""}{" "}
-              is taking shape
-            </p>
-          )}
-
           {/* Gentle Instruction */}
           <p className="font-label text-xs text-[#d1c5b3]/50 uppercase tracking-widest mt-8">
             Choose what feels like you. Your answers save as you go.

@@ -2,11 +2,11 @@
 
 Feature branch: `feature/nova-companion-cards` · Draft PR: [#68](https://github.com/rayyanfaizal39-ai/silken-sheen/pull/68).
 
-This update includes the previous local Google AI Studio visual adaptation and continues it with original static audio, illustrated questions and the duplicate-Phoenix correction. It retains the existing application, server functions and database architecture.
+This update includes the previous local Google AI Studio visual adaptation and continues it with original static audio, text-only questions and the duplicate-Phoenix correction. It retains the existing application, server functions and database architecture.
 
 ## Preview
 
-- [Question 2 — both creature cards](http://127.0.0.1:5181/nova/studio?preview=mia&scene=creatures)
+- [Question 2 — two text-only choices](http://127.0.0.1:5181/nova/studio?preview=mia&scene=creatures)
 - [Complete twelve-question adventure](http://127.0.0.1:5181/nova/studio?preview=mia&scene=quiz)
 - [Cinematic opening](http://127.0.0.1:5181/nova/studio?preview=mia&scene=welcome)
 - [Identity / summoning ritual](http://127.0.0.1:5181/nova/studio?preview=mia&scene=identity)
@@ -15,7 +15,7 @@ These fixtures are clearly marked fictional, operate in memory only and never ca
 
 ## Creature compatibility
 
-`QUESTIONS[1].options` now contains exactly **Phoenix** and **Magical Fox**, with the requested descriptions and two local illustrated cards. Both use semantic buttons, keyboard activation, touch targets, focus outlines, a selection check and glow.
+`QUESTIONS[1].options` now contains exactly **Phoenix** and **Magical Fox**, as simple text-only answer rows. Both use semantic buttons, keyboard activation, touch targets, focus outlines and a selected border. All twelve questions retain their original wording and answer labels; no answer contains images, thumbnails, swatches, symbols or extra descriptions.
 
 The retired stored answer `answers[1] === 2` remains valid. `answerOptionIndex` maps it to Phoenix **only when reading a label/trait**. Raw saved arrays, revisions, immutable identity versions and generated artwork remain untouched. Server draft validation uses the shared compatibility predicate. Existing SQL already maps the old third answer to Phoenix and is unchanged. Regression tests verify that the SQL identity retains the exact original array, trait values and art-direction version.
 
@@ -25,7 +25,7 @@ The retired stored answer `answers[1] === 2` remains valid. `answerOptionIndex` 
 | ----------------------------------------- | -------------------: | -------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `public/nova/audio/starlit-sanctuary.mp3` |        412,731 bytes | Original 34.286-second, 56 BPM piano, warm harmonic strings, celestial bells and atmospheric arrangement. Events/reverb wrap at the loop boundary. |
 | `public/nova/audio/nova-magic.mp3`        |        237,769 bytes | Original 19.720-second sprite containing fourteen authored effects.                                                                                |
-| `public/nova/creatures/*.svg`             | About 20 KB combined | Two original gradient-shaded creature illustrations and three environment thumbnails.                                                              |
+| `public/nova/creatures/*.svg`             | About 20 KB combined | Original source illustrations retained in the repository; no longer displayed or requested by the quiz.                                            |
 
 All listed media were composed/drawn locally for this task, without third-party samples, purchased recordings or paid generation. They are provided under **CC0-1.0**; see [the asset license](../public/nova/LICENSE.md). Authoring sources are `scripts/generate-nova-audio.py` and `scripts/generate-nova-illustrations.mjs`. Numpy/ffmpeg are authoring tools only. No runtime package or lockfile change is required. Externally hosted fictional collectible art from the supplied design is separately documented in [the export review](nova-sanctuary-design-review.md).
 
@@ -51,7 +51,7 @@ Effects share a single priority-controlled voice; rapid hovering cannot create a
 
 - Source portal, flight, constellations, egg and foil card presentation remain isolated to Nova Studio.
 - Creature selection uses two portraits; elements use fire/water/star emblems; colours use paired swatches; habitats use local environment thumbnails; eyes use luminous iris details; markings use symbols; the final bond uses pact seals.
-- Flight transitions take 460 ms; mobile particle/tree counts are lower. Assets are tiny local vectors, with lazy image loading. Calm mode and OS reduced motion suppress movement.
+- Flight transitions take 460 ms; mobile particle/tree counts are lower. Questions load no image assets. Calm mode and OS reduced motion suppress movement.
 - The final ritual shows **YOUR NOVA'S DESTINY IS WRITTEN**, every selected trait and the existing identity confirmation step, followed by **SUMMON MY NOVA**. The same server submission then displays **YOUR NOVA IS AWAKENING**, the requested return text and honest pending/ready/error state. No fake generation progress was introduced.
 - Saved drafts, twelve-question ordering, subscription rules, Batch requests, two Origin candidates, next-day reveal, permanent selection, serial/QR/barcode, private storage, spending flags and five-stage XP thresholds are retained. No production migration, database change, AI request, merge or production deployment was performed.
 
@@ -62,7 +62,7 @@ Effects share a single priority-controlled voice; rapid hovering cannot create a
 | Shared answer compatibility                           | `model.ts`, `studio.server.ts`, model and SQL regression tests                                                                                                                                                                                                 |
 | Studio flow / fixtures / copy                         | `StudioPage.tsx`, `StudioMockPreview.tsx`, `studio-model.ts`, `studio.interaction.test.tsx`                                                                                                                                                                    |
 | Audio                                                 | `sanctuary/audio.ts`, `audio-cues.ts`, `AudioControls.tsx`, `useSanctuaryPreferences.ts`, `audio.test.tsx`                                                                                                                                                     |
-| Illustrated questions                                 | `sanctuary/QuestionOptions.tsx`, `questions.ts`, `CinematicFlightWorld.tsx`, `sanctuary.css`, `public/nova/creatures/`                                                                                                                                         |
+| Text-only questions                                   | `sanctuary/QuestionOptions.tsx`, `questions.ts`, `CinematicFlightWorld.tsx`, `sanctuary.css`, `public/nova/creatures/`                                                                                                                                         |
 | Previous visual adaptation included in this PR update | `CinematicOpening.tsx`, `CosmicCanvas.tsx`, `NovaEgg.tsx`, `OriginReveal.tsx`, `ConfettiBurst.tsx`, `SanctuaryHeader.tsx`, `SanctuaryCardPanel.tsx`, `preview-artwork.ts`, `StudioCompletedCard.tsx`, optional `NovaCard.tsx` appearance, route-only font link |
 | Authoring / review                                    | Both media scripts, `public/nova/LICENSE.md`, this report, source-design review and screenshots                                                                                                                                                                |
 
@@ -75,8 +75,8 @@ Paths without a prefix in the table are under `src/features/nova-cards/`, except
 - Repository TypeScript reports only the two pre-existing science-test errors at `chapter-7-9-10-visual-integration.test.tsx:305` and `chapter-9-heat-visuals.test.tsx:523`; no Nova errors.
 - Production build passed: `npm run build` (compile/package only).
 - Browser checks use the real local MP3s and Web Audio implementation: music/effect buffers decoded and started after gestures, persisted preferences restored silently after reload, Enter selected Magical Fox, disabling effects retained playing music through answer progression, and the soundless journey remained usable. Automated checks observe successful playback state; audible quality and physical speaker/headphone output remain for human review.
-- Responsive checks: desktop 1440×1000, tablet 768×1024, mobile 390×844. Both creature cards remain visible without horizontal page overflow. The phone header uses two compact rows. These are browser viewport checks, not a physical-device test.
+- Responsive checks: desktop 1440×1000, tablet 768×1024, mobile 390×844. Text-only answer rows fit without horizontal page overflow. The phone header uses two compact rows. The latest text-only revision was checked on desktop and at 390×844, with no horizontal overflow. These are browser viewport checks, not a physical-device test.
 
-![Desktop creature selection](screenshots/nova-creatures-desktop.png)
+![Desktop text-only creature choices](screenshots/nova-creatures-desktop.png)
 
-![Mobile creature selection](screenshots/nova-creatures-mobile.png)
+![Mobile text-only creature choices](screenshots/nova-creatures-mobile.png)
