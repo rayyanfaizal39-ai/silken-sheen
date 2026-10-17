@@ -23,7 +23,7 @@ const card = (chapter: number, index: number) =>
 describe("Sejarah Form 1 — every flashcard chapter is playable", () => {
   it("keeps the legacy flashcard mirror synchronized with the actual learner-facing source", () => {
     const inScope = (c: { id: string; subjectId: string; form: string }) =>
-      c.subjectId === "sejarah" && c.form === "Form 1" && /^sej-f1-c[1-8]-fc\\d+$/.test(c.id);
+      c.subjectId === "sejarah" && c.form === "Form 1" && /^sej-f1-c[1-8]-fc\d+$/.test(c.id);
     const snapshot = (cards: typeof data.flashcards) =>
       cards.filter(inScope)
         .map(({ id, front, back }) => ({ id, front, back }))
