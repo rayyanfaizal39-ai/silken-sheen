@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { act } from "react";
 import { createRoot } from "react-dom/client";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeAll, describe, expect, it, vi } from "vitest";
 vi.mock("./studio.server", () => ({
   getStudioState: vi.fn(),
   saveStudioDraft: vi.fn(),
@@ -15,6 +15,21 @@ import { AWAKENING_TITLE, ARRIVED, studioStatus, type StudioState } from "./stud
 import { DEMO_CARDS, QUESTIONS, traitsFromAnswers } from "./model";
 const env = globalThis as typeof globalThis & { IS_REACT_ACT_ENVIRONMENT?: boolean };
 env.IS_REACT_ACT_ENVIRONMENT = true;
+beforeAll(() => {
+  vi.spyOn(window, "scrollTo").mockImplementation(() => {});
+  HTMLDialogElement.prototype.showModal = function () {
+    this.open = true;
+    this.querySelector<HTMLButtonElement>("button")?.focus();
+  };
+  HTMLDialogElement.prototype.close = function () {
+    this.open = false;
+  };
+  vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockReturnValue(null);
+  vi.stubGlobal(
+    "matchMedia",
+    vi.fn(() => ({ matches: true, addEventListener: vi.fn(), removeEventListener: vi.fn() })),
+  );
+});
 const roots: ReturnType<typeof createRoot>[] = [];
 afterEach(async () => {
   for (const root of roots) await act(async () => root.unmount());
@@ -89,15 +104,42 @@ async function click(host: HTMLElement, text: string) {
   await act(async () => button!.click());
 }
 describe("Standalone Nova Studio journey", () => {
+  it("renders exactly two accessible creature choices with local artwork and descriptions", async () => {
+    const h = harness();
+    h.set({ draft: { answers: [0], username: "Rayyan", revision: 1 } });
+    const { host } = await h.mount();
+    const choices = [...host.querySelectorAll<HTMLButtonElement>("[data-nova-answer]")];
+    expect(choices.map((c) => c.getAttribute("aria-label"))).toEqual(["Phoenix", "Magical Fox"]);
+    expect(choices.every((c) => c.type === "button" && !c.disabled)).toBe(true);
+    expect(choices.map((c) => c.querySelector("img")?.getAttribute("src"))).toEqual([
+      "/nova/creatures/phoenix.svg",
+      "/nova/creatures/fox.svg",
+    ]);
+    expect(host.textContent).toContain("A legendary companion born from magical flames.");
+    expect(host.textContent).toContain("A mystical companion filled with wisdom and wonder.");
+    expect(choices.every((c) => c.getAttribute("aria-pressed") === "false")).toBe(true);
+  });
+  it("resumes a complete legacy Phoenix draft without normalizing its original answers", async () => {
+    const h = harness();
+    const answers = Array(12).fill(0);
+    answers[1] = 2;
+    h.set({ draft: { answers, username: "Rayyan", revision: 5 } });
+    const { host } = await h.mount();
+    expect(host.textContent).toContain("Phoenix");
+    await click(host, "Confirm my identity");
+    await click(host, "SUMMON MY NOVA");
+    expect(h.get().identity?.answers).toEqual(answers);
+    expect(h.get().identity?.traits.creature).toBe("Phoenix");
+  });
   for (const profile of [0, 1])
     it(`saves all 12 ${DEMO_CARDS[profile].traits.creature} choices across remount, reveals two and permanently confirms one`, async () => {
       const h = harness(profile);
       let { host, root } = await h.mount();
-      await click(host, "Discover my Nova");
+      await click(host, "Skip Intro");
       const answers = profile ? [0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0] : Array(12).fill(0);
       for (let i = 0; i < 12; i++) {
         expect(host.querySelector("h1")?.textContent).toBe(QUESTIONS[i].label);
-        const options = host.querySelectorAll<HTMLButtonElement>(".ns-options>button");
+        const options = host.querySelectorAll<HTMLButtonElement>("[data-nova-answer]");
         await act(async () => options[answers[i]].click());
         if (i === 4) {
           await act(async () => root.unmount());
@@ -109,10 +151,10 @@ describe("Standalone Nova Studio journey", () => {
       expect(host.textContent).toContain(DEMO_CARDS[profile].traits.creature);
       await click(host, "Confirm my identity");
       expect(h.api.submit).not.toHaveBeenCalled();
-      await click(host, "Awaken my Nova");
+      await click(host, "SUMMON MY NOVA");
       expect(h.api.submit).toHaveBeenCalledTimes(1);
       expect(host.textContent).toContain(AWAKENING_TITLE);
-      expect(host.querySelectorAll(".ns-candidates img")).toHaveLength(0);
+      expect(host.querySelectorAll(".sanctuary-candidate-art>img:first-child")).toHaveLength(0);
       h.set({
         origin: { ...h.get().origin!, status: "ready", ready: true, completed: 2 },
         candidates: [
@@ -122,7 +164,11 @@ describe("Standalone Nova Studio journey", () => {
       });
       expect(studioStatus(h.get())).toBe(ARRIVED);
       await click(host, "Check arrival");
-      expect(host.querySelectorAll(".ns-candidates img")).toHaveLength(2);
+      await click(host, "Hatch egg");
+      await act(async () => {
+        await new Promise((resolve) => setTimeout(resolve, 5));
+      });
+      expect(host.querySelectorAll(".sanctuary-candidate-art>img:first-child")).toHaveLength(2);
       await click(host, "Choose this Nova");
       expect(h.api.choose).not.toHaveBeenCalled();
       await click(host, "Confirm my permanent Nova");
@@ -136,7 +182,7 @@ describe("Standalone Nova Studio journey", () => {
       throw new Error("Your answers changed on another device. Refresh to continue.");
     });
     const { host } = await h.mount();
-    await click(host, "Discover my Nova");
+    await click(host, "Skip Intro");
     await click(host, "Discovering something new");
     expect(host.querySelector("h1")?.textContent).toBe(QUESTIONS[0].label);
     expect(host.textContent).toContain("another device");
@@ -150,7 +196,7 @@ describe("Standalone Nova Studio journey", () => {
     const { host } = await h.mount();
     await click(host, "Confirm my identity");
     const submit = [...host.querySelectorAll("button")].find((b) =>
-      b.textContent?.includes("Awaken my Nova"),
+      b.textContent?.includes("SUMMON MY NOVA"),
     )!;
     expect(submit.disabled).toBe(true);
     expect(host.textContent).toContain("no paid request has been made");
@@ -171,7 +217,7 @@ describe("Standalone Nova Studio journey", () => {
     });
     const { host } = await h.mount();
     expect(host.textContent).toContain("active Pro or Premium subscription");
-    expect(host.querySelectorAll(".ns-candidates img")).toHaveLength(0);
+    expect(host.querySelectorAll(".sanctuary-candidate-art>img:first-child")).toHaveLength(0);
     expect(h.api.choose).not.toHaveBeenCalled();
   });
 });

@@ -5,7 +5,17 @@ import { evolution, STAGES, type NovaCard as Card } from "./model";
 import { downloadCard } from "./download";
 import { getCardForExport } from "./server";
 
-export function NovaCard({ card, url }: { card: Card; url: string }) {
+export function NovaCard({
+  card,
+  url,
+  appearance = "classic",
+  onFlip,
+}: {
+  card: Card;
+  url: string;
+  appearance?: "classic" | "sanctuary";
+  onFlip?: () => void;
+}) {
   const [flipped, setFlipped] = useState(false);
   const [qr, setQr] = useState("");
   const [notice, setNotice] = useState("");
@@ -56,12 +66,18 @@ export function NovaCard({ card, url }: { card: Card; url: string }) {
   }
 
   return (
-    <section className="nova-viewer" aria-label={`${card.username}'s Nova companion card`}>
+    <section
+      className={`nova-viewer ${appearance === "sanctuary" ? `nova-viewer-sanctuary ${card.demo && card.artworkUrl ? "nova-design-fixture" : ""}` : ""}`}
+      aria-label={`${card.username}'s Nova companion card`}
+    >
       <div className="nova-perspective">
         <button
           type="button"
           className={`nova-card-object ${flipped ? "is-flipped" : ""}`}
-          onClick={() => setFlipped((v) => !v)}
+          onClick={() => {
+            setFlipped((v) => !v);
+            onFlip?.();
+          }}
           aria-pressed={flipped}
           aria-label={`${flipped ? "Show front" : "Flip to QR code and barcode"} of ${card.username}'s card`}
         >
@@ -171,7 +187,14 @@ export function NovaCard({ card, url }: { card: Card; url: string }) {
         <progress value={percent} max={100} aria-label="Progress to next Nova stage" />
       </div>
       <div className="nova-actions">
-        <button onClick={() => setFlipped((v) => !v)}>↻ Flip card</button>
+        <button
+          onClick={() => {
+            setFlipped((v) => !v);
+            onFlip?.();
+          }}
+        >
+          ↻ Flip card
+        </button>
         <button onClick={() => void share()} disabled={!card.sharing}>
           ↗ Share
         </button>

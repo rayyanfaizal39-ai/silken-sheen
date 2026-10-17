@@ -3,6 +3,7 @@ import { setResponseHeader } from "@tanstack/start-server-core";
 import { z } from "zod";
 import { getSupabaseServerClient } from "@/lib/supabase.server";
 import type { StudioDraft, StudioState } from "./studio-model";
+import { validNovaAnswer } from "./model";
 
 async function owner() {
   setResponseHeader("Cache-Control", "private, no-store, max-age=0");
@@ -44,7 +45,13 @@ export const saveStudioDraft = createServerFn({ method: "POST" })
   .validator((input: unknown) =>
     z
       .object({
-        answers: z.array(z.number().int().min(0).max(2)).max(12),
+        answers: z
+          .array(z.number().int().min(0).max(2))
+          .max(12)
+          .refine(
+            (answers) => answers.every((answer, i) => validNovaAnswer(i, answer)),
+            "Invalid Nova answer.",
+          ),
         username: z.union([z.literal(""), z.string().regex(/^[A-Za-z0-9_]{2,24}$/)]),
         revision: z.number().int().nonnegative(),
       })

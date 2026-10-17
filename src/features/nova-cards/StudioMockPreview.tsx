@@ -4,8 +4,24 @@ import { companionSvg } from "./artwork";
 import { svgUrl } from "./codes";
 import { StudioExperience, type StudioApi } from "./StudioPage";
 import type { StudioState } from "./studio-model";
+import { SOURCE_FOX_ARTWORK } from "./sanctuary/preview-artwork";
+const SCENES = [
+  "welcome",
+  "quiz",
+  "creatures",
+  "identity",
+  "waiting",
+  "reveal",
+  "selected",
+] as const;
 export default function StudioMockPreview({ profile }: { profile: "rayyan" | "mia" }) {
-  const [scene, setScene] = useState("welcome");
+  const [scene, setScene] = useState(() => {
+    const value =
+      typeof window === "undefined"
+        ? null
+        : new URLSearchParams(window.location.search).get("scene");
+    return value && SCENES.some((s) => s === value) ? value : "welcome";
+  });
   const api = useMemo<StudioApi>(() => {
     const card = DEMO_CARDS[profile === "mia" ? 1 : 0];
     const answers = profile === "mia" ? [0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0] : Array(12).fill(0);
@@ -22,7 +38,8 @@ export default function StudioMockPreview({ profile }: { profile: "rayyan" | "mi
       candidates: [],
       evolutions: [],
     };
-    if (scene !== "welcome" && scene !== "quiz")
+    if (scene === "creatures") state.draft.answers = [0];
+    if (scene !== "welcome" && scene !== "quiz" && scene !== "creatures")
       state = { ...state, draft: { answers, username: card.username, revision: 1 } };
     const reveal = () => {
       state = {
@@ -36,7 +53,10 @@ export default function StudioMockPreview({ profile }: { profile: "rayyan" | "mi
         },
         candidates: (["a", "b"] as const).map((candidate) => ({
           candidate,
-          url: svgUrl(companionSvg(card.traits, candidate, 1)),
+          url:
+            profile === "mia"
+              ? SOURCE_FOX_ARTWORK[candidate === "a" ? 0 : 1]
+              : svgUrl(companionSvg(card.traits, candidate, 1)),
         })),
       };
     };
@@ -90,10 +110,19 @@ export default function StudioMockPreview({ profile }: { profile: "rayyan" | "mi
   }, [profile, scene]);
   return (
     <>
-      <nav className="ns-preview-toolbar" aria-label="Fictional preview scene">
-        <span>Preview scene</span>
-        {["welcome", "quiz", "identity", "waiting", "reveal", "selected"].map((s) => (
-          <button key={s} aria-pressed={scene === s} onClick={() => setScene(s)}>
+      <nav className="sanctuary-preview-toolbar" aria-label="Fictional preview scene">
+        <span>FICTIONAL PREVIEW</span>
+        {SCENES.map((s) => (
+          <button
+            key={s}
+            aria-pressed={scene === s}
+            onClick={() => {
+              setScene(s);
+              const url = new URL(window.location.href);
+              url.searchParams.set("scene", s);
+              window.history.replaceState(null, "", url);
+            }}
+          >
             {s}
           </button>
         ))}
@@ -101,7 +130,12 @@ export default function StudioMockPreview({ profile }: { profile: "rayyan" | "mi
           Switch companion ↗
         </a>
       </nav>
-      <StudioExperience key={`${profile}-${scene}`} api={api} fictional />
+      <StudioExperience
+        key={`${profile}-${scene}`}
+        api={api}
+        fictional
+        startInDiscovery={scene === "quiz" || scene === "creatures"}
+      />
     </>
   );
 }

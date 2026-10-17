@@ -22,7 +22,7 @@ export type StudioState = {
 export const AWAKENING_TITLE = "YOUR NOVA IS AWAKENING";
 export const AWAKENING_DESCRIPTION =
   "Somewhere in the Nova Universe, your magical companion is taking shape.";
-export const AWAKENING_RETURN = "Come back tomorrow to discover your two Nova cards!";
+export const AWAKENING_RETURN = "Return tomorrow to discover your two unique Origin cards.";
 export const ARRIVED = "Your Nova has arrived! Discover your companion.";
 export function studioStatus(s: StudioState): string {
   if (s.selected) return "Your permanent Nova is saved. Continue your learning journey.";

@@ -26,7 +26,7 @@ export const QUESTIONS = [
     label: "What draws you into an adventure?",
     options: ["Discovering something new", "Helping a friend", "Solving a mystery"],
   },
-  { label: "Choose your companion's creature.", options: ["Phoenix", "Magical Fox", "Phoenix"] },
+  { label: "Choose your companion's creature.", options: ["Phoenix", "Magical Fox"] },
   { label: "Which element feels like you?", options: ["Fire", "Water", "Starlight"] },
   {
     label: "Choose a silhouette.",
@@ -81,10 +81,21 @@ export interface NovaTraits {
   bond: string;
 }
 
+/** The retired third creature answer is still a valid stored Phoenix identity. Never rewrite it. */
+export function answerOptionIndex(question: number, answer: number) {
+  return question === 1 && answer === 2 ? 0 : answer;
+}
+export function validNovaAnswer(question: number, answer: number) {
+  const option = answerOptionIndex(question, answer);
+  return (
+    Number.isInteger(answer) && option >= 0 && option < (QUESTIONS[question]?.options.length ?? 0)
+  );
+}
+
 export function traitsFromAnswers(answers: number[]): NovaTraits {
-  if (answers.length !== 12 || answers.some((a) => !Number.isInteger(a) || a < 0 || a > 2))
+  if (answers.length !== 12 || answers.some((a, i) => !validNovaAnswer(i, a)))
     throw new Error("Answer all twelve questions.");
-  const values = QUESTIONS.map((question, i) => question.options[answers[i]]);
+  const values = QUESTIONS.map((question, i) => question.options[answerOptionIndex(i, answers[i])]);
   return {
     personality: ["Explorer", "Nurturer", "Strategist"][answers[0]],
     creature: values[1],

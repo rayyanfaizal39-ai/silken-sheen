@@ -86,6 +86,19 @@ describe("Nova Studio SQL queue, identities and RLS", () => {
     token: string,
     publicId: string,
     serial: string;
+  it("preserves legacy third-option Phoenix answers in versioned SQL identities", async () => {
+    const answers = [0, 2, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0];
+    const { rows } = await db.query<{
+      identity: { answers: number[]; traits: unknown; version: string };
+    }>("select public.nova_identity($1) as identity", [answers]);
+    expect(rows[0].identity).toEqual({
+      version: "nova-identity-v1",
+      artDirection: "nova-master-art-direction-v1",
+      answers,
+      traits: traitsFromAnswers(answers),
+    });
+    expect((rows[0].identity.traits as { creature: string }).creature).toBe("Phoenix");
+  });
   it("persists all twelve answers with owner isolation and cross-device revision protection", async () => {
     await rpc(A, "save_nova_studio_draft", [[], "", 0]);
     for (let i = 1; i <= 12; i++)

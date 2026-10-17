@@ -12,6 +12,7 @@ import {
   evolution,
   traitsFromAnswers,
   validPublicId,
+  validNovaAnswer,
 } from "./model";
 import { companionSvg } from "./artwork";
 import { barcodeSvg, barcodeSymbols, qrDataUrl } from "./codes";
@@ -63,6 +64,20 @@ describe("Nova permanent identities and scannable codes", () => {
 });
 
 describe("Nova creation and XP compatibility", () => {
+  it("shows two unique creatures while preserving the retired third Phoenix answer byte for byte", () => {
+    expect(QUESTIONS[1].options).toEqual(["Phoenix", "Magical Fox"]);
+    const legacy = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2];
+    const before = [...legacy];
+    const canonical = [...legacy];
+    canonical[1] = 0;
+    expect(traitsFromAnswers(legacy)).toEqual(traitsFromAnswers(canonical));
+    expect(traitsFromAnswers(legacy).creature).toBe("Phoenix");
+    expect(legacy).toEqual(before);
+    expect(validNovaAnswer(1, 2)).toBe(true);
+    expect(validNovaAnswer(1, 3)).toBe(false);
+    expect(validNovaAnswer(1, -1)).toBe(false);
+    expect(validNovaAnswer(12, 0)).toBe(false);
+  });
   it("requires all twelve answers and preserves all trait dimensions", () => {
     expect(QUESTIONS).toHaveLength(12);
     expect(() => traitsFromAnswers([])).toThrow();
