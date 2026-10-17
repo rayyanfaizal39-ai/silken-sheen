@@ -51,13 +51,21 @@ describe("Form 1 Science chapter quiz audit regression", () => {
     });
   }
 
-  it("maps 19 bilingual pairs of relevant SVG stimuli in the presentation layer", () => {
-    expect(Object.keys(scienceF1QuizVisualById)).toHaveLength(38);
+  it("maps 26 bilingual pairs of relevant SVG stimuli in the presentation layer", () => {
+    expect(Object.keys(scienceF1QuizVisualById)).toHaveLength(52);
     for (const [id, path] of Object.entries(scienceF1QuizVisualById)) {
       expect(id).toMatch(/^sci-f1-c[1-9]-(bm|dlp)-q\d+$/);
       expect(path).toMatch(/^\/quiz-visuals\/science-f1\/[a-z-]+\.svg$/);
       const companion = id.replace(/-(?:bm|dlp)-/, id.includes("-bm-") ? "-dlp-" : "-bm-");
       expect(scienceF1QuizVisualById[companion]).toBe(path);
+    }
+  });
+
+  it("uses 21 paired diagram assets, including seven answer-neutral new scenarios", () => {
+    const paths = new Set(Object.values(scienceF1QuizVisualById));
+    expect(paths.size).toBe(21);
+    for (const path of paths) {
+      expect(path).toMatch(/\\.svg$/);
     }
   });
 
