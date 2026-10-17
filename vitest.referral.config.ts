@@ -9,6 +9,8 @@ export default defineConfig({
       "src/components/PartnerReferenceCapture.test.tsx",
       "src/lib/toyyibpay-response.test.ts",
       "src/lib/payment-return.test.ts",
+      "src/lib/payment-return-status.test.ts",
+      "src/routes/-payment-return.test.tsx",
       "src/lib/auth-return-to.test.ts",
     ],
   },

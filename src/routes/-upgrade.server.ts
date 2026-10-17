@@ -14,6 +14,7 @@ import type {
   SubscriptionOverview,
 } from "../lib/billing.types";
 import { getSupabaseServerClient } from "../lib/supabase.server";
+import { lookupPaymentReturn } from "../lib/payment-return-status.server";
 
 export type UpgradePlan = CheckoutPlan;
 
@@ -180,39 +181,7 @@ export const resendInvoiceEmail = createServerFn({ method: "POST" })
 
 export const getPaymentReturnStatus = createServerFn({ method: "POST" })
   .validator((input: unknown) => z.object({ paymentId: z.string().uuid() }).parse(input))
-  .handler(async ({ data }) => {
-    const { supabase, user } = await requireUser();
-    const payment = await supabase
-      .from("payment_transactions")
-      .select("id, plan, amount, currency, payment_status")
-      .eq("id", data.paymentId)
-      .eq("user_id", user.id)
-      .eq("provider", "toyyibpay")
-      .single();
-    if (payment.error) throw new Error("Payment was not found");
-    const invoice =
-      payment.data.payment_status === "successful"
-        ? await supabase
-            .from("invoices")
-            .select("invoice_number")
-            .eq("payment_transaction_id", payment.data.id)
-            .maybeSingle()
-        : { data: null, error: null };
-    if (invoice.error) throw invoice.error;
-    return {
-      paymentId: payment.data.id as string,
-      plan: payment.data.plan as "pro" | "premium",
-      amount: Number(payment.data.amount),
-      currency: payment.data.currency as string,
-      status: payment.data.payment_status as
-        | "pending"
-        | "successful"
-        | "failed"
-        | "cancelled"
-        | "refunded",
-      invoiceNumber: invoice.data?.invoice_number ?? null,
-    };
-  });
+  .handler(async ({ data }) => lookupPaymentReturn(getSupabaseServerClient(), data.paymentId));
 
 export const billingPlans = CHECKOUT_PLANS;
 export type { MockPaymentOutcome };
