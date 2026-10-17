@@ -63,10 +63,10 @@ export const scienceF1C6QuizzesDLP: QuizQuestion[] = [
     difficulty: "Easy",
     question: "Where are protons and neutrons found in an atom?",
     options: [
-      "Both are in the nucleus",
-      "Both move around the nucleus",
-      "Protons are in the nucleus; neutrons move around it",
-      "Neutrons are in the nucleus; protons move around it",
+      "Both are located inside the nucleus",
+      "Both are located outside the nucleus",
+      "Only protons are located in the nucleus",
+      "Only neutrons are located in the nucleus",
     ],
     answerIndex: 0,
     explanation: "The nucleus is at the centre of the atom and contains protons and neutrons.",
@@ -116,9 +116,9 @@ export const scienceF1C6QuizzesDLP: QuizQuestion[] = [
     question: "What is a molecule?",
     options: [
       "A neutral particle made of two or more atoms chemically combined",
-      "Only one type of atom",
-      "A physical mixture of two substances",
-      "A shell around an atom",
+      "A charged particle formed after an atom gains or loses electrons",
+      "A physical grouping of atoms that are not chemically bonded",
+      "The central region of an atom containing protons and neutrons",
     ],
     answerIndex: 0,
     explanation:
@@ -151,9 +151,9 @@ export const scienceF1C6QuizzesDLP: QuizQuestion[] = [
     question: "What is a compound?",
     options: [
       "A substance formed when two or more elements combine chemically",
-      "A substance mixed without reaction",
-      "A substance made of one atom only",
-      "A substance with no chemical bonds",
+      "A material formed when several elements are only mixed physically",
+      "A material consisting of one type of atom throughout the sample",
+      "A material with atoms that have no chemical bonds between them",
     ],
     answerIndex: 0,
     explanation: "A compound forms when two or more elements combine chemically.",
@@ -168,10 +168,10 @@ export const scienceF1C6QuizzesDLP: QuizQuestion[] = [
     question:
       "Which statement is most accurate about the classification of elements in the Periodic Table?",
     options: [
-      "Metals, non-metals and noble gases can be identified from their positions in the Periodic Table",
-      "All elements on the left side of the Periodic Table are non-metals",
-      "All elements that are gases are classified as noble gases",
-      "Elements and compounds are arranged together in the Periodic Table",
+      "Element positions help distinguish metals, non-metals and noble gases",
+      "All elements on the left of the table are classified as non-metals",
+      "All elements that exist as gases belong to the noble gas group",
+      "Both compounds and elements appear as entries in the Periodic Table",
     ],
     answerIndex: 0,
     explanation:
@@ -232,7 +232,12 @@ export const scienceF1C6QuizzesDLP: QuizQuestion[] = [
     difficulty: "Easy",
     question:
       "A substance has a shiny surface, can be hammered into shape and conducts electricity well. How should it most likely be classified?",
-    options: ["Non-metal", "Noble gas", "Metal", "Non-metal compound"],
+    options: [
+      "Non-metal",
+      "Noble gas",
+      "Metal",
+      "Compound",
+    ],
     answerIndex: 2,
     explanation:
       "A shiny surface, malleability and good electrical conductivity are common properties of metals.",
@@ -300,10 +305,10 @@ export const scienceF1C6QuizzesDLP: QuizQuestion[] = [
     difficulty: "Easy",
     question: "What does malleability mean?",
     options: [
-      "Can be hammered into shape without breaking",
-      "Can be drawn into wires",
-      "Can conduct electricity well",
-      "Has a shiny surface",
+      "Can be hammered into shapes without breaking",
+      "Can be stretched into thin wires without breaking",
+      "Can transfer electric current through a solid",
+      "Has a surface that reflects light strongly",
     ],
     answerIndex: 0,
     explanation:
@@ -318,10 +323,10 @@ export const scienceF1C6QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     question: "What is a mixture?",
     options: [
-      "A substance made of two or more elements or compounds mixed physically",
-      "A substance formed only through chemical bonds",
-      "Only one type of atom",
-      "A substance separated only by electrolysis",
+      "A material formed by physically mixing two or more substances",
+      "A material formed by chemically bonding different elements",
+      "A material consisting entirely of one kind of atom",
+      "A material that requires chemical reactions to separate it",
     ],
     answerIndex: 0,
     explanation:

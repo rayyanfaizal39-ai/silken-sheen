@@ -54,10 +54,10 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     question: "What is the definition of Science?",
     options: [
-      "The study of mathematics and numbers",
+      "A discipline using calculations alone to predict every natural phenomenon",
       "A discipline involving systematic observations and experiments on natural phenomena",
-      "The study of history and past events",
-      "A discipline that only studies living things",
+      "A discipline reconstructing past events through written historical records",
+      "A discipline investigating only living organisms and their characteristics",
     ],
     answerIndex: 1,
     explanation:
@@ -170,10 +170,10 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Hard",
     question: "A group's repeated readings do not support its hypothesis. Another group obtained the expected pattern. Which decision best preserves honest evidence and a valid conclusion?",
     options: [
-      "Replace the readings with the other group's data before concluding",
+      "Replace the readings with another group's results so the conclusion matches the expected pattern",
       "Keep the original readings, check the method and repeat measurements, then judge the hypothesis using the data",
-      "Keep only the readings that support the hypothesis",
-      "Accept the hypothesis because it was written before the experiment"
+      "Keep only readings supporting the prediction and exclude the others without checking the method",
+      "Accept the original hypothesis because it was written before any experimental readings were collected",
     ],
     answerIndex: 1,
     explanation: "Honesty requires retaining the actual readings. Checking and repeating the method helps validate data; the conclusion must follow the evidence rather than the expected answer."
@@ -285,10 +285,10 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     question: "A pupil investigates how pendulum length affects the time for ten oscillations. Which hypothesis can be tested by changing the length and measuring that time?",
     options: [
-      "The pendulum bob is made of metal",
-      "Ten oscillations are counted in every trial",
-      "A stopwatch is used to measure time",
-      "As pendulum length increases, the time for ten oscillations increases"
+      "The pendulum bob is made of the same type of metal throughout all the experimental trials",
+      "Exactly ten oscillations are counted in the same way for every trial in the investigation",
+      "A stopwatch is used to record the duration of ten oscillations carefully in each trial",
+      "As pendulum length increases, the time for ten oscillations increases",
     ],
     answerIndex: 3,
     explanation: "A hypothesis states a testable relationship: length is the manipulated variable and time for ten oscillations is the responding variable."
@@ -550,10 +550,10 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     question: "Apakah definisi Sains?",
     options: [
-      "Kajian tentang matematik dan nombor",
+      "Disiplin yang menggunakan pengiraan sahaja untuk meramal fenomena alam",
       "Disiplin yang melibatkan pemerhatian dan eksperimen sistematik terhadap fenomena alam",
-      "Kajian tentang sejarah dan peristiwa lampau",
-      "Disiplin yang hanya mengkaji benda hidup",
+      "Disiplin yang mengkaji peristiwa lampau berdasarkan rekod sejarah",
+      "Disiplin yang hanya mengkaji organisma hidup dan ciri-cirinya",
     ],
     answerIndex: 1,
     explanation:
@@ -666,10 +666,10 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Hard",
     question: "Bacaan ulangan sebuah kumpulan tidak menyokong hipotesisnya. Kumpulan lain memperoleh pola yang dijangka. Keputusan manakah paling baik mengekalkan bukti yang jujur dan kesimpulan yang sah?",
     options: [
-      "Gantikan bacaan dengan data kumpulan lain sebelum membuat kesimpulan",
+      "Gantikan bacaan dengan data kumpulan lain supaya kesimpulan sepadan dengan pola yang dijangka",
       "Kekalkan bacaan asal, semak kaedah dan ulang pengukuran, kemudian nilai hipotesis berdasarkan data",
-      "Kekalkan hanya bacaan yang menyokong hipotesis",
-      "Terima hipotesis kerana ditulis sebelum eksperimen"
+      "Simpan hanya bacaan yang menyokong ramalan tanpa menyemak bacaan lain terlebih dahulu",
+      "Terima hipotesis asal kerana hipotesis itu ditulis sebelum sebarang bacaan diambil",
     ],
     answerIndex: 1,
     explanation: "Kejujuran memerlukan bacaan sebenar dikekalkan. Semakan kaedah dan pengukuran ulangan membantu mengesahkan data; kesimpulan mesti berdasarkan bukti, bukan jawapan yang dijangka."
@@ -781,10 +781,10 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     question: "Seorang murid menyiasat kesan panjang bandul terhadap masa untuk sepuluh ayunan. Hipotesis manakah boleh diuji dengan mengubah panjang dan mengukur masa itu?",
     options: [
-      "Ladung bandul diperbuat daripada logam",
-      "Sepuluh ayunan dikira dalam setiap percubaan",
-      "Jam randik digunakan untuk mengukur masa",
-      "Semakin bertambah panjang bandul, semakin bertambah masa untuk sepuluh ayunan"
+      "Ladung bandul yang digunakan dalam semua percubaan diperbuat daripada logam yang sama",
+      "Sebanyak sepuluh ayunan dikira menggunakan kaedah yang sama dalam setiap percubaan",
+      "Jam randik digunakan untuk merekod masa sepuluh ayunan dengan teliti pada setiap percubaan",
+      "Semakin bertambah panjang bandul, semakin bertambah masa untuk sepuluh ayunan",
     ],
     answerIndex: 3,
     explanation: "Hipotesis menyatakan hubungan yang boleh diuji: panjang ialah pemboleh ubah dimanipulasikan dan masa untuk sepuluh ayunan ialah pemboleh ubah bergerak balas."

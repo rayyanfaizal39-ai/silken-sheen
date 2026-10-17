@@ -89,10 +89,10 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
     question:
       "Jika salah satu daripada tiga syarat pembakaran disingkirkan, apakah yang akan berlaku?",
     options: [
-      "Pembakaran akan berterusan selagi salah satu syarat masih tersedia",
-      "Pembakaran akan berhenti",
-      "Pembakaran akan menghasilkan sendiri syarat yang telah disingkirkan",
-      "Pembakaran akan menjadi lebih cepat kerana kurang syarat diperlukan",
+      "Pembakaran berterusan kerana bahan api sahaja mencukupi",
+      "Pembakaran berhenti kerana ketiga-tiga syarat diperlukan",
+      "Pembakaran menghasilkan sendiri syarat yang tiada",
+      "Pembakaran menjadi lebih cepat apabila satu syarat tiada",
     ],
     answerIndex: 1,
     explanation:
@@ -356,7 +356,12 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question: "Pencemar manakah boleh menyebabkan hujan asid?",
-    options: ["Sulfur dioksida", "Helium", "Neon", "Oksigen"],
+    options: [
+      "Sulfur dioksida",
+      "Karbon monoksida",
+      "Nitrogen molekul",
+      "Oksigen molekul",
+    ],
     answerIndex: 0,
     explanation: "Sulfur dioksida boleh melarut dalam air hujan dan membentuk hujan asid.",
   },

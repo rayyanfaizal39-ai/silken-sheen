@@ -99,7 +99,12 @@ export const scienceF1C9QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "Which substance can damage the ozone layer?",
-    options: ["CFC", "Oxygen", "Nitrogen", "Water vapour"],
+    options: [
+      "CFCs",
+      "Oxygen gas",
+      "Nitrogen gas",
+      "Water vapour",
+    ],
     answerIndex: 0,
     explanation: "CFC can thin and damage the ozone layer.",
   },

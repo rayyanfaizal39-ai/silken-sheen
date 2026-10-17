@@ -11,9 +11,9 @@ export const scienceF1C5QuizzesDLP: QuizQuestion[] = [
     question: "What is matter?",
     options: [
       "A substance that has mass and occupies space",
-      "A substance without mass",
-      "A form of light",
-      "A type of sound",
+      "A substance with volume but no measurable mass",
+      "A form of energy that has neither mass nor volume",
+      "A form of sound that does not occupy any space",
     ],
     answerIndex: 0,
     explanation: "Matter is any substance that has mass and occupies space.",
@@ -188,9 +188,9 @@ export const scienceF1C5QuizzesDLP: QuizQuestion[] = [
     question: "What is diffusion?",
     options: [
       "Movement of particles from high concentration to low concentration",
-      "Change of solid into liquid",
-      "An object sinking in water",
-      "Production of a new substance",
+      "Movement of particles from low concentration to high concentration",
+      "Movement of particles only when a substance changes its state",
+      "Movement of particles caused solely by a change in pressure",
     ],
     answerIndex: 0,
     explanation:
@@ -367,7 +367,12 @@ export const scienceF1C5QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     question:
       "100 g of water is completely frozen into ice without any substance entering or leaving the container. What is the mass of the ice?",
-    options: ["Less than 100 g", "More than 100 g", "0 g", "100 g"],
+    options: [
+      "Less than 100 g",
+      "More than 100 g",
+      "Exactly 0 g",
+      "Exactly 100 g",
+    ],
     answerIndex: 3,
     explanation:
       "Mass remains unchanged during a physical change as long as no matter enters or leaves the system.",

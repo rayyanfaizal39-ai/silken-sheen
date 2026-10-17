@@ -38,7 +38,12 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "What is the speed of light?",
-    options: ["3.0 x 10^8 m/s", "300 m/s", "3.0 x 10^3 m/s", "30 m/s"],
+    options: [
+      "3.0 x 10^8 m/s",
+      "3.0 x 10^2 m/s",
+      "3.0 x 10^3 m/s",
+      "3.0 x 10^1 m/s",
+    ],
     answerIndex: 0,
     explanation: "The speed of light is about 3.0 x 10^8 metres per second.",
   },
@@ -163,10 +168,10 @@ export const scienceF1C8QuizzesDLP: QuizQuestion[] = [
     difficulty: "Easy",
     question: "Why are convex mirrors commonly used as vehicle side mirrors?",
     options: [
-      "They provide a wider field of view",
-      "They produce enlarged images so that object distances can be measured directly",
-      "They focus light to produce real images in front of the mirrors",
-      "They produce images of the same size as the objects so the whole area behind can be seen",
+      "They provide a much wider field of view",
+      "They produce greatly magnified upright images",
+      "They form real images on a projecting screen",
+      "They preserve the exact size of distant objects",
     ],
     answerIndex: 0,
     explanation:

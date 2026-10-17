@@ -38,7 +38,12 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Easy",
     question: "Berapakah kelajuan cahaya?",
-    options: ["3.0 x 10^8 m/s", "300 m/s", "3.0 x 10^3 m/s", "30 m/s"],
+    options: [
+      "3.0 x 10^8 m/s",
+      "3.0 x 10^2 m/s",
+      "3.0 x 10^3 m/s",
+      "3.0 x 10^1 m/s",
+    ],
     answerIndex: 0,
     explanation: "Kelajuan cahaya ialah kira-kira 3.0 x 10^8 meter sesaat.",
   },
@@ -452,10 +457,10 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     question: "Fenomena manakah paling berkaitan dengan penyebaran cahaya?",
     options: [
-      "Pembentukan pelangi",
-      "Pembentukan imej dalam cermin satah",
-      "Penyedut minuman kelihatan bengkok dalam air",
-      "Langit kelihatan biru pada waktu siang",
+      "Pelangi yang terhasil di langit selepas hujan",
+      "Imej yang terbentuk pada cermin satah",
+      "Penyedut minuman yang kelihatan bengkok",
+      "Langit yang kelihatan biru pada waktu siang",
     ],
     answerIndex: 0,
     explanation:
