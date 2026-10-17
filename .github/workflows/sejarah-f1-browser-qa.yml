@@ -22,9 +22,11 @@ jobs:
           node-version: "22"
       - name: Install mobile browser tooling
         run: |
-          npm ci --ignore-scripts --no-audit --no-fund
+          cd scripts
+          npm init -y >/dev/null
           npm install --no-save --no-package-lock --ignore-scripts --no-audit --no-fund playwright@1.56.1
           npx playwright install --with-deps chromium
+          cd ..
       - name: Inspect Cloudflare Sejarah mobile quiz flow
         run: node scripts/qa-sejarah-f1-mobile.mjs
       - name: Preserve QA screenshots and results
