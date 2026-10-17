@@ -35,6 +35,12 @@ Diagrams provide optional context, never the only source of facts. SVGs are iner
 
 Images resolve **in the quiz view only**, not the quiz bank or registry: IDs, stored options, XP, progress and answer shuffling remain canonical. Both fullscreen and alternative quiz layouts use the same mapping. Chapter 7 was not given a diagram: a labelled examination timeline would reveal the correct answer on its sequence MCQs.
 
+## QA follow-up
+
+- Live GitHub Actions were added to run all Sejarah Form 1 regression tests and the production build; initial checks identified stale historical regression assertions, which were updated to the current quiz route contract. Full results depend on the latest run.
+- Re-rendered three SVG illustrations with CairoSVG for direct visual inspection. The archaeology illustration was refined from an ambiguous leaf/cluster shape to a recognisable seashell and pollen grains, matching its accessible description and the textbook context. This is **SVG render QA**, not a signed-in desktop or mobile browser session.
+- Cloudflare Pages is the actual deployment target; a separate Vercel check may still report failure and requires Vercel-specific logs to diagnose.
+
 ## Release gates — not yet signed off
 
 - Added focused Vitest coverage for all 240 live records, length-ratio guard, distinct options, chapter identity, image file presence and accessibility descriptions.
