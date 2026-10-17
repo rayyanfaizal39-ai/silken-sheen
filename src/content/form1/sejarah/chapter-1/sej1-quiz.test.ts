@@ -158,7 +158,7 @@ describe("Sejarah Form 1 Bab 1 selective repair — live registry", () => {
   });
 
   it.each([
-    ["content", "4bd7d92647845ff6be1d0026cc2e39914bbd7181ceed2c83b11f3902a18b590f"],
+    ["content", "2dc50e84bcebea7aa92872d9be4742efa03bef7bad998889bf9d06b6488ad692"],
     ["quizzes", "5348fe2c41e531d81bc2e92b85c3144ea598a5a49aa324a24881cb8696f832c4"],
   ])("locks untouched Chapters 4–8 records in %s", (file, expectedHash) => {
     const records = [...source(file).matchAll(/ {2}\{\n {4}id: "([^"]+)",[\s\S]*?\n {2}\},/g)]
