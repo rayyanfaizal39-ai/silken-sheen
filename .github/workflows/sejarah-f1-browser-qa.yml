@@ -1,0 +1,36 @@
+name: Sejarah Form 1 mobile browser QA
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/sejarah-f1-browser-qa.yml"
+      - "scripts/qa-sejarah-f1-mobile.mjs"
+      - "src/content/form1/sejarah/**"
+      - "src/routes/quizzes.tsx"
+      - "public/quiz-visuals/sejarah-f1/**"
+
+permissions:
+  contents: read
+
+jobs:
+  mobile-browser-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install mobile browser tooling
+        run: |
+          npm ci --ignore-scripts --no-audit --no-fund
+          npm install --no-save --no-package-lock --ignore-scripts --no-audit --no-fund playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Inspect Cloudflare Sejarah mobile quiz flow
+        run: node scripts/qa-sejarah-f1-mobile.mjs
+      - name: Preserve QA screenshots and results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sejarah-f1-mobile-screenshots
+          path: sejarah-mobile-qa/
+          if-no-files-found: warn
