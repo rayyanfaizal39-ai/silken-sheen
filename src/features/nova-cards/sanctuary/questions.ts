@@ -31,6 +31,6 @@ export const ACADEMY_LEARNING_QUESTIONS: LearningQuizQuestion[] = QUESTIONS.map(
   question: q.label,
   options: q.options.map((text, index) => ({
     text,
-    element: (["Water", "Solar", "Astral"] as const)[index],
+    element: (["Water", "Solar", "Astral"] as const)[index % 3],
   })),
 }));

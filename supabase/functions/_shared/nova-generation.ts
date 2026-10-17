@@ -1,3 +1,4 @@
+import { validNovaAnswer } from "./nova-answers.ts";
 // Provider-neutral contracts, also exercised by CI. No secrets or network at import time.
 export type Identity = {
   version: "nova-identity-v1";
@@ -51,7 +52,7 @@ export function artPrompt(r: GenerationRequest): string {
   if (
     identity.version !== "nova-identity-v1" ||
     identity.answers.length !== 12 ||
-    identity.answers.some((a) => !Number.isInteger(a) || a < 0 || a > 2) ||
+    identity.answers.some((a, i) => !validNovaAnswer(i, a)) ||
     !Number.isInteger(r.stage) ||
     r.stage < 1 ||
     r.stage > 5 ||
@@ -77,7 +78,7 @@ ${
     ? r.candidate === "a"
       ? "Composition A: calm three-quarter portrait, warm curious gaze toward viewer, graceful poised stance, magic cradled close."
       : "Composition B: dynamic full-body diagonal composition, playful delighted expression, looking over shoulder, flowing elemental magic leading outward. Clearly different pose and framing from a calm portrait."
-    : "EDIT the supplied approved images: image 1 is the previous stage; image 2 is the permanent Origin anchor. Preserve exact species, recognizable face structure, eye design, main palette, signature markings and personality. Evolve the same character, never substitute a new animal. Phoenix: more elegant developed wings and flowing flame feathers. Fox: richer fluffy tails, ears and water/celestial detail. Friendly and approachable at every stage."
+    : "EDIT the supplied approved images: image 1 is the previous stage; image 2 is the permanent Origin anchor. Preserve exact species, recognizable face structure, eye design, main palette, signature markings and personality. Evolve the same character, never substitute a new animal. Phoenix: more elegant developed wings and flowing flame feathers. Magical Fox: richer fluffy tails, ears and water/celestial detail. Dragon: refined rounded horns, developed membrane wings, scales and a flowing tail. Lion: fuller regal mane, rounded ears, strong gentle paws and a tufted tail. Unicorn: elegant spiral horn, flowing mane, feathered hooves and a luminous tail. Apply only the selected species' anatomy. Friendly and approachable at every stage."
 }
 Avoid text, names, logos, typography, watermarks, borders, QR, barcodes, card frames, horror,
 aggression, uncanny human face, flat vector cartoon, muddy colours, extra limbs, distorted

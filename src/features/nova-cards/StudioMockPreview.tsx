@@ -54,9 +54,10 @@ export default function StudioMockPreview({ profile }: { profile: "rayyan" | "mi
         candidates: (["a", "b"] as const).map((candidate) => ({
           candidate,
           url:
-            profile === "mia"
+            profile === "mia" &&
+            JSON.stringify(state.identity?.traits) === JSON.stringify(card.traits)
               ? SOURCE_FOX_ARTWORK[candidate === "a" ? 0 : 1]
-              : svgUrl(companionSvg(card.traits, candidate, 1)),
+              : svgUrl(companionSvg(state.identity?.traits ?? card.traits, candidate, 1)),
         })),
       };
     };

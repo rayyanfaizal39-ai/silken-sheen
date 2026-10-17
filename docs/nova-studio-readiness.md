@@ -26,6 +26,13 @@ fine organic anatomy at the requested quality.
 private Storage bucket. It also creates owner-only draft RPCs, a service-only
 candidate queue, batches, request ledger, budget settings and audit events.
 
+The additional review-only `20261017102224_nova_creature_variety.sql` expands
+creatures to Phoenix, Magical Fox, Dragon, Lion and Unicorn, and adds one fourth
+option to each other question. Code 2 remains legacy Phoenix; new species use
+3/4/5. Validation widens by question position, with matching shared app/worker
+validation. Existing rows and immutable identities are unchanged. This migration
+is tested only in local PGlite and must precede any future expanded-choice rollout.
+
 All twelve answers are saved after each choice with an optimistic revision.
 Concurrent edits from another device fail visibly rather than overwrite a newer
 draft. Failed saves do not advance the quiz. Submission uses the saved draft;
@@ -140,7 +147,7 @@ session; never expose service-role credentials in a browser or admin UI.
 
 ## Staging and production approval checklist
 
-1. Review both unapplied migrations against the existing subscription/XP schema.
+1. Review all three unapplied migrations against the existing subscription/XP schema.
    Apply only to a disposable/staging database first. Run RLS tests and Supabase
    security/performance advisors there. Local PGlite tests do not replace a real
    Storage, Auth, cron and Edge runtime integration test.
@@ -154,7 +161,7 @@ session; never expose service-role credentials in a browser or admin UI.
 4. Review `supabase/nova-scheduler.review.sql`, store matching Vault secrets and
    install its ten-minute schedule in staging after approval. Overlapping ticks
    are protected by database claims and collection leases. No schedule is created
-   by either migration. Inspect local worker logs without logging secrets/prompts.
+   by these migrations. Inspect local worker logs without logging secrets/prompts.
 5. Set an approved small cap, retain $5+ per-attempt reservation, then enable
    database and server flags **only after explicit paid-test approval**. Run the
    fictional Phoenix/Fox profiles through the actual provider in staging, inspect

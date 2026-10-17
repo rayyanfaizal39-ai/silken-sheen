@@ -13,6 +13,8 @@ import {
   traitsFromAnswers,
   validPublicId,
   validNovaAnswer,
+  answerValue,
+  answerOptionIndex,
 } from "./model";
 import { companionSvg } from "./artwork";
 import { barcodeSvg, barcodeSymbols, qrDataUrl } from "./codes";
@@ -64,8 +66,8 @@ describe("Nova permanent identities and scannable codes", () => {
 });
 
 describe("Nova creation and XP compatibility", () => {
-  it("shows two unique creatures while preserving the retired third Phoenix answer byte for byte", () => {
-    expect(QUESTIONS[1].options).toEqual(["Phoenix", "Magical Fox"]);
+  it("shows five unique creatures while preserving the retired third Phoenix answer byte for byte", () => {
+    expect(QUESTIONS[1].options).toEqual(["Phoenix", "Magical Fox", "Dragon", "Lion", "Unicorn"]);
     const legacy = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2];
     const before = [...legacy];
     const canonical = [...legacy];
@@ -74,14 +76,15 @@ describe("Nova creation and XP compatibility", () => {
     expect(traitsFromAnswers(legacy).creature).toBe("Phoenix");
     expect(legacy).toEqual(before);
     expect(validNovaAnswer(1, 2)).toBe(true);
-    expect(validNovaAnswer(1, 3)).toBe(false);
+    expect(validNovaAnswer(1, 3)).toBe(true);
+    expect(validNovaAnswer(1, 6)).toBe(false);
     expect(validNovaAnswer(1, -1)).toBe(false);
     expect(validNovaAnswer(12, 0)).toBe(false);
   });
   it("requires all twelve answers and preserves all trait dimensions", () => {
     expect(QUESTIONS).toHaveLength(12);
     expect(() => traitsFromAnswers([])).toThrow();
-    expect(() => traitsFromAnswers(Array(12).fill(3))).toThrow();
+    expect(() => traitsFromAnswers(Array(12).fill(4))).toThrow();
     expect(DEMO_CARDS[0].traits).toMatchObject({
       creature: "Phoenix",
       element: "Fire",
@@ -96,6 +99,50 @@ describe("Nova creation and XP compatibility", () => {
       colours: "Sapphire Blue / Gold",
     });
   });
+  it("round trips every visible answer and supports the fourth trait options", () => {
+    for (let question = 0; question < 12; question++) {
+      expect(QUESTIONS[question].options).toHaveLength(question === 1 ? 5 : 4);
+      for (let option = 0; option < QUESTIONS[question].options.length; option++) {
+        const stored = answerValue(question, option);
+        expect(validNovaAnswer(question, stored)).toBe(true);
+        expect(answerOptionIndex(question, stored)).toBe(option);
+      }
+      expect(validNovaAnswer(question, question === 1 ? 6 : 4)).toBe(false);
+    }
+    expect(traitsFromAnswers(Array(12).fill(3))).toMatchObject({
+      personality: "Guardian",
+      creature: "Dragon",
+      element: "Wind",
+      colours: "Emerald Green / Silver",
+      eyes: "Emerald Aurora Eyes",
+      bond: "Inspire each other",
+    });
+  });
+  for (const [code, species, anatomy] of [
+    [3, "Dragon", "membrane-wings"],
+    [4, "Lion", "lion-mane"],
+    [5, "Unicorn", "unicorn-horn-and-mane"],
+  ] as const)
+    it(`renders distinct ${species} anatomy at every earned stage`, async () => {
+      const answers = Array(12).fill(3);
+      answers[1] = code;
+      const traits = traitsFromAnswers(answers);
+      expect(traits.creature).toBe(species);
+      const images = new Set<string>();
+      for (let stage = 1; stage <= 5; stage++) {
+        const svg = companionSvg(traits, "a", stage);
+        expect(svg).toContain(`data-anatomy="${anatomy}"`);
+        expect(svg).toContain("#6df2b4");
+        const { data, info } = await sharp(Buffer.from(svg))
+          .raw()
+          .toBuffer({ resolveWithObject: true });
+        expect(info.width).toBe(600);
+        expect(data.byteLength).toBeGreaterThan(0);
+        images.add(svg);
+      }
+      expect(images.size).toBe(5);
+      expect(companionSvg(traits, "a")).not.toBe(companionSvg(traits, "b"));
+    });
   it("has exactly five earned stages without altering the input XP or rarity", () => {
     expect(STAGES).toHaveLength(5);
     STAGES.forEach((s, i) => {

@@ -1,6 +1,6 @@
 import { AudioControls } from "./AudioControls";
 import { QuestionOptions } from "./QuestionOptions";
-import { answerOptionIndex } from "../model";
+import { answerOptionIndex, answerValue } from "../model";
 import React, { useState, useEffect, useRef } from "react";
 import { ACADEMY_LEARNING_QUESTIONS, LearningQuizQuestion } from "./questions";
 import { soundscape } from "./audio";
@@ -95,7 +95,7 @@ export const CinematicFlightWorld: React.FC<CinematicFlightWorldProps> = ({
     if (!reducedMotion) targetZRef.current += 900;
 
     // Save answer
-    const saved = await onSelectAnswer(currentQ.id, idx);
+    const saved = await onSelectAnswer(currentQ.id, answerValue(currentQuestionIndex, idx));
     if (!mounted.current) return;
     if (!saved) {
       setIsTraveling(false);

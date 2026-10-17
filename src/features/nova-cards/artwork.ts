@@ -1,4 +1,5 @@
 import { awakenedAnatomy } from "./awakened-artwork";
+import { speciesAnatomy } from "./species-artwork";
 import type { NovaTraits } from "./model";
 import { xml } from "./model";
 
@@ -20,17 +21,21 @@ function renderCompanion(traits: NovaTraits, variant: "a" | "b", stage: number, 
     throw new Error("Invalid evolution stage");
   const artStage = awakened ? 2 : [1, 3, 5, 7, 9][stage - 1];
   const fox = traits.creature === "Magical Fox";
-  const palette = traits.colours.startsWith("Sapphire")
-    ? ["#113c9b", "#4ba9ed", "#f4cf75"]
-    : traits.colours.startsWith("Pearl")
-      ? ["#71487f", "#e9aece", "#ffdfd6"]
-      : ["#17132e", "#8652df", "#e3b36c"];
+  const palette = traits.colours.startsWith("Emerald")
+    ? ["#103d36", "#55d6ad", "#c8e1e8"]
+    : traits.colours.startsWith("Sapphire")
+      ? ["#113c9b", "#4ba9ed", "#f4cf75"]
+      : traits.colours.startsWith("Pearl")
+        ? ["#71487f", "#e9aece", "#ffdfd6"]
+        : ["#17132e", "#8652df", "#e3b36c"];
   const [dark, light, gold] = palette;
-  const eye = traits.eyes.startsWith("Cosmic")
-    ? "#ad9bff"
-    : traits.eyes.startsWith("Ocean")
-      ? "#62e9ff"
-      : "#f8d882";
+  const eye = traits.eyes.startsWith("Emerald")
+    ? "#6df2b4"
+    : traits.eyes.startsWith("Cosmic")
+      ? "#ad9bff"
+      : traits.eyes.startsWith("Ocean")
+        ? "#62e9ff"
+        : "#f8d882";
   const stars = Array.from(
     { length: 55 },
     (_, i) =>
@@ -84,10 +89,15 @@ function renderCompanion(traits: NovaTraits, variant: "a" | "b", stage: number, 
         `<ellipse cx="${x}" cy="279" rx="${variant === "a" ? 21 : 17}" ry="25" fill="#050817"/><ellipse cx="${x}" cy="278" rx="14" ry="19" fill="${eye}"/><ellipse cx="${x + 2}" cy="280" rx="7" ry="13" fill="#10112d"/><circle cx="${x - 5}" cy="270" r="6" fill="white"/><circle cx="${x + 7}" cy="285" r="2.5" fill="white"/>`,
     )
     .join("");
-  const marking = traits.marking.startsWith("A crescent")
-    ? `<path d="M307 230 A13 13 0 1 1 294 211 A10 10 0 0 0 307 230" fill="${gold}"/>`
-    : `<path d="M300 211 L304 222 L316 226 L304 230 L300 242 L296 230 L284 226 L296 222Z" fill="${gold}"/>`;
-  const anatomy = awakened ? awakenedAnatomy(fox, light, dark, gold) : null;
+  const marking =
+    traits.marking === "A shimmering spiral"
+      ? `<path d="M300 234 c-20 0 -20 -25 0 -25 c14 0 14 18 0 18 c-7 0 -7 -9 0 -9" fill="none" stroke="${gold}" stroke-width="3"/>`
+      : traits.marking.startsWith("A crescent")
+        ? `<path d="M307 230 A13 13 0 1 1 294 211 A10 10 0 0 0 307 230" fill="${gold}"/>`
+        : `<path d="M300 211 L304 222 L316 226 L304 230 L300 242 L296 230 L284 226 L296 222Z" fill="${gold}"/>`;
+  const anatomy =
+    speciesAnatomy(traits.creature, light, dark, gold, awakened ? 2 : stage, variant) ??
+    (awakened ? awakenedAnatomy(fox, light, dark, gold) : null);
   const body = `<ellipse cx="300" cy="389" rx="${variant === "a" ? 83 : 67}" ry="103" fill="url(#body)" stroke="${gold}" stroke-width="2"/><path d="M258 346 Q300 367 342 346 Q345 430 300 457 Q255 430 258 346" fill="${gold}" opacity=".75"/>`;
   const face = `${anatomy?.ears ?? ears}<ellipse cx="300" cy="279" rx="${variant === "a" ? 101 : 82}" ry="${variant === "a" ? 86 : 97}" fill="url(#body)" stroke="${light}" stroke-width="3"/>${crest}${marking}${eyes}<path d="M284 307 Q300 ${fox ? 320 : 339} 316 307 Q300 301 284 307" fill="${gold}"/>${fox ? '<path d="M300 317 Q288 335 278 325 M300 317 Q312 335 322 325" fill="none" stroke="#d8bbdf" stroke-width="2"/>' : ""}`;
   const feet = `<ellipse cx="248" cy="476" rx="32" ry="19" fill="${dark}" stroke="${gold}" stroke-width="2"/><ellipse cx="352" cy="476" rx="32" ry="19" fill="${dark}" stroke="${gold}" stroke-width="2"/>`;

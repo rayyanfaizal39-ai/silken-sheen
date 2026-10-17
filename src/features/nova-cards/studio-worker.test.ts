@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import sharp from "sharp";
 import { beforeAll, describe, expect, it, vi } from "vitest";
-import { DEMO_CARDS } from "./model";
+import { DEMO_CARDS, traitsFromAnswers } from "./model";
 import { companionSvg } from "./artwork";
 import {
   artPrompt,
@@ -98,6 +98,18 @@ function memoryStore() {
   return { store, current, requests, outcomes, uploaded };
 }
 describe("Nova Batch provider contracts and crash safety", () => {
+  it("accepts all expanded identities without issuing a provider request", () => {
+    for (const code of [0, 1, 2, 3, 4, 5]) {
+      const r = request("a");
+      const answers = Array(12).fill(3);
+      answers[1] = code;
+      r.identity = { ...r.identity, answers, traits: { ...traitsFromAnswers(answers) } };
+      expect(artPrompt(r)).toContain(`creature: ${r.identity.traits.creature}`);
+      expect(artPrompt({ ...r, stage: 2 })).toContain("Preserve exact species");
+      r.identity.answers[2] = 4;
+      expect(() => artPrompt(r)).toThrow(/Invalid permanent identity/);
+    }
+  });
   it("builds two distinct n=1 Origin JSONL requests without student PII", async () => {
     const requests = [request("a"), request("b")];
     for (const profile of [0, 1]) {

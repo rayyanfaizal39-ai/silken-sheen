@@ -12,7 +12,7 @@ vi.mock("./studio.server", () => ({
 vi.mock("./StudioCompletedCard", () => ({ default: () => <p>Saved collectible</p> }));
 import { StudioExperience, type StudioApi } from "./StudioPage";
 import { AWAKENING_TITLE, ARRIVED, studioStatus, type StudioState } from "./studio-model";
-import { DEMO_CARDS, QUESTIONS, traitsFromAnswers } from "./model";
+import { DEMO_CARDS, QUESTIONS, traitsFromAnswers, answerOptionIndex } from "./model";
 const env = globalThis as typeof globalThis & { IS_REACT_ACT_ENVIRONMENT?: boolean };
 env.IS_REACT_ACT_ENVIRONMENT = true;
 beforeAll(() => {
@@ -104,12 +104,18 @@ async function click(host: HTMLElement, text: string) {
   await act(async () => button!.click());
 }
 describe("Standalone Nova Studio journey", () => {
-  it("renders exactly two accessible text-only creature choices", async () => {
+  it("renders exactly five accessible text-only creature choices", async () => {
     const h = harness();
     h.set({ draft: { answers: [0], username: "Rayyan", revision: 1 } });
     const { host } = await h.mount();
     const choices = [...host.querySelectorAll<HTMLButtonElement>("[data-nova-answer]")];
-    expect(choices.map((c) => c.textContent)).toEqual(["Phoenix", "Magical Fox"]);
+    expect(choices.map((c) => c.textContent)).toEqual([
+      "Phoenix",
+      "Magical Fox",
+      "Dragon",
+      "Lion",
+      "Unicorn",
+    ]);
     expect(choices.every((c) => c.type === "button" && !c.disabled)).toBe(true);
     expect(choices.every((c) => !c.querySelector("img, svg, canvas"))).toBe(true);
     expect(choices.every((c) => c.getAttribute("aria-pressed") === "false")).toBe(true);
@@ -126,12 +132,25 @@ describe("Standalone Nova Studio journey", () => {
     expect(h.get().identity?.answers).toEqual(answers);
     expect(h.get().identity?.traits.creature).toBe("Phoenix");
   });
-  for (const profile of [0, 1])
-    it(`saves all 12 ${DEMO_CARDS[profile].traits.creature} choices across remount, reveals two and permanently confirms one`, async () => {
+  for (const [creatureCode, creature] of [
+    [0, "Phoenix"],
+    [1, "Magical Fox"],
+    [3, "Dragon"],
+    [4, "Lion"],
+    [5, "Unicorn"],
+  ] as const)
+    it(`saves all 12 ${creature} choices across remount, reveals two and permanently confirms one`, async () => {
+      const profile = creatureCode === 1 ? 1 : 0;
       const h = harness(profile);
       let { host, root } = await h.mount();
       await click(host, "Skip Intro");
-      const answers = profile ? [0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0] : Array(12).fill(0);
+      const answers =
+        creatureCode >= 3
+          ? Array(12).fill(3)
+          : profile
+            ? [0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0]
+            : Array(12).fill(0);
+      answers[1] = creatureCode;
       for (let i = 0; i < 12; i++) {
         expect(host.querySelector("h1")?.textContent).toBe(QUESTIONS[i].label);
         const options = host.querySelectorAll<HTMLButtonElement>("[data-nova-answer]");
@@ -139,7 +158,7 @@ describe("Standalone Nova Studio journey", () => {
         expect([...options].every((option) => !option.querySelector("img, svg, canvas"))).toBe(
           true,
         );
-        await act(async () => options[answers[i]].click());
+        await act(async () => options[answerOptionIndex(i, answers[i])].click());
         if (i === 4) {
           await act(async () => root.unmount());
           roots.splice(roots.indexOf(root), 1);
@@ -147,11 +166,12 @@ describe("Standalone Nova Studio journey", () => {
         }
       }
       expect(h.get().draft.answers).toEqual(answers);
-      expect(host.textContent).toContain(DEMO_CARDS[profile].traits.creature);
+      expect(host.textContent).toContain(creature);
       await click(host, "Confirm my identity");
       expect(h.api.submit).not.toHaveBeenCalled();
       await click(host, "SUMMON MY NOVA");
       expect(h.api.submit).toHaveBeenCalledTimes(1);
+      expect(h.get().identity?.traits).toEqual(traitsFromAnswers(answers));
       expect(host.textContent).toContain(AWAKENING_TITLE);
       expect(host.querySelectorAll(".sanctuary-candidate-art>img:first-child")).toHaveLength(0);
       h.set({

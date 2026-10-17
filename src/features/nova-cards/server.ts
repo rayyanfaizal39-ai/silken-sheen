@@ -2,7 +2,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { setResponseHeader } from "@tanstack/start-server-core";
 import { z } from "zod";
 import { getSupabaseServerClient } from "@/lib/supabase.server";
-import { DEMO_CARDS, validPublicId, type NovaCard } from "./model";
+import { DEMO_CARDS, validPublicId, validNovaAnswer, type NovaCard } from "./model";
 
 function client() {
   setResponseHeader("Cache-Control", "private, no-store, max-age=0");
@@ -99,7 +99,13 @@ export const createCard = createServerFn({ method: "POST" })
     z
       .object({
         username: z.string().regex(/^[A-Za-z0-9_]{2,24}$/),
-        answers: z.array(z.number().int().min(0).max(2)).length(12),
+        answers: z
+          .array(z.number().int().min(0).max(5))
+          .length(12)
+          .refine(
+            (answers) => answers.every((answer, i) => validNovaAnswer(i, answer)),
+            "Invalid Nova answer.",
+          ),
         variant: z.enum(["a", "b"]),
       })
       .parse(input),

@@ -46,7 +46,7 @@ export const saveStudioDraft = createServerFn({ method: "POST" })
     z
       .object({
         answers: z
-          .array(z.number().int().min(0).max(2))
+          .array(z.number().int().min(0).max(5))
           .max(12)
           .refine(
             (answers) => answers.every((answer, i) => validNovaAnswer(i, answer)),

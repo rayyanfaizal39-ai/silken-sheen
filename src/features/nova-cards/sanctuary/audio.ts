@@ -346,9 +346,11 @@ export class SanctuarySoundscape {
         : question === 1
           ? answer === 1
             ? "fox"
-            : "phoenix"
+            : answer === 0
+              ? "phoenix"
+              : "answer"
           : question === 2
-            ? (["fire", "water", "starlight"] as const)[answer]
+            ? (["fire", "water", "starlight", "answer"] as const)[answer]
             : "answer";
     void this.unlockFromGesture().then(() => this.play(cue));
   }

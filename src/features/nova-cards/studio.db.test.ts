@@ -69,6 +69,15 @@ describe("Nova Studio SQL queue, identities and RLS", () => {
         "utf8",
       ),
     );
+    await db.exec(
+      readFileSync(
+        new URL(
+          "../../../supabase/migrations/20261017102224_nova_creature_variety.sql",
+          import.meta.url,
+        ),
+        "utf8",
+      ),
+    );
   }, 30000);
   afterAll(() => db.close());
   const rpc = async (user: string, name: string, args: unknown[] = []) =>
@@ -99,6 +108,70 @@ describe("Nova Studio SQL queue, identities and RLS", () => {
     });
     expect((rows[0].identity.traits as { creature: string }).creature).toBe("Phoenix");
   });
+  for (const [code, creature] of [
+    [0, "Phoenix"],
+    [1, "Magical Fox"],
+    [2, "Phoenix"],
+    [3, "Dragon"],
+    [4, "Lion"],
+    [5, "Unicorn"],
+  ] as const)
+    it(`persists and maps ${creature} code ${code} with all fourth options through existing RPCs`, async () => {
+      const answers = Array(12).fill(3);
+      answers[1] = code;
+      const owner = `00000000-0000-4000-8000-00000000001${code}`;
+      await db.query("insert into auth.users values($1)", [owner]);
+      await db.query(
+        "insert into public.subscriptions values($1,'pro','active',now()+interval '30 days')",
+        [owner],
+      );
+      try {
+        const saved = await rpc(owner, "save_nova_studio_draft", [
+          answers.slice(0, 2),
+          "NewCompanion",
+          0,
+        ]);
+        expect(saved.answers).toEqual(answers.slice(0, 2));
+        await rpc(owner, "save_nova_studio_draft", [answers, "NewCompanion", 1]);
+        const draft = (await rpc(owner, "get_my_nova_studio")).draft as { answers: number[] };
+        expect(draft.answers).toEqual(answers);
+        const card = (await create(owner, answers)).rows[0].result!;
+        expect(card.traits).toEqual(traitsFromAnswers(answers));
+        const identity = (await rpc(owner, "get_my_nova_studio")).identity as {
+          answers: number[];
+          traits: { creature: string };
+        };
+        expect(identity.answers).toEqual(answers);
+        expect(identity.traits.creature).toBe(creature);
+      } finally {
+        await db.query("delete from public.subscriptions where user_id=$1", [owner]);
+        await db.query("delete from auth.users where id=$1", [owner]);
+      }
+    });
+  it("rejects malformed arrays and extra answer codes outside the creature slot", async () => {
+    for (const input of [null, [4], [0, 6], [0, -1], [0, 3, 4], [0, null], Array(13).fill(0)]) {
+      const result = await db.query<{ valid: boolean }>(
+        "select public.nova_valid_answers($1,false) as valid",
+        [input],
+      );
+      expect(result.rows[0].valid).toBe(false);
+    }
+    expect(
+      (
+        await db.query<{ valid: boolean }>(
+          "select public.nova_valid_answers('[0:1]={0,1}'::integer[],false) as valid",
+        )
+      ).rows[0].valid,
+    ).toBe(false);
+    expect(
+      (
+        await db.query<{ valid: boolean }>(
+          "select public.nova_valid_answers('{{0,1},{0,1}}'::integer[],false) as valid",
+        )
+      ).rows[0].valid,
+    ).toBe(false);
+    await expect(rpc(C, "save_nova_studio_draft", [[0, 6], "Invalid", 0])).rejects.toThrow(/check/);
+  });
   it("persists all twelve answers with owner isolation and cross-device revision protection", async () => {
     await rpc(A, "save_nova_studio_draft", [[], "", 0]);
     for (let i = 1; i <= 12; i++)
@@ -114,7 +187,7 @@ describe("Nova Studio SQL queue, identities and RLS", () => {
       /another device/,
     );
     await expect(
-      rpc(A, "save_nova_studio_draft", [Array(12).fill(3), "Rayyan", 13]),
+      rpc(A, "save_nova_studio_draft", [Array(12).fill(4), "Rayyan", 13]),
     ).rejects.toThrow();
     await expect(rpc(A, "submit_nova_origin")).rejects.toThrow(/not enabled/);
     await db.exec(

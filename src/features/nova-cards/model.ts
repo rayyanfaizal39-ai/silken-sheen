@@ -1,3 +1,14 @@
+import {
+  NOVA_CREATURES,
+  answerOptionIndex,
+  validNovaAnswer,
+} from "../../../supabase/functions/_shared/nova-answers";
+export {
+  answerOptionIndex,
+  answerValue,
+  validNovaAnswer,
+} from "../../../supabase/functions/_shared/nova-answers";
+
 export const STAGES = [
   { name: "Origin", xp: 0 },
   { name: "Awakened", xp: 1600 },
@@ -24,45 +35,75 @@ export function evolution(xp: number) {
 export const QUESTIONS = [
   {
     label: "What draws you into an adventure?",
-    options: ["Discovering something new", "Helping a friend", "Solving a mystery"],
+    options: [
+      "Discovering something new",
+      "Helping a friend",
+      "Solving a mystery",
+      "Protecting something precious",
+    ],
   },
-  { label: "Choose your companion's creature.", options: ["Phoenix", "Magical Fox"] },
-  { label: "Which element feels like you?", options: ["Fire", "Water", "Starlight"] },
+  { label: "Choose your companion's creature.", options: NOVA_CREATURES },
+  { label: "Which element feels like you?", options: ["Fire", "Water", "Starlight", "Wind"] },
   {
     label: "Choose a silhouette.",
-    options: ["Soft and fluffy", "Sleek and swift", "Small and sturdy"],
+    options: ["Soft and fluffy", "Sleek and swift", "Small and sturdy", "Graceful and majestic"],
   },
   {
     label: "Choose your colours.",
-    options: ["Obsidian Black / Violet", "Sapphire Blue / Gold", "Pearl / Rose"],
+    options: [
+      "Obsidian Black / Violet",
+      "Sapphire Blue / Gold",
+      "Pearl / Rose",
+      "Emerald Green / Silver",
+    ],
   },
   {
     label: "Which gift would you choose?",
-    options: ["Light the way", "Healing currents", "Stellar shield"],
+    options: ["Light the way", "Healing currents", "Stellar shield", "Winds of courage"],
   },
   {
     label: "Where would you explore together?",
-    options: ["Floating islands", "Moonlit lagoon", "Crystal forest"],
+    options: ["Floating islands", "Moonlit lagoon", "Crystal forest", "Ancient sky gardens"],
   },
   {
     label: "How does your companion greet a stranger?",
-    options: ["Curious and playful", "Gentle and patient", "Quiet and watchful"],
+    options: [
+      "Curious and playful",
+      "Gentle and patient",
+      "Quiet and watchful",
+      "Bold and welcoming",
+    ],
   },
   {
     label: "Choose your companion's eyes.",
-    options: ["Cosmic Galaxy Eyes", "Golden Starlight Eyes", "Ocean Crystal Eyes"],
+    options: [
+      "Cosmic Galaxy Eyes",
+      "Golden Starlight Eyes",
+      "Ocean Crystal Eyes",
+      "Emerald Aurora Eyes",
+    ],
   },
   {
     label: "Pick a little signature detail.",
-    options: ["A glowing forehead star", "Golden ear tips", "A crescent marking"],
+    options: [
+      "A glowing forehead star",
+      "Golden ear tips",
+      "A crescent marking",
+      "A shimmering spiral",
+    ],
   },
   {
     label: "When a challenge appears, you…",
-    options: ["Try a new path", "Bring friends together", "Pause and make a plan"],
+    options: [
+      "Try a new path",
+      "Bring friends together",
+      "Pause and make a plan",
+      "Trust your instincts",
+    ],
   },
   {
     label: "Choose your bond.",
-    options: ["Explore together", "Grow together", "Protect each other"],
+    options: ["Explore together", "Grow together", "Protect each other", "Inspire each other"],
   },
 ] as const;
 
@@ -81,23 +122,12 @@ export interface NovaTraits {
   bond: string;
 }
 
-/** The retired third creature answer is still a valid stored Phoenix identity. Never rewrite it. */
-export function answerOptionIndex(question: number, answer: number) {
-  return question === 1 && answer === 2 ? 0 : answer;
-}
-export function validNovaAnswer(question: number, answer: number) {
-  const option = answerOptionIndex(question, answer);
-  return (
-    Number.isInteger(answer) && option >= 0 && option < (QUESTIONS[question]?.options.length ?? 0)
-  );
-}
-
 export function traitsFromAnswers(answers: number[]): NovaTraits {
   if (answers.length !== 12 || answers.some((a, i) => !validNovaAnswer(i, a)))
     throw new Error("Answer all twelve questions.");
   const values = QUESTIONS.map((question, i) => question.options[answerOptionIndex(i, answers[i])]);
   return {
-    personality: ["Explorer", "Nurturer", "Strategist"][answers[0]],
+    personality: ["Explorer", "Nurturer", "Strategist", "Guardian"][answers[0]],
     creature: values[1],
     element: values[2],
     appearance: values[3],

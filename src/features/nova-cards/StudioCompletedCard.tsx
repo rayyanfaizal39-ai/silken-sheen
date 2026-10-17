@@ -35,7 +35,10 @@ export default function StudioCompletedCard({
         variant: candidate,
         traits: traits ?? sample.traits,
         artworkUrl:
-          publicId === "demo-mia" ? SOURCE_FOX_ARTWORK[candidate === "a" ? 0 : 1] : undefined,
+          publicId === "demo-mia" &&
+          JSON.stringify(traits ?? sample.traits) === JSON.stringify(sample.traits)
+            ? SOURCE_FOX_ARTWORK[candidate === "a" ? 0 : 1]
+            : undefined,
       });
       return;
     }
