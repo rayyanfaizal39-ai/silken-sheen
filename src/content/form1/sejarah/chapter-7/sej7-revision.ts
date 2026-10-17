@@ -125,6 +125,27 @@ const recall: [string, string][] = [
   ["Bagaimanakah kampung menyokong calon?", x.sponsorship],
   ["Apakah perubahan lokasi Tamadun India?", c.indiaOverview.locationShift],
   ["Bilakah peperiksaan awam dimansuhkan?", `${x.abolished}, oleh ${x.abolishedBy}.`],
+  // Set C (41–60): new source-backed recall, without duplicating the first 40.
+  ["Bagaimanakah perluasan kuasa fizikal dilakukan?", c.powerExpansion.forms[0].description],
+  ["Bagaimanakah perluasan keagamaan meluaskan pengaruh?", c.powerExpansion.forms[1].description],
+  ["Mengapakah kewangan penting untuk perluasan kuasa?", c.powerExpansion.factors[4].description],
+  ["Mengapakah sumber manusia penting bagi kerajaan?", c.powerExpansion.factors[2].description],
+  ["Bilakah Dinasti Nanda memerintah?", c.indianDynasties[0].duration],
+  ["Berapakah jumlah tentera bergajah Dinasti Nanda?", c.indianDynasties[0].militaryStrength![2]],
+  ["Siapakah pengasas Dinasti Gupta?", c.guptaGoldenAge.founder],
+  ["Apakah bukti kemewahan ekonomi zaman Gupta?", c.guptaGoldenAge.achievements[0]],
+  ["Apakah perbezaan janapada dan mahajanapada?", c.indiaOverview.janapadaSystem],
+  ["Apakah dua perkara yang diseragamkan Shi Huangdi?", [c.chineseDynasties[0].facts[1], c.chineseDynasties[0].facts[3]].join("; ")],
+  ["Siapakah pengasas Dinasti Qin?", c.chineseDynasties[0].founder],
+  ["Apakah ibu kota Dinasti Qin?", c.chineseDynasties[0].capital],
+  ["Siapakah pengasas Dinasti Han?", c.chineseDynasties[1].founder],
+  ["Apakah pusat pemerintahan Han Awal dan Han Akhir?", c.chineseDynasties[1].capital],
+  ["Siapakah pemerintah Han yang membuka Laluan Sutera?", c.chineseDynasties[1].facts[1]],
+  ["Namakan laluan utama perdagangan darat China ke Empayar Rom.", c.silkRoad.route.join(" → ")],
+  ["Apakah faedah penggunaan kertas kepada pendidikan China?", e.paperInvention.benefit],
+  ["Apakah penekanan Han Fei Zi dalam pendidikan Dinasti Qin?", e.qinEducation],
+  ["Bilakah Dinasti Han memerintah?", c.chineseDynasties[1].duration],
+  ["Bilakah Dinasti Qin memerintah?", c.chineseDynasties[0].duration],
 ];
 
 export const sej7Flashcards: Flashcard[] = recall.map(([front, back], index) => ({
