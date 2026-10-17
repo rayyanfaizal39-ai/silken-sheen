@@ -1,3 +1,4 @@
+import { getRequestHost, getRequestProtocol } from "@tanstack/start-server-core";
 import { areMockPaymentsEnabled } from "./billing-config";
 import { createPendingPayment, getSupabaseAdminClient } from "./billing.server";
 import type { CheckoutPlan } from "./billing.types";
@@ -21,6 +22,13 @@ async function requireUser() {
   const { data, error } = await supabase.auth.getUser();
   if (error || !data.user) throw new Error("Must be logged in");
   return { supabase, user: data.user };
+}
+
+// The site serving this request, from the server's own request host (never
+// X-Forwarded-Host or browser input). The Edge Function allowlists it.
+function requestOrigin() {
+  const protocol = getRequestProtocol({ xForwardedProto: true }) === "https" ? "https" : "http";
+  return `${protocol}://${getRequestHost()}`;
 }
 
 function retry(reason: string) {
@@ -77,7 +85,12 @@ export async function createAccountCheckout(data: AccountCheckoutInput) {
   }
 
   const checkout = await supabase.functions.invoke("create-toyyibpay-bill", {
-    body: { plan: data.plan, idempotencyKey: data.idempotencyKey, ...referral },
+    body: {
+      plan: data.plan,
+      idempotencyKey: data.idempotencyKey,
+      returnOrigin: requestOrigin(),
+      ...referral,
+    },
   });
   if (checkout.error) {
     const failureContext = (checkout.error as { context?: unknown }).context;

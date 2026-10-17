@@ -13,6 +13,12 @@ const fixture = vi.hoisted(() => ({
   pending: vi.fn(),
   mock: false,
   rows: {} as Record<string, { data: unknown; error: unknown }>,
+  host: "www.myacademy.my",
+  protocol: "https",
+}));
+vi.mock("@tanstack/start-server-core", () => ({
+  getRequestHost: () => fixture.host,
+  getRequestProtocol: () => fixture.protocol,
 }));
 vi.mock("./supabase.server", () => ({
   getSupabaseServerClient: () => ({
@@ -64,6 +70,8 @@ beforeEach(() => {
   vi.spyOn(console, "error").mockImplementation(() => {});
   fixture.userId = B;
   fixture.mock = false;
+  fixture.host = "www.myacademy.my";
+  fixture.protocol = "https";
   vi.stubEnv("PARTNER_CONFIRMATION_SECRET", SECRET);
   fixture.rpc.mockResolvedValue({ data: { claimed: true }, error: null });
   fixture.rows = {
@@ -111,6 +119,7 @@ describe("silent attribution at checkout", () => {
     expect(edgeBody()).toEqual({
       plan: "premium_monthly",
       idempotencyKey: "00000000-0000-4000-8000-000000000099",
+      returnOrigin: "https://www.myacademy.my",
     });
   });
   it.each(["existing_customer", "self_referral", "invalid_code", "not_student"])(
@@ -181,6 +190,36 @@ describe("temporary verification failures block payment", () => {
   it("keeps the provider-outage path separate", async () => {
     edgeFailure(503, "provider_unavailable");
     expect(await checkout()).toEqual({ mode: "unavailable" });
+  });
+});
+
+describe("payment return origin", () => {
+  it("sends a production checkout's own origin", async () => {
+    await checkout();
+    expect(edgeBody().returnOrigin).toBe("https://www.myacademy.my");
+  });
+  it("sends a preview checkout's own origin, for referred and ordinary purchases", async () => {
+    fixture.host = "fix-referral-account-confirm.academymy.pages.dev";
+    await checkout();
+    expect(edgeBody()).toMatchObject({
+      returnOrigin: "https://fix-referral-account-confirm.academymy.pages.dev",
+      partnerCode: CODE,
+    });
+    fixture.invoke.mockClear();
+    fixture.rows.partner_referrals = { data: null, error: null };
+    await checkout(B, null);
+    expect(edgeBody().returnOrigin).toBe(
+      "https://fix-referral-account-confirm.academymy.pages.dev",
+    );
+  });
+  it("derives the origin from the server request, never from browser input", async () => {
+    await createAccountCheckout({
+      accountId: B,
+      plan: "premium_monthly",
+      idempotencyKey: "00000000-0000-4000-8000-000000000099",
+      returnOrigin: "https://evil.example",
+    } as Parameters<typeof createAccountCheckout>[0]);
+    expect(edgeBody().returnOrigin).toBe("https://www.myacademy.my");
   });
 });
 

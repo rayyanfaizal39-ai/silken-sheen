@@ -94,17 +94,22 @@ beforeEach(() => {
         },
   );
 });
-function normalRequest() {
-  // Exactly what the currently deployed web app sends: no referral fields.
+function normalRequest(extra: Record<string, unknown> = {}) {
+  // Without extras: exactly what the currently deployed web app sends.
   return new Request("https://example.supabase.co/functions/v1/create-toyyibpay-bill", {
     method: "POST",
     headers: { authorization: "Bearer test-session", "content-type": "application/json" },
     body: JSON.stringify({
       plan: "premium_monthly",
       idempotencyKey: "00000000-0000-4000-8000-000000000099",
+      ...extra,
     }),
   });
 }
+function billParams() {
+  return fixture.provider.mock.calls[0][1] as URLSearchParams;
+}
+const PREVIEW = "https://fix-referral-account-confirm.academymy.pages.dev";
 function request(confirmation = signPartnerReceipt(B, CODE, "test-only-signing-secret")) {
   return new Request("https://example.supabase.co/functions/v1/create-toyyibpay-bill", {
     method: "POST",
@@ -138,6 +143,61 @@ describe("Edge normal checkout compatibility", () => {
     const result = await handle(normalRequest());
     expect((await result.json()).checkoutUrl).toBe("https://dev.toyyibpay.com/existingbill");
     expect(fixture.provider).not.toHaveBeenCalled();
+  });
+});
+
+describe("Edge payment return URL", () => {
+  it("returns a production checkout to production with its payment reference", async () => {
+    fixture.rows.partner_sandbox_checkout_links = null;
+    await handle(normalRequest({ returnOrigin: "https://www.myacademy.my" }));
+    expect(billParams().get("billReturnUrl")).toBe("https://www.myacademy.my/payment-return");
+    expect(billParams().get("billExternalReferenceNo")).toBe("test-payment");
+    expect(billParams().get("billCallbackUrl")).toBe(
+      "https://example.supabase.co/functions/v1/toyyibpay-callback",
+    );
+  });
+  it("keeps today's production behaviour when no return origin is sent", async () => {
+    fixture.rows.partner_sandbox_checkout_links = null;
+    await handle(normalRequest());
+    expect(billParams().get("billReturnUrl")).toBe("https://www.myacademy.my/payment-return");
+  });
+  it("returns an approved preview checkout to the same preview; callback stays server-side", async () => {
+    fixture.env.PAYMENT_RETURN_PREVIEW_ORIGINS = PREVIEW;
+    fixture.rows.partner_sandbox_checkout_links = null;
+    await handle(normalRequest({ returnOrigin: PREVIEW }));
+    expect(billParams().get("billReturnUrl")).toBe(`${PREVIEW}/payment-return`);
+    expect(billParams().get("billExternalReferenceNo")).toBe("test-payment");
+    expect(billParams().get("billCallbackUrl")).toBe(
+      "https://example.supabase.co/functions/v1/toyyibpay-callback",
+    );
+  });
+  it("returns an attributed preview checkout to the same preview", async () => {
+    fixture.env.PAYMENT_RETURN_PREVIEW_ORIGINS = PREVIEW;
+    const body = JSON.parse(await request().text());
+    const result = await handle(
+      new Request("https://example.supabase.co/functions/v1/create-toyyibpay-bill", {
+        method: "POST",
+        headers: { authorization: "Bearer test-session", "content-type": "application/json" },
+        body: JSON.stringify({ ...body, returnOrigin: PREVIEW }),
+      }),
+    );
+    expect(result.status).toBe(200);
+    expect(billParams().get("billReturnUrl")).toBe(`${PREVIEW}/payment-return`);
+  });
+  it.each([
+    ["an unapproved preview", "https://a22d705f.academymy.pages.dev"],
+    ["an arbitrary site", "https://evil.example"],
+    ["a path injection", `${PREVIEW}/steal`],
+  ])("never sends the learner to %s", async (_label, origin) => {
+    fixture.env.PAYMENT_RETURN_PREVIEW_ORIGINS = PREVIEW;
+    fixture.rows.partner_sandbox_checkout_links = null;
+    await handle(normalRequest({ returnOrigin: origin }));
+    expect(billParams().get("billReturnUrl")).toBe("https://www.myacademy.my/payment-return");
+  });
+  it("does not trust a preview that is not approved in the Edge configuration", async () => {
+    fixture.rows.partner_sandbox_checkout_links = null;
+    await handle(normalRequest({ returnOrigin: PREVIEW }));
+    expect(billParams().get("billReturnUrl")).toBe("https://www.myacademy.my/payment-return");
   });
 });
 

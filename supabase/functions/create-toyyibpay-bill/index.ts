@@ -6,6 +6,7 @@ declare const Deno: any;
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.108.1";
 import { requestToyyibPayBill, ToyyibPayUnavailableError } from "../_shared/toyyibpay-response.ts";
 import { validPartnerReceipt } from "../_shared/partner-confirmation.ts";
+import { paymentReturnUrl } from "../_shared/payment-return.ts";
 import {
   BILLING_CURRENCY,
   CHECKOUT_PLANS,
@@ -66,6 +67,7 @@ Deno.serve(async (request: Request) => {
       idempotencyKey?: unknown;
       partnerCode?: unknown;
       referralConfirmation?: unknown;
+      returnOrigin?: unknown;
     };
     if (!isCheckoutPlan(body.plan)) {
       return response({ error: "A supported billing plan is required" }, 400);
@@ -197,7 +199,12 @@ Deno.serve(async (request: Request) => {
       // rejecting bill creation because billPhone is empty.
       billPayorInfo: "0",
       billAmount: String(selected.amount * 100),
-      billReturnUrl: `${applicationUrl}/payment-return`,
+      // Allowlisted server-side; unknown origins fall back to production.
+      billReturnUrl: paymentReturnUrl(
+        body.returnOrigin,
+        applicationUrl,
+        Deno.env.get("PAYMENT_RETURN_PREVIEW_ORIGINS"),
+      ),
       billCallbackUrl: `${supabaseUrl}/functions/v1/toyyibpay-callback`,
       billExternalReferenceNo: payment.id,
       billTo: customerName.slice(0, 100),
