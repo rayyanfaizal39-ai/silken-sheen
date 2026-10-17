@@ -27,6 +27,23 @@ const FLASHCARD_ARENA_CSS = `
     --fc-surface-deep: color-mix(in srgb, var(--arena-accent) 3%, #090e10);
     --fc-border: color-mix(in srgb, var(--arena-accent) 25%, transparent);
   }
+  /* Mathematics: a gold accent tints a dark surface brown, so the card is a
+     neutral charcoal on a deep navy arena and gold stays in borders, labels
+     and symbols. */
+  .flashcard-arena.flashcard-arena-math {
+    background-color: #050816;
+    --fc-surface: #121620;
+    --fc-surface-deep: #07090f;
+  }
+  /* The world scene is pinned to the viewport: as an absolute layer it ended
+     at the first screen, so scrolling a long card uncovered a second colour.
+     It is decoration only, so it takes no pointer input: a fixed layer under
+     the cursor would send wheel scrolls to the locked page, not the arena. */
+  .flashcard-arena-math .world-scene-math {
+    position: fixed;
+    pointer-events: none;
+    background-color: #050816;
+  }
   /* Desktop: the card takes what the viewport leaves after the header and the
      rest of the stage (progress, ratings, secondary row and breathing room),
      capped at flashcard proportions. */
@@ -157,6 +174,20 @@ const FLASHCARD_ARENA_CSS = `
       linear-gradient(135deg, color-mix(in srgb, var(--arena-accent) 13%, transparent), rgba(0, 0, 0, 0.45)),
       var(--fc-surface);
   }
+  /* Mathematics: one dark gradient on both faces, a dark drop shadow with only
+     a faint gold halo, and stack layers that read as dark cards. */
+  .flashcard-arena-math .fc-face {
+    box-shadow:
+      0 24px 60px -30px rgba(0, 0, 0, 0.9),
+      0 0 36px -20px color-mix(in srgb, var(--arena-accent) 35%, transparent);
+  }
+  .flashcard-arena-math .fc-face.flashcard-back {
+    background: linear-gradient(180deg, var(--fc-surface), var(--fc-surface-deep));
+  }
+  .flashcard-arena-math .fc-stack-layer {
+    background: var(--fc-surface-deep);
+    border: 1px solid color-mix(in srgb, var(--arena-accent) 18%, transparent);
+  }
   /* Both faces share one geometry: a fixed header, a flexible content region
      and a fixed footer, so the text centres in the same box on either side. */
   .fc-face-head {
@@ -168,18 +199,54 @@ const FLASHCARD_ARENA_CSS = `
     gap: 0.75rem;
   }
   .fc-face-foot { flex-shrink: 0; }
-  /* Only this region scrolls. Its child uses auto margins rather than
-     justify-content so short text centres while long text starts at the top
-     and stays reachable. */
+  /* Only this region scrolls, and only when text outgrows a fixed-height
+     card. Its child uses auto margins rather than justify-content so short
+     text centres while long text starts at the top and stays reachable.
+     Scroll chaining stays on: with "contain", a body that had nothing to
+     scroll (every fitted structured card) swallowed wheel and touch scrolls,
+     so the page only scrolled from beside the card.
+     A scroller does not inherit the card's touch-action, so it repeats pan-y:
+     otherwise the browser claimed horizontal swipes that started over the
+     text (pointercancel) and Know / Don't know only worked from the edges. */
   .fc-face-body {
     flex: 1 1 auto;
     min-height: 0;
     display: flex;
     overflow-y: auto;
-    overscroll-behavior: contain;
+    overscroll-behavior: auto;
+    touch-action: pan-y;
     padding-block: 0.75rem;
   }
   .fc-face-body > p { margin: auto; text-align: center; overflow-wrap: anywhere; text-wrap: pretty; }
+  /* Structured cards (question parts, diagrams, worked solutions). The slot
+     grows to the taller face (--fc-fit-h, measured in FlashcardDeck), so the
+     whole solution shows at a readable size and the page scrolls instead of
+     the card. Both faces share the height, so nothing jumps on flip. */
+  .fc-card-slot[data-fit] { height: max(var(--fc-card-h), var(--fc-fit-h, 0px)); }
+  .fc-face-body > .fc-face-content { margin-block: auto; width: 100%; min-width: 0; }
+  /* A worked solution reads from the top, even when the question side is taller. */
+  .fc-face-body > .fc-face-content:has(> [data-side="back"]) { margin-block: 0 auto; }
+  .fc-structured { display: flex; flex-direction: column; gap: 0.85rem; text-align: left; overflow-wrap: anywhere; }
+  .fc-structured-prompt { font-size: 1.0625rem; font-weight: 650; line-height: 1.45; color: #fff; }
+  .fc-structured-parts { display: flex; flex-direction: column; gap: 0.55rem; font-size: 1rem; line-height: 1.45; color: rgba(255,255,255,0.9); }
+  .fc-structured-parts li,
+  .fc-structured-solution li.has-label { display: flex; gap: 0.5rem; }
+  .fc-part-label { flex-shrink: 0; min-width: 1.85rem; font-weight: 700; color: var(--arena-accent); font-variant-numeric: tabular-nums; }
+  .fc-structured-heading { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: color-mix(in srgb, var(--arena-accent) 70%, #fff); }
+  .fc-structured-solution { display: flex; flex-direction: column; gap: 0.75rem; font-size: 1rem; line-height: 1.5; }
+  .fc-structured-solution > li + li { padding-top: 0.75rem; border-top: 1px solid rgba(255,255,255,0.08); }
+  .fc-solution-lines { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; }
+  .fc-solution-line { color: rgba(255,255,255,0.92); }
+  .fc-solution-line:last-child { font-weight: 650; color: #fff; }
+  .fc-structured-visual { width: 100%; }
+  .fc-structured-note { border-left: 3px solid #fbbf24; background: rgba(251,191,36,0.08); border-radius: 0 0.75rem 0.75rem 0; padding: 0.55rem 0.75rem; font-size: 0.875rem; line-height: 1.45; color: rgba(255,255,255,0.88); }
+  .fc-structured-note-label { display: block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #fcd34d; }
+  .fc-mode-badge { align-self: flex-start; display: inline-flex; align-items: center; gap: 0.35rem; border-radius: 999px; padding: 0.2rem 0.65rem; font-size: 0.7rem; font-weight: 700; color: #fff; background: color-mix(in srgb, var(--arena-accent) 18%, transparent); border: 1px solid color-mix(in srgb, var(--arena-accent) 40%, transparent); }
+  @media (min-width: 1024px) {
+    .fc-structured-prompt { font-size: 1.3rem; }
+    .fc-structured-parts, .fc-structured-solution { font-size: 1.125rem; }
+    .fc-structured-note { font-size: 0.95rem; }
+  }
   /* Phones scroll without a visible scrollbar. */
   .fc-face-body { scrollbar-width: none; }
   .fc-face-body::-webkit-scrollbar { display: none; }
@@ -380,7 +447,7 @@ export function FlashcardArena({
   return (
     <LearningArena
       subjectId={subjectId}
-      className="flashcard-arena"
+      className={subjectId === "math" ? "flashcard-arena flashcard-arena-math" : "flashcard-arena"}
       label="AcadeMY Flashcard Arena"
       atmosphere="planet"
       keepMobileNav
@@ -453,6 +520,55 @@ function useOverflowFade(contentKey: string) {
 }
 
 /**
+ * Height a face needs to show its whole content without scrolling: the face's
+ * fixed chrome (padding, header, footer) plus the body padding and content.
+ * Measured from the content element, so it does not depend on the current
+ * slot height (no resize feedback loop).
+ */
+function naturalFaceHeight(body: HTMLElement) {
+  const face = body.parentElement;
+  const content = body.firstElementChild as HTMLElement | null;
+  if (!face || !content) return 0;
+  const style = getComputedStyle(body);
+  const padding = (parseFloat(style.paddingTop) || 0) + (parseFloat(style.paddingBottom) || 0);
+  return face.offsetHeight - body.clientHeight + padding + content.offsetHeight;
+}
+
+/** Grows the card slot to the taller face while `enabled` (structured cards). */
+function useFitHeight(
+  enabled: boolean,
+  contentKey: string,
+  frontRef: { current: HTMLDivElement | null },
+  backRef: { current: HTMLDivElement | null },
+) {
+  const slotRef = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    const slot = slotRef.current;
+    if (!slot) return;
+    if (!enabled) {
+      slot.style.removeProperty("--fc-fit-h");
+      return;
+    }
+    const bodies = [frontRef.current, backRef.current].filter(
+      (el): el is HTMLDivElement => el !== null,
+    );
+    const measure = () => {
+      const needed = Math.ceil(Math.max(0, ...bodies.map(naturalFaceHeight)));
+      slot.style.setProperty("--fc-fit-h", `${needed}px`);
+      bodies.forEach(syncOverflowFade);
+    };
+    measure();
+    if (typeof ResizeObserver === "undefined") return;
+    // Width changes (rotation, desktop resize) and late fonts reflow the text.
+    const observer = new ResizeObserver(measure);
+    observer.observe(slot);
+    bodies.forEach((el) => el.firstElementChild && observer.observe(el.firstElementChild));
+    return () => observer.disconnect();
+  }, [enabled, contentKey, frontRef, backRef]);
+  return slotRef;
+}
+
+/**
  * The active card plus up to two decorative layers behind it. Only the top
  * card is interactive; the layers carry no text and ignore pointer events.
  */
@@ -482,10 +598,21 @@ export function FlashcardDeck({
   onPointerMove,
   onPointerUp,
   onPointerCancel,
+  frontContent,
+  backContent,
+  fitContent = false,
+  cardId,
 }: {
   turnKey: string;
   front: string;
   back: string;
+  /** Rich face content (structured cards); replaces the plain text when given. */
+  frontContent?: ReactNode;
+  backContent?: ReactNode;
+  /** Grow the card to show the whole of the taller face instead of scrolling. */
+  fitContent?: boolean;
+  /** Exposed as data-card-id for analytics and end-to-end checks. */
+  cardId?: string;
   metaLabel: string;
   favourite: boolean;
   onToggleFavourite: () => void;
@@ -510,9 +637,10 @@ export function FlashcardDeck({
   onPointerCancel: (event: PointerEvent<HTMLDivElement>) => void;
 }) {
   const { frontRef, backRef } = useOverflowFade(turnKey);
+  const slotRef = useFitHeight(fitContent, turnKey, frontRef, backRef);
   const onBodyScroll = (event: UIEvent<HTMLDivElement>) => syncOverflowFade(event.currentTarget);
   return (
-    <div className="fc-card-slot">
+    <div ref={slotRef} className="fc-card-slot" data-fit={fitContent ? "" : undefined}>
       {remaining > 2 && <div aria-hidden="true" className="fc-stack-layer fc-stack-layer-2" />}
       {remaining > 1 && (
         <div
@@ -543,6 +671,7 @@ export function FlashcardDeck({
           onPointerUp={onPointerUp}
           onPointerCancel={onPointerCancel}
           className="flashcard-study-card"
+          data-card-id={cardId}
           style={cardStyle}
         >
           {knowCueOpacity > 0 && (
@@ -607,12 +736,16 @@ export function FlashcardDeck({
                   </button>
                 </div>
                 <div ref={frontRef} className="fc-face-body" onScroll={onBodyScroll}>
-                  <p
-                    className={`fc-question font-display font-bold ${frontTextClass(front)}`}
-                    data-length={frontLength(front)}
-                  >
-                    {front}
-                  </p>
+                  {frontContent ? (
+                    <div className="fc-face-content">{frontContent}</div>
+                  ) : (
+                    <p
+                      className={`fc-question font-display font-bold ${frontTextClass(front)}`}
+                      data-length={frontLength(front)}
+                    >
+                      {front}
+                    </p>
+                  )}
                 </div>
                 <p className="fc-face-foot fc-hint text-center text-xs text-white/50">
                   {hint.split(" · ").map((part, index) => (
@@ -639,12 +772,16 @@ export function FlashcardDeck({
                   </span>
                 </div>
                 <div ref={backRef} className="fc-face-body" onScroll={onBodyScroll}>
-                  <p
-                    className={`fc-answer whitespace-pre-line font-display ${backTextClass(back)}`}
-                    data-length={backLength(back)}
-                  >
-                    {back}
-                  </p>
+                  {backContent ? (
+                    <div className="fc-face-content">{backContent}</div>
+                  ) : (
+                    <p
+                      className={`fc-answer whitespace-pre-line font-display ${backTextClass(back)}`}
+                      data-length={backLength(back)}
+                    >
+                      {back}
+                    </p>
+                  )}
                 </div>
                 <p className="fc-face-foot fc-hint text-center text-xs text-white/50">
                   Tap to flip back

@@ -7,6 +7,8 @@ import { MathInequalityVisual } from "./MathInequalityVisual";
 import type { ReactNode } from "react";
 import { MathIndicesVisual } from "./MathIndicesVisual";
 import { MathStandardFormVisual } from "./MathStandardFormVisual";
+import { MathPatternVisual } from "./MathPatternVisual";
+import { isMathPatternVisual } from "@/features/quiz/visuals/mathPatternVisual";
 import {
   axisScale,
   describeMathQuestionVisual,
@@ -596,6 +598,7 @@ export function MathQuestionVisual({
   visual: MathQuestionVisualData;
   lang: MathVisualLang;
 }) {
+  if (isMathPatternVisual(visual)) return <MathPatternVisual visual={visual} lang={lang} />;
   const title = visual.title[lang];
   const t = (text: Parameters<typeof textFor>[0]) => textFor(text, lang);
 

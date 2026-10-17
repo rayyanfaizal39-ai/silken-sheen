@@ -46,6 +46,7 @@ import {
   splitFlashcardDeck,
   standardizeFlashcardDeck,
 } from "@/lib/flashcard-availability";
+import { classifyCardDrag } from "@/lib/flashcard-gesture";
 import { useContentRegistryStatus, useContentDataModule } from "@/hooks/use-content-registry";
 import {
   AcademyHero,
@@ -82,11 +83,41 @@ import {
   FlashcardControls,
   FlashcardDeck,
 } from "@/components/flashcards/FlashcardArena";
+import { FlashcardReviewModePicker } from "@/components/flashcards/FlashcardReviewModePicker";
+import {
+  StructuredFlashcardBack,
+  StructuredFlashcardFront,
+} from "@/components/flashcards/StructuredFlashcardFace";
+import {
+  REVIEW_MODE_COPY,
+  cardsForReviewMode,
+  getReviewModes,
+  normalizeReviewModeParam,
+  type FlashcardReviewMode,
+} from "@/features/flashcards/structuredFlashcard";
+import {
+  MATH_F2_C1_SUBTOPICS,
+  MATH_F2_C1_SUBTOPIC_ORDER,
+} from "@/content/form2/math/chapter-1/flashcard-subtopics";
 
 type MathFlashcardLang = "bm" | "dlp";
 type MathFlashcardCategoryId = "concepts" | "operations" | "facts" | "practice";
 type FlashcardSetIndex = 0 | 1 | 2;
 type FormFilter = Form | "All";
+/** An in-progress review-mode run, kept while the student visits another mode. */
+type ReviewModeSession = {
+  queue: number[];
+  idx: number;
+  streak: number;
+  longestStreak: number;
+  completed: boolean;
+  knownCount: number;
+  unknownCount: number;
+  xpEarned: number;
+  totalCards: number;
+  missedCardIds: string[];
+  awardedXpCardIds: string[];
+};
 
 export const Route = createFileRoute("/flashcards")({
   head: ({ match }) => {
@@ -183,7 +214,13 @@ const SEJARAH_F2_C6_FLASHCARD_SET_OPTIONS: Array<{
   { index: 2, title: "Strategi, Persuratan dan Warisan Johor Riau", range: "Cards 41-60" },
 ];
 
-type FlashcardSetOption = { index: FlashcardSetIndex; title: string; range: string };
+type FlashcardSetOption = {
+  index: FlashcardSetIndex;
+  title: string;
+  range: string;
+  /** Short tile label (e.g. a subtopic number); defaults to the set letter. */
+  badge?: string;
+};
 
 function topicSetOptions(set1: string, set2: string, set3: string): FlashcardSetOption[] {
   return [
@@ -389,6 +426,22 @@ const SCIENCE_F2_FLASHCARD_SET_OPTIONS_BY_CHAPTER: Record<
     dlp: topicSetOptions("Meteoroids, Meteors & Meteorites", "Asteroids", "Comets"),
     bm: topicSetOptions("Meteoroid, Meteor & Meteorit", "Asteroid", "Komet"),
   },
+};
+
+/** Form 2 Maths Chapter 1: one set per KSSM subtopic (cards 1–20, 21–40, 41–60). */
+const MATH_F2_C1_FLASHCARD_SET_OPTIONS: Record<MathFlashcardLang, FlashcardSetOption[]> = {
+  dlp: MATH_F2_C1_SUBTOPIC_ORDER.map((subtopic, index) => ({
+    index: index as FlashcardSetIndex,
+    title: MATH_F2_C1_SUBTOPICS[subtopic].dlp,
+    range: `Cards ${index * 20 + 1}-${index * 20 + 20}`,
+    badge: subtopic,
+  })),
+  bm: MATH_F2_C1_SUBTOPIC_ORDER.map((subtopic, index) => ({
+    index: index as FlashcardSetIndex,
+    title: MATH_F2_C1_SUBTOPICS[subtopic].bm,
+    range: `Kad ${index * 20 + 1}-${index * 20 + 20}`,
+    badge: subtopic,
+  })),
 };
 
 function vibrate(pattern: number | number[], enabled: boolean) {
@@ -5407,7 +5460,7 @@ function FlashcardSetPicker({
   onSelect,
 }: {
   title: string;
-  setOptions?: Array<{ index: FlashcardSetIndex; title: string; range: string }>;
+  setOptions?: FlashcardSetOption[];
   onBack: () => void;
   onSelect: (setIndex: FlashcardSetIndex) => void;
 }) {
@@ -5448,7 +5501,8 @@ function FlashcardSetPicker({
               >
                 <div className="absolute -right-14 -top-14 h-40 w-40 rounded-full bg-gradient-to-br from-primary to-accent opacity-20 blur-3xl transition-opacity group-hover:opacity-40" />
                 <div className="relative mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-accent text-xl font-black shadow-lg">
-                  {set.title.startsWith("Set ") ? set.title.slice(4, 5) : ["F", "P", "C"][index]}
+                  {set.badge ??
+                    (set.title.startsWith("Set ") ? set.title.slice(4, 5) : ["F", "P", "C"][index])}
                 </div>
                 <h3 className="relative font-display text-2xl font-bold">{displayTitle}</h3>
               </button>
@@ -5469,6 +5523,7 @@ function FlashcardsPage() {
     form?: string | number;
     chapter?: string;
     set?: string | number;
+    mode?: string;
   };
   const { progress, toggleFavorite, markChapter, addXp, rateCard, setLastVisited } = useProgress();
   const { user: authUser } = useAuth();
@@ -5483,6 +5538,10 @@ function FlashcardsPage() {
     useState<MathFlashcardCategoryId | null>(null);
   const [selectedFlashcardSet, setSelectedFlashcardSet] = useState<FlashcardSetIndex | null>(
     normalizeFlashcardSetParam(routeSearch.set),
+  );
+  /** Concept / Practice / Challenge inside a subtopic set (only for decks whose cards carry modes). */
+  const [selectedReviewMode, setSelectedReviewMode] = useState<FlashcardReviewMode | null>(
+    normalizeReviewModeParam(routeSearch.mode),
   );
   const [favOnly, setFavOnly] = useState(false);
   const [idx, setIdx] = useState(0);
@@ -5588,14 +5647,29 @@ function FlashcardsPage() {
     setFormWasChosen(nextForm !== null);
     setChapter(routeSearch.chapter ?? null);
     setSelectedFlashcardSet(normalizeFlashcardSetParam(routeSearch.set));
-  }, [routeSearch.subject, routeSearch.form, routeSearch.chapter, routeSearch.set]);
+    setSelectedReviewMode(normalizeReviewModeParam(routeSearch.mode));
+  }, [
+    routeSearch.subject,
+    routeSearch.form,
+    routeSearch.chapter,
+    routeSearch.set,
+    routeSearch.mode,
+  ]);
 
   function updateFlashcardSearch(next: {
     subject?: string | null;
     form?: FormFilter | null;
     chapter?: string | null;
     set?: FlashcardSetIndex | null;
+    mode?: FlashcardReviewMode | null;
   }) {
+    // A review mode belongs to one set: changing anything above it clears it.
+    const deckChanged =
+      next.subject !== undefined ||
+      next.form !== undefined ||
+      next.chapter !== undefined ||
+      next.set !== undefined;
+    const mode = next.mode !== undefined ? next.mode : deckChanged ? null : selectedReviewMode;
     void navigate({
       search: (previous: Record<string, unknown>) => ({
         ...previous,
@@ -5617,6 +5691,7 @@ function FlashcardsPage() {
             : next.set === null
               ? undefined
               : next.set + 1,
+        mode: mode ?? undefined,
       }),
     });
   }
@@ -5694,12 +5769,25 @@ function FlashcardsPage() {
       (chapter && hasSelectedChapterFlashcards))
   );
 
-  const flashcardSets = useMemo(() => splitFlashcardDeck(rawPool), [rawPool]);
+  // Form 2 Maths Chapters 1–13 use one combined deck per chapter with three review modes.
+  // Other subjects continue using their existing three-set selection.
+  const isMathF2C1Combined = subject === "math" && form === "Form 2" && (chapter === "Chapter 1" || chapter === "Chapter 2" || chapter === "Chapter 3" || chapter === "Chapter 4" || chapter === "Chapter 5" || chapter === "Chapter 6" || chapter === "Chapter 7" || chapter === "Chapter 8" || chapter === "Chapter 9" || chapter === "Chapter 10" || chapter === "Chapter 11" || chapter === "Chapter 12" || chapter === "Chapter 13");
+  const flashcardSets = useMemo(
+    () => isMathF2C1Combined ? [rawPool, rawPool, rawPool] : splitFlashcardDeck(rawPool),
+    [rawPool, isMathF2C1Combined],
+  );
   const shouldSplitFlashcards = flashcardSets.length > 1;
   const selectedSetIsValid =
     selectedFlashcardSet !== null && selectedFlashcardSet < flashcardSets.length;
-  const flashcardSetOptions =
-    subject === "sejarah" && form === "Form 3"
+  const flashcardSetOptions: FlashcardSetOption[] =
+    isMathF2C1Combined
+      ? (["concept", "practice", "challenge"] as const).map((mode, index) => ({
+          index: index as FlashcardSetIndex,
+          title: REVIEW_MODE_COPY[mode][scienceLang ?? "dlp"].title,
+          range: `${cardsForReviewMode(rawPool, mode).length} cards`,
+          badge: REVIEW_MODE_COPY[mode].icon,
+        }))
+    : subject === "sejarah" && form === "Form 3"
       ? SEJARAH_F3_FLASHCARD_OPTIONS.slice(0, flashcardSets.length)
       : subject === "sejarah" && form === "Form 2" && chapter === "Chapter 2"
         ? SEJARAH_F2_C2_FLASHCARD_SET_OPTIONS
@@ -5717,12 +5805,34 @@ function FlashcardsPage() {
                   : subject === "science" && form === "Form 2" && chapter && scienceLang
                     ? (SCIENCE_F2_FLASHCARD_SET_OPTIONS_BY_CHAPTER[chapter]?.[scienceLang] ??
                       FLASHCARD_SET_OPTIONS)
-                    : FLASHCARD_SET_OPTIONS;
+                    : subject === "math" &&
+                        form === "Form 2" &&
+                        chapter === "Chapter 1" &&
+                        scienceLang
+                      ? MATH_F2_C1_FLASHCARD_SET_OPTIONS[scienceLang]
+                      : FLASHCARD_SET_OPTIONS;
+  // Review modes exist only when every card of the chosen set carries one
+  // (Form 2 Maths Chapter 1 today); every other deck is unaffected.
+  const selectedSetCards = useMemo(
+    () =>
+      shouldSplitFlashcards && selectedFlashcardSet !== null && selectedSetIsValid
+        ? (flashcardSets[selectedFlashcardSet] ?? [])
+        : [],
+    [shouldSplitFlashcards, selectedFlashcardSet, selectedSetIsValid, flashcardSets],
+  );
+  const reviewModes = useMemo(() => getReviewModes(selectedSetCards), [selectedSetCards]);
+  const setUsesReviewModes = reviewModes.length > 0;
+  const activeReviewMode =
+    setUsesReviewModes && isMathF2C1Combined && selectedSetIsValid && selectedFlashcardSet !== null
+      ? (["concept", "practice", "challenge"] as const)[selectedFlashcardSet]
+      : setUsesReviewModes && selectedReviewMode && reviewModes.includes(selectedReviewMode)
+        ? selectedReviewMode
+        : null;
   const pool = useMemo(() => {
     // Session guard: no active deck without a known Form, and no card tagged
     // with another Form may enter the active deck.
     if (!formWasChosen || form === "All") return [];
-    const setCards = keepCardsForForm(
+    const chosenSet = keepCardsForForm(
       shouldSplitFlashcards && selectedFlashcardSet !== null && selectedSetIsValid
         ? (flashcardSets[selectedFlashcardSet] ?? [])
         : shouldSplitFlashcards
@@ -5730,6 +5840,12 @@ function FlashcardsPage() {
           : rawPool,
       form,
     );
+    // A set organised into review modes is studied one mode at a time.
+    const setCards = setUsesReviewModes
+      ? activeReviewMode
+        ? cardsForReviewMode(chosenSet, activeReviewMode)
+        : []
+      : chosenSet;
 
     return favOnly ? setCards.filter((f) => progress.favorites.includes(f.id)) : setCards;
   }, [
@@ -5738,6 +5854,8 @@ function FlashcardsPage() {
     shouldSplitFlashcards,
     selectedFlashcardSet,
     selectedSetIsValid,
+    setUsesReviewModes,
+    activeReviewMode,
     form,
     formWasChosen,
     favOnly,
@@ -5758,16 +5876,63 @@ function FlashcardsPage() {
     mathFlashcardLang,
     mathFlashcardCategory,
     selectedFlashcardSet,
+    activeReviewMode,
   );
+  // Review-mode sessions of one subtopic set keep their in-progress run, so a
+  // student can switch Concept ↔ Practice ↔ Challenge and come back to where
+  // they were. Saved mastery and favourites are per card and never reset.
+  const reviewModeSessionsRef = useRef(new Map<string, ReviewModeSession>());
+  const sessionSnapshotRef = useRef<(ReviewModeSession & { key: string }) | null>(null);
+  const previousDeckIdentityKeyRef = useRef(deckIdentityKey);
+  // Declared before the deck-change effect below so it runs first. It skips
+  // the commit in which the deck changes, so the last snapshot still holds
+  // the previous session's run when that effect stores it.
   useEffect(() => {
-    awardedXpCardIdsRef.current = new Set();
-  }, [deckIdentityKey]);
+    if (previousDeckIdentityKeyRef.current !== deckIdentityKey) return;
+    if (!activeReviewMode || queue.length === 0) return;
+    sessionSnapshotRef.current = {
+      key: deckIdentityKey,
+      queue,
+      idx,
+      streak,
+      longestStreak,
+      completed,
+      knownCount,
+      unknownCount,
+      xpEarned,
+      totalCards,
+      missedCardIds: [...missedCardIds],
+      awardedXpCardIds: [...awardedXpCardIdsRef.current],
+    };
+  });
   // A different deck (e.g. Form 3 -> Form 1 via URL/back button) must start a
   // fresh session; the old queue indexes belong to the previous deck.
-  const previousDeckIdentityKeyRef = useRef(deckIdentityKey);
   useEffect(() => {
-    if (previousDeckIdentityKeyRef.current === deckIdentityKey) return;
+    const previousKey = previousDeckIdentityKeyRef.current;
+    if (previousKey === deckIdentityKey) return;
     previousDeckIdentityKeyRef.current = deckIdentityKey;
+    if (sessionSnapshotRef.current?.key === previousKey) {
+      reviewModeSessionsRef.current.set(previousKey, sessionSnapshotRef.current);
+    }
+    sessionSnapshotRef.current = null;
+    const saved = activeReviewMode ? reviewModeSessionsRef.current.get(deckIdentityKey) : undefined;
+    if (saved) {
+      resetDeckProgress();
+      awardedXpCardIdsRef.current = new Set(saved.awardedXpCardIds);
+      setQueue(saved.queue);
+      setIdx(saved.idx);
+      setStreak(saved.streak);
+      setLongestStreak(saved.longestStreak);
+      setCompleted(saved.completed);
+      setKnownCount(saved.knownCount);
+      setUnknownCount(saved.unknownCount);
+      setXpEarned(saved.xpEarned);
+      setTotalCards(saved.totalCards);
+      setMissedCardIds(new Set(saved.missedCardIds));
+      setCardTurn((turn) => turn + 1);
+      return;
+    }
+    awardedXpCardIdsRef.current = new Set();
     resetDeckProgress();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [deckIdentityKey]);
@@ -5979,9 +6144,11 @@ function FlashcardsPage() {
   // vertical scrolling to the browser and hands horizontal movement to us.
   const SWIPE_DISTANCE_FRACTION = 0.27; // ~25-30% of card width
   const SWIPE_VELOCITY_THRESHOLD = 0.55; // px/ms — a fast flick counts even if short
-  const MOVE_THRESHOLD = 6; // px before a pointerdown counts as a drag, not a tap
 
   function onCardPointerDown(e: PointerEvent<HTMLDivElement>) {
+    // Each press starts fresh: browsers fire no click after a touch drag or
+    // scroll, so a flag left over from that gesture must not swallow this tap.
+    wasDragRef.current = false;
     if (interactionState !== "idle") return;
     if (e.pointerType === "mouse" && e.button !== 0) return;
     dragRef.current = {
@@ -6000,11 +6167,14 @@ function FlashcardsPage() {
     const dy = e.clientY - drag.startY;
 
     if (!drag.isDragging) {
-      if (Math.abs(dx) < MOVE_THRESHOLD && Math.abs(dy) < MOVE_THRESHOLD) return;
-      if (Math.abs(dy) > Math.abs(dx) * 1.2) {
+      const intent = classifyCardDrag(dx, dy);
+      if (intent === "undecided") return;
+      if (intent === "scroll") {
         // mostly vertical — this is a page scroll, not a card swipe; let the
-        // browser handle it and stop tracking this pointer entirely
+        // browser handle it and stop tracking this pointer entirely. A mouse
+        // still fires a click on release, which must not flip the card.
         dragRef.current = null;
+        wasDragRef.current = true;
         return;
       }
       drag.isDragging = true;
@@ -6069,6 +6239,7 @@ function FlashcardsPage() {
   function resetSession() {
     resetDeckProgress();
     setSelectedFlashcardSet(null);
+    setSelectedReviewMode(null);
   }
 
   /** Clears the in-progress run but keeps the chosen set. */
@@ -6095,10 +6266,30 @@ function FlashcardsPage() {
     setFloatXp(false);
   }
 
-  function selectFlashcardSet(setIndex: FlashcardSetIndex) {
+  function selectFlashcardSet(
+    setIndex: FlashcardSetIndex,
+    mode: FlashcardReviewMode | null = null,
+  ) {
     resetSession();
     setSelectedFlashcardSet(setIndex);
-    updateFlashcardSearch({ set: setIndex });
+    const combinedMode = isMathF2C1Combined
+      ? (["concept", "practice", "challenge"] as const)[setIndex]
+      : mode;
+    setSelectedReviewMode(combinedMode);
+    updateFlashcardSearch({ set: setIndex, mode: combinedMode });
+  }
+
+  /** Switch Concept / Practice / Challenge inside the current subtopic set. */
+  function selectReviewMode(mode: FlashcardReviewMode | null) {
+    if (mode === selectedReviewMode) return;
+    setSelectedReviewMode(mode);
+    if (isMathF2C1Combined && mode) {
+      const index = (["concept", "practice", "challenge"] as const).indexOf(mode);
+      setSelectedFlashcardSet(index as FlashcardSetIndex);
+      updateFlashcardSearch({ set: index as FlashcardSetIndex, mode });
+    } else {
+      updateFlashcardSearch({ mode });
+    }
   }
 
   function resetMathFlashcardFlow() {
@@ -6157,7 +6348,8 @@ function FlashcardsPage() {
     !missingChapter &&
     !(chapterMeta && !hasSelectedChapterFlashcards) &&
     !(hasMathFlashcards && !mathFlashcardLang) &&
-    !(shouldSplitFlashcards && !selectedSetIsValid);
+    !(shouldSplitFlashcards && !selectedSetIsValid) &&
+    !(setUsesReviewModes && !activeReviewMode);
 
   // Desktop shortcuts: ← Don't know, → Know. Before the answer is revealed an
   // arrow behaves exactly like the matching swipe (reveal, then Next Card);
@@ -6350,6 +6542,16 @@ function FlashcardsPage() {
     // Same back behaviour the in-page header used: a set returns to the set
     // picker, a Math category to its categories, anything else to chapters.
     const exitStudySession = () => {
+      // A review mode returns to its subtopic's mode picker.
+      if (activeReviewMode && isMathF2C1Combined) {
+        resetSession();
+        updateFlashcardSearch({ set: null, mode: null });
+        return;
+      }
+      if (activeReviewMode) {
+        selectReviewMode(null);
+        return;
+      }
       if (shouldSplitFlashcards && selectedFlashcardSet !== null) {
         resetSession();
         updateFlashcardSearch({ set: null });
@@ -6369,17 +6571,41 @@ function FlashcardsPage() {
       setChapter(null);
       updateFlashcardSearch({ chapter: null, set: null });
     };
-    const setTitleFor = (index: FlashcardSetIndex) =>
-      cleanLearningTitle(flashcardSetOptions[index]?.title ?? `Set ${index + 1}`);
+    const setTitleFor = (index: FlashcardSetIndex) => {
+      const option = flashcardSetOptions[index];
+      const title = cleanLearningTitle(option?.title ?? `Set ${index + 1}`);
+      return option?.badge ? `${option.badge} ${title}` : title;
+    };
+    const studyLang: "bm" | "dlp" = scienceLang ?? "dlp";
+    const modeTitleFor = (mode: FlashcardReviewMode) => REVIEW_MODE_COPY[mode][studyLang].title;
     const activeSetTitle =
       shouldSplitFlashcards && selectedFlashcardSet !== null
-        ? setTitleFor(selectedFlashcardSet)
+        ? activeReviewMode
+          ? `${setTitleFor(selectedFlashcardSet)} · ${modeTitleFor(activeReviewMode)}`
+          : setTitleFor(selectedFlashcardSet)
         : null;
     const nextSetIndex =
       shouldSplitFlashcards &&
       selectedFlashcardSet !== null &&
       selectedFlashcardSet + 1 < flashcardSets.length
         ? ((selectedFlashcardSet + 1) as FlashcardSetIndex)
+        : null;
+    // After a review mode: the next mode of this subtopic, then the next
+    // subtopic's first mode. Other decks keep "next set".
+    const nextModeInSet = activeReviewMode && !isMathF2C1Combined
+      ? (reviewModes[reviewModes.indexOf(activeReviewMode) + 1] ?? null)
+      : null;
+    const completionNext: { title: string; go: () => void } | null = nextModeInSet
+      ? { title: modeTitleFor(nextModeInSet), go: () => selectReviewMode(nextModeInSet) }
+      : nextSetIndex !== null
+        ? activeReviewMode
+          ? {
+              title: `${setTitleFor(nextSetIndex)} · ${modeTitleFor(reviewModes[0])}`,
+              go: () => selectFlashcardSet(nextSetIndex, isMathF2C1Combined
+                ? (["concept", "practice", "challenge"] as const)[nextSetIndex]
+                : reviewModes[0]),
+            }
+          : { title: setTitleFor(nextSetIndex), go: () => selectFlashcardSet(nextSetIndex) }
         : null;
     const subjectName = subjects.find((s) => s.id === subject)?.name ?? subject;
     // The existing re-queue keeps a missed card in `queue` until it is known.
@@ -6465,6 +6691,29 @@ function FlashcardsPage() {
                 ))}
               </div>
             )}
+          {activeReviewMode && !isMathF2C1Combined && (
+            <div
+              className="mt-2 flex gap-1.5 overflow-x-auto pb-1"
+              role="group"
+              aria-label={studyLang === "bm" ? "Mod ulang kaji" : "Review mode"}
+            >
+              {reviewModes.map((mode) => (
+                <button
+                  key={mode}
+                  type="button"
+                  onClick={() => selectReviewMode(mode)}
+                  aria-pressed={activeReviewMode === mode}
+                  disabled={interactionState !== "idle"}
+                  className="fc-icon-btn fc-chip shrink-0 px-3"
+                >
+                  <span aria-hidden="true">{REVIEW_MODE_COPY[mode].icon}</span> {modeTitleFor(mode)}
+                  <span className="tabular-nums text-white/50">
+                    {cardsForReviewMode(selectedSetCards, mode).length}
+                  </span>
+                </button>
+              ))}
+            </div>
+          )}
         </header>
 
         <main className="fc-stage">
@@ -6544,8 +6793,8 @@ function FlashcardsPage() {
               neededReview={missedCardIds.size}
               bestStreak={longestStreak}
               xpEarned={xpEarned}
-              nextSetTitle={nextSetIndex !== null ? setTitleFor(nextSetIndex) : null}
-              onNextSet={nextSetIndex !== null ? () => selectFlashcardSet(nextSetIndex) : null}
+              nextSetTitle={completionNext?.title ?? null}
+              onNextSet={completionNext?.go ?? null}
               onStudyAgain={shuffle}
               onFinish={exitStudySession}
             />
@@ -6555,6 +6804,25 @@ function FlashcardsPage() {
                 turnKey={`${cardTurn}:${idx}:${current.id}`}
                 front={cleanLearningTitle(current.front)}
                 back={cleanLearningQuestion(current.back)}
+                frontContent={
+                  current.structured ? (
+                    <StructuredFlashcardFront
+                      card={current.structured}
+                      lang={current.lang ?? studyLang}
+                      mode={current.reviewMode}
+                    />
+                  ) : undefined
+                }
+                backContent={
+                  current.structured ? (
+                    <StructuredFlashcardBack
+                      card={current.structured}
+                      lang={current.lang ?? studyLang}
+                    />
+                  ) : undefined
+                }
+                fitContent={!!current.structured}
+                cardId={current.id}
                 metaLabel={`${subj?.emoji ?? ""} ${subj?.name ?? subjectName} • ${current.form}`.trim()}
                 favourite={fav}
                 onToggleFavourite={() => toggleFavorite(current.id)}
@@ -6914,6 +7182,34 @@ function FlashcardsPage() {
             setMathFlashcardCategory(null);
             resetSession();
           }}
+        />
+      ) : shouldSplitFlashcards &&
+        selectedSetIsValid &&
+        selectedFlashcardSet !== null &&
+        setUsesReviewModes &&
+        !activeReviewMode ? (
+        <FlashcardReviewModePicker
+          chapterTitle={cleanLearningLabel(flashcardSetTitle)}
+          subtopicTitle={(() => {
+            const option = flashcardSetOptions[selectedFlashcardSet];
+            const title = cleanLearningTitle(option?.title ?? `Set ${selectedFlashcardSet + 1}`);
+            return option?.badge ? `${option.badge} ${title}` : title;
+          })()}
+          lang={scienceLang ?? "dlp"}
+          options={reviewModes.map((mode) => {
+            const cards = cardsForReviewMode(selectedSetCards, mode);
+            return {
+              mode,
+              total: cards.length,
+              known: cards.filter((card) => (progress.cardMastery?.[card.id]?.reps ?? 0) >= 1)
+                .length,
+            };
+          })}
+          onBack={() => {
+            resetSession();
+            updateFlashcardSearch({ set: null, mode: null });
+          }}
+          onSelect={selectReviewMode}
         />
       ) : shouldSplitFlashcards && !selectedSetIsValid ? (
         <FlashcardSetPicker
