@@ -13,11 +13,14 @@ function PanelDrawing({
   lang,
   compact,
   className,
+  natural = false,
 }: {
   panel: GeometryPanel;
   lang: MathVisualLang;
   compact: boolean;
   className: string;
+  /** Draw at the viewBox's own size (1 unit = 1px), shrinking only to fit. */
+  natural?: boolean;
 }) {
   const stroke = compact ? 1.5 : 2;
   const vectorEffect = compact ? "non-scaling-stroke" : undefined;
@@ -30,8 +33,14 @@ function PanelDrawing({
         <path
           key={`p${i}`}
           d={`${path.points.map(([x, y], j) => `${j ? "L" : "M"}${x},${y}`).join(" ")}${path.closed ? " Z" : ""}`}
-          fill={path.shade ? "#fbbf2433" : path.fill || (compact && path.closed) ? "#fbbf2412" : "none"}
-          stroke={path.tone === "accent" ? "#38bdf8" : "#fbbf24"}
+          fill={
+            path.shade
+              ? "#fbbf2433"
+              : path.fill || (compact && path.closed)
+                ? path.tone === "accent" ? "#38bdf81f" : path.tone === "muted" ? "none" : "#fbbf2412"
+                : "none"
+          }
+          stroke={path.tone === "accent" ? "#38bdf8" : path.tone === "muted" ? "#94a3b8" : "#fbbf24"}
           strokeWidth={stroke}
           strokeLinejoin="round"
           strokeDasharray={path.dashed ? "5 4" : undefined}
@@ -57,7 +66,7 @@ function PanelDrawing({
           cy={c.centre[1]}
           r={c.radius}
           fill={c.fill === "none" ? "none" : c.fill === "shade" ? "#fbbf2433" : "#fbbf2412"}
-          stroke={c.tone === "accent" ? "#38bdf8" : "#fbbf24"}
+          stroke={c.tone === "accent" ? "#38bdf8" : c.tone === "muted" ? "#94a3b8" : "#fbbf24"}
           strokeWidth={stroke}
           strokeDasharray={c.dashed ? "5 4" : undefined}
           vectorEffect={vectorEffect}
@@ -70,7 +79,7 @@ function PanelDrawing({
       viewBox={`0 0 ${width} ${height}`}
       className={className}
       aria-hidden="true"
-      style={{ overflow: "visible" }}
+      style={natural ? { overflow: "visible", width: `${width}px` } : { overflow: "visible" }}
     >
       {p.grid && (
         <g stroke="#64748b" strokeOpacity="0.3" strokeWidth="1">
@@ -122,8 +131,8 @@ function PanelDrawing({
           x={l.at[0]}
           y={l.at[1]}
           textAnchor={l.anchor ?? "middle"}
-          fill="#e2e8f0"
-          fontSize={compact ? 13 : 14}
+          fill={l.tone === "accent" ? "#7dd3fc" : l.tone === "muted" ? "#94a3b8" : "#e2e8f0"}
+          fontSize={l.size === "sm" ? 10 : compact ? 13 : 14}
           fontWeight="600"
           paintOrder="stroke"
           stroke="#0b1220"
@@ -182,7 +191,12 @@ export function MathGeometryVisual({
               panel={p}
               lang={lang}
               compact
-              className="block h-auto w-[150px] max-w-full sm:w-[180px]"
+              natural={visual.size === "natural"}
+              className={
+                visual.size === "natural"
+                  ? "block h-auto max-w-full"
+                  : "block h-auto w-[150px] max-w-full sm:w-[180px]"
+              }
             />
           </div>
         ))}

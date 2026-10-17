@@ -17,16 +17,19 @@ export type GeometryPanel = {
     fill?: boolean;
     /** Stronger tint marking a face or region the question is about. */
     shade?: boolean;
-    /** "accent" draws a sky-blue line (e.g. one highlighted edge) instead of gold. */
-    tone?: "accent";
+    /**
+     * "accent" draws a sky-blue line (e.g. one highlighted edge or an image
+     * shape, tinted blue when closed); "muted" a slate line (axes, mirrors).
+     */
+    tone?: "accent" | "muted";
   }[];
   circles?: {
     centre: GeometryPoint;
     radius: number;
     /** "none" leaves the inside clear, "shade" marks an area; default is a faint tint. */
     fill?: "none" | "shade";
-    /** "accent" draws a sky-blue outline (e.g. a pond) instead of gold. */
-    tone?: "accent";
+    /** "accent" draws a sky-blue outline (e.g. a pond), "muted" a slate guide line, instead of gold. */
+    tone?: "accent" | "muted";
     dashed?: boolean;
   }[];
   /** Shaded ring between two concentric circles (the region left over). */
@@ -43,6 +46,10 @@ export type GeometryPanel = {
     at: GeometryPoint;
     text: VisualText;
     anchor?: "start" | "middle" | "end";
+    /** Colour matching an accent (image) or muted (axis) element. */
+    tone?: "accent" | "muted";
+    /** "sm" for secondary text such as axis numbers. */
+    size?: "sm";
   }[];
   grid?: { origin: GeometryPoint; columns: number; rows: number; step: number };
   /** Canvas [width, height] the coordinates are drawn in; defaults to 300 × 240. */
@@ -58,6 +65,11 @@ export type MathGeometryVisual = {
    * layout used by quizzes and other chapters.
    */
   layout?: "compact";
+  /**
+   * "natural" draws the compact figure at its viewBox size (1 unit = 1px,
+   * shrinking only to fit), so text keeps one size however the canvas is cropped.
+   */
+  size?: "natural";
   /** false omits the "not to scale" note, e.g. for unmeasured vocabulary sketches. */
   notToScale?: boolean;
 };
