@@ -165,7 +165,7 @@ UNSOURCED LEARNER-FACING CURRICULUM CONTENT ADDED: NONE.
 
 ## Existing preview failures
 
-GitHub reported a failed Cloudflare Pages check and Vercel deployment status on initial commit `68961c0`. The original PR description reports a successful local production build, but logs for the failed provider builds are not exposed in the GitHub check metadata. Their underlying cause is **not yet established**. Inspect the authenticated provider build logs before claiming these deployment failures resolved. The existing Cloudflare config in `vite.config.ts` explicitly depends on `scripts/build-pages-worker.js` and root `wrangler.jsonc`; confirm deployment root and generated output settings against logs.
+Cloudflare Pages is the only supported hosting service for AcadeMY. GitHub reported a failed Pages check on initial commit `68961c0`; that historical failure needs authenticated Cloudflare logs before attributing a cause. The Cloudflare config in `vite.config.ts` depends on `scripts/build-pages-worker.js` and root `wrangler.jsonc`; confirm the deployment root and generated output against those logs. The current Nova validation workflow compiles and tests without deploying.
 
 ## Stage 2 — Awakened visual experiment
 
