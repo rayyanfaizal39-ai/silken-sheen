@@ -2185,7 +2185,7 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     question:
       "Siapakah yang menyatakan bahawa sejarah ialah masa lalu itu sendiri serta catatan atau rekod tentang sesuatu peristiwa pada masa lalu?",
-    options: ["Herodotus", "Muhd Yusof Ibrahim", "E.H. Carr", "Ibn Khaldun"],
+    options: ["Khoo Kay Kim", "Muhd Yusof Ibrahim", "Edward Hallett Carr", "Ibn Khaldun"],
     answerIndex: 1,
     explanation:
       "Muhd Yusof Ibrahim menyatakan bahawa sejarah ialah masa lalu itu sendiri, serta catatan ataupun rekod tentang sesuatu peristiwa yang berlaku pada suatu masa yang lalu.",
@@ -2232,7 +2232,7 @@ export const quizzes: QuizQuestion[] = [
       "Pengkaji tempatan mengaitkan kebangkitan Tok Janggut dengan penentangan terhadap peraturan cukai tanah dan hasil hutan British yang membebankan rakyat. Pengkaji Barat menganggapnya sebagai pemberontakan. Apakah yang ditunjukkan oleh perbandingan ini?",
     options: [
       "Peristiwa yang sama mesti mempunyai satu tafsiran tanpa perbandingan sumber",
-      "Tafsiran pengkaji ditentukan oleh tarikh penerbitan sahaja",
+      "Tafsiran pengkaji ditentukan oleh tarikh penerbitan sumber sahaja",
       "Perbezaan pandangan dan pemilihan sumber boleh menghasilkan tafsiran berbeza tentang peristiwa yang sama",
       "Sebutan yang berbeza membuktikan bahawa dua peristiwa berasingan berlaku",
     ],

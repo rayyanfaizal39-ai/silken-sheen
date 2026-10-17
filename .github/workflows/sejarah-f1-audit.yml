@@ -1,0 +1,34 @@
+name: Sejarah F1 quiz quality gates
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/sejarah-f1-audit.yml"
+      - "src/content/form1/sejarah/**"
+      - "src/data/quizzes.ts"
+      - "src/data/content.ts"
+      - "src/routes/quizzes.tsx"
+      - "public/quiz-visuals/sejarah-f1/**"
+
+concurrency:
+  group: sejarah-f1-ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  sejarah-quiz-validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install pinned dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Sejarah F1 regression and visual asset checks
+        run: npm test -- src/content/form1/sejarah
+      - name: Production build
+        run: npm run build

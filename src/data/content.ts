@@ -3794,9 +3794,9 @@ export const quizzes: QuizQuestion[] = [
     question: "Apakah fungsi zigurat dalam Tamadun Mesopotamia?",
     options: [
       "Tempat ibadat",
-      "Tempat tinggal raja",
-      "Gudang simpanan hasil",
-      "Kubu pertahanan bandar",
+      "Kediaman raja",
+      "Gudang bijirin",
+      "Benteng bandar",
     ],
     answerIndex: 0,
     explanation:
@@ -3902,7 +3902,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     difficulty: "Medium",
     question: "Kepada siapakah petani Mesir Purba membayar sewa tanah?",
-    options: ["Raja", "Pendeta", "Bangsawan", "Pedagang"],
+    options: ["Raja Mesir", "Pendeta", "Bangsawan", "Pedagang"],
     answerIndex: 0,
     explanation:
       "Pertanian ialah kegiatan ekonomi utama Mesir Purba dan majoriti penduduknya petani yang membayar sewa tanah kepada raja.",
@@ -4091,7 +4091,7 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Hard",
     question:
       "Seorang pengkaji menemui bukti bandar terancang, batu bata berukuran seragam dan sistem pembetungan. Tamadun manakah paling sesuai dengan bukti ini?",
-    options: ["Mesopotamia", "Mesir Purba", "Indus", "Huang He"],
+    options: ["Sumer", "Mesir", "Indus", "Huang He"],
     answerIndex: 2,
     explanation:
       "Bandar terancang, ukuran bata yang tepat serta sistem paip dan pembetungan dikaitkan dengan Mohenjo-Daro dan Harappa dalam Tamadun Indus.",
@@ -4150,7 +4150,7 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Hard",
     question:
       "Tamadun manakah ditadbir terutamanya oleh golongan pendeta tanpa bukti jelas sistem beraja?",
-    options: ["Mesir Purba", "Huang He", "Mesopotamia", "Indus"],
+    options: ["Mesir", "Huang He", "Sumer", "Indus"],
     answerIndex: 3,
     explanation:
       "Dalam Tamadun Indus, teraju pemerintahan dipegang oleh golongan pendeta yang berpengaruh dalam keagamaan dan pentadbiran.",
@@ -4509,7 +4509,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 6",
     difficulty: "Medium",
     question: "Bandar Rom memerlukan air dari sumber jauh. Binaan manakah diperlukan?",
-    options: ["Colosseum", "Amfiteater", "Tembok pertahanan", "Akueduk"],
+    options: ["Colosseum", "Amfiteater", "Tembok kota", "Akueduk"],
     answerIndex: 3,
     explanation:
       "Akueduk ialah sistem pengawalan air yang membekalkan air ke rumah kediaman, tempat mandi awam dan binaan utama.",

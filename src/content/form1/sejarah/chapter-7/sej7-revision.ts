@@ -161,7 +161,7 @@ const questions: [string, string[], number, string][] = [
   // q3
   [
     "Seorang raja mempunyai tentera yang kuat tetapi perbendaharaan kerajaan tidak mencukupi untuk membiayai projek perluasan. Faktor perluasan kuasa manakah yang lemah?",
-    ["Kekuatan ketenteraan", "Dasar pemerintahan", "Kewangan", "Diplomasi keagamaan"],
+    ["Tentera", "Pentadbiran", "Kewangan", "Diplomasi"],
     2,
     `${c.powerExpansion.factors[4].factor}: ${c.powerExpansion.factors[4].description}.`,
   ],
@@ -332,7 +332,7 @@ const questions: [string, string[], number, string][] = [
   // q20
   [
     "Seorang calon lulus peperiksaan tahap pertama di peringkat daerah dan mahu menduduki peperiksaan seterusnya di ibu kota daerah. Peperiksaan manakah yang akan disertainya?",
-    ["Xiucai", "Juren", "Jinshi", "Ujian peringkat kampung"],
+    ["Xiucai", "Juren", "Jinshi", "Ujian desa"],
     1,
     `${stages[1].name}: ${stages[1].location}. ${stages[1].eligibility}`,
   ],

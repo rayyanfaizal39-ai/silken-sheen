@@ -178,8 +178,8 @@ describe("Sejarah Form 1 Bab 2 — textbook audit and single live owner", () => 
   });
 
   it.each([
-    ["content", "465a1603cf33ba899ba6361cc4acf5cca14619652a935a81c800c6aa6062e1ff"],
-    ["quizzes", "4f09ebbbaae9fbc7ee2aa6e7ae06ee034ff6e258daf825dd3c590f660897251c"],
+    ["content", "cdfe6a97a51cd54c83077b1f174ed68069e520750c0fca101260c7ef34aeda13"],
+    ["quizzes", "df913a9f0aeb06c2eeb7602a3f08377f28784690976734801eedf308dfc254f5"],
   ])(
     "locks every unrelated inline record in %s, including Chapter 1 and Chapters 4–8",
     (file, expected) => {
