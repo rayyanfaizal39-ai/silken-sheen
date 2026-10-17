@@ -1,8 +1,5 @@
 name: Sejarah F1 quiz quality gates
 on:
-  push:
-    branches:
-      - audit/sejarah-f1-quiz-neutrality-visuals-2026-10-17
   pull_request:
     paths:
       - ".github/workflows/sejarah-f1-audit.yml"
@@ -11,6 +8,10 @@ on:
       - "src/data/content.ts"
       - "src/routes/quizzes.tsx"
       - "public/quiz-visuals/sejarah-f1/**"
+
+concurrency:
+  group: sejarah-f1-ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read

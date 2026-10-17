@@ -236,7 +236,7 @@ describe("existing Sejarah attempt contract — no shuffle engine change", () =>
       /if \(timerPref && pool.length > 0\) \{\s*setShuffledPool\(buildShuffledPool\(pool\)\);\s*\}\s*\}, \[timerPref, pool\]\)/,
     );
     expect(route).toMatch(
-      /function reshuffle\(\) \{\s*if \(pool.length > 0\) \{\s*setShuffledPool\(buildShuffledPool\(pool\)\)/,
+      /function reshuffle\(\) \{\s*(?:quizMotion\.cancel\(\);\s*)?if \(pool.length > 0\) \{\s*setShuffledPool\(buildShuffledPool\(pool\)\)/,
     );
     const answer = route.slice(
       route.indexOf("  function answer(i:"),
