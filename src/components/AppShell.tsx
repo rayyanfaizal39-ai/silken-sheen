@@ -32,6 +32,8 @@ import { RankBadge } from "@/components/RankBadge";
 import { CosmicRankIcon } from "@/components/CosmicRankIcon";
 import { ProfileAvatar } from "@/components/ProfileAvatar";
 import { useAuth } from "@/context/auth-context";
+import { useSubscriptionOverview } from "@/hooks/use-subscription-overview";
+import { hasFeature, resolveStoredPlan } from "@/lib/feature-access";
 import { useSignInModal } from "@/context/sign-in-modal";
 import { GalaxySearch } from "@/components/GalaxySearch";
 import { AICompanionButton } from "@/companion";
@@ -135,9 +137,9 @@ const navItems = [
     line: "linear-gradient(90deg,#67E8F9,#0EA5E9)",
   },
   {
-    label: "Cosmic Companion",
-    short: "Buddy",
-    to: "/companion",
+    label: "Nova Companion",
+    short: "Nova",
+    to: "/nova",
     icon: Sparkles,
     accent: "#F0ABFC",
     accentGlow: "rgba(240,171,252,0.55)",
@@ -375,6 +377,10 @@ export function AppShell({ children }: { children: ReactNode }) {
     pathname.startsWith("/academy/") ||
     pathname.startsWith("/admin") ||
     pathname === "/card" ||
+    pathname.startsWith("/card/c/") ||
+    pathname === "/nova" ||
+    pathname === "/nova/demo" ||
+    pathname === "/nova/studio" ||
     pathname === "/onboarding" ||
     pathname === "/explore-academy" ||
     pathname === "/"
@@ -396,6 +402,14 @@ export function AppShell({ children }: { children: ReactNode }) {
 function AppShellLayout({ children, pathname }: { children: ReactNode; pathname: string }) {
   const { progress } = useProgress();
   const { user, explorerProfile } = useAuth();
+  const novaSubscription = useSubscriptionOverview();
+  const currentSubscription = novaSubscription.overview?.subscription;
+  const companionEntitled =
+    novaSubscription.resolved && !novaSubscription.error &&
+    currentSubscription?.status === "active" &&
+    hasFeature(resolveStoredPlan(currentSubscription?.plan), "xp_companion_progress") &&
+    !!currentSubscription.current_period_end &&
+    Date.parse(currentSubscription.current_period_end) > Date.now();
   const [moreOpen, setMoreOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const moreActive = secondaryMobileNavItems.some((item) => isRouteActive(pathname, item.to));
@@ -507,7 +521,7 @@ function AppShellLayout({ children, pathname }: { children: ReactNode; pathname:
           </div>
 
           <div className="flex items-center gap-2">
-            <HeaderCompanion />
+            {companionEntitled && <HeaderCompanion />}
             {/* Live streak */}
             <HeaderStreak />
             {/* Upgrade button */}
@@ -567,10 +581,10 @@ function AppShellLayout({ children, pathname }: { children: ReactNode; pathname:
 
       <SiteFooter />
 
-      <AICompanionButton />
-      <CompanionTip />
+      {companionEntitled && <AICompanionButton />}
+      {companionEntitled && <CompanionTip />}
       <ProgressionCelebrationHost />
-      <CompanionEvolutionModal />
+      {companionEntitled && <CompanionEvolutionModal />}
       <MissionRewardCelebration />
 
       {moreOpen && (
@@ -797,7 +811,7 @@ function HeaderCompanion() {
   return (
     <div className="flex items-center">
       <Link
-        to="/companion"
+        to="/nova"
         className="flex min-h-11 items-center gap-1.5 rounded-l-xl border border-r-0 border-[#F0ABFC]/25 bg-[#F0ABFC]/10 px-2.5 transition-colors hover:bg-[#F0ABFC]/20"
         aria-label={`Open ${companionName}, Companion Level ${companionLevel}`}
       >

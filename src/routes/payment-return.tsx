@@ -28,6 +28,7 @@ function PaymentReturnPage() {
   const { user, loading: authLoading } = useAuth();
   const [payment, setPayment] = useState<ReturnStatus | null>(null);
   const [loading, setLoading] = useState(true);
+  const [resumeNova, setResumeNova] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -63,6 +64,18 @@ function PaymentReturnPage() {
       if (timer) clearTimeout(timer);
     };
   }, [authLoading, paymentId, user]);
+
+  useEffect(() => {
+    if (payment?.status !== "successful") return;
+    try {
+      if (window.sessionStorage.getItem("academy:nova-resume") === "1") {
+        setResumeNova(true);
+        window.sessionStorage.removeItem("academy:nova-resume");
+      }
+    } catch {
+      // Storage-disabled browsers keep the standard checkout return flow.
+    }
+  }, [payment?.status]);
 
   if (authLoading || loading) {
     return (
@@ -103,7 +116,12 @@ function PaymentReturnPage() {
             ? `Invoice ${payment.invoiceNumber} is available in My Subscription.`
             : "Your invoice is being prepared."
         }`}
-        action={<LinkButton to="/dashboard" label="Continue to dashboard" />}
+        action={
+          <LinkButton
+            to={resumeNova ? "/nova" : "/dashboard"}
+            label={resumeNova ? "Return to My Nova" : "Continue to dashboard"}
+          />
+        }
       />
     );
   }
@@ -154,7 +172,7 @@ function StatusShell({
   );
 }
 
-function LinkButton({ to, label }: { to: "/dashboard" | "/login" | "/upgrade"; label: string }) {
+function LinkButton({ to, label }: { to: "/dashboard" | "/login" | "/upgrade" | "/nova"; label: string }) {
   return (
     <Link
       to={to}

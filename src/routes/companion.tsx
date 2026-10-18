@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 import { CheckCircle2, Lock, Orbit, Pencil, Sparkles, Star } from "lucide-react";
 import { useState } from "react";
 import {
@@ -21,6 +21,8 @@ import {
 import { seoMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/companion")({
+  // Retire the old egg/hatching UI without touching the historical progress ledger.
+  beforeLoad: () => { throw redirect({ to: "/nova" }); },
   component: CosmicCompanionPage,
   // Per-user gamification state — noindex, same as /dashboard.
   head: () =>
@@ -96,6 +98,9 @@ function CosmicCompanionPage() {
               <h1 className="font-display text-4xl font-black leading-tight text-white sm:text-5xl">
                 Meet Your Cosmic Companion
               </h1>
+              <a href="/nova" className="mt-4 inline-flex rounded-full border border-amber-200/30 px-4 py-2 text-sm text-amber-100">
+                Discover your Nova Companion Card ↗
+              </a>
               <p className="mt-4 max-w-2xl text-sm leading-7 text-white/60 sm:text-base">
                 Study, earn XP, hatch your egg, and evolve your Cosmic Companion as you learn.
               </p>

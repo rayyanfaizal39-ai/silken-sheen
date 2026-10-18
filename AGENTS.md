@@ -1,5 +1,14 @@
 # AcadeMY repository instructions
 
+## Hosting
+
+AcadeMY uses **Cloudflare Pages only**, with project `academymy` and the existing
+root `wrangler.jsonc`. Preserve the Cloudflare build and worker packaging in
+`vite.config.ts` and `scripts/build-pages-worker.js`. Do not add alternative
+hosting integrations, deployment adapters, provider analytics or required checks.
+Build verification compiles locally; production deployment and merging require
+the user's explicit approval.
+
 ## Learner-facing curriculum content
 
 The following curriculum rules apply whenever working on learner-facing curriculum content in this repository.
