@@ -1,6 +1,6 @@
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { CheckCircle2, Lock, Orbit, Pencil, Sparkles, Star } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   COMPANION_STAGES,
   type CompanionId,
@@ -19,10 +19,10 @@ import {
   useCompanionMessage,
 } from "@/companion";
 import { seoMeta } from "@/lib/seo";
+import { cardsIntegrationEnabled, cardsStudioUrl } from "@/lib/cards-integration";
+import { getMyCard } from "@/features/nova-cards/server";
 
 export const Route = createFileRoute("/companion")({
-  // Retire the old egg/hatching UI without touching the historical progress ledger.
-  beforeLoad: () => { throw redirect({ to: "/nova" }); },
   component: CosmicCompanionPage,
   // Per-user gamification state — noindex, same as /dashboard.
   head: () =>
@@ -63,6 +63,7 @@ const STAGE_ART: Record<CompanionStageId, { tint: string }> = {
 
 function CosmicCompanionPage() {
   const { progress, renameCompanion } = useProgress();
+  const [savedArtworkUrl, setSavedArtworkUrl] = useState<string | null>(null);
   const companion = progress.companion ?? { id: "nova" as CompanionId, level: 1 };
   const activeStarter = STARTERS.find((starter) => starter.id === companion.id) ?? STARTERS[0];
   const displayName = getCompanionDisplayName(companion);
@@ -81,6 +82,21 @@ function CosmicCompanionPage() {
   const moodMessage = getCompanionMoodMessage(mood, displayName);
   const daysTogether = progress.companion ? getCompanionDaysTogether(progress.companion) : 1;
 
+  useEffect(() => {
+    if (!cardsIntegrationEnabled) return;
+    let active = true;
+    getMyCard()
+      .then((card) => {
+        if (active) setSavedArtworkUrl(card?.artworkUrl ?? null);
+      })
+      .catch(() => {
+        // Keep the existing companion artwork when Cards storage or auth is unavailable.
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
+
   return (
     <main className="relative isolate overflow-hidden px-4 py-6 pb-[calc(var(--mobile-content-bottom)+1rem)] sm:px-6 lg:px-8 lg:pb-10">
       <CompanionBackdrop />
@@ -93,14 +109,28 @@ function CosmicCompanionPage() {
             <div>
               <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#A78BFA]/30 bg-[#A78BFA]/10 px-3 py-1.5 text-xs font-black uppercase tracking-[0.2em] text-[#C4B5FD]">
                 <Sparkles className="h-3.5 w-3.5" />
-                Cosmic Companion
+                {cardsIntegrationEnabled ? "My Cards" : "Cosmic Companion"}
               </div>
               <h1 className="font-display text-4xl font-black leading-tight text-white sm:text-5xl">
-                Meet Your Cosmic Companion
+                {cardsIntegrationEnabled
+                  ? "Your AcadeMY Cards companion"
+                  : "Meet Your Cosmic Companion"}
               </h1>
-              <a href="/nova" className="mt-4 inline-flex rounded-full border border-amber-200/30 px-4 py-2 text-sm text-amber-100">
-                Discover your Nova Companion Card ↗
-              </a>
+              {cardsIntegrationEnabled ? (
+                <a
+                  href={cardsStudioUrl}
+                  className="mt-4 inline-flex rounded-full border border-amber-200/30 bg-amber-200/10 px-4 py-2 text-sm font-bold text-amber-100 transition-colors hover:bg-amber-200/20"
+                >
+                  Enter Cards Studio ↗
+                </a>
+              ) : (
+                <a
+                  href="/nova"
+                  className="mt-4 inline-flex rounded-full border border-amber-200/30 px-4 py-2 text-sm text-amber-100"
+                >
+                  Discover your Nova Companion Card ↗
+                </a>
+              )}
               <p className="mt-4 max-w-2xl text-sm leading-7 text-white/60 sm:text-base">
                 Study, earn XP, hatch your egg, and evolve your Cosmic Companion as you learn.
               </p>
@@ -110,7 +140,13 @@ function CosmicCompanionPage() {
             <div className="relative min-h-[280px] overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-white/[0.05] p-5">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.16),transparent_34%)]" />
               <div className="relative flex flex-col items-center justify-center gap-3">
-                <CompanionArtwork starter={activeStarter} stage={currentStage.id} size="large" />
+                <CompanionArtwork
+                  starter={activeStarter}
+                  stage={currentStage.id}
+                  size="large"
+                  artworkUrl={savedArtworkUrl}
+                  displayName={displayName}
+                />
                 <p className="max-w-[260px] text-center text-sm font-bold leading-5 text-white/80">
                   "{dailyMessage}"
                 </p>
@@ -126,7 +162,13 @@ function CosmicCompanionPage() {
           <div className="rounded-[2rem] border border-white/[0.09] bg-[#0B1220]/68 p-5 backdrop-blur-2xl sm:p-6">
             <div className="grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)] lg:items-center">
               <div className="flex justify-center">
-                <CompanionArtwork starter={activeStarter} stage={currentStage.id} size="hero" />
+                <CompanionArtwork
+                  starter={activeStarter}
+                  stage={currentStage.id}
+                  size="hero"
+                  artworkUrl={savedArtworkUrl}
+                  displayName={displayName}
+                />
               </div>
 
               <div className="min-w-0">
@@ -498,10 +540,14 @@ function CompanionArtwork({
   starter,
   stage,
   size,
+  artworkUrl,
+  displayName,
 }: {
   starter: (typeof STARTERS)[number];
   stage: CompanionStageId;
   size: "large" | "hero";
+  artworkUrl?: string | null;
+  displayName?: string;
 }) {
   const dimension = size === "hero" ? "clamp(220px, 28vw, 320px)" : "clamp(150px, 18vw, 190px)";
   return (
@@ -519,12 +565,21 @@ function CompanionArtwork({
         style={{ boxShadow: `0 0 50px ${starter.accent}70` }}
       />
       <div className="absolute inset-[4%] rounded-full border border-white/10 animate-[companionOrbit_6s_linear_infinite]" />
-      <CompanionImage
-        speciesId={starter.id}
-        stage={stage}
-        size="92%"
-        className="relative z-10 drop-shadow-[0_10px_24px_rgba(0,0,0,0.45)]"
-      />
+      {artworkUrl ? (
+        <img
+          src={artworkUrl}
+          alt={`${displayName ?? starter.name} — ${stage} stage`}
+          className="relative z-10 h-[92%] w-[92%] object-contain drop-shadow-[0_10px_24px_rgba(0,0,0,0.45)]"
+          referrerPolicy="no-referrer"
+        />
+      ) : (
+        <CompanionImage
+          speciesId={starter.id}
+          stage={stage}
+          size="92%"
+          className="relative z-10 drop-shadow-[0_10px_24px_rgba(0,0,0,0.45)]"
+        />
+      )}
       <span className="absolute left-[18%] top-[12%] h-2 w-2 rounded-full bg-white/80 shadow-[0_0_12px_rgba(255,255,255,0.8)]" />
       <span className="absolute bottom-[18%] right-[16%] h-1.5 w-1.5 rounded-full bg-white/70 shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
     </div>

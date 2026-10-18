@@ -2,6 +2,7 @@ import { NovaCard } from "../NovaCard";
 import { cardUrl, STAGES, type NovaCard as Card } from "../model";
 import type { StudioState } from "../studio-model";
 import { soundscape } from "./audio";
+import { academyHomeHref, cardsPaths } from "../paths";
 export function SanctuaryCardPanel({
   card,
   origin,
@@ -83,10 +84,10 @@ export function SanctuaryCardPanel({
         )}
         <div className="sanctuary-study-link">
           <span>Grow through learning</span>
-          <a href="/dashboard">Continue your journey ↗</a>
+          <a href={academyHomeHref}>Continue your journey ↗</a>
         </div>
       </section>
-      <a className="sanctuary-collection-link" href="/nova">
+      <a className="sanctuary-collection-link" href={cardsPaths.home}>
         Collection & sharing settings ↗
       </a>
     </section>

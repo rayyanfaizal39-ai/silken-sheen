@@ -3,6 +3,7 @@ import {
   answerOptionIndex,
   validNovaAnswer,
 } from "../../../supabase/functions/_shared/nova-answers";
+import { cardsPaths } from "./paths";
 export {
   answerOptionIndex,
   answerValue,
@@ -158,7 +159,7 @@ export interface NovaCard {
   artworkUrl?: string | null;
 }
 
-export const cardPath = (id: string) => `/card/c/${encodeURIComponent(id)}`;
+export const cardPath = cardsPaths.publicCard;
 export const cardUrl = (id: string, origin: string) => new URL(cardPath(id), origin).href;
 export const validPublicId = (id: string) =>
   /^demo-(rayyan|mia)$/.test(id) ||

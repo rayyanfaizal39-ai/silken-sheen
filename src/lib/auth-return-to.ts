@@ -1,10 +1,17 @@
-const productionOrigins = new Set(["https://www.myacademy.my", "https://senior.myacademy.my"]);
+const productionOrigins = new Set([
+  "https://www.myacademy.my",
+  "https://senior.myacademy.my",
+  "https://cards.myacademy.my",
+  "https://preview.cards.myacademy.my",
+]);
 // Main's documented Vite / Wrangler development origins; never enabled in production.
 const developmentOrigins = new Set([
   "http://localhost:8080",
   "http://127.0.0.1:8080",
   "http://localhost:4173",
   "http://127.0.0.1:4173",
+  "http://localhost:4174",
+  "http://127.0.0.1:4174",
 ]);
 
 /** Never pass untrusted login destinations directly to browser/server redirects. */
