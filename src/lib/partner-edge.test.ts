@@ -4,6 +4,9 @@ import { signPartnerReceipt } from "../../supabase/functions/_shared/partner-con
 const B = "00000000-0000-4000-8000-0000000000b1";
 const A = "00000000-0000-4000-8000-0000000000a1";
 const CODE = "ACA8B69613";
+const KEY = "00000000-0000-4000-8000-000000000099";
+const receipt = (id = B, code = CODE, now = Date.now(), key = KEY) =>
+  signPartnerReceipt(id, code, "test-only-signing-secret", now, key);
 const fixture = vi.hoisted(() => ({
   createClient: vi.fn(),
   provider: vi.fn(),
@@ -12,6 +15,7 @@ const fixture = vi.hoisted(() => ({
   rows: {} as Record<string, unknown>,
   tables: [] as string[],
   env: {} as Record<string, string | undefined>,
+  errors: {} as Record<string, unknown>,
 }));
 vi.mock("https://esm.sh/@supabase/supabase-js@2.108.1", () => ({
   createClient: fixture.createClient,
@@ -41,6 +45,7 @@ afterAll(() => {
 beforeEach(() => {
   vi.clearAllMocks();
   fixture.tables = [];
+  fixture.errors = {};
   fixture.env = {
     SUPABASE_URL: "https://example.supabase.co",
     SUPABASE_ANON_KEY: "test-anon",
@@ -83,7 +88,10 @@ beforeEach(() => {
               is: () => chain,
               select: () => chain,
               single: async () => ({ data: fixture.rows[table], error: null }),
-              maybeSingle: async () => ({ data: fixture.rows[table], error: null }),
+              maybeSingle: async () => ({
+                data: fixture.rows[table],
+                error: fixture.errors[table] ?? null,
+              }),
             };
             return {
               select: () => chain,
@@ -97,7 +105,11 @@ beforeEach(() => {
         },
   );
 });
-function normalRequest(extra: Record<string, unknown> = {}) {
+function normalRequest(extra: Record<string, unknown> = {}, attributed = false) {
+  if (!attributed) {
+    fixture.rows.partner_referrals = null;
+    fixture.rows.partner_sandbox_checkout_links = null;
+  }
   // Without extras: exactly what the currently deployed web app sends.
   return new Request("https://example.supabase.co/functions/v1/create-toyyibpay-bill", {
     method: "POST",
@@ -113,7 +125,7 @@ function billParams() {
   return fixture.provider.mock.calls[0][1] as URLSearchParams;
 }
 const PREVIEW = "https://fix-referral-account-confirm.academymy.pages.dev";
-function request(confirmation = signPartnerReceipt(B, CODE, "test-only-signing-secret")) {
+function request(confirmation = receipt()) {
   return new Request("https://example.supabase.co/functions/v1/create-toyyibpay-bill", {
     method: "POST",
     headers: { authorization: "Bearer test-session", "content-type": "application/json" },
@@ -138,7 +150,7 @@ describe("Edge normal checkout compatibility", () => {
     });
     expect(fixture.upsert).toHaveBeenCalledTimes(1);
     expect(fixture.provider).toHaveBeenCalledTimes(1);
-    expect(fixture.tables.filter((table) => table.startsWith("partner_"))).toEqual([]);
+    expect(fixture.tables).toContain("partner_referrals");
   });
   it("still returns the existing bill for a retried normal checkout", async () => {
     (fixture.rows.payment_transactions as Record<string, unknown>).provider_bill_code =
@@ -205,6 +217,43 @@ describe("Edge payment return URL", () => {
 });
 
 describe("Edge bill creation referral gate", () => {
+  it("rejects a direct attributed call omitting both private proof fields", async () => {
+    expect((await handle(normalRequest({}, true))).status).toBe(409);
+    expect(fixture.upsert).not.toHaveBeenCalled();
+    expect(fixture.provider).not.toHaveBeenCalled();
+  });
+  it.each(["partner_referrals", "partner_profiles"])(
+    "fails closed when %s lookup fails",
+    async (table) => {
+      fixture.errors[table] = { message: "unavailable" };
+      expect((await handle(normalRequest({}, true))).status).toBe(409);
+      expect(fixture.upsert).not.toHaveBeenCalled();
+    },
+  );
+  it.each([
+    () => receipt(B, CODE, Date.now() - 601000),
+    () => receipt(B, "ACAOTHER"),
+    () => receipt(B, CODE, Date.now(), "00000000-0000-4000-8000-000000000098"),
+    () => signPartnerReceipt(B, CODE, "test-only-signing-secret"),
+  ])("rejects expired, wrong-partner, other-checkout and legacy proofs", async (token) => {
+    expect((await handle(request(token()))).status).toBe(409);
+    expect(fixture.upsert).not.toHaveBeenCalled();
+  });
+  it("does not trust a new code over immutable first-touch attribution", async () => {
+    fixture.rows.partner_profiles = { partner_code: "ACAORIGINAL", status: "active" };
+    expect((await handle(request())).status).toBe(409);
+    expect(fixture.upsert).not.toHaveBeenCalled();
+  });
+  it("rejects a proof claiming self-referral", async () => {
+    fixture.rows.partner_referrals = { partner_user_id: B };
+    expect((await handle(request())).status).toBe(409);
+    expect(fixture.upsert).not.toHaveBeenCalled();
+  });
+  it("detects attribution appearing between eligibility lookup and payment insert", async () => {
+    fixture.rows.partner_referrals = null;
+    expect((await handle(normalRequest({}, true))).status).toBe(409);
+    expect(fixture.provider).not.toHaveBeenCalled();
+  });
   it("rejects A's consent for B before even inserting a pending payment", async () => {
     expect(
       (await handle(request(signPartnerReceipt(A, CODE, "test-only-signing-secret")))).status,

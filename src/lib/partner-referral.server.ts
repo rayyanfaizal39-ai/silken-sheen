@@ -38,12 +38,14 @@ export async function resolveCheckoutAttribution(
   userId: string,
   partnerCode?: string,
 ): Promise<CheckoutAttribution> {
+  let expectsAttribution = false;
   if (partnerCode) {
     const claim = await supabase.rpc("partner_claim_referral", { p_partner_code: partnerCode });
     if (claim.error) return { status: "unverified", reason: "claim_failed" };
     const reason = String(claim.data?.reason ?? "");
     if (claim.data?.claimed !== true && !SETTLED_CLAIMS.has(reason))
       return { status: "unverified", reason: `claim_${reason || "unknown"}` };
+    expectsAttribution = claim.data?.claimed === true || reason === "already_attributed";
   }
   // Students cannot read partner-owned rows via RLS.
   const referral = await admin
@@ -53,6 +55,8 @@ export async function resolveCheckoutAttribution(
     .is("deleted_at", null)
     .maybeSingle();
   if (referral.error) return { status: "unverified", reason: "referral_lookup_failed" };
+  if (!referral.data && expectsAttribution)
+    return { status: "unverified", reason: "claimed_referral_missing" };
   if (!referral.data || referral.data.partner_user_id === userId) return { status: "none" };
   const partner = await admin
     .from("partner_profiles")

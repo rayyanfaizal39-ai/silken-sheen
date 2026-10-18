@@ -15,10 +15,20 @@ const fixture = vi.hoisted(() => ({
   rows: {} as Record<string, { data: unknown; error: unknown }>,
   host: "www.myacademy.my",
   protocol: "https",
+  origin: undefined as string | undefined,
+  crossSite: false,
 }));
 vi.mock("@tanstack/start-server-core", () => ({
   getRequestHost: () => fixture.host,
   getRequestProtocol: () => fixture.protocol,
+  getRequest: () =>
+    new Request(`${fixture.protocol}://${fixture.host}/_server`, {
+      method: "POST",
+      headers: {
+        origin: fixture.origin ?? `${fixture.protocol}://${fixture.host}`,
+        "sec-fetch-site": fixture.crossSite ? "cross-site" : "same-origin",
+      },
+    }),
 }));
 vi.mock("./supabase.server", () => ({
   getSupabaseServerClient: () => ({
@@ -72,6 +82,8 @@ beforeEach(() => {
   fixture.mock = false;
   fixture.host = "www.myacademy.my";
   fixture.protocol = "https";
+  fixture.origin = undefined;
+  fixture.crossSite = false;
   vi.stubEnv("PARTNER_CONFIRMATION_SECRET", SECRET);
   fixture.rpc.mockResolvedValue({ data: { claimed: true }, error: null });
   fixture.rows = {
@@ -169,6 +181,51 @@ describe("temporary verification failures block payment", () => {
   it("blocks on an unknown claim answer", async () => {
     fixture.rpc.mockResolvedValue({ data: { claimed: false, reason: "surprise" }, error: null });
     expectBlockedBeforePayment(await checkout());
+  });
+  it.each([true, false])(
+    "blocks when a successful/existing claim cannot be read back: %s",
+    async (claimed) => {
+      fixture.rpc.mockResolvedValue({
+        data: { claimed, reason: claimed ? undefined : "already_attributed" },
+        error: null,
+      });
+      fixture.rows.partner_referrals = { data: null, error: null };
+      expectBlockedBeforePayment(await checkout());
+    },
+  );
+  it("rejects cross-origin cookie checkout before any claim", async () => {
+    fixture.origin = "https://evil.example";
+    expectBlockedBeforePayment(await checkout());
+    expect(fixture.rpc).not.toHaveBeenCalled();
+  });
+  it("rejects cross-site fetch metadata even with a spoofed same-origin header", async () => {
+    fixture.crossSite = true;
+    expectBlockedBeforePayment(await checkout());
+    expect(fixture.rpc).not.toHaveBeenCalled();
+  });
+  it("binds the private attestation to this checkout key", async () => {
+    await checkout();
+    const receipt = edgeBody().referralConfirmation as string;
+    expect(
+      validPartnerReceipt(
+        receipt,
+        B,
+        CODE,
+        SECRET,
+        Date.now(),
+        "00000000-0000-4000-8000-000000000099",
+      ),
+    ).toBe(true);
+    expect(
+      validPartnerReceipt(
+        receipt,
+        B,
+        CODE,
+        SECRET,
+        Date.now(),
+        "00000000-0000-4000-8000-000000000098",
+      ),
+    ).toBe(false);
   });
   it.each(["partner_referrals", "partner_profiles"])("blocks when %s cannot be read", async (t) => {
     fixture.rows[t] = { data: null, error: { message: "timeout" } };

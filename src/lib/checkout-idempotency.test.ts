@@ -11,6 +11,7 @@ const state = vi.hoisted(() => ({
   payments: [] as Row[],
   provider: vi.fn(),
   env: {} as Record<string, string | undefined>,
+  failUpdate: false,
 }));
 
 vi.mock("https://esm.sh/@supabase/supabase-js@2.108.1", () => ({
@@ -26,6 +27,15 @@ vi.mock("../../supabase/functions/_shared/toyyibpay-response.ts", () => ({
 
 /** Minimal PostgREST stand-in. Insert-if-absent is atomic, like Postgres. */
 function table(name: string) {
+  if (name === "partner_referrals" || name === "partner_sandbox_checkout_links") {
+    const chain = {
+      select: () => chain,
+      eq: () => chain,
+      is: () => chain,
+      maybeSingle: async () => ({ data: null, error: null }),
+    };
+    return chain;
+  }
   if (name === "profiles") {
     const profile = { full_name: "Test Learner", email: "b@example.test" };
     const chain = {
@@ -44,6 +54,8 @@ function table(name: string) {
     eq: (column: string, value: unknown) => (filters.push([column, value]), chain),
     is: (column: string, value: unknown) => (filters.push([column, value]), chain),
     single: async () => {
+      if (patch && state.failUpdate)
+        return { data: null, error: { message: "database write unavailable" } };
       const rows = matches();
       if (patch && rows.length === 1) Object.assign(rows[0], patch);
       return rows.length === 1
@@ -91,6 +103,7 @@ beforeEach(() => {
   vi.useFakeTimers();
   vi.clearAllMocks();
   state.payments = [];
+  state.failUpdate = false;
   state.env = {
     SUPABASE_URL: "https://example.supabase.co",
     SUPABASE_ANON_KEY: "test-anon",
@@ -209,18 +222,15 @@ describe("same-key checkout retries", () => {
     expect(state.payments).toEqual([expect.objectContaining({ provider_bill_code: null })]);
   });
 
-  it("lets the learner's next attempt, which uses a new key, create exactly one bill", async () => {
-    state.provider
-      .mockRejectedValueOnce(new Error("provider down"))
-      .mockResolvedValueOnce("newbill");
+  it("never creates a replacement after provider success followed by a database write failure", async () => {
+    state.provider.mockResolvedValue("orphanbill");
+    state.failUpdate = true;
     const [failed] = await settle([checkout(KEY)]);
     expect(failed.status).toBe(500);
-    const [next] = await settle([checkout(OTHER_KEY)]);
-    expect(await next.json()).toEqual({
-      paymentId: "payment-2",
-      checkoutUrl: "https://dev.toyyibpay.com/newbill",
-    });
-    expect(state.provider).toHaveBeenCalledTimes(2);
+    const [next] = await settle([checkout(KEY)]);
+    expect(next.status).toBe(409);
+    expect(state.provider).toHaveBeenCalledTimes(1);
+    expect(state.payments).toHaveLength(1);
   });
 
   it("stops waiting when the payment is settled meanwhile", async () => {

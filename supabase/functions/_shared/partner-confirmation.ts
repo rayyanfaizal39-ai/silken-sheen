@@ -1,9 +1,9 @@
 import { createHmac, timingSafeEqual } from "node:crypto";
 import { Buffer } from "node:buffer";
 
-export const PARTNER_RECEIPT_COOKIE = "academy-partner-confirmation";
 export const PARTNER_RECEIPT_SECONDS = 10 * 60;
-type Receipt = { userId: string; partnerCode: string; expiresAt: number };
+// Private server-to-server attestation, not browser consent or a cookie.
+type Receipt = { userId: string; partnerCode: string; expiresAt: number; checkoutKey?: string };
 
 function signature(body: string, secret: string) {
   return createHmac("sha256", secret)
@@ -16,9 +16,15 @@ export function signPartnerReceipt(
   partnerCode: string,
   secret: string,
   now = Date.now(),
+  checkoutKey?: string,
 ) {
   const body = Buffer.from(
-    JSON.stringify({ userId, partnerCode, expiresAt: now + PARTNER_RECEIPT_SECONDS * 1000 }),
+    JSON.stringify({
+      userId,
+      partnerCode,
+      checkoutKey,
+      expiresAt: now + PARTNER_RECEIPT_SECONDS * 1000,
+    }),
   ).toString("base64url");
   return `${body}.${signature(body, secret)}`;
 }
@@ -29,6 +35,7 @@ export function validPartnerReceipt(
   partnerCode: string,
   secret: string,
   now = Date.now(),
+  checkoutKey?: string,
 ) {
   if (!token || token.length > 2048) return false;
   try {
@@ -42,6 +49,7 @@ export function validPartnerReceipt(
     return (
       receipt.userId === userId &&
       receipt.partnerCode === partnerCode &&
+      (checkoutKey === undefined || receipt.checkoutKey === checkoutKey) &&
       receipt.expiresAt > now &&
       receipt.expiresAt <= now + PARTNER_RECEIPT_SECONDS * 1000
     );

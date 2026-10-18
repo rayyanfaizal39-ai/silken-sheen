@@ -1,4 +1,4 @@
-import { getRequestHost, getRequestProtocol } from "@tanstack/start-server-core";
+import { getRequest, getRequestHost, getRequestProtocol } from "@tanstack/start-server-core";
 import { areMockPaymentsEnabled } from "./billing-config";
 import { createPendingPayment, getSupabaseAdminClient } from "./billing.server";
 import type { CheckoutPlan } from "./billing.types";
@@ -50,6 +50,15 @@ async function isProviderUnavailable(error: unknown) {
 }
 
 export async function createAccountCheckout(data: AccountCheckoutInput) {
+  // Browser-cookie mutations must originate on the exact site serving them,
+  // including approved previews. Google OAuth/PKCE and onboarding are unchanged.
+  const request = getRequest();
+  if (
+    request.method !== "POST" ||
+    request.headers.get("origin") !== requestOrigin() ||
+    request.headers.get("sec-fetch-site") === "cross-site"
+  )
+    return retry("cross_origin_request");
   const { supabase, user } = await requireUser();
   const mock = areMockPaymentsEnabled();
 
@@ -80,7 +89,13 @@ export async function createAccountCheckout(data: AccountCheckoutInput) {
     if (!secret) return retry("receipt_secret_missing");
     referral = {
       partnerCode: attribution.partnerCode,
-      referralConfirmation: signPartnerReceipt(user.id, attribution.partnerCode, secret),
+      referralConfirmation: signPartnerReceipt(
+        user.id,
+        attribution.partnerCode,
+        secret,
+        Date.now(),
+        data.idempotencyKey,
+      ),
     };
   }
 

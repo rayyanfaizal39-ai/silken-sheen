@@ -1,4 +1,4 @@
-import { useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   AlertCircle,
@@ -32,6 +32,12 @@ import { hasFeature } from "@/lib/feature-access";
 import type { BillingPlan } from "@/lib/billing.types";
 import { seoMeta } from "@/lib/seo";
 import { createCheckout, simulateMockPayment, type UpgradePlan } from "./-upgrade.server";
+import {
+  checkoutAttemptKey,
+  rememberCheckoutPayment,
+  finishCheckoutAttempt,
+  assertCheckoutAccount,
+} from "@/lib/checkout-attempt";
 import "@/styles/upgrade.css";
 
 export const Route = createFileRoute("/upgrade")({
@@ -260,6 +266,14 @@ function UpgradePage() {
   const [checkoutPlan, setCheckoutPlan] = useState<UpgradePlan | null>(null);
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
   const checkoutLock = useRef(false);
+  const checkoutUser = useRef(user?.id);
+  checkoutUser.current = user?.id;
+  useEffect(() => {
+    checkoutUser.current = user?.id;
+    return () => {
+      checkoutUser.current = undefined;
+    };
+  }, [user?.id]);
 
   async function handleCheckout(plan: UpgradePlan) {
     if (checkoutLock.current) return;
@@ -277,9 +291,13 @@ function UpgradePage() {
       } catch {
         partnerCode = undefined;
       }
+      const idempotencyKey = checkoutAttemptKey(window.sessionStorage, user.id, plan);
       const checkout = await createCheckout({
-        data: { plan, idempotencyKey: crypto.randomUUID(), partnerCode, accountId: user.id },
+        data: { plan, idempotencyKey, partnerCode, accountId: user.id },
       });
+      // Never redirect B to a delayed bill response started by account A, or
+      // consume the private reference B may still need for their purchase.
+      assertCheckoutAccount(user.id, checkoutUser.current);
       if (checkout.mode === "retry") {
         setCheckoutError(checkout.message);
         setCheckoutPlan(null);
@@ -294,13 +312,16 @@ function UpgradePage() {
       }
       if (checkout.clearReference) clearPartnerReference(window.localStorage);
       if (checkout.mode === "toyyibpay") {
+        rememberCheckoutPayment(window.sessionStorage, user.id, idempotencyKey, checkout.paymentId);
         window.location.assign(checkout.checkoutUrl);
         return;
       }
 
+      rememberCheckoutPayment(window.sessionStorage, user.id, idempotencyKey, checkout.paymentId);
       await simulateMockPayment({
         data: { paymentId: checkout.paymentId, outcome: "successful" },
       });
+      finishCheckoutAttempt(window.sessionStorage, user.id, checkout.paymentId);
       window.dispatchEvent(new Event("academy:billing-updated"));
       setCheckoutPlan(null);
       checkoutLock.current = false;

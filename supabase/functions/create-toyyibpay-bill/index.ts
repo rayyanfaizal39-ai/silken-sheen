@@ -1,9 +1,11 @@
 /// <reference lib="deno.window" />
 
-// Provide a loose declaration for Deno to satisfy TypeScript environments
-declare const Deno: any;
+declare const Deno: {
+  env: { get(name: string): string | undefined };
+  serve(handler: (request: Request) => Promise<Response> | Response): unknown;
+};
 
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2.108.1";
+import { createClient, type SupabaseClient } from "https://esm.sh/@supabase/supabase-js@2.108.1";
 import { requestToyyibPayBill, ToyyibPayUnavailableError } from "../_shared/toyyibpay-response.ts";
 import { validPartnerReceipt } from "../_shared/partner-confirmation.ts";
 import { paymentReturnUrl } from "../_shared/payment-return.ts";
@@ -41,7 +43,10 @@ const BILL_WAIT_MS = 12_000;
 const BILL_POLL_MS = 500;
 
 /** The bill code another request with the same key is creating, once stored. */
-async function waitForBillCode(admin: any, paymentId: string): Promise<string | undefined> {
+async function waitForBillCode(
+  admin: SupabaseClient,
+  paymentId: string,
+): Promise<string | undefined> {
   const deadline = Date.now() + BILL_WAIT_MS;
   while (Date.now() < deadline) {
     await new Promise((resolve) => setTimeout(resolve, BILL_POLL_MS));
@@ -101,9 +106,38 @@ Deno.serve(async (request: Request) => {
     const admin = createClient(supabaseUrl, serviceRoleKey, {
       auth: { persistSession: false, autoRefreshToken: false },
     });
+    // Every caller, including direct API calls omitting all optional fields,
+    // is checked against the same attribution the insert trigger will use.
+    const referral = await admin
+      .from("partner_referrals")
+      .select("partner_user_id")
+      .eq("customer_reference", user.id)
+      .is("deleted_at", null)
+      .maybeSingle();
+    if (referral.error) return response({ error: "referral_attribution_unverified" }, 409);
     let confirmedPartnerId: string | undefined;
-    if (body.partnerCode !== undefined || body.referralConfirmation !== undefined) {
+    let expectedCode: string | undefined;
+    if (referral.data && referral.data.partner_user_id !== user.id) {
+      const partner = await admin
+        .from("partner_profiles")
+        .select("partner_code,status")
+        .eq("user_id", referral.data.partner_user_id)
+        .is("deleted_at", null)
+        .maybeSingle();
+      if (partner.error) return response({ error: "referral_attribution_unverified" }, 409);
+      if (partner.data?.status === "active") {
+        confirmedPartnerId = referral.data.partner_user_id;
+        expectedCode = partner.data.partner_code;
+      }
+    }
+    if (
+      confirmedPartnerId ||
+      body.partnerCode !== undefined ||
+      body.referralConfirmation !== undefined
+    ) {
       if (
+        !confirmedPartnerId ||
+        body.partnerCode !== expectedCode ||
         typeof body.partnerCode !== "string" ||
         typeof body.referralConfirmation !== "string" ||
         !validPartnerReceipt(
@@ -111,33 +145,12 @@ Deno.serve(async (request: Request) => {
           user.id,
           body.partnerCode,
           requiredEnv("PARTNER_CONFIRMATION_SECRET"),
+          Date.now(),
+          body.idempotencyKey,
         )
       ) {
         return response({ error: "referral_confirmation_required" }, 409);
       }
-      const referral = await admin
-        .from("partner_referrals")
-        .select("partner_user_id")
-        .eq("customer_reference", user.id)
-        .is("deleted_at", null)
-        .maybeSingle();
-      if (referral.error || !referral.data || referral.data.partner_user_id === user.id) {
-        return response({ error: "referral_attribution_unverified" }, 409);
-      }
-      const partner = await admin
-        .from("partner_profiles")
-        .select("partner_code,status")
-        .eq("user_id", referral.data.partner_user_id)
-        .is("deleted_at", null)
-        .maybeSingle();
-      if (
-        partner.error ||
-        partner.data?.status !== "active" ||
-        partner.data.partner_code !== body.partnerCode
-      ) {
-        return response({ error: "referral_attribution_unverified" }, 409);
-      }
-      confirmedPartnerId = referral.data.partner_user_id;
     }
     const insert = await admin
       .from("payment_transactions")
@@ -171,7 +184,7 @@ Deno.serve(async (request: Request) => {
       .single();
     if (paymentResult.error) throw paymentResult.error;
     const payment = paymentResult.data;
-    if (confirmedPartnerId) {
+    {
       // The insert trigger is deliberately fail-open for legacy callers.
       // Referred checkout must additionally verify its actual link before a bill.
       const link = await admin
@@ -181,8 +194,10 @@ Deno.serve(async (request: Request) => {
         .maybeSingle();
       if (
         link.error ||
-        link.data?.customer_user_id !== user.id ||
-        link.data?.partner_user_id !== confirmedPartnerId
+        (confirmedPartnerId
+          ? link.data?.customer_user_id !== user.id ||
+            link.data?.partner_user_id !== confirmedPartnerId
+          : Boolean(link.data?.partner_user_id))
       ) {
         return response({ error: "referral_payment_link_unverified" }, 409);
       }
@@ -210,7 +225,8 @@ Deno.serve(async (request: Request) => {
       if (billCode) {
         return response({ paymentId: payment.id, checkoutUrl: sandboxCheckoutUrl(billCode) });
       }
-      // Retryable: the web app asks the learner to try again, with a new key.
+      // Preserve this key even after timeout/crash/DB ambiguity. No replacement
+      // bill may be created automatically; reconcile uncertain attempts first.
       return response({ error: "checkout_in_progress" }, 409);
     }
 

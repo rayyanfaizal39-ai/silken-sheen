@@ -5,6 +5,7 @@ import { AcademyPageShell } from "@/components/AcademyPage";
 import { useAuth } from "@/context/auth-context";
 import { seoMeta } from "@/lib/seo";
 import { getPaymentReturnStatus } from "./-upgrade.server";
+import { finishCheckoutAttempt } from "@/lib/checkout-attempt";
 
 type ReturnStatus = Awaited<ReturnType<typeof getPaymentReturnStatus>>;
 const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -48,6 +49,13 @@ function PaymentReturnPage() {
         next = { state: "unavailable" };
       }
       if (!active) return;
+      if (user && next.state === "found" && next.status !== "pending") {
+        try {
+          finishCheckoutAttempt(window.sessionStorage, user.id, next.paymentId);
+        } catch {
+          /* Status display must not depend on browser storage. */
+        }
+      }
       setResult(next);
       setLoading(false);
       if (next.state === "found" && next.status === "pending" && attempt < 8) {

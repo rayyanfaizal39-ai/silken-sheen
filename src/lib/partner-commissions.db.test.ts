@@ -110,6 +110,32 @@ beforeEach(async () => {
 });
 
 describe("partner referral commissions", () => {
+  it("Postgres grants bill-creation ownership to exactly one same-key insert", async () => {
+    await claim(STUDENT, "ACAPARTNER1");
+    const attempts = await Promise.all(
+      Array.from({ length: 20 }, () =>
+        db.query<{ id: string }>(
+          `insert into public.payment_transactions(user_id,provider,plan,amount,idempotency_key)
+         values($1,'toyyibpay','premium',59,'atomic-insert-test')
+         on conflict(idempotency_key) do nothing returning id`,
+          [STUDENT],
+        ),
+      ),
+    );
+    const owners = attempts.flatMap((attempt) => attempt.rows);
+    expect(owners).toHaveLength(1);
+    const retry = await db.query(
+      `insert into public.payment_transactions(user_id,provider,plan,amount,idempotency_key)
+       values($1,'toyyibpay','premium',59,'atomic-insert-test')
+       on conflict(idempotency_key) do nothing returning id`,
+      [STUDENT],
+    );
+    expect(retry.rows).toHaveLength(0);
+    expect(
+      (await db.query(`select * from public.partner_sandbox_checkout_links`)).rows,
+    ).toHaveLength(1);
+    expect(await commissions()).toHaveLength(0);
+  });
   it("keeps two Google accounts independent when a newly confirmed student pays after an account switch", async () => {
     // Even a historical mistaken claim on account A must not consume the
     // explicit, independent claim on the new paying account B.
