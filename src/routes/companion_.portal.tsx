@@ -7,13 +7,24 @@ import "./companion-portal.css";
 
 export const Route = createFileRoute("/companion_/portal")({
   component: CelestialGatewayPage,
-  head: () =>
-    seoMeta({
+  head: () => {
+    const head = seoMeta({
       title: "Celestial Gateway | Cosmic Companion",
       description: "Enter the Celestial Gateway and discover your Cosmic Companion.",
       path: "/companion/portal",
       noindex: true,
-    }),
+    });
+    return {
+      ...head,
+      links: [
+        ...head.links,
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap",
+        },
+      ],
+    };
+  },
 });
 
 function CelestialGatewayPage() {
