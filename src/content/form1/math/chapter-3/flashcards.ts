@@ -1,6 +1,6 @@
 import type { Flashcard } from "@/data/content";
 import { structuredFront, structuredBack, type StructuredFlashcard } from "@/features/flashcards/structuredFlashcard";
-type Category="concepts"|"operations"|"facts"|"practice";
+type MathFlashcardCategoryId="concepts"|"operations"|"facts"|"practice";
 const mathCard=(bmFront:string,bmBack:string,dlpFront:string,dlpBack:string)=>({bm:[bmFront,bmBack] as [string,string],dlp:[dlpFront,dlpBack] as [string,string]});
 const LEGACY_C3_PAIRS: Record<
   MathFlashcardCategoryId,
