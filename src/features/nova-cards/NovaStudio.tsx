@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { NovaCard } from "./NovaCard";
 import { EvolutionPreview } from "./EvolutionPreview";
-import { cardUrl, DEMO_CARDS, evolution, STAGES, type NovaCard as Card } from "./model";
+import { cardUrl, DEMO_CARDS, STAGES, type NovaCard as Card } from "./model";
 import { getMyCard, getNovaEntitlement, setSharing, type NovaEntitlement } from "./server";
 import { NovaTeaser } from "./NovaTeaser";
 import { academyHomeHref, cardsPaths, signInHref } from "./paths";
@@ -52,8 +52,7 @@ export function NovaStudio() {
             <em>Your companion.</em>
           </h1>
           <p className="nova-lead">
-            One Nova, uniquely yours. A collectible identity that grows with every verified XP
-            milestone.
+            One Nova, uniquely yours. Discover two original designs and make one permanent.
           </p>
           <div className="nova-feature-list">
             <span>
@@ -62,7 +61,7 @@ export function NovaStudio() {
             </span>
             <span>
               02 <b>Grow through five stages</b>
-              <small>Your earned XP shapes the journey. Your identity stays yours.</small>
+              <small>Evolution designs are preserved for a future phase.</small>
             </span>
             <span>
               03 <b>Keep it. Share it.</b>
@@ -91,7 +90,7 @@ export function NovaStudio() {
                         setCard(await setSharing({ data: enabled }));
                         setNotice(
                           enabled
-                            ? "Public sharing enabled. Your username, traits, artwork, XP and codes are visible to anyone with the link."
+                            ? "Public sharing enabled. Your username, traits, artwork and codes are visible to anyone with the link."
                             : "Card is now private. New public requests are blocked.",
                         );
                       } catch (e) {
@@ -116,16 +115,16 @@ export function NovaStudio() {
                     }
                   }}
                 >
-                  Refresh earned XP
+                  Refresh card
                 </button>
               </div>
               <div className="nova-stage-list" aria-label="Five evolution stages">
                 {STAGES.map((s, i) => (
                   <span
                     key={s.name}
-                    className={i + 1 === (card.stage ?? evolution(card.xp).stage) ? "current" : ""}
+                    className={i + 1 === (card.stage ?? 1) ? "current" : ""}
                   >
-                    {i + 1}. {s.name} <small>{s.xp.toLocaleString()} XP</small>
+                    {i + 1}. {s.name} <small>{i === 0 ? "Phase 1" : "Coming later"}</small>
                   </span>
                 ))}
               </div>

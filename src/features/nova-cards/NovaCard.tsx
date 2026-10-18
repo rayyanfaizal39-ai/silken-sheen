@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { companionSvg } from "./artwork";
 import { barcodeSvg, qrDataUrl, svgUrl } from "./codes";
-import { evolution, STAGES, type NovaCard as Card } from "./model";
+import { STAGES, type NovaCard as Card } from "./model";
 import { downloadCard } from "./download";
 import { getCardForExport } from "./server";
 
@@ -20,13 +20,7 @@ export function NovaCard({
   const [qr, setQr] = useState("");
   const [notice, setNotice] = useState("");
   const [downloading, setDownloading] = useState(false);
-  const info = evolution(card.xp);
-  const stage = Math.max(1, Math.min(STAGES.length, card.stage ?? info.stage));
-  const next = STAGES[stage];
-  const current = STAGES[stage - 1];
-  const percent = next
-    ? Math.min(100, Math.max(0, ((card.xp - current.xp) / (next.xp - current.xp)) * 100))
-    : 100;
+  const stage = Math.max(1, Math.min(STAGES.length, card.stage ?? 1));
   const artwork = card.artworkUrl || svgUrl(companionSvg(card.traits, card.variant, stage));
   useEffect(() => {
     let active = true;
@@ -111,7 +105,7 @@ export function NovaCard({
               </h2>
               <div className="nova-species">
                 <span>{card.traits.creature}</span>
-                <b>LV. {info.level.toString().padStart(2, "0")}</b>
+                <b>{STAGES[stage - 1].name.toUpperCase()}</b>
               </div>
               <p className="nova-description">
                 A {card.traits.behaviour.toLowerCase()} companion from{" "}
@@ -174,17 +168,8 @@ export function NovaCard({
         ↻ Tap the card to {flipped ? "return" : "reveal its identity"}
       </p>
       <div className="nova-earned-xp">
-        <span>
-          {card.xp.toLocaleString()} {card.demo ? "sample" : "earned"} XP
-        </span>
-        <span>
-          {!next
-            ? "Final evolution"
-            : card.xp >= next.xp
-              ? "Next evolution ready"
-              : `${next.xp.toLocaleString()} XP · next stage`}
-        </span>
-        <progress value={percent} max={100} aria-label="Progress to next Nova stage" />
+        <span>Origin Master Card</span>
+        <span>Evolution is coming in a later phase</span>
       </div>
       <div className="nova-actions">
         <button

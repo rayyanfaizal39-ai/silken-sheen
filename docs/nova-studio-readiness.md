@@ -21,12 +21,12 @@ fine organic anatomy at the requested quality.
 
 ## Identity, queue and release
 
-`20261015090000_nova_companion_cards.sql` remains intact. The additive
-`20261016233058_nova_studio_batch.sql` extends its cards, jobs, artwork and
+`20261018160000_nova_companion_cards.sql` remains the base migration. The additive
+`20261018160100_nova_studio_batch.sql` extends its cards, jobs, artwork and
 private Storage bucket. It also creates owner-only draft RPCs, a service-only
 candidate queue, batches, request ledger, budget settings and audit events.
 
-The additional review-only `20261017102224_nova_creature_variety.sql` expands
+The additional review-only `20261018160200_nova_creature_variety.sql` expands
 creatures to Phoenix, Magical Fox, Dragon, Lion and Unicorn, and adds one fourth
 option to each other question. Code 2 remains legacy Phoenix; new species use
 3/4/5. Validation widens by question position, with matching shared app/worker
@@ -71,10 +71,11 @@ Evolution uses the same identity specification plus private copies of both the
 previous approved image and chosen Origin anchor, sent as inline PNG data URLs
 to avoid signed URL expiry during Batch processing. References are capped at
 14 MiB each. The supported JSON edit contract uses `images: [{image_url:…}]`.
-Requests require active Pro/Premium access, verified XP and the immediately
-previous approved stage. Service release checks entitlement and XP again,
-updates the paid snapshot and never overwrites an earlier stage. Thresholds
-remain 0 / 1,600 / 9,000 / 32,000 / 80,000. Payments and ToyyibPay are untouched.
+**Phase 1: evolution is disabled and independent of XP.** `request_nova_evolution`
+fails closed, the queue and request finisher accept stage 1 (Origin) jobs only, and
+release never selects stage 2-5 artwork. No Cards function reads AcadeMY XP. The
+evolution worker contract above is retained for a future phase whose XP authority
+is proposed in `docs/cards-xp-ledger-design.md`. Payments and ToyyibPay are untouched.
 
 ## Models and cost accounting
 
@@ -147,7 +148,14 @@ session; never expose service-role credentials in a browser or admin UI.
 
 ## Staging and production approval checklist
 
-1. Review all three unapplied migrations against the existing subscription/XP schema.
+0. **Release blocker — migration order.** The Cards migrations are versioned
+   `20261018160000`, `20261018160100` and `20261018160200` so they sort after
+   `20261016120000_partner_referral_commissions.sql`, the latest migration on
+   `origin/main`. Production's applied migration history has not been confirmed.
+   Before staging, list the applied versions (read-only) and confirm none is
+   later than `20261018160000`; if one is, re-version the Cards migrations and
+   update `src/features/nova-cards/migration-order.test.ts`.
+1. Review all three unapplied migrations against the existing subscription and profiles schema.
    Apply only to a disposable/staging database first. Run RLS tests and Supabase
    security/performance advisors there. Local PGlite tests do not replace a real
    Storage, Auth, cron and Edge runtime integration test.
@@ -185,7 +193,8 @@ OpenAI key or sends a real provider request. Coverage includes twelve-question
 durability, optimistic conflicts, isolated UI imports, JSONL contracts, shuffled
 result mapping, PNG integrity, duplicate submission claims, uncertain POST
 quarantine, monthly reservation cap, next-day dual-image gate, permanent
-selection, Storage RLS, subscription/XP guards and evolution identity anchors.
+selection, Storage RLS, subscription and active-student guards, fail-closed evolution
+and evolution identity anchors.
 
 Commands:
 

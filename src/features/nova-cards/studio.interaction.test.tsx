@@ -7,7 +7,6 @@ vi.mock("./studio.server", () => ({
   saveStudioDraft: vi.fn(),
   submitStudioOrigin: vi.fn(),
   chooseStudioOrigin: vi.fn(),
-  requestStudioEvolution: vi.fn(),
 }));
 vi.mock("./StudioCompletedCard", () => ({ default: () => <p>Saved collectible</p> }));
 import { StudioExperience, type StudioApi } from "./StudioPage";
@@ -44,11 +43,8 @@ function harness(profile = 0) {
     publicId: null,
     identity: null,
     selected: null,
-    xp: 0,
-    earnedStage: 1,
     origin: null,
     candidates: [],
-    evolutions: [],
   };
   const api: StudioApi = {
     load: async () => structuredClone(state),
@@ -79,7 +75,6 @@ function harness(profile = 0) {
       state = { ...state, selected: candidate, candidates: [] };
       return structuredClone(state);
     }),
-    evolve: vi.fn(),
   };
   const mount = async () => {
     const host = document.createElement("div");

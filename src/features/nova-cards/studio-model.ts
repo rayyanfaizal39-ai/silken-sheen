@@ -7,8 +7,6 @@ export type StudioState = {
   publicId: string | null;
   identity: { version: string; answers: number[]; traits: NovaTraits } | null;
   selected: "a" | "b" | null;
-  xp: number;
-  earnedStage: number;
   origin: {
     status: string;
     revealAfter: string;
@@ -17,7 +15,6 @@ export type StudioState = {
     completed: number;
   } | null;
   candidates: { candidate: "a" | "b"; url: string }[];
-  evolutions: { stage: number; status: string; errorCode: string | null }[];
 };
 export const AWAKENING_TITLE = "YOUR NOVA IS AWAKENING";
 export const AWAKENING_DESCRIPTION =

@@ -2,7 +2,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { setResponseHeader } from "@tanstack/start-server-core";
 import { z } from "zod";
 import { getSupabaseServerClient } from "@/lib/supabase.server";
-import { DEMO_CARDS, validPublicId, validNovaAnswer, type NovaCard } from "./model";
+import { DEMO_CARDS, validPublicId, type NovaCard } from "./model";
 
 function client() {
   setResponseHeader("Cache-Control", "private, no-store, max-age=0");
@@ -93,42 +93,6 @@ export const getMyCard = createServerFn({ method: "GET" }).handler(
     return withArtwork(db, data as NovaCard | null);
   },
 );
-
-export const createCard = createServerFn({ method: "POST" })
-  .validator((input: unknown) =>
-    z
-      .object({
-        username: z.string().regex(/^[A-Za-z0-9_]{2,24}$/),
-        answers: z
-          .array(z.number().int().min(0).max(5))
-          .length(12)
-          .refine(
-            (answers) => answers.every((answer, i) => validNovaAnswer(i, answer)),
-            "Invalid Nova answer.",
-          ),
-        variant: z.enum(["a", "b"]),
-      })
-      .parse(input),
-  )
-  .handler(async ({ data: input }): Promise<NovaCard> => {
-    const db = client();
-    const { data: auth, error: authError } = await db.auth.getUser();
-    if (authError || !auth.user || auth.user.is_anonymous)
-      throw new Error("Sign in to create your Nova companion.");
-    const entitlement = await resolveNovaEntitlement(db, auth.user.id);
-    if (!entitlement.active)
-      throw new Error("An active Pro or Premium subscription is required to create your Nova.");
-    const { data, error } = await db.rpc("create_nova_card", {
-      display_username: input.username,
-      questionnaire: input.answers,
-      selected_variant: input.variant,
-    });
-    if (error)
-      throw new Error(
-        "Your card could not be saved. Sign in and check that Nova storage is ready.",
-      );
-    return (await withArtwork(db, data as NovaCard))!;
-  });
 
 export const setSharing = createServerFn({ method: "POST" })
   .validator((input: unknown) => z.boolean().parse(input))

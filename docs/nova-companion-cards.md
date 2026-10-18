@@ -4,6 +4,19 @@ This is an additive feature on `feature/nova-companion-cards`, based on main com
 `d266d9f483c9f61ea097ebfb6026074a819d18d4`. Do not merge or deploy without review.
 No production database changes, deployment, or paid AI generation were performed.
 
+## Phase 1 status: independent of AcadeMY XP
+
+Phase 1 launches personal companion cards without any dependency on the AcadeMY XP
+system. Saved cards are permanent **Origin Master Cards** (stage 1). The Cards
+migrations never read or write `user_progress`, `quiz_xp_awards`,
+`mission_reward_claims` or any other XP table, and card payloads contain no XP.
+`request_nova_evolution` fails closed, and no stage 2-5 job or artwork is created or
+released. `STAGES` and `evolution()` remain in `model.ts` only for the fictional demo
+and evolution design previews. A future XP-backed evolution phase is proposed in
+`docs/cards-xp-ledger-design.md` and requires approval. Sections below that describe
+XP thresholds, verified XP, baselines or snapshots record the earlier preview and are
+superseded by this section.
+
 ## Local preview
 
 ```sh
@@ -29,16 +42,17 @@ opening it from a different device requires an accessible preview host.
 ## Features and files
 
 - `src/features/nova-cards/model.ts`: twelve questions, typed traits, fixed demo identities,
-  exactly five XP thresholds, level calculation and permanent URL helpers.
+  five stage names (XP thresholds are used only by fictional previews) and permanent URL helpers.
 - `artwork.ts`: original vector sample creatures with two distinct design silhouettes,
   persistent species/palette/eye identity and five earned visual transformations.
 - `NovaCard.tsx`, `nova-cards.css`: portrait fantasy card, official purple/yellow AcadeMY
   icon, navy/gold styling, holographic sheen, keyboard/touch flip, reduced motion,
-  current XP, QR, serial, Code 128 barcode, sharing and image export controls.
+  Origin Master Card status, QR, serial, Code 128 barcode, sharing and image export controls.
 - `codes.ts`: high-error-correction QR with a four-module quiet zone; standards-based
   Code 128 C with start, checksum, stop and ten-module barcode quiet zones.
 - `download.ts`: self-contained 1200 × 1800 PNG export with embedded brand/art/QR/barcode.
-- `server.ts`: account-scoped creation, owner loading, opt-in sharing and public allowlist RPCs.
+- `server.ts`: owner loading, opt-in sharing and public allowlist RPCs. Creation uses the
+  Studio draft → submit → select flow in `studio.server.ts`.
 - `head.ts`, `public/nova-cards/preview.png`: canonical, noindex, OG and Twitter metadata
   with a generic 1200 × 630 branded sample preview. Private cards contribute no personal metadata.
 - `src/routes/nova.tsx`, `nova_.demo.tsx`, `card_.c.$publicId.tsx`: independent studio,
@@ -61,40 +75,35 @@ No curriculum content changes are included. Build-generated curriculum drift is 
 
 ## Supabase migration requiring review
 
-`supabase/migrations/20261015090000_nova_companion_cards.sql` is **not applied** to a remote database.
+`supabase/migrations/20261018160000_nova_companion_cards.sql` is **not applied** to a remote database.
 It is exercised only against an isolated PostgreSQL-compatible PGlite test database.
 
-Review and stage it after existing quiz XP and mission migrations:
+Review it before staging. It does not depend on AcadeMY progress or XP tables:
 
 1. `nova_cards` gives each owner one immutable identity, separate server-generated UUIDs
    for internal and public IDs, and a unique twelve-digit Code 128 serial. No auth UUID is
    placed into a public URL. Retrying creation returns the original chosen identity.
 2. RLS allows only owner SELECT on base card rows. API roles cannot directly insert,
-   update or delete cards, alter rarity, set XP, replace a design, or generate identities.
-   The create/sharing RPCs derive ownership from `auth.uid()` and reject anonymous accounts.
-3. `get_public_nova_card` and its serial lookup return an explicit safe payload only when
-   sharing is enabled. Missing and private cards both return null. No owner UUID, email,
+   update or delete cards, alter rarity, replace a design, or generate identities.
+   Personal RPCs derive ownership from `auth.uid()` and require an active, non-anonymous
+   student profile.
+3. `get_public_nova_card` looks up the opaque public UUID only (the sequential-serial
+   lookup is dropped) and returns an explicit safe payload only when sharing is enabled. Missing and private cards both return null. No owner UUID, email,
    school, real name, private answers, internal card ID or future artwork is returned.
-4. `nova_xp_baselines` freezes existing persisted `user_progress.xp` and a ledger checkpoint
-   in one migration statement. Existing progress is never rewritten. Future growth uses
-   only the protected quiz and mission award ledgers; client XP inflation is ignored.
-   **Review the grandfathered XP snapshot:** old persisted XP predates complete server
-   verification. This compatibility snapshot preserves it; it does not retroactively
-   authenticate every historical point. New students have no unverified XP fallback.
-5. Five thresholds are 0, 1600, 9000, 32000 and 80000 XP.
-   The original nonzero milestone values remain represented. Level is 1 + floor(XP/400).
-   Rarity is a separately controlled field and never changes because a stage changes.
+4. There is no XP baseline, verified-XP function or XP snapshot column. Every saved card
+   is shown at the permanent Origin stage (`nova_visible_stage` returns 1).
+5. Rarity is a separately controlled field and never changes because a stage changes.
 6. `nova_generation_jobs`, `nova_artwork`, and private `nova-artwork` Storage support
    future generation jobs, versioned prompts, identity snapshots, two candidate slots,
    exactly one selected artwork per stage and explicit release flags. Only service-role
-   processes write them. Storage access requires selected, released, **current-stage**
-   art plus ownership or current public sharing permission. Future/unselected art is denied.
+   processes write them. Storage access requires selected, released **Origin** art plus
+   ownership or current public sharing permission. Future/unselected art is denied.
 
 To verify the live integration after migration approval: sign in on staging, finish all
 twelve questions, choose a design, save, retry creation, then toggle public sharing.
 Use an anonymous second browser to check public visibility before/after revocation.
-Award XP through the existing quiz/mission RPCs and use **Refresh earned XP**.
-Verify that the URL, serial and rarity stay the same after evolution.
+Confirm the card shows as a permanent Origin Master Card, that earning XP elsewhere in
+AcadeMY does not change it, and that the URL, serial and rarity stay the same.
 
 ## Validation
 
@@ -147,7 +156,7 @@ Both pass `string | undefined` to a string parameter. No Nova type errors remain
   after migration review; no production credentials or database were used here.
 - Legacy companion UI remains compatible and still follows its existing five-stage model.
   Nova cards have five stages and contain no egg or hatching features or future-stage art gallery.
-- XP refresh is explicit on the owner page; there is no new realtime progress subscription.
+- Card refresh is explicit on the owner page; there is no realtime progress subscription.
 - Stage and rarity labels are feature copy, not curriculum content.
 
 UNSOURCED LEARNER-FACING CURRICULUM CONTENT ADDED: NONE.
