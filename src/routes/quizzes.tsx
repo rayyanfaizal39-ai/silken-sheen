@@ -1,6 +1,7 @@
 import { ScienceF1QuizVisual } from "@/components/quiz/ScienceF1QuizVisual";
 import { scienceF1QuizVisualById } from "@/content/form1/science/quiz-visuals";
 import { getGeographyF1QuizImageAlt } from "@/content/form1/geography/quiz-visuals";
+import { getSejarahF1QuizImage, getSejarahF1QuizImageAlt } from "@/content/form1/sejarah/quiz-visuals";
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { subjects, forms, type Form } from "@/data/subjects-meta";
@@ -22090,10 +22091,10 @@ function QuizzesPage() {
                 <div className="px-4 pb-3 pt-4 sm:px-10 sm:pb-5 sm:pt-7">
                   {current.id && scienceF1QuizVisualById[current.id] ? (
                     <ScienceF1QuizVisual question={current} />
-                  ) : current.image ? (
+                  ) : (current.image ?? getSejarahF1QuizImage(current)) ? (
                     <img
-                      src={current.image}
-                      alt={getGeographyF1QuizImageAlt(current.image)}
+                      src={current.image ?? getSejarahF1QuizImage(current)}
+                      alt={getSejarahF1QuizImageAlt(current.id) || getGeographyF1QuizImageAlt(current.image ?? "")}
                       className="mb-4 block w-full rounded-xl object-contain"
                     />
                   ) : current.visualKey ? (
@@ -23152,10 +23153,10 @@ function EnglishQuizScreen({
         </div>
 
         <div className="px-6 pb-4 pt-6">
-          {current.image ? (
+          {(current.image ?? getSejarahF1QuizImage(current)) ? (
             <img
-              src={current.image}
-              alt={getGeographyF1QuizImageAlt(current.image)}
+              src={current.image ?? getSejarahF1QuizImage(current)}
+              alt={getSejarahF1QuizImageAlt(current.id) || getGeographyF1QuizImageAlt(current.image ?? "")}
               className="mb-4 block w-full rounded-xl object-contain"
             />
           ) : current.visualKey ? (
