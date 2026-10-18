@@ -97,7 +97,9 @@ export async function createAccountCheckout(data: AccountCheckoutInput) {
     if (failureContext instanceof Response && failureContext.status === 409) {
       try {
         const failure = (await failureContext.clone().json()) as { error?: string };
-        if (failure.error?.startsWith("referral_")) return retry(`edge_${failure.error}`);
+        if (failure.error?.startsWith("referral_") || failure.error === "checkout_in_progress") {
+          return retry(`edge_${failure.error}`);
+        }
       } catch {
         /* Other provider failures retain the normal error path. */
       }

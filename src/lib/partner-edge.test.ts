@@ -67,7 +67,10 @@ beforeEach(() => {
       payment_status: "pending",
     },
   };
-  fixture.upsert.mockResolvedValue({ error: null });
+  // This request inserted the row, so it is the one that creates the bill.
+  fixture.upsert.mockReturnValue({
+    select: async () => ({ data: [{ id: "test-payment" }], error: null }),
+  });
   fixture.provider.mockResolvedValue("sandboxbill");
   fixture.createClient.mockImplementation((_url: string, key: string) =>
     key === "test-anon"

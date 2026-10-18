@@ -187,6 +187,10 @@ describe("temporary verification failures block payment", () => {
     edgeFailure(409, "referral_payment_link_unverified");
     expect(await checkout()).toEqual({ mode: "retry", message: CHECKOUT_RETRY_MESSAGE });
   });
+  it("asks the learner to retry while another request is creating the same bill", async () => {
+    edgeFailure(409, "checkout_in_progress");
+    expect(await checkout()).toEqual({ mode: "retry", message: CHECKOUT_RETRY_MESSAGE });
+  });
   it("keeps the provider-outage path separate", async () => {
     edgeFailure(503, "provider_unavailable");
     expect(await checkout()).toEqual({ mode: "unavailable" });

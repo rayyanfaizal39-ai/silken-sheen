@@ -36,6 +36,27 @@ function sandboxCheckoutUrl(billCode: string) {
   return `${TOYYIBPAY_SANDBOX_URL}/${encodeURIComponent(billCode)}`;
 }
 
+// Covers the creating request's ToyyibPay timeout (10s) plus its database writes.
+const BILL_WAIT_MS = 12_000;
+const BILL_POLL_MS = 500;
+
+/** The bill code another request with the same key is creating, once stored. */
+async function waitForBillCode(admin: any, paymentId: string): Promise<string | undefined> {
+  const deadline = Date.now() + BILL_WAIT_MS;
+  while (Date.now() < deadline) {
+    await new Promise((resolve) => setTimeout(resolve, BILL_POLL_MS));
+    const current = await admin
+      .from("payment_transactions")
+      .select("provider_bill_code, payment_status")
+      .eq("id", paymentId)
+      .single();
+    if (current.error) throw current.error;
+    if (current.data.provider_bill_code) return current.data.provider_bill_code as string;
+    if (current.data.payment_status !== "pending") return undefined;
+  }
+  return undefined;
+}
+
 Deno.serve(async (request: Request) => {
   if (request.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
   if (request.method !== "POST") return response({ error: "Method not allowed" }, 405);
@@ -118,20 +139,27 @@ Deno.serve(async (request: Request) => {
       }
       confirmedPartnerId = referral.data.partner_user_id;
     }
-    const insert = await admin.from("payment_transactions").upsert(
-      {
-        user_id: user.id,
-        provider: "toyyibpay",
-        idempotency_key: body.idempotencyKey,
-        plan: selected.plan,
-        billing_interval: selected.interval,
-        amount: selected.amount,
-        currency: BILLING_CURRENCY,
-        payment_status: "pending",
-      },
-      { onConflict: "idempotency_key", ignoreDuplicates: true },
-    );
+    const insert = await admin
+      .from("payment_transactions")
+      .upsert(
+        {
+          user_id: user.id,
+          provider: "toyyibpay",
+          idempotency_key: body.idempotencyKey,
+          plan: selected.plan,
+          billing_interval: selected.interval,
+          amount: selected.amount,
+          currency: BILLING_CURRENCY,
+          payment_status: "pending",
+        },
+        { onConflict: "idempotency_key", ignoreDuplicates: true },
+      )
+      .select("id");
     if (insert.error) throw insert.error;
+    // ON CONFLICT DO NOTHING returns the row only to the request that inserted
+    // it. That request alone may create this payment's bill, so simultaneous or
+    // repeated requests with one key can never create two ToyyibPay bills.
+    const createsBill = (insert.data?.length ?? 0) > 0;
 
     const paymentResult = await admin
       .from("payment_transactions")
@@ -176,6 +204,14 @@ Deno.serve(async (request: Request) => {
     }
     if (payment.payment_status !== "pending") {
       return response({ error: "This checkout has already been settled" }, 409);
+    }
+    if (!createsBill) {
+      const billCode = await waitForBillCode(admin, payment.id);
+      if (billCode) {
+        return response({ paymentId: payment.id, checkoutUrl: sandboxCheckoutUrl(billCode) });
+      }
+      // Retryable: the web app asks the learner to try again, with a new key.
+      return response({ error: "checkout_in_progress" }, 409);
     }
 
     const profileResult = await admin
