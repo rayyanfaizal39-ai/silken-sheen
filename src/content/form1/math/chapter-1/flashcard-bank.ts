@@ -1,7 +1,7 @@
 import type {FlashcardReviewMode} from "@/features/flashcards/structuredFlashcard";
 import type {MathQuestionVisual} from "@/features/quiz/visuals/mathQuestionVisual";
 export interface Entry {subtopic:"1.1"|"1.2"|"1.3"|"1.4";mode:FlashcardReviewMode;visuals?:MathQuestionVisual[];dlp:{prompt:string;parts?:string[];answer:string[][]};bm:{prompt:string;parts?:string[];answer:string[][]}}
-export const MATH_F1_C1_BANK:readonly Entry[] = [
+export const MATH_F1_C1_BANK:readonly Entry[] =  [
   {
     "subtopic": "1.1",
     "mode": "concept",
@@ -1427,6 +1427,86 @@ export const MATH_F1_C1_BANK:readonly Entry[] = [
       "answer": [
         [
           "8/8 − 5/8 = 3/8."
+        ]
+      ]
+    }
+  },
+  {
+    "subtopic": "1.1",
+    "mode": "practice",
+    "dlp": {
+      "prompt": "A mountain is 3 m above a reference point while a cave is 7 m below. Find their vertical separation.",
+      "answer": [
+        [
+          "3 − (−7) = 10 m."
+        ]
+      ]
+    },
+    "bm": {
+      "prompt": "Sebuah gunung 3 m di atas titik rujukan dan gua 7 m di bawahnya. Cari pemisahan menegak.",
+      "answer": [
+        [
+          "3 − (−7) = 10 m."
+        ]
+      ]
+    }
+  },
+  {
+    "subtopic": "1.2",
+    "mode": "practice",
+    "dlp": {
+      "prompt": "Calculate (−8 + 3) × (−2).",
+      "answer": [
+        [
+          "(−5) × (−2) = 10."
+        ]
+      ]
+    },
+    "bm": {
+      "prompt": "Hitung (−8 + 3) × (−2).",
+      "answer": [
+        [
+          "(−5) × (−2) = 10."
+        ]
+      ]
+    }
+  },
+  {
+    "subtopic": "1.3",
+    "mode": "practice",
+    "dlp": {
+      "prompt": "Convert 1.125 into a fraction in simplest form.",
+      "answer": [
+        [
+          "1125/1000 = 9/8."
+        ]
+      ]
+    },
+    "bm": {
+      "prompt": "Tukar 1.125 kepada pecahan termudah.",
+      "answer": [
+        [
+          "1125/1000 = 9/8."
+        ]
+      ]
+    }
+  },
+  {
+    "subtopic": "1.4",
+    "mode": "practice",
+    "dlp": {
+      "prompt": "A cake is divided equally into 12 slices. What fraction is represented by 5 slices?",
+      "answer": [
+        [
+          "5/12."
+        ]
+      ]
+    },
+    "bm": {
+      "prompt": "Kek dibahagikan sama rata kepada 12 keping. Apakah pecahan bagi 5 keping?",
+      "answer": [
+        [
+          "5/12."
         ]
       ]
     }
