@@ -35,6 +35,7 @@ import { Route as ExploreAcademyRouteImport } from './routes/explore-academy'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CompanionRouteImport } from './routes/companion'
+import { Route as CompanionPortalRouteImport } from './routes/companion_.portal'
 import { Route as CardRouteImport } from './routes/card'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
@@ -189,6 +190,11 @@ const CompanionRoute = CompanionRouteImport.update({
   path: '/companion',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CompanionPortalRoute = CompanionPortalRouteImport.update({
+  id: '/companion_/portal',
+  path: '/companion/portal',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CardRoute = CardRouteImport.update({
   id: '/card',
   path: '/card',
@@ -311,6 +317,7 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRouteWithChildren
   '/card': typeof CardRouteWithChildren
   '/companion': typeof CompanionRoute
+  '/companion/portal': typeof CompanionPortalRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
   '/explore-academy': typeof ExploreAcademyRoute
@@ -361,6 +368,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/card': typeof CardRouteWithChildren
   '/companion': typeof CompanionRoute
+  '/companion/portal': typeof CompanionPortalRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
   '/explore-academy': typeof ExploreAcademyRoute
@@ -413,6 +421,7 @@ export interface FileRoutesById {
   '/admin': typeof AdminRouteWithChildren
   '/card': typeof CardRouteWithChildren
   '/companion': typeof CompanionRoute
+  '/companion_/portal': typeof CompanionPortalRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
   '/explore-academy': typeof ExploreAcademyRoute
@@ -466,6 +475,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/card'
     | '/companion'
+    | '/companion/portal'
     | '/contact'
     | '/dashboard'
     | '/explore-academy'
@@ -516,6 +526,7 @@ export interface FileRouteTypes {
     | '/'
     | '/card'
     | '/companion'
+    | '/companion/portal'
     | '/contact'
     | '/dashboard'
     | '/explore-academy'
@@ -567,6 +578,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/card'
     | '/companion'
+    | '/companion_/portal'
     | '/contact'
     | '/dashboard'
     | '/explore-academy'
@@ -619,6 +631,7 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRouteWithChildren
   CardRoute: typeof CardRouteWithChildren
   CompanionRoute: typeof CompanionRoute
+  CompanionPortalRoute: typeof CompanionPortalRoute
   ContactRoute: typeof ContactRoute
   DashboardRoute: typeof DashboardRoute
   ExploreAcademyRoute: typeof ExploreAcademyRoute
@@ -840,6 +853,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CompanionRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/companion_/portal': {
+      id: '/companion_/portal'
+      path: '/companion/portal'
+      fullPath: '/companion/portal'
+      preLoaderRoute: typeof CompanionPortalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/card': {
       id: '/card'
       path: '/card'
@@ -1045,6 +1065,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRouteWithChildren,
   CardRoute: CardRouteWithChildren,
   CompanionRoute: CompanionRoute,
+  CompanionPortalRoute: CompanionPortalRoute,
   ContactRoute: ContactRoute,
   DashboardRoute: DashboardRoute,
   ExploreAcademyRoute: ExploreAcademyRoute,
