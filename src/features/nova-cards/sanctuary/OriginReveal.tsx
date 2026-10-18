@@ -108,8 +108,8 @@ export function OriginReveal({
           <h2 id="nova-bond-title">Bond with this Nova?</h2>
           <p id="nova-bond-description">
             This selection is permanent. Artwork {pending.toUpperCase()} will become your lifelong
-            companion and grow alongside you as you earn verified XP. Your card identity, QR and
-            serial stay the same.
+            companion and permanent Origin Master Card. Your card identity, QR and serial stay the
+            same.
           </p>
           {error && <p role="alert">{error}</p>}
           <div className="sanctuary-dialog-actions">

@@ -1,4 +1,4 @@
--- Review only. Apply AFTER 20261015090000; deliberately installs disabled.
+-- Review only. Apply AFTER 20261018160000; deliberately installs disabled.
 begin;
 
 alter table public.nova_cards add column identity_spec jsonb;
@@ -14,7 +14,11 @@ language plpgsql set search_path = '' as $$
 begin
   if TG_OP='INSERT' then new.identity_spec=public.nova_identity(new.answers);
   elsif new.answers is distinct from old.answers or new.identity_spec is distinct from old.identity_spec
-    or new.owner_id<>old.owner_id or new.public_id<>old.public_id or new.serial<>old.serial then
+    or new.owner_id<>old.owner_id or new.public_id<>old.public_id or new.serial<>old.serial
+    or (new.variant is distinct from old.variant and exists(
+      select 1 from public.nova_artwork a
+      where a.card_id=old.id and a.stage=1 and a.selected
+    )) then
     raise exception 'Nova identity is permanent';
   end if;
   return new;
@@ -65,6 +69,9 @@ create table public.nova_generation_candidates (
   error_code text,
   unique(job_id,candidate)
 );
+alter table public.nova_artwork add constraint nova_artwork_candidate_job_fk
+  foreign key(job_id,candidate)
+  references public.nova_generation_candidates(job_id,candidate) on delete cascade;
 create index nova_candidates_pending on public.nova_generation_candidates(retry_after)
   where status='pending';
 create table public.nova_generation_batches (
@@ -127,6 +134,9 @@ begin
     or new.stage<>old.stage or new.candidate<>old.candidate
     or new.sha256 is distinct from old.sha256 or (old.selected and not new.selected)
     or (old.released and not new.released) then raise exception 'Approved artwork is immutable'; end if;
+  if not old.selected and new.selected and new.stage=1 and new.candidate is distinct from (
+    select c.variant from public.nova_cards c where c.id=new.card_id
+  ) then raise exception 'Selected artwork must match the permanent card variant'; end if;
   return new;
 end;
 $$;
@@ -144,17 +154,9 @@ do $$ declare t text; begin
 end $$;
 grant usage,select on sequence public.nova_generation_audit_id_seq to service_role;
 
-create function public.nova_require_student() returns uuid
-language plpgsql stable security definer set search_path = '' as $$
-begin
-  if auth.uid() is null or coalesce((auth.jwt()->>'is_anonymous')::boolean,true) then
-    raise exception 'A registered account is required' using errcode='42501'; end if;
-  return auth.uid();
-end;
-$$;
 create function public.save_nova_studio_draft(questionnaire integer[], display_username text, expected_revision integer)
 returns jsonb language plpgsql security definer set search_path = '' as $$
-declare u uuid=public.nova_require_student(); d public.nova_studio_drafts;
+declare u uuid=public.nova_require_active_student(); d public.nova_studio_drafts;
 begin
   insert into public.nova_studio_drafts(owner_id) values(u) on conflict do nothing;
   select * into strict d from public.nova_studio_drafts where owner_id=u for update;
@@ -177,7 +179,7 @@ $$;
 
 create function public.get_my_nova_studio() returns jsonb
 language plpgsql security definer set search_path = '' as $$
-declare u uuid=public.nova_require_student(); c public.nova_cards; d public.nova_studio_drafts;
+declare u uuid=public.nova_require_active_student(); c public.nova_cards; d public.nova_studio_drafts;
   j public.nova_generation_jobs; chosen text; ready boolean=false;
 begin
   select * into d from public.nova_studio_drafts where owner_id=u;
@@ -189,21 +191,18 @@ begin
     'enabled',(select enabled and batch_enabled from public.nova_generation_settings where singleton),
     'draft',jsonb_build_object('answers',coalesce(d.answers,'{}'),'username',coalesce(d.username,''),'revision',coalesce(d.revision,0)),
     'publicId',c.public_id,'identity',c.identity_spec,'selected',chosen,
-    'xp',public.nova_verified_xp(u),'earnedStage',public.nova_stage(public.nova_verified_xp(u)),
     'origin',case when j.id is null then null else jsonb_build_object('status',j.status,
       'revealAfter',j.reveal_after,'ready',ready,'errorCode',j.error_code,
       'completed',(select count(*) from public.nova_generation_candidates where job_id=j.id and status='ready')) end,
     'candidates',case when ready and chosen is null then (select jsonb_agg(jsonb_build_object(
       'candidate',a.candidate,'path',a.storage_path) order by a.candidate)
-      from public.nova_artwork a where a.job_id=j.id) else '[]'::jsonb end,
-    'evolutions',coalesce((select jsonb_agg(jsonb_build_object('stage',stage,'status',status,'errorCode',error_code) order by stage)
-      from public.nova_generation_jobs where card_id=c.id and stage>1),'[]'::jsonb));
+      from public.nova_artwork a where a.job_id=j.id) else '[]'::jsonb end);
 end;
 $$;
 
 create function public.submit_nova_origin() returns jsonb
 language plpgsql security definer set search_path = '' as $$
-declare u uuid=public.nova_require_student(); c public.nova_cards; d public.nova_studio_drafts; j uuid;
+declare u uuid=public.nova_require_active_student(); c public.nova_cards; d public.nova_studio_drafts; j uuid;
 begin
   -- Serialize on the account even before a permanent card exists.
   perform 1 from auth.users where id=u for update;
@@ -217,8 +216,8 @@ begin
   if c.id is null then
     select * into d from public.nova_studio_drafts where owner_id=u for update;
     if cardinality(d.answers) is distinct from 12 or d.username='' then raise exception 'Complete all twelve questions and choose a nickname'; end if;
-    insert into public.nova_cards(owner_id,username,answers,variant,snapshot_xp)
-      values(u,d.username,d.answers,'a',public.nova_verified_xp(u)) returning * into c;
+    insert into public.nova_cards(owner_id,username,answers,variant)
+      values(u,d.username,d.answers,'a') returning * into c;
   end if;
   insert into public.nova_generation_jobs(card_id,stage,prompt_version,identity_snapshot,reveal_after)
     values(c.id,1,'nova-art-v1',c.identity_spec,
@@ -231,7 +230,7 @@ $$;
 
 create function public.select_nova_origin(chosen_candidate text) returns jsonb
 language plpgsql security definer set search_path = '' as $$
-declare u uuid=public.nova_require_student(); c public.nova_cards; chosen text;
+declare u uuid=public.nova_require_active_student(); c public.nova_cards; chosen text;
 begin
   select * into strict c from public.nova_cards where owner_id=u for update;
   select candidate into chosen from public.nova_artwork where card_id=c.id and stage=1 and selected;
@@ -240,9 +239,14 @@ begin
     return public.get_my_nova_studio();
   end if;
   if not public.nova_origin_reveal_ready(c) then raise exception 'Your two Nova artworks are not ready to choose'; end if;
+  if not exists(select 1 from public.nova_artwork
+    where card_id=c.id and stage=1 and candidate=chosen_candidate) then
+    raise exception 'Choose one of the two Origin artworks'; end if;
+  -- Persist the card variant before selecting the matching artwork. The whole
+  -- RPC is one transaction, and the card row lock serializes confirmations.
+  update public.nova_cards set variant=chosen_candidate where id=c.id;
   update public.nova_artwork set selected=true,released=true
     where card_id=c.id and stage=1 and candidate=chosen_candidate;
-  if not found then raise exception 'Choose one of the two Origin artworks'; end if;
   insert into public.nova_generation_audit(actor_id,action,subject_id,detail)
     values(u,'origin_selected',c.id,jsonb_build_object('candidate',chosen_candidate));
   return public.get_my_nova_studio();
@@ -251,22 +255,9 @@ $$;
 
 create or replace function public.request_nova_evolution(target_stage integer) returns jsonb
 language plpgsql security definer set search_path = '' as $$
-declare u uuid=public.nova_require_student(); c public.nova_cards; j uuid; previous_path text; origin_path text;
+declare u uuid=public.nova_require_active_student();
 begin
-  if not public.nova_subscription_active(u) then raise exception 'An active Pro or Premium subscription is required' using errcode='42501'; end if;
-  if target_stage is null or target_stage not between 2 and 5 then raise exception 'Invalid evolution stage'; end if;
-  select * into strict c from public.nova_cards where owner_id=u for update;
-  if public.nova_stage(public.nova_verified_xp(u))<target_stage then raise exception 'Not enough verified XP'; end if;
-  if exists(select 1 from public.nova_generation_jobs where card_id=c.id and stage=target_stage) then return public.get_my_nova_studio(); end if;
-  if not exists(select 1 from public.nova_generation_settings where singleton and enabled and batch_enabled) then raise exception 'Generation is not enabled'; end if;
-  select storage_path into previous_path from public.nova_artwork where card_id=c.id and stage=target_stage-1 and selected and released;
-  select storage_path into origin_path from public.nova_artwork where card_id=c.id and stage=1 and selected and released;
-  if previous_path is null or origin_path is null then raise exception 'Previous approved evolution artwork is required'; end if;
-  insert into public.nova_generation_jobs(card_id,stage,prompt_version,identity_snapshot)
-    values(c.id,target_stage,'nova-art-v1',c.identity_spec || jsonb_build_object('previousArtwork',previous_path,'originArtwork',origin_path)) returning id into j;
-  insert into public.nova_generation_candidates(job_id,candidate) values(j,'a');
-  insert into public.nova_generation_audit(actor_id,action,subject_id) values(u,'evolution_requested',j);
-  return public.get_my_nova_studio();
+  raise exception 'Card evolution is not available in Phase 1' using errcode='0A000';
 end;
 $$;
 
@@ -283,7 +274,7 @@ begin
   for r in select p.*,j.stage,j.card_id from public.nova_generation_candidates p
     join public.nova_generation_jobs j on j.id=p.job_id join public.nova_cards c on c.id=j.card_id
     where p.status='pending' and p.attempts<2 and p.retry_after<=now()
-      and public.nova_subscription_active(c.owner_id) and public.nova_stage(public.nova_verified_xp(c.owner_id))>=j.stage
+      and j.stage=1 and public.nova_subscription_active(c.owner_id)
     order by p.retry_after,p.id limit s.max_batch_requests for update of p skip locked loop
     if spent+s.reserve_microusd>s.monthly_cap_microusd then exit; end if;
     if bid is null then
@@ -312,8 +303,8 @@ begin
       join public.nova_generation_candidates p on p.id=r.candidate_id
       join public.nova_generation_jobs j on j.id=p.job_id
       join public.nova_cards c on c.id=j.card_id
-      where r.batch_id=batch and (not public.nova_subscription_active(c.owner_id)
-        or public.nova_stage(public.nova_verified_xp(c.owner_id))<j.stage)) then return false; end if;
+      where r.batch_id=batch and (j.stage<>1 or not public.nova_subscription_active(c.owner_id)))
+      then return false; end if;
   update public.nova_generation_batches set status='submitting',updated_at=now() where id=batch and status='prepared';
   return found;
 end;
@@ -339,7 +330,8 @@ $$;
 create function public.nova_release_evolutions() returns void
 language plpgsql security definer set search_path = '' as $$
 begin
-  -- A crashed submitter may have incurred a charge. Quarantine; never enqueue it again.
+  -- Phase 1 retains the future evolution schema/designs but never releases stage 2-5 artwork.
+  -- A crashed Origin submitter may have incurred a charge. Quarantine; never enqueue it again.
   update public.nova_generation_batches set status='review',updated_at=now()
     where status='submitting' and updated_at<now()-interval '15 minutes';
   update public.nova_generation_candidates p set status='review',error_code='submission_requires_reconciliation'
@@ -347,14 +339,6 @@ begin
     where r.candidate_id=p.id and r.batch_id=b.id and b.status='review' and r.result is null and p.status='assigned';
   update public.nova_generation_jobs j set status='failed',error_code='submission_requires_reconciliation'
     where exists(select 1 from public.nova_generation_candidates p where p.job_id=j.id and p.status='review');
-  update public.nova_artwork a set selected=true,released=true from public.nova_cards c,public.nova_generation_jobs j
-    where a.card_id=c.id and a.job_id=j.id and j.status='ready' and a.stage>1 and not a.selected
-      and public.nova_subscription_active(c.owner_id) and public.nova_stage(public.nova_verified_xp(c.owner_id))>=a.stage
-      and exists(select 1 from public.nova_artwork p where p.card_id=c.id and p.stage=a.stage-1 and p.selected and p.released);
-  update public.nova_cards c set snapshot_stage=greatest(c.snapshot_stage,public.nova_visible_stage(c)),
-    snapshot_xp=greatest(c.snapshot_xp,public.nova_verified_xp(c.owner_id))
-    where public.nova_subscription_active(c.owner_id) and exists(
-      select 1 from public.nova_artwork a where a.card_id=c.id and a.selected and a.released);
 end;
 $$;
 
@@ -371,6 +355,7 @@ begin
   if r.result is not null then return; end if;
   select * into strict p from public.nova_generation_candidates where id=r.candidate_id for update;
   select * into strict j from public.nova_generation_jobs where id=p.job_id for update;
+  if j.stage<>1 then raise exception 'Card evolution is not available in Phase 1'; end if;
   if failure is null then
     if digest is null or digest !~ '^[a-f0-9]{64}$' then raise exception 'Validated PNG digest required'; end if;
     if exists(select 1 from public.nova_artwork where job_id=j.id and sha256=digest) then
@@ -415,17 +400,16 @@ $$;
 create or replace function public.can_read_nova_artwork(path text) returns boolean
 language sql stable security definer set search_path = '' as $$
   select exists(select 1 from public.nova_artwork a join public.nova_cards c on c.id=a.card_id
-    where a.storage_path=path and (
-      (a.selected and a.released and ((c.sharing and a.stage=public.nova_visible_stage(c))
-        or (c.owner_id=auth.uid() and a.stage<=case when public.nova_subscription_active(c.owner_id)
-          then public.nova_stage(public.nova_verified_xp(c.owner_id)) else c.snapshot_stage end)))
+    where a.storage_path=path and exists(select 1 from public.profiles p
+      where p.id=c.owner_id and p.role='student' and p.status='active') and (
+      (a.stage=1 and a.selected and a.released and (c.sharing or c.owner_id=auth.uid()))
       or (c.owner_id=auth.uid() and a.stage=1 and public.nova_origin_reveal_ready(c)
         and not exists(select 1 from public.nova_artwork chosen where chosen.card_id=c.id and chosen.stage=1 and chosen.selected))));
 $$;
 
 -- Default PostgreSQL EXECUTE grants must not expose internal worker/identity helpers.
 revoke all on function public.nova_identity(integer[]),public.nova_keep_identity(),public.nova_artwork_immutable(),
-  public.nova_require_student(),public.nova_origin_reveal_ready(public.nova_cards),
+  public.nova_origin_reveal_ready(public.nova_cards),
   public.save_nova_studio_draft(integer[],text,integer),public.get_my_nova_studio(),
   public.submit_nova_origin(),public.select_nova_origin(text),public.nova_prepare_batch(),
   public.nova_begin_submission(uuid),public.nova_attach_batch(uuid,text,text),
@@ -434,6 +418,10 @@ revoke all on function public.nova_identity(integer[]),public.nova_keep_identity
   from public,anon,authenticated;
 grant execute on function public.save_nova_studio_draft(integer[],text,integer),public.get_my_nova_studio(),
   public.submit_nova_origin(),public.select_nova_origin(text) to authenticated;
+revoke all on function public.request_nova_evolution(integer),public.can_read_nova_artwork(text)
+  from public,anon,authenticated;
+grant execute on function public.request_nova_evolution(integer) to authenticated;
+grant execute on function public.can_read_nova_artwork(text) to anon,authenticated;
 grant execute on function public.nova_prepare_batch(),public.nova_begin_submission(uuid),
   public.nova_attach_batch(uuid,text,text),public.nova_claim_collection(uuid),public.nova_release_evolutions(),
   public.nova_finish_request(uuid,uuid,text,text,jsonb,bigint,text,boolean),public.nova_admin_retry(uuid,text) to service_role;

@@ -150,8 +150,9 @@ export interface NovaCard {
   traits: NovaTraits;
   variant: "a" | "b";
   rarity: string;
-  xp: number;
-  /** Approved stage art shown to others; can lag earned XP. */
+  /** Fictional design previews may supply XP; Phase 1 saved cards never do. */
+  xp?: number;
+  /** Phase 1 saved cards remain at the permanent Origin stage. */
   stage?: number;
   sharing: boolean;
   demo?: boolean;

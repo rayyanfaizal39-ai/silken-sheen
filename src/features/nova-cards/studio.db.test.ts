@@ -6,6 +6,11 @@ import { traitsFromAnswers } from "./model";
 const A = "00000000-0000-4000-8000-000000000001";
 const B = "00000000-0000-4000-8000-000000000002";
 const C = "00000000-0000-4000-8000-000000000003";
+const TEACHER = "00000000-0000-4000-8000-000000000004";
+const ADMIN = "00000000-0000-4000-8000-000000000005";
+const SUSPENDED = "00000000-0000-4000-8000-000000000006";
+const NO_PROFILE = "00000000-0000-4000-8000-000000000007";
+const CHOICE_B = "00000000-0000-4000-8000-000000000008";
 const db = new PGlite();
 async function as(
   role: "anon" | "authenticated",
@@ -22,10 +27,14 @@ async function as(
     return tx.query<{ result: Record<string, unknown> | null }>(sql, params);
   });
 }
-const create = (user: string, answers = Array(12).fill(0)) =>
-  as("authenticated", user, "select public.create_nova_card('Explorer',$1,'a') as result", [
-    answers,
-  ]);
+async function seedCard(user: string, answers = Array(12).fill(0)) {
+  await db.query(
+    `insert into public.nova_cards(owner_id,username,answers,variant)
+     values($1,'Explorer',$2,'a')`,
+    [user, answers],
+  );
+  return as("authenticated", user, "select public.get_my_nova_card() as result");
+}
 
 describe("Nova Studio SQL queue, identities and RLS", () => {
   beforeAll(async () => {
@@ -37,24 +46,21 @@ describe("Nova Studio SQL queue, identities and RLS", () => {
       grant usage on schema auth,public,storage to anon,authenticated;
       grant execute on all functions in schema auth to anon,authenticated;
       alter default privileges in schema public grant all on tables to anon,authenticated;
+      create table public.profiles(id uuid primary key references auth.users(id) on delete cascade,role text not null check(role in ('student','teacher','admin')),status text not null check(status in ('active','suspended')));
       create table public.subscriptions(user_id uuid primary key references auth.users(id), plan text not null, status text not null, current_period_end timestamptz);
-      create table public.user_progress(user_id uuid primary key references auth.users(id),xp integer not null, companion jsonb);
-      create table public.quiz_xp_awards(user_id uuid references auth.users(id), xp_earned integer);
-      create table public.mission_reward_claims(user_id uuid references auth.users(id),reward_xp integer);
-      revoke all on public.quiz_xp_awards,public.mission_reward_claims from anon,authenticated;
       create table storage.buckets(id text primary key,name text,public boolean);
       create table storage.objects(id uuid default gen_random_uuid(),bucket_id text,name text);
       alter table storage.objects enable row level security;
       grant select on storage.objects to anon,authenticated;
-      insert into auth.users values('${A}'),('${B}'),('${C}');
+      insert into auth.users values('${A}'),('${B}'),('${C}'),('${TEACHER}'),('${ADMIN}'),('${SUSPENDED}'),('${NO_PROFILE}'),('${CHOICE_B}');
+      insert into public.profiles values('${A}','student','active'),('${B}','student','active'),('${C}','student','active'),('${TEACHER}','teacher','active'),('${ADMIN}','admin','active'),('${SUSPENDED}','student','suspended'),('${CHOICE_B}','student','active');
       insert into public.subscriptions values ('${A}','pro','active',now()+interval '30 days'),('${B}','premium','active',now()+interval '30 days'),('${C}','pro','active',now()+interval '30 days');
-      insert into public.user_progress values('${A}',9000,'{"stage":"guardian"}'),('${B}',1600,'{"stage":"sprout"}');
-      insert into public.quiz_xp_awards values('${A}',1000);
-      insert into public.mission_reward_claims values('${A}',500);`);
+      insert into public.subscriptions values ('${TEACHER}','pro','active',now()+interval '30 days'),('${ADMIN}','premium','active',now()+interval '30 days'),('${SUSPENDED}','pro','active',now()+interval '30 days'),('${NO_PROFILE}','pro','active',now()+interval '30 days');
+      insert into public.subscriptions values ('${CHOICE_B}','premium','active',now()+interval '30 days');`);
     await db.exec(
       readFileSync(
         new URL(
-          "../../../supabase/migrations/20261015090000_nova_companion_cards.sql",
+          "../../../supabase/migrations/20261018160000_nova_companion_cards.sql",
           import.meta.url,
         ),
         "utf8",
@@ -63,7 +69,7 @@ describe("Nova Studio SQL queue, identities and RLS", () => {
     await db.exec(
       readFileSync(
         new URL(
-          "../../../supabase/migrations/20261016233058_nova_studio_batch.sql",
+          "../../../supabase/migrations/20261018160100_nova_studio_batch.sql",
           import.meta.url,
         ),
         "utf8",
@@ -72,7 +78,7 @@ describe("Nova Studio SQL queue, identities and RLS", () => {
     await db.exec(
       readFileSync(
         new URL(
-          "../../../supabase/migrations/20261017102224_nova_creature_variety.sql",
+          "../../../supabase/migrations/20261018160200_nova_creature_variety.sql",
           import.meta.url,
         ),
         "utf8",
@@ -121,6 +127,7 @@ describe("Nova Studio SQL queue, identities and RLS", () => {
       answers[1] = code;
       const owner = `00000000-0000-4000-8000-00000000001${code}`;
       await db.query("insert into auth.users values($1)", [owner]);
+      await db.query("insert into public.profiles values($1,'student','active')", [owner]);
       await db.query(
         "insert into public.subscriptions values($1,'pro','active',now()+interval '30 days')",
         [owner],
@@ -135,7 +142,7 @@ describe("Nova Studio SQL queue, identities and RLS", () => {
         await rpc(owner, "save_nova_studio_draft", [answers, "NewCompanion", 1]);
         const draft = (await rpc(owner, "get_my_nova_studio")).draft as { answers: number[] };
         expect(draft.answers).toEqual(answers);
-        const card = (await create(owner, answers)).rows[0].result!;
+        const card = (await seedCard(owner, answers)).rows[0].result!;
         expect(card.traits).toEqual(traitsFromAnswers(answers));
         const identity = (await rpc(owner, "get_my_nova_studio")).identity as {
           answers: number[];
@@ -171,6 +178,18 @@ describe("Nova Studio SQL queue, identities and RLS", () => {
       ).rows[0].valid,
     ).toBe(false);
     await expect(rpc(C, "save_nova_studio_draft", [[0, 6], "Invalid", 0])).rejects.toThrow(/check/);
+  });
+  it("requires an active canonical student profile for every personal Cards RPC", async () => {
+    for (const user of [TEACHER, ADMIN, SUSPENDED, NO_PROFILE]) {
+      await expect(rpc(user, "save_nova_studio_draft", [[], "", 0])).rejects.toThrow(
+        /active student account/,
+      );
+      await expect(rpc(user, "get_my_nova_studio")).rejects.toThrow(/active student account/);
+      await expect(seedCard(user)).rejects.toThrow(/active student profiles/);
+    }
+    await expect(
+      as("authenticated", C, "select public.get_my_nova_studio()", [], true),
+    ).rejects.toThrow(/active student account/);
   });
   it("persists all twelve answers with owner isolation and cross-device revision protection", async () => {
     await rpc(A, "save_nova_studio_draft", [[], "", 0]);
@@ -252,7 +271,7 @@ describe("Nova Studio SQL queue, identities and RLS", () => {
     );
     await expect(
       as("authenticated", A, "select public.get_my_nova_studio() as result", [], true),
-    ).rejects.toThrow(/registered/);
+    ).rejects.toThrow(/active student/);
   });
   it("reserves cost atomically, claims only once, groups one endpoint and enforces cap", async () => {
     await db.exec("update public.nova_generation_settings set monthly_cap_microusd=10000000");
@@ -344,94 +363,106 @@ describe("Nova Studio SQL queue, identities and RLS", () => {
     expect(
       (await as("authenticated", A, "select to_jsonb(o) as result from storage.objects o")).rows,
     ).toHaveLength(1);
+    expect(c.variant).toBe("a");
+    await expect(
+      db.query("update public.nova_cards set variant='b' where id=$1", [cardId]),
+    ).rejects.toThrow(/permanent/);
     await expect(
       db.query("update public.nova_artwork set storage_path='changed.png' where card_id=$1", [
         cardId,
       ]),
     ).rejects.toThrow(/immutable/);
   });
-  it("preserves the Origin anchor and previous approved art when requesting evolution", async () => {
-    await db.exec("update public.nova_generation_settings set monthly_cap_microusd=50000000");
-    await expect(rpc(A, "request_nova_evolution", [3])).rejects.toThrow(/Previous approved/);
-    await rpc(A, "request_nova_evolution", [2]);
-    await rpc(A, "request_nova_evolution", [2]);
-    const jobs = await db.query<{
-      identity_snapshot: { version: string; previousArtwork: string; originArtwork: string };
-    }>("select identity_snapshot from public.nova_generation_jobs where card_id=$1 and stage=2", [
-      cardId,
-    ]);
-    expect(jobs.rows).toHaveLength(1);
-    const spec = jobs.rows[0].identity_snapshot;
-    expect(spec.version).toBe("nova-identity-v1");
-    expect(spec.previousArtwork).toBe(spec.originArtwork);
-    expect(spec.originArtwork).toMatch(new RegExp("^" + cardId + "/"));
-    await expect(rpc(A, "request_nova_evolution", [4])).rejects.toThrow(/verified XP/);
-  });
-  it("releases one evolution only after rechecking entitlement, while retaining the Origin anchor", async () => {
-    await db.query(
-      "update public.nova_generation_batches set status='completed',lease_until=null where id=$1",
-      [batchId],
-    );
-    const editBatch = (await db.query<{ id: string }>("select public.nova_prepare_batch() as id"))
-      .rows[0].id;
+  it("immediately denies personal and shared access when a student is suspended", async () => {
+    await db.query("update public.profiles set status='suspended' where id=$1", [A]);
     expect(
-      (
-        await db.query<{ endpoint: string }>(
-          "select endpoint from public.nova_generation_batches where id=$1",
-          [editBatch],
-        )
-      ).rows[0].endpoint,
-    ).toBe("/v1/images/edits");
-    const requests = (
+      (await as("authenticated", A, "select to_jsonb(c) as result from public.nova_cards c")).rows,
+    ).toHaveLength(0);
+    await expect(rpc(A, "get_my_nova_studio")).rejects.toThrow(/active student/);
+    expect(
+      (await as("anon", null, "select public.get_public_nova_card($1) as result", [publicId]))
+        .rows[0].result,
+    ).toBeNull();
+    expect(
+      (await as("authenticated", A, "select to_jsonb(o) as result from storage.objects o")).rows,
+    ).toHaveLength(0);
+    await db.query("update public.profiles set status='active' where id=$1", [A]);
+  });
+  it("atomically persists artwork B as the permanent card variant", async () => {
+    const bCard = (
       await db.query<{ id: string }>(
-        "select id from public.nova_batch_requests where batch_id=$1",
-        [editBatch],
+        `insert into public.nova_cards(owner_id,username,answers,variant)
+         values($1,'Mia',$2,'a') returning id`,
+        [CHOICE_B, Array(12).fill(1)],
       )
-    ).rows;
-    expect(requests).toHaveLength(1);
-    await db.query("select public.nova_begin_submission($1)", [editBatch]);
-    await db.query("select public.nova_attach_batch($1,'batch_edit','file-edit')", [editBatch]);
-    const lease = (
-      await db.query<{ id: string }>("select public.nova_claim_collection($1) as id", [editBatch])
+    ).rows[0].id;
+    const bJob = (
+      await db.query<{ id: string }>(
+        `insert into public.nova_generation_jobs(card_id,stage,status,prompt_version,identity_snapshot,reveal_after)
+         select id,1,'ready','test',identity_spec,now()-interval '1 minute'
+         from public.nova_cards where id=$1 returning id`,
+        [bCard],
+      )
     ).rows[0].id;
     await db.query(
-      "update public.subscriptions set current_period_end=now()-interval '1 hour' where user_id=$1",
-      [A],
+      "insert into public.nova_generation_candidates(job_id,candidate,status) values($1,'a','ready'),($1,'b','ready')",
+      [bJob],
     );
-    await db.query("select public.nova_finish_request($1,$2,$3,'req_edit','{}',1000)", [
-      requests[0].id,
-      lease,
-      "c".repeat(64),
-    ]);
-    let approved = await db.query<{ selected: boolean }>(
-      "select selected from public.nova_artwork where card_id=$1 and stage=2",
-      [cardId],
-    );
-    expect(approved.rows[0].selected).toBe(false);
-    const frozen = (
-      await as("anon", null, "select public.get_public_nova_card($1) as result", [publicId])
-    ).rows[0].result!;
-    expect(frozen.stage).toBe(1);
     await db.query(
-      "update public.subscriptions set current_period_end=now()+interval '30 days' where user_id=$1",
-      [A],
+      `insert into public.nova_artwork(card_id,job_id,stage,candidate,storage_path,sha256,validation_version)
+       values($1,$2,1,'a','b/a.png',$3,'png-v1'),($1,$2,1,'b','b/b.png',$4,'png-v1')`,
+      [bCard, bJob, "c".repeat(64), "d".repeat(64)],
     );
-    await db.exec("select public.nova_release_evolutions()");
-    approved = await db.query(
-      "select selected from public.nova_artwork where card_id=$1 and stage=2",
-      [cardId],
-    );
-    expect(approved.rows[0].selected).toBe(true);
+
+    const selected = await rpc(CHOICE_B, "select_nova_origin", ["b"]);
+    expect(selected.selected).toBe("b");
+    expect(
+      (await as("authenticated", CHOICE_B, "select public.get_my_nova_card() as result")).rows[0]
+        .result!.variant,
+    ).toBe("b");
     expect(
       (
-        await db.query<{ sha256: string }>(
-          "select sha256 from public.nova_artwork where card_id=$1 and stage=1 and selected",
-          [cardId],
+        await db.query<{ candidate: string }>(
+          "select candidate from public.nova_artwork where card_id=$1 and selected",
+          [bCard],
         )
-      ).rows[0].sha256,
-    ).toMatch(/^[ab]{64}$/);
+      ).rows,
+    ).toEqual([{ candidate: "b" }]);
+    await rpc(CHOICE_B, "select_nova_origin", ["b"]);
+    await expect(rpc(CHOICE_B, "select_nova_origin", ["a"])).rejects.toThrow(/already selected/);
+    await expect(
+      db.query("update public.nova_cards set variant='a' where id=$1", [bCard]),
+    ).rejects.toThrow(/permanent/);
+    await expect(
+      db.query(
+        `insert into public.nova_artwork(card_id,job_id,stage,candidate,storage_path,sha256,validation_version)
+         values($1,$2,2,'a','cross-wired.png',$3,'png-v1')`,
+        [cardId, bJob, "e".repeat(64)],
+      ),
+    ).rejects.toThrow(/foreign key/);
+  });
+  it("keeps future evolution disabled without creating or releasing stage 2-5 artwork", async () => {
+    await expect(rpc(A, "request_nova_evolution", [2])).rejects.toThrow(
+      /not available in Phase 1/,
+    );
+    expect(
+      (
+        await db.query<{ count: number }>(
+          "select count(*)::integer as count from public.nova_generation_jobs where stage>1",
+        )
+      ).rows[0].count,
+    ).toBe(0);
+    await db.exec("select public.nova_release_evolutions()");
+    expect(
+      (
+        await db.query<{ count: number }>(
+          "select count(*)::integer as count from public.nova_artwork where stage>1 and (selected or released)",
+        )
+      ).rows[0].count,
+    ).toBe(0);
   });
   it("rejects identical Origin bytes and bounds administrative recovery to one remaining attempt", async () => {
+    await db.exec("update public.nova_generation_settings set monthly_cap_microusd=50000000");
     await rpc(B, "save_nova_studio_draft", [[0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0], "Mia", 0]);
     await rpc(B, "submit_nova_origin");
     await db.exec("update public.nova_generation_batches set status='completed',lease_until=null");
@@ -536,7 +567,9 @@ describe("Nova Studio SQL queue, identities and RLS", () => {
       "update public.subscriptions set current_period_end=now()-interval '1 hour' where user_id=$1",
       [A],
     );
-    await expect(rpc(A, "request_nova_evolution", [2])).rejects.toThrow(/active/);
+    await expect(rpc(A, "request_nova_evolution", [2])).rejects.toThrow(
+      /not available in Phase 1/,
+    );
     expect(
       (await db.query<{ id: null }>("select public.nova_prepare_batch() as id")).rows[0].id,
     ).toBeNull();

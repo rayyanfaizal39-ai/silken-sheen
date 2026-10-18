@@ -33,11 +33,8 @@ export default function StudioMockPreview({ profile }: { profile: "rayyan" | "mi
       publicId: null,
       identity: null,
       selected: null,
-      xp: 0,
-      earnedStage: 1,
       origin: null,
       candidates: [],
-      evolutions: [],
     };
     if (scene === "creatures") state.draft.answers = [0];
     if (scene !== "welcome" && scene !== "quiz" && scene !== "creatures")
@@ -107,7 +104,6 @@ export default function StudioMockPreview({ profile }: { profile: "rayyan" | "mi
         state = { ...state, selected: candidate, candidates: [] };
         return state;
       },
-      evolve: async () => state,
     };
   }, [profile, scene]);
   return (

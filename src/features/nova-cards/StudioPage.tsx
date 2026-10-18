@@ -10,7 +10,6 @@ import {
 import {
   chooseStudioOrigin,
   getStudioState,
-  requestStudioEvolution,
   saveStudioDraft,
   submitStudioOrigin,
 } from "./studio.server";
@@ -33,14 +32,12 @@ export type StudioApi = {
   save: (draft: StudioDraft) => Promise<StudioDraft>;
   submit: () => Promise<StudioState>;
   choose: (candidate: "a" | "b") => Promise<StudioState>;
-  evolve: (stage: number) => Promise<StudioState>;
 };
 const liveApi: StudioApi = {
   load: () => getStudioState(),
   save: (d) => saveStudioDraft({ data: d }),
   submit: () => submitStudioOrigin(),
   choose: (c) => chooseStudioOrigin({ data: c }),
-  evolve: (s) => requestStudioEvolution({ data: s }),
 };
 
 export default function StudioPage() {
@@ -261,9 +258,6 @@ export function StudioExperience({
               publicId={state.publicId!}
               candidate={state.selected!}
               traits={fictional ? state.identity?.traits : undefined}
-              state={state}
-              busy={busy}
-              onEvolve={(stage) => perform(async () => setState(await api.evolve(stage)))}
             />
           </Suspense>
         </div>

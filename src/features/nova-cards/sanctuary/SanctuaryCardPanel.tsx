@@ -1,24 +1,15 @@
 import { NovaCard } from "../NovaCard";
 import { cardUrl, STAGES, type NovaCard as Card } from "../model";
-import type { StudioState } from "../studio-model";
 import { soundscape } from "./audio";
 import { academyHomeHref, cardsPaths } from "../paths";
 export function SanctuaryCardPanel({
   card,
   origin,
-  state,
-  busy,
-  onEvolve,
 }: {
   card: Card;
   origin: string;
-  state?: StudioState;
-  busy?: boolean;
-  onEvolve?: (stage: number) => Promise<boolean>;
 }) {
-  const stage = Math.max(1, Math.min(5, card.stage ?? 1)),
-    next = STAGES[stage];
-  const job = state?.evolutions.find((e) => e.stage === stage + 1);
+  const stage = 1;
   return (
     <section className="sanctuary-my-nova">
       <h1 tabIndex={-1}>My Nova</h1>
@@ -50,12 +41,12 @@ export function SanctuaryCardPanel({
             <dd>{card.traits.personality}</dd>
           </div>
           <div>
-            <dt>{card.demo ? "Sample" : "Verified"} XP</dt>
-            <dd>{card.xp.toLocaleString()}</dd>
+            <dt>Card status</dt>
+            <dd>Permanent</dd>
           </div>
           <div>
             <dt>Next evolution</dt>
-            <dd>{next ? `${next.name} · ${next.xp.toLocaleString()} XP` : "Legendary"}</dd>
+            <dd>Coming in a later phase</dd>
           </div>
         </dl>
       </article>
@@ -69,21 +60,12 @@ export function SanctuaryCardPanel({
             <li key={s.name} aria-current={i + 1 === stage ? "step" : undefined}>
               <b>{i + 1 < stage ? "✓" : i + 1}</b>
               <span>{s.name}</span>
-              <small>{s.xp.toLocaleString()} XP</small>
+              <small>{i === 0 ? "Phase 1" : "Coming later"}</small>
             </li>
           ))}
         </ol>
-        {next && card.xp >= next.xp && state?.active && state.enabled && onEvolve && (
-          <button
-            className="sanctuary-primary"
-            disabled={busy || !!job}
-            onClick={() => void onEvolve(stage + 1)}
-          >
-            {job ? `${next.name} · ${job.status}` : `Evolve my Nova to ${next.name}`}
-          </button>
-        )}
         <div className="sanctuary-study-link">
-          <span>Grow through learning</span>
+          <span>Evolution is not enabled in Phase 1</span>
           <a href={academyHomeHref}>Continue your journey ↗</a>
         </div>
       </section>

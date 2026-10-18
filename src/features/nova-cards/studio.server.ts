@@ -91,19 +91,6 @@ export const chooseStudioOrigin = createServerFn({ method: "POST" })
       );
     return state(db);
   });
-export const requestStudioEvolution = createServerFn({ method: "POST" })
-  .validator((v: unknown) => z.number().int().min(2).max(5).parse(v))
-  .handler(async ({ data: stage }) => {
-    const db = await owner();
-    if (!flags()) throw new Error("Evolution generation is not enabled yet.");
-    const { error } = await db.rpc("request_nova_evolution", { target_stage: stage });
-    if (error)
-      throw new Error(
-        "Evolution requires an active subscription, verified XP and the previous approved artwork.",
-      );
-    return state(db);
-  });
-
 // Dashboard does not import a card renderer, artwork engine, QR generator or candidate URLs.
 export const getNovaDashboardStatus = createServerFn({ method: "GET" }).handler(async () => {
   const db = await owner();

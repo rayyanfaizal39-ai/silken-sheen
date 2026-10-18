@@ -1,4 +1,4 @@
-import { evolution, STAGES, type NovaCard } from "./model";
+import type { NovaCard } from "./model";
 import type { NovaEntitlement } from "./server";
 import { upgradeHref } from "./paths";
 
@@ -13,52 +13,34 @@ export function NovaTeaser({
   status: NovaEntitlement["status"];
   onMakePrivate?: () => Promise<void>;
 }) {
-  const currentStage = Math.max(1, Math.min(STAGES.length, card?.stage ?? 1));
-  const next = STAGES[currentStage];
-  const earnedNext = !!card && !!next && evolution(card.xp).stage > currentStage;
-  const finished = !!card && currentStage === STAGES.length;
+  // Phase 1 cards are permanent Origin cards; evolution has no XP integration yet.
   const pending = status === "pending";
   const headline = pending
     ? "Confirming your subscription"
-    : finished
-      ? "Your Legendary Nova is preserved"
-      : card
-        ? "Your Next Evolution Awaits"
-        : "Your Nova Adventure Awaits";
+    : card
+      ? "Your Nova Is Waiting"
+      : "Your Nova Adventure Awaits";
   const description = pending
     ? "Payment confirmation is still pending. Your Nova resumes only after verified payment."
-    : finished
-      ? "Your completed Legendary companion is saved and waiting for you."
-      : card
-        ? "Your Nova is safely waiting for you. Continue your learning journey to bring its next form to life."
-        : "A magical companion is waiting to be discovered. Subscribe to begin your journey.";
+    : card
+      ? "Your permanent Origin Master Card is safely saved and waiting for you."
+      : "A magical companion is waiting to be discovered. Subscribe to begin your journey.";
 
   return (
     <section className="nova-teaser" aria-label="Nova subscription access" role="region">
       <div className="nova-teaser-brand">
         <img src="/branding/academy-icon.png" alt="AcadeMY" width="38" height="38" />
         <span>AcadeMY Cards</span>
-        <small>{pending ? "VERIFYING PAYMENT" : "EVOLUTION PAUSED"}</small>
+        <small>{pending ? "VERIFYING PAYMENT" : "ACCESS PAUSED"}</small>
       </div>
       <div className="nova-teaser-frame">
         <span className="nova-teaser-mark" aria-hidden="true">✦</span>
         <span className="nova-teaser-lock" aria-hidden="true">◇</span>
         <span className="nova-eyebrow">
-          {card
-            ? finished
-              ? "STAGE 5 / 5 · LEGENDARY"
-              : `NEXT · STAGE ${currentStage + 1} / ${STAGES.length} · ${next?.name}`
-            : "DISCOVER YOUR COMPANION"}
+          {card ? "ORIGIN MASTER CARD" : "DISCOVER YOUR COMPANION"}
         </span>
         <h2>{headline}</h2>
         <p>{description}</p>
-        {card && !finished && !pending && (
-          <p className="nova-teaser-progress">
-            {earnedNext
-              ? "Your next XP milestone is earned. Reactivate to continue evolving."
-              : `${Math.max(0, next!.xp - card.xp).toLocaleString()} verified XP to the next evolution milestone.`}
-          </p>
-        )}
         {card && (
           <p className="nova-teaser-preserved">
             Your permanent card identity, QR, barcode and approved artwork are preserved.
