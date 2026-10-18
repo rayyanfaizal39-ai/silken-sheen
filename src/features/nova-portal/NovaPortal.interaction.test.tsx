@@ -45,7 +45,7 @@ async function mount(navigate: (url: string) => void, artworkUrl?: string) {
 }
 const enterButton = (host: HTMLElement) =>
   [...host.querySelectorAll("button")].find((b) =>
-    /Enter your Nova universe/i.test(b.textContent!),
+    /Enter the Celestial Gateway/i.test(b.textContent!),
   )!;
 
 describe("Nova portal entrance", () => {
@@ -56,7 +56,7 @@ describe("Nova portal entrance", () => {
     expect(host.querySelectorAll("button")).toHaveLength(1);
     await act(async () => enterButton(host).click());
     expect(host.querySelector(".nova-portal")!.getAttribute("data-opening")).toBe("true");
-    expect(host.textContent).toContain("Opening your Nova universe");
+    expect(host.textContent).toContain("Opening your companion universe");
     // A second activation during the animation does not queue another navigation.
     await act(async () => enterButton(host).click());
     await act(async () => vi.advanceTimersByTime(1400));
@@ -82,7 +82,7 @@ describe("Nova portal entrance", () => {
     expect(host.querySelector(".nova-portal__core img")!.getAttribute("src")).toBe(
       "https://storage.test/nova.png",
     );
-    expect(host.textContent).toContain("Your Nova is waiting");
+    expect(host.textContent).toContain("Your companion is waiting");
     await act(async () => enterButton(host).click());
     await act(async () => {
       const event = new Event("pageshow") as PageTransitionEvent;
