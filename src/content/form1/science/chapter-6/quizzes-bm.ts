@@ -58,10 +58,10 @@ export const scienceF1C6QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     question: "Di manakah proton dan neutron berada dalam atom?",
     options: [
-      "Kedua-duanya berada dalam nukleus",
-      "Kedua-duanya beredar mengelilingi nukleus",
-      "Proton berada dalam nukleus; neutron beredar mengelilinginya",
-      "Neutron berada dalam nukleus; proton beredar mengelilinginya",
+      "Kedua-duanya berada di dalam nukleus",
+      "Kedua-duanya berada di luar nukleus",
+      "Hanya proton berada di dalam nukleus",
+      "Hanya neutron berada di dalam nukleus",
     ],
     answerIndex: 0,
     explanation: "Nukleus terletak di pusat atom dan mengandungi proton serta neutron.",
@@ -111,9 +111,9 @@ export const scienceF1C6QuizzesBM: QuizQuestion[] = [
     question: "Apakah maksud molekul?",
     options: [
       "Zarah neutral yang terdiri daripada dua atau lebih atom bergabung secara kimia",
-      "Satu jenis atom sahaja",
-      "Campuran fizikal dua bahan",
-      "Petala yang mengelilingi atom",
+      "Zarah bercas yang terbentuk apabila atom menerima atau kehilangan elektron",
+      "Gabungan atom secara fizikal tanpa ikatan kimia antara atom",
+      "Bahagian tengah atom yang mengandungi proton dan neutron",
     ],
     answerIndex: 0,
     explanation:
@@ -146,9 +146,9 @@ export const scienceF1C6QuizzesBM: QuizQuestion[] = [
     question: "Apakah maksud sebatian?",
     options: [
       "Bahan yang terbentuk apabila dua atau lebih unsur bergabung secara kimia",
-      "Bahan yang dicampur tanpa tindak balas",
-      "Bahan yang terdiri daripada satu atom sahaja",
-      "Bahan yang tidak mempunyai ikatan kimia",
+      "Bahan yang terhasil apabila beberapa unsur hanya dicampur secara fizikal",
+      "Bahan yang mengandungi satu jenis atom sahaja di seluruh sampel",
+      "Bahan yang mempunyai atom tetapi tiada ikatan kimia antara atom",
     ],
     answerIndex: 0,
     explanation: "Sebatian terbentuk apabila dua atau lebih unsur bergabung secara kimia.",
@@ -163,10 +163,10 @@ export const scienceF1C6QuizzesBM: QuizQuestion[] = [
     question:
       "Antara pernyataan berikut, yang manakah paling tepat tentang pengelasan unsur dalam Jadual Berkala?",
     options: [
-      "Logam, bukan logam dan gas nadir dapat dikenal pasti berdasarkan kedudukan unsur dalam Jadual Berkala",
-      "Semua unsur di sebelah kiri Jadual Berkala ialah bukan logam",
-      "Semua unsur berbentuk gas dikelaskan sebagai gas nadir",
-      "Unsur dan sebatian disusun bersama dalam Jadual Berkala",
+      "Kedudukan unsur membantu mengelaskan logam, bukan logam dan gas nadir",
+      "Semua unsur di sebelah kiri jadual tergolong dalam kumpulan bukan logam",
+      "Semua unsur yang berbentuk gas tergolong dalam kumpulan gas nadir",
+      "Sebatian dan unsur disenaraikan bersama sebagai entri dalam Jadual Berkala",
     ],
     answerIndex: 0,
     explanation:
@@ -217,7 +217,12 @@ export const scienceF1C6QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     question:
       "Satu bahan mempunyai permukaan berkilat, boleh ditempa dan mengkonduksikan elektrik dengan baik. Bagaimanakah bahan tersebut paling sesuai dikelaskan?",
-    options: ["Bukan logam", "Gas nadir", "Logam", "Sebatian bukan logam"],
+    options: [
+      "Unsur bukan logam",
+      "Unsur gas nadir",
+      "Unsur logam",
+      "Bahan sebatian",
+    ],
     answerIndex: 2,
     explanation:
       "Permukaan berkilat, boleh ditempa dan kekonduksian elektrik yang baik ialah ciri umum logam.",
@@ -285,10 +290,10 @@ export const scienceF1C6QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     question: "Apakah maksud kebolehtempaan?",
     options: [
-      "Boleh diketuk menjadi bentuk tanpa pecah",
-      "Boleh ditarik menjadi dawai",
-      "Boleh mengkonduksikan elektrik dengan baik",
-      "Mempunyai permukaan berkilat",
+      "Boleh diketuk menjadi bentuk baharu tanpa pecah",
+      "Boleh ditarik menjadi dawai halus tanpa putus",
+      "Boleh mengalirkan arus elektrik melalui bahan",
+      "Mempunyai permukaan yang memantulkan cahaya",
     ],
     answerIndex: 0,
     explanation: "Kebolehtempaan ialah kebolehan bahan dibentuk atau ditempa tanpa pecah.",
@@ -302,10 +307,10 @@ export const scienceF1C6QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     question: "Apakah maksud campuran?",
     options: [
-      "Bahan yang terdiri daripada dua atau lebih unsur atau sebatian yang dicampur secara fizikal",
-      "Bahan yang terbentuk melalui ikatan kimia sahaja",
-      "Satu jenis atom sahaja",
-      "Bahan yang hanya boleh diasingkan secara elektrolisis",
+      "Bahan yang terhasil apabila dua atau lebih bahan dicampur secara fizikal",
+      "Bahan yang terhasil apabila unsur berlainan bergabung secara kimia",
+      "Bahan yang terdiri daripada satu jenis atom sahaja",
+      "Bahan yang perlu diasingkan melalui tindak balas kimia",
     ],
     answerIndex: 0,
     explanation:
@@ -332,7 +337,12 @@ export const scienceF1C6QuizzesBM: QuizQuestion[] = [
     difficulty: "Medium",
     question:
       "Satu campuran mengandungi serbuk besi dan pasir. Apakah kaedah paling mudah untuk mengasingkan kedua-duanya?",
-    options: ["Penurasan", "Menggunakan magnet", "Penyulingan", "Pengapungan"],
+    options: [
+      "Menuras campuran menggunakan kertas turas",
+      "Menggunakan magnet untuk menarik serbuk besi",
+      "Menyuling campuran dengan pemanasan",
+      "Mengapungkan campuran dalam air",
+    ],
     answerIndex: 1,
     explanation:
       "Besi tertarik kepada magnet tetapi pasir tidak, maka perbezaan sifat ini boleh digunakan untuk pengasingan.",
@@ -416,7 +426,7 @@ export const scienceF1C6QuizzesBM: QuizQuestion[] = [
     question:
       "Mengapakah sebatian tidak boleh diasingkan kepada unsur-unsurnya menggunakan kaedah fizikal seperti penurasan atau magnet?",
     options: [
-      "Unsur dalam sebatian telah bergabung secara kimia",
+      "Unsur dalam sebatian berikatan kimia dan memerlukan kaedah kimia untuk memutuskan ikatan itu",
       "Unsur dalam sebatian bercampur secara fizikal tetapi mempunyai saiz zarah yang sama",
       "Unsur dalam sebatian mengekalkan semua sifat asal tetapi mempunyai takat didih yang sama",
       "Unsur dalam sebatian boleh dipisahkan secara fizikal jika saiz sampel ditambah",

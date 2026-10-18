@@ -51,14 +51,38 @@ describe("Form 1 Science chapter quiz audit regression", () => {
     });
   }
 
-  it("maps 19 bilingual pairs of relevant SVG stimuli in the presentation layer", () => {
-    expect(Object.keys(scienceF1QuizVisualById)).toHaveLength(38);
+  it("maps 26 bilingual pairs of relevant SVG stimuli in the presentation layer", () => {
+    expect(Object.keys(scienceF1QuizVisualById)).toHaveLength(52);
     for (const [id, path] of Object.entries(scienceF1QuizVisualById)) {
       expect(id).toMatch(/^sci-f1-c[1-9]-(bm|dlp)-q\d+$/);
       expect(path).toMatch(/^\/quiz-visuals\/science-f1\/[a-z-]+\.svg$/);
       const companion = id.replace(/-(?:bm|dlp)-/, id.includes("-bm-") ? "-dlp-" : "-bm-");
       expect(scienceF1QuizVisualById[companion]).toBe(path);
     }
+  });
+
+  it("uses 21 paired diagram assets, including seven answer-neutral new scenarios", () => {
+    const paths = new Set(Object.values(scienceF1QuizVisualById));
+    expect(paths.size).toBe(21);
+    for (const path of paths) {
+      expect(path).toMatch(/\.svg$/);
+    }
+  });
+
+  it("guards against obvious correct-answer length cues in all 540 bilingual questions", () => {
+    const outliers: string[] = [];
+    for (const chapter of chapters) {
+      for (const lang of languages) {
+        for (const question of getChapterQuizQuestions("science", "Form 1", `Chapter ${chapter}`, lang)) {
+          const sizes = question.options.map((option) => option.trim().length);
+          const correct = sizes[question.answerIndex];
+          const meanDistractor = (sizes.reduce((a, b) => a + b, 0) - correct) / 3;
+          const ratio = correct / meanDistractor;
+          if (ratio < 0.65 || ratio > 1.5) outliers.push(`${question.id}: ${ratio.toFixed(2)}`);
+        }
+      }
+    }
+    expect(outliers).toEqual([]);
   });
 
   it("keeps chapter 8 black-surface and chapter 5 density corrections in both languages", () => {
