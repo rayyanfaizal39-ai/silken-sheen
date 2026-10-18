@@ -1,4 +1,5 @@
 import { AudioControls } from "./AudioControls";
+import { academyHomeHref, cardsPaths } from "../paths";
 export function SanctuaryHeader({
   calm,
   onCalm,
@@ -10,7 +11,7 @@ export function SanctuaryHeader({
 }) {
   return (
     <header className="sanctuary-header">
-      <a className="sanctuary-brand" href="/nova">
+      <a className="sanctuary-brand" href={cardsPaths.home}>
         <img src="/branding/academy-icon.png" alt="AcadeMY" width="32" height="32" />
         <span>Nova Studio</span>
       </a>
@@ -26,7 +27,7 @@ export function SanctuaryHeader({
         <button aria-pressed={calm} onClick={onCalm} aria-label="Toggle calm motion">
           ◌<span>Calm motion</span>
         </button>
-        <a href="/dashboard" aria-label="Return to learning">
+        <a href={academyHomeHref} aria-label="Return to learning">
           ↗<span>Learning</span>
         </a>
       </div>

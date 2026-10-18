@@ -25,7 +25,7 @@ describe("shared Supabase cookie lifecycle", () => {
     expect(getSupabaseAuthCookieOptions("localhost").domain).toBeUndefined();
   });
 
-  it.each([host, "localhost"])(
+  it.each([host, "cards.myacademy.my", "preview.cards.myacademy.my", "localhost"])(
     "applies scope to every chunk, refresh, verifier and deletion on %s",
     (hostname) => {
       const cookies = [
@@ -48,10 +48,10 @@ describe("shared Supabase cookie lifecycle", () => {
       const scoped = writes.slice(-cookies.length);
       for (const { options } of scoped) {
         expect(options).toMatchObject({
-          domain: hostname === host ? ".myacademy.my" : undefined,
+          domain: hostname === "localhost" ? undefined : ".myacademy.my",
           path: "/",
           sameSite: "lax",
-          secure: hostname === host,
+          secure: hostname !== "localhost",
         });
       }
       expect(scoped[2].options.maxAge).toBe(0);

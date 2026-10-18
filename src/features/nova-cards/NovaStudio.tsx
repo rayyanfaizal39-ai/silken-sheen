@@ -4,6 +4,7 @@ import { EvolutionPreview } from "./EvolutionPreview";
 import { cardUrl, DEMO_CARDS, evolution, STAGES, type NovaCard as Card } from "./model";
 import { getMyCard, getNovaEntitlement, setSharing, type NovaEntitlement } from "./server";
 import { NovaTeaser } from "./NovaTeaser";
+import { academyHomeHref, cardsPaths, signInHref } from "./paths";
 
 export function NovaStudio() {
   const [card, setCard] = useState<Card | null>(null);
@@ -35,12 +36,12 @@ export function NovaStudio() {
   return (
     <main className="nova-page">
       <header className="nova-topbar">
-        <a href="/dashboard" className="nova-home">
+        <a href={academyHomeHref} className="nova-home">
           <img src="/branding/academy-icon.png" alt="AcadeMY" width="32" height="32" />
           AcadeMY
         </a>
-        <span>NOVA COLLECTION · VOL. 01</span>
-        <a href="/nova/demo">Explore demos ↗</a>
+        <span>ACADEMY CARDS · VOL. 01</span>
+        <a href={cardsPaths.demo}>Explore demos ↗</a>
       </header>
       <div className="nova-studio-layout">
         <section className="nova-intro">
@@ -144,9 +145,9 @@ export function NovaStudio() {
                 A connection error does not mean your subscription has expired. Please sign in or
                 try again.
               </p>
-              <a href="/login?next=/nova">Sign in</a>
+              <a href={signInHref(cardsPaths.home)}>Sign in</a>
               {" · "}
-              <a href="/nova">Retry</a>
+              <a href={cardsPaths.home}>Retry</a>
             </div>
           ) : !entitlement.active ? (
             <NovaTeaser
@@ -171,7 +172,7 @@ export function NovaStudio() {
                 Answer twelve questions in your dedicated Studio. Your choices save as you go, ready
                 for your two Origin artworks.
               </p>
-              <a className="nova-primary" href="/nova/studio">
+              <a className="nova-primary" href={cardsPaths.studio}>
                 Open Nova Studio ↗
               </a>
             </div>
@@ -179,7 +180,7 @@ export function NovaStudio() {
         </section>
       </div>
       <footer className="nova-page-footer">
-        AcadeMY NOVA COMPANION COLLECTION{" "}
+        AcadeMY Cards · NOVA COMPANION COLLECTION{" "}
         <span>Sample artwork · Built for your learning journey</span>
       </footer>
     </main>
@@ -192,12 +193,12 @@ export function NovaDemoGallery() {
   return (
     <main className="nova-page">
       <header className="nova-topbar">
-        <a className="nova-home" href="/nova">
+        <a className="nova-home" href={cardsPaths.home}>
           <img src="/branding/academy-icon.png" alt="AcadeMY" width="32" height="32" />
           AcadeMY
         </a>
-        <span>NOVA · EVOLUTION STUDY</span>
-        <a href="/nova/studio">Open Nova Studio ↗</a>
+        <span>ACADEMY CARDS · EVOLUTION STUDY</span>
+        <a href={cardsPaths.studio}>Open Nova Studio ↗</a>
       </header>
       <section className="nova-gallery-heading">
         <p className="nova-eyebrow">RAYYAN & MIA · STAGE 2 VISUAL PREVIEW</p>

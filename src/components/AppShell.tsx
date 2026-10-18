@@ -51,6 +51,7 @@ import { getProfileForAdminCheck, hasAdministratorRole } from "@/lib/admin-acces
 import { BackgroundMusicControl } from "@/components/audio/BackgroundMusicControl";
 import { BackgroundMusicProvider } from "@/context/BackgroundMusicProvider";
 import { isStudentMusicRoute } from "@/lib/audio/studentMusicRoutes";
+import { cardsIntegrationEnabled } from "@/lib/cards-integration";
 import {
   isPublicAuthRoute,
   isOnboardingExemptRoute,
@@ -137,9 +138,9 @@ const navItems = [
     line: "linear-gradient(90deg,#67E8F9,#0EA5E9)",
   },
   {
-    label: "Nova Companion",
-    short: "Nova",
-    to: "/nova",
+    label: cardsIntegrationEnabled ? "My Cards" : "Cosmic Companion",
+    short: cardsIntegrationEnabled ? "Cards" : "Companion",
+    to: "/companion",
     icon: Sparkles,
     accent: "#F0ABFC",
     accentGlow: "rgba(240,171,252,0.55)",
@@ -405,7 +406,8 @@ function AppShellLayout({ children, pathname }: { children: ReactNode; pathname:
   const novaSubscription = useSubscriptionOverview();
   const currentSubscription = novaSubscription.overview?.subscription;
   const companionEntitled =
-    novaSubscription.resolved && !novaSubscription.error &&
+    novaSubscription.resolved &&
+    !novaSubscription.error &&
     currentSubscription?.status === "active" &&
     hasFeature(resolveStoredPlan(currentSubscription?.plan), "xp_companion_progress") &&
     !!currentSubscription.current_period_end &&
@@ -811,7 +813,7 @@ function HeaderCompanion() {
   return (
     <div className="flex items-center">
       <Link
-        to="/nova"
+        to="/companion"
         className="flex min-h-11 items-center gap-1.5 rounded-l-xl border border-r-0 border-[#F0ABFC]/25 bg-[#F0ABFC]/10 px-2.5 transition-colors hover:bg-[#F0ABFC]/20"
         aria-label={`Open ${companionName}, Companion Level ${companionLevel}`}
       >

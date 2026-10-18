@@ -5,6 +5,7 @@ import { svgUrl } from "./codes";
 import { StudioExperience, type StudioApi } from "./StudioPage";
 import type { StudioState } from "./studio-model";
 import { SOURCE_FOX_ARTWORK } from "./sanctuary/preview-artwork";
+import { cardsPaths } from "./paths";
 const SCENES = [
   "welcome",
   "quiz",
@@ -127,7 +128,7 @@ export default function StudioMockPreview({ profile }: { profile: "rayyan" | "mi
             {s}
           </button>
         ))}
-        <a href={`/nova/studio?preview=${profile === "mia" ? "rayyan" : "mia"}`}>
+        <a href={`${cardsPaths.studio}?preview=${profile === "mia" ? "rayyan" : "mia"}`}>
           Switch companion ↗
         </a>
       </nav>

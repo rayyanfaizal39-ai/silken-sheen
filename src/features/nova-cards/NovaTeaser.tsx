@@ -1,5 +1,6 @@
 import { evolution, STAGES, type NovaCard } from "./model";
 import type { NovaEntitlement } from "./server";
+import { upgradeHref } from "./paths";
 
 export const NOVA_RETURN_SESSION_KEY = "academy:nova-resume";
 
@@ -36,7 +37,7 @@ export function NovaTeaser({
     <section className="nova-teaser" aria-label="Nova subscription access" role="region">
       <div className="nova-teaser-brand">
         <img src="/branding/academy-icon.png" alt="AcadeMY" width="38" height="38" />
-        <span>AcadeMY NOVA</span>
+        <span>AcadeMY Cards</span>
         <small>{pending ? "VERIFYING PAYMENT" : "EVOLUTION PAUSED"}</small>
       </div>
       <div className="nova-teaser-frame">
@@ -66,7 +67,7 @@ export function NovaTeaser({
       </div>
       <a
         className="nova-reactivate"
-        href="/upgrade"
+        href={upgradeHref}
         onClick={() => {
           try {
             window.sessionStorage.setItem(NOVA_RETURN_SESSION_KEY, "1");

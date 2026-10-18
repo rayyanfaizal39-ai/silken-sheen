@@ -23,6 +23,7 @@ import { OriginReveal } from "./sanctuary/OriginReveal";
 import { ConfettiBurst } from "./sanctuary/ConfettiBurst";
 import { useSanctuaryPreferences } from "./sanctuary/useSanctuaryPreferences";
 import { soundscape } from "./sanctuary/audio";
+import { academyHomeHref, cardsPaths, signInHref, upgradeHref } from "./paths";
 import "./sanctuary/sanctuary.css";
 
 const CompletedCard = lazy(() => import("./StudioCompletedCard"));
@@ -229,12 +230,12 @@ export function StudioExperience({
             Sign in with your AcadeMY account to save your companion’s story. A valid existing
             session continues automatically.
           </p>
-          <a className="sanctuary-primary" href="/login?next=/nova/studio">
+          <a className="sanctuary-primary" href={signInHref(cardsPaths.studio)}>
             Sign in to begin
           </a>
           <div className="sanctuary-preview-links">
-            <a href="/nova/studio?preview=mia">Explore the fictional sanctuary ↗</a>
-            <a href="/nova/studio?preview=rayyan">Meet Rayyan’s Phoenix ↗</a>
+            <a href={`${cardsPaths.studio}?preview=mia`}>Explore the fictional sanctuary ↗</a>
+            <a href={`${cardsPaths.studio}?preview=rayyan`}>Meet Rayyan’s Phoenix ↗</a>
           </div>
         </section>
       ) : !state.active ? (
@@ -245,7 +246,7 @@ export function StudioExperience({
             An active Pro or Premium subscription is required to submit, reveal or evolve your Nova.
             Your saved answers and permanent identity are preserved.
           </p>
-          <a className="sanctuary-primary" href="/upgrade">
+          <a className="sanctuary-primary" href={upgradeHref}>
             Explore Nova plans ↗
           </a>
         </section>
@@ -330,11 +331,11 @@ export function StudioExperience({
               </button>
             </>
           )}
-          <a className="sanctuary-subtle-link" href="/dashboard">
+          <a className="sanctuary-subtle-link" href={academyHomeHref}>
             Continue learning ↗
           </a>
           <p className="sanctuary-fine">
-            You can close this page. Return to /nova/studio on any device with this account.
+            You can close this page. Return to AcadeMY Cards on any device with this account.
           </p>
         </section>
       ) : quiz ? (
@@ -447,7 +448,8 @@ export function StudioExperience({
       ) : null}
       {!quiz && !intro && (
         <footer className="sanctuary-footer">
-          NOVA STUDIO · DISCOVER · CHOOSE · OWN YOUR NOVA <a href="/nova/demo">Evolution study ↗</a>
+          NOVA STUDIO · DISCOVER · CHOOSE · OWN YOUR NOVA{" "}
+          <a href={cardsPaths.demo}>Evolution study ↗</a>
         </footer>
       )}
     </main>
@@ -459,7 +461,7 @@ function SceneControls({ calm, onCalm }: { calm: boolean; onCalm: () => void }) 
       <button aria-pressed={calm} onClick={onCalm} aria-label="Toggle calm motion">
         ◌ Calm motion
       </button>
-      <a href="/dashboard">Back to learning ↗</a>
+      <a href={academyHomeHref}>Back to learning ↗</a>
     </div>
   );
 }

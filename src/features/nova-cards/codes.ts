@@ -1,5 +1,3 @@
-import QRCode from "qrcode";
-
 // ISO/IEC 15417 Code 128 symbol widths, ordered by symbol value (0–106).
 const WIDTHS = [
   "212222",
@@ -132,10 +130,14 @@ export function barcodeSvg(serial: string) {
 
 export const svgUrl = (svg: string) =>
   `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
-export const qrDataUrl = (url: string) =>
-  QRCode.toDataURL(url, {
+export async function qrDataUrl(url: string) {
+  // Keep qrcode's Node-only PNG helpers out of the Cloudflare SSR startup path.
+  // This runs only when the browser renders or exports a card.
+  const { default: QRCode } = await import("qrcode");
+  return QRCode.toDataURL(url, {
     width: 600,
     margin: 4,
     errorCorrectionLevel: "H",
     color: { dark: "#081225", light: "#ffffff" },
   });
+}
