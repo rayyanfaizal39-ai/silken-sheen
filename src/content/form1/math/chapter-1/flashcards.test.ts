@@ -40,6 +40,20 @@ describe("Form 1 Maths Chapter 1 combined rational-number reviews", () => {
       }
     });
   });
+  it("keeps Challenge number lines legible and avoids repeated-statement tables", () => {
+    const challenges = MATH_F1_C1_BANK.filter(card => card.mode === "challenge");
+    for (const card of challenges) {
+      expect(card.visuals?.some(v => v.kind === "value-pairs")).not.toBe(true);
+      for (const visual of card.visuals ?? []) {
+        if (visual.kind !== "number-line") continue;
+        expect(visual.ticks.length).toBeLessThanOrEqual(8);
+        for (const point of visual.points ?? []) {
+          expect(point.value).toBeGreaterThanOrEqual(visual.min);
+          expect(point.value).toBeLessThanOrEqual(visual.max);
+        }
+      }
+    }
+  });
   it("does not highlight correct answers in number-line visual data",()=>{
     const diagrams=MATH_F1_C1_BANK.flatMap(c=>c.visuals??[]).filter(v=>v.kind==="number-line");
     expect(diagrams.length).toBeGreaterThan(0);
