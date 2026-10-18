@@ -5,13 +5,24 @@ import "./companion-cards.css";
 
 export const Route = createFileRoute("/companion")({
   component: CosmicCompanionPage,
-  head: () =>
-    seoMeta({
+  head: () => {
+    const head = seoMeta({
       title: "Cosmic Companion",
       description: "Discover the companion waiting for you and begin your Cosmic Card journey.",
       path: "/companion",
       noindex: true,
-    }),
+    });
+    return {
+      ...head,
+      links: [
+        ...head.links,
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap",
+        },
+      ],
+    };
+  },
 });
 
 /**
