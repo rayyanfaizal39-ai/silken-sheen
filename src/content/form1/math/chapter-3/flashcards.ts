@@ -613,16 +613,7 @@ export const C3_CHALLENGES=[
   {
     "subtopic": "3.2",
     "mode": "challenge",
-    "visuals": [
-      {
-        "kind": "unit-cube",
-        "title": {
-          "dlp": "Cube of unit blocks",
-          "bm": "Kubus blok unit"
-        },
-        "edge": 6
-      }
-    ],
+    
     "dlp": {
       "prompt": "A large cube has edge length 6 cm.",
       "parts": [
