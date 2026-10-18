@@ -18,9 +18,11 @@ describe("Form 1 Maths Chapter 1 combined rational-number reviews", () => {
     }
   });
   it("combines four rational-number subtopics into three review modes", () => {
-    const cards=buildMathF1C1Flashcards("dlp");
-    for (const [mode,count] of [["concept",12],["practice",40],["challenge",16]] as const) {
-      expect(cardsForReviewMode(cards,mode)).toHaveLength(count);
+    for (const lang of ["bm", "dlp"] as const) {
+      const cards=buildMathF1C1Flashcards(lang);
+      for (const [mode,count] of [["concept",12],["practice",40],["challenge",16]] as const) {
+        expect(cardsForReviewMode(cards,mode)).toHaveLength(count);
+      }
     }
     expect(new Set(MATH_F1_C1_BANK.map(c=>c.subtopic))).toEqual(new Set(["1.1","1.2","1.3","1.4"]));
   });
@@ -37,6 +39,20 @@ describe("Form 1 Maths Chapter 1 combined rational-number reviews", () => {
         expect(malay[i].structured?.parts).toHaveLength(3);
       }
     });
+  });
+  it("keeps Challenge number lines legible and avoids repeated-statement tables", () => {
+    const challenges = MATH_F1_C1_BANK.filter(card => card.mode === "challenge");
+    for (const card of challenges) {
+      expect(card.visuals?.some(v => v.kind === "value-pairs")).not.toBe(true);
+      for (const visual of card.visuals ?? []) {
+        if (visual.kind !== "number-line") continue;
+        expect(visual.ticks.length).toBeLessThanOrEqual(8);
+        for (const point of visual.points ?? []) {
+          expect(point.value).toBeGreaterThanOrEqual(visual.min);
+          expect(point.value).toBeLessThanOrEqual(visual.max);
+        }
+      }
+    }
   });
   it("does not highlight correct answers in number-line visual data",()=>{
     const diagrams=MATH_F1_C1_BANK.flatMap(c=>c.visuals??[]).filter(v=>v.kind==="number-line");
