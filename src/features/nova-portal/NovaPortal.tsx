@@ -13,7 +13,7 @@ function prefersReducedMotion() {
 }
 
 /**
- * Main AcadeMY's entrance to AcadeMY Cards. It is only the doorway: the journey itself is
+ * Main AcadeMY's cinematic entrance to the Companion Cards experience. It is only the doorway: the journey itself is
  * the existing cinematic Studio, which begins in the same darkness this portal fades into.
  */
 export function NovaPortal({
@@ -173,14 +173,14 @@ export function NovaPortal({
         </div>
       </div>
       <div className="nova-portal__copy">
-        <p className="nova-portal__eyebrow">AcadeMY Cards · My Nova</p>
+        <p className="nova-portal__eyebrow">COSMIC COMPANION · CELESTIAL GATEWAY</p>
         <h1 id="nova-portal-title" className="nova-portal__title">
-          {artworkUrl ? "Your Nova is waiting beyond the stars" : "Your Nova universe awaits"}
+          {artworkUrl ? "Your companion is waiting beyond the stars" : "Your companion universe awaits"}
         </h1>
         <p className="nova-portal__lead">
           {artworkUrl
-            ? "Step through the portal to return to your lifelong companion."
-            : "Twelve questions. One lifelong companion. Step through the portal to begin."}
+            ? "Step through the gateway to visit your lifelong companion."
+            : "Twelve questions. One lifelong companion. Step through the gateway to begin."}
         </p>
         <button
           type="button"
@@ -189,13 +189,13 @@ export function NovaPortal({
           disabled={opening}
           aria-describedby="nova-portal-status"
         >
-          <span>Enter your Nova universe</span>
+          <span>Enter the Celestial Gateway</span>
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4-6.2-4.5-6.2 4.5 2.4-7.4L2 9.4h7.6z" />
           </svg>
         </button>
         <p id="nova-portal-status" className="nova-portal__status" role="status" aria-live="polite">
-          {opening ? "Opening your Nova universe…" : ""}
+          {opening ? "Opening your companion universe…" : ""}
         </p>
       </div>
       {/* Rendered into <body> so it covers the whole page, header and navigation included. */}
