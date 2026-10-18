@@ -3263,7 +3263,7 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 4",
     difficulty: "Medium",
-    question: "Apakah maksud 'civitas' dalam bahasa Yunani yang dikaitkan dengan tamadun?",
+    question: "Apakah maksud istilah 'civitas' yang dikaitkan dengan tamadun?",
     options: [
       "Kampung atau desa",
       "Bandar atau kota",
@@ -3272,7 +3272,7 @@ export const quizzes: QuizQuestion[] = [
     ],
     answerIndex: 1,
     explanation:
-      "Dalam bahasa Yunani, civitas bermaksud bandar atau kota, iaitu tempat kemajuan dalam kebudayaan, sains, industri dan sistem kerajaan.",
+      "Istilah civitas merujuk kepada bandar atau kota dalam penerangan konsep tamadun, yang dikaitkan dengan kemajuan kebudayaan, sains, industri dan sistem kerajaan.",
   },
   {
     id: "sej-f1-c4-q3",
@@ -3440,10 +3440,10 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     question: "Apakah yang dimaksudkan dengan pengkhususan pekerjaan?",
     options: [
-      "Penyamaan kerja semua anggota masyarakat",
+      "Pembahagian tugas mengikut umur dan jantina",
       "Pembahagian tugas mengikut kepakaran masyarakat",
-      "Penugasan semua kerja kepada golongan hamba",
-      "Pemberian semua kerja kepada golongan bangsawan",
+      "Pembahagian tugas mengikut tempat kediaman",
+      "Pembahagian tugas mengikut giliran setiap musim",
     ],
     answerIndex: 1,
     explanation:
@@ -3504,10 +3504,10 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     question: "Apakah kepercayaan masyarakat tamadun awal terhadap tuhan?",
     options: [
-      "Mempercayai satu tuhan sahaja",
+      "Mempercayai satu tuhan yang esa",
       "Mempercayai banyak tuhan",
       "Mempercayai raja sebagai tuhan tunggal",
-      "Menolak kewujudan semua tuhan",
+      "Menolak kepercayaan kepada tuhan",
     ],
     answerIndex: 1,
     explanation:
@@ -3627,7 +3627,7 @@ export const quizzes: QuizQuestion[] = [
       "Hadharah menjurus kepada kebendaan; madaniyyah menekankan nilai dan prinsip",
       "Hadharah menekankan nilai dan prinsip; madaniyyah menjurus kepada kebendaan",
       "Hadharah khusus kepada orang Islam; madaniyyah khusus kepada orang Barat",
-      "Kedua-duanya bermaksud sama, iaitu pembinaan bandar sahaja",
+      "Hadharah menjurus kepada pertanian; madaniyyah menekankan perdagangan",
     ],
     answerIndex: 1,
     explanation:
@@ -3676,7 +3676,7 @@ export const quizzes: QuizQuestion[] = [
       "Mengapakah sebuah bangunan besar sahaja tidak mencukupi untuk menilai pencapaian tamadun?",
     options: [
       "Tamadun merangkumi pencapaian dalam pelbagai bidang kehidupan",
-      "Pencapaian tamadun diukur melalui hasil pertanian semata-mata",
+      "Pencapaian tamadun diukur melalui hasil pertanian negara",
       "Kekayaan pemerintah menentukan tahap tamadun sesebuah negara",
       "Bilangan penduduk bandar menentukan tahap kemajuan tamadun",
     ],
@@ -3729,10 +3729,10 @@ export const quizzes: QuizQuestion[] = [
     question:
       "Bagaimanakah pengkhususan pekerjaan menyokong kegiatan ekonomi dalam bandar yang berkembang?",
     options: [
-      "Semua penduduk bandar kembali mengusahakan pertanian",
+      "Penduduk bandar kembali kepada pertanian sara diri",
       "Pertukaran barangan antara petempatan dihentikan",
       "Bilangan pekerjaan dalam bandar semakin berkurangan",
-      "Artisan dan pedagang mengeluarkan dan menukar barangan",
+      "Artisan dan pedagang menghasilkan dan menukar barang",
     ],
     answerIndex: 3,
     explanation:
@@ -3873,7 +3873,7 @@ export const quizzes: QuizQuestion[] = [
       "Firaun memerintah bersama golongan pendeta",
       "Firaun dipilih oleh penduduk bandar",
       "Firaun memerintah seperti kuasa tuhan",
-      "Firaun hanya menjadi ketua tentera",
+      "Firaun dipilih oleh golongan bangsawan",
     ],
     answerIndex: 2,
     explanation: "Dalam sistem pemerintahan Mesir Purba, Firaun memerintah seperti kuasa tuhan.",
@@ -3903,7 +3903,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 5",
     difficulty: "Medium",
     question: "Kepada siapakah petani Mesir Purba membayar sewa tanah?",
-    options: ["Raja", "Pendeta", "Bangsawan", "Pedagang"],
+    options: ["Golongan raja", "Golongan pendeta", "Golongan bangsawan", "Golongan pedagang"],
     answerIndex: 0,
     explanation:
       "Pertanian ialah kegiatan ekonomi utama Mesir Purba dan majoriti penduduknya petani yang membayar sewa tanah kepada raja.",
@@ -3934,10 +3934,10 @@ export const quizzes: QuizQuestion[] = [
     question:
       "Batu bata Indus mempunyai ukuran seragam. Kesimpulan manakah disokong oleh bukti ini?",
     options: [
-      "Semua bangunan mempunyai fungsi yang sama",
+      "Bangunan dibina untuk kegunaan golongan raja",
       "Setiap rumah dimiliki oleh pemerintah bandar",
       "Wujud kemahiran pengukuran dalam pembinaan",
-      "Semua bahan binaan dibawa dari luar kota",
+      "Bahan binaan diperoleh melalui perdagangan",
     ],
     answerIndex: 2,
     explanation:
@@ -3951,10 +3951,10 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     question: "Apakah dua bandar terancang yang terkenal dalam Tamadun Indus?",
     options: [
-      "Ur, Babylon dan Akkad",
+      "Babylon dan Akkad",
       "Memphis dan Thebes",
       "Mohenjo-Daro dan Harappa",
-      "Anyang, Zhou dan Xia",
+      "Anyang dan Zhengzhou",
     ],
     answerIndex: 2,
     explanation:
@@ -4006,7 +4006,7 @@ export const quizzes: QuizQuestion[] = [
     options: [
       "Wujud hubungan perdagangan antara masyarakat",
       "Kedua-duanya diperintah oleh raja sama",
-      "Semua penduduk menggunakan tulisan sama",
+      "Indus meminjam sistem tulisan kuneiform",
       "Indus menjadi wilayah taklukan Mesopotamia",
     ],
     answerIndex: 0,
@@ -4164,7 +4164,7 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     question: "Apakah kesan lebihan hasil pertanian terhadap kegiatan ekonomi Mesopotamia?",
     options: [
-      "Semua penduduk beralih kepada pertanian",
+      "Penduduk kembali kepada pertanian sara diri",
       "Perdagangan antara bandar dihentikan",
       "Pemerintah memberhentikan kegiatan pertukangan",
       "Lebih ramai menjadi pedagang dan artisan",
@@ -4198,10 +4198,10 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Hard",
     question: "Apakah kesimpulan tentang sistem tulisan dalam empat tamadun awal dunia?",
     options: [
-      "Semua tamadun menggunakan satu sistem tulisan yang sama",
-      "Hanya Mesopotamia dan Mesir mempunyai sistem tulisan",
-      "Setiap tamadun mempunyai sistem tulisan tersendiri",
-      "Tulisan hanya digunakan oleh golongan pendeta",
+      "Tamadun awal berkongsi satu sistem tulisan",
+      "Tamadun awal menggunakan tulisan abjad Rumi",
+      "Setiap tamadun ada sistem tulisan tersendiri",
+      "Tulisan dicipta selepas zaman tamadun awal",
     ],
     answerIndex: 2,
     explanation:
@@ -4215,10 +4215,10 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     question: "Apakah nilai yang dapat diteladani daripada sumbangan tamadun awal dunia?",
     options: [
-      "Berbangga hanya dengan pencapaian tamadun sendiri",
-      "Menghargai sumbangan tamadun lampau kepada kita",
+      "Memandang rendah pencapaian tamadun lain",
+      "Menghargai sumbangan tamadun yang lampau",
       "Mengekalkan cara hidup lama dan menolak perubahan",
-      "Menumpukan perhatian kepada pencapaian moden sahaja",
+      "Menolak ilmu yang berasal dari tamadun lain",
     ],
     answerIndex: 1,
     explanation:
@@ -4719,7 +4719,7 @@ export const quizzes: QuizQuestion[] = [
     options: [
       "Ketiadaan nabi dan kitab sebagai petunjuk",
       "Ketiadaan kegiatan perdagangan antara masyarakat",
-      "Ketiadaan semua bentuk pentadbiran masyarakat",
+      "Ketiadaan pemimpin dalam kalangan kabilah",
       "Ketiadaan petempatan dan kehidupan menetap",
     ],
     answerIndex: 0,
@@ -4811,7 +4811,7 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Hard",
     question: "Madinah dihuni masyarakat pelbagai agama. Apakah hasil Piagam Madinah yang tepat?",
     options: [
-      "Semua penduduk Madinah diwajibkan menganut Islam",
+      "Penduduk bukan Islam diwajibkan menganut Islam",
       "Setiap kabilah memerintah wilayah sendiri tanpa kuasa pusat",
       "Penduduk bukan Islam bebas mengamalkan agama mereka",
       "Kuasa pemerintahan dipegang oleh golongan peniaga Madinah",
@@ -4883,7 +4883,7 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Medium",
     question: "Apakah perubahan sosial penting yang dibawa oleh Tamadun Islam terhadap wanita?",
     options: [
-      "Pengkhususan pendidikan kepada lelaki sahaja",
+      "Pengkhususan pendidikan kepada golongan lelaki",
       "Penilaian wanita berdasarkan kekayaan keluarga",
       "Pengasingan wanita daripada kegiatan masyarakat",
       "Penghormatan dan peluang pendidikan wanita",
@@ -5002,7 +5002,7 @@ export const quizzes: QuizQuestion[] = [
     question:
       "Golongan murtad enggan membayar zakat selepas kewafatan Nabi Muhammad SAW. Bagaimanakah Abu Bakar al-Siddiq menangani cabaran tersebut?",
     options: [
-      "Memimpin peperangan al-Riddah terhadap golongan berkenaan",
+      "Melancarkan Perang al-Riddah terhadap mereka",
       "Membahagikan wilayah baharu di Iraq dan Syam",
       "Melantik gabenor di wilayah Parsi dan Byzantium",
       "Menyelaraskan mushaf untuk kegunaan wilayah Islam",
@@ -5019,10 +5019,10 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Hard",
     question: "Padanan khalifah dengan pembukaan wilayah manakah yang betul?",
     options: [
-      "Umar: Parsi dan Byzantium; Uthman: Iraq, Syam dan Mesir",
+      "Umar: Parsi dan sebahagian Byzantium; Uthman: Iraq, Syam dan Mesir",
       "Umar: Iraq, Syam dan Mesir; Uthman: Parsi dan sebahagian Byzantium",
-      "Abu Bakar: Iraq, Syam dan Mesir; Umar: Perang al-Riddah",
-      "Ali: Parsi dan Byzantium; Uthman: Perang al-Riddah",
+      "Ali: Parsi dan sebahagian Byzantium; Umar: Perang al-Riddah",
+      "Uthman: Iraq, Syam dan Mesir; Abu Bakar: Perang al-Riddah",
     ],
     answerIndex: 1,
     explanation:
@@ -5155,10 +5155,10 @@ export const quizzes: QuizQuestion[] = [
     question:
       "Seorang pedagang menipu timbangan supaya mendapat keuntungan lebih. Prinsip ekonomi Islam manakah dilanggar?",
     options: [
-      "Galakan bersedekah",
-      "Kewajipan membayar zakat",
+      "Galakan bersedekah kepada fakir",
+      "Kewajipan membayar zakat harta",
       "Larangan menipu dan menindas",
-      "Sikap berjimat cermat",
+      "Sikap berjimat cermat berbelanja",
     ],
     answerIndex: 2,
     explanation:

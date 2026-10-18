@@ -110,7 +110,7 @@ describe("Sejarah Form 1 Bab 7 quiz bank integrity", () => {
     // Q3/Q5: the 600,000-infantry statistic is tested once; Q3 now tests a factor.
     expect(chapter7.filter((q) => /600,000/.test(text(num(q)))).map(num)).toEqual([5]);
     expect(byId(3).question).toMatch(/perbendaharaan/);
-    expect(correct(3)).toBe("Kewangan");
+    expect(correct(3)).toBe("Kewangan kerajaan");
     // Q7 cause, Q8 outcome figures, Q23 situation: three different reasoning tasks.
     expect(correct(7)).toBe("Perang Kalinga");
     expect(correct(8)).toMatch(/150,000 orang kehilangan harta benda/);

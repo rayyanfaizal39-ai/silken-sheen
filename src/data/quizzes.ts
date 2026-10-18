@@ -2090,10 +2090,10 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 1",
     difficulty: "Medium",
     question: "Antara berikut, yang manakah merupakan sumber sekunder?",
-    options: ["Buku teks sejarah", "Batu bersurat", "Diari tokoh", "Manuskrip asal"],
+    options: ["Ensiklopedia", "Batu bersurat", "Keterangan lisan", "Diari tokoh"],
     answerIndex: 0,
     explanation:
-      "Buku teks sejarah ialah sumber sekunder kerana penulis mengolah maklumat daripada sumber lain untuk menjelaskan peristiwa.",
+      "Ensiklopedia ialah sumber sekunder kerana bahannya telah diolah dan diterbitkan berdasarkan sumber lain. Batu bersurat, keterangan lisan dan diari tokoh ialah bahan asli yang belum ditafsir.",
   },
   {
     id: "sej-f1-c1-q14",
@@ -2152,10 +2152,10 @@ export const quizzes: QuizQuestion[] = [
     question:
       "Seorang murid merakam temu bual sebelum menentukan skop dan soalan, kemudian menyimpan rakaman tanpa menilai faktanya. Pembetulan manakah menepati tiga tahap kaedah lisan?",
     options: [
-      "Memproses rakaman dahulu, kemudian menentukan skop dan akhirnya merakam temu bual",
-      "Menentukan skop dan soalan semasa persediaan, merakam temu bual, kemudian menilai fakta dengan sumber bertulis semasa memproses rakaman",
-      "Merakam temu bual dahulu, menentukan skop semasa memproses rakaman dan terus menyimpannya",
-      "Menentukan skop semasa persediaan, menyimpan rakaman dan menilai fakta hanya jika orang sumber memintanya",
+      "Menentukan skop dan soalan, menilai fakta dengan sumber bertulis, kemudian merakam temu bual",
+      "Menentukan skop dan soalan, merakam temu bual, kemudian menilai fakta dengan sumber bertulis",
+      "Merakam temu bual, menentukan skop dan soalan, kemudian menilai fakta dengan sumber bertulis",
+      "Menentukan skop dan soalan, merakam temu bual, kemudian terus menyimpan rakaman tanpa semakan",
     ],
     answerIndex: 1,
     explanation:
@@ -2231,10 +2231,10 @@ export const quizzes: QuizQuestion[] = [
     question:
       "Pengkaji tempatan mengaitkan kebangkitan Tok Janggut dengan penentangan terhadap peraturan cukai tanah dan hasil hutan British yang membebankan rakyat. Pengkaji Barat menganggapnya sebagai pemberontakan. Apakah yang ditunjukkan oleh perbandingan ini?",
     options: [
-      "Peristiwa yang sama mesti mempunyai satu tafsiran tanpa perbandingan sumber",
-      "Tafsiran pengkaji ditentukan oleh tarikh penerbitan sahaja",
-      "Perbezaan pandangan dan pemilihan sumber boleh menghasilkan tafsiran berbeza tentang peristiwa yang sama",
-      "Sebutan yang berbeza membuktikan bahawa dua peristiwa berasingan berlaku",
+      "Tafsiran pengkaji Barat lebih tepat kerana berdasarkan sumber rasmi",
+      "Tafsiran pengkaji ditentukan oleh tarikh penerbitan karya mereka",
+      "Perbezaan pandangan dan pemilihan sumber menghasilkan tafsiran berbeza",
+      "Sebutan yang berbeza membuktikan dua peristiwa berasingan berlaku",
     ],
     answerIndex: 2,
     explanation:
@@ -2248,7 +2248,7 @@ export const quizzes: QuizQuestion[] = [
     question: "Bagaimanakah sejarah membantu seseorang membuat keputusan masa hadapan?",
     options: [
       "Mengulangi keputusan lama tanpa penilaian",
-      "Meramalkan peristiwa melalui tarikh sahaja",
+      "Meramalkan peristiwa melalui tarikh lampau",
       "Mengutamakan kisah popular tanpa bukti",
       "Mengambil iktibar daripada pengalaman lalu",
     ],
@@ -2340,7 +2340,7 @@ export const quizzes: QuizQuestion[] = [
     question: "Mengapakah istilah syajaratun dikaitkan dengan sejarah keluarga?",
     options: [
       "Menentukan tempoh setiap pemerintahan",
-      "Menerangkan lokasi semua peninggalan sejarah",
+      "Menerangkan lokasi peninggalan sejarah lama",
       "Menggambarkan salasilah dan asal usul",
       "Mengelaskan sumber bertulis dan lisan",
     ],
@@ -3006,7 +3006,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     difficulty: "Easy",
     question: "Zaman Logam terbahagi kepada dua tahap penggunaan bahan. Apakah bahan tersebut?",
-    options: ["Gangsa dan Besi", "Batu dan kayu", "Tembaga dan Emas", "Besi dan Perak"],
+    options: ["Gangsa dan besi", "Emas dan perak", "Tembaga dan emas", "Besi dan perak"],
     answerIndex: 0,
     explanation:
       "Penggunaan logam menunjukkan peningkatan tahap kreativiti manusia dalam menghasilkan alatan yang lebih kuat dan tajam.",
@@ -3037,14 +3037,14 @@ export const quizzes: QuizQuestion[] = [
     difficulty: "Easy",
     question: "Apakah maksud kepercayaan 'Animisme'?",
     options: [
-      "Kepercayaan unsur alam mempunyai roh",
-      "Kepercayaan kepada satu Tuhan",
-      "Kepercayaan kehidupan selepas mati sahaja",
-      "Kepercayaan raja sebagai jelmaan Tuhan",
+      "Setiap benda dipercayai mempunyai kuasa",
+      "Satu Tuhan dipercayai menguasai alam",
+      "Kedudukan bintang dipercayai menentukan nasib",
+      "Raja dipercayai sebagai jelmaan Tuhan",
     ],
     answerIndex: 0,
     explanation:
-      "Manusia prasejarah percaya kepada kuasa alam seperti pokok, batu, dan sungai yang dipercayai memberi kesan kepada kehidupan mereka.",
+      "Buku teks mentakrifkan animisme sebagai kepercayaan bahawa setiap benda mempunyai kuasa dan semangat yang mampu menentukan kehidupan manusia, seperti pokok, batu, bukit, sungai dan laut.",
   },
   {
     id: "sej-f1-c3-q14",
@@ -3214,10 +3214,10 @@ export const quizzes: QuizQuestion[] = [
     question:
       "Tembikar prasejarah dijadikan bekas makanan dan peralatan masakan. Pembuatan labu sayong masih diteruskan hari ini. Apakah kesinambungannya?",
     options: [
-      "Pengekalan semua teknik tanpa perubahan",
-      "Penggunaan bekas untuk ritual semata-mata",
+      "Penggunaan tembikar sebagai senjata buruan",
+      "Penggunaan tembikar untuk upacara keagamaan",
       "Penggunaan tembikar untuk keperluan harian",
-      "Penggantian semua bekas dengan logam",
+      "Penggunaan tembikar sebagai alat muzik",
     ],
     answerIndex: 2,
     explanation:
@@ -3330,7 +3330,7 @@ export const quizzes: QuizQuestion[] = [
     options: [
       "Memindahkan artifak tanpa merekod kedudukan",
       "Merekod dan melindungi tinggalan asal",
-      "Menggantikan semua struktur dengan replika",
+      "Menggantikan struktur asal dengan replika baharu",
       "Membersihkan tapak sebelum pemeriksaan arkeologi",
     ],
     answerIndex: 1,
