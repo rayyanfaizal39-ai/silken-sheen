@@ -37,10 +37,11 @@ describe("Cosmic Companion card-first experience", () => {
   });
 
   it("keeps the Celestial Gateway separate and gives users a return route", () => {
-    expect(portalRoute).toContain('<NovaPortal studioUrl={destination} />');
+    expect(portalRoute).toContain('<NovaPortal studioUrl={destination} autoEnter />');
     expect(portalRoute).toContain('to="/companion"');
     expect(portalRoute).toContain('cardsStudioUrl');
     expect(portalRoute).toContain('"/nova/studio?preview=rayyan"');
+    expect(portalRoute).toContain("`${cardsStudioUrl}?preview=rayyan`");
     expect(read("../routes/companion-portal.css")).toContain("position: fixed");
   });
 });
