@@ -18,9 +18,11 @@ describe("Form 1 Maths Chapter 1 combined rational-number reviews", () => {
     }
   });
   it("combines four rational-number subtopics into three review modes", () => {
-    const cards=buildMathF1C1Flashcards("dlp");
-    for (const [mode,count] of [["concept",12],["practice",40],["challenge",16]] as const) {
-      expect(cardsForReviewMode(cards,mode)).toHaveLength(count);
+    for (const lang of ["bm", "dlp"] as const) {
+      const cards=buildMathF1C1Flashcards(lang);
+      for (const [mode,count] of [["concept",12],["practice",40],["challenge",16]] as const) {
+        expect(cardsForReviewMode(cards,mode)).toHaveLength(count);
+      }
     }
     expect(new Set(MATH_F1_C1_BANK.map(c=>c.subtopic))).toEqual(new Set(["1.1","1.2","1.3","1.4"]));
   });

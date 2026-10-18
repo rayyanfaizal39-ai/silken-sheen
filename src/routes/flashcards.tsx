@@ -47,6 +47,14 @@ import {
   splitFlashcardDeck,
   standardizeFlashcardDeck,
 } from "@/lib/flashcard-availability";
+import {
+  chooseBackAction,
+  flashcardSearchKey,
+  isStructuredMathF1Chapter,
+  normalizeMathLangParam,
+  parentFlashcardSearch,
+  type FlashcardSearch,
+} from "@/lib/flashcard-navigation";
 import { classifyCardDrag } from "@/lib/flashcard-gesture";
 import { useContentRegistryStatus, useContentDataModule } from "@/hooks/use-content-registry";
 import {
@@ -5519,13 +5527,7 @@ function FlashcardsPage() {
   const { registry, status: registryStatus, retry: retryRegistry } = useContentRegistryStatus();
   const dataModule = useContentDataModule();
   const navigate = Route.useNavigate();
-  const routeSearch = Route.useSearch() as {
-    subject?: string;
-    form?: string | number;
-    chapter?: string;
-    set?: string | number;
-    mode?: string;
-  };
+  const routeSearch = Route.useSearch() as FlashcardSearch;
   const { progress, toggleFavorite, markChapter, addXp, rateCard, setLastVisited } = useProgress();
   const { user: authUser } = useAuth();
   const { open: openSignIn } = useSignInModal();
@@ -5534,7 +5536,14 @@ function FlashcardsPage() {
   const [chapter, setChapter] = useState<string | null>(initialSearch.chapter);
   const [form, setForm] = useState<FormFilter>(initialSearch.form);
   const [formWasChosen, setFormWasChosen] = useState(initialSearch.hasForm);
-  const [mathFlashcardLang, setMathFlashcardLang] = useState<MathFlashcardLang | null>(null);
+  // Structured Form 1 Maths chapters carry their language in the URL (`lang`),
+  // so refresh, direct links and browser Back/Forward restore it; other Form 1
+  // Maths chapters keep it in component state as before.
+  const [mathFlashcardLang, setMathFlashcardLang] = useState<MathFlashcardLang | null>(() =>
+    isStructuredMathF1Chapter(initialSearch.subject, initialSearch.form, initialSearch.chapter)
+      ? normalizeMathLangParam(routeSearch.lang)
+      : null,
+  );
   const [mathFlashcardCategory, setMathFlashcardCategory] =
     useState<MathFlashcardCategoryId | null>(null);
   const [selectedFlashcardSet, setSelectedFlashcardSet] = useState<FlashcardSetIndex | null>(
@@ -5649,13 +5658,83 @@ function FlashcardsPage() {
     setChapter(routeSearch.chapter ?? null);
     setSelectedFlashcardSet(normalizeFlashcardSetParam(routeSearch.set));
     setSelectedReviewMode(normalizeReviewModeParam(routeSearch.mode));
+    if (
+      isStructuredMathF1Chapter(
+        normalizeSubjectParam(routeSearch.subject),
+        nextForm,
+        routeSearch.chapter,
+      )
+    ) {
+      setMathFlashcardLang(normalizeMathLangParam(routeSearch.lang));
+      setMathFlashcardCategory(null);
+    }
   }, [
     routeSearch.subject,
     routeSearch.form,
     routeSearch.chapter,
+    routeSearch.lang,
     routeSearch.set,
     routeSearch.mode,
   ]);
+
+  // Which screen each browser-history entry showed, keyed by TanStack's
+  // history index, so the in-page Back button can step back through history
+  // when the previous entry is the parent screen (see chooseBackAction).
+  // Kept in sessionStorage (this tab only) so it survives a refresh: after
+  // reloading inside the arena, Back still steps back instead of leaving a
+  // duplicate history entry behind.
+  const visitedSearchByIndexRef = useRef<Map<number, string> | null>(null);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const storageKey = "academy-flashcards-visited";
+    if (!visitedSearchByIndexRef.current) {
+      // Only a reload of this page may reuse what was recorded before it; any
+      // other fresh visit starts empty, because other pages may since have
+      // replaced those history entries.
+      let restored: Array<[number, string]> = [];
+      try {
+        const navigation = performance.getEntriesByType("navigation")[0] as
+          | PerformanceNavigationTiming
+          | undefined;
+        if (navigation?.type === "reload") {
+          restored = JSON.parse(sessionStorage.getItem(storageKey) ?? "[]") as Array<[number, string]>;
+        }
+      } catch {
+        restored = [];
+      }
+      visitedSearchByIndexRef.current = new Map(restored);
+    }
+    const index = (window.history.state as { __TSR_index?: number } | null)?.__TSR_index;
+    if (typeof index !== "number") return;
+    visitedSearchByIndexRef.current.set(index, flashcardSearchKey(routeSearch));
+    try {
+      sessionStorage.setItem(storageKey, JSON.stringify([...visitedSearchByIndexRef.current]));
+    } catch {
+      // Storage unavailable: Back falls back to replacing the entry.
+    }
+  }, [
+    routeSearch.subject,
+    routeSearch.form,
+    routeSearch.chapter,
+    routeSearch.lang,
+    routeSearch.set,
+    routeSearch.mode,
+  ]);
+
+  /** Leave the current structured-flow screen for its parent (see flashcard-navigation). */
+  function goUpOneLevel() {
+    const parent = parentFlashcardSearch(routeSearch);
+    const index =
+      typeof window === "undefined"
+        ? undefined
+        : (window.history.state as { __TSR_index?: number } | null)?.__TSR_index;
+    const visited = visitedSearchByIndexRef.current ?? new Map<number, string>();
+    if (chooseBackAction(index, visited, flashcardSearchKey(parent)) === "history-back") {
+      window.history.back();
+      return;
+    }
+    void navigate({ search: () => parent, replace: true });
+  }
 
   function updateFlashcardSearch(next: {
     subject?: string | null;
@@ -5663,6 +5742,7 @@ function FlashcardsPage() {
     chapter?: string | null;
     set?: FlashcardSetIndex | null;
     mode?: FlashcardReviewMode | null;
+    lang?: MathFlashcardLang | null;
   }) {
     // A review mode belongs to one set: changing anything above it clears it.
     const deckChanged =
@@ -5671,9 +5751,19 @@ function FlashcardsPage() {
       next.chapter !== undefined ||
       next.set !== undefined;
     const mode = next.mode !== undefined ? next.mode : deckChanged ? null : selectedReviewMode;
+    // The flashcard language belongs to one chapter: a new subject, form or
+    // chapter starts without one, so it is chosen again on the language screen.
+    const chapterChanged =
+      next.subject !== undefined || next.form !== undefined || next.chapter !== undefined;
     void navigate({
       search: (previous: Record<string, unknown>) => ({
         ...previous,
+        lang:
+          next.lang !== undefined
+            ? (next.lang ?? undefined)
+            : chapterChanged
+              ? undefined
+              : previous.lang,
         subject: next.subject === undefined ? (subject ?? undefined) : (next.subject ?? undefined),
         form:
           next.form === undefined
@@ -5957,7 +6047,12 @@ function FlashcardsPage() {
         ? (MATH_FLASHCARD_CATEGORIES.find((category) => category.id === mathFlashcardCategory)?.[
             mathFlashcardLang
           ].title ?? getMathFlashcardChapterTitle(chapter, mathFlashcardLang))
-        : (chapterMeta?.label ?? chapter ?? "Flashcards");
+        : isStructuredMathF1Chapter(subject, form, chapter) && mathFlashcardLang
+          ? // Follows the chapter's chosen language, not the subject-level one.
+            (MATH_FLASHCARD_CHAPTER_TITLES[chapter!]?.[mathFlashcardLang === "bm" ? "headerBm" : "headerDlp"] ??
+            chapterMeta?.label ??
+            chapter!)
+          : (chapterMeta?.label ?? chapter ?? "Flashcards");
 
   function buildShuffled() {
     return pool.map((_, i) => i).sort(() => Math.random() - 0.5);
@@ -6545,6 +6640,13 @@ function FlashcardsPage() {
     // Same back behaviour the in-page header used: a set returns to the set
     // picker, a Math category to its categories, anything else to chapters.
     const exitStudySession = () => {
+      // Structured Form 1 Maths: the arena returns to the three review
+      // categories (history-aware, so browser Back cannot reopen this arena).
+      if (isStructuredMathF1Chapter(subject, form, chapter)) {
+        resetSession();
+        goUpOneLevel();
+        return;
+      }
       // A review mode returns to its subtopic's mode picker.
       if (activeReviewMode && isMathF2C1Combined) {
         resetSession();
@@ -6579,7 +6681,10 @@ function FlashcardsPage() {
       const title = cleanLearningTitle(option?.title ?? `Set ${index + 1}`);
       return option?.badge ? `${option.badge} ${title}` : title;
     };
-    const studyLang: "bm" | "dlp" = scienceLang ?? "dlp";
+    // Form 1 Maths chooses its language per chapter; everything else follows
+    // the subject-level language.
+    const studyLang: "bm" | "dlp" =
+      (form === "Form 1" && subject === "math" ? mathFlashcardLang : scienceLang) ?? "dlp";
     const modeTitleFor = (mode: FlashcardReviewMode) => REVIEW_MODE_COPY[mode][studyLang].title;
     const activeSetTitle =
       shouldSplitFlashcards && selectedFlashcardSet !== null
@@ -6678,6 +6783,7 @@ function FlashcardsPage() {
           {subject === "math" &&
             chapter &&
             MATH_FLASHCARD_BANKS[chapter] &&
+            !isStructuredMathF1Chapter(subject, form, chapter) &&
             mathFlashcardLang &&
             mathFlashcardCategory && (
               <div className="mt-2 flex gap-1.5 overflow-x-auto pb-1">
@@ -7176,6 +7282,11 @@ function FlashcardsPage() {
         <MathFlashcardLanguagePicker
           chapterKey={chapter}
           onBack={() => {
+            if (isStructuredMathF1Chapter(subject, form, chapter)) {
+              resetMathFlashcardFlow();
+              goUpOneLevel();
+              return;
+            }
             setChapter(null);
             updateFlashcardSearch({ chapter: null, set: null });
             resetMathFlashcardFlow();
@@ -7184,6 +7295,12 @@ function FlashcardsPage() {
             setMathFlashcardLang(lang);
             setMathFlashcardCategory(null);
             resetSession();
+            // Structured chapters record the language in the URL: the review
+            // categories are their own history entry, and any stale set/mode
+            // from an earlier visit is dropped rather than reopened.
+            if (isStructuredMathF1Chapter(subject, form, chapter)) {
+              updateFlashcardSearch({ lang, set: null, mode: null });
+            }
           }}
         />
       ) : shouldSplitFlashcards &&
@@ -7219,6 +7336,13 @@ function FlashcardsPage() {
           title={flashcardSetTitle}
           setOptions={flashcardSetOptions}
           onBack={() => {
+            // Structured Form 1 Maths: the review categories return to the
+            // language screen of the same chapter.
+            if (isStructuredMathF1Chapter(subject, form, chapter)) {
+              resetSession();
+              goUpOneLevel();
+              return;
+            }
             if (hasMathFlashcards) {
               setChapter(null);
               updateFlashcardSearch({ chapter: null, set: null });
