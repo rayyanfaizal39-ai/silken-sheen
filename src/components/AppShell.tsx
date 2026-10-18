@@ -51,7 +51,6 @@ import { getProfileForAdminCheck, hasAdministratorRole } from "@/lib/admin-acces
 import { BackgroundMusicControl } from "@/components/audio/BackgroundMusicControl";
 import { BackgroundMusicProvider } from "@/context/BackgroundMusicProvider";
 import { isStudentMusicRoute } from "@/lib/audio/studentMusicRoutes";
-import { cardsIntegrationEnabled } from "@/lib/cards-integration";
 import {
   isPublicAuthRoute,
   isOnboardingExemptRoute,
@@ -138,8 +137,8 @@ const navItems = [
     line: "linear-gradient(90deg,#67E8F9,#0EA5E9)",
   },
   {
-    label: cardsIntegrationEnabled ? "My Nova" : "Cosmic Companion",
-    short: cardsIntegrationEnabled ? "Nova" : "Companion",
+    label: "Cosmic Companion",
+    short: "Companion",
     to: "/companion",
     icon: Sparkles,
     accent: "#F0ABFC",
@@ -806,10 +805,23 @@ function HeaderAuthAction() {
 }
 
 function HeaderCompanion() {
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
   const { progress } = useProgress();
   const companion = progress.companion ?? { id: "nova" as const, level: 1 };
   const companionLevel = getCompanionLevelProgress(progress.xp).currentLevel;
   const companionName = getCompanionDisplayName(companion);
+  if (pathname === "/companion" || pathname === "/companion/portal") {
+    return (
+      <Link
+        to="/companion"
+        aria-label="Open Cosmic Companion"
+        className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-[#F0ABFC]/25 bg-[#F0ABFC]/10 px-3 text-xs font-bold text-white hover:bg-[#F0ABFC]/20"
+      >
+        <Sparkles className="h-4 w-4 text-[#F0ABFC]" />
+        <span>Companion</span>
+      </Link>
+    );
+  }
   return (
     <div className="flex items-center">
       <Link

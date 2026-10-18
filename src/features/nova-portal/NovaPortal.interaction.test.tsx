@@ -34,18 +34,18 @@ afterEach(async () => {
   vi.unstubAllGlobals();
 });
 
-async function mount(navigate: (url: string) => void, artworkUrl?: string) {
+async function mount(navigate: (url: string) => void, artworkUrl?: string, autoEnter = false) {
   const host = document.createElement("div");
   document.body.append(host);
   root = createRoot(host);
   await act(async () =>
-    root!.render(<NovaPortal studioUrl={STUDIO} artworkUrl={artworkUrl} navigate={navigate} />),
+    root!.render(<NovaPortal studioUrl={STUDIO} artworkUrl={artworkUrl} navigate={navigate} autoEnter={autoEnter} />),
   );
   return host;
 }
 const enterButton = (host: HTMLElement) =>
   [...host.querySelectorAll("button")].find((b) =>
-    /Enter your Nova universe/i.test(b.textContent!),
+    /Enter the Celestial Gateway/i.test(b.textContent!),
   )!;
 
 describe("Nova portal entrance", () => {
@@ -56,7 +56,7 @@ describe("Nova portal entrance", () => {
     expect(host.querySelectorAll("button")).toHaveLength(1);
     await act(async () => enterButton(host).click());
     expect(host.querySelector(".nova-portal")!.getAttribute("data-opening")).toBe("true");
-    expect(host.textContent).toContain("Opening your Nova universe");
+    expect(host.textContent).toContain("Opening your companion universe");
     // A second activation during the animation does not queue another navigation.
     await act(async () => enterButton(host).click());
     await act(async () => vi.advanceTimersByTime(1400));
@@ -76,13 +76,47 @@ describe("Nova portal entrance", () => {
     expect(navigate).toHaveBeenCalledExactlyOnceWith(STUDIO);
   });
 
+  it("automatically opens the Celestial Gateway without a second Enter button", async () => {
+    const navigate = vi.fn();
+    const host = await mount(navigate, undefined, true);
+    expect(host.querySelectorAll("button")).toHaveLength(0);
+    expect(host.querySelector(".nova-portal")?.getAttribute("data-auto-enter")).toBe("true");
+    await act(async () => vi.advanceTimersByTime(849));
+    expect(navigate).not.toHaveBeenCalled();
+    await act(async () => vi.advanceTimersByTime(1));
+    expect(host.querySelector(".nova-portal")?.getAttribute("data-opening")).toBe("true");
+    await act(async () => vi.advanceTimersByTime(3299));
+    expect(navigate).not.toHaveBeenCalled();
+    await act(async () => vi.advanceTimersByTime(1));
+    expect(navigate).toHaveBeenCalledExactlyOnceWith(STUDIO);
+  });
+
+  it("automatically transitions promptly in reduced-motion mode", async () => {
+    reducedMotion = true;
+    const navigate = vi.fn();
+    const host = await mount(navigate, undefined, true);
+    await act(async () => vi.advanceTimersByTime(0));
+    expect(host.querySelector(".nova-portal")?.getAttribute("data-calm")).toBe("true");
+    await act(async () => vi.advanceTimersByTime(250));
+    expect(navigate).toHaveBeenCalledExactlyOnceWith(STUDIO);
+  });
+
+  it("cancels the uncompleted automatic portal navigation when leaving the route", async () => {
+    const navigate = vi.fn();
+    await mount(navigate, undefined, true);
+    await act(async () => root!.unmount());
+    root = undefined;
+    await act(async () => vi.advanceTimersByTime(6000));
+    expect(navigate).not.toHaveBeenCalled();
+  });
+
   it("shows a returning student's saved artwork and reopens after Back navigation", async () => {
     const navigate = vi.fn();
     const host = await mount(navigate, "https://storage.test/nova.png");
     expect(host.querySelector(".nova-portal__core img")!.getAttribute("src")).toBe(
       "https://storage.test/nova.png",
     );
-    expect(host.textContent).toContain("Your Nova is waiting");
+    expect(host.textContent).toContain("Your companion is waiting");
     await act(async () => enterButton(host).click());
     await act(async () => {
       const event = new Event("pageshow") as PageTransitionEvent;
