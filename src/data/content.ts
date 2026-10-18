@@ -10,6 +10,7 @@ import {
   sej7Quizzes,
 } from "@/content/form1/sejarah/chapter-7/sej7-revision";
 import type { Form } from "@/data/subjects-meta";
+import type { FlashcardStudyMeta } from "@/features/flashcards/structuredFlashcard";
 import { scientificInvestigationSteps } from "@/content/form1/science/chapter-1/chapter1-canonical";
 import { scienceF2C1QuizzesBM } from "@/content/form2/science/chapter-1/quizzes-bm";
 import { scienceF2C1QuizzesDLP } from "@/content/form2/science/chapter-1/quizzes-dlp";
@@ -18174,7 +18175,7 @@ export const quizzes: QuizQuestion[] = [
       "Membawa bekas makanan sendiri ialah amalan perkhidmatan makanan berkonsepkan teknologi hijau kerana ia mengurangkan penggunaan pembungkus pakai buang dan seterusnya mengurangkan sisa pepejal.",
   },
 ];
-export interface Flashcard {
+export interface Flashcard extends FlashcardStudyMeta {
   id: string;
   subjectId: string;
   form: Form;

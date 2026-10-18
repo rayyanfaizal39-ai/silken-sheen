@@ -16,6 +16,12 @@ import { describeMathGeometryVisual, type MathGeometryVisual } from "./mathGeome
 import { describeMathAlgebraVisual, type MathAlgebraVisual } from "./mathAlgebraVisual";
 import { describeMathEquationVisual, type MathEquationVisual } from "./mathEquationVisual";
 import { describeMathInequalityVisual, type MathInequalityVisual } from "./mathInequalityVisual";
+import {
+  MATH_PATTERN_KIND_NAMES,
+  describeMathPatternVisual,
+  isMathPatternVisual,
+  type MathPatternVisual,
+} from "./mathPatternVisual";
 
 export type MathVisualLang = "bm" | "dlp";
 export type LocalizedText = Record<MathVisualLang, string>;
@@ -30,6 +36,7 @@ export type MathQuestionVisual =
   | MathFinanceVisual
   | MathIndicesVisual
   | MathStandardFormVisual
+  | MathPatternVisual
   | {
       /** Un-grouped quantities shown as identical dots, without factoring for the student. */
       kind: "item-arrays";
@@ -221,6 +228,7 @@ const KIND_NAMES: Record<MathQuestionVisual["kind"], LocalizedText> = {
   "number-line": { bm: "Garis nombor", dlp: "Number line" },
   "dot-plot": { bm: "Plot titik", dlp: "Dot plot" },
   "stem-leaf": { bm: "Plot batang-dan-daun", dlp: "Stem-and-leaf plot" },
+  ...MATH_PATTERN_KIND_NAMES,
 };
 
 /**
@@ -229,6 +237,7 @@ const KIND_NAMES: Record<MathQuestionVisual["kind"], LocalizedText> = {
  * and never states which option is correct.
  */
 export function describeMathQuestionVisual(visual: MathQuestionVisual, lang: MathVisualLang) {
+  if (isMathPatternVisual(visual)) return describeMathPatternVisual(visual, lang);
   const bm = lang === "bm";
   const head = `${KIND_NAMES[visual.kind][lang]}: ${visual.title[lang]}.`;
   const pairs = (items: [VisualText, number | string][]) =>
