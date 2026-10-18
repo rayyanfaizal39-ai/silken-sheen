@@ -2,16 +2,24 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight, Flame, Sparkles, Star, Trophy } from "lucide-react";
 import { useEffect, useState } from "react";
 import { ReliableImage } from "@/components/ReliableImage";
-import { StreakInfoPopover, XpInfoPopover } from "@/components/progression/ProgressionHelp";
+import {
+  StreakInfoPopover,
+  XpInfoPopover,
+} from "@/components/progression/ProgressionHelp";
 import { HomeMissionControl } from "@/components/home/HomeMissionControl";
 import { HomePapercraftBackground } from "@/components/home/HomePapercraftBackground";
 import { HomeContinueLearning } from "@/components/home/HomeContinueLearning";
 import { HomeProgressSummaries } from "@/components/home/HomeProgressSummaries";
 import { HomeQuickAccess } from "@/components/home/HomeQuickAccess";
 import { TodaysMission } from "@/components/home/TodaysMission";
+import { HomeNovaBond } from "@/components/home/HomeNovaBond";
 import { useAuth } from "@/context/auth-context";
 import { useCikgu } from "@/context/cikgu-context";
-import { getCompanionLevelProgress, getRank, useProgress } from "@/hooks/use-progress";
+import {
+  getCompanionLevelProgress,
+  getRank,
+  useProgress,
+} from "@/hooks/use-progress";
 import "./home/homeSkeleton.css";
 
 /** Shared with AppBootGate so the boot preload and the hero request the exact same URL. */
@@ -25,11 +33,19 @@ export function CommandCenterHome() {
   const rank = getRank(progress.xp);
   const level = getCompanionLevelProgress(progress.xp).currentLevel;
   const firstName =
-    user?.name?.trim().split(/\s+/)[0]?.split("@")[0] || user?.email?.split("@")[0] || "Explorer";
+    user?.name?.trim().split(/\s+/)[0]?.split("@")[0] ||
+    user?.email?.split("@")[0] ||
+    "Explorer";
 
   useEffect(() => {
     const hour = new Date().getHours();
-    setGreeting(hour < 12 ? "Good Morning" : hour < 18 ? "Good Afternoon" : "Good Evening");
+    setGreeting(
+      hour < 12
+        ? "Good Morning"
+        : hour < 18
+          ? "Good Afternoon"
+          : "Good Evening",
+    );
   }, []);
 
   return (
@@ -63,10 +79,15 @@ export function CommandCenterHome() {
             </p>
 
             <div className="home-hero__stats" aria-label="Student progress">
-              <StreakInfoPopover streak={progress.streak} className="home-hero__stat text-left">
+              <StreakInfoPopover
+                streak={progress.streak}
+                className="home-hero__stat text-left"
+              >
                 <Flame aria-hidden="true" />
                 <span>
-                  <strong>{progress.streak > 0 ? progress.streak : "Start"}</strong>
+                  <strong>
+                    {progress.streak > 0 ? progress.streak : "Start"}
+                  </strong>
                   {progress.streak > 0 ? "Day Streak" : "Your Streak"}
                 </span>
               </StreakInfoPopover>
@@ -88,7 +109,10 @@ export function CommandCenterHome() {
 
             <XpInfoPopover className="mt-1" />
 
-            <Link className="home-skeleton__primary-button home-hero__cta" to="/subjects">
+            <Link
+              className="home-skeleton__primary-button home-hero__cta"
+              to="/subjects"
+            >
               Continue Learning
               <ArrowRight aria-hidden="true" />
             </Link>
@@ -96,6 +120,7 @@ export function CommandCenterHome() {
         </section>
 
         <div className="home-skeleton__learning-hub">
+          <HomeNovaBond />
           <div className="home-skeleton__split home-skeleton__split--learning">
             <div className="home-skeleton__learning-column">
               <HomeContinueLearning />
