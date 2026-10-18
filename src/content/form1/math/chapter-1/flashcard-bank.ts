@@ -1551,7 +1551,101 @@ export const MATH_F1_C1_BANK:readonly Entry[] =  [
           "7 + 2 = 9 aras."
         ]
       ]
-    }
+    },
+    "visuals": [
+      {
+        "kind": "number-line",
+        "title": {
+          "dlp": "Starting position",
+          "bm": "Kedudukan awal"
+        },
+        "min": -14,
+        "max": 10,
+        "ticks": [
+          {
+            "value": -14
+          },
+          {
+            "value": -13
+          },
+          {
+            "value": -12
+          },
+          {
+            "value": -11
+          },
+          {
+            "value": -10
+          },
+          {
+            "value": -9
+          },
+          {
+            "value": -8
+          },
+          {
+            "value": -7
+          },
+          {
+            "value": -6
+          },
+          {
+            "value": -5
+          },
+          {
+            "value": -4
+          },
+          {
+            "value": -3
+          },
+          {
+            "value": -2
+          },
+          {
+            "value": -1
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 1
+          },
+          {
+            "value": 2
+          },
+          {
+            "value": 3
+          },
+          {
+            "value": 4
+          },
+          {
+            "value": 5
+          },
+          {
+            "value": 6
+          },
+          {
+            "value": 7
+          },
+          {
+            "value": 8
+          },
+          {
+            "value": 9
+          },
+          {
+            "value": 10
+          }
+        ],
+        "points": [
+          {
+            "value": -3,
+            "label": "Start"
+          }
+        ]
+      }
+    ]
   },
   {
     "subtopic": "1.1",
@@ -1593,7 +1687,101 @@ export const MATH_F1_C1_BANK:readonly Entry[] =  [
           "11 m."
         ]
       ]
-    }
+    },
+    "visuals": [
+      {
+        "kind": "number-line",
+        "title": {
+          "dlp": "Starting position",
+          "bm": "Kedudukan awal"
+        },
+        "min": -14,
+        "max": 10,
+        "ticks": [
+          {
+            "value": -14
+          },
+          {
+            "value": -13
+          },
+          {
+            "value": -12
+          },
+          {
+            "value": -11
+          },
+          {
+            "value": -10
+          },
+          {
+            "value": -9
+          },
+          {
+            "value": -8
+          },
+          {
+            "value": -7
+          },
+          {
+            "value": -6
+          },
+          {
+            "value": -5
+          },
+          {
+            "value": -4
+          },
+          {
+            "value": -3
+          },
+          {
+            "value": -2
+          },
+          {
+            "value": -1
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 1
+          },
+          {
+            "value": 2
+          },
+          {
+            "value": 3
+          },
+          {
+            "value": 4
+          },
+          {
+            "value": 5
+          },
+          {
+            "value": 6
+          },
+          {
+            "value": 7
+          },
+          {
+            "value": 8
+          },
+          {
+            "value": 9
+          },
+          {
+            "value": 10
+          }
+        ],
+        "points": [
+          {
+            "value": -12,
+            "label": "Start"
+          }
+        ]
+      }
+    ]
   },
   {
     "subtopic": "1.1",
@@ -1635,7 +1823,101 @@ export const MATH_F1_C1_BANK:readonly Entry[] =  [
           "Positif sebanyak 1 mata."
         ]
       ]
-    }
+    },
+    "visuals": [
+      {
+        "kind": "number-line",
+        "title": {
+          "dlp": "Starting position",
+          "bm": "Kedudukan awal"
+        },
+        "min": -14,
+        "max": 10,
+        "ticks": [
+          {
+            "value": -14
+          },
+          {
+            "value": -13
+          },
+          {
+            "value": -12
+          },
+          {
+            "value": -11
+          },
+          {
+            "value": -10
+          },
+          {
+            "value": -9
+          },
+          {
+            "value": -8
+          },
+          {
+            "value": -7
+          },
+          {
+            "value": -6
+          },
+          {
+            "value": -5
+          },
+          {
+            "value": -4
+          },
+          {
+            "value": -3
+          },
+          {
+            "value": -2
+          },
+          {
+            "value": -1
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 1
+          },
+          {
+            "value": 2
+          },
+          {
+            "value": 3
+          },
+          {
+            "value": 4
+          },
+          {
+            "value": 5
+          },
+          {
+            "value": 6
+          },
+          {
+            "value": 7
+          },
+          {
+            "value": 8
+          },
+          {
+            "value": 9
+          },
+          {
+            "value": 10
+          }
+        ],
+        "points": [
+          {
+            "value": 0,
+            "label": "Start"
+          }
+        ]
+      }
+    ]
   },
   {
     "subtopic": "1.1",
@@ -1677,7 +1959,101 @@ export const MATH_F1_C1_BANK:readonly Entry[] =  [
           "3 − (−3) = 6°C."
         ]
       ]
-    }
+    },
+    "visuals": [
+      {
+        "kind": "number-line",
+        "title": {
+          "dlp": "Starting position",
+          "bm": "Kedudukan awal"
+        },
+        "min": -14,
+        "max": 10,
+        "ticks": [
+          {
+            "value": -14
+          },
+          {
+            "value": -13
+          },
+          {
+            "value": -12
+          },
+          {
+            "value": -11
+          },
+          {
+            "value": -10
+          },
+          {
+            "value": -9
+          },
+          {
+            "value": -8
+          },
+          {
+            "value": -7
+          },
+          {
+            "value": -6
+          },
+          {
+            "value": -5
+          },
+          {
+            "value": -4
+          },
+          {
+            "value": -3
+          },
+          {
+            "value": -2
+          },
+          {
+            "value": -1
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 1
+          },
+          {
+            "value": 2
+          },
+          {
+            "value": 3
+          },
+          {
+            "value": 4
+          },
+          {
+            "value": 5
+          },
+          {
+            "value": 6
+          },
+          {
+            "value": 7
+          },
+          {
+            "value": 8
+          },
+          {
+            "value": 9
+          },
+          {
+            "value": 10
+          }
+        ],
+        "points": [
+          {
+            "value": -5,
+            "label": "Start"
+          }
+        ]
+      }
+    ]
   },
   {
     "subtopic": "1.2",
@@ -1719,7 +2095,38 @@ export const MATH_F1_C1_BANK:readonly Entry[] =  [
           "30 − 6 = 24 mata."
         ]
       ]
-    }
+    },
+    "visuals": [
+      {
+        "kind": "value-pairs",
+        "title": {
+          "dlp": "Problem information",
+          "bm": "Maklumat masalah"
+        },
+        "headings": [
+          {
+            "dlp": "Scenario",
+            "bm": "Situasi"
+          },
+          {
+            "dlp": "Given information",
+            "bm": "Maklumat diberi"
+          }
+        ],
+        "rows": [
+          {
+            "left": {
+              "dlp": "Statement",
+              "bm": "Pernyataan"
+            },
+            "right": {
+              "dlp": "A contest awards +5 points for a correct answer and −2 for a wrong answer. Amir gets 6 correct and 3 wrong.",
+              "bm": "Pertandingan memberikan +5 mata bagi jawapan betul dan −2 bagi salah. Amir menjawab 6 betul dan 3 salah."
+            }
+          }
+        ]
+      }
+    ]
   },
   {
     "subtopic": "1.2",
@@ -1761,7 +2168,38 @@ export const MATH_F1_C1_BANK:readonly Entry[] =  [
           "Lebihan RM15."
         ]
       ]
-    }
+    },
+    "visuals": [
+      {
+        "kind": "value-pairs",
+        "title": {
+          "dlp": "Problem information",
+          "bm": "Maklumat masalah"
+        },
+        "headings": [
+          {
+            "dlp": "Scenario",
+            "bm": "Situasi"
+          },
+          {
+            "dlp": "Given information",
+            "bm": "Maklumat diberi"
+          }
+        ],
+        "rows": [
+          {
+            "left": {
+              "dlp": "Statement",
+              "bm": "Pernyataan"
+            },
+            "right": {
+              "dlp": "A bank account starts at −RM40. A deposit of RM75 is made, followed by a RM20 withdrawal.",
+              "bm": "Akaun bank bermula pada −RM40. RM75 dimasukkan, kemudian RM20 dikeluarkan."
+            }
+          }
+        ]
+      }
+    ]
   },
   {
     "subtopic": "1.2",
@@ -1803,7 +2241,38 @@ export const MATH_F1_C1_BANK:readonly Entry[] =  [
           "20 m."
         ]
       ]
-    }
+    },
+    "visuals": [
+      {
+        "kind": "value-pairs",
+        "title": {
+          "dlp": "Problem information",
+          "bm": "Maklumat masalah"
+        },
+        "headings": [
+          {
+            "dlp": "Scenario",
+            "bm": "Situasi"
+          },
+          {
+            "dlp": "Given information",
+            "bm": "Maklumat diberi"
+          }
+        ],
+        "rows": [
+          {
+            "left": {
+              "dlp": "Statement",
+              "bm": "Pernyataan"
+            },
+            "right": {
+              "dlp": "A submarine descends 4 m every minute for 5 minutes from sea level.",
+              "bm": "Kapal selam turun 4 m setiap minit selama 5 minit dari aras laut."
+            }
+          }
+        ]
+      }
+    ]
   },
   {
     "subtopic": "1.2",
@@ -1845,7 +2314,38 @@ export const MATH_F1_C1_BANK:readonly Entry[] =  [
           "Untung RM22."
         ]
       ]
-    }
+    },
+    "visuals": [
+      {
+        "kind": "value-pairs",
+        "title": {
+          "dlp": "Problem information",
+          "bm": "Maklumat masalah"
+        },
+        "headings": [
+          {
+            "dlp": "Scenario",
+            "bm": "Situasi"
+          },
+          {
+            "dlp": "Given information",
+            "bm": "Maklumat diberi"
+          }
+        ],
+        "rows": [
+          {
+            "left": {
+              "dlp": "Statement",
+              "bm": "Pernyataan"
+            },
+            "right": {
+              "dlp": "A shop loses RM12 each day for 4 days, then earns RM70 on the fifth day.",
+              "bm": "Kedai mengalami kerugian RM12 sehari selama 4 hari, kemudian mendapat RM70 pada hari kelima."
+            }
+          }
+        ]
+      }
+    ]
   },
   {
     "subtopic": "1.3",
@@ -1887,7 +2387,38 @@ export const MATH_F1_C1_BANK:readonly Entry[] =  [
           "9/4 − 1 = 5/4 L."
         ]
       ]
-    }
+    },
+    "visuals": [
+      {
+        "kind": "value-pairs",
+        "title": {
+          "dlp": "Problem information",
+          "bm": "Maklumat masalah"
+        },
+        "headings": [
+          {
+            "dlp": "Scenario",
+            "bm": "Situasi"
+          },
+          {
+            "dlp": "Given information",
+            "bm": "Maklumat diberi"
+          }
+        ],
+        "rows": [
+          {
+            "left": {
+              "dlp": "Statement",
+              "bm": "Pernyataan"
+            },
+            "right": {
+              "dlp": "A jug holds 1.5 L of juice and another holds 3/4 L.",
+              "bm": "Jag berisi 1.5 L jus dan sebuah lagi berisi 3/4 L."
+            }
+          }
+        ]
+      }
+    ]
   },
   {
     "subtopic": "1.3",
@@ -1929,7 +2460,38 @@ export const MATH_F1_C1_BANK:readonly Entry[] =  [
           "3/5 − 1/4 = 7/20 kg."
         ]
       ]
-    }
+    },
+    "visuals": [
+      {
+        "kind": "value-pairs",
+        "title": {
+          "dlp": "Problem information",
+          "bm": "Maklumat masalah"
+        },
+        "headings": [
+          {
+            "dlp": "Scenario",
+            "bm": "Situasi"
+          },
+          {
+            "dlp": "Given information",
+            "bm": "Maklumat diberi"
+          }
+        ],
+        "rows": [
+          {
+            "left": {
+              "dlp": "Statement",
+              "bm": "Pernyataan"
+            },
+            "right": {
+              "dlp": "A recipe needs 0.6 kg flour and 1/4 kg sugar.",
+              "bm": "Resipi memerlukan 0.6 kg tepung dan 1/4 kg gula."
+            }
+          }
+        ]
+      }
+    ]
   },
   {
     "subtopic": "1.3",
@@ -1971,7 +2533,38 @@ export const MATH_F1_C1_BANK:readonly Entry[] =  [
           "4/5 − 3/4 = 1/20 minit."
         ]
       ]
-    }
+    },
+    "visuals": [
+      {
+        "kind": "value-pairs",
+        "title": {
+          "dlp": "Problem information",
+          "bm": "Maklumat masalah"
+        },
+        "headings": [
+          {
+            "dlp": "Scenario",
+            "bm": "Situasi"
+          },
+          {
+            "dlp": "Given information",
+            "bm": "Maklumat diberi"
+          }
+        ],
+        "rows": [
+          {
+            "left": {
+              "dlp": "Statement",
+              "bm": "Pernyataan"
+            },
+            "right": {
+              "dlp": "Two runners finish in 0.8 minute and 3/4 minute respectively.",
+              "bm": "Dua pelari menamatkan larian dalam 0.8 minit dan 3/4 minit."
+            }
+          }
+        ]
+      }
+    ]
   },
   {
     "subtopic": "1.3",
@@ -2013,7 +2606,38 @@ export const MATH_F1_C1_BANK:readonly Entry[] =  [
           "1 − 0.75 = 0.25 km."
         ]
       ]
-    }
+    },
+    "visuals": [
+      {
+        "kind": "value-pairs",
+        "title": {
+          "dlp": "Problem information",
+          "bm": "Maklumat masalah"
+        },
+        "headings": [
+          {
+            "dlp": "Scenario",
+            "bm": "Situasi"
+          },
+          {
+            "dlp": "Given information",
+            "bm": "Maklumat diberi"
+          }
+        ],
+        "rows": [
+          {
+            "left": {
+              "dlp": "Statement",
+              "bm": "Pernyataan"
+            },
+            "right": {
+              "dlp": "An athlete completes 2/5 km and then 0.35 km.",
+              "bm": "Atlet bergerak 2/5 km kemudian 0.35 km."
+            }
+          }
+        ]
+      }
+    ]
   },
   {
     "subtopic": "1.4",
@@ -2055,7 +2679,38 @@ export const MATH_F1_C1_BANK:readonly Entry[] =  [
           "7/12 − 2/12 = 5/12 m."
         ]
       ]
-    }
+    },
+    "visuals": [
+      {
+        "kind": "value-pairs",
+        "title": {
+          "dlp": "Problem information",
+          "bm": "Maklumat masalah"
+        },
+        "headings": [
+          {
+            "dlp": "Scenario",
+            "bm": "Situasi"
+          },
+          {
+            "dlp": "Given information",
+            "bm": "Maklumat diberi"
+          }
+        ],
+        "rows": [
+          {
+            "left": {
+              "dlp": "Statement",
+              "bm": "Pernyataan"
+            },
+            "right": {
+              "dlp": "A ribbon is 5/6 m long. A piece of 1/4 m is cut off.",
+              "bm": "Reben panjangnya 5/6 m. Sepotong 1/4 m dipotong."
+            }
+          }
+        ]
+      }
+    ]
   },
   {
     "subtopic": "1.4",
@@ -2097,7 +2752,38 @@ export const MATH_F1_C1_BANK:readonly Entry[] =  [
           "1 − 3/8 = 5/8 L."
         ]
       ]
-    }
+    },
+    "visuals": [
+      {
+        "kind": "value-pairs",
+        "title": {
+          "dlp": "Problem information",
+          "bm": "Maklumat masalah"
+        },
+        "headings": [
+          {
+            "dlp": "Scenario",
+            "bm": "Situasi"
+          },
+          {
+            "dlp": "Given information",
+            "bm": "Maklumat diberi"
+          }
+        ],
+        "rows": [
+          {
+            "left": {
+              "dlp": "Statement",
+              "bm": "Pernyataan"
+            },
+            "right": {
+              "dlp": "A bottle contains 3/4 L of water. Half the water is used.",
+              "bm": "Botol mengandungi 3/4 L air. Separuh air digunakan."
+            }
+          }
+        ]
+      }
+    ]
   },
   {
     "subtopic": "1.4",
@@ -2139,7 +2825,38 @@ export const MATH_F1_C1_BANK:readonly Entry[] =  [
           "12 × 1/6 = 2 m."
         ]
       ]
-    }
+    },
+    "visuals": [
+      {
+        "kind": "value-pairs",
+        "title": {
+          "dlp": "Problem information",
+          "bm": "Maklumat masalah"
+        },
+        "headings": [
+          {
+            "dlp": "Scenario",
+            "bm": "Situasi"
+          },
+          {
+            "dlp": "Given information",
+            "bm": "Maklumat diberi"
+          }
+        ],
+        "rows": [
+          {
+            "left": {
+              "dlp": "Statement",
+              "bm": "Pernyataan"
+            },
+            "right": {
+              "dlp": "A class uses 2/3 of a roll of paper on Monday and 1/6 on Tuesday.",
+              "bm": "Kelas menggunakan 2/3 gulung kertas pada Isnin dan 1/6 pada Selasa."
+            }
+          }
+        ]
+      }
+    ]
   },
   {
     "subtopic": "1.4",
@@ -2181,6 +2898,37 @@ export const MATH_F1_C1_BANK:readonly Entry[] =  [
           "80 × 1/2 = 40 L."
         ]
       ]
-    }
+    },
+    "visuals": [
+      {
+        "kind": "value-pairs",
+        "title": {
+          "dlp": "Problem information",
+          "bm": "Maklumat masalah"
+        },
+        "headings": [
+          {
+            "dlp": "Scenario",
+            "bm": "Situasi"
+          },
+          {
+            "dlp": "Given information",
+            "bm": "Maklumat diberi"
+          }
+        ],
+        "rows": [
+          {
+            "left": {
+              "dlp": "Statement",
+              "bm": "Pernyataan"
+            },
+            "right": {
+              "dlp": "A tank is 7/8 full. Water equal to 3/8 of its capacity is drained.",
+              "bm": "Tangki berisi 7/8. Air sebanyak 3/8 kapasiti dikeluarkan."
+            }
+          }
+        ]
+      }
+    ]
   }
 ];
