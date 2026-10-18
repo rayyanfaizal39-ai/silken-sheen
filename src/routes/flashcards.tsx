@@ -1,3 +1,4 @@
+import { buildMathF1C3Flashcards } from "@/content/form1/math/chapter-3/flashcards";
 import { buildMathF1C2Flashcards } from "@/content/form1/math/chapter-2/flashcards";
 import { buildMathF1C1Flashcards } from "@/content/form1/math/chapter-1/flashcards";
 import { createFileRoute } from "@tanstack/react-router";
@@ -5820,6 +5821,8 @@ function FlashcardsPage() {
       deck = standardizeFlashcardDeck(buildMathF1C1Flashcards(mathFlashcardLang));
     } else if (form === "Form 1" && subject === "math" && chapter === "Chapter 2" && mathFlashcardLang) {
       deck = standardizeFlashcardDeck(buildMathF1C2Flashcards(mathFlashcardLang));
+    } else if (form === "Form 1" && subject === "math" && chapter === "Chapter 3" && mathFlashcardLang) {
+      deck = standardizeFlashcardDeck(buildMathF1C3Flashcards(mathFlashcardLang));
     } else if (form === "Form 1" && subject === "english" && isEnglishFlashcardDeckId(chapter)) {
       deck = standardizeFlashcardDeck(getEnglishFlashcardsForDeck(chapter));
     } else if (form === "Form 2" && subject === "english" && isEnglishFlashcardDeckIdF2(chapter)) {
@@ -5867,7 +5870,7 @@ function FlashcardsPage() {
 
   // Form 2 Maths Chapters 1–13 use one combined deck per chapter with three review modes.
   // Other subjects continue using their existing three-set selection.
-  const isMathF2C1Combined = (subject === "math" && form === "Form 1" && (chapter === "Chapter 1" || chapter === "Chapter 2")) || (subject === "math" && form === "Form 2" && (chapter === "Chapter 1" || chapter === "Chapter 2" || chapter === "Chapter 3" || chapter === "Chapter 4" || chapter === "Chapter 5" || chapter === "Chapter 6" || chapter === "Chapter 7" || chapter === "Chapter 8" || chapter === "Chapter 9" || chapter === "Chapter 10" || chapter === "Chapter 11" || chapter === "Chapter 12" || chapter === "Chapter 13"));
+  const isMathF2C1Combined = (subject === "math" && form === "Form 1" && (chapter === "Chapter 1" || chapter === "Chapter 2" || chapter === "Chapter 3")) || (subject === "math" && form === "Form 2" && (chapter === "Chapter 1" || chapter === "Chapter 2" || chapter === "Chapter 3" || chapter === "Chapter 4" || chapter === "Chapter 5" || chapter === "Chapter 6" || chapter === "Chapter 7" || chapter === "Chapter 8" || chapter === "Chapter 9" || chapter === "Chapter 10" || chapter === "Chapter 11" || chapter === "Chapter 12" || chapter === "Chapter 13"));
   const flashcardSets = useMemo(
     () => isMathF2C1Combined ? [rawPool, rawPool, rawPool] : splitFlashcardDeck(rawPool),
     [rawPool, isMathF2C1Combined],
