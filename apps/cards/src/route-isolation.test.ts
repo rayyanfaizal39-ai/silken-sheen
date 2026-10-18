@@ -32,6 +32,14 @@ describe("AcadeMY Cards application boundary", () => {
     expect(demo).toContain("NovaDemoGallery");
   });
 
+  it("builds the Tailwind utilities the shared cinematic Studio is styled with", () => {
+    const styles = readFileSync(join(root, "styles.css"), "utf8");
+    expect(styles).toContain('@import "tailwindcss" source(none);');
+    expect(styles).toContain('@source "../../../src/features/nova-cards";');
+    // Unlayered base rules would override utilities such as text-xs on Studio buttons.
+    expect(styles).toContain("@layer base {");
+  });
+
   it("keeps generation disabled in every committed environment template", () => {
     for (const name of [".env.example", ".env.preview.example", ".env.production.example"]) {
       const source = readFileSync(join(root, "..", name), "utf8");
