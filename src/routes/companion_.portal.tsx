@@ -28,10 +28,10 @@ export const Route = createFileRoute("/companion_/portal")({
 });
 
 function CelestialGatewayPage() {
-  // Design-first preview: no account, database or AI generation required.
-  // When Cards is intentionally enabled, hand off to its separate Studio.
+  // Design phase: ALWAYS launch fictional Studio data, never real artwork generation.
+  // This preview route is deliberately separate from the future authenticated flow.
   const destination = cardsIntegrationEnabled
-    ? cardsStudioUrl
+    ? `${cardsStudioUrl}?preview=rayyan`
     : "/nova/studio?preview=rayyan";
 
   return (
@@ -40,7 +40,7 @@ function CelestialGatewayPage() {
         <ArrowLeft size={17} aria-hidden="true" />
         Back to Cosmic Companion
       </Link>
-      <NovaPortal studioUrl={destination} />
+      <NovaPortal studioUrl={destination} autoEnter />
     </main>
   );
 }
