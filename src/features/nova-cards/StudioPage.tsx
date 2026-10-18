@@ -23,6 +23,7 @@ import { ConfettiBurst } from "./sanctuary/ConfettiBurst";
 import { useSanctuaryPreferences } from "./sanctuary/useSanctuaryPreferences";
 import { soundscape } from "./sanctuary/audio";
 import { academyHomeHref, cardsPaths, signInHref, upgradeHref } from "./paths";
+import { novaAccessCopy, novaAccessProblem, type NovaAccessProblem } from "./access";
 import "./sanctuary/sanctuary.css";
 
 const CompletedCard = lazy(() => import("./StudioCompletedCard"));
@@ -77,7 +78,8 @@ export function StudioExperience({
 }) {
   const [state, setState] = useState<StudioState | null>(null),
     [busy, setBusy] = useState(true),
-    [notice, setNotice] = useState("");
+    [notice, setNotice] = useState(""),
+    [loadProblem, setLoadProblem] = useState<NovaAccessProblem>("unavailable");
   const [started, setStarted] = useState(startInDiscovery),
     [confirming, setConfirming] = useState(false),
     [username, setUsername] = useState("");
@@ -99,7 +101,7 @@ export function StudioExperience({
         }
       })
       .catch((e) => {
-        if (mounted) setNotice((e as Error).message);
+        if (mounted) setLoadProblem(novaAccessProblem(e));
       })
       .finally(() => {
         if (mounted) setBusy(false);
@@ -148,7 +150,8 @@ export function StudioExperience({
   const awakening = !!state?.origin && !state.selected && state.active;
   const quiz =
     !!state?.active && !state.identity && !state.origin && started && answers.length < 12;
-  const intro = !busy && !started && !state?.origin && !state?.selected;
+  // The opening plays once the account has loaded, so no student finishes it into a dead end.
+  const intro = !busy && !started && !!state && !state.origin && !state.selected;
   useEffect(() => {
     root.current?.querySelector<HTMLHeadingElement>("h1")?.focus({ preventScroll: true });
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
@@ -220,16 +223,19 @@ export function StudioExperience({
           <SceneControls calm={preferences.reducedMotion} onCalm={preferences.toggleMotion} />
         </>
       ) : !state ? (
-        <section className="sanctuary-content sanctuary-access">
+        <section className="sanctuary-content sanctuary-access" data-access-problem={loadProblem}>
           <NovaEgg phase="gathering" />
-          <h1 tabIndex={-1}>Your journey begins here.</h1>
-          <p>
-            Sign in with your AcadeMY account to save your companion’s story. A valid existing
-            session continues automatically.
-          </p>
-          <a className="sanctuary-primary" href={signInHref(cardsPaths.studio)}>
-            Sign in to begin
-          </a>
+          <h1 tabIndex={-1}>{novaAccessCopy(loadProblem).title}</h1>
+          <p>{novaAccessCopy(loadProblem).body}</p>
+          {novaAccessCopy(loadProblem).signIn ? (
+            <a className="sanctuary-primary" href={signInHref(cardsPaths.studio)}>
+              Sign in to begin
+            </a>
+          ) : (
+            <a className="sanctuary-primary" href={cardsPaths.studio}>
+              Try again
+            </a>
+          )}
           <div className="sanctuary-preview-links">
             <a href={`${cardsPaths.studio}?preview=mia`}>Explore the fictional sanctuary ↗</a>
             <a href={`${cardsPaths.studio}?preview=rayyan`}>Meet Rayyan’s Phoenix ↗</a>
@@ -362,9 +368,11 @@ export function StudioExperience({
             <p className="sanctuary-eyebrow">YOUR TWELVE CHOICES. ONE LIFELONG BOND.</p>
             <h1 tabIndex={-1}>YOUR NOVA’S DESTINY IS WRITTEN</h1>
             <p>
-              {confirming
-                ? "Two unique Origin artworks will take shape from this exact identity. Return tomorrow, once both artworks are ready, to make your permanent choice."
-                : "These twelve choices stay with your Nova through every evolution."}
+              {!confirming
+                ? "These twelve choices stay with your Nova through every evolution."
+                : state.enabled
+                  ? "Two unique Origin artworks will take shape from this exact identity. Return tomorrow, once both artworks are ready, to make your permanent choice."
+                  : "Your identity is saved. Origin artwork creation has not launched yet, so no artwork will be made and nothing is charged until it opens."}
             </p>
             {!state.identity && !confirming && (
               <label className="sanctuary-nickname">

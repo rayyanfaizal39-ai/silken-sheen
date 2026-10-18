@@ -1,8 +1,13 @@
 import { lazy, Suspense } from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
+import { cardsIntegrationEnabled } from "@/lib/cards-integration";
 import { novaHead } from "@/features/nova-cards/head";
 const Studio = lazy(() => import("@/features/nova-cards/StudioPage"));
 export const Route = createFileRoute("/nova_/studio")({
+  // With AcadeMY Cards enabled, the Studio lives only in the Cards app, entered via the portal.
+  beforeLoad: () => {
+    if (cardsIntegrationEnabled) throw redirect({ to: "/companion" });
+  },
   component: () => (
     <Suspense fallback={<main aria-busy="true">Opening Nova Studio…</main>}>
       <Studio />

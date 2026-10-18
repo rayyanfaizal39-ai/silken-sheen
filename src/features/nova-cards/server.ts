@@ -3,11 +3,12 @@ import { setResponseHeader } from "@tanstack/start-server-core";
 import { z } from "zod";
 import { getSupabaseServerClient } from "@/lib/supabase.server";
 import { DEMO_CARDS, validPublicId, type NovaCard } from "./model";
+import { NOVA_ACCESS_ERRORS } from "./access";
 
 function client() {
   setResponseHeader("Cache-Control", "private, no-store, max-age=0");
   const db = getSupabaseServerClient();
-  if (!db) throw new Error("Nova storage is not configured. Explore the fictional demos below.");
+  if (!db) throw new Error(NOVA_ACCESS_ERRORS.unconfigured);
   return db;
 }
 
@@ -50,7 +51,7 @@ export const getNovaEntitlement = createServerFn({ method: "GET" }).handler(
     const db = client();
     const { data, error } = await db.auth.getUser();
     if (error || !data.user || data.user.is_anonymous)
-      throw new Error("Sign in to access your Nova companion.");
+      throw new Error(NOVA_ACCESS_ERRORS.signedOut);
     return resolveNovaEntitlement(db, data.user.id);
   },
 );
@@ -87,9 +88,9 @@ export const getMyCard = createServerFn({ method: "GET" }).handler(
     const db = client();
     const { data: auth, error: authError } = await db.auth.getUser();
     if (authError || !auth.user || auth.user.is_anonymous)
-      throw new Error("Sign in with a student account to save your permanent card.");
+      throw new Error(NOVA_ACCESS_ERRORS.signedOut);
     const { data, error } = await db.rpc("get_my_nova_card");
-    if (error) throw new Error("Nova storage is awaiting setup. Your existing progress is safe.");
+    if (error) throw new Error(NOVA_ACCESS_ERRORS.storagePending);
     return withArtwork(db, data as NovaCard | null);
   },
 );

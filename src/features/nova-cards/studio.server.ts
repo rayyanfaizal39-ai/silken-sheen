@@ -4,15 +4,14 @@ import { z } from "zod";
 import { getSupabaseServerClient } from "@/lib/supabase.server";
 import type { StudioDraft, StudioState } from "./studio-model";
 import { validNovaAnswer } from "./model";
+import { NOVA_ACCESS_ERRORS } from "./access";
 
 async function owner() {
   setResponseHeader("Cache-Control", "private, no-store, max-age=0");
   const db = getSupabaseServerClient();
-  if (!db)
-    throw new Error("Nova Studio storage is awaiting setup. Explore a fictional preview below.");
+  if (!db) throw new Error(NOVA_ACCESS_ERRORS.unconfigured);
   const { data, error } = await db.auth.getUser();
-  if (error || !data.user || data.user.is_anonymous)
-    throw new Error("Sign in to save your Nova journey.");
+  if (error || !data.user || data.user.is_anonymous) throw new Error(NOVA_ACCESS_ERRORS.signedOut);
   return db;
 }
 const flags = () =>
@@ -21,8 +20,7 @@ async function state(
   db: NonNullable<ReturnType<typeof getSupabaseServerClient>>,
 ): Promise<StudioState> {
   const { data, error } = await db.rpc("get_my_nova_studio");
-  if (error)
-    throw new Error("Nova Studio storage is awaiting its reviewed migration. Please return later.");
+  if (error) throw new Error(NOVA_ACCESS_ERRORS.storagePending);
   const raw = data as Omit<StudioState, "candidates"> & {
     candidates: { candidate: "a" | "b"; path: string }[];
   };

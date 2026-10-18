@@ -5,11 +5,13 @@ import { cardUrl, DEMO_CARDS, STAGES, type NovaCard as Card } from "./model";
 import { getMyCard, getNovaEntitlement, setSharing, type NovaEntitlement } from "./server";
 import { NovaTeaser } from "./NovaTeaser";
 import { academyHomeHref, cardsPaths, signInHref } from "./paths";
+import { novaAccessCopy, novaAccessProblem, type NovaAccessProblem } from "./access";
 
 export function NovaStudio() {
   const [card, setCard] = useState<Card | null>(null);
   const [entitlement, setEntitlement] = useState<NovaEntitlement | null>(null);
   const [notice, setNotice] = useState("");
+  const [problem, setProblem] = useState<NovaAccessProblem>("unavailable");
   const [busy, setBusy] = useState(true);
   const [origin, setOrigin] = useState("https://www.myacademy.my");
   useEffect(() => {
@@ -23,7 +25,7 @@ export function NovaStudio() {
         }
       })
       .catch((e) => {
-        if (active) setNotice(e.message);
+        if (active) setProblem(novaAccessProblem(e));
       })
       .finally(() => {
         if (active) setBusy(false);
@@ -32,6 +34,7 @@ export function NovaStudio() {
       active = false;
     };
   }, []);
+  const access = novaAccessCopy(problem);
 
   return (
     <main className="nova-page">
@@ -120,10 +123,7 @@ export function NovaStudio() {
               </div>
               <div className="nova-stage-list" aria-label="Five evolution stages">
                 {STAGES.map((s, i) => (
-                  <span
-                    key={s.name}
-                    className={i + 1 === (card.stage ?? 1) ? "current" : ""}
-                  >
+                  <span key={s.name} className={i + 1 === (card.stage ?? 1) ? "current" : ""}>
                     {i + 1}. {s.name} <small>{i === 0 ? "Phase 1" : "Coming later"}</small>
                   </span>
                 ))}
@@ -138,15 +138,16 @@ export function NovaStudio() {
           {busy ? (
             <p role="status">Checking your Nova and subscription…</p>
           ) : !entitlement ? (
-            <div className="nova-creation-panel" role="alert">
-              <h2>We couldn't verify your Nova access</h2>
-              <p>
-                A connection error does not mean your subscription has expired. Please sign in or
-                try again.
-              </p>
-              <a href={signInHref(cardsPaths.home)}>Sign in</a>
+            <div className="nova-creation-panel" role="alert" data-access-problem={problem}>
+              <h2>{access.title}</h2>
+              <p>{access.body}</p>
+              {access.signIn ? (
+                <a href={signInHref(cardsPaths.home)}>Sign in</a>
+              ) : (
+                <a href={cardsPaths.home}>Retry</a>
+              )}
               {" · "}
-              <a href={cardsPaths.home}>Retry</a>
+              <a href={cardsPaths.demo}>Explore fictional demos</a>
             </div>
           ) : !entitlement.active ? (
             <NovaTeaser

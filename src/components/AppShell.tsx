@@ -138,8 +138,8 @@ const navItems = [
     line: "linear-gradient(90deg,#67E8F9,#0EA5E9)",
   },
   {
-    label: cardsIntegrationEnabled ? "My Cards" : "Cosmic Companion",
-    short: cardsIntegrationEnabled ? "Cards" : "Companion",
+    label: cardsIntegrationEnabled ? "My Nova" : "Cosmic Companion",
+    short: cardsIntegrationEnabled ? "Nova" : "Companion",
     to: "/companion",
     icon: Sparkles,
     accent: "#F0ABFC",

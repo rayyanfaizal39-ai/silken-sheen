@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@/context/auth-context";
 import { getNovaDashboardStatus } from "./studio.server";
 import { ARRIVED } from "./studio-model";
+import { cardsIntegrationEnabled } from "@/lib/cards-integration";
 export function NovaStatusLink() {
   const { user } = useAuth();
   const userId = user?.id;
@@ -37,7 +38,8 @@ export function NovaStatusLink() {
   }, [userId]);
   return (
     <a
-      href="/nova/studio"
+      // With AcadeMY Cards enabled the portal is the single entrance to the Studio.
+      href={cardsIntegrationEnabled ? "/companion" : "/nova/studio"}
       className="mb-4 flex items-center gap-4 rounded-2xl border border-violet-300/25 bg-[#10132b] p-4 text-white"
     >
       <img src="/branding/academy-icon.png" alt="AcadeMY" width="36" height="36" loading="lazy" />

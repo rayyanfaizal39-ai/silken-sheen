@@ -12,6 +12,7 @@ vi.mock("./StudioCompletedCard", () => ({ default: () => <p>Saved collectible</p
 import { StudioExperience, type StudioApi } from "./StudioPage";
 import { AWAKENING_TITLE, ARRIVED, studioStatus, type StudioState } from "./studio-model";
 import { DEMO_CARDS, QUESTIONS, traitsFromAnswers, answerOptionIndex } from "./model";
+import { NOVA_ACCESS_ERRORS } from "./access";
 const env = globalThis as typeof globalThis & { IS_REACT_ACT_ENVIRONMENT?: boolean };
 env.IS_REACT_ACT_ENVIRONMENT = true;
 beforeAll(() => {
@@ -233,5 +234,67 @@ describe("Standalone Nova Studio journey", () => {
     expect(host.textContent).toContain("active Pro or Premium subscription");
     expect(host.querySelectorAll(".sanctuary-candidate-art>img:first-child")).toHaveLength(0);
     expect(h.api.choose).not.toHaveBeenCalled();
+  });
+});
+describe("Studio access problems", () => {
+  for (const [message, problem, heading, action] of [
+    [
+      NOVA_ACCESS_ERRORS.signedOut,
+      "signedOut",
+      "Sign in to enter your Nova universe",
+      "Sign in to begin",
+    ],
+    [
+      NOVA_ACCESS_ERRORS.unconfigured,
+      "unconfigured",
+      "AcadeMY Cards isn't connected here",
+      "Try again",
+    ],
+    [
+      NOVA_ACCESS_ERRORS.storagePending,
+      "storagePending",
+      "Nova Studio isn't open yet",
+      "Try again",
+    ],
+    ["Failed to fetch", "unavailable", "We couldn't verify your Nova access", "Try again"],
+  ] as const)
+    it(`explains ${problem} before the opening plays`, async () => {
+      const api: StudioApi = {
+        load: vi.fn(async () => {
+          throw new Error(message);
+        }),
+        save: vi.fn(),
+        submit: vi.fn(),
+        choose: vi.fn(),
+      };
+      const host = document.createElement("div");
+      document.body.append(host);
+      const root = createRoot(host);
+      roots.push(root);
+      await act(async () => root.render(<StudioExperience api={api} />));
+      const panel = host.querySelector("[data-access-problem]")!;
+      expect(panel.getAttribute("data-access-problem")).toBe(problem);
+      expect(panel.querySelector("h1")!.textContent).toBe(heading);
+      expect(panel.querySelector(".sanctuary-primary")!.textContent).toContain(action);
+      expect(host.querySelector(".sanctuary-opening")).toBeNull();
+      expect(host.textContent).not.toContain("Begin Your Journey");
+    });
+});
+describe("Studio while generation is disabled", () => {
+  it("saves the identity without promising artwork or allowing a summon", async () => {
+    const h = harness();
+    h.set({
+      enabled: false,
+      draft: { answers: Array(12).fill(0), username: "Rayyan", revision: 3 },
+    });
+    const { host } = await h.mount();
+    await click(host, "Confirm my identity");
+    expect(host.textContent).toContain("Origin artwork creation has not launched yet");
+    expect(host.textContent).not.toContain("Return tomorrow");
+    const summon = [...host.querySelectorAll("button")].find((b) =>
+      b.textContent?.includes("SUMMON MY NOVA"),
+    )!;
+    expect(summon.disabled).toBe(true);
+    expect(h.api.submit).not.toHaveBeenCalled();
   });
 });
