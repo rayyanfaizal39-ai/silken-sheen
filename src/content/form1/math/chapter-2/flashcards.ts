@@ -1,5 +1,5 @@
 import type { Flashcard } from "@/data/content";
-import { structuredFront, structuredBack } from "@/features/flashcards/structuredFlashcard";
+import { structuredFront, structuredBack, type StructuredFlashcard } from "@/features/flashcards/structuredFlashcard";
 type MathFlashcardCategoryId = "concepts" | "operations" | "facts" | "practice";
 const mathCard = (bmFront:string,bmBack:string,dlpFront:string,dlpBack:string) => ({bm:[bmFront,bmBack] as [string,string],dlp:[dlpFront,dlpBack] as [string,string]});
 const LEGACY_C2_PAIRS: Record<
@@ -1178,7 +1178,7 @@ export function buildMathF1C2Flashcards(lang:"bm"|"dlp"):Flashcard[] {
   const mode=index<12?"concept":index<44?"practice":"challenge";
   const challenge=mode==="challenge"?C2_CHALLENGES[index-44]:null;
   const subtopic=challenge?.subtopic ?? (index<20?"2.1":index<38?"2.2":"2.3");
-  const structured=challenge?{...challenge[lang],visuals:challenge.visuals}:{prompt:entry[lang][0],answer:[[entry[lang][1]]]};
+  const structured: StructuredFlashcard=challenge?{...challenge[lang],visuals:challenge.visuals as StructuredFlashcard["visuals"]}:{prompt:entry[lang][0],answer:[[entry[lang][1]]]};
   return {id:id(lang),subjectId:"math",form:"Form 1",chapter:"Chapter 2",lang,front:structuredFront(structured),back:structuredBack(structured),subtopic,reviewMode:mode,structured};
  });
 }
