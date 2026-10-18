@@ -5786,7 +5786,7 @@ function FlashcardsPage() {
     isMathF2C1Combined
       ? (["concept", "practice", "challenge"] as const).map((mode, index) => ({
           index: index as FlashcardSetIndex,
-          title: REVIEW_MODE_COPY[mode][scienceLang ?? "dlp"].title,
+          title: REVIEW_MODE_COPY[mode][(form === "Form 1" && subject === "math" ? mathFlashcardLang : scienceLang) ?? "dlp"].title,
           range: `${cardsForReviewMode(rawPool, mode).length} cards`,
           badge: REVIEW_MODE_COPY[mode].icon,
         }))
@@ -7198,7 +7198,7 @@ function FlashcardsPage() {
             const title = cleanLearningTitle(option?.title ?? `Set ${selectedFlashcardSet + 1}`);
             return option?.badge ? `${option.badge} ${title}` : title;
           })()}
-          lang={scienceLang ?? "dlp"}
+          lang={(form === "Form 1" && subject === "math" ? mathFlashcardLang : scienceLang) ?? "dlp"}
           options={reviewModes.map((mode) => {
             const cards = cardsForReviewMode(selectedSetCards, mode);
             return {
