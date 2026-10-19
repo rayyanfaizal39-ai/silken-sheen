@@ -6,15 +6,27 @@ import { StudioExperience, type StudioApi } from "./StudioPage";
 import type { StudioState } from "./studio-model";
 import { SOURCE_FOX_ARTWORK } from "./sanctuary/preview-artwork";
 import { cardsPaths } from "./paths";
+import { FICTIONAL_CANDIDATES } from "./companion-candidates";
 const SCENES = [
   "welcome",
   "quiz",
+  "resume",
   "creatures",
   "identity",
   "waiting",
+  "window",
+  "failed",
   "reveal",
   "selected",
 ] as const;
+/** Toolbar names for the simulated waiting states. */
+const SCENE_LABELS: Partial<Record<(typeof SCENES)[number], string>> = {
+  resume: "Resume",
+  waiting: "Waiting",
+  window: "Window open",
+  failed: "Failed",
+};
+const HOUR = 3_600_000;
 export default function StudioMockPreview({ profile }: { profile: "rayyan" | "mia" }) {
   const [scene, setScene] = useState(() => {
     const value =
@@ -37,7 +49,10 @@ export default function StudioMockPreview({ profile }: { profile: "rayyan" | "mi
       candidates: [],
     };
     if (scene === "creatures") state.draft.answers = [0];
-    if (scene !== "welcome" && scene !== "quiz" && scene !== "creatures")
+    // A returning student who stopped after six questions.
+    if (scene === "resume")
+      state.draft = { ...state.draft, answers: answers.slice(0, 6), revision: 1 };
+    if (!["welcome", "quiz", "resume", "creatures"].includes(scene))
       state = { ...state, draft: { answers, username: card.username, revision: 1 } };
     const reveal = () => {
       state = {
@@ -59,17 +74,24 @@ export default function StudioMockPreview({ profile }: { profile: "rayyan" | "mi
         })),
       };
     };
-    if (["waiting", "reveal", "selected"].includes(scene)) {
+    if (["waiting", "window", "failed", "reveal", "selected"].includes(scene)) {
+      // Fictional reveal times relative to now, so each simulated waiting state looks real.
+      const revealAfter =
+        scene === "waiting" || scene === "failed"
+          ? new Date(Date.now() + 12 * HOUR + 36 * 60_000 + 22_000).toISOString()
+          : scene === "window"
+            ? new Date(Date.now() - 2 * HOUR).toISOString()
+            : "2026-10-17T16:00:00Z";
       state = {
         ...state,
         publicId: card.publicId,
         identity: { version: "nova-identity-v1", answers, traits: card.traits },
         origin: {
-          status: "running",
-          revealAfter: "2026-10-17T16:00:00Z",
+          status: scene === "failed" ? "failed" : "running",
+          revealAfter,
           ready: false,
-          errorCode: null,
-          completed: 1,
+          errorCode: scene === "failed" ? "preview_failure" : null,
+          completed: scene === "failed" ? 0 : 1,
         },
       };
     }
@@ -121,7 +143,7 @@ export default function StudioMockPreview({ profile }: { profile: "rayyan" | "mi
               window.history.replaceState(null, "", url);
             }}
           >
-            {s}
+            {SCENE_LABELS[s] ?? s}
           </button>
         ))}
         <a href={`${cardsPaths.studio}?preview=${profile === "mia" ? "rayyan" : "mia"}`}>
@@ -132,6 +154,7 @@ export default function StudioMockPreview({ profile }: { profile: "rayyan" | "mi
         key={`${profile}-${scene}`}
         api={api}
         fictional
+        previewCompanions={FICTIONAL_CANDIDATES}
         startInDiscovery={scene === "quiz" || scene === "creatures"}
       />
     </>

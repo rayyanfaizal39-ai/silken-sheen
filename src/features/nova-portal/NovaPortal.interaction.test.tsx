@@ -76,29 +76,50 @@ describe("Nova portal entrance", () => {
     expect(navigate).toHaveBeenCalledExactlyOnceWith(STUDIO);
   });
 
-  it("automatically opens the Celestial Gateway without a second Enter button", async () => {
+  it("plays the Celestial Gateway sequence and enters without a second Enter button", async () => {
     const navigate = vi.fn();
     const host = await mount(navigate, undefined, true);
+    const gateway = () => host.querySelector(".cg")!;
     expect(host.querySelectorAll("button")).toHaveLength(0);
-    expect(host.querySelector(".nova-portal")?.getAttribute("data-auto-enter")).toBe("true");
-    await act(async () => vi.advanceTimersByTime(849));
-    expect(navigate).not.toHaveBeenCalled();
-    await act(async () => vi.advanceTimersByTime(1));
-    expect(host.querySelector(".nova-portal")?.getAttribute("data-opening")).toBe("true");
-    await act(async () => vi.advanceTimersByTime(3299));
+    expect(gateway().getAttribute("data-phase")).toBe("arrival");
+    await act(async () => vi.advanceTimersByTime(1000));
+    expect(gateway().getAttribute("data-phase")).toBe("awakening");
+    await act(async () => vi.advanceTimersByTime(1000));
+    expect(gateway().getAttribute("data-phase")).toBe("opening");
+    await act(async () => vi.advanceTimersByTime(1000));
+    expect(gateway().getAttribute("data-phase")).toBe("entering");
+    expect(host.textContent).toContain("Traveling through the Celestial Gateway");
+    await act(async () => vi.advanceTimersByTime(1499));
     expect(navigate).not.toHaveBeenCalled();
     await act(async () => vi.advanceTimersByTime(1));
     expect(navigate).toHaveBeenCalledExactlyOnceWith(STUDIO);
+    expect(document.querySelector<HTMLElement>(".cg-veil")!.style.opacity).toBe("1");
   });
 
-  it("automatically transitions promptly in reduced-motion mode", async () => {
+  it("holds a still, lit gateway and fades briefly in reduced-motion mode", async () => {
     reducedMotion = true;
     const navigate = vi.fn();
     const host = await mount(navigate, undefined, true);
-    await act(async () => vi.advanceTimersByTime(0));
-    expect(host.querySelector(".nova-portal")?.getAttribute("data-calm")).toBe("true");
-    await act(async () => vi.advanceTimersByTime(250));
+    expect(host.querySelector(".cg")?.getAttribute("data-still")).toBe("true");
+    await act(async () => vi.advanceTimersByTime(1200));
+    expect(document.querySelector(".cg-veil")?.getAttribute("data-leaving")).toBe("true");
+    expect(navigate).not.toHaveBeenCalled();
+    await act(async () => vi.advanceTimersByTime(400));
     expect(navigate).toHaveBeenCalledExactlyOnceWith(STUDIO);
+  });
+
+  it("rests on the lit gateway instead of re-entering after Back navigation", async () => {
+    const navigate = vi.fn();
+    const host = await mount(navigate, undefined, true);
+    await act(async () => vi.advanceTimersByTime(2500));
+    await act(async () => {
+      const event = new Event("pageshow") as PageTransitionEvent;
+      Object.defineProperty(event, "persisted", { value: true });
+      window.dispatchEvent(event);
+    });
+    expect(host.querySelector(".cg")?.getAttribute("data-still")).toBe("true");
+    await act(async () => vi.advanceTimersByTime(6000));
+    expect(navigate).not.toHaveBeenCalled();
   });
 
   it("cancels the uncompleted automatic portal navigation when leaving the route", async () => {

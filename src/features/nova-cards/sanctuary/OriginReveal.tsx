@@ -1,127 +1,278 @@
-import { useEffect, useRef, useState } from "react";
-import type { StudioState } from "../studio-model";
-import type { NovaTraits } from "../model";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { ArrowRight, Lock, Sparkles } from "lucide-react";
+import { CompanionGarden } from "../../cosmic-companion/CompanionGarden";
+import {
+  CANDIDATE_LABEL,
+  NOT_AVAILABLE,
+  candidateTitle as title,
+  listValues as list,
+  sharesIdentity,
+  type CompanionCandidate,
+} from "../companion-candidates";
+import { CandidateArt as Art, CandidateCard } from "./CandidateCard";
+import "./awakening-chamber.css";
+import "./companion-comparison.css";
 
+const COMPARE: [string, (c: CompanionCandidate) => string | undefined][] = [
+  ["Personality", (c) => c.personality],
+  ["Element", (c) => c.element],
+  ["Strengths", (c) => list(c.strengths)],
+  ["Learning Style", (c) => c.learningStyle],
+  ["Unique Quality", (c) => c.uniqueQuality],
+];
+
+/** A modal that returns focus to the button that opened it. */
+function useModal(open: boolean) {
+  const dialog = useRef<HTMLDialogElement>(null);
+  const trigger = useRef<HTMLElement | null>(null);
+  useEffect(() => {
+    if (!open) return;
+    const modal = dialog.current;
+    const opener = trigger.current;
+    if (modal && !modal.open) modal.showModal();
+    return () => {
+      modal?.close();
+      if (opener?.isConnected) opener.focus();
+    };
+  }, [open]);
+  return { dialog, trigger };
+}
+
+function Detail({ label, value }: { label: string; value?: string }) {
+  return (
+    <div>
+      <dt>{label}</dt>
+      <dd>{value ?? NOT_AVAILABLE}</dd>
+    </div>
+  );
+}
+
+/**
+ * The two-companion reveal: compare, explore and preview either companion freely, then make the
+ * one permanent choice through an explicit confirmation. Only `onChoose` saves anything.
+ */
 export function OriginReveal({
-  candidates,
-  traits,
+  companions,
   busy,
   error,
   onChoose,
   fictional = false,
 }: {
-  candidates: StudioState["candidates"];
-  traits: NovaTraits;
+  companions: CompanionCandidate[];
   busy: boolean;
   error: string;
   onChoose: (candidate: "a" | "b") => Promise<boolean>;
   fictional?: boolean;
 }) {
-  const [pending, setPending] = useState<"a" | "b" | null>(null);
-  const dialog = useRef<HTMLDialogElement>(null);
-  const trigger = useRef<HTMLButtonElement | null>(null);
-  useEffect(() => {
-    if (!pending) return;
-    const modal = dialog.current;
-    if (modal && !modal.open) modal.showModal();
-    return () => {
-      modal?.close();
-      if (trigger.current?.isConnected) trigger.current.focus();
-    };
-  }, [pending]);
+  const [picked, setPicked] = useState<"a" | "b" | null>(null);
+  const [exploring, setExploring] = useState<"a" | "b" | null>(null);
+  const [confirming, setConfirming] = useState(false);
+  const explore = useModal(exploring !== null);
+  const confirm = useModal(confirming);
+  const pickedCompanion = companions.find((c) => c.id === picked);
+  const explored = companions.find((c) => c.id === exploring);
+  const [a, b] = companions;
+
+  let note: ReactNode = null;
+  if (fictional)
+    note = (
+      <p className="occ-tag">Fictional preview · sample companions, not real matching results</p>
+    );
+  else if (sharesIdentity(companions))
+    note = (
+      <p className="occ-tag occ-tag--muted">
+        Both companions share your Cosmic Identity and differ in their artwork.
+      </p>
+    );
+
   return (
     <>
-      <section className="sanctuary-reveal">
-        <p className="sanctuary-eyebrow">THE NEXT CHAPTER IS YOURS</p>
-        <h1 tabIndex={-1}>Choose Your Nova</h1>
-        <p>Two companions, one special connection. Choose your favourite.</p>
-        <div className="sanctuary-candidates">
-          {candidates.map((c) => (
-            <article key={c.candidate}>
-              <a
-                href={c.url}
-                target="_blank"
-                rel="noreferrer"
-                className="sanctuary-candidate-art"
-                aria-label={`Inspect Origin artwork ${c.candidate.toUpperCase()} at full size`}
-              >
-                <img
-                  className={
-                    fictional && c.url.startsWith("https://lh3.googleusercontent.com/")
-                      ? "sanctuary-preview-art"
-                      : undefined
-                  }
-                  src={c.url}
-                  alt={`${traits.colours} ${traits.creature}, Origin artwork ${c.candidate.toUpperCase()}`}
-                  width="1024"
-                  height="1536"
-                />
-                <span className="sanctuary-candidate-frame" />
-                <img
-                  className="sanctuary-mini-logo"
-                  src="/branding/academy-icon.png"
-                  alt="AcadeMY"
-                  width="28"
-                  height="28"
-                />
-                <span className="sanctuary-element">
-                  {traits.element === "Water" ? "💧" : traits.element === "Fire" ? "✦" : "✧"}{" "}
-                  {traits.element}
-                </span>
-                <div className="sanctuary-candidate-name">
-                  <h2>{traits.creature}</h2>
-                  <span>ORIGIN · ARTWORK {c.candidate.toUpperCase()}</span>
-                </div>
-              </a>
-              <p>
-                A {traits.behaviour.toLowerCase()} companion from {traits.habitat.toLowerCase()}.{" "}
-                {traits.bond}.
-              </p>
+      <section className="occ" aria-labelledby="occ-title">
+        <div className="cca-garden" aria-hidden="true">
+          <CompanionGarden />
+        </div>
+
+        <header className="occ-head">
+          <p className="cca-crest">
+            <span aria-hidden="true">✦</span> Cosmic Companion <span aria-hidden="true">✦</span>
+          </p>
+          <h1 id="occ-title" tabIndex={-1}>
+            Two Companions. <span>One Lifelong Bond.</span>
+          </h1>
+          <p className="occ-lead">
+            Your journey has revealed two companions that match your unique personality. Explore
+            their qualities and choose the one that feels like yours.
+          </p>
+          {note}
+        </header>
+
+        {companions.map((c) => (
+          <div key={c.id} className={`occ-slot occ-slot--${c.id}`}>
+            <CandidateCard
+              c={c}
+              picked={picked === c.id}
+              onExplore={(trigger) => {
+                explore.trigger.current = trigger;
+                setExploring(c.id);
+              }}
+            />
+          </div>
+        ))}
+
+        {a && b && (
+          <section className="occ-compare" aria-labelledby="occ-compare-title">
+            <h2 id="occ-compare-title">Compare Your Companions</h2>
+            <table>
+              <thead>
+                <tr>
+                  <td />
+                  <th scope="col">{title(a)}</th>
+                  <th scope="col">{title(b)}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {COMPARE.map(([label, read]) => (
+                  <tr key={label}>
+                    <th scope="row">{label}</th>
+                    <td data-tone="a">{read(a) ?? NOT_AVAILABLE}</td>
+                    <td data-tone="b">{read(b) ?? NOT_AVAILABLE}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </section>
+        )}
+
+        <div className="occ-select">
+          <p className="occ-select__title">Select a companion to continue</p>
+          <div className="occ-choices" role="radiogroup" aria-label="Choose your companion">
+            {companions.map((c) => (
               <button
-                className="sanctuary-primary"
+                key={c.id}
+                type="button"
+                role="radio"
+                aria-checked={picked === c.id}
+                className="occ-choice"
+                data-tone={c.id}
                 disabled={busy}
-                onClick={(e) => {
-                  trigger.current = e.currentTarget;
-                  setPending(c.candidate);
-                }}
+                onClick={() => setPicked(c.id)}
               >
-                Choose this Nova <span aria-hidden="true">✦</span>
+                <span className="occ-choice__dot" aria-hidden="true" />
+                <span>
+                  Choose {CANDIDATE_LABEL[c.id]}
+                  {c.name && <small>{c.name}</small>}
+                </span>
               </button>
-            </article>
-          ))}
+            ))}
+          </div>
+          <button
+            type="button"
+            className="occ-confirm"
+            disabled={!picked || busy}
+            onClick={(event) => {
+              confirm.trigger.current = event.currentTarget;
+              setConfirming(true);
+            }}
+          >
+            {picked ? (
+              <Sparkles size={19} aria-hidden="true" />
+            ) : (
+              <Lock size={18} aria-hidden="true" />
+            )}
+            <span>Confirm My Companion</span>
+            <ArrowRight size={19} aria-hidden="true" />
+          </button>
+          <p className="occ-fine">
+            Choosing here is only a preview. Once you confirm, this companion will stay with you
+            throughout your AcadeMY journey. You cannot change your companion or retake the
+            personality quiz.
+          </p>
         </div>
       </section>
-      {pending && (
+
+      {explored && (
         <dialog
-          ref={dialog}
+          ref={explore.dialog}
+          className="sanctuary-dialog occ-detail"
+          data-tone={explored.id}
+          aria-labelledby="occ-detail-title"
+          onCancel={(event) => {
+            event.preventDefault();
+            setExploring(null);
+          }}
+        >
+          <div className="occ-detail__art">
+            <Art c={explored} />
+          </div>
+          <div className="occ-detail__body">
+            <p className="occ-card__label">{CANDIDATE_LABEL[explored.id]}</p>
+            <h2 id="occ-detail-title">{title(explored)}</h2>
+            <p className="occ-species">{explored.species ?? "Species revealed with artwork"}</p>
+            <p>{explored.description ?? NOT_AVAILABLE}</p>
+            <dl>
+              <Detail label="Personality" value={explored.personality} />
+              <Detail label="Element" value={explored.element} />
+              <Detail label="Strengths" value={list(explored.strengths)} />
+              <Detail label="Qualities" value={list(explored.qualities)} />
+              <Detail label="Learning style" value={explored.learningStyle} />
+              <Detail label="Unique quality" value={explored.uniqueQuality} />
+              <Detail label="Abilities" value={list(explored.abilities)} />
+              <Detail label="Why it matches you" value={explored.reason} />
+            </dl>
+            <div className="sanctuary-dialog-actions">
+              <button type="button" autoFocus onClick={() => setExploring(null)}>
+                ← Back to comparison
+              </button>
+              <button
+                type="button"
+                className="sanctuary-primary"
+                disabled={busy}
+                onClick={() => {
+                  setPicked(explored.id);
+                  setExploring(null);
+                }}
+              >
+                Choose {CANDIDATE_LABEL[explored.id]}
+              </button>
+            </div>
+          </div>
+        </dialog>
+      )}
+
+      {confirming && pickedCompanion && (
+        <dialog
+          ref={confirm.dialog}
           className="sanctuary-dialog"
           aria-labelledby="nova-bond-title"
           aria-describedby="nova-bond-description"
           onCancel={(event) => {
             event.preventDefault();
-            if (!busy) setPending(null);
+            if (!busy) setConfirming(false);
           }}
         >
           <span className="sanctuary-bond-seal" aria-hidden="true">
             ◇
           </span>
-          <h2 id="nova-bond-title">Bond with this Nova?</h2>
-          <p id="nova-bond-description">
-            This selection is permanent. Artwork {pending.toUpperCase()} will become your lifelong
-            companion and permanent Origin Master Card. Your card identity, QR and serial stay the
-            same.
-          </p>
+          <h2 id="nova-bond-title">Your Companion, Your Forever Choice</h2>
+          <div id="nova-bond-description">
+            <p>This companion will stay with you throughout your AcadeMY journey.</p>
+            <p>
+              Once confirmed, you cannot change your companion or retake the personality quiz.{" "}
+              {title(pickedCompanion)} ({CANDIDATE_LABEL[pickedCompanion.id]}) becomes your
+              permanent Cosmic Card.
+            </p>
+          </div>
           {error && <p role="alert">{error}</p>}
           <div className="sanctuary-dialog-actions">
-            <button autoFocus disabled={busy} onClick={() => setPending(null)}>
-              Keep looking
+            <button autoFocus disabled={busy} onClick={() => setConfirming(false)}>
+              Go back
             </button>
             <button
               className="sanctuary-primary"
               disabled={busy}
-              onClick={() => void onChoose(pending)}
+              onClick={() => void onChoose(pickedCompanion.id)}
             >
-              {busy ? "Saving your bond…" : "Confirm my permanent Nova"}
+              {busy ? "Saving your companion…" : "Confirm my companion"}
             </button>
           </div>
         </dialog>

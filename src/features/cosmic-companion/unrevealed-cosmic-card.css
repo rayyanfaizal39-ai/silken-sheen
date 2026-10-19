@@ -1,0 +1,301 @@
+/* Mystery Cosmic Card: two placeholder faces on a real 3D flip. */
+.ucc {
+  --ucc-width: clamp(220px, 20vw, 290px);
+  --ucc-gold: #f6ca78;
+  --ucc-gold-light: #ffdea5;
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+}
+
+.ucc-button {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: var(--ucc-width);
+  aspect-ratio: 5 / 7;
+  padding: 0;
+  border: 0;
+  border-radius: 22px;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  perspective: 1300px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ucc-button:focus-visible {
+  outline: 2px solid var(--ucc-gold-light);
+  outline-offset: 12px;
+}
+
+/* Aura behind the card: brighter on hover, focus and while turning. */
+.ucc-button::before {
+  content: "";
+  position: absolute;
+  inset: -16%;
+  z-index: -1;
+  border-radius: 40%;
+  background: radial-gradient(
+    closest-side,
+    rgba(246, 202, 120, 0.26),
+    rgba(124, 58, 237, 0.24) 55%,
+    transparent
+  );
+  opacity: 0.7;
+  transition: opacity 400ms ease;
+}
+
+.ucc-button:hover::before,
+.ucc-button:focus-visible::before,
+.ucc[data-turning="true"] .ucc-button::before {
+  opacity: 1;
+}
+
+.ucc-tilt,
+.ucc-float,
+.ucc-card {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+
+.ucc-tilt {
+  --ucc-tilt-x: 0deg;
+  --ucc-tilt-y: 0deg;
+  transform: rotateX(calc(4deg + var(--ucc-tilt-x))) rotateY(calc(-14deg + var(--ucc-tilt-y)))
+    rotateZ(-5deg);
+  transition: transform 500ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.ucc-float {
+  animation: ucc-float 6.5s ease-in-out infinite;
+}
+
+.ucc-card {
+  transition: transform 900ms cubic-bezier(0.65, 0, 0.25, 1);
+}
+
+.ucc-card[data-flipped="true"] {
+  transform: rotateY(180deg);
+}
+
+.ucc-face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border: 1.5px solid rgba(246, 202, 120, 0.7);
+  border-radius: 22px;
+  background:
+    radial-gradient(ellipse 90% 60% at 50% 40%, rgba(96, 1, 209, 0.3), transparent 72%),
+    radial-gradient(1px 1px at 18% 16%, #fff4dc 80%, transparent),
+    radial-gradient(1px 1px at 82% 24%, #d9ccff 80%, transparent),
+    radial-gradient(1px 1px at 74% 62%, #fff4dc 80%, transparent),
+    linear-gradient(165deg, #171a3c 0%, #0c0d26 55%, #08091c 100%);
+  box-shadow:
+    inset 0 0 0 6px rgba(9, 10, 28, 0.85),
+    inset 0 0 0 7px rgba(167, 139, 250, 0.35),
+    0 0 26px rgba(246, 202, 120, 0.32),
+    0 0 80px rgba(124, 58, 237, 0.32),
+    0 30px 60px rgba(0, 0, 0, 0.5);
+  container-type: inline-size;
+  transform: rotateY(0deg) translateZ(1px);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition: box-shadow 400ms ease;
+}
+
+.ucc[data-turning="true"] .ucc-face {
+  box-shadow:
+    inset 0 0 0 6px rgba(9, 10, 28, 0.85),
+    inset 0 0 0 7px rgba(167, 139, 250, 0.5),
+    0 0 40px rgba(255, 222, 165, 0.55),
+    0 0 120px rgba(139, 92, 246, 0.55),
+    0 30px 60px rgba(0, 0, 0, 0.5);
+}
+
+/* A slow sheen across the surface, as on a foil collectible. */
+.ucc-face::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    115deg,
+    transparent 32%,
+    rgba(255, 236, 200, 0.09) 46%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+.ucc-face--back {
+  transform: rotateY(180deg) translateZ(1px);
+}
+
+.ucc-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ucc-question {
+  fill: #ffe7b8;
+  font-family: "Bodoni Moda", Georgia, serif;
+  font-size: 40px;
+  font-weight: 600;
+  filter: drop-shadow(0 0 6px rgba(255, 222, 165, 0.9))
+    drop-shadow(0 0 14px rgba(246, 202, 120, 0.6));
+}
+
+.ucc-mote {
+  transform-box: fill-box;
+  animation:
+    ucc-twinkle 3.2s ease-in-out infinite,
+    ucc-drift 7s ease-in-out infinite;
+}
+
+/* A slow, gentle swell of the backlight, like the presence is quietly breathing. */
+.ucc-breathe {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ucc-breathe 5.5s ease-in-out infinite;
+}
+
+.ucc-orb {
+  transform-box: fill-box;
+  transform-origin: center;
+  filter: drop-shadow(0 0 3px rgba(196, 181, 253, 0.9));
+  animation: ucc-orb 6s ease-in-out infinite;
+}
+
+.ucc-back__text {
+  position: absolute;
+  inset: auto 10% 17%;
+  display: grid;
+  gap: 4cqi;
+  text-align: center;
+}
+
+.ucc-back__label {
+  margin: 0;
+  color: var(--ucc-gold);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: max(10px, 4.6cqi);
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-indent: 0.3em;
+  text-transform: uppercase;
+}
+
+.ucc-back__line {
+  margin: 0;
+  color: rgba(236, 232, 255, 0.88);
+  font-family: "Bodoni Moda", Georgia, serif;
+  font-size: max(12px, 5.6cqi);
+  line-height: 1.35;
+}
+
+.ucc-caption {
+  position: absolute;
+  inset: auto 0 6%;
+  color: rgba(246, 202, 120, 0.8);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: max(8px, 3.2cqi);
+  letter-spacing: 0.26em;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.ucc-face--back .ucc-caption {
+  letter-spacing: 0.16em;
+  text-transform: none;
+}
+
+.ucc-hint {
+  margin: 0;
+  color: rgba(223, 225, 246, 0.5);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+
+@keyframes ucc-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+
+@keyframes ucc-breathe {
+  0%,
+  100% {
+    opacity: 0.78;
+    transform: scale(0.97);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+}
+
+@keyframes ucc-orb {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes ucc-drift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes ucc-twinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (hover: none) {
+  .ucc-tilt {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ucc-float,
+  .ucc-mote,
+  .ucc-breathe,
+  .ucc-orb {
+    animation: none;
+  }
+
+  .ucc-tilt {
+    transform: rotateZ(-3deg);
+    transition: none;
+  }
+
+  /* Still turns over, as an instant swap rather than a spin. */
+  .ucc-card {
+    transition-duration: 1ms;
+  }
+}

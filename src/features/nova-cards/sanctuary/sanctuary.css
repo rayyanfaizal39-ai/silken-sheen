@@ -1573,6 +1573,10 @@
     font-size: 15px;
     gap: 8px;
   }
+  /* The Cosmic Companion name is longer than the old Studio name: keep the logo, drop the words. */
+  .sanctuary-header .sanctuary-brand span {
+    display: none;
+  }
   .sanctuary-header .sanctuary-controls {
     gap: 5px;
   }

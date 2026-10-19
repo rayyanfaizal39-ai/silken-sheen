@@ -1,20 +1,36 @@
+import { CompanionGarden } from "../../cosmic-companion/CompanionGarden";
 import { NovaCard } from "../NovaCard";
-import { cardUrl, STAGES, type NovaCard as Card } from "../model";
+import { cardUrl, type NovaCard as Card } from "../model";
 import { soundscape } from "./audio";
 import { academyHomeHref, cardsPaths } from "../paths";
-export function SanctuaryCardPanel({
-  card,
-  origin,
-}: {
-  card: Card;
-  origin: string;
-}) {
-  const stage = 1;
+import "./awakening-chamber.css";
+import "./companion-profile.css";
+
+/**
+ * My Cosmic Companion: the profile a student returns to after their permanent choice. Every
+ * value comes from the saved card; the system stores no separate companion name or story, so
+ * the companion is named by its creature and described by its saved traits.
+ */
+export function SanctuaryCardPanel({ card, origin }: { card: Card; origin: string }) {
+  const t = card.traits;
+  const traits: [string, string][] = [
+    ["Silhouette", t.appearance],
+    ["Colours", t.colours],
+    ["Eyes", t.eyes],
+    ["Signature detail", t.marking],
+    ["Habitat", t.habitat],
+    ["Magical gift", t.ability],
+    ["Temperament", t.behaviour],
+    ["Challenge approach", t.approach],
+    ["Bond", t.bond],
+  ];
   return (
-    <section className="sanctuary-my-nova">
-      <h1 tabIndex={-1}>My Nova</h1>
-      <p className="sanctuary-eyebrow">ONE COMPANION. YOUR JOURNEY.</p>
-      <div className="sanctuary-card-wrap">
+    <section className="sanctuary-my-nova ccprof" aria-labelledby="ccprof-title">
+      <div className="cca-garden" aria-hidden="true">
+        <CompanionGarden />
+      </div>
+
+      <div className="sanctuary-card-wrap ccprof-card">
         <NovaCard
           card={card}
           url={cardUrl(card.publicId, origin)}
@@ -22,56 +38,61 @@ export function SanctuaryCardPanel({
           onFlip={() => soundscape.playChime()}
         />
       </div>
-      <article className="sanctuary-description">
-        <h2>
-          Meet your {card.traits.creature} {card.traits.element === "Water" ? "💧" : "✦"}
-        </h2>
-        <p>
-          “A {card.traits.behaviour.toLowerCase()} companion from{" "}
-          {card.traits.habitat.toLowerCase()}, with {card.traits.eyes.toLowerCase()}. Their magical
-          gift: {card.traits.ability}. {card.traits.bond}.”
+
+      <div className="cca-panel ccprof-panel">
+        <p className="cca-crest">
+          <span aria-hidden="true">✦</span> My Cosmic Companion <span aria-hidden="true">✦</span>
         </p>
-        <dl>
-          <div>
-            <dt>Element</dt>
-            <dd>{card.traits.element}</dd>
-          </div>
+        <h1 id="ccprof-title" tabIndex={-1}>
+          Your <span>{t.creature}</span>
+        </h1>
+        <p className="ccprof-owner">
+          Bonded with <b>{card.username}</b> · Card No. {card.serial} · Permanent
+        </p>
+
+        <dl className="ccprof-key">
           <div>
             <dt>Personality</dt>
-            <dd>{card.traits.personality}</dd>
+            <dd>{t.personality}</dd>
           </div>
           <div>
-            <dt>Card status</dt>
-            <dd>Permanent</dd>
-          </div>
-          <div>
-            <dt>Next evolution</dt>
-            <dd>Coming in a later phase</dd>
+            <dt>Element</dt>
+            <dd>{t.element}</dd>
           </div>
         </dl>
-      </article>
-      <section className="sanctuary-evolution" aria-label="Evolution path">
-        <div>
-          <h2>Evolution Path</h2>
-          <span>Stage {stage} of 5</span>
+
+        <article className="ccprof-about" aria-labelledby="ccprof-about-title">
+          <h2 id="ccprof-about-title">About your companion</h2>
+          <p>
+            “A {t.behaviour.toLowerCase()} companion from {t.habitat.toLowerCase()}, with{" "}
+            {t.eyes.toLowerCase()}. Their magical gift: {t.ability}. {t.bond}.”
+          </p>
+        </article>
+
+        <section aria-labelledby="ccprof-traits-title">
+          <h2 id="ccprof-traits-title" className="ccprof-subhead">
+            Unique traits
+          </h2>
+          <dl className="ccprof-traits">
+            {traits.map(([label, value]) => (
+              <div key={label}>
+                <dt>{label}</dt>
+                <dd>{value}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+
+        <div className="ccprof-actions">
+          <a className="cca-continue" href={academyHomeHref}>
+            <span>Continue learning</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+          <a className="ccprof-link" href={cardsPaths.home}>
+            Collection & sharing settings ↗
+          </a>
         </div>
-        <ol>
-          {STAGES.map((s, i) => (
-            <li key={s.name} aria-current={i + 1 === stage ? "step" : undefined}>
-              <b>{i + 1 < stage ? "✓" : i + 1}</b>
-              <span>{s.name}</span>
-              <small>{i === 0 ? "Phase 1" : "Coming later"}</small>
-            </li>
-          ))}
-        </ol>
-        <div className="sanctuary-study-link">
-          <span>Evolution is not enabled in Phase 1</span>
-          <a href={academyHomeHref}>Continue your journey ↗</a>
-        </div>
-      </section>
-      <a className="sanctuary-collection-link" href={cardsPaths.home}>
-        Collection & sharing settings ↗
-      </a>
+      </div>
     </section>
   );
 }

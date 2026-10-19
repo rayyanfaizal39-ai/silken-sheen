@@ -1,198 +1,161 @@
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { ArrowRight } from "lucide-react";
+import { CompanionGarden } from "../../cosmic-companion/CompanionGarden";
 import { AudioControls } from "./AudioControls";
-import React, { useState, useEffect, useRef } from "react";
 import { soundscape } from "./audio";
+import { academyHomeHref } from "../paths";
+import "./journey-intro.css";
 
 interface CinematicOpeningProps {
   onStartJourney: () => void;
-  onSkipIntro: () => void;
   reducedMotion: boolean;
+  /** Shown beneath Begin My Journey, such as the guest notice. */
+  notice?: ReactNode;
 }
 
-export const CinematicOpening: React.FC<CinematicOpeningProps> = ({
-  onStartJourney,
-  onSkipIntro,
-  reducedMotion,
-}) => {
-  const [phase, setPhase] = useState<"darkness" | "spark" | "portal" | "revealed">(
-    reducedMotion ? "revealed" : "darkness",
-  );
-  const [isTransitioning, setIsTransitioning] = useState(false);
+/** Long enough for the garden to dissolve before Question 1 takes over. */
+const ENTER_FOREST_MS = 900;
 
-  const beginTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+const INFO: { title: string; body: string; icon: ReactNode }[] = [
+  {
+    title: "Thoughtful Questions",
+    body: "Answer 12 fun and meaningful questions.",
+    icon: (
+      <>
+        <path d="M6 10.5c5-2 10-1.6 14 1.5 4-3.1 9-3.5 14-1.5v19c-5-2-10-1.6-14 1.5-4-3.1-9-3.5-14-1.5Z" />
+        <path d="M20 12v19" />
+        <path d="M10 16h6M10 20h6M24 16h6M24 20h6" strokeOpacity=".5" />
+      </>
+    ),
+  },
+  {
+    title: "A Personal Journey",
+    body: "Explore your mindset, strengths and learning style.",
+    icon: (
+      <>
+        <circle cx="20" cy="20" r="13" />
+        <circle cx="20" cy="20" r="9.5" strokeOpacity=".4" strokeDasharray="1.5 3" />
+        <path d="m25.5 14.5-3.6 7.4-7.4 3.6 3.6-7.4Z" />
+        <circle cx="20" cy="20" r="1.4" />
+      </>
+    ),
+  },
+  {
+    title: "Discover Your Companion",
+    body: "Find a unique companion that matches who you are.",
+    icon: (
+      <>
+        <path d="M19 10c-6 .4-10 6-10 12 0 2.6.8 5 1.8 6.8h20.8c1.2-2.2 1.6-5 1-7.6-.8-4-3-6.2-5.6-7.4-2-2.6-4.8-4-8-3.8Z" />
+        <path d="M19.5 21.5c0-2 3-2 3 0 0 1.4-1.5 1.6-1.5 3M21 27v.2" strokeLinecap="round" />
+      </>
+    ),
+  },
+  {
+    title: "A Cosmic Card to Keep",
+    body: "Receive a beautifully designed card that stays with you forever.",
+    icon: (
+      <>
+        <rect x="11" y="6" width="18" height="28" rx="3" transform="rotate(-8 20 20)" />
+        <path d="M20 14.5 21.6 19l4.4 1.6-4.4 1.6L20 26.6l-1.6-4.4-4.4-1.6 4.4-1.6Z" />
+      </>
+    ),
+  },
+];
+
+/**
+ * The journey introduction: the first scene after the Celestial Gateway and the only
+ * "before we begin" screen. It explains the 12 questions; it never records an answer.
+ */
+export function CinematicOpening({ onStartJourney, reducedMotion, notice }: CinematicOpeningProps) {
+  const [entering, setEntering] = useState(false);
+  const enterTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(
     () => () => {
-      if (beginTimer.current) clearTimeout(beginTimer.current);
+      if (enterTimer.current) clearTimeout(enterTimer.current);
     },
     [],
   );
-  useEffect(() => {
+
+  const begin = () => {
+    if (entering) return;
+    soundscape.playStarlightWhisper();
     if (reducedMotion) {
-      setPhase("revealed");
+      onStartJourney();
       return;
     }
-    // Stage 1: Darkness to tiny spark
-    const t1 = setTimeout(() => {
-      setPhase("spark");
-    }, 500);
-
-    // Stage 2: Stars ignite & portal opens
-    const t2 = setTimeout(() => {
-      setPhase("portal");
-    }, 2000);
-
-    // Stage 3: World revealed with message & CTA
-    const t3 = setTimeout(() => {
-      setPhase("revealed");
-    }, 3800);
-
-    return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
-      clearTimeout(t3);
-    };
-  }, [reducedMotion]);
-
-  const handleBegin = () => {
-    if (isTransitioning) return;
-    soundscape.playStarlightWhisper();
-    setIsTransitioning(true);
-
-    beginTimer.current = setTimeout(onStartJourney, reducedMotion ? 0 : 1000);
+    setEntering(true);
+    enterTimer.current = setTimeout(onStartJourney, ENTER_FOREST_MS);
   };
 
   return (
-    <div className="sanctuary-opening fixed inset-0 z-50 bg-[#05070f] flex items-center justify-center overflow-hidden select-none">
-      {/* Background Layer 1: Deep Cosmos & Stars */}
-      <div
-        className={`absolute inset-0 transition-opacity duration-1000 ${
-          phase !== "darkness" ? "opacity-100" : "opacity-0"
-        }`}
-      >
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#171b2a] via-[#090e1c] to-[#05070f]" />
-
-        {/* Ambient Nebula Lights */}
-        <div className="absolute top-1/4 left-1/3 w-[600px] h-[600px] bg-[#6001d1]/20 rounded-full blur-[140px] pointer-events-none" />
-        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-[#3ec1fc]/15 rounded-full blur-[160px] pointer-events-none" />
+    <div
+      className="sanctuary-opening cci"
+      data-entering={entering}
+      data-calm={reducedMotion}
+      aria-labelledby="cci-title"
+      role="region"
+    >
+      <div className="cci-garden" aria-hidden="true">
+        <CompanionGarden />
       </div>
+      <div className="cci-veil" aria-hidden="true" />
 
-      {/* Background Layer 2: Cosmic Portal Rings & Glowing Trees Silhouette */}
-      <div
-        className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-all duration-1000 ${
-          phase === "portal" || phase === "revealed"
-            ? "opacity-100 scale-100"
-            : "opacity-0 scale-75"
-        } ${isTransitioning ? "scale-150 opacity-0 filter blur-lg" : ""}`}
-      >
-        {/* Outer Armillary Portal Rings */}
-        <div className="w-[580px] h-[580px] sm:w-[720px] sm:h-[720px] rounded-full border border-[#f6ca78]/25 animate-spin-slow" />
-        <div className="absolute w-[440px] h-[440px] sm:w-[560px] sm:h-[560px] rounded-full border border-dashed border-[#6001d1]/40 animate-spin-slow-reverse" />
-        <div className="absolute w-[320px] h-[320px] sm:w-[400px] sm:h-[400px] rounded-full border border-[#3ec1fc]/30" />
-
-        {/* Volumetric Starlight Rays from the Center */}
-        <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-          <div className="w-[2px] h-[180vh] bg-gradient-to-t from-transparent via-[#f6ca78]/40 to-transparent rotate-45 transform pointer-events-none" />
-          <div className="w-[2px] h-[180vh] bg-gradient-to-t from-transparent via-[#6001d1]/30 to-transparent -rotate-45 transform pointer-events-none" />
-          <div className="w-[2px] h-[180vh] bg-gradient-to-t from-transparent via-[#3ec1fc]/30 to-transparent rotate-12 transform pointer-events-none" />
-        </div>
-
-        {/* Silhouette of Enchanted Glowing Forest at the Horizon */}
-        <div
-          className={`absolute bottom-0 inset-x-0 h-64 bg-gradient-to-t from-[#05070f] via-[#090e1c]/80 to-transparent flex items-end justify-center transition-opacity duration-1000 ${
-            phase === "revealed" ? "opacity-80" : "opacity-0"
-          }`}
-        >
-          <svg
-            className="w-full max-w-4xl h-48 opacity-40 text-[#3ec1fc]"
-            viewBox="0 0 1000 200"
-            fill="none"
-          >
-            <path
-              d="M100 200 C120 140 110 80 130 30 C135 15 150 10 160 30 C180 80 170 140 190 200 Z"
-              fill="currentColor"
-            />
-            <circle cx="145" cy="40" r="45" fill="currentColor" fillOpacity="0.25" />
-            <path
-              d="M820 200 C835 130 840 90 855 40 C860 20 875 20 885 40 C900 90 905 130 920 200 Z"
-              fill="currentColor"
-            />
-            <circle cx="870" cy="50" r="50" fill="currentColor" fillOpacity="0.2" />
-            <path
-              d="M480 200 C490 140 495 90 500 50 C505 30 515 30 520 50 C525 90 530 140 540 200 Z"
-              fill="#d8af60"
-            />
-            <circle cx="510" cy="55" r="40" fill="#d8af60" fillOpacity="0.3" />
-          </svg>
-        </div>
-      </div>
-
-      {/* The Central Golden Light Spark */}
-      <div
-        className={`relative z-20 flex flex-col items-center justify-center transition-all duration-1000 ${
-          isTransitioning ? "scale-150 opacity-0" : "scale-100 opacity-100"
-        }`}
-      >
-        <div
-          className={`rounded-full transition-all duration-1000 flex items-center justify-center ${
-            phase === "darkness"
-              ? "w-1 h-1 opacity-0 bg-[#f6ca78]"
-              : phase === "spark"
-                ? "w-4 h-4 bg-[#f6ca78] shadow-[0_0_40px_rgba(246,202,120,1),0_0_80px_rgba(246,202,120,0.8)] animate-pulse"
-                : "w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-tr from-[#6001d1] via-[#171b2a] to-[#f6ca78] border border-[#f6ca78]/80 shadow-[0_0_60px_rgba(246,202,120,0.6)]"
-          }`}
-        >
-          {phase === "revealed" && (
-            <img
-              src="/branding/academy-icon.png"
-              alt=""
-              width="48"
-              height="48"
-              className="rounded-xl"
-            />
-          )}
-        </div>
-      </div>
-
-      {/* Cinematic Reveal Text & Action Button */}
-      <div
-        className={`absolute inset-x-4 bottom-16 sm:bottom-24 z-30 flex flex-col items-center text-center transition-all duration-1000 ${
-          phase === "revealed" && !isTransitioning
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-6 pointer-events-none"
-        }`}
-      >
-        <h1
-          tabIndex={-1}
-          className="font-headline text-2xl sm:text-4xl lg:text-5xl text-[#dfe1f6] font-medium tracking-wide max-w-2xl leading-relaxed mb-8 drop-shadow-[0_2px_20px_rgba(7,11,25,0.9)]"
-        >
-          "Somewhere beyond the stars, a companion is waiting for you."
-        </h1>
-
-        <button
-          disabled={isTransitioning || phase !== "revealed"}
-          onClick={handleBegin}
-          className="px-10 py-4 rounded-2xl bg-gradient-to-r from-[#d8af60] via-[#f6ca78] to-[#ffdea5] text-[#412d00] font-label text-xs sm:text-sm uppercase tracking-[0.25em] font-bold shadow-[0_0_35px_rgba(246,202,120,0.5)] hover:brightness-110 active:scale-95 transition-all duration-300 flex items-center gap-3 cursor-pointer"
-        >
-          <span>Begin Your Journey</span>
-          <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-            <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4-6.2-4.5-6.2 4.5 2.4-7.4L2 9.4h7.6z" />
-          </svg>
-        </button>
-      </div>
-
-      {/* Top Right Discreet Skip Intro & Audio Controls */}
-      <div className="absolute top-6 right-6 z-40 flex items-center gap-3">
+      <header className="cci-bar">
+        <a className="cci-logo" href={academyHomeHref} aria-label="AcadeMY home">
+          <img src="/branding/academy-icon.png" alt="" width="30" height="30" />
+          <span>
+            Acade<b>MY</b>
+          </span>
+        </a>
+        <p className="cci-crest">
+          <span aria-hidden="true">✦</span> Cosmic Companion <span aria-hidden="true">✦</span>
+        </p>
         <AudioControls />
+      </header>
 
-        <button
-          onClick={() => {
-            soundscape.playStarlightWhisper();
-            onSkipIntro();
-          }}
-          className="text-xs font-label uppercase tracking-widest text-[#d1c5b3] hover:text-[#f6ca78] px-3.5 py-2 rounded-xl bg-[#090e1c]/80 backdrop-blur-md border border-[#303444] hover:border-[#f6ca78]/40 transition-colors cursor-pointer"
+      <div className="cci-content">
+        <p className="cci-eyebrow cci-step" style={{ "--cci-at": 0 } as React.CSSProperties}>
+          Before we begin
+        </p>
+        <h1
+          id="cci-title"
+          tabIndex={-1}
+          className="cci-step"
+          style={{ "--cci-at": 0 } as React.CSSProperties}
         >
-          Skip Intro
-        </button>
+          Let&apos;s Discover <span>Your Cosmic Companion</span>
+        </h1>
+        <p className="cci-lead cci-step" style={{ "--cci-at": 1 } as React.CSSProperties}>
+          You&apos;re about to answer 12 carefully crafted questions that will help us find the
+          companion that truly matches your mindset, strengths and learning style.
+        </p>
+
+        <ul className="cci-info" aria-label="What to expect">
+          {INFO.map((item, i) => (
+            <li
+              key={item.title}
+              className="cci-step"
+              style={{ "--cci-at": 2, "--cci-n": i } as React.CSSProperties}
+            >
+              <span className="cci-info__number">0{i + 1}</span>
+              <svg className="cci-info__icon" viewBox="0 0 40 40" aria-hidden="true">
+                {item.icon}
+              </svg>
+              <h2>{item.title}</h2>
+              <p>{item.body}</p>
+            </li>
+          ))}
+        </ul>
+
+        <div className="cci-action cci-step" style={{ "--cci-at": 3 } as React.CSSProperties}>
+          <button type="button" className="cci-begin" onClick={begin} disabled={entering}>
+            <span>Begin My Journey</span>
+            <ArrowRight size={20} aria-hidden="true" />
+          </button>
+          <p>Your adventure begins with 12 questions.</p>
+          {notice}
+        </div>
       </div>
     </div>
   );
-};
+}

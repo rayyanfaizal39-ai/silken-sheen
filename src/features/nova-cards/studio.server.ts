@@ -6,12 +6,15 @@ import type { StudioDraft, StudioState } from "./studio-model";
 import { validNovaAnswer } from "./model";
 import { NOVA_ACCESS_ERRORS } from "./access";
 
+/** The verified account each request's client belongs to, so state can say whose it is. */
+const accountOf = new WeakMap<object, string>();
 async function owner() {
   setResponseHeader("Cache-Control", "private, no-store, max-age=0");
   const db = getSupabaseServerClient();
   if (!db) throw new Error(NOVA_ACCESS_ERRORS.unconfigured);
   const { data, error } = await db.auth.getUser();
   if (error || !data.user || data.user.is_anonymous) throw new Error(NOVA_ACCESS_ERRORS.signedOut);
+  accountOf.set(db, data.user.id);
   return db;
 }
 const flags = () =>
@@ -34,7 +37,7 @@ async function state(
       return { candidate: c.candidate, url: signed.signedUrl };
     }),
   );
-  return { ...raw, candidates, enabled: raw.enabled && flags() };
+  return { ...raw, candidates, enabled: raw.enabled && flags(), account: accountOf.get(db) };
 }
 export const getStudioState = createServerFn({ method: "GET" }).handler(async () =>
   state(await owner()),

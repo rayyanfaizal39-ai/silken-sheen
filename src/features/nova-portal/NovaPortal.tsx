@@ -1,11 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { CelestialGateway } from "./gateway/CelestialGateway";
 import "./nova-portal.css";
 
 // Opening runs this long before the same-tab hand-off to the Cards Studio.
 const OPEN_MS = 1500;
-const AUTO_START_MS = 850;
-const AUTO_OPEN_MS = 3300;
 const CALM_OPEN_MS = 250;
 
 function navigateInSameTab(url: string) {
@@ -32,8 +31,21 @@ export function NovaPortal({
   artworkUrl?: string | null;
   /** Same-tab hand-off to the Cards Studio; never a new window. */
   navigate?: (url: string) => void;
-  /** Enter automatically after a brief cinematic arrival. No second button. */
+  /** Play the full Celestial Gateway cinematic and enter on its own. No second button. */
   autoEnter?: boolean;
+}) {
+  if (autoEnter) return <CelestialGateway studioUrl={studioUrl} navigate={navigate} />;
+  return <PortalEntrance studioUrl={studioUrl} artworkUrl={artworkUrl} navigate={navigate} />;
+}
+
+function PortalEntrance({
+  studioUrl,
+  artworkUrl,
+  navigate,
+}: {
+  studioUrl: string;
+  artworkUrl?: string | null;
+  navigate: (url: string) => void;
 }) {
   const [opening, setOpening] = useState(false);
   const [calm, setCalm] = useState(false);
@@ -152,27 +164,15 @@ export function NovaPortal({
     setCalm(reduced);
     setOpening(true);
     warp.current = 9;
-    timer.current = setTimeout(
-      () => navigate(studioUrl),
-      reduced ? CALM_OPEN_MS : autoEnter ? AUTO_OPEN_MS : OPEN_MS,
-    );
-  }, [autoEnter, navigate, studioUrl]);
-
-  useEffect(() => {
-    if (!autoEnter) return;
-    // Show the stars and gate before the camera flies through automatically.
-    const arrival = setTimeout(enter, prefersReducedMotion() ? 0 : AUTO_START_MS);
-    return () => clearTimeout(arrival);
-  }, [autoEnter, enter]);
+    timer.current = setTimeout(() => navigate(studioUrl), reduced ? CALM_OPEN_MS : OPEN_MS);
+  }, [navigate, studioUrl]);
 
   return (
     <section
       className="nova-portal"
       data-opening={opening}
       data-calm={calm}
-      data-auto-enter={autoEnter}
-      aria-label={autoEnter ? "Celestial Gateway cinematic transition" : undefined}
-      aria-labelledby={autoEnter ? undefined : "nova-portal-title"}
+      aria-labelledby="nova-portal-title"
     >
       <div className="nova-portal__stage">
         <div className="nova-portal__nebula nova-portal__nebula--violet" aria-hidden="true" />
@@ -196,12 +196,7 @@ export function NovaPortal({
           </span>
         </div>
       </div>
-      {autoEnter && (
-        <p className="sr-only" role="status" aria-live="polite">
-          {opening ? "Traveling through the Celestial Gateway…" : "The Celestial Gateway is appearing…"}
-        </p>
-      )}
-      {!autoEnter && <div className="nova-portal__copy">
+      <div className="nova-portal__copy">
         <p className="nova-portal__eyebrow">COSMIC COMPANION · CELESTIAL GATEWAY</p>
         <h1 id="nova-portal-title" className="nova-portal__title">
           {artworkUrl ? "Your companion is waiting beyond the stars" : "Your companion universe awaits"}
@@ -226,7 +221,7 @@ export function NovaPortal({
         <p id="nova-portal-status" className="nova-portal__status" role="status" aria-live="polite">
           {opening ? "Opening your companion universe…" : ""}
         </p>
-      </div>}
+      </div>
       {/* Rendered into <body> so it covers the whole page, header and navigation included. */}
       {mounted &&
         createPortal(
@@ -234,7 +229,6 @@ export function NovaPortal({
             className="nova-portal__veil"
             data-opening={opening}
             data-calm={calm}
-            data-auto-enter={autoEnter}
             aria-hidden="true"
           />,
           document.body,

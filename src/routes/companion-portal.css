@@ -7,12 +7,6 @@
   overflow: auto;
   background: #05070f;
 }
-.ccp-fullscreen-gateway .nova-portal {
-  min-height: 100dvh;
-  border: 0;
-  border-radius: 0;
-  box-shadow: none;
-}
 .ccp-fullscreen-gateway__back {
   position: fixed;
   z-index: 2147482100;
@@ -35,6 +29,5 @@
 .ccp-fullscreen-gateway__back:hover { background: rgba(35, 22, 54, .86); }
 .ccp-fullscreen-gateway__back:focus-visible { outline: 2px solid #ffdeaa; outline-offset: 3px; }
 @media (max-width: 550px) {
-  .ccp-fullscreen-gateway .nova-portal__focus { padding-top: 90px; }
   .ccp-fullscreen-gateway__back { font-size: 11px; }
 }

@@ -13,6 +13,8 @@ interface CinematicFlightWorldProps {
   onPrevQuestion: () => void;
   onCompleteJourney: () => void;
   reducedMotion: boolean;
+  /** Guests' answers live only on this page, so the screen must not promise saving. */
+  guest?: boolean;
 }
 
 export const CinematicFlightWorld: React.FC<CinematicFlightWorldProps> = ({
@@ -23,6 +25,7 @@ export const CinematicFlightWorld: React.FC<CinematicFlightWorldProps> = ({
   onPrevQuestion,
   onCompleteJourney,
   reducedMotion,
+  guest = false,
 }) => {
   const currentQ: LearningQuizQuestion = ACADEMY_LEARNING_QUESTIONS[currentQuestionIndex];
   const selectedOptionIdx = answerOptionIndex(currentQuestionIndex, answers[currentQ.id]);
@@ -496,7 +499,9 @@ export const CinematicFlightWorld: React.FC<CinematicFlightWorldProps> = ({
           />
           {/* Gentle Instruction */}
           <p className="font-label text-xs text-[#d1c5b3]/50 uppercase tracking-widest mt-8">
-            Choose what feels like you. Your answers save as you go.
+            {guest
+              ? "Choose what feels like you. As a guest, your answers aren't saved."
+              : "Choose what feels like you. Your answers save as you go."}
           </p>
         </div>
       </div>

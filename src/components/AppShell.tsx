@@ -585,7 +585,8 @@ function AppShellLayout({ children, pathname }: { children: ReactNode; pathname:
       {companionEntitled && <AICompanionButton />}
       {companionEntitled && <CompanionTip />}
       <ProgressionCelebrationHost />
-      {companionEntitled && <CompanionEvolutionModal />}
+      {/* The Cosmic Companion pages present permanent cards, not the retired evolving creature. */}
+      {companionEntitled && !pathname.startsWith("/companion") && <CompanionEvolutionModal />}
       <MissionRewardCelebration />
 
       {moreOpen && (

@@ -398,29 +398,6 @@
   animation: nova-portal-fade 250ms ease-out forwards;
 }
 
-/* The dashboard's Discover button is the ONLY activation for the preview.
-   Auto-enter mode presents the gate immediately, then transitions hands-free. */
-.nova-portal[data-auto-enter="true"] {
-  grid-template-rows: minmax(0, 1fr);
-}
-
-.nova-portal[data-auto-enter="true"] .nova-portal__focus {
-  grid-row: 1;
-  min-height: 100%;
-}
-
-.nova-portal[data-auto-enter="true"][data-opening="true"] .nova-portal__stage,
-.nova-portal[data-auto-enter="true"][data-opening="true"] .nova-portal__focus,
-.nova-portal[data-auto-enter="true"][data-opening="true"] .nova-portal__gate,
-.nova-portal__veil[data-auto-enter="true"][data-opening="true"]::before,
-.nova-portal__veil[data-auto-enter="true"][data-opening="true"]::after {
-  animation-duration: 3300ms;
-}
-
-.nova-portal__veil[data-auto-enter="true"][data-calm="true"][data-opening="true"]::after {
-  animation-duration: 250ms;
-}
-
 @keyframes nova-portal-drift {
   from {
     transform: scale(1) translate3d(-0.6%, 0.4%, 0);

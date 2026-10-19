@@ -13,14 +13,14 @@ export function SanctuaryHeader({
     <header className="sanctuary-header">
       <a className="sanctuary-brand" href={cardsPaths.home}>
         <img src="/branding/academy-icon.png" alt="AcadeMY" width="32" height="32" />
-        <span>Nova Studio</span>
+        <span>Cosmic Companion</span>
       </a>
-      <nav aria-label="Your Nova journey">
+      <nav aria-label="Your Cosmic Companion journey">
         <span aria-current={section === "Discovery" ? "step" : undefined}>Discovery</span>
         <i aria-hidden="true">·</i>
         <span aria-current={section === "Awakening" ? "step" : undefined}>Awakening</span>
         <i aria-hidden="true">·</i>
-        <span aria-current={section === "My Nova" ? "step" : undefined}>My Nova</span>
+        <span aria-current={section === "My Nova" ? "step" : undefined}>My Companion</span>
       </nav>
       <div className="sanctuary-controls">
         <AudioControls />

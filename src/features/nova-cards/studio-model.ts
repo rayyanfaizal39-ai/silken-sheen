@@ -15,6 +15,8 @@ export type StudioState = {
     completed: number;
   } | null;
   candidates: { candidate: "a" | "b"; url: string }[];
+  /** The signed-in account this state belongs to; a change means another student signed in. */
+  account?: string;
 };
 export const AWAKENING_TITLE = "YOUR NOVA IS AWAKENING";
 export const AWAKENING_DESCRIPTION =
