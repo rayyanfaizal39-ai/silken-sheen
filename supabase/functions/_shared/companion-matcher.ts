@@ -6,7 +6,6 @@
 import { NOVA_CREATURES, answerOptionIndex, validNovaAnswer } from "./nova-answers.ts";
 import {
   COMPANION_CATALOGUE,
-  PERSONALITIES,
   validateCatalogue,
   type Build,
   type CanonicalVisual,
@@ -17,6 +16,13 @@ import {
   type Species,
 } from "./companion-catalogue.ts";
 import { canonicalJson, fnv1a32, sha256Hex } from "./content-fingerprint.ts";
+import {
+  PERSONALITY_SIGNALS,
+  dominantPersonality,
+  personalityScores,
+} from "./companion-profile.ts";
+
+export { PERSONALITY_SIGNALS };
 
 export const MATCHER_VERSION = "cc-matcher-v1";
 export const CANDIDATE_SCHEMA = "cosmic-companion-candidate/1";
@@ -47,30 +53,6 @@ export const ANSWER_OPTIONS = [
 ] as const;
 
 type Weights<K extends string> = Partial<Record<K, number>>;
-/**
- * What each option of a personality question supports, in option order. An option supports a
- * personality only where its wording does; options that fit none carry no signal. Rationale
- * for every mapping: docs/cosmic-companion-matching.md, "Answer mappings".
- */
-export const PERSONALITY_SIGNALS: { question: number; options: readonly Weights<Personality>[] }[] =
-  [
-    // "What draws you into an adventure?" (the student's own motivation; strongest signal)
-    {
-      question: 0,
-      options: [{ Explorer: 4 }, { Nurturer: 4 }, { Strategist: 4 }, { Guardian: 4 }],
-    },
-    // "When a challenge appears, you…" "Trust your instincts" describes how a decision is
-    // made, not a personality, so it carries no personality signal.
-    { question: 10, options: [{ Explorer: 2 }, { Nurturer: 2 }, { Strategist: 2 }, {}] },
-    // "How does your companion greet a stranger?" (the temperament wanted in a companion)
-    {
-      question: 7,
-      options: [{ Explorer: 2 }, { Nurturer: 2 }, { Strategist: 2 }, { Guardian: 1, Nurturer: 1 }],
-    },
-    // "Choose your bond." "Inspire each other" is mutual encouragement shared by every
-    // personality, so it carries no personality signal.
-    { question: 11, options: [{ Explorer: 2 }, { Nurturer: 2 }, { Guardian: 2 }, {}] },
-  ];
 /** What each option of an element-bearing question supports. The explicit choice dominates. */
 export const ELEMENT_SIGNALS: { question: number; options: readonly Weights<Element>[] }[] = [
   // "Which element feels like you?"
@@ -84,8 +66,6 @@ export const ELEMENT_SIGNALS: { question: number; options: readonly Weights<Elem
   // (water) and two places in the open sky (air). "Crystal forest" names no element.
   { question: 6, options: [{ Wind: 1 }, { Water: 1 }, {}, { Wind: 1 }] },
 ];
-/** Order used to settle a tie between equally supported personalities. */
-const DOMINANCE_ORDER = [0, 10, 7, 11] as const;
 const BUILD_BY_SILHOUETTE: readonly Build[] = ["soft", "sleek", "sturdy", "graceful"];
 /** Questions that can change which companions are chosen. 4, 8 and 9 only personalise looks. */
 export const SELECTION_QUESTIONS = [0, 1, 2, 3, 5, 6, 7, 10, 11] as const;
@@ -213,15 +193,7 @@ const option = (answers: readonly number[], question: number) =>
 /** Answer-derived signals. Throws CompanionMatchError for malformed answers. */
 export function deriveSignals(answers: readonly number[]): StudentSignals {
   assertAnswers(answers);
-  const personality: Record<Personality, number> = {
-    Explorer: 0,
-    Nurturer: 0,
-    Strategist: 0,
-    Guardian: 0,
-  };
-  for (const s of PERSONALITY_SIGNALS)
-    for (const [p, w] of Object.entries(s.options[answers[s.question]]))
-      personality[p as Personality] += w;
+  const personality = personalityScores(answers);
   const elementAffinity: Record<Element, number> = { Fire: 0, Water: 0, Starlight: 0, Wind: 0 };
   for (const s of ELEMENT_SIGNALS)
     for (const [e, w] of Object.entries(s.options[answers[s.question]]))
@@ -238,22 +210,9 @@ export function deriveSignals(answers: readonly number[]): StudentSignals {
     eyes: option(answers, 8),
     signatureDetail: option(answers, 9),
     personality,
-    dominantPersonality: dominant(personality, answers),
+    dominantPersonality: dominantPersonality(answers, personality),
     elementAffinity,
   };
-}
-
-function dominant(scores: Record<Personality, number>, answers: readonly number[]): Personality {
-  const top = Math.max(...Object.values(scores));
-  const tied = PERSONALITIES.filter((p) => scores[p] === top);
-  for (const question of DOMINANCE_ORDER) {
-    const named = PERSONALITY_SIGNALS.find((s) => s.question === question)!.options[
-      answers[question]
-    ];
-    const pick = tied.find((p) => (named[p] ?? 0) > 0);
-    if (pick) return pick;
-  }
-  return tied[0];
 }
 
 type Ranked = { archetype: CompanionArchetype; score: number; tie: number };

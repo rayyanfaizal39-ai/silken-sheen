@@ -5,7 +5,11 @@ describe("Cosmic Companion journey routing", () => {
   it("labels the entrance from the existing saved status, most advanced state first", () => {
     const none = { selected: false, ready: false, pending: false };
     expect(journeyStage(none)).toBe("new");
+    expect(journeyStage({ ...none, unfinished: false })).toBe("new");
+    expect(journeyStage({ ...none, unfinished: true })).toBe("unfinished");
     expect(journeyStage({ ...none, pending: true })).toBe("waiting");
+    // Submitted answers are no longer "unfinished", whatever the draft still holds.
+    expect(journeyStage({ ...none, pending: true, unfinished: true })).toBe("waiting");
     expect(journeyStage({ ...none, pending: true, ready: true })).toBe("ready");
     // A permanent choice always wins, even if other flags are still set.
     expect(journeyStage({ selected: true, ready: true, pending: true })).toBe("selected");

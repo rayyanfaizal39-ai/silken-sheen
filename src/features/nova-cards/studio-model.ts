@@ -25,6 +25,8 @@ export type StudioState = {
   companions?: CompanionCandidateSpec[];
   /** The permanently chosen companion, once chosen. */
   companion?: CompanionCandidateSpec | null;
+  /** Short-lived signed URL of the chosen companion's approved artwork. */
+  companionArtworkUrl?: string;
 };
 export const AWAKENING_TITLE = "YOUR NOVA IS AWAKENING";
 export const AWAKENING_DESCRIPTION =

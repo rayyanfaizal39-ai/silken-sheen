@@ -1,5 +1,6 @@
 import type { NovaTraits } from "./model";
 import type { StudioState } from "./studio-model";
+import type { CompanionCandidateSpec } from "../../../supabase/functions/_shared/companion-matcher";
 
 /**
  * One companion offered at the reveal. Each candidate carries its own values so the two cards
@@ -20,8 +21,12 @@ export type CompanionCandidate = {
   qualities?: string[];
   abilities?: string[];
   description?: string;
+  /** The companion's own story (matched companions); profiles fall back to the description. */
+  story?: string;
   /** Why this companion matches the student. */
   reason?: string;
+  /** Answer-based reasons behind the match (matched companions only). */
+  reasons?: string[];
 };
 
 export const CANDIDATE_LABEL = { a: "Companion A", b: "Companion B" } as const;
@@ -52,6 +57,46 @@ export function candidatesFromStudio(
     abilities: [traits.ability],
     description: `A ${traits.behaviour.toLowerCase()} companion from ${traits.habitat.toLowerCase()}.`,
   }));
+}
+
+/**
+ * A companion stored by the server for this student (cc-matcher-v1). Every value comes from
+ * that candidate's own specification; artwork only from its own approved image.
+ */
+export function companionFromSpec(
+  spec: CompanionCandidateSpec,
+  artworkUrl?: string,
+  { chosen = false }: { chosen?: boolean } = {},
+): CompanionCandidate {
+  return {
+    id: spec.slot,
+    name: spec.name,
+    species: spec.species,
+    artworkUrl,
+    personality: spec.personality,
+    element: spec.element,
+    strengths: [...spec.strengths],
+    learningStyle: spec.learningStyle,
+    uniqueQuality: spec.tagline,
+    qualities: [...spec.traits],
+    abilities: [...spec.abilities],
+    description: spec.description,
+    story: spec.story,
+    reason: spec.match.headline,
+    // Once chosen, drop the reason that compares it with the other candidate by name.
+    reasons: spec.match.reasons
+      .filter((r) => !(chosen && r.basis === "difference"))
+      .map((r) => r.text),
+  };
+}
+
+/**
+ * The two companions a matched card offers at the reveal, each with its own artwork. Empty
+ * until the server says the reveal is ready (it sends no specifications before then).
+ */
+export function companionsFromState(state: StudioState): CompanionCandidate[] {
+  const art = new Map(state.candidates.map((c) => [c.candidate, c.url]));
+  return (state.companions ?? []).map((spec) => companionFromSpec(spec, art.get(spec.slot)));
 }
 
 /** True when both candidates come from one shared identity (today's real data). */

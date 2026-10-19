@@ -271,7 +271,7 @@ export function WaitingSanctuary({
           {ready ? (
             <button className="cca-continue" disabled={hatching} onClick={onReveal}>
               <Gift size={20} aria-hidden="true" />
-              <span>Open next-day reveal · Hatch egg</span>
+              <span>Open your reveal · Hatch egg</span>
               <ArrowRight size={20} aria-hidden="true" />
             </button>
           ) : (

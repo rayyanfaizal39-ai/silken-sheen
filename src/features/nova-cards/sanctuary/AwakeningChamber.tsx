@@ -2,6 +2,10 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { ArrowRight, ChevronDown, Sparkles } from "lucide-react";
 import { CompanionGarden } from "../../cosmic-companion/CompanionGarden";
 import { QUESTIONS, answerOptionIndex, type NovaTraits } from "../model";
+import {
+  PERSONALITY_SIGNALS,
+  type Personality,
+} from "../../../../supabase/functions/_shared/companion-profile";
 import { NovaEgg } from "./NovaEgg";
 import "./awakening-chamber.css";
 
@@ -38,14 +42,28 @@ type IdentityCard = {
   icon: ReactNode;
 };
 
+/** The answers (up to two) whose wording supports the personality shown. */
+function personalityEvidence(personality: string, answers: number[]) {
+  const supporting = PERSONALITY_SIGNALS.filter(
+    (s) => (s.options[answers[s.question]]?.[personality as Personality] ?? 0) > 0,
+  )
+    .slice(0, 2)
+    .map(
+      (s) =>
+        `“${QUESTIONS[s.question].options[answerOptionIndex(s.question, answers[s.question])]}”`,
+    );
+  return supporting.length
+    ? `Revealed by ${supporting.join(" and ")}.`
+    : "Revealed by your answers.";
+}
+
 function identityCards(traits: NovaTraits, answers: number[]): IdentityCard[] {
-  const firstChoice = QUESTIONS[0].options[answerOptionIndex(0, answers[0])];
   const swatch = COLOUR_SWATCHES[traits.colours];
   return [
     {
       label: "Personality",
       value: traits.personality,
-      caption: `Revealed by “${firstChoice}”.`,
+      caption: personalityEvidence(traits.personality, answers),
       tone: "#a78bfa",
       icon: (
         <>

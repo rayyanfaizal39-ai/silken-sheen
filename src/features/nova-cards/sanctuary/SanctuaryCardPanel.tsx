@@ -1,6 +1,6 @@
 import { CompanionGarden } from "../../cosmic-companion/CompanionGarden";
 import { NovaCard } from "../NovaCard";
-import { cardUrl, type NovaCard as Card } from "../model";
+import { cardUrl, type LegacyNovaCard as Card } from "../model";
 import { soundscape } from "./audio";
 import { academyHomeHref, cardsPaths } from "../paths";
 import "./awakening-chamber.css";

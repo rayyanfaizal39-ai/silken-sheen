@@ -71,7 +71,7 @@ export function NovaStudio() {
               <small>A permanent card, scannable identity, and privacy you control.</small>
             </span>
           </div>
-          {card && entitlement?.active && (
+          {card && entitlement && (
             <>
               <div className="nova-owner-panel">
                 <h2>Your card settings</h2>
@@ -149,7 +149,7 @@ export function NovaStudio() {
               {" · "}
               <a href={cardsPaths.demo}>Explore fictional demos</a>
             </div>
-          ) : !entitlement.active ? (
+          ) : !entitlement.active && !card ? (
             <NovaTeaser
               card={card}
               status={entitlement.status}
@@ -162,8 +162,18 @@ export function NovaStudio() {
                 }
               }}
             />
-          ) : card ? (
+          ) : card && (card.traits || card.companion) ? (
+            // An owned card stays viewable whatever the subscription status.
             <NovaCard card={card} url={cardUrl(card.publicId, origin)} />
+          ) : card ? (
+            <div className="nova-creation-panel">
+              <p className="nova-eyebrow">COSMIC COMPANION</p>
+              <h2>Your two companions are on their way</h2>
+              <p>
+                Your card appears here once you have met both companions and chosen one forever.
+              </p>
+              <a href={cardsPaths.studio}>Open your Cosmic Companion Studio ↗</a>
+            </div>
           ) : (
             <div className="nova-creation-panel">
               <p className="nova-eyebrow">NOVA STUDIO</p>

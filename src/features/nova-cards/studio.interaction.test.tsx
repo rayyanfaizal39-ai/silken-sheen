@@ -203,7 +203,7 @@ describe("Standalone Nova Studio journey", () => {
     expect(host.querySelector("h1")?.textContent).toBe(QUESTIONS[0].label);
     expect(host.textContent).toContain("another device");
   });
-  it("keeps submission disabled until generation has been explicitly enabled", async () => {
+  it("keeps submission disabled until submissions have been explicitly opened", async () => {
     const h = harness();
     h.set({
       enabled: false,
@@ -215,10 +215,10 @@ describe("Standalone Nova Studio journey", () => {
       b.textContent?.includes("Summon my companion"),
     )!;
     expect(submit.disabled).toBe(true);
-    expect(host.textContent).toContain("no paid request has been made");
+    expect(host.textContent).toContain("Cosmic Companion has not opened yet");
     expect(h.api.submit).not.toHaveBeenCalled();
   });
-  it("hides candidate images when a subscription expires before reveal", async () => {
+  it("keeps an owned companion viewable, without candidate images, after a subscription expires", async () => {
     const h = harness();
     h.set({
       active: false,
@@ -232,9 +232,34 @@ describe("Standalone Nova Studio journey", () => {
       },
     });
     const { host } = await h.mount();
-    expect(host.textContent).toContain("active Pro or Premium subscription");
+    expect(host.textContent).toContain("Saved collectible");
+    expect(host.textContent).not.toContain("learning plan is required");
     expect(host.querySelectorAll(".sanctuary-candidate-art>img:first-child")).toHaveLength(0);
     expect(h.api.choose).not.toHaveBeenCalled();
+  });
+  it("lets a submitted journey keep waiting after a subscription expires", async () => {
+    const h = harness();
+    h.set({
+      active: false,
+      draft: { answers: Array(12).fill(0), username: "Rayyan", revision: 1 },
+      origin: {
+        status: "running",
+        revealAfter: "2099-01-01T00:00:00Z",
+        ready: false,
+        errorCode: null,
+        completed: 0,
+      },
+    });
+    const { host } = await h.mount();
+    expect(host.querySelector("h1")?.textContent).toBe("Your Companion Is Almost Here");
+    expect(host.textContent).not.toContain("learning plan is required");
+  });
+  it("still requires an eligible plan to begin a new journey", async () => {
+    const h = harness();
+    h.set({ active: false, draft: { answers: [0, 1], username: "Rayyan", revision: 2 } });
+    const { host } = await h.mount();
+    expect(host.textContent).toContain("An eligible AcadeMY learning plan is required");
+    expect(host.querySelectorAll("[data-nova-answer]")).toHaveLength(0);
   });
 });
 describe("Studio access problems", () => {
@@ -281,8 +306,8 @@ describe("Studio access problems", () => {
       expect(host.textContent).not.toContain("Begin My Journey");
     });
 });
-describe("Studio while generation is disabled", () => {
-  it("saves the identity without promising artwork or allowing a summon", async () => {
+describe("Studio while submissions are closed", () => {
+  it("saves the identity without promising a reveal or allowing a summon", async () => {
     const h = harness();
     h.set({
       enabled: false,
@@ -290,7 +315,7 @@ describe("Studio while generation is disabled", () => {
     });
     const { host } = await h.mount();
     await click(host, "Continue my journey");
-    expect(host.textContent).toContain("Origin artwork creation has not launched yet");
+    expect(host.textContent).toContain("Companion matching has not opened yet");
     expect(host.textContent).not.toContain("Return tomorrow");
     const summon = [...host.querySelectorAll("button")].find((b) =>
       b.textContent?.includes("Summon my companion"),

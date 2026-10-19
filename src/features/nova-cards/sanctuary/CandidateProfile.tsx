@@ -24,10 +24,13 @@ export function CandidateProfile({
   companion,
   username,
   fictional,
+  collectionHref,
 }: {
   companion: CompanionCandidate;
   username: string;
   fictional: boolean;
+  /** Real cards: where the student manages sharing, the QR code and export. */
+  collectionHref?: string;
 }) {
   const name = candidateTitle(companion);
   const [viewing, setViewing] = useState(false);
@@ -144,6 +147,13 @@ export function CandidateProfile({
               {companion.reason ??
                 `The reasons you and ${name} were matched will appear here once companion matching is available.`}
             </p>
+            {companion.reasons && companion.reasons.length > 0 && (
+              <ul className="ccprof-reasons">
+                {companion.reasons.map((reason) => (
+                  <li key={reason}>{reason}</li>
+                ))}
+              </ul>
+            )}
           </section>
 
           <section
@@ -152,7 +162,11 @@ export function CandidateProfile({
             aria-labelledby="ccprof-story-title"
           >
             <h2 id="ccprof-story-title">The Story of {name}</h2>
-            <p>{companion.description ?? `${name}’s story hasn’t been written yet.`}</p>
+            <p>
+              {companion.story ??
+                companion.description ??
+                `${name}’s story hasn’t been written yet.`}
+            </p>
           </section>
 
           <div className="ccprof-actions ccprof-rise" style={rise(3)}>
@@ -160,6 +174,11 @@ export function CandidateProfile({
               <span>Continue learning</span>
               <span aria-hidden="true">↗</span>
             </a>
+            {collectionHref && (
+              <a className="ccprof-link" href={collectionHref}>
+                Collection, sharing &amp; QR ↗
+              </a>
+            )}
           </div>
         </div>
       </section>

@@ -86,6 +86,11 @@ async function finishArtwork(cardId: string, revealPassed = true) {
     [job, revealPassed],
   );
 }
+/** The chosen companion as delivered after the choice: without the reason naming the other. */
+const chosenView = (spec: CompanionMatch["candidates"][number]) => ({
+  ...spec,
+  match: { ...spec.match, reasons: spec.match.reasons.filter((r) => r.basis !== "difference") },
+});
 const tamper = (match: CompanionMatch, edit: (m: CompanionMatch) => void) => {
   const copy = structuredClone(match);
   edit(copy);
@@ -122,6 +127,7 @@ describe("Cosmic Companion candidates: secure persistence, reveal and selection"
       "20261018160100_nova_studio_batch.sql",
       "20261018160200_nova_creature_variety.sql",
       "20261019120000_cosmic_companion_candidates.sql",
+      "20261019130000_cosmic_companion_sharing.sql",
     ])
       await db.exec(
         readFileSync(new URL(`../../../supabase/migrations/${file}`, import.meta.url), "utf8"),
@@ -346,7 +352,10 @@ describe("Cosmic Companion candidates: secure persistence, reveal and selection"
     const chosen = await as("authenticated", STUDENT, "select public.select_nova_origin('b') as r");
     const after = chosen.rows[0].r as Row & { companion: Row; companions: unknown[] };
     expect(after.selected).toBe("b");
-    expect(after.companion).toEqual(matchCompanions(ANSWERS).candidates[1]);
+    expect(after.companion).toEqual(chosenView(matchCompanions(ANSWERS).candidates[1]));
+    expect(JSON.stringify(after.companion)).not.toContain(
+      matchCompanions(ANSWERS).candidates[0].name,
+    );
     expect(after.companions).toEqual([]);
     // Same choice again is idempotent; a different choice is rejected.
     await expect(
@@ -356,7 +365,7 @@ describe("Cosmic Companion candidates: secure persistence, reveal and selection"
       as("authenticated", STUDENT, "select public.select_nova_origin('a')"),
     ).rejects.toThrow(/already selected/);
     const returning = await studio(STUDENT);
-    expect(returning.companion).toEqual(matchCompanions(ANSWERS).candidates[1]);
+    expect(returning.companion).toEqual(chosenView(matchCompanions(ANSWERS).candidates[1]));
     expect(JSON.stringify(returning)).not.toContain(
       matchCompanions(ANSWERS).candidates[0].candidateId,
     );
@@ -392,6 +401,27 @@ describe("Cosmic Companion candidates: secure persistence, reveal and selection"
     });
     expect(JSON.stringify(card)).not.toMatch(/"reasons"|"inputFingerprint"|"answerIndexes"/);
     expect(JSON.stringify(card)).not.toContain(matchCompanions(ANSWERS).candidates[0].name);
+    // No answer-derived traits: nothing reveals the student's 12 answers.
+    expect(card.traits).toBeNull();
+    for (const answer of ["Discovering something new", "Try a new path", "Explore together"])
+      expect(JSON.stringify(card)).not.toContain(answer);
+  });
+
+  it("keeps a matched card private until a companion is chosen", async () => {
+    await as("authenticated", RACE, "select public.set_nova_sharing(true)");
+    const { rows } = await db.query<{ public_id: string }>(
+      "select public_id from public.nova_cards where owner_id=$1",
+      [RACE],
+    );
+    const shared = await as("anon", null, "select public.get_public_nova_card($1) as r", [
+      rows[0].public_id,
+    ]);
+    expect(shared.rows[0].r).toBeNull();
+    const own = (await as("authenticated", RACE, "select public.get_my_nova_card() as r")).rows[0]
+      .r as Row;
+    expect(own.traits).toBeNull();
+    expect(own.companion).toBeNull();
+    expect(own.artworkPath).toBeNull();
   });
 
   it("keeps a chosen companion viewable after the subscription expires", async () => {

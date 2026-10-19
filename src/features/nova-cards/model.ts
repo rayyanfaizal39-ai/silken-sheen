@@ -143,11 +143,27 @@ export function traitsFromAnswers(answers: number[]): NovaTraits {
   };
 }
 
+/** Public summary of a matched card's chosen companion (no answers, no match reasons). */
+export interface PublicCompanion {
+  archetypeId: string;
+  name: string;
+  species: string;
+  element: string;
+  personality: string;
+  tagline: string;
+  description: string;
+  traits: string[];
+  abilities: string[];
+}
+
 export interface NovaCard {
   publicId: string;
   serial: string;
   username: string;
-  traits: NovaTraits;
+  /** Answer-derived traits: legacy cards only. Matched cards never share their answers. */
+  traits: NovaTraits | null;
+  /** Matched cards: the chosen companion, once chosen. */
+  companion?: PublicCompanion | null;
   variant: "a" | "b";
   rarity: string;
   /** Fictional design previews may supply XP; Phase 1 saved cards never do. */
@@ -160,13 +176,58 @@ export interface NovaCard {
   artworkUrl?: string | null;
 }
 
+/** A card with answer-derived traits: legacy cards and the fictional demo cards. */
+export interface LegacyNovaCard extends NovaCard {
+  traits: NovaTraits;
+}
+
+/** What a card face shows: the chosen companion for matched cards, the saved traits for legacy. */
+export function cardFace(card: NovaCard) {
+  const c = card.companion;
+  if (c)
+    return {
+      eyebrow: `${c.element} · ${c.personality}`,
+      name: c.name,
+      species: c.species,
+      description: c.description,
+      details: [c.tagline, c.traits.join(" · "), c.abilities.join(" · ")],
+      alt: `${c.name} the ${c.species}`,
+      // Only used if approved artwork cannot load: a neutral drawing of the species.
+      fallbackTraits: { ...EMPTY_TRAITS, creature: c.species, element: c.element } as NovaTraits,
+    };
+  const t = card.traits ?? EMPTY_TRAITS;
+  return {
+    eyebrow: `${t.element} · ${t.personality}`,
+    name: "Nova",
+    species: t.creature,
+    description: `A ${t.behaviour.toLowerCase()} companion from ${t.habitat.toLowerCase()}. ${t.bond}.`,
+    details: [t.colours, t.eyes, t.ability],
+    alt: `${t.colours} ${t.creature}, ${t.eyes}`,
+    fallbackTraits: t,
+  };
+}
+const EMPTY_TRAITS: NovaTraits = {
+  personality: "",
+  creature: "",
+  element: "",
+  appearance: "",
+  colours: "",
+  ability: "",
+  habitat: "",
+  behaviour: "",
+  eyes: "",
+  marking: "",
+  approach: "",
+  bond: "",
+};
+
 export const cardPath = cardsPaths.publicCard;
 export const cardUrl = (id: string, origin: string) => new URL(cardPath(id), origin).href;
 export const validPublicId = (id: string) =>
   /^demo-(rayyan|mia)$/.test(id) ||
   /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(id);
 
-export const DEMO_CARDS: NovaCard[] = [
+export const DEMO_CARDS: LegacyNovaCard[] = [
   {
     publicId: "demo-rayyan",
     serial: "000000000001",

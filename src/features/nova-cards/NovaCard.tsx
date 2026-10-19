@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { companionSvg } from "./artwork";
 import { barcodeSvg, qrDataUrl, svgUrl } from "./codes";
-import { STAGES, type NovaCard as Card } from "./model";
+import { STAGES, cardFace, type NovaCard as Card } from "./model";
 import { downloadCard } from "./download";
 import { getCardForExport } from "./server";
 
@@ -21,7 +21,8 @@ export function NovaCard({
   const [notice, setNotice] = useState("");
   const [downloading, setDownloading] = useState(false);
   const stage = Math.max(1, Math.min(STAGES.length, card.stage ?? 1));
-  const artwork = card.artworkUrl || svgUrl(companionSvg(card.traits, card.variant, stage));
+  const face = cardFace(card);
+  const artwork = card.artworkUrl || svgUrl(companionSvg(face.fallbackTraits, card.variant, stage));
   useEffect(() => {
     let active = true;
     setQr("");
@@ -87,7 +88,7 @@ export function NovaCard({
               <img
                 className="nova-art"
                 src={artwork}
-                alt={`${card.traits.colours} ${card.traits.creature}, ${card.traits.eyes}, stage ${stage}`}
+                alt={`${face.alt}, stage ${stage}`}
                 width="600"
                 height="640"
               />
@@ -96,21 +97,16 @@ export function NovaCard({
               </span>
             </div>
             <div className="nova-card-content">
-              <p className="nova-eyebrow">
-                {card.traits.element} · {card.traits.personality}
-              </p>
+              <p className="nova-eyebrow">{face.eyebrow}</p>
               <h2>
                 {card.username}
-                <span>'s Nova</span>
+                <span>'s {face.name}</span>
               </h2>
               <div className="nova-species">
-                <span>{card.traits.creature}</span>
+                <span>{face.species}</span>
                 <b>{STAGES[stage - 1].name.toUpperCase()}</b>
               </div>
-              <p className="nova-description">
-                A {card.traits.behaviour.toLowerCase()} companion from{" "}
-                {card.traits.habitat.toLowerCase()}. {card.traits.bond}.
-              </p>
+              <p className="nova-description">{face.description}</p>
               <div className="nova-card-footer">
                 <span>✦ {STAGES[stage - 1].name}</span>
                 <span>{card.serial.slice(-8)}</span>
@@ -128,13 +124,15 @@ export function NovaCard({
               </span>
             </div>
             <p className="nova-eyebrow">PERMANENT COLLECTIBLE IDENTITY</p>
-            <h2>{card.username}'s Nova</h2>
+            <h2>
+              {card.username}'s {face.name}
+            </h2>
             <p className="nova-back-copy">
-              {card.traits.colours}
+              {face.details[0]}
               <br />
-              {card.traits.eyes}
+              {face.details[1]}
               <br />
-              {card.traits.ability}
+              {face.details[2]}
             </p>
             <div className="nova-qr-box">
               {qr ? (

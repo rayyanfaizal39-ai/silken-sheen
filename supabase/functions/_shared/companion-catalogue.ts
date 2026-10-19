@@ -6,14 +6,15 @@
 //   visual sheet) inside a published version. Add archetypes or publish a new catalogue
 //   version instead; stored candidate specifications keep the version they were matched with.
 import { NOVA_CREATURES } from "./nova-answers.ts";
+import { PERSONALITIES, type Personality } from "./companion-profile.ts";
 
-export const PERSONALITIES = ["Explorer", "Nurturer", "Strategist", "Guardian"] as const;
+export { PERSONALITIES, type Personality };
+
 export const ELEMENTS = ["Fire", "Water", "Starlight", "Wind"] as const;
 /** Body shapes, one per answer to "Choose a silhouette." */
 export const BUILDS = ["soft", "sleek", "sturdy", "graceful"] as const;
 
 export type Species = (typeof NOVA_CREATURES)[number];
-export type Personality = (typeof PERSONALITIES)[number];
 export type Element = (typeof ELEMENTS)[number];
 export type Build = (typeof BUILDS)[number];
 

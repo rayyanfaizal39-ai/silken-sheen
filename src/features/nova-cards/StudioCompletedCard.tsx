@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { DEMO_CARDS, type NovaCard as Card } from "./model";
+import { DEMO_CARDS, type LegacyNovaCard, type NovaCard as Card } from "./model";
 import { getMyCard } from "./server";
 import { SanctuaryCardPanel } from "./sanctuary/SanctuaryCardPanel";
 import { SOURCE_FOX_ARTWORK } from "./sanctuary/preview-artwork";
@@ -47,8 +47,9 @@ export default function StudioCompletedCard({
   }, [publicId, fictional, candidate, traits]);
   return (
     <div className="ns-completed-card">
-      {card ? (
-        <SanctuaryCardPanel card={card} origin={origin} />
+      {card?.traits ? (
+        // Legacy presentation only; matched cards show the My Cosmic Companion profile.
+        <SanctuaryCardPanel card={card as LegacyNovaCard} origin={origin} />
       ) : (
         <p role="status">{notice || "Preparing your collectible…"}</p>
       )}

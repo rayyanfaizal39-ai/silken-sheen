@@ -7,16 +7,18 @@
 export const JOURNEY_STAGES = ["new", "unfinished", "waiting", "ready", "selected"] as const;
 export type JourneyStage = (typeof JOURNEY_STAGES)[number];
 
-/** The existing `getNovaDashboardStatus` result. It carries no draft progress, so unfinished
- * discovery reads as "new" here; the Studio still resumes the saved answers. */
+/** The `getNovaDashboardStatus` result, most advanced state first. `unfinished` means answers
+ * are saved but not submitted; the Studio resumes them rather than restarting. */
 export function journeyStage(status: {
   selected: boolean;
   ready: boolean;
   pending: boolean;
+  unfinished?: boolean;
 }): JourneyStage {
   if (status.selected) return "selected";
   if (status.ready) return "ready";
   if (status.pending) return "waiting";
+  if (status.unfinished) return "unfinished";
   return "new";
 }
 

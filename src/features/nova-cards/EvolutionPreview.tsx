@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { companionPreviewSvg } from "./artwork";
 import { svgUrl } from "./codes";
-import { DEMO_CARDS, type NovaCard } from "./model";
+import { DEMO_CARDS, type LegacyNovaCard } from "./model";
 
 type PreviewView = "both" | "origin" | "awakened";
 const VIEWS: { id: PreviewView; label: string }[] = [
@@ -10,7 +10,7 @@ const VIEWS: { id: PreviewView; label: string }[] = [
   { id: "awakened", label: "Stage 2 — Awakened" },
 ];
 
-function CompanionComparison({ card }: { card: NovaCard }) {
+function CompanionComparison({ card }: { card: LegacyNovaCard }) {
   const [view, setView] = useState<PreviewView>("both");
   const phoenix = card.traits.creature === "Phoenix";
   return (

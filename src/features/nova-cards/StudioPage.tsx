@@ -20,7 +20,13 @@ import { ConfettiBurst } from "./sanctuary/ConfettiBurst";
 import { useSanctuaryPreferences } from "./sanctuary/useSanctuaryPreferences";
 import { soundscape } from "./sanctuary/audio";
 import { GuestNotice } from "./sanctuary/GuestNotice";
-import { candidatesFromStudio, type CompanionCandidate } from "./companion-candidates";
+import {
+  candidatesFromStudio,
+  companionFromSpec,
+  companionsFromState,
+  type CompanionCandidate,
+} from "./companion-candidates";
+import { profilePersonality } from "../../../supabase/functions/_shared/companion-profile";
 import { createGuestStudioApi } from "./guest-studio";
 import { academyHomeHref, cardsPaths, signInHref, upgradeHref } from "./paths";
 import { novaAccessCopy, novaAccessProblem, type NovaAccessProblem } from "./access";
@@ -42,10 +48,10 @@ const liveApi: StudioApi = {
 };
 
 export default function StudioPage() {
-  const [preview, setPreview] = useState<"rayyan" | "mia" | "guest" | null>();
+  const [preview, setPreview] = useState<"rayyan" | "mia" | "guest" | "connected" | null>();
   useEffect(() => {
     const p = new URLSearchParams(window.location.search).get("preview");
-    setPreview(p === "rayyan" || p === "mia" || p === "guest" ? p : null);
+    setPreview(p === "rayyan" || p === "mia" || p === "guest" || p === "connected" ? p : null);
   }, []);
   return (
     <Suspense
@@ -61,6 +67,8 @@ export default function StudioPage() {
         </main>
       ) : preview === "guest" ? (
         <GuestStudio />
+      ) : preview === "connected" ? (
+        <MockPreview profile="rayyan" connected />
       ) : preview ? (
         <MockPreview profile={preview} />
       ) : (
@@ -189,20 +197,49 @@ export function StudioExperience({
   const answers = state?.identity?.answers ?? state?.draft.answers ?? [];
   const traits =
     state?.identity?.traits ?? (answers.length === 12 ? traitsFromAnswers(answers) : null);
-  const selected = !!state?.selected && !!state.active;
-  const awakening = !!state?.origin && !state.selected && state.active;
+  // A submitted journey can always finish, and a chosen companion is always viewable: only a
+  // new journey needs an active entitlement (the server enforces all three).
+  const selected = !!state?.selected;
+  const awakening = !!state?.origin && !state.selected;
+  const matched = state?.kind === "cosmic-companion";
+  // New journeys show the same dominant personality the matcher uses; a legacy card keeps the
+  // personality saved in its permanent identity.
+  const identityTraits =
+    traits && state?.kind !== "legacy"
+      ? { ...traits, personality: profilePersonality(answers) ?? traits.personality }
+      : traits;
+  // The two companions on offer: each stored specification for a matched card (sent by the
+  // server only once the reveal is ready); the shared identity only for legacy cards.
+  const revealCompanions: CompanionCandidate[] =
+    fictional && previewCompanions
+      ? previewCompanions
+      : !state
+        ? []
+        : matched
+          ? companionsFromState(state)
+          : traits
+            ? candidatesFromStudio(traits, state.candidates)
+            : [];
   const quiz =
     !!state?.active && !state.identity && !state.origin && started && answers.length < 12;
   // The opening plays once the account has loaded, so no student finishes it into a dead end.
   const intro = !busy && !started && !!state && !state.origin && !state.selected;
   const chamber = !!state?.active && !selected && !awakening && !quiz && !!traits;
-  const waiting = awakening && !(state?.origin?.ready && hatch === "revealed" && traits);
+  const revealing =
+    awakening && !!state?.origin?.ready && hatch === "revealed" && revealCompanions.length === 2;
+  const waiting = awakening && !revealing;
   // In the fictional preview each candidate carries its own data, so the confirmed companion is
   // the very candidate the student chose. Real accounts load their saved card instead.
   const chosenPreview =
     fictional && state?.selected
       ? previewCompanions?.find((c) => c.id === state.selected)
       : undefined;
+  // A real matched card's chosen companion: only its own stored specification and artwork.
+  const chosenCompanion =
+    chosenPreview ??
+    (matched && state?.companion
+      ? companionFromSpec(state.companion, state.companionArtworkUrl, { chosen: true })
+      : undefined);
   useEffect(() => {
     root.current?.querySelector<HTMLHeadingElement>("h1")?.focus({ preventScroll: true });
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
@@ -215,7 +252,7 @@ export function StudioExperience({
     />
   );
   function reveal() {
-    if (!state?.origin?.ready || !state.active || hatch !== "sealed") return;
+    if (!state?.origin?.ready || hatch !== "sealed") return;
     setHatch("hatching");
     soundscape.playAwakeningChord();
     hatchTimer.current = setTimeout(
@@ -281,28 +318,29 @@ export function StudioExperience({
             <a href={`${cardsPaths.studio}?preview=rayyan`}>Meet Rayyan’s Phoenix ↗</a>
           </div>
         </section>
-      ) : !state.active ? (
+      ) : !state.active && !state.origin && !state.selected ? (
         <section className="sanctuary-content sanctuary-access">
           <NovaEgg />
           <h1 tabIndex={-1}>Your journey is safe.</h1>
           <p>
-            An active Pro or Premium subscription is required to submit, reveal or evolve your Nova.
-            Your saved answers and permanent identity are preserved.
+            An eligible AcadeMY learning plan is required to begin your companion journey. Your
+            saved answers are preserved.
           </p>
           <a className="sanctuary-primary" href={upgradeHref}>
             Explore Nova plans ↗
           </a>
         </section>
       ) : selected ? (
-        <div className={chosenPreview ? "ccprof-page" : "sanctuary-content sanctuary-owned"}>
+        <div className={chosenCompanion ? "ccprof-page" : "sanctuary-content sanctuary-owned"}>
           <p className="sanctuary-permanent-note">
             Your companion choice is permanent. Your Cosmic Card stays with you.
           </p>
-          {chosenPreview ? (
+          {chosenCompanion ? (
             <CandidateProfile
-              companion={chosenPreview}
+              companion={chosenCompanion}
               username={state.draft.username}
               fictional={fictional}
+              collectionHref={chosenPreview ? undefined : cardsPaths.home}
             />
           ) : (
             <Suspense fallback={<p role="status">Opening your collectible…</p>}>
@@ -315,16 +353,12 @@ export function StudioExperience({
             </Suspense>
           )}
         </div>
-      ) : awakening && state.origin?.ready && hatch === "revealed" && traits ? (
+      ) : revealing ? (
         <>
           <ConfettiBurst calm={preferences.reducedMotion} />
           <OriginReveal
             fictional={fictional}
-            companions={
-              fictional && previewCompanions
-                ? previewCompanions
-                : candidatesFromStudio(traits, state.candidates)
-            }
+            companions={revealCompanions}
             busy={busy}
             error={notice}
             onChoose={(candidate) =>
@@ -376,7 +410,7 @@ export function StudioExperience({
         </>
       ) : traits && guest ? (
         <AwakeningChamber
-          traits={traits}
+          traits={identityTraits!}
           answers={answers}
           calm={preferences.reducedMotion}
           intro="These traits came from your answers. Sign in to save them and begin your lifelong companion journey."
@@ -395,15 +429,15 @@ export function StudioExperience({
         />
       ) : traits ? (
         <AwakeningChamber
-          traits={traits}
+          traits={identityTraits!}
           answers={answers}
           calm={preferences.reducedMotion}
           intro={
             !confirming
               ? "These are the unique traits that make your connection with your companion special."
               : state.enabled
-                ? "Two unique Origin artworks will take shape from this exact identity. Return tomorrow, once both artworks are ready, to make your permanent choice."
-                : "Your identity is saved. Origin artwork creation has not launched yet, so no artwork will be made and nothing is charged until it opens."
+                ? "Your answers will be matched with two different companions. They can be revealed 24 hours after you summon them, once both of their portraits are ready, and then you make your permanent choice."
+                : "Your identity is saved. Companion matching has not opened yet, so nothing has been submitted."
           }
           nickname={
             !state.identity &&
@@ -449,8 +483,8 @@ export function StudioExperience({
             confirming &&
             !state.enabled && (
               <p className="sanctuary-status-box">
-                Generation is awaiting launch approval. Your answers are saved; no paid request has
-                been made.
+                Cosmic Companion has not opened yet. Your answers are saved, and you can summon your
+                companions as soon as it opens.
               </p>
             )
           }

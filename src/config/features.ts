@@ -26,6 +26,7 @@ export const FEATURES = [
   "quiz_history",
   "progress_sync",
   "xp_companion_progress",
+  "cosmic_companion",
   "ace_ai_support",
   "ai_tracker",
   "personalized_recommendations",
@@ -58,6 +59,9 @@ const STUDENT_LEARNING_CORE: readonly Feature[] = [
   "quiz_history",
   "progress_sync",
   "xp_companion_progress",
+  // The Cosmic Companion journey: a learning feature, the same for every learning plan.
+  // Paid AI personalisation will be a separate future feature, never part of this one.
+  "cosmic_companion",
   "ace_ai_support",
   "ai_tracker",
   "personalized_recommendations",
@@ -75,7 +79,6 @@ const PARENT_VISIBILITY: readonly Feature[] = [
   "parent_recommendations",
   "parent_analytics",
 ];
-
 
 /**
  * What Teacher adds on top of the student-learning core.

@@ -11,6 +11,7 @@ import {
 import type { StudioDraft, StudioState } from "./studio-model";
 import { validNovaAnswer } from "./model";
 import { NOVA_ACCESS_ERRORS } from "./access";
+import { resolveNovaEntitlement } from "./server";
 
 /** The verified account each request's client belongs to, so state can say whose it is. */
 const accountOf = new WeakMap<object, string>();
@@ -46,7 +47,23 @@ async function state(
       return { candidate: c.candidate, url: signed.signedUrl };
     }),
   );
-  return { ...raw, candidates, enabled: submissionsOpen(), account: accountOf.get(db) };
+  // The chosen companion's own approved artwork (selection always requires artwork).
+  let companionArtworkUrl: string | undefined;
+  if (raw.companion) {
+    const { data: card } = await db.rpc("get_my_nova_card");
+    const path = (card as { artworkPath?: string | null } | null)?.artworkPath;
+    if (path) {
+      const { data: signed } = await db.storage.from("nova-artwork").createSignedUrl(path, 60);
+      companionArtworkUrl = signed?.signedUrl;
+    }
+  }
+  return {
+    ...raw,
+    candidates,
+    companionArtworkUrl,
+    enabled: submissionsOpen(),
+    account: accountOf.get(db),
+  };
 }
 export const getStudioState = createServerFn({ method: "GET" }).handler(async () =>
   state(await owner()),
@@ -94,6 +111,10 @@ export const submitStudioOrigin = createServerFn({ method: "POST" }).handler(asy
     throw new Error("Cosmic Companion has not opened yet. Your answers are saved.");
   const current = await state(db);
   if (current.publicId) return current;
+  // Starting a journey needs the cosmic_companion feature (decided by the feature system);
+  // the database re-checks eligibility in the same transaction that stores the match.
+  if (!(await resolveNovaEntitlement(db, accountOf.get(db)!)).active)
+    throw new Error("An eligible learning plan is required to begin your companion journey.");
   let match;
   try {
     match = matchCompanions(current.draft.answers);
@@ -139,8 +160,11 @@ export const getNovaDashboardStatus = createServerFn({ method: "GET" }).handler(
   return {
     active: s.active,
     selected: !!s.selected,
-    ready: !!s.origin?.ready && s.active,
+    // A submitted journey can finish without an active subscription.
+    ready: !!s.origin?.ready,
     pending: !!s.origin && !s.selected,
     failed: s.origin?.status === "failed",
+    // Answers saved but not yet submitted: continue rather than restart.
+    unfinished: !s.publicId && s.draft.answers.length > 0,
   };
 });

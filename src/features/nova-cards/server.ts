@@ -4,6 +4,9 @@ import { z } from "zod";
 import { getSupabaseServerClient } from "@/lib/supabase.server";
 import { DEMO_CARDS, validPublicId, type NovaCard } from "./model";
 import { NOVA_ACCESS_ERRORS } from "./access";
+import { novaEntitlement, type NovaEntitlement, type SubscriptionRow } from "./entitlement";
+
+export type { NovaEntitlement };
 
 function client() {
   setResponseHeader("Cache-Control", "private, no-store, max-age=0");
@@ -12,13 +15,8 @@ function client() {
   return db;
 }
 
-export type NovaEntitlement = {
-  active: boolean;
-  status: "active" | "pending" | "expired" | "cancelled" | "free";
-};
-
 // Server verification is independent of any client-provided plan.
-async function resolveNovaEntitlement(
+export async function resolveNovaEntitlement(
   db: ReturnType<typeof client>,
   userId: string,
 ): Promise<NovaEntitlement> {
@@ -28,24 +26,8 @@ async function resolveNovaEntitlement(
     .eq("user_id", userId)
     .maybeSingle();
   if (error) throw new Error("We couldn't verify your subscription. Please try again.");
-  if (!data) return { active: false, status: "free" };
-  const active =
-    data.status === "active" &&
-    (data.plan === "pro" || data.plan === "premium") &&
-    typeof data.current_period_end === "string" &&
-    Date.parse(data.current_period_end) > Date.now();
-  return {
-    active,
-    status: active
-      ? "active"
-      : data.status === "pending"
-        ? "pending"
-        : data.status === "cancelled"
-          ? "cancelled"
-          : "expired",
-  };
+  return novaEntitlement(data as SubscriptionRow);
 }
-
 export const getNovaEntitlement = createServerFn({ method: "GET" }).handler(
   async (): Promise<NovaEntitlement> => {
     const db = client();

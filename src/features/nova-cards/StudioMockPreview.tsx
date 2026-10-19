@@ -7,6 +7,7 @@ import type { StudioState } from "./studio-model";
 import { SOURCE_FOX_ARTWORK } from "./sanctuary/preview-artwork";
 import { cardsPaths } from "./paths";
 import { FICTIONAL_CANDIDATES } from "./companion-candidates";
+import { CONNECTED_PREVIEW_COMPANIONS } from "./connected-preview-fixture";
 const SCENES = [
   "welcome",
   "quiz",
@@ -27,7 +28,18 @@ const SCENE_LABELS: Partial<Record<(typeof SCENES)[number], string>> = {
   failed: "Failed",
 };
 const HOUR = 3_600_000;
-export default function StudioMockPreview({ profile }: { profile: "rayyan" | "mia" }) {
+/**
+ * Fictional Studio scenes. `connected` drives the REAL account rendering path instead: matched
+ * cards (`kind: "cosmic-companion"`) whose two companions come from stored-format specifications
+ * (a generated fixture), not the hand-written preview companions.
+ */
+export default function StudioMockPreview({
+  profile,
+  connected = false,
+}: {
+  profile: "rayyan" | "mia";
+  connected?: boolean;
+}) {
   const [scene, setScene] = useState(() => {
     const value =
       typeof window === "undefined"
@@ -129,10 +141,29 @@ export default function StudioMockPreview({ profile }: { profile: "rayyan" | "mi
       },
     };
   }, [profile, scene]);
+  // Shape each state as the server does for a matched card: no companions before the reveal,
+  // both at the reveal, only the chosen one afterwards. No fictional SVG artwork: those drawings
+  // show the old shared identity, so companions appear as their mystery silhouettes.
+  const studioApi = useMemo<StudioApi>(() => {
+    if (!connected) return api;
+    const shape = (s: StudioState): StudioState => ({
+      ...s,
+      kind: s.origin ? "cosmic-companion" : null,
+      candidates: [],
+      companions: s.origin?.ready && !s.selected ? CONNECTED_PREVIEW_COMPANIONS : [],
+      companion: s.selected ? CONNECTED_PREVIEW_COMPANIONS[s.selected === "a" ? 0 : 1] : null,
+    });
+    return {
+      load: async () => shape(await api.load()),
+      save: api.save,
+      submit: async () => shape(await api.submit()),
+      choose: async (candidate) => shape(await api.choose(candidate)),
+    };
+  }, [api, connected]);
   return (
     <>
       <nav className="sanctuary-preview-toolbar" aria-label="Fictional preview scene">
-        <span>FICTIONAL PREVIEW</span>
+        <span>{connected ? "CONNECTED PREVIEW" : "FICTIONAL PREVIEW"}</span>
         {/* Lives in the reserved toolbar so it never covers the journey's buttons or cards. */}
         <small className="sanctuary-preview-disclosure">Nothing is saved · No AI charges</small>
         {SCENES.map((s) => (
@@ -154,10 +185,10 @@ export default function StudioMockPreview({ profile }: { profile: "rayyan" | "mi
         </a>
       </nav>
       <StudioExperience
-        key={`${profile}-${scene}`}
-        api={api}
+        key={`${profile}-${scene}-${connected}`}
+        api={studioApi}
         fictional
-        previewCompanions={FICTIONAL_CANDIDATES}
+        previewCompanions={connected ? undefined : FICTIONAL_CANDIDATES}
         startInDiscovery={scene === "quiz" || scene === "creatures"}
       />
     </>
