@@ -114,7 +114,8 @@ export default function StudioMockPreview({ profile }: { profile: "rayyan" | "mi
           },
           origin: {
             status: "running",
-            revealAfter: "2026-10-17T16:00:00Z",
+            // A day from now, so a freshly submitted preview shows the countdown, not an open window.
+            revealAfter: new Date(Date.now() + 24 * HOUR).toISOString(),
             ready: false,
             errorCode: null,
             completed: 0,
@@ -132,6 +133,8 @@ export default function StudioMockPreview({ profile }: { profile: "rayyan" | "mi
     <>
       <nav className="sanctuary-preview-toolbar" aria-label="Fictional preview scene">
         <span>FICTIONAL PREVIEW</span>
+        {/* Lives in the reserved toolbar so it never covers the journey's buttons or cards. */}
+        <small className="sanctuary-preview-disclosure">Nothing is saved · No AI charges</small>
         {SCENES.map((s) => (
           <button
             key={s}

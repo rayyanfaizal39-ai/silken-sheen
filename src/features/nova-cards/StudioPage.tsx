@@ -240,11 +240,6 @@ export function StudioExperience({
           }
         />
       )}
-      {fictional && (
-        <p className="sanctuary-fictional-note">
-          Fictional design preview · Nothing is saved · No AI charges
-        </p>
-      )}
       <div
         className="sanctuary-notice"
         role="status"

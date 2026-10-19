@@ -403,7 +403,7 @@ export const CinematicFlightWorld: React.FC<CinematicFlightWorldProps> = ({
               {getRealmTitle()}
             </span>
             <span className="font-label text-[10px] text-[#f6ca78] uppercase tracking-widest font-semibold">
-              AcadeMY Nova Awakening
+              AcadeMY Cosmic Companion
             </span>
           </div>
         </div>

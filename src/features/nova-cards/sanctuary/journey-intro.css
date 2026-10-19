@@ -417,6 +417,13 @@
     font-size: 11px;
   }
 
+  /* sanctuary.css offsets the retired opening's last child (its control cluster); that rule
+     also matches this column, so cancel the offset or the cards lose their left gutter. */
+  .nova-sanctuary .cci.sanctuary-opening > .cci-content {
+    top: auto;
+    right: auto;
+  }
+
   .cci-content {
     justify-content: flex-start;
     padding-top: 6px;
