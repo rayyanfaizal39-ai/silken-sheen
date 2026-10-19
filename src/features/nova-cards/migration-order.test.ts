@@ -9,19 +9,18 @@ describe("Cards migration order", () => {
     // Latest migration on origin/main (20261016120000_partner_referral_commissions.sql).
     // Production's applied history is unverified: confirm it before staging (release blocker).
     const latestProductionVersion = 20261016120000;
-    const cardsVersions = [20261018160000, 20261018160100, 20261018160200];
+    const cardsMigrations: Record<number, string> = {
+      20261018160000: "nova_companion_cards.sql",
+      20261018160100: "nova_studio_batch.sql",
+      20261018160200: "nova_creature_variety.sql",
+      20261019120000: "cosmic_companion_candidates.sql",
+    };
+    const cardsVersions = Object.keys(cardsMigrations).map(Number);
 
     expect(cardsVersions.every((version) => version > latestProductionVersion)).toBe(true);
     expect(cardsVersions).toEqual([...cardsVersions].sort((a, b) => a - b));
-    for (const version of cardsVersions) {
-      const suffix =
-        version === 20261018160000
-          ? "nova_companion_cards.sql"
-          : version === 20261018160100
-            ? "nova_studio_batch.sql"
-            : "nova_creature_variety.sql";
-      expect(existsSync(migration(`${version}_${suffix}`))).toBe(true);
-    }
+    for (const version of cardsVersions)
+      expect(existsSync(migration(`${version}_${cardsMigrations[version]}`))).toBe(true);
   });
 
   it("does not retain the three superseded unapplied filenames", () => {

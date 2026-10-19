@@ -2,6 +2,12 @@ import { createServerFn } from "@tanstack/react-start";
 import { setResponseHeader } from "@tanstack/start-server-core";
 import { z } from "zod";
 import { getSupabaseServerClient } from "@/lib/supabase.server";
+import { getSupabaseAdminClient } from "@/lib/billing.server";
+import {
+  CompanionMatchError,
+  matchCompanions,
+  verifyCandidateFingerprint,
+} from "../../../supabase/functions/_shared/companion-matcher";
 import type { StudioDraft, StudioState } from "./studio-model";
 import { validNovaAnswer } from "./model";
 import { NOVA_ACCESS_ERRORS } from "./access";
@@ -17,8 +23,11 @@ async function owner() {
   accountOf.set(db, data.user.id);
   return db;
 }
-const flags = () =>
-  process.env.NOVA_AI_ENABLED === "true" && process.env.NOVA_AI_BATCH_ENABLED === "true";
+/**
+ * Launch switch for Cosmic Companion submissions, independent of AI artwork generation (which
+ * stays governed by NOVA_AI_* and the database settings). Off unless explicitly enabled.
+ */
+const submissionsOpen = () => process.env.COSMIC_COMPANION_SUBMISSIONS_ENABLED === "true";
 async function state(
   db: NonNullable<ReturnType<typeof getSupabaseServerClient>>,
 ): Promise<StudioState> {
@@ -37,7 +46,7 @@ async function state(
       return { candidate: c.candidate, url: signed.signedUrl };
     }),
   );
-  return { ...raw, candidates, enabled: raw.enabled && flags(), account: accountOf.get(db) };
+  return { ...raw, candidates, enabled: submissionsOpen(), account: accountOf.get(db) };
 }
 export const getStudioState = createServerFn({ method: "GET" }).handler(async () =>
   state(await owner()),
@@ -73,12 +82,41 @@ export const saveStudioDraft = createServerFn({ method: "POST" })
       );
     return data as StudioDraft;
   });
+/**
+ * Submit the saved answers and store two matched companions. Takes no input: the browser never
+ * supplies answers, candidates or identities. The student is verified from their session, the
+ * shared matcher runs here on the answers saved in the database, and only the service-role
+ * function can store the result. Safe to repeat: an existing card is returned unchanged.
+ */
 export const submitStudioOrigin = createServerFn({ method: "POST" }).handler(async () => {
   const db = await owner();
-  if (!flags()) throw new Error("Nova generation is not enabled yet. Your answers are saved.");
-  const { error } = await db.rpc("submit_nova_origin");
+  if (!submissionsOpen())
+    throw new Error("Cosmic Companion has not opened yet. Your answers are saved.");
+  const current = await state(db);
+  if (current.publicId) return current;
+  let match;
+  try {
+    match = matchCompanions(current.draft.answers);
+  } catch (error) {
+    if (error instanceof CompanionMatchError)
+      throw new Error("Answer all twelve questions before summoning your companion.");
+    throw error;
+  }
+  if (!match.candidates.every(verifyCandidateFingerprint))
+    throw new Error("Your companions could not be prepared. Please try again.");
+  const { error } = await getSupabaseAdminClient().rpc("nova_submit_companions", {
+    student: accountOf.get(db),
+    questionnaire: current.draft.answers,
+    match,
+  });
   if (error)
-    throw new Error("Your Nova could not be queued. Check your active subscription and try again.");
+    throw new Error(
+      error.message.includes("another device")
+        ? "Your answers changed on another device. Refresh to continue."
+        : error.message.includes("nickname")
+          ? "Complete all twelve questions and choose a nickname."
+          : "Your companions could not be prepared. Check your active subscription and try again.",
+    );
   return state(db);
 });
 export const chooseStudioOrigin = createServerFn({ method: "POST" })

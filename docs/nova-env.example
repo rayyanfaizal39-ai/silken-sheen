@@ -1,5 +1,7 @@
 # Server only. Copy into approved server secret configuration, never VITE_*.
 # Existing Supabase URL/anon/session settings are reused by the app.
+# Cosmic Companion submissions (matching only; no AI). Leave unset until launch approval.
+# COSMIC_COMPANION_SUBMISSIONS_ENABLED=true
 NOVA_AI_ENABLED=false
 NOVA_AI_BATCH_ENABLED=false
 

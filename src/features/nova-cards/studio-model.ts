@@ -1,7 +1,9 @@
 import type { NovaTraits } from "./model";
+import type { CompanionCandidateSpec } from "../../../supabase/functions/_shared/companion-matcher";
 export type StudioDraft = { answers: number[]; username: string; revision: number };
 export type StudioState = {
   active: boolean;
+  /** Whether submissions are open. Independent of AI artwork generation. */
   enabled: boolean;
   draft: StudioDraft;
   publicId: string | null;
@@ -17,6 +19,12 @@ export type StudioState = {
   candidates: { candidate: "a" | "b"; url: string }[];
   /** The signed-in account this state belongs to; a change means another student signed in. */
   account?: string;
+  /** "cosmic-companion" for matched cards, "legacy" for older single-identity cards. */
+  kind?: "cosmic-companion" | "legacy" | null;
+  /** Both matched companions: only at the reveal, before the permanent choice. */
+  companions?: CompanionCandidateSpec[];
+  /** The permanently chosen companion, once chosen. */
+  companion?: CompanionCandidateSpec | null;
 };
 export const AWAKENING_TITLE = "YOUR NOVA IS AWAKENING";
 export const AWAKENING_DESCRIPTION =
