@@ -109,6 +109,16 @@ before launch; additionally set an OpenAI project billing limit. If a logged
 estimate exceeds its reservation, database generation is automatically disabled.
 Increasing quality, size or changing model families requires code/schema review.
 
+Before the review-only Phase 4C migration, the schema allowed at most four active
+batches with two requests each: an **eight-request in-flight ceiling**. The seeded
+configuration is lower (two active batches × two requests = four requests). Phase
+4C makes those limits configurable and tests larger values, but does not change
+the stored defaults or activate processing. At the current $5 reservation per
+attempt, one two-candidate journey reserves at least $10 even when actual usage is
+lower; the old eight-request ceiling could reserve $40. This deliberate
+over-reservation is the present pilot-planning issue, not a claim about provider
+price, and must be recalibrated from measured staging usage before a paid test.
+
 Service-only monitoring queries:
 
 ```sql
@@ -155,33 +165,39 @@ session; never expose service-role credentials in a browser or admin UI.
    Before staging, list the applied versions (read-only) and confirm none is
    later than `20261018160000`; if one is, re-version the Cards migrations and
    update `src/features/nova-cards/migration-order.test.ts`.
-1. Review all three unapplied migrations against the existing subscription and profiles schema.
+1. **Release blocker — entitlement parity.** The TypeScript `cosmic_companion`
+   feature check and SQL `nova_subscription_active` plan-name check still disagree
+   for stored values such as `paid` and `explorer`. Keep submissions and generation
+   disabled until real stored plan values are inspected read-only, one entitlement
+   authority is approved, and parity tests cover it. The full mismatch is recorded
+   in `docs/cosmic-companion-phase3.md`; Phase 4 does not silently change it.
+2. Review all three unapplied migrations against the existing subscription and profiles schema.
    Apply only to a disposable/staging database first. Run RLS tests and Supabase
    security/performance advisors there. Local PGlite tests do not replace a real
    Storage, Auth, cron and Edge runtime integration test.
-2. Configure server-only `SUPABASE_URL`, anon key/session settings for the app.
+3. Configure server-only `SUPABASE_URL`, anon key/session settings for the app.
    App server flags `NOVA_AI_ENABLED=false`, `NOVA_AI_BATCH_ENABLED=false` initially.
-3. Deploy `nova-batch-worker` to staging only after approval. Configure
+4. Deploy `nova-batch-worker` to staging only after approval. Configure
    `SUPABASE_SERVICE_ROLE_KEY`, `OPENAI_API_KEY`, dedicated random
    `NOVA_WORKER_SECRET` (minimum 32 characters), and the two flags initially false.
    Never use `VITE_` prefixes for these secrets. The handler accepts POST only
    with the scheduler secret; a student JWT alone is insufficient.
-4. Review `supabase/nova-scheduler.review.sql`, store matching Vault secrets and
+5. Review `supabase/nova-scheduler.review.sql`, store matching Vault secrets and
    install its ten-minute schedule in staging after approval. Overlapping ticks
    are protected by database claims and collection leases. No schedule is created
    by these migrations. Inspect local worker logs without logging secrets/prompts.
-5. Set an approved small cap, retain $5+ per-attempt reservation, then enable
+6. Set an approved small cap, retain $5+ per-attempt reservation, then enable
    database and server flags **only after explicit paid-test approval**. Run the
    fictional Phoenix/Fox profiles through the actual provider in staging, inspect
    both artworks for identity, quality, safety and distinctness, test edits with
    approved image references and inspect billed usage. Tune art direction only
    after that evidence. No live provider output is part of this implementation.
-6. Exercise cross-device drafts, expired subscriptions, cancellation/reactivation,
+7. Exercise cross-device drafts, expired subscriptions, cancellation/reactivation,
    midnight boundary, partial expiration, server restart after provider acceptance,
    collection crash, budget exhaustion, choice race and public/private signed URLs.
    Check dashboard bundle boundaries, real mobile/desktop layout, keyboard focus,
    screen reader status and reduced motion in a browser.
-7. Review readiness with the user before any production migration, deployment,
+8. Review readiness with the user before any production migration, deployment,
    cron activation, merge or charge. Keep PR #68 unmerged. Roll back by disabling
    server and database flags and unscheduling cron; preserve existing identities,
    approved artwork, usage records and outstanding provider batch IDs.
@@ -210,8 +226,12 @@ errors (`string | undefined` passed to a string parameter). Actual browser visua
 verification and live Supabase advisors/runtime validation must be reported
 separately from the mocked and local SQL checks; they are not implied by passing CI.
 
-Local result for this change: **60 focused tests passed across 10 files**, including
-24 PostgreSQL/RLS tests and both complete fictional UI journeys in JSDOM.
+Local result for Phases 4B–4D: **290 focused tests passed across 28 files**, including
+the PostgreSQL/RLS suites and 13 full mock-pipeline journey/recovery scenarios in
+JSDOM. The Phase 4D scenarios cover approval, rejection, delayed and partial
+generation, budget exhaustion, duplicate submissions and images, worker
+interruption, subscription expiry, premature reveal, permanent choice and private
+unchosen artwork.
 The Edge Function TypeScript check, scoped ESLint and full production build
 (including Cloudflare Pages artifact packaging) pass. Broad TypeScript still
 reports only the two pre-existing science test errors described above. The

@@ -80,14 +80,31 @@ export async function addAccount(
 /** Turn generation on for a test (the defaults keep everything off and the caps at $0). */
 export async function enableGeneration(
   db: PGlite,
-  {
-    companion = true,
-    monthly = 100_000_000,
-    daily = 100_000_000,
-    reserve = 5_000_000,
-    perBatch = 2,
+  options: {
+    companion?: boolean;
+    monthly?: number;
+    daily?: number;
+    reserve?: number;
+    perBatch?: number;
   } = {},
 ) {
+  // Several integration scenarios may share one migrated database. Keep the default test cap
+  // above reservations already recorded by earlier scenarios; explicit caps remain exact so
+  // budget-exhaustion tests still exercise the production guardrails.
+  const { rows } = await db.query<{ monthly: number; daily: number }>(
+    `select
+       coalesce(sum(reserved_microusd),0)::bigint::int as monthly,
+       coalesce(sum(reserved_microusd) filter (
+         where created_at::date=(now() at time zone 'Asia/Kuala_Lumpur')::date
+       ),0)::bigint::int as daily
+     from public.nova_batch_requests
+     where budget_month=date_trunc('month',now() at time zone 'Asia/Kuala_Lumpur')::date`,
+  );
+  const companion = options.companion ?? true;
+  const monthly = options.monthly ?? Number(rows[0].monthly) + 100_000_000;
+  const daily = options.daily ?? Number(rows[0].daily) + 100_000_000;
+  const reserve = options.reserve ?? 5_000_000;
+  const perBatch = options.perBatch ?? 2;
   await db.query(
     `update public.nova_generation_settings set enabled=true,batch_enabled=true,companion_enabled=$1,
        monthly_cap_microusd=$2,daily_cap_microusd=$3,reserve_microusd=$4,max_batch_requests=$5,
@@ -204,13 +221,16 @@ export async function companionPng(seed: string, { opaque = false, rgb = false }
   const h = fnv1a32(seed);
   const hue = h % 360;
   const cx = 300 + (h % 420);
-  const cy = 500 + ((h >> 8) % 520);
-  const rx = 180 + ((h >> 4) % 140);
-  const ry = 260 + ((h >> 12) % 180);
+  // Unsigned shifts are intentional: request IDs regularly hash above 2^31. A signed shift
+  // would turn those values negative and could make the mock ellipse invalid or too small,
+  // causing a nominal "art" outcome to fail the real subject-area validator.
+  const cy = 500 + ((h >>> 8) % 520);
+  const rx = 180 + ((h >>> 4) % 140);
+  const ry = 260 + ((h >>> 12) % 180);
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1536">
     <ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}" fill="hsl(${hue},70%,55%)"/>
     <circle cx="${cx - rx / 2}" cy="${cy - ry / 2}" r="${60 + (h % 50)}" fill="hsl(${(hue + 120) % 360},80%,35%)"/>
-    <rect x="${cx + 40}" y="${cy + 30}" width="${90 + ((h >> 3) % 120)}" height="${70 + ((h >> 6) % 90)}" fill="hsl(${(hue + 240) % 360},60%,80%)"/>
+    <rect x="${cx + 40}" y="${cy + 30}" width="${90 + ((h >>> 3) % 120)}" height="${70 + ((h >>> 6) % 90)}" fill="hsl(${(hue + 240) % 360},60%,80%)"/>
   </svg>`;
   const base = sharp({
     create: {
