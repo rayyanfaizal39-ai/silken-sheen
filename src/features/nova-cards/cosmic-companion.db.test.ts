@@ -144,6 +144,7 @@ describe("Cosmic Companion candidates: secure persistence, reveal and selection"
       "20261019120000_cosmic_companion_candidates.sql",
       "20261019130000_cosmic_companion_sharing.sql",
       "20261020120000_cosmic_companion_artwork.sql",
+      "20261020130000_cosmic_companion_entitlement_parity.sql",
     ])
       await db.exec(
         readFileSync(new URL(`../../../supabase/migrations/${file}`, import.meta.url), "utf8"),
@@ -282,17 +283,15 @@ describe("Cosmic Companion candidates: secure persistence, reveal and selection"
     expect(after.rows).toEqual(before.rows);
   });
 
-  it("serialises concurrent submissions so only one card can exist per student", async () => {
+  it("serialises a local burst of 20 submissions so only one card can exist per student", async () => {
     await saveDraft(RACE, ANSWERS);
     const match = matchCompanions(ANSWERS);
-    const results = await Promise.allSettled([
-      submit(RACE, ANSWERS, match),
-      submit(RACE, ANSWERS, match),
-      submit(RACE, ANSWERS, match),
-    ]);
+    const results = await Promise.allSettled(
+      Array.from({ length: 20 }, () => submit(RACE, ANSWERS, match)),
+    );
     const statuses = results.map((r) => (r.status === "fulfilled" ? r.value.status : "error"));
     expect(statuses.filter((s) => s === "created")).toHaveLength(1);
-    expect(statuses.filter((s) => s === "existing")).toHaveLength(2);
+    expect(statuses.filter((s) => s === "existing")).toHaveLength(19);
     const cards = await db.query<{ n: number }>(
       "select count(*)::int as n from public.nova_cards where owner_id=$1",
       [RACE],

@@ -19,19 +19,32 @@
 import { PLAN_FEATURES, type Feature, type Plan } from "@/config/features";
 
 /**
+ * Persisted billing/profile values mapped into the canonical feature-plan vocabulary.
+ * The review-only database entitlement migration carries the same map and a parity test
+ * prevents either side from changing independently.
+ */
+export const STORED_PLAN_ALIASES = {
+  basic: "basic",
+  explorer: "explorer",
+  captain: "captain",
+  teacher: "teacher",
+  school: "school",
+  enterprise: "enterprise",
+  free: "basic",
+  paid: "captain",
+  pro: "explorer",
+  premium: "captain",
+} as const satisfies Readonly<Record<string, Plan>>;
+
+/**
  * Translates billing values into the feature-plan vocabulary. Active
  * subscriptions use pro/premium; profiles.plan still supplies free/paid for
  * legacy accounts. Keep this mapping here so call sites never branch on plan
  * names.
  */
 export function resolveStoredPlan(storedPlan: string | null | undefined): Plan {
-  if (storedPlan === "pro") return "explorer";
-  if (storedPlan === "premium") return "captain";
-  if (storedPlan === "paid") return "captain";
-  if (storedPlan && Object.prototype.hasOwnProperty.call(PLAN_FEATURES, storedPlan)) {
-    return storedPlan as Plan;
-  }
-  return "basic";
+  if (!storedPlan) return "basic";
+  return STORED_PLAN_ALIASES[storedPlan as keyof typeof STORED_PLAN_ALIASES] ?? "basic";
 }
 
 /**
@@ -58,12 +71,18 @@ export function getFeaturesForPlan(userPlan: Plan | null | undefined): readonly 
 }
 
 /** True when `userPlan` unlocks every feature in `features`. */
-export function hasAllFeatures(userPlan: Plan | null | undefined, features: readonly Feature[]): boolean {
+export function hasAllFeatures(
+  userPlan: Plan | null | undefined,
+  features: readonly Feature[],
+): boolean {
   return features.every((f) => hasFeature(userPlan, f));
 }
 
 /** True when `userPlan` unlocks at least one feature in `features`. */
-export function hasAnyFeature(userPlan: Plan | null | undefined, features: readonly Feature[]): boolean {
+export function hasAnyFeature(
+  userPlan: Plan | null | undefined,
+  features: readonly Feature[],
+): boolean {
   return features.some((f) => hasFeature(userPlan, f));
 }
 

@@ -569,31 +569,29 @@ describe("recovery (mock provider)", () => {
     expect((await studioState(student)).origin?.ready).toBe(false);
   });
 
-  it("an expired subscription pauses generation; a finished reveal can still be chosen", async () => {
-    const paused = await newStudent();
-    await submit(paused);
-    await isolate(paused);
-    await db.query("update public.subscriptions set status='expired' where user_id=$1", [paused]);
+  it("an accepted journey finishes after expiry while a new journey stays blocked", async () => {
+    const accepted = await newStudent();
+    await submit(accepted);
+    await isolate(accepted);
+    await db.query("update public.subscriptions set status='expired' where user_id=$1", [accepted]);
     await enableGeneration(db);
     const worker = store();
     const provider = new MockArtProvider(bySlot("art"));
     await tick(worker, provider);
-    expect(provider.submitted).toHaveLength(0);
-
-    const ready = await newStudent();
-    await submit(ready);
-    await isolate(ready);
+    expect(provider.submitted).toHaveLength(1);
     await tick(worker, provider);
-    await tick(worker, provider);
-    await reviewAll(ready);
-    await passReveal(ready);
-    await db.query("update public.subscriptions set status='expired' where user_id=$1", [ready]);
-    const host = await mount(studentApi(ready));
+    await reviewAll(accepted);
+    await passReveal(accepted);
+    const host = await mount(studentApi(accepted));
     await hatch(host);
     await click(host, "Choose Companion A");
     await click(host, "Confirm My Companion");
     await click(host.querySelector("dialog")!, "Confirm my companion");
-    expect((await studioState(ready)).selected).toBe("a");
+    expect((await studioState(accepted)).selected).toBe("a");
+
+    const blocked = await newStudent();
+    await db.query("update public.subscriptions set status='expired' where user_id=$1", [blocked]);
+    await expect(submit(blocked)).rejects.toThrow(/active Pro or Premium subscription/);
   });
 
   it("an interrupted submission is quarantined for reconciliation, never resent", async () => {

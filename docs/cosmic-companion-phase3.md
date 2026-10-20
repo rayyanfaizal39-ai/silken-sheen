@@ -36,6 +36,12 @@ in the Studio, on the dashboard and on the collection page. The database enforce
 
 ## Entitlement status
 
+> Phase 4E update (2026-10-20): the mismatch described below is historical context. Read-only
+> production inspection confirmed the stored values, and review-only migration
+> `20261020130000_cosmic_companion_entitlement_parity.sql` now supplies a private, CI-checked
+> feature matrix and alias map. It remains unapplied. See
+> `docs/cosmic-companion-phase4e-staging-readiness.md` for the current blockers.
+
 > **MANDATORY RELEASE BLOCKER: entitlement is not production-ready.** The TypeScript feature
 > check (`cosmic_companion`) and the SQL plan-name check (`nova_subscription_active`) disagree
 > for some stored plan values (below). Cosmic Companion must not be enabled for any student

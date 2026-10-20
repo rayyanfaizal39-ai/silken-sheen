@@ -21,6 +21,7 @@ export const NOVA_MIGRATIONS = [
   "20261019120000_cosmic_companion_candidates.sql",
   "20261019130000_cosmic_companion_sharing.sql",
   "20261020120000_cosmic_companion_artwork.sql",
+  "20261020130000_cosmic_companion_entitlement_parity.sql",
 ];
 export const TEST_DNA_SECRET = "test-dna-secret-0123456789abcdef0123456789";
 type Row = Record<string, unknown>;

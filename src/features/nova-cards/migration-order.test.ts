@@ -6,8 +6,8 @@ const migration = (name: string) =>
 
 describe("Cards migration order", () => {
   it("keeps every unapplied Cards migration after the latest production migration", () => {
-    // Latest migration on origin/main (20261016120000_partner_referral_commissions.sql).
-    // Production's applied history is unverified: confirm it before staging (release blocker).
+    // Latest production migration observed read-only on 2026-10-20. Its file is absent from this
+    // feature branch, so the staging baseline still needs reconciliation before any application.
     const latestProductionVersion = 20261016120000;
     const cardsMigrations: Record<number, string> = {
       20261018160000: "nova_companion_cards.sql",
@@ -16,6 +16,7 @@ describe("Cards migration order", () => {
       20261019120000: "cosmic_companion_candidates.sql",
       20261019130000: "cosmic_companion_sharing.sql",
       20261020120000: "cosmic_companion_artwork.sql",
+      20261020130000: "cosmic_companion_entitlement_parity.sql",
     };
     const cardsVersions = Object.keys(cardsMigrations).map(Number);
 

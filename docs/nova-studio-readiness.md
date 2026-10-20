@@ -52,8 +52,9 @@ model and endpoint. Single claims, unique attempts and durable provider IDs
 prevent double-click/refresh/restart from submitting additional paid work.
 
 Origin release requires **both** distinct SHA-256 digests, complete validated
-1024×1536 PNGs, an active subscription, and midnight on the following calendar
-day in Asia/Kuala_Lumpur. Finishing early does not reveal early. Batch may take
+1024×1536 PNGs, human approval, and midnight on the following calendar day in
+Asia/Kuala_Lumpur. Only submission requires active entitlement; an accepted journey can finish
+after expiry. Finishing early does not reveal early. Batch may take
 24 hours; pending UI makes no promise about tomorrow morning. PNG validation
 checks chunks, CRC, dimensions, colour format and complete bounded zlib data.
 This validates file integrity, **not** semantic art quality or identity fidelity.
@@ -113,11 +114,12 @@ Before the review-only Phase 4C migration, the schema allowed at most four activ
 batches with two requests each: an **eight-request in-flight ceiling**. The seeded
 configuration is lower (two active batches × two requests = four requests). Phase
 4C makes those limits configurable and tests larger values, but does not change
-the stored defaults or activate processing. At the current $5 reservation per
-attempt, one two-candidate journey reserves at least $10 even when actual usage is
-lower; the old eight-request ceiling could reserve $40. This deliberate
-over-reservation is the present pilot-planning issue, not a claim about provider
-price, and must be recalibrated from measured staging usage before a paid test.
+the stored defaults or activate processing. At the current $5 reservation per attempt, one
+two-candidate journey reserves $10 for its first attempts and at most $20 if both candidates use
+their single approved retry. The old eight-request schema ceiling could reserve $40 across
+multiple work, but it is not the proposed one-journey pilot configuration. This deliberate
+over-reservation is not a claim about provider price and must be recalibrated from measured
+staging usage before a paid test.
 
 Service-only monitoring queries:
 
@@ -158,20 +160,15 @@ session; never expose service-role credentials in a browser or admin UI.
 
 ## Staging and production approval checklist
 
-0. **Release blocker — migration order.** The Cards migrations are versioned
-   `20261018160000`, `20261018160100` and `20261018160200` so they sort after
-   `20261016120000_partner_referral_commissions.sql`, the latest migration on
-   `origin/main`. Production's applied migration history has not been confirmed.
-   Before staging, list the applied versions (read-only) and confirm none is
-   later than `20261018160000`; if one is, re-version the Cards migrations and
-   update `src/features/nova-cards/migration-order.test.ts`.
-1. **Release blocker — entitlement parity.** The TypeScript `cosmic_companion`
-   feature check and SQL `nova_subscription_active` plan-name check still disagree
-   for stored values such as `paid` and `explorer`. Keep submissions and generation
-   disabled until real stored plan values are inspected read-only, one entitlement
-   authority is approved, and parity tests cover it. The full mismatch is recorded
-   in `docs/cosmic-companion-phase3.md`; Phase 4 does not silently change it.
-2. Review all three unapplied migrations against the existing subscription and profiles schema.
+0. **Release blocker — migration history.** Read-only inspection found production at
+   `20261016120000_partner_referral_commissions`, which is absent from this feature branch, while
+   production lacks local `20261010010000_sync_form3_math_quiz_sets` and the seven Nova/Cosmic
+   migrations. Reconcile the baseline before any staging application; see the Phase 4E report.
+1. **Entitlement parity is fixed locally, not applied.** Review-only migration
+   `20261020130000_cosmic_companion_entitlement_parity.sql` uses the feature matrix and a tested
+   alias map. Production evidence confirms profiles use `free`/`paid`, subscriptions use
+   `pro`/`premium`, and no hosted entitlement table exists.
+2. Review all seven unapplied Nova/Cosmic migrations against the existing subscription and profiles schema.
    Apply only to a disposable/staging database first. Run RLS tests and Supabase
    security/performance advisors there. Local PGlite tests do not replace a real
    Storage, Auth, cron and Edge runtime integration test.
@@ -232,6 +229,8 @@ JSDOM. The Phase 4D scenarios cover approval, rejection, delayed and partial
 generation, budget exhaustion, duplicate submissions and images, worker
 interruption, subscription expiry, premature reveal, permanent choice and private
 unchosen artwork.
+Phase 4E adds entitlement-matrix parity, expiry-through-worker and a 20-request local burst;
+the current focused result is **295 tests passed across 29 files**.
 The Edge Function TypeScript check, scoped ESLint and full production build
 (including Cloudflare Pages artifact packaging) pass. Broad TypeScript still
 reports only the two pre-existing science test errors described above. The
@@ -239,6 +238,10 @@ previous Nova DB query typing error was corrected without changing its behavior.
 
 Desktop/mobile CSS and reduced-motion behavior are implemented; actual browser
 visual verification was not performed because local-page automation was refused
-by the browser URL policy earlier in this task. No bypass was attempted. Real
-Supabase advisors, Edge/Storage/cron integration and paid provider quality/usage
-validation remain staging gates. **Ready for code review; not activated for production.**
+by the browser URL policy earlier in this task. No bypass was attempted. Read-only production
+and partner-staging advisors were inspected in Phase 4E. Advisors on the actual migrated Cosmic
+staging target, plus Edge/Storage/cron integration and paid provider quality/usage validation,
+remain staging gates. **Ready for code review; not activated for production.**
+
+Phase 4E findings, exact hosted evidence and pilot authorisation steps are in
+`docs/cosmic-companion-phase4e-staging-readiness.md`.
