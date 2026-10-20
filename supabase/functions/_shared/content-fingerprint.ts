@@ -40,9 +40,36 @@ const K = new Uint32Array([
 ]);
 const rotr = (x: number, n: number) => (x >>> n) | (x << (32 - n));
 
+const toHex = (bytes: Uint8Array) =>
+  Array.from(bytes, (b) => b.toString(16).padStart(2, "0")).join("");
+
 /** SHA-256 of the UTF-8 encoding of `text`, as lowercase hex. */
 export function sha256Hex(text: string): string {
-  const bytes = new TextEncoder().encode(text);
+  return toHex(sha256Bytes(new TextEncoder().encode(text)));
+}
+
+/**
+ * HMAC-SHA256 (RFC 2104) of `message` under `key`, both UTF-8, as lowercase hex. Used for
+ * secret, unpredictable but reproducible variation.
+ */
+export function hmacSha256Hex(key: string, message: string): string {
+  let k: Uint8Array = new TextEncoder().encode(key);
+  if (k.length > 64) k = sha256Bytes(k);
+  const block = new Uint8Array(64);
+  block.set(k);
+  const pad = (byte: number) => block.map((b) => b ^ byte);
+  const msg = new TextEncoder().encode(message);
+  const inner = new Uint8Array(64 + msg.length);
+  inner.set(pad(0x36));
+  inner.set(msg, 64);
+  const outer = new Uint8Array(64 + 32);
+  outer.set(pad(0x5c));
+  outer.set(sha256Bytes(inner), 64);
+  return toHex(sha256Bytes(outer));
+}
+
+/** SHA-256 of raw bytes. */
+export function sha256Bytes(bytes: Uint8Array): Uint8Array {
   const length = bytes.length;
   const padded = new Uint8Array((((length + 9 + 63) / 64) | 0) * 64);
   padded.set(bytes);
@@ -84,7 +111,10 @@ export function sha256Hex(text: string): string {
     hash[6] += g;
     hash[7] += h;
   }
-  return Array.from(hash, (x) => x.toString(16).padStart(8, "0")).join("");
+  const out = new Uint8Array(32);
+  const view32 = new DataView(out.buffer);
+  hash.forEach((word, i) => view32.setUint32(i * 4, word));
+  return out;
 }
 
 /** Small stable 32-bit FNV-1a hash, used only to break exact scoring ties. */
