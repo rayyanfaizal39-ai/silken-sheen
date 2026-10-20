@@ -5,6 +5,19 @@ import {
   matchCompanions,
   type CompanionMatch,
 } from "../../../supabase/functions/_shared/companion-matcher";
+import { deriveVisualDna } from "../../../supabase/functions/_shared/companion-dna";
+
+const DNA_SECRET = "test-dna-secret-0123456789abcdef0123456789";
+/** Visual DNA for whatever candidates a (possibly forged) match carries, as the server would. */
+function dnaFor(student: string, match: unknown) {
+  try {
+    return (match as CompanionMatch).candidates.map((spec) =>
+      deriveVisualDna(spec, { studentId: student, secret: DNA_SECRET }),
+    );
+  } catch {
+    return [];
+  }
+}
 
 // Phase 2A security tests for supabase/migrations/20261019120000_cosmic_companion_candidates.sql
 // against the full Nova migration chain, with the real shared matcher producing every match.
@@ -45,10 +58,11 @@ const studio = async (user: string) =>
     candidates: unknown[];
   };
 const submit = (student: string, answers: number[], match: unknown) =>
-  as("service_role", null, "select public.nova_submit_companions($1,$2,$3) as r", [
+  as("service_role", null, "select public.nova_submit_companions($1,$2,$3,$4) as r", [
     student,
     answers,
     JSON.stringify(match),
+    JSON.stringify(dnaFor(student, match)),
   ]).then((res) => res.rows[0].r as { status: string; cardId: string });
 async function saveDraft(user: string, answers: number[], name = "Rayyan") {
   const current = (await studio(user)).draft as { revision: number };
@@ -61,7 +75,7 @@ async function saveDraft(user: string, answers: number[], name = "Rayyan") {
 const cardOf = async (user: string) =>
   (await db.query<{ id: string }>("select id from public.nova_cards where owner_id=$1", [user]))
     .rows[0]?.id;
-/** Simulate the (Phase 4) artwork pipeline finishing: two validated, distinct images. */
+/** Simulate the artwork pipeline finishing: two validated, distinct, APPROVED RGBA images. */
 async function finishArtwork(cardId: string, revealPassed = true) {
   const { rows } = await db.query<{ id: string }>(
     "select id from public.nova_generation_jobs where card_id=$1 and stage=1",
@@ -73,8 +87,9 @@ async function finishArtwork(cardId: string, revealPassed = true) {
     ["b", "b".repeat(64)],
   ])
     await db.query(
-      `insert into public.nova_artwork(card_id,job_id,stage,candidate,storage_path,sha256,validation_version)
-       values($1,$2,1,$3,$4,$5,'png-v1')`,
+      `insert into public.nova_artwork(card_id,job_id,stage,candidate,storage_path,sha256,validation_version,
+         review_status,reviewed_by,reviewed_at,phash)
+       values($1,$2,1,$3,$4,$5,'png-rgba-v1','approved',gen_random_uuid(),now(),'0123456789abcdef')`,
       [cardId, job, slot, `${cardId}/${job}/${slot}/${hash}.png`, hash],
     );
   await db.query("update public.nova_generation_candidates set status='ready' where job_id=$1", [
@@ -128,6 +143,7 @@ describe("Cosmic Companion candidates: secure persistence, reveal and selection"
       "20261018160200_nova_creature_variety.sql",
       "20261019120000_cosmic_companion_candidates.sql",
       "20261019130000_cosmic_companion_sharing.sql",
+      "20261020120000_cosmic_companion_artwork.sql",
     ])
       await db.exec(
         readFileSync(new URL(`../../../supabase/migrations/${file}`, import.meta.url), "utf8"),
@@ -155,7 +171,7 @@ describe("Cosmic Companion candidates: secure persistence, reveal and selection"
       ])
         await expect(as(role, STUDENT, sql)).rejects.toThrow(/permission denied/);
       await expect(
-        as(role, STUDENT, "select public.nova_submit_companions($1,$2,$3)", [
+        as(role, STUDENT, "select public.nova_submit_companions($1,$2,$3,'[]')", [
           STUDENT,
           ANSWERS,
           JSON.stringify(matchCompanions(ANSWERS)),
@@ -207,7 +223,8 @@ describe("Cosmic Companion candidates: secure persistence, reveal and selection"
       [
         "an invented species",
         tamper(real, (m) => ((m.candidates[0] as { species: string }).species = "Griffin")),
-        /check constraint/,
+        // The server cannot even derive DNA for it; the database rejects the empty DNA.
+        /check constraint|Invalid Visual DNA/,
       ],
       ["not an object", "match", /Invalid companion match/],
     ];
@@ -488,7 +505,7 @@ describe("Cosmic Companion candidates: secure persistence, reveal and selection"
       [rows[0].id],
     );
     await db.query(
-      "update public.nova_generation_settings set enabled=true,batch_enabled=true,monthly_cap_microusd=100000000,max_batch_requests=2",
+      "update public.nova_generation_settings set enabled=true,batch_enabled=true,monthly_cap_microusd=100000000,daily_cap_microusd=100000000,max_batch_requests=2",
     );
     try {
       const pending = await db.query<{ n: number }>(
@@ -530,6 +547,10 @@ describe("Cosmic Companion candidates: secure persistence, reveal and selection"
       "authenticated:get_my_nova_card",
       "authenticated:get_my_nova_studio",
       "authenticated:get_public_nova_card",
+      // Admin-only review functions: they reject non-admin callers themselves (tested in 4C).
+      "authenticated:nova_admin_retry_companion",
+      "authenticated:nova_admin_review_artwork",
+      "authenticated:nova_admin_review_queue",
       "authenticated:request_nova_evolution",
       "authenticated:save_nova_studio_draft",
       "authenticated:select_nova_origin",

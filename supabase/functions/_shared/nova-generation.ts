@@ -1,4 +1,5 @@
 import { validNovaAnswer } from "./nova-answers.ts";
+import { PROMPT_VERSION, compileArtRequest, type VisualDna } from "./companion-dna.ts";
 // Provider-neutral contracts, also exercised by CI. No secrets or network at import time.
 export type Identity = {
   version: "nova-identity-v1";
@@ -17,6 +18,10 @@ export type GenerationRequest = {
   card_id: string;
   stage: number;
   identity: Identity;
+  /** The job's prompt version: "nova-art-v1" (legacy) or "cc-art-v1" (companion). */
+  promptVersion?: string;
+  /** Companion candidates only: this candidate's own stored Visual DNA. */
+  dna?: VisualDna;
 };
 export type Batch = {
   id: string;
@@ -104,15 +109,20 @@ export async function batchJsonl(
     seen.add(r.custom_id);
     const edit = r.stage > 1;
     if (edit !== (batch.endpoint === "/v1/images/edits")) throw new Error("Mixed endpoints");
-    const body: Record<string, unknown> = {
-      model: batch.model,
-      prompt: artPrompt(r),
-      n: 1,
-      quality: batch.quality,
-      size: "1024x1536",
-      output_format: "png",
-      moderation: "auto",
-    };
+    const companion = r.promptVersion === PROMPT_VERSION;
+    if (companion && (edit || !r.dna)) throw new Error("Companion requests need stored Visual DNA");
+    // Companion candidates: compiled only from their own validated DNA (transparent PNG).
+    const body: Record<string, unknown> = companion
+      ? { ...compileArtRequest(r.dna!, { model: batch.model, quality: batch.quality }).body }
+      : {
+          model: batch.model,
+          prompt: artPrompt(r),
+          n: 1,
+          quality: batch.quality,
+          size: "1024x1536",
+          output_format: "png",
+          moderation: "auto",
+        };
     if (edit) {
       if (!r.identity.previousArtwork || !r.identity.originArtwork)
         throw new Error("Approved reference missing");

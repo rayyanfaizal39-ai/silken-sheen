@@ -15,6 +15,9 @@ export type StudioState = {
     ready: boolean;
     errorCode: string | null;
     completed: number;
+    /** Cosmic Companion only: candidates approved in human review, and those awaiting it. */
+    approved?: number;
+    inReview?: number;
   } | null;
   candidates: { candidate: "a" | "b"; url: string }[];
   /** The signed-in account this state belongs to; a change means another student signed in. */

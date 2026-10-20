@@ -57,7 +57,10 @@ export function WaitingSanctuary({
 }) {
   const failed = origin.status === "failed";
   const ready = origin.ready;
-  const prepared = origin.completed >= 2 || origin.status === "ready";
+  const created = origin.completed >= 2 || origin.status === "ready";
+  // Cosmic Companion artwork is also checked by a person before the reveal; legacy cards are not.
+  const prepared = origin.approved === undefined ? created : origin.approved >= 2;
+  const checking = created && !prepared;
   const firstCountdown = revealCountdown(origin.revealAfter, Date.now());
   const now = useNow(!failed && !ready && firstCountdown.kind === "counting");
   const countdown = now === null ? null : revealCountdown(origin.revealAfter, now);
@@ -81,7 +84,9 @@ export function WaitingSanctuary({
         ? "Preparation needs attention. Your answers and identity are safe."
         : prepared
           ? "Both companion cards have been prepared."
-          : "Your two companion cards are being prepared.",
+          : checking
+            ? "Both companion cards have been created and are being checked by our team."
+            : "Your two companion cards are being prepared.",
       state: failed ? "failed" : prepared ? "done" : "active",
       icon: failed ? <TriangleAlert size={18} /> : <Sparkles size={18} />,
     },

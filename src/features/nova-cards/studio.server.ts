@@ -3,11 +3,9 @@ import { setResponseHeader } from "@tanstack/start-server-core";
 import { z } from "zod";
 import { getSupabaseServerClient } from "@/lib/supabase.server";
 import { getSupabaseAdminClient } from "@/lib/billing.server";
-import {
-  CompanionMatchError,
-  matchCompanions,
-  verifyCandidateFingerprint,
-} from "../../../supabase/functions/_shared/companion-matcher";
+import { CompanionMatchError } from "../../../supabase/functions/_shared/companion-matcher";
+import { DnaError } from "../../../supabase/functions/_shared/companion-dna";
+import { prepareCompanionSubmission } from "../../../supabase/functions/_shared/companion-submission";
 import type { StudioDraft, StudioState } from "./studio-model";
 import { validNovaAnswer } from "./model";
 import { NOVA_ACCESS_ERRORS } from "./access";
@@ -115,20 +113,27 @@ export const submitStudioOrigin = createServerFn({ method: "POST" }).handler(asy
   // the database re-checks eligibility in the same transaction that stores the match.
   if (!(await resolveNovaEntitlement(db, accountOf.get(db)!)).active)
     throw new Error("An eligible learning plan is required to begin your companion journey.");
-  let match;
+  // The match and both candidates' Visual DNA are computed here, on the saved answers, with
+  // a server-only secret. The browser can supply none of them.
+  let submission;
   try {
-    match = matchCompanions(current.draft.answers);
+    submission = prepareCompanionSubmission(
+      current.draft.answers,
+      accountOf.get(db)!,
+      process.env.COSMIC_COMPANION_DNA_SECRET ?? "",
+    );
   } catch (error) {
     if (error instanceof CompanionMatchError)
       throw new Error("Answer all twelve questions before summoning your companion.");
-    throw error;
-  }
-  if (!match.candidates.every(verifyCandidateFingerprint))
+    if (error instanceof DnaError)
+      throw new Error("Cosmic Companion is not fully configured yet. Your answers are saved.");
     throw new Error("Your companions could not be prepared. Please try again.");
+  }
   const { error } = await getSupabaseAdminClient().rpc("nova_submit_companions", {
     student: accountOf.get(db),
     questionnaire: current.draft.answers,
-    match,
+    match: submission.match,
+    dna: submission.dna,
   });
   if (error)
     throw new Error(

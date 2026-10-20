@@ -1,5 +1,6 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Batch, GenerationRequest } from "./nova-generation.ts";
+import type { VisualDna } from "./companion-dna.ts";
 import type { WorkerStore } from "./nova-worker.ts";
 
 export class SupabaseNovaStore implements WorkerStore {
@@ -30,7 +31,7 @@ export class SupabaseNovaStore implements WorkerStore {
       .from("nova_batch_requests")
       .select(
         `id,custom_id,candidate_id,
-      candidate:nova_generation_candidates!inner(candidate,job:nova_generation_jobs!inner(id,card_id,stage,identity_snapshot))`,
+      candidate:nova_generation_candidates!inner(candidate,job:nova_generation_jobs!inner(id,card_id,stage,prompt_version,identity_snapshot))`,
       )
       .eq("batch_id", batch);
     if (error) throw new Error("Request read failed");
@@ -44,11 +45,25 @@ export class SupabaseNovaStore implements WorkerStore {
           id: string;
           card_id: string;
           stage: number;
+          prompt_version: string;
           identity_snapshot: GenerationRequest["identity"];
         };
       };
     };
-    return (data as unknown as Row[]).map((r) => ({
+    const rows = data as unknown as Row[];
+    // Companion candidates carry their own stored Visual DNA (service-only table).
+    const cards = [...new Set(rows.map((r) => r.candidate.job.card_id))];
+    const dna = new Map<string, VisualDna>();
+    if (cards.length) {
+      const { data: dnaRows, error: dnaError } = await this.db
+        .from("nova_card_dna")
+        .select("card_id,slot,dna")
+        .in("card_id", cards);
+      if (dnaError) throw new Error("Visual DNA read failed");
+      for (const d of dnaRows as { card_id: string; slot: string; dna: VisualDna }[])
+        dna.set(`${d.card_id}/${d.slot}`, d.dna);
+    }
+    return rows.map((r) => ({
       id: r.id,
       custom_id: r.custom_id,
       candidate_id: r.candidate_id,
@@ -57,6 +72,8 @@ export class SupabaseNovaStore implements WorkerStore {
       card_id: r.candidate.job.card_id,
       stage: r.candidate.job.stage,
       identity: r.candidate.job.identity_snapshot,
+      promptVersion: r.candidate.job.prompt_version,
+      dna: dna.get(`${r.candidate.job.card_id}/${r.candidate.candidate}`),
     }));
   }
   async reference(path: string) {

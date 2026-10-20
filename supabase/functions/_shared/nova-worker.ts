@@ -7,6 +7,8 @@ import {
   type BatchProvider,
   type GenerationRequest,
 } from "./nova-generation.ts";
+import { CompanionImageError, validateCompanionPng } from "./companion-image.ts";
+import { PROMPT_VERSION } from "./companion-dna.ts";
 
 export interface WorkerStore {
   batches(): Promise<Batch[]>;
@@ -27,6 +29,10 @@ export interface WorkerStore {
     cost_microusd?: number | null;
     failure?: string;
     retryable?: boolean;
+    /** Companion artwork: "png-rgba-v1", its check results and perceptual hash. */
+    validation?: string;
+    checks?: Record<string, unknown>;
+    phash?: string;
   }): Promise<void>;
   collected(
     batch: string,
@@ -72,6 +78,37 @@ export async function runNovaWorker(
         const response = result?.response;
         const body = response?.body;
         if (response?.status_code === 200 && body?.data?.length === 1 && body.data[0].b64_json) {
+          if (request.promptVersion === PROMPT_VERSION) {
+            // Companion artwork: technical RGBA checks, then human review (pending in the DB).
+            let art: Awaited<ReturnType<typeof validateCompanionPng>>;
+            try {
+              art = await validateCompanionPng(body.data[0].b64_json);
+            } catch (error) {
+              await store.finish({
+                request: request.id,
+                token,
+                failure: error instanceof CompanionImageError ? error.code : "invalid_image",
+                provider_request: response.request_id,
+                provider_usage: body.usage,
+                cost_microusd: estimatedCost(body.usage),
+              });
+              continue;
+            }
+            const path = `${request.card_id}/${request.job_id}/${request.candidate}/${art.sha256}.png`;
+            await store.upload(path, art.bytes);
+            await store.finish({
+              request: request.id,
+              token,
+              digest: art.sha256,
+              provider_request: response.request_id,
+              provider_usage: body.usage,
+              cost_microusd: estimatedCost(body.usage),
+              validation: art.checks.validation,
+              checks: art.checks as unknown as Record<string, unknown>,
+              phash: art.phash,
+            });
+            continue;
+          }
           let image: Awaited<ReturnType<typeof validatePng>>;
           try {
             image = await validatePng(body.data[0].b64_json);
