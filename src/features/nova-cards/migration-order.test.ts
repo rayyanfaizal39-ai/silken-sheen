@@ -6,9 +6,10 @@ const migration = (name: string) =>
 
 describe("Cards migration order", () => {
   it("keeps every unapplied Cards migration after the latest production migration", () => {
-    // Latest production migration observed read-only on 2026-10-20. Its file is absent from this
-    // feature branch, so the staging baseline still needs reconciliation before any application.
+    // Latest production migration observed read-only on 2026-10-20. Its exact file is restored in
+    // this branch, while the Cards migrations remain strictly later and staging-only.
     const latestProductionVersion = 20261016120000;
+    expect(existsSync(migration("20261016120000_partner_referral_commissions.sql"))).toBe(true);
     const cardsMigrations: Record<number, string> = {
       20261018160000: "nova_companion_cards.sql",
       20261018160100: "nova_studio_batch.sql",
