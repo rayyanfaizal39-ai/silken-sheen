@@ -39,7 +39,14 @@ async function mount(navigate: (url: string) => void, artworkUrl?: string, autoE
   document.body.append(host);
   root = createRoot(host);
   await act(async () =>
-    root!.render(<NovaPortal studioUrl={STUDIO} artworkUrl={artworkUrl} navigate={navigate} autoEnter={autoEnter} />),
+    root!.render(
+      <NovaPortal
+        studioUrl={STUDIO}
+        artworkUrl={artworkUrl}
+        navigate={navigate}
+        autoEnter={autoEnter}
+      />,
+    ),
   );
   return host;
 }
@@ -94,6 +101,19 @@ describe("Nova portal entrance", () => {
     await act(async () => vi.advanceTimersByTime(1));
     expect(navigate).toHaveBeenCalledExactlyOnceWith(STUDIO);
     expect(document.querySelector<HTMLElement>(".cg-veil")!.style.opacity).toBe("1");
+  });
+
+  it("uses neutral marks around the gateway ring without cross-shaped rune paths", async () => {
+    const host = await mount(vi.fn(), undefined, true);
+    const runes = [...host.querySelectorAll(".cg-rune")];
+    expect(runes).toHaveLength(32);
+    expect(runes.flatMap((rune) => [...rune.querySelectorAll("circle")])).not.toHaveLength(0);
+    expect(
+      runes.some((rune) => {
+        const d = rune.querySelector("path")?.getAttribute("d") ?? "";
+        return /\bV[^M]*\bM[^H]*\bH/.test(d);
+      }),
+    ).toBe(false);
   });
 
   it("holds a still, lit gateway and fades briefly in reduced-motion mode", async () => {

@@ -38,6 +38,7 @@ afterEach(async () => {
   for (const root of roots) await act(async () => root.unmount());
   roots.length = 0;
   document.body.innerHTML = "";
+  sessionStorage.clear();
 });
 
 // "Discovering something new" + Fox + Starlight: A = Lumi (Magical Fox), B = Ember (Lion).
@@ -191,6 +192,33 @@ describe("Real accounts: Waiting Sanctuary", () => {
 });
 
 describe("Real accounts: two independent companions", () => {
+  it("coordinates one purple-egg dissolve with two inert cards and an immediate skip", async () => {
+    vi.mocked(window.matchMedia).mockReturnValueOnce({
+      matches: false,
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+    } as unknown as MediaQueryList);
+    const { api } = server(ready());
+    const host = await mount(api);
+
+    await click(host, "Hatch egg");
+    expect(host.querySelector(".companion-reveal-flow")?.getAttribute("data-reveal")).toBe(
+      "hatching",
+    );
+    expect(host.querySelector(".sanctuary-egg-awakening")).toBeTruthy();
+    expect(host.querySelector(".sanctuary-egg-hatching")).toBeNull();
+    expect(host.querySelectorAll(".occ-card")).toHaveLength(2);
+    expect(host.querySelector(".occ")?.hasAttribute("inert")).toBe(true);
+    expect(button(host, "Hatch egg")?.hasAttribute("disabled")).toBe(true);
+
+    await click(host, "Skip reveal");
+    expect(host.querySelector(".companion-reveal-flow")?.getAttribute("data-reveal")).toBe(
+      "revealed",
+    );
+    expect(host.querySelector(".occ")?.hasAttribute("inert")).toBe(false);
+    expect(button(host, "Skip reveal")).toBeUndefined();
+  });
+
   it("shows each companion's own stored identity and artwork", async () => {
     const { api } = server(ready());
     const host = await mount(api);

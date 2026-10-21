@@ -35,6 +35,7 @@ afterEach(async () => {
   for (const root of roots) await act(async () => root.unmount());
   roots.length = 0;
   document.body.innerHTML = "";
+  sessionStorage.clear();
 });
 
 const answers = Array(12).fill(0);

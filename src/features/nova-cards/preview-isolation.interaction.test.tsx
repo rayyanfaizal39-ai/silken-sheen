@@ -45,6 +45,7 @@ afterEach(async () => {
   for (const root of roots) await act(async () => root.unmount());
   roots.length = 0;
   document.body.innerHTML = "";
+  sessionStorage.clear();
 });
 const click = async (scope: ParentNode, text: string) => {
   const target = [...scope.querySelectorAll("button")].find((b) => b.textContent?.includes(text));

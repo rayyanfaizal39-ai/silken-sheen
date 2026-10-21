@@ -521,11 +521,10 @@ function Rune({ kind }: { kind: number }) {
       return <circle cx={C.x} cy={y} r="2.8" />;
     case 2:
       return (
-        <path
-          d={`M${C.x} ${y - 7} V${y + 7} M${C.x - 5} ${y - 2} H${C.x + 5}`}
-          fill="none"
-          strokeWidth="1.6"
-        />
+        <g>
+          <circle cx={C.x} cy={y - 3} r="2.4" />
+          <circle cx={C.x} cy={y + 4} r="1.5" opacity="0.65" />
+        </g>
       );
     default:
       return (

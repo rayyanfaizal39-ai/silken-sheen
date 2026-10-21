@@ -27,7 +27,11 @@ const origin = (patch: Partial<Origin> = {}): Origin => ({
   ...patch,
 });
 
-async function mount(o: Origin, handlers = { onCheck: vi.fn(), onReveal: vi.fn() }) {
+async function mount(
+  o: Origin,
+  handlers = { onCheck: vi.fn(), onReveal: vi.fn() },
+  hatching = false,
+) {
   const host = document.createElement("div");
   document.body.append(host);
   root = createRoot(host);
@@ -37,7 +41,7 @@ async function mount(o: Origin, handlers = { onCheck: vi.fn(), onReveal: vi.fn()
         origin={o}
         fictional={false}
         calm
-        hatching={false}
+        hatching={hatching}
         busy={false}
         learningHref="/dashboard"
         {...handlers}
@@ -120,6 +124,17 @@ describe("Waiting sanctuary", () => {
     expect(onReveal).toHaveBeenCalledTimes(1);
     expect(onCheck).not.toHaveBeenCalled();
     expect(host.querySelector("img")).toBeNull();
+  });
+
+  it("keeps the approved purple awakening egg while the reveal begins", async () => {
+    const host = await mount(
+      origin({ status: "ready", ready: true, completed: 2 }),
+      { onCheck: vi.fn(), onReveal: vi.fn() },
+      true,
+    );
+    expect(host.querySelector(".sanctuary-egg-awakening")).toBeTruthy();
+    expect(host.querySelector(".sanctuary-egg-hatching")).toBeNull();
+    expect(host.querySelector(".awk-egg")).toBeTruthy();
   });
 
   it("Check arrival only asks the Studio to refresh", async () => {

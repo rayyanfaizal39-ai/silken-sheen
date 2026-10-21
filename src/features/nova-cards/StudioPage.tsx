@@ -16,7 +16,6 @@ import { AwakeningChamber } from "./sanctuary/AwakeningChamber";
 import { WaitingSanctuary } from "./sanctuary/WaitingSanctuary";
 import { OriginReveal } from "./sanctuary/OriginReveal";
 import { CandidateProfile } from "./sanctuary/CandidateProfile";
-import { ConfettiBurst } from "./sanctuary/ConfettiBurst";
 import { useSanctuaryPreferences } from "./sanctuary/useSanctuaryPreferences";
 import { soundscape } from "./sanctuary/audio";
 import { GuestNotice } from "./sanctuary/GuestNotice";
@@ -34,6 +33,25 @@ import "./sanctuary/sanctuary.css";
 
 const CompletedCard = lazy(() => import("./StudioCompletedCard"));
 const MockPreview = lazy(() => import("./StudioMockPreview"));
+const COMPANION_REVEAL_MS = 2500;
+const COMPANION_REVEAL_STORAGE_PREFIX = "academymy:companion-reveal:";
+
+function hasSeenCompanionReveal(key: string) {
+  try {
+    return sessionStorage.getItem(`${COMPANION_REVEAL_STORAGE_PREFIX}${key}`) === "complete";
+  } catch {
+    return false;
+  }
+}
+
+function rememberCompanionReveal(key: string) {
+  try {
+    sessionStorage.setItem(`${COMPANION_REVEAL_STORAGE_PREFIX}${key}`, "complete");
+  } catch {
+    // The comparison still opens when session storage is unavailable.
+  }
+}
+
 export type StudioApi = {
   load: () => Promise<StudioState>;
   save: (draft: StudioDraft) => Promise<StudioDraft>;
@@ -225,9 +243,10 @@ export function StudioExperience({
   // The opening plays once the account has loaded, so no student finishes it into a dead end.
   const intro = !busy && !started && !!state && !state.origin && !state.selected;
   const chamber = !!state?.active && !selected && !awakening && !quiz && !!traits;
-  const revealing =
-    awakening && !!state?.origin?.ready && hatch === "revealed" && revealCompanions.length === 2;
+  const revealReady = awakening && !!state?.origin?.ready && revealCompanions.length === 2;
+  const revealing = revealReady && hatch !== "sealed";
   const waiting = awakening && !revealing;
+  const revealKey = `${fictional ? "preview" : "student"}:${state?.publicId ?? "current"}`;
   // In the fictional preview each candidate carries its own data, so the confirmed companion is
   // the very candidate the student chose. Real accounts load their saved card instead.
   const chosenPreview =
@@ -251,14 +270,39 @@ export function StudioExperience({
       section={selected ? "My Nova" : awakening || traits ? "Awakening" : "Discovery"}
     />
   );
+  useEffect(() => {
+    if (revealReady && hatch === "sealed" && hasSeenCompanionReveal(revealKey)) {
+      setHatch("revealed");
+    }
+  }, [hatch, revealKey, revealReady]);
+  useEffect(() => {
+    if (hatch !== "hatching" || !preferences.reducedMotion) return;
+    if (hatchTimer.current) {
+      clearTimeout(hatchTimer.current);
+      hatchTimer.current = null;
+    }
+    rememberCompanionReveal(revealKey);
+    setHatch("revealed");
+  }, [hatch, preferences.reducedMotion, revealKey]);
+
+  function completeReveal() {
+    if (hatchTimer.current) {
+      clearTimeout(hatchTimer.current);
+      hatchTimer.current = null;
+    }
+    rememberCompanionReveal(revealKey);
+    setHatch("revealed");
+  }
+
   function reveal() {
     if (!state?.origin?.ready || hatch !== "sealed") return;
-    setHatch("hatching");
     soundscape.playAwakeningChord();
-    hatchTimer.current = setTimeout(
-      () => setHatch("revealed"),
-      preferences.reducedMotion ? 0 : 1300,
-    );
+    if (preferences.reducedMotion) {
+      completeReveal();
+      return;
+    }
+    setHatch("hatching");
+    hatchTimer.current = setTimeout(completeReveal, COMPANION_REVEAL_MS);
   }
   return (
     <main
@@ -353,25 +397,47 @@ export function StudioExperience({
             </Suspense>
           )}
         </div>
-      ) : revealing ? (
-        <>
-          <ConfettiBurst calm={preferences.reducedMotion} />
-          <OriginReveal
-            fictional={fictional}
-            companions={revealCompanions}
-            busy={busy}
-            error={notice}
-            onChoose={(candidate) =>
-              perform(async () => {
-                setState(await api.choose(candidate));
-                soundscape.playBondSealedChime();
-              })
-            }
-          />
-        </>
+      ) : revealReady ? (
+        <div className="companion-reveal-flow" data-reveal={hatch}>
+          {hatch !== "revealed" && (
+            <div
+              className="companion-reveal-flow__waiting"
+              aria-hidden={hatch !== "sealed"}
+              inert={hatch !== "sealed" ? true : undefined}
+            >
+              <WaitingSanctuary
+                origin={state.origin!}
+                fictional={fictional}
+                calm={preferences.reducedMotion}
+                hatching={hatch === "hatching"}
+                busy={busy}
+                learningHref={academyHomeHref}
+                onCheck={() => void perform(async () => setState(await api.load()))}
+                onReveal={reveal}
+              />
+            </div>
+          )}
+          {revealing && (
+            <div className="companion-reveal-flow__comparison">
+              <OriginReveal
+                fictional={fictional}
+                companions={revealCompanions}
+                busy={busy}
+                error={notice}
+                revealing={hatch === "hatching"}
+                onRevealComplete={completeReveal}
+                onChoose={(candidate) =>
+                  perform(async () => {
+                    setState(await api.choose(candidate));
+                    soundscape.playBondSealedChime();
+                  })
+                }
+              />
+            </div>
+          )}
+        </div>
       ) : awakening ? (
         <>
-          {hatch === "hatching" && <ConfettiBurst calm={preferences.reducedMotion} />}
           <WaitingSanctuary
             origin={state.origin!}
             fictional={fictional}

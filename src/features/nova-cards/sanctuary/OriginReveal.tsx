@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { ArrowRight, Lock, Sparkles } from "lucide-react";
 import { CompanionGarden } from "../../cosmic-companion/CompanionGarden";
 import {
@@ -20,6 +20,23 @@ const COMPARE: [string, (c: CompanionCandidate) => string | undefined][] = [
   ["Learning Style", (c) => c.learningStyle],
   ["Unique Quality", (c) => c.uniqueQuality],
 ];
+
+const REVEAL_MOTES = [
+  [-66, -52, 0],
+  [-42, -74, 38],
+  [-18, -58, 72],
+  [16, -78, 20],
+  [42, -54, 92],
+  [68, -28, 46],
+  [74, 12, 116],
+  [48, 45, 60],
+  [18, 72, 130],
+  [-20, 64, 84],
+  [-52, 44, 144],
+  [-76, 8, 104],
+  [-58, -18, 158],
+  [58, 24, 172],
+] as const;
 
 /** A modal that returns focus to the button that opened it. */
 function useModal(open: boolean) {
@@ -57,13 +74,19 @@ export function OriginReveal({
   error,
   onChoose,
   fictional = false,
+  revealing = false,
+  onRevealComplete,
 }: {
   companions: CompanionCandidate[];
   busy: boolean;
   error: string;
   onChoose: (candidate: "a" | "b") => Promise<boolean>;
   fictional?: boolean;
+  /** Controlled by the journey shell so the waiting and comparison surfaces share one timeline. */
+  revealing?: boolean;
+  onRevealComplete?: () => void;
 }) {
+  const heading = useRef<HTMLHeadingElement>(null);
   const [picked, setPicked] = useState<"a" | "b" | null>(null);
   const [exploring, setExploring] = useState<"a" | "b" | null>(null);
   const [confirming, setConfirming] = useState(false);
@@ -72,6 +95,12 @@ export function OriginReveal({
   const pickedCompanion = companions.find((c) => c.id === picked);
   const explored = companions.find((c) => c.id === exploring);
   const [a, b] = companions;
+  useEffect(() => {
+    if (revealing) return;
+    const focusHeading = () => heading.current?.focus({ preventScroll: true });
+    if (typeof requestAnimationFrame === "function") requestAnimationFrame(focusHeading);
+    else focusHeading();
+  }, [revealing]);
 
   let note: ReactNode = null;
   if (fictional)
@@ -87,7 +116,46 @@ export function OriginReveal({
 
   return (
     <>
-      <section className="occ" aria-labelledby="occ-title">
+      <section
+        className="occ"
+        aria-labelledby="occ-title"
+        aria-busy={revealing}
+        data-reveal={revealing ? "playing" : "complete"}
+        inert={revealing ? true : undefined}
+      >
+        {revealing && (
+          <div className="occ-cinematic" aria-hidden="true">
+            <span className="occ-cinematic__shade" />
+            <span className="occ-cinematic__egg-glow" />
+            {REVEAL_MOTES.map(([dx, dy, delay], index) => (
+              <span
+                key={index}
+                className="occ-cinematic__mote"
+                style={
+                  {
+                    "--occ-mote-dx": `${dx}px`,
+                    "--occ-mote-dy": `${dy}px`,
+                    "--occ-mote-delay": `${delay}ms`,
+                  } as CSSProperties
+                }
+              />
+            ))}
+            <svg
+              className="occ-cinematic__streams"
+              viewBox="0 0 1000 700"
+              preserveAspectRatio="none"
+            >
+              <path
+                className="occ-cinematic__stream occ-cinematic__stream--a"
+                d="M300 350 C270 350 230 370 150 430"
+              />
+              <path
+                className="occ-cinematic__stream occ-cinematic__stream--b"
+                d="M300 350 C470 320 650 350 850 430"
+              />
+            </svg>
+          </div>
+        )}
         <div className="cca-garden" aria-hidden="true">
           <CompanionGarden />
         </div>
@@ -96,7 +164,7 @@ export function OriginReveal({
           <p className="cca-crest">
             <span aria-hidden="true">✦</span> Cosmic Companion <span aria-hidden="true">✦</span>
           </p>
-          <h1 id="occ-title" tabIndex={-1}>
+          <h1 ref={heading} id="occ-title" tabIndex={-1}>
             Two Companions. <span>One Lifelong Bond.</span>
           </h1>
           <p className="occ-lead">
@@ -189,6 +257,15 @@ export function OriginReveal({
           </p>
         </div>
       </section>
+
+      <p className="sr-only" role="status" aria-live="polite">
+        {revealing ? "Your two companions are awakening." : "Your companions are ready."}
+      </p>
+      {revealing && onRevealComplete && (
+        <button type="button" className="occ-cinematic__skip" onClick={onRevealComplete}>
+          Skip reveal
+        </button>
+      )}
 
       {explored && (
         <dialog

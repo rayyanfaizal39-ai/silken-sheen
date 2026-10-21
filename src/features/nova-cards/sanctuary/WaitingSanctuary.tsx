@@ -133,7 +133,7 @@ export function WaitingSanctuary({
               ? "Your journey is complete and your answers are safe. We're checking how your companion is being prepared."
               : "Your journey is complete! Your companion is preparing to meet you. Return when your reveal is ready to discover who is waiting for you."}
         </p>
-        <NovaEgg phase={hatching ? "hatching" : "awakening"} />
+        <NovaEgg phase="awakening" />
       </div>
 
       <div className="cca-panel cws-panel">

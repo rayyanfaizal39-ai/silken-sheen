@@ -20,6 +20,507 @@
   margin: 0 auto;
   padding: calc(66px + var(--preview-height, 0px) + 18px) clamp(14px, 3vw, 36px) 40px;
   color: var(--occ-ink);
+  isolation: isolate;
+}
+
+.occ-head,
+.occ-slot,
+.occ-compare,
+.occ-select,
+.occ > .cca-garden {
+  position: relative;
+  z-index: 2;
+}
+
+/* ── Celestial Card Awakening ──────────────────────────────────────────────────────────── */
+.companion-reveal-flow {
+  display: grid;
+  min-height: 100svh;
+  overflow-x: clip;
+}
+
+.companion-reveal-flow__waiting,
+.companion-reveal-flow__comparison {
+  grid-area: 1 / 1;
+  min-width: 0;
+}
+
+.companion-reveal-flow__waiting {
+  position: relative;
+  z-index: 1;
+}
+
+.companion-reveal-flow__comparison {
+  position: relative;
+  z-index: 2;
+}
+
+.companion-reveal-flow[data-reveal="hatching"] .companion-reveal-flow__waiting {
+  animation: occ-waiting-dissolve 460ms cubic-bezier(0.65, 0, 0.35, 1) both;
+  pointer-events: none;
+}
+
+.companion-reveal-flow[data-reveal="revealed"] .companion-reveal-flow__waiting {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.companion-reveal-flow[data-reveal="hatching"] .awk-egg,
+.companion-reveal-flow[data-reveal="hatching"] .awk-egg-halo,
+.companion-reveal-flow[data-reveal="hatching"] .awk-egg-pulse,
+.companion-reveal-flow[data-reveal="hatching"] .awk-dais {
+  animation: occ-egg-dissolve 400ms cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+
+.occ-cinematic {
+  --occ-origin-x: 28vw;
+  --occ-origin-y: 48vh;
+  position: fixed;
+  z-index: 8;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.occ-cinematic__shade {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 22% 48%, rgba(106, 88, 255, 0.15), transparent 32%),
+    radial-gradient(circle at 78% 48%, rgba(197, 91, 167, 0.12), transparent 32%),
+    rgba(3, 3, 18, 0.68);
+  animation: occ-cinematic-shade 2500ms cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+
+.occ-cinematic__egg-glow {
+  position: absolute;
+  left: var(--occ-origin-x);
+  top: var(--occ-origin-y);
+  width: 180px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(166, 122, 255, 0.38), transparent 68%);
+  opacity: 0;
+  transform: translate3d(-50%, -50%, 0) scale(0.72);
+  animation: occ-egg-glow 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.occ-cinematic__mote {
+  position: absolute;
+  left: var(--occ-origin-x);
+  top: var(--occ-origin-y);
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #d8c4ff;
+  box-shadow: 0 0 10px 2px rgba(143, 116, 255, 0.58);
+  opacity: 0;
+  animation: occ-mote-dissolve 680ms cubic-bezier(0.25, 0.46, 0.45, 0.94) var(--occ-mote-delay) both;
+  will-change: transform, opacity;
+}
+
+.occ-cinematic__streams {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.occ-cinematic__stream {
+  fill: none;
+  stroke-width: 2.25;
+  stroke-linecap: round;
+  stroke-dasharray: 1 1;
+  stroke-dashoffset: 1;
+  opacity: 0;
+  vector-effect: non-scaling-stroke;
+  animation: occ-energy-stream 900ms cubic-bezier(0.65, 0, 0.35, 1) 400ms both;
+}
+
+.occ-cinematic__stream--a {
+  stroke: #897dff;
+  filter: drop-shadow(0 0 7px rgba(113, 103, 255, 0.8));
+}
+
+.occ-cinematic__stream--b {
+  stroke: #db83c4;
+  filter: drop-shadow(0 0 7px rgba(212, 102, 183, 0.72));
+  animation-delay: 470ms;
+}
+
+.occ-cinematic__skip {
+  position: fixed;
+  z-index: 20;
+  top: calc(var(--preview-height, 0px) + 80px);
+  right: clamp(14px, 3vw, 34px);
+  min-height: 42px;
+  padding: 8px 16px;
+  border: 1px solid rgba(190, 174, 255, 0.48);
+  border-radius: 999px;
+  background: rgba(8, 8, 29, 0.84);
+  color: rgba(239, 234, 255, 0.94);
+  font-family: var(--font-label);
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  transition:
+    border-color 180ms ease-out,
+    background-color 180ms ease-out,
+    transform 180ms ease-out;
+}
+
+.occ-cinematic__skip:hover {
+  border-color: rgba(211, 201, 255, 0.88);
+  background: rgba(25, 20, 58, 0.94);
+  transform: translateY(-1px);
+}
+
+.occ-cinematic__skip:focus-visible {
+  outline: 2px solid #c8b8ff;
+  outline-offset: 3px;
+}
+
+.occ[data-reveal="playing"] > .cca-garden {
+  animation: occ-garden-arrive 700ms ease-out 220ms both;
+}
+
+.occ[data-reveal="playing"] .occ-slot--a {
+  animation: occ-card-emerge-a 1080ms cubic-bezier(0.16, 1, 0.3, 1) 480ms both;
+}
+
+.occ[data-reveal="playing"] .occ-slot--b {
+  animation: occ-card-emerge-b 1080ms cubic-bezier(0.16, 1, 0.3, 1) 540ms both;
+}
+
+.occ[data-reveal="playing"] .occ-flip::before {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  inset: -3px;
+  border: 1.5px solid var(--occ-awaken-tone);
+  border-radius: 24px;
+  box-shadow:
+    0 0 14px var(--occ-awaken-glow),
+    inset 0 0 14px var(--occ-awaken-glow);
+  opacity: 0;
+  transform: scale3d(0.98, 0.98, 1);
+  animation: occ-material-glow 1350ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 500ms both;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.occ[data-reveal="playing"] .occ-flip::after {
+  content: "";
+  position: absolute;
+  z-index: 4;
+  inset: -2px;
+  padding: 1.5px;
+  border-radius: 24px;
+  background: conic-gradient(
+    from 205deg,
+    transparent 0 30%,
+    rgba(222, 213, 255, 0.92) 40%,
+    var(--occ-tone) 49%,
+    transparent 61% 100%
+  );
+  opacity: 0;
+  transform: scale3d(0.985, 0.985, 1);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: occ-edge-trace 1050ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 620ms both;
+  pointer-events: none;
+}
+
+.occ[data-reveal="playing"] .occ-art {
+  animation: occ-art-awaken 980ms cubic-bezier(0.16, 1, 0.3, 1) 560ms both;
+  will-change: transform, opacity;
+}
+
+.occ[data-reveal="playing"] .occ-slot--b .occ-art {
+  animation-delay: 620ms;
+}
+
+.occ[data-reveal="playing"] .occ-art::before {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  inset: -18% -55%;
+  background: linear-gradient(
+    105deg,
+    transparent 39%,
+    rgba(198, 190, 255, 0.04) 45%,
+    rgba(211, 202, 255, 0.5) 50%,
+    rgba(226, 145, 204, 0.08) 55%,
+    transparent 62%
+  );
+  opacity: 0;
+  transform: translate3d(-46%, 0, 0) skewX(-8deg);
+  animation: occ-light-sweep 720ms cubic-bezier(0.65, 0, 0.35, 1) 880ms both;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.occ[data-reveal="playing"] .occ-card__label {
+  animation: occ-copy-rise 440ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 780ms both;
+}
+
+.occ[data-reveal="playing"] .occ-slot--b .occ-card__label {
+  animation-delay: 840ms;
+}
+
+.occ[data-reveal="playing"] .occ-face--front h2 {
+  animation: occ-copy-rise 460ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 940ms both;
+}
+
+.occ[data-reveal="playing"] .occ-slot--b .occ-face--front h2 {
+  animation-delay: 1000ms;
+}
+
+.occ[data-reveal="playing"] .occ-species,
+.occ[data-reveal="playing"] .occ-face--front > .occ-chip {
+  animation: occ-copy-rise 430ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 1100ms both;
+}
+
+.occ[data-reveal="playing"] .occ-slot--b .occ-species,
+.occ[data-reveal="playing"] .occ-slot--b .occ-face--front > .occ-chip {
+  animation-delay: 1160ms;
+}
+
+.occ[data-reveal="playing"] .occ-chips {
+  animation: occ-copy-rise 420ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 1240ms both;
+}
+
+.occ[data-reveal="playing"] .occ-slot--b .occ-chips {
+  animation-delay: 1300ms;
+}
+
+.occ[data-reveal="playing"] .occ-head {
+  animation: occ-composition-settle 480ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 1320ms both;
+}
+
+.occ[data-reveal="playing"] .occ-compare {
+  animation: occ-composition-settle 420ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 1760ms both;
+}
+
+.occ[data-reveal="playing"] .occ-select,
+.occ[data-reveal="playing"] .occ-hint,
+.occ[data-reveal="playing"] .occ-explore {
+  animation: occ-composition-settle 380ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 1960ms both;
+}
+
+@keyframes occ-waiting-dissolve {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes occ-egg-dissolve {
+  from {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+  to {
+    opacity: 0;
+    transform: scale3d(0.96, 0.96, 1);
+  }
+}
+
+@keyframes occ-cinematic-shade {
+  0% {
+    opacity: 0;
+  }
+  18%,
+  68% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes occ-egg-glow {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translate3d(-50%, -50%, 0) scale(0.72);
+  }
+  38% {
+    opacity: 0.76;
+  }
+  100% {
+    transform: translate3d(-50%, -50%, 0) scale(1.08);
+  }
+}
+
+@keyframes occ-mote-dissolve {
+  0% {
+    opacity: 0;
+    transform: translate3d(-50%, -50%, 0) scale(0.65);
+  }
+  28% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(calc(-50% + var(--occ-mote-dx)), calc(-50% + var(--occ-mote-dy)), 0)
+      scale(1.05);
+  }
+}
+
+@keyframes occ-energy-stream {
+  0% {
+    opacity: 0;
+    stroke-dashoffset: 1;
+  }
+  30%,
+  72% {
+    opacity: 0.78;
+  }
+  100% {
+    opacity: 0;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes occ-garden-arrive {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes occ-card-emerge-a {
+  0% {
+    opacity: 0;
+    transform: perspective(1200px) translate3d(-22px, 34px, -68px) rotateY(4deg) scale(0.96);
+  }
+  24% {
+    opacity: 0.42;
+  }
+  76% {
+    opacity: 1;
+    transform: perspective(1200px) translate3d(-1px, -2px, 0) rotateY(0.3deg) scale(1.006);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1200px) translate3d(0, 0, 0) rotateY(0deg) scale(1);
+  }
+}
+
+@keyframes occ-card-emerge-b {
+  0% {
+    opacity: 0;
+    transform: perspective(1200px) translate3d(22px, 34px, -68px) rotateY(-4deg) scale(0.96);
+  }
+  24% {
+    opacity: 0.42;
+  }
+  76% {
+    opacity: 1;
+    transform: perspective(1200px) translate3d(1px, -2px, 0) rotateY(-0.3deg) scale(1.006);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1200px) translate3d(0, 0, 0) rotateY(0deg) scale(1);
+  }
+}
+
+@keyframes occ-material-glow {
+  0% {
+    opacity: 0;
+    transform: scale3d(0.98, 0.98, 1);
+  }
+  20% {
+    opacity: 0.88;
+  }
+  74% {
+    opacity: 0.68;
+    transform: scale3d(1.006, 1.006, 1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes occ-art-awaken {
+  0% {
+    opacity: 0.18;
+    transform: translate3d(0, 12px, 0) scale3d(0.985, 0.985, 1);
+  }
+  45% {
+    opacity: 0.72;
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+  }
+}
+
+@keyframes occ-edge-trace {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale3d(0.985, 0.985, 1);
+  }
+  42%,
+  75% {
+    opacity: 0.88;
+  }
+  100% {
+    transform: scale3d(1.005, 1.005, 1);
+  }
+}
+
+@keyframes occ-light-sweep {
+  0% {
+    opacity: 0;
+    transform: translate3d(-46%, 0, 0) skewX(-8deg);
+  }
+  28%,
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(46%, 0, 0) skewX(-8deg);
+  }
+}
+
+@keyframes occ-copy-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes occ-composition-settle {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 .occ-head {
@@ -94,6 +595,8 @@
 .occ-card {
   --occ-tone: #7aa2ff;
   --occ-tone-soft: rgba(122, 162, 255, 0.35);
+  --occ-awaken-tone: #9badff;
+  --occ-awaken-glow: rgba(118, 134, 255, 0.58);
   --occ-face: linear-gradient(170deg, #142050 0%, #0d1236 55%, #090b22 100%);
   position: relative;
   display: grid;
@@ -105,6 +608,8 @@
 .occ-card[data-tone="b"] {
   --occ-tone: #f2a65a;
   --occ-tone-soft: rgba(242, 166, 90, 0.35);
+  --occ-awaken-tone: #f29ac8;
+  --occ-awaken-glow: rgba(232, 101, 171, 0.52);
   --occ-face: linear-gradient(170deg, #3a1a2c 0%, #24122a 55%, #120a1c 100%);
 }
 
@@ -614,9 +1119,56 @@
   .occ-detail dl {
     grid-template-columns: 1fr;
   }
+
+  .occ-cinematic {
+    --occ-origin-x: 50vw;
+    --occ-origin-y: 43vh;
+  }
+
+  .occ-cinematic__skip {
+    top: calc(var(--preview-height, 0px) + 72px);
+    min-width: 58px;
+    padding-inline: 12px;
+    font-size: 0;
+  }
+
+  .occ-cinematic__skip::after {
+    content: "Skip";
+    font-size: 0.72rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .occ-cinematic,
+  .occ-cinematic__skip {
+    display: none !important;
+  }
+
+  .occ[data-reveal="playing"] .occ-slot,
+  .occ[data-reveal="playing"] .occ-art,
+  .occ[data-reveal="playing"] .occ-card__label,
+  .occ[data-reveal="playing"] .occ-face--front > *,
+  .occ[data-reveal="playing"] .occ-face--front h2,
+  .occ[data-reveal="playing"] .occ-species,
+  .occ[data-reveal="playing"] .occ-chips,
+  .occ[data-reveal="playing"] .occ-face--front > .occ-chip,
+  .occ[data-reveal="playing"] .occ-head,
+  .occ[data-reveal="playing"] .occ-compare,
+  .occ[data-reveal="playing"] .occ-select,
+  .occ[data-reveal="playing"] .occ-hint,
+  .occ[data-reveal="playing"] .occ-explore {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .occ[data-reveal="playing"] .occ-flip::before,
+  .occ[data-reveal="playing"] .occ-flip::after,
+  .occ[data-reveal="playing"] .occ-art::before {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+
   .occ-flip__inner {
     transition-duration: 1ms;
   }
@@ -629,4 +1181,9 @@
 
 .nova-sanctuary[data-calm="true"] .occ-flip__inner {
   transition-duration: 1ms;
+}
+
+.nova-sanctuary[data-calm="true"] .occ-cinematic,
+.nova-sanctuary[data-calm="true"] .occ-cinematic__skip {
+  display: none;
 }

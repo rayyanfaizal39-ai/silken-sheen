@@ -29,12 +29,24 @@ afterEach(async () => {
 
 async function mount(
   companions: CompanionCandidate[],
-  { busy = false, fictional = true, choose = vi.fn(async () => true) } = {},
+  {
+    busy = false,
+    fictional = true,
+    choose = vi.fn(async () => true),
+    revealing = false,
+    finish = vi.fn(),
+  }: {
+    busy?: boolean;
+    fictional?: boolean;
+    choose?: ReturnType<typeof vi.fn<(candidate: "a" | "b") => Promise<boolean>>>;
+    revealing?: boolean;
+    finish?: ReturnType<typeof vi.fn>;
+  } = {},
 ) {
   const host = document.createElement("div");
   document.body.append(host);
   root = createRoot(host);
-  const render = (next: CompanionCandidate[], nextBusy = busy) =>
+  const render = (next: CompanionCandidate[], nextBusy = busy, nextRevealing = revealing) =>
     root!.render(
       <OriginReveal
         companions={next}
@@ -42,13 +54,17 @@ async function mount(
         error=""
         onChoose={choose}
         fictional={fictional}
+        revealing={nextRevealing}
+        onRevealComplete={finish}
       />,
     );
   await act(async () => render(companions));
   return {
     host,
     choose,
-    rerender: (c: CompanionCandidate[], b?: boolean) => act(async () => render(c, b)),
+    finish,
+    rerender: (c: CompanionCandidate[], b?: boolean, playing?: boolean) =>
+      act(async () => render(c, b, playing)),
   };
 }
 const button = (scope: ParentNode, text: string) =>
@@ -59,6 +75,22 @@ const cell = (host: HTMLElement, row: string, tone: "a" | "b") =>
     ?.querySelector(`td[data-tone="${tone}"]`)?.textContent;
 
 describe("Two-companion comparison", () => {
+  it("keeps the comparison inert during its controlled reveal and offers an immediate skip", async () => {
+    const result = await mount(FICTIONAL_CANDIDATES, { revealing: true });
+    expect(result.host.querySelector(".occ")?.getAttribute("data-reveal")).toBe("playing");
+    expect(result.host.querySelector(".occ")?.hasAttribute("inert")).toBe(true);
+    expect(result.host.querySelectorAll(".occ-cinematic__stream")).toHaveLength(2);
+
+    await act(async () => button(result.host, "Skip reveal").click());
+    expect(result.finish).toHaveBeenCalledTimes(1);
+    expect(result.choose).not.toHaveBeenCalled();
+
+    await result.rerender(FICTIONAL_CANDIDATES, false, false);
+    expect(result.host.querySelector(".occ")?.getAttribute("data-reveal")).toBe("complete");
+    expect(result.host.querySelector(".occ")?.hasAttribute("inert")).toBe(false);
+    expect(result.host.textContent).not.toContain("Skip reveal");
+  });
+
   it("renders each companion from its own data, independently", async () => {
     const { host } = await mount(FICTIONAL_CANDIDATES);
     const cards = host.querySelectorAll(".occ-card");

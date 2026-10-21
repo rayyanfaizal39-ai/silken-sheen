@@ -64,6 +64,7 @@ afterEach(async () => {
   for (const root of roots) await act(async () => root.unmount());
   roots.length = 0;
   document.body.innerHTML = "";
+  sessionStorage.clear();
 });
 
 // ── The server, as studio.server.ts does it, over the real SQL ────────────────────────────
