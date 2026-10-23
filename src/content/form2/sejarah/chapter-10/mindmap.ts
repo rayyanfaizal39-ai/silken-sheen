@@ -54,20 +54,6 @@ export const sejarahF2C10MindMap: MindNode = {
               ]
             },
             {
-              "id": "sejarah-f2-c10-010",
-              "label": "Gua Niah",
-              "children": [
-                {
-                  "id": "sejarah-f2-c10-011",
-                  "label": "Sarawak"
-                },
-                {
-                  "id": "sejarah-f2-c10-012",
-                  "label": "Bukti kegiatan petempatan awal"
-                }
-              ]
-            },
-            {
               "id": "sejarah-f2-c10-013",
               "label": "Chu-Po",
               "children": [
@@ -268,20 +254,6 @@ export const sejarahF2C10MindMap: MindNode = {
                   "label": "Sulu — pantai timur Sabah"
                 }
               ]
-            },
-            {
-              "id": "sejarah-f2-c10-057",
-              "label": "Pertukaran Budaya",
-              "children": [
-                {
-                  "id": "sejarah-f2-c10-058",
-                  "label": "Hubungan penduduk tempatan dan pedagang"
-                },
-                {
-                  "id": "sejarah-f2-c10-059",
-                  "label": "Pengaruh bahasa, agama dan adat"
-                }
-              ]
             }
           ]
         }
@@ -462,28 +434,6 @@ export const sejarahF2C10MindMap: MindNode = {
                   ]
                 },
                 {
-                  "id": "sejarah-f2-c10-096",
-                  "label": "Gelaran",
-                  "children": [
-                    {
-                      "id": "sejarah-f2-c10-097",
-                      "label": "Datu"
-                    },
-                    {
-                      "id": "sejarah-f2-c10-098",
-                      "label": "Datu Abang"
-                    },
-                    {
-                      "id": "sejarah-f2-c10-099",
-                      "label": "Dayang"
-                    },
-                    {
-                      "id": "sejarah-f2-c10-100",
-                      "label": "Orang Kaya — sebahagian pemimpin pedalaman"
-                    }
-                  ]
-                },
-                {
                   "id": "sejarah-f2-c10-101",
                   "label": "Tugas",
                   "children": [
@@ -518,6 +468,10 @@ export const sejarahF2C10MindMap: MindNode = {
                       "label": "Pemimpin tempatan sebagai wakil"
                     }
                   ]
+                },
+                {
+                  "id": "sejarah-f2-c10-100",
+                  "label": "Orang Kaya — sebahagian pemimpin pedalaman"
                 }
               ]
             }
@@ -739,7 +693,7 @@ export const sejarahF2C10MindMap: MindNode = {
                     },
                     {
                       "id": "sejarah-f2-c10-155",
-                      "label": "Menanam padi bukit"
+                      "label": "Menanam padi"
                     }
                   ]
                 },
@@ -1006,96 +960,6 @@ export const sejarahF2C10MindMap: MindNode = {
                       "label": "Suluk"
                     }
                   ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "id": "sejarah-f2-c10-234",
-          "label": "Hasil Ekonomi",
-          "children": [
-            {
-              "id": "sejarah-f2-c10-215",
-              "label": "Hasil Hutan",
-              "children": [
-                {
-                  "id": "sejarah-f2-c10-216",
-                  "label": "Rotan"
-                },
-                {
-                  "id": "sejarah-f2-c10-217",
-                  "label": "Damar"
-                },
-                {
-                  "id": "sejarah-f2-c10-218",
-                  "label": "Kapur barus"
-                },
-                {
-                  "id": "sejarah-f2-c10-219",
-                  "label": "Gaharu"
-                },
-                {
-                  "id": "sejarah-f2-c10-220",
-                  "label": "Sarang burung"
-                }
-              ]
-            },
-            {
-              "id": "sejarah-f2-c10-221",
-              "label": "Hasil Laut",
-              "children": [
-                {
-                  "id": "sejarah-f2-c10-222",
-                  "label": "Ikan"
-                },
-                {
-                  "id": "sejarah-f2-c10-223",
-                  "label": "Teripang"
-                },
-                {
-                  "id": "sejarah-f2-c10-224",
-                  "label": "Mutiara"
-                },
-                {
-                  "id": "sejarah-f2-c10-225",
-                  "label": "Kulit penyu"
-                }
-              ]
-            },
-            {
-              "id": "sejarah-f2-c10-226",
-              "label": "Tanaman",
-              "children": [
-                {
-                  "id": "sejarah-f2-c10-227",
-                  "label": "Padi sawah dan padi huma"
-                },
-                {
-                  "id": "sejarah-f2-c10-228",
-                  "label": "Sagu"
-                },
-                {
-                  "id": "sejarah-f2-c10-229",
-                  "label": "Sayur-sayuran dan buah-buahan"
-                }
-              ]
-            },
-            {
-              "id": "sejarah-f2-c10-230",
-              "label": "Pertukangan",
-              "children": [
-                {
-                  "id": "sejarah-f2-c10-231",
-                  "label": "Perahu"
-                },
-                {
-                  "id": "sejarah-f2-c10-232",
-                  "label": "Anyaman"
-                },
-                {
-                  "id": "sejarah-f2-c10-233",
-                  "label": "Tenunan"
                 }
               ]
             }

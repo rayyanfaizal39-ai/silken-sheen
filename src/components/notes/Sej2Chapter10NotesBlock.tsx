@@ -8,16 +8,20 @@ import { EraDotTimeline } from "./blocks/EraDotTimeline";
 import { KingdomChipGrid } from "./blocks/KingdomChipGrid";
 import { IconCardGrid } from "./blocks/IconCardGrid";
 import { bgPanel, groupGlow, neon } from "./blocks/neon-tokens";
-import santubongImg from "@/assets/form2-content/santubong-pelabuhan-purba.png";
-import kaumBumiputeraImg from "@/assets/form2-content/kaum-bumiputera-sarawak-sabah.png";
+import portsImg from "@/assets/form2-content/sej2-bab10/v1-pelabuhan-awal-borneo.svg";
+import portsImgDesktop from "@/assets/form2-content/sej2-bab10/v1-pelabuhan-awal-borneo-desktop.svg";
+import kaumImg from "@/assets/form2-content/sej2-bab10/v2-kaum-bumiputera.svg";
+import kaumImgDesktop from "@/assets/form2-content/sej2-bab10/v2-kaum-bumiputera-desktop.svg";
+
+const FIG_IMG = "notes-figure-img w-full rounded-2xl border border-border";
 
 const ORBIT_LABELS = ["Alam Melayu", "Pemerintahan Tempatan", "Ekonomi & Sungai", "Kaum & Warisan", "Rumusan"];
 
 const SECTION_CHROME: Array<{ eyebrow: string; title: string; sub?: string }> = [
-  { eyebrow: "◆ 10.1", title: "Sarawak dan Sabah dalam Alam Melayu", sub: "Bukan wilayah terpencil — sebahagian penting rangkaian perdagangan dan pengaruh Alam Melayu sejak sebelum Masihi." },
-  { eyebrow: "◆ 10.2", title: "Kemunculan Pemerintahan Tempatan", sub: "Kepimpinan kesukuan, kerajaan lembah sungai, wakil raja dan ketua bebas." },
-  { eyebrow: "◆ 10.3", title: "Kegiatan Ekonomi dan Kepentingan Sungai", sub: "Kegiatan ekonomi menyesuaikan diri dengan pedalaman, lembah sungai dan pesisir pantai." },
-  { eyebrow: "◆ 10.4", title: "Keunikan Kaum Bumiputera dan Warisan", sub: "Kepelbagaian kaum menghasilkan tenunan, perayaan, tarian dan seni bina tersendiri." },
+  { eyebrow: "◆ 10.1", title: "Sarawak dan Sabah dalam Alam Melayu" },
+  { eyebrow: "◆ 10.2", title: "Kemunculan Pemerintahan Tempatan" },
+  { eyebrow: "◆ 10.3", title: "Kegiatan Ekonomi dan Kepentingan Sungai" },
+  { eyebrow: "◆ 10.4", title: "Keunikan Kaum Bumiputera dan Warisan" },
   { eyebrow: "◆ Rumusan", title: "Fakta Penting & Istilah Utama" },
 ];
 
@@ -119,11 +123,11 @@ export function Sej2Chapter10NotesBlock({
             <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.connectionToAlamMelayu.intro}</p>
             <div>
               <h4 className="font-display mb-3 text-sm font-bold text-foreground">⚓ Pelabuhan Awal</h4>
-              <img
-                src={santubongImg}
-                alt="Santubong Pelabuhan Purba"
-                className="notes-figure-img mb-4 rounded-2xl border border-border"
-              />
+              <figure className="mb-4 space-y-2">
+                <img src={portsImg} alt="Peta pelabuhan dan pusat perdagangan awal Sarawak dan Sabah" loading="lazy" className={`${FIG_IMG} sm:hidden`} />
+                <img src={portsImgDesktop} alt="Peta pelabuhan dan pusat perdagangan awal Sarawak dan Sabah" loading="lazy" className={`${FIG_IMG} notes-figure-img--wide hidden sm:block`} />
+                <figcaption className="text-center text-[11px] italic leading-snug text-muted-foreground">Sumber: buku teks hlm. 178–179. Peta asas: Natural Earth; kedudukan anggaran.</figcaption>
+              </figure>
               <EraDotTimeline
                 items={content.connectionToAlamMelayu.earlyTradePosts
                   .filter((t) => t.facts.length > 0)
@@ -243,11 +247,11 @@ export function Sej2Chapter10NotesBlock({
           <div className="space-y-8">
             <div>
               <h4 className="font-display mb-3 text-sm font-bold text-foreground">🎭 Kepelbagaian Kaum Bumiputera</h4>
-              <img
-                src={kaumBumiputeraImg}
-                alt="Kaum Bumiputera Sarawak dan Sabah"
-                className="notes-figure-img mb-4 rounded-2xl border border-border"
-              />
+              <figure className="mb-4 space-y-2">
+                <img src={kaumImg} alt="Peta kawasan petempatan kaum bumiputera Sarawak dan Sabah" loading="lazy" className={`${FIG_IMG} sm:hidden`} />
+                <img src={kaumImgDesktop} alt="Peta kawasan petempatan kaum bumiputera Sarawak dan Sabah" loading="lazy" className={`${FIG_IMG} notes-figure-img--wide hidden sm:block`} />
+                <figcaption className="text-center text-[11px] italic leading-snug text-muted-foreground">Sumber: buku teks hlm. 186–189. Peta asas: Natural Earth; kedudukan anggaran.</figcaption>
+              </figure>
               <div className="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3">
                 {[...content.bumiputeraUniqueness.sarawakGroups, ...content.bumiputeraUniqueness.sabahGroups].map((g) => (
                   <div key={g.name} className="rounded-2xl p-4" style={{ background: bgPanel }}>

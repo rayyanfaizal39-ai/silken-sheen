@@ -81,14 +81,14 @@ export interface Sej2Ch10Content {
 export const sej2Ch10Content: Sej2Ch10Content = {
   hook: {
     title: "Kenapa ini penting",
-    body: "Sebuah gendang gangsa yang ditemukan di Pulau Banggi, Sabah, membuktikan penduduk pesisir utara Borneo telah berdagang dengan kerajaan Majapahit sejak berabad lalu — jauh sebelum Brunei atau Sulu wujud. Bab ini menunjukkan bahawa Sarawak dan Sabah sentiasa menjadi sebahagian penting daripada rangkaian Alam Melayu, bukan wilayah terpencil.",
+    body: "Gendang gangsa jenis Moko yang ditemukan di Pulau Banggi, Sabah membuktikan hubungan perdagangan antara kerajaan Majapahit dengan penduduk di utara Sabah. Bab ini menunjukkan hubungan Sarawak dan Sabah dengan Alam Melayu melalui perdagangan dan keagamaan, pemerintahan tempatan, kegiatan ekonomi dan keunikan kaum bumiputeranya.",
   },
   connectionToAlamMelayu: {
     intro: "Sarawak dan Sabah terletak di barat daya hingga utara Pulau Borneo, mendedahkannya kepada perkembangan Alam Melayu terutama perdagangan dan keagamaan. Beberapa pelabuhan muncul seiring kegemilangan kerajaan seperti Funan, Champa, Srivijaya, Angkor, Majapahit, Kedah Tua dan Gangga Nagara.",
     earlyTradePosts: [
       { name: "Bukit Tengkorak", era: "Sebelum Masihi", facts: ["Semporna, Sabah — pusat pembuatan tembikar", "Menjalankan perdagangan dengan kawasan luar Sabah"] },
       { name: "Chu-Po", era: "Abad ketiga", facts: ["Pelabuhan di utara Sabah", "Mengeksport besi ke Funan dan Champa"] },
-      { name: "Santubong", era: "Abad ketujuh", facts: ["Pusat perdagangan utama Sarawak", "Barangan tembikar Dinasti T'ang dan Sung ditemukan", "Membekalkan kapur barus, kayu laka, lilin lebah madu, kulit penyu", "Abad ke-13: industri peleburan bijih besi", "Dikenal pasti sebagai 'Po-ni' dalam sumber China (Jan Wisseman Christie)"] },
+      { name: "Santubong", era: "Abad ketujuh", facts: ["Pusat perdagangan utama Sarawak", "Barangan tembikar Dinasti T'ang dan Sung ditemukan", "Membekalkan kapur barus, kayu laka, lilin, lebah madu, kulit penyu", "Abad ke-13: industri peleburan bijih besi", "Dikenal pasti sebagai 'Po-ni' dalam sumber China (Jan Wisseman Christie)"] },
       { name: "Gedong, Bukit Sandong, Kalka", era: "Berdagang dengan Siam, Vietnam, China", facts: [] },
     ],
     empireInfluence: [
