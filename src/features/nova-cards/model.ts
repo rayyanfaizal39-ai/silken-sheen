@@ -227,25 +227,29 @@ export const validPublicId = (id: string) =>
   /^demo-(rayyan|mia)$/.test(id) ||
   /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(id);
 
+export { validSerial } from "./serial";
+
 export const DEMO_CARDS: LegacyNovaCard[] = [
   {
     publicId: "demo-rayyan",
-    serial: "000000000001",
+    // Fictional stage-1 Origin card (C / Common), birth-year digits 12. Not a student record.
+    serial: "C12482915037",
     username: "Rayyan",
     traits: traitsFromAnswers(Array(12).fill(0)),
     variant: "a",
-    rarity: "Rare",
+    rarity: "Common",
     xp: 0,
     sharing: true,
     demo: true,
   },
   {
     publicId: "demo-mia",
-    serial: "000000000002",
+    // Fictional stage-1 Origin card (C / Common), birth-year digits 11. Not a student record.
+    serial: "C11918472650",
     username: "Mia",
     traits: traitsFromAnswers([0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0]),
     variant: "b",
-    rarity: "Rare",
+    rarity: "Common",
     xp: 0,
     sharing: true,
     demo: true,

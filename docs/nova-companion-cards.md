@@ -26,16 +26,18 @@ npm run dev -- --host 127.0.0.1 --port 5180
 
 Open `http://localhost:5180/nova/demo` for both fictional Stage 1 cards:
 
-- Rayyan: `http://localhost:5180/card/c/demo-rayyan`, serial `000000000001`.
+- Rayyan: `http://localhost:5180/card/c/demo-rayyan`, serial `C12482915037`.
   Phoenix, Fire, Explorer, Obsidian Black / Violet, Cosmic Galaxy Eyes.
-- Mia: `http://localhost:5180/card/c/demo-mia`, serial `000000000002`.
+  Letter C is stage 1 (Origin / Common). The other characters are the permanent serial.
+- Mia: `http://localhost:5180/card/c/demo-mia`, serial `C11918472650`.
   Magical Fox, Water, Explorer, Sapphire Blue / Gold.
 - Creation and owner settings: `http://localhost:5180/nova`.
   All twelve questions and both sample design choices work without Supabase.
   Saving a real permanent identity requires a registered account and the reviewed migration.
 
 Demo records are code-defined, explicitly fictional, and never inserted into student tables.
-Their low serials are reserved separately from the live sequence, which starts at 1000000.
+They are stage-1 cards (`C` / Common). The review-only serial migration stops using
+`nova_serial_seq` as the default for new rows and does not rewrite older twelve-digit serials.
 QRs use the origin being previewed, so a local demo points back to the local demo;
 opening it from a different device requires an accessible preview host.
 
@@ -49,7 +51,8 @@ opening it from a different device requires an accessible preview host.
   icon, navy/gold styling, holographic sheen, keyboard/touch flip, reduced motion,
   Origin Master Card status, QR, serial, Code 128 barcode, sharing and image export controls.
 - `codes.ts`: high-error-correction QR with a four-module quiet zone; standards-based
-  Code 128 C with start, checksum, stop and ten-module barcode quiet zones.
+  Code 128 subset B (start symbol 104) so the stage letter scans. Digits still decode,
+  including legacy twelve-digit serials. Checksum, stop, and a ten-module quiet zone stay.
 - `download.ts`: self-contained 1200 × 1800 PNG export with embedded brand/art/QR/barcode.
 - `server.ts`: owner loading, opt-in sharing and public allowlist RPCs. Creation uses the
   Studio draft → submit → select flow in `studio.server.ts`.
@@ -104,6 +107,54 @@ twelve questions, choose a design, save, retry creation, then toggle public shar
 Use an anonymous second browser to check public visibility before/after revocation.
 Confirm the card shows as a permanent Origin Master Card, that earning XP elsewhere in
 AcadeMY does not change it, and that the URL, serial and rarity stay the same.
+
+## Serial letter under review (not applied to any hosted database)
+
+`supabase/migrations/20261023120000_nova_card_serial_format.sql` is review-only. It is
+exercised on an isolated PGlite database in `serial.db.test.ts` and is not part of the
+shared migration list those other tests apply. Do not run it against hosted Supabase.
+
+New serials are 12 characters: a stage letter plus 11 permanent digits. The letter
+follows the visible stage. Those 11 digits (`serial_body`) stay unique for the life of
+the card, so a later stage cannot collide and a scan of an older printed letter still
+resolves (`get_public_nova_card_by_scan`). The payload rewrites only the letter and
+rarity label. The card, the public page, and the PNG show the raw serial and do not
+label or decode any part of it. Legacy `^[0-9]{12}$` rows are left as stored.
+
+Exactly five stages, in `STAGE_LOYALTY` (`src/features/nova-cards/serial.ts`) and the
+matching `nova_stage_loyalty` rows:
+
+| Stage | Name | Letter | Rarity | Proposed successful payments |
+| --- | --- | --- | --- | --- |
+| 1 | Origin | C | Common | 1 |
+| 2 | Awakened | R | Rare | 2 |
+| 3 | Ascended | E | Epic | 3 |
+| 4 | Mythic | M | Mythic | 4 |
+| 5 | Legendary | L | Legendary | 5 or more |
+
+What moves a saved card's stage today: nothing. `nova_visible_stage` in
+`20261018160000_nova_companion_cards.sql` returns 1, and `request_nova_evolution` fails
+closed. `nova_cards` has no XP column. `evolution()` in `model.ts` maps fictional XP
+only (Origin 0, Awakened 1600, Ascended 9000, Mythic 32000, Legendary 80000). Learning
+rank (`getRank` in `src/data/rankAssets.ts`) is a separate ladder and is not read here.
+`subscriptions` and `payment_transactions` (see
+`20260716001758_subscription_payments_invoices.sql`) record access and money.
+`process_verified_payment` writes `payment_status = 'successful'`. Nova uses
+`subscriptions` only to gate creation (`cosmic_companion`), not to choose a stage.
+
+Payment proposal, not wired: stage = count of `payment_transactions` for the owner with
+`payment_status = 'successful'`, capped at 5, using `min_successful_payments` in the
+same config. 1 payment = C, 2 = R, 3 = E, 4 = M, 5+ = L. Zero payments is below the
+first threshold. `subscriptions` is the current period, not a payment count.
+`nova_proposed_stage_for_payments` is not called by `nova_visible_stage`,
+`nova_submit_companions`, `evolution()`, or billing. Amounts such as RM59 are not in
+the config.
+
+The public payload adds no profile fields. The scan RPC uses the same sharing gate
+and the same payload as `get_public_nova_card`.
+
+The paragraphs above that describe a twelve-digit sequence and a rarity that never
+follows stage are the Phase 1 migration. This section is the later review.
 
 ## Validation
 

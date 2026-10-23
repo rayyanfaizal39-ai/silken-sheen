@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { NovaCard } from "../../../../src/features/nova-cards/NovaCard";
-import { cardUrl } from "../../../../src/features/nova-cards/model";
+import { cardFace, cardUrl } from "../../../../src/features/nova-cards/model";
 import { cardsPaths } from "../../../../src/features/nova-cards/paths";
 import { getPublicCard } from "../../../../src/features/nova-cards/server";
 import { novaHead } from "../../../../src/features/nova-cards/head";
@@ -15,7 +15,7 @@ export const Route = createFileRoute("/card_/c/$publicId")({
     novaHead({
       title: loaderData ? `${loaderData.username}'s Companion` : "Companion Card",
       description: loaderData
-        ? `${loaderData.traits.creature} · ${loaderData.traits.element} · ${loaderData.traits.personality}. An AcadeMY Cards collectible companion.`
+        ? `${cardFace(loaderData).species} · ${cardFace(loaderData).eyebrow}. An AcadeMY Cards collectible companion.`
         : "This companion card is unavailable.",
       path: `/card/c/${encodeURIComponent(params.publicId)}`,
       noindex: true,

@@ -18,6 +18,7 @@ import {
 } from "./model";
 import { companionSvg } from "./artwork";
 import { barcodeSvg, barcodeSymbols, qrDataUrl } from "./codes";
+import { presentedIdentity } from "./serial";
 import { isOnboardingExemptRoute } from "@/lib/onboarding-routing";
 
 describe("Nova permanent identities and scannable codes", () => {
@@ -38,7 +39,7 @@ describe("Nova permanent identities and scannable codes", () => {
       expect(barcodeSymbols(card.serial).at(-1)).toBe(106);
     });
     it(`decodes ${card.username}'s barcode rasterized at mobile and export sizes`, async () => {
-      for (const width of [234, 240, 270, 292, 375, 750]) {
+      for (const width of [320, 360, 390, 471, 750]) {
         const { data } = await sharp(
           Buffer.from(
             barcodeSvg(card.serial).replace(
@@ -62,6 +63,41 @@ describe("Nova permanent identities and scannable codes", () => {
     expect(validPublicId("demo-rayyan")).toBe(true);
     expect(validPublicId("../../private")).toBe(false);
     expect(() => barcodeSvg("<script>")).toThrow();
+  });
+  it("decodes a legacy twelve-digit serial and every stage letter, including Mythic", async () => {
+    const serials = [
+      "000000000001",
+      "C12482915037",
+      "R12482915037",
+      "E12482915037",
+      "M12482915037",
+      "L12482915037",
+    ];
+    for (const serial of serials) {
+      const svg = barcodeSvg(serial);
+      const width = Number(svg.match(/viewBox="0 0 (\d+)/)![1]);
+      const pixels = new BitArray(width * 3);
+      for (const match of svg.matchAll(/<rect x="(\d+)" y="10" width="(\d+)" height="54"/g)) {
+        pixels.setRange(Number(match[1]) * 3, (Number(match[1]) + Number(match[2])) * 3);
+      }
+      expect(new Code128Reader().decodeRow(30, pixels).getText()).toBe(serial);
+      expect(barcodeSymbols(serial)[0]).toBe(104);
+    }
+    const mythic = presentedIdentity("C12482915037", 4, "Common").serial;
+    expect(mythic.startsWith("M")).toBe(true);
+    for (const width of [320, 375, 390, 471, 750]) {
+      const { data } = await sharp(
+        Buffer.from(
+          barcodeSvg(mythic).replace(/width="\d+" height="222"/, `width="${width}" height="64"`),
+        ),
+      )
+        .removeAlpha()
+        .raw()
+        .toBuffer({ resolveWithObject: true });
+      const row = new BitArray(width);
+      for (let x = 0; x < width; x++) if (data[(30 * width + x) * 3] < 128) row.set(x);
+      expect(new Code128Reader().decodeRow(0, row).getText()).toBe(mythic);
+    }
   });
 });
 
@@ -153,7 +189,8 @@ describe("Nova creation and XP compatibility", () => {
     expect(evolution(-100).stage).toBe(1);
     expect(evolution(9000).stage).toBe(3); // Existing 9,000 XP milestone is preserved.
     expect(evolution(80000)).toMatchObject({ stage: 5, name: "Legendary", percent: 100 });
-    expect(DEMO_CARDS[0].rarity).toBe("Rare");
+    expect(DEMO_CARDS[0].rarity).toBe("Common");
+    expect(DEMO_CARDS[0].serial.startsWith("C")).toBe(true);
   });
   it("renders a distinct silhouette at every stage while retaining its species and palette", () => {
     for (const c of DEMO_CARDS) {

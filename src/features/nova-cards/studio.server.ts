@@ -8,6 +8,7 @@ import { DnaError } from "../../../supabase/functions/_shared/companion-dna";
 import { prepareCompanionSubmission } from "../../../supabase/functions/_shared/companion-submission";
 import type { StudioDraft, StudioState } from "./studio-model";
 import { validNovaAnswer } from "./model";
+import { isNovaOwnerConflict } from "./serial";
 import { NOVA_ACCESS_ERRORS } from "./access";
 import { resolveNovaEntitlement } from "./server";
 
@@ -135,6 +136,10 @@ export const submitStudioOrigin = createServerFn({ method: "POST" }).handler(asy
     match: submission.match,
     dna: submission.dna,
   });
+  // A concurrent submit can lose the owner_id unique race. That student already has a card,
+  // which is the same outcome as the RPC's `existing` status: reload it, do not surface an error.
+  // Serial collisions are retried inside the database and are not treated as an existing card.
+  if (error && isNovaOwnerConflict(error)) return state(db);
   if (error)
     throw new Error(
       error.message.includes("another device")

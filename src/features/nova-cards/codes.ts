@@ -1,3 +1,5 @@
+import { validSerial } from "./serial";
+
 // ISO/IEC 15417 Code 128 symbol widths, ordered by symbol value (0–106).
 const WIDTHS = [
   "212222",
@@ -109,11 +111,20 @@ const WIDTHS = [
   "2331112",
 ];
 
+/** Code 128 subset B symbol value. ASCII 32–127, which covers the rarity letter and digits. */
+function code128B(char: string) {
+  const code = char.charCodeAt(0);
+  if (code < 32 || code > 127) throw new Error("Nova serial must contain twelve Code 128 characters.");
+  return code - 32;
+}
+
 export function barcodeSymbols(serial: string) {
-  if (!/^\d{12}$/.test(serial)) throw new Error("Nova serial must contain twelve digits.");
-  const data = serial.match(/../g)!.map(Number);
-  const checksum = data.reduce((sum, code, i) => sum + code * (i + 1), 105) % 103;
-  return [105, ...data, checksum, 106]; // Start C, six digit pairs, checksum, stop.
+  // Subset B (start 104), not subset C: subset C only encodes digit pairs, so a rarity letter
+  // cannot be scanned. Digits remain valid, so legacy twelve-digit serials still decode.
+  if (!validSerial(serial)) throw new Error("Nova serial must contain twelve Code 128 characters.");
+  const data = [...serial].map(code128B);
+  const checksum = data.reduce((sum, code, i) => sum + code * (i + 1), 104) % 103;
+  return [104, ...data, checksum, 106]; // Start B, twelve characters, checksum, stop.
 }
 
 export function barcodeSvg(serial: string) {
