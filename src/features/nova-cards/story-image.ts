@@ -67,9 +67,10 @@ export function downloadStoryCard(blob: Blob, publicId: string) {
 }
 
 /**
- * Hand the story image to the device share sheet. Phones can pass the file to
- * Instagram or TikTok. Desktop browsers usually cannot, and this returns
- * "unavailable" so the caller can download the image instead.
+ * Open the device share sheet with the story image. The student chooses
+ * Instagram, TikTok, or another app there. This does not call an Instagram or
+ * TikTok API and does not sign anyone in. Desktop browsers usually cannot
+ * share a file, and this returns "unavailable" so the caller can download it.
  */
 export async function shareStoryFile(
   blob: Blob,

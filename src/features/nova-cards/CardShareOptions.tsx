@@ -4,7 +4,10 @@ import { toPublicSnapshot } from "./public-card";
 import { shareCaption, whatsAppShareUrl } from "./share-out";
 import { downloadStoryCard, shareStoryFile, storyCardBlob } from "./story-image";
 
-/** WhatsApp, Stories, and caption tools. Rendered only while sharing is on. */
+/**
+ * WhatsApp link, the device share sheet, a Stories download, and caption copy.
+ * Instagram and TikTok are not posted to from here. Rendered only while sharing is on.
+ */
 export function CardShareOptions({
   card,
   url,
@@ -45,7 +48,7 @@ export function CardShareOptions({
     }
   }
 
-  async function post(network: "Instagram" | "TikTok") {
+  async function openShareSheet(network: "Instagram" | "TikTok") {
     setBusy(true);
     try {
       const blob = await storyCardBlob(card);
@@ -53,7 +56,7 @@ export function CardShareOptions({
         const result = await shareStoryFile(blob, caption);
         if (result === "shared") {
           tell(
-            `The story image was handed to ${network}. Paste the caption if the app asks for one.`,
+            `The share sheet opened with the story image. Paste the caption in ${network} if the app asks for one.`,
           );
           return;
         }
@@ -62,7 +65,7 @@ export function CardShareOptions({
       }
       downloadStoryCard(blob, card.publicId);
       tell(
-        `${network} has no web share link on this device. The story image was downloaded. Copy the caption, then post it in the app.`,
+        `${network} has no web share link on this device. The story image was downloaded. Copy the caption, then post it yourself.`,
       );
     } catch (error) {
       tell((error as Error).message);
@@ -81,10 +84,10 @@ export function CardShareOptions({
       >
         WhatsApp
       </a>
-      <button type="button" disabled={busy} onClick={() => void post("Instagram")}>
+      <button type="button" disabled={busy} onClick={() => void openShareSheet("Instagram")}>
         Instagram
       </button>
-      <button type="button" disabled={busy} onClick={() => void post("TikTok")}>
+      <button type="button" disabled={busy} onClick={() => void openShareSheet("TikTok")}>
         TikTok
       </button>
       <button type="button" disabled={busy} onClick={() => void download()}>

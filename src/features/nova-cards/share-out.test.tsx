@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { CardShareOptions } from "./CardShareOptions";
@@ -86,5 +88,19 @@ describe("AcadeMY share caption", () => {
     expect(html).not.toContain("instagram.com");
     expect(html).not.toContain("tiktok.com");
     expect(html).not.toContain("form1.student@dev.local");
+  });
+
+  it("uses the share sheet, WhatsApp, a download, and caption copy only", () => {
+    const sources = ["share-out.ts", "story-image.ts", "CardShareOptions.tsx"]
+      .map((name) => readFileSync(resolve(import.meta.dirname, name), "utf8"))
+      .join("\n");
+    const code = sources.replace(/\/\*[\s\S]*?\*\//g, "").replace(/^\s*\/\/.*$/gm, "");
+    expect(sources).toContain("navigator.share");
+    expect(sources).toContain("https://wa.me/?text=");
+    expect(sources).toContain("Download card image");
+    expect(sources).toContain("Copy caption");
+    expect(code).not.toMatch(/oauth|client_secret|graph\.instagram|open\.tiktok|business-api/i);
+    expect(code).not.toContain("instagram.com");
+    expect(code).not.toContain("tiktok.com");
   });
 });
