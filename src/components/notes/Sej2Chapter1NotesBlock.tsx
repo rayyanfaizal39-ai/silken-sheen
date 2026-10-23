@@ -9,7 +9,27 @@ import { KingdomStageCards } from "./blocks/KingdomStageCards";
 import { EraComparisonColumns } from "./blocks/EraComparisonColumns";
 import { bgPanel } from "./blocks/neon-tokens";
 import angkorThom from "@/assets/form2-content/angkor-thom.png";
-import jalinanPerdaganganAlamMelayu from "@/assets/form2-content/jalinan-perdagangan-alam-melayu.png";
+import v1Lokasi from "@/assets/form2-content/sej2-bab1/v1-lokasi-kerajaan-awal.svg";
+import v2GarisMasa from "@/assets/form2-content/sej2-bab1/v2-garis-masa-kemunculan.svg";
+import v3Tokoh from "@/assets/form2-content/sej2-bab1/v3-pandangan-lima-tokoh.svg";
+import v3TokohB from "@/assets/form2-content/sej2-bab1/v3-pandangan-lima-tokoh-b.svg";
+import v4Kemasyhuran from "@/assets/form2-content/sej2-bab1/v4-garis-masa-kemasyhuran-kemerosotan.svg";
+import v4KemasyhuranB from "@/assets/form2-content/sej2-bab1/v4-garis-masa-kemasyhuran-kemerosotan-b.svg";
+import v5Perdagangan from "@/assets/form2-content/sej2-bab1/v5-jalan-perdagangan.svg";
+import v6Sezaman from "@/assets/form2-content/sej2-bab1/v6-kerajaan-sezaman.svg";
+import v7Utusan from "@/assets/form2-content/sej2-bab1/v7-utusan-china-india.svg";
+import v7UtusanB from "@/assets/form2-content/sej2-bab1/v7-utusan-china-india-b.svg";
+import v8Agama from "@/assets/form2-content/sej2-bab1/v8-penyebaran-agama.svg";
+import v9Bukti from "@/assets/form2-content/sej2-bab1/v9-bukti-kewujudan.svg";
+
+function figure(id: string, src: string, alt: string, caption: string) {
+  return (
+    <figure id={id} className="space-y-1.5">
+      <img src={src} alt={alt} loading="lazy" className="notes-figure-img w-full rounded-2xl border border-border" />
+      <figcaption className="text-center text-[11px] italic leading-snug text-muted-foreground">{caption}</figcaption>
+    </figure>
+  );
+}
 
 const ORBIT_LABELS = [
   "Konsep: Geografi",
@@ -24,7 +44,7 @@ const SECTION_CHROME: Array<{ eyebrow: string; title: string; sub?: string }> = 
   { eyebrow: "◆ 1.1", title: "Konsep Alam Melayu — Geografi", sub: "Sempadan Alam Melayu ditakrifkan berbeza mengikut sarjana, tetapi hampir semua bersetuju ia meliputi Asia Tenggara." },
   { eyebrow: "◆ 1.1", title: "Konsep Alam Melayu — Bahasa dan Budaya", sub: "Bahasa serumpun dan budaya yang dikongsi membuktikan identiti bersama Alam Melayu." },
   { eyebrow: "◆ 1.2", title: "Kewujudan Kerajaan di Alam Melayu", sub: "Kerajaan awal bermula sebagai petempatan kecil di lembah sungai, seawal abad pertama." },
-  { eyebrow: "◆ 1.3", title: "Kerajaan Alam Melayu yang Masyhur", sub: "Setiap kerajaan mengikut corak yang sama: dibina, mencapai kegemilangan, kemudian runtuh." },
+  { eyebrow: "◆ 1.3", title: "Kerajaan Alam Melayu yang Masyhur", sub: "Setiap kerajaan mempunyai pengasas, zaman kemasyhuran dan faktor kelemahan." },
   { eyebrow: "◆ 1.4", title: "Kerajaan Alam Melayu dan Kerajaan Luar yang Sezaman", sub: "Alam Melayu bukan sekadar wujud — setanding dengan empayar besar dunia pada zaman yang sama." },
   { eyebrow: "◆ Rumusan", title: "Fakta Penting & Istilah Utama" },
 ];
@@ -125,6 +145,8 @@ export function Sej2Chapter1NotesBlock({
                 contribution: `${v.view} (${v.source})`,
               }))}
             />
+            {figure("geografi-tokoh", v3Tokoh, "Perbandingan pandangan lima tokoh tentang kawasan Alam Melayu (bahagian 1: tiga tokoh)", "Rajah perbandingan (ilustrasi) berdasarkan buku teks hlm. 4-5 (bahagian 1/2).")}
+            {figure("geografi-tokoh-2", v3TokohB, "Perbandingan pandangan lima tokoh tentang kawasan Alam Melayu (bahagian 2: dua tokoh dan rumusan)", "Rajah perbandingan (ilustrasi) berdasarkan buku teks hlm. 5 (bahagian 2/2).")}
             <div className="rounded-xl p-3.5" style={{ background: bgPanel }}>
               <p className="text-[12px] leading-relaxed text-muted-foreground">{content.concept.geographyConsensus}</p>
             </div>
@@ -135,6 +157,9 @@ export function Sej2Chapter1NotesBlock({
           <div className="space-y-6">
             <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.concept.language.familyName}</p>
             <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.concept.language.scholarView}</p>
+            {content.concept.language.spread && (
+              <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.concept.language.spread}</p>
+            )}
             <DataTable
               headers={["Perkataan", ...languageHeaders]}
               rows={content.concept.language.comparisonTable.map((c) => [
@@ -150,32 +175,41 @@ export function Sej2Chapter1NotesBlock({
         {current === 2 && (
           <div className="space-y-6">
             <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.kingdomEmergence.intro}</p>
+            {figure("kewujudan-peta", v1Lokasi, "Peta konseptual lokasi tujuh kerajaan awal Alam Melayu", "Peta lokasi berdasarkan buku teks hlm. 8 (pusat kerajaan: hlm. 9-13); kedudukan titik anggaran. Peta asas: Natural Earth (domain awam).")}
+            {figure("kewujudan-garis-masa", v2GarisMasa, "Garis masa kemunculan kerajaan Alam Melayu", "Garis masa konseptual berdasarkan buku teks hlm. 2-3 dan 8.")}
             <DataTable
               headers={["Kerajaan", "Lokasi", "Era", "Ibu Negeri"]}
               rows={content.kingdomEmergence.kingdoms.map((k) => [k.name, k.location, k.era, k.capital])}
             />
+            {content.evidence && content.evidence.length > 0 && (
+              <>
+                <h4 className="font-display text-sm font-bold text-foreground">🔎 Bukti Kewujudan Kerajaan</h4>
+                <DataTable
+                  headers={["Penemuan", "Lokasi", "Rujukan"]}
+                  rows={content.evidence.map((e) => [e.find, e.place, e.page])}
+                />
+                {figure("bukti-kewujudan", v9Bukti, "Peta konseptual lokasi bukti kewujudan kerajaan Alam Melayu", "Peta berdasarkan buku teks hlm. 13 dan 17; menunjukkan lokasi anggaran sahaja. Gambar penemuan asal terdapat dalam buku teks. Peta asas: Natural Earth (domain awam).")}
+              </>
+            )}
           </div>
         )}
 
         {current === 3 && (
           <div className="space-y-6">
-            <img
-              src={angkorThom}
-              alt="Angkor Thom"
-              className="notes-figure-img rounded-2xl border border-border"
-            />
+            {figure("masyhur-angkor-thom", angkorThom, "Ilustrasi Angkor Thom", "Ilustrasi (bukan gambar sebenar). Angkor Thom ialah ibu kota kerajaan Angkor yang dibina oleh Jayavarman VII (buku teks hlm. 10-11).")}
             <KingdomStageCards kingdoms={content.famousKingdoms} />
+            {content.kingdomNotes && content.kingdomNotes.length > 0 && (
+              <FactGrid heading="📝 Catatan" facts={content.kingdomNotes} />
+            )}
+            {figure("masyhur-garis-masa", v4Kemasyhuran, "Garis masa kemasyhuran dan kemerosotan kerajaan Alam Melayu (bahagian 1: 192 M hingga 1294)", "Garis masa konseptual berdasarkan buku teks hlm. 9-13; jarak antara tarikh tidak berskala (bahagian 1/2).")}
+            {figure("masyhur-garis-masa-2", v4KemasyhuranB, "Garis masa kemasyhuran dan kemerosotan kerajaan Alam Melayu (bahagian 2: 1369 hingga 1594)", "Garis masa konseptual berdasarkan buku teks hlm. 9-13; jarak antara tarikh tidak berskala (bahagian 2/2).")}
           </div>
         )}
 
         {current === 4 && (
           <div className="space-y-6">
             <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.contemporaryKingdoms.intro}</p>
-            <img
-              src={jalinanPerdaganganAlamMelayu}
-              alt="Jalinan Perdagangan Alam Melayu"
-              className="notes-figure-img rounded-2xl border border-border"
-            />
+            {figure("sezaman-abad", v6Sezaman, "Kerajaan Alam Melayu dan kerajaan luar yang sezaman mengikut abad", "Rajah perbandingan (ilustrasi) berdasarkan buku teks hlm. 14-15.")}
             <EraComparisonColumns eras={content.contemporaryKingdoms.eras} />
             <div className="grid gap-3 sm:grid-cols-3">
               {content.contemporaryKingdoms.relations.map((r) => (
@@ -185,11 +219,75 @@ export function Sej2Chapter1NotesBlock({
                 </div>
               ))}
             </div>
+            {figure("perdagangan-peta", v5Perdagangan, "Peta konseptual jalan perdagangan Alam Melayu dengan kerajaan luar", "Peta berdasarkan buku teks hlm. 16 (PDF hlm. 26); laluan dipermudah dan kedudukan anggaran. Peta asas: Natural Earth (domain awam).")}
+            {content.contemporaryKingdoms.tradePorts && (
+              <DataTable
+                headers={["Kawasan (berdasarkan lokasi pada peta)", "Pelabuhan (peta jalan perdagangan, hlm. 16)"]}
+                rows={[
+                  ["Alam Melayu", content.contemporaryKingdoms.tradePorts.malayWorld.join(", ")],
+                  ["India", content.contemporaryKingdoms.tradePorts.india.join(", ")],
+                  ["China", content.contemporaryKingdoms.tradePorts.china.join(", ")],
+                  ["Asia Barat dan Rom", content.contemporaryKingdoms.tradePorts.westAsiaAndRome.join(", ")],
+                ]}
+              />
+            )}
+            {content.contemporaryKingdoms.religionSpread && figure("agama-penyebaran", v8Agama, "Cara penyebaran agama Hindu, Buddha dan Islam ke Alam Melayu", "Rajah perbandingan (ilustrasi) berdasarkan buku teks hlm. 17.")}
+            {content.contemporaryKingdoms.religionSpread && (
+              <DataTable
+                headers={["Agama", "Cara Penyebaran"]}
+                rows={content.contemporaryKingdoms.religionSpread.map((r) => [r.religion, r.means])}
+              />
+            )}
+            {content.contemporaryKingdoms.religionImpact && (
+              <p className="text-[13.5px] leading-relaxed text-muted-foreground">
+                {content.contemporaryKingdoms.religionImpact}
+              </p>
+            )}
+            {content.contemporaryKingdoms.diplomaticMissions && (
+              <>
+                {figure("diplomatik-utusan", v7Utusan, "Rajah utusan kerajaan Alam Melayu ke China", "Rajah konseptual (ilustrasi) berdasarkan buku teks hlm. 18.")}
+                {figure("diplomatik-utusan-2", v7UtusanB, "Rajah utusan kerajaan Alam Melayu ke India", "Rajah konseptual (ilustrasi) berdasarkan buku teks hlm. 19.")}
+                <h4 className="font-display text-sm font-bold text-foreground">🤝 Hubungan Diplomatik dengan China</h4>
+                <DataTable
+                  headers={["Kerajaan", "Utusan Dihantar", "Tujuan"]}
+                  rows={content.contemporaryKingdoms.diplomaticMissions.china.map((m) => [m.kingdom, m.century, m.purpose])}
+                />
+                <h4 className="font-display text-sm font-bold text-foreground">🤝 Hubungan Diplomatik dengan India</h4>
+                <DataTable
+                  headers={["Kerajaan", "Utusan Dihantar", "Tujuan"]}
+                  rows={content.contemporaryKingdoms.diplomaticMissions.india.map((m) => [m.kingdom, m.century, m.purpose])}
+                />
+              </>
+            )}
           </div>
         )}
 
         {current === 5 && (
           <div className="space-y-6">
+            {content.didYouKnow && content.didYouKnow.length > 0 && (
+              <FactGrid heading="💡 Tahukah Anda?" facts={content.didYouKnow} />
+            )}
+            {content.citizenship && content.citizenship.length > 0 && (
+              <div className="space-y-3">
+                <h4 className="font-display text-sm font-bold text-foreground">🇲🇾 Elemen Kewarganegaraan dan Nilai Sivik</h4>
+                {content.citizenship.map((c) => (
+                  <div key={c.standard} className="rounded-xl border border-border bg-secondary/40 p-3.5">
+                    <p className="text-[12.5px] font-semibold text-foreground">{c.title}</p>
+                    <ul className="mt-1.5 list-disc space-y-1 pl-4">
+                      {c.points.map((pt) => (
+                        <li key={pt} className="text-[12px] leading-relaxed text-muted-foreground">{pt}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            )}
+            {content.kbatPrompts && content.kbatPrompts.length > 0 && (
+              <FactGrid heading="🧠 Soalan KBAT (berdasarkan buku teks)" facts={content.kbatPrompts} />
+            )}
+            {content.values && content.values.length > 0 && (
+              <FactGrid heading="🌱 Nilai, Patriotisme dan Iktibar" facts={content.values} />
+            )}
             <FactGrid heading="⭐ Fakta Penting Peperiksaan" facts={content.keyExamFacts} />
             <ChipRow heading="📘 Istilah Utama" items={content.keyTerms} />
             <div>
