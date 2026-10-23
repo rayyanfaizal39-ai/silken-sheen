@@ -11,6 +11,7 @@ import {
 import { UnrevealedCosmicCard } from "@/features/cosmic-companion/UnrevealedCosmicCard";
 import { loadNovaDashboardStatus } from "@/features/nova-cards/local-session";
 import { useAuth } from "@/context/auth-context";
+import { useDevDemoCompanion } from "@/lib/dev-auth/use-dev-demo-companion";
 import { seoMeta } from "@/lib/seo";
 import "./companion-cards.css";
 
@@ -232,6 +233,8 @@ export function CosmicCompanionPage() {
   const { preview } = Route.useSearch();
   const stage = useJourneyStage(preview);
   const { user } = useAuth();
+  const demo = useDevDemoCompanion();
+  const discovered = demo !== "off" && demo?.discovered ? demo : null;
   return (
     <main className="ccp-page">
       <CompanionGarden />
@@ -277,9 +280,27 @@ export function CosmicCompanionPage() {
             <span className="ccp-stage__orbit" />
             <span className="ccp-stage__orbit ccp-stage__orbit--wide" />
           </div>
-          <UnrevealedCosmicCard
-            pedestal={<span className="ccp-stage__platform" aria-hidden="true" />}
-          />
+          {discovered ? (
+            <div className="ccp-owned">
+              <img
+                src={discovered.artworkUrl}
+                alt={`${discovered.name}, ${discovered.species}`}
+                width="600"
+                height="640"
+              />
+              <p className="ccp-owned__name">{discovered.name}</p>
+              <p className="ccp-owned__meta">
+                {discovered.element} · {discovered.species}
+              </p>
+              <Link className="ccp-owned__card" to="/nova">
+                View your card
+              </Link>
+            </div>
+          ) : (
+            <UnrevealedCosmicCard
+              pedestal={<span className="ccp-stage__platform" aria-hidden="true" />}
+            />
+          )}
           <Link
             className="ccp-discover"
             to="/companion/portal"

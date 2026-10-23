@@ -12,6 +12,7 @@ import {
   matchCompanions,
   type CompanionCandidateSpec,
 } from "../../../supabase/functions/_shared/companion-matcher";
+import { devCompanionArtworkUrl } from "./local-artwork";
 import { devStudentById, type DevStudent } from "./students";
 
 export const DEV_AUTH_STORAGE_KEY = "academymy.dev-auth.v1";
@@ -95,8 +96,20 @@ function read(): PersistedDevAuth {
   }
 }
 
+const storeListeners = new Set<() => void>();
+
+/** Same-tab updates for the dashboard and companion page. */
+export function subscribeDevStore(listener: () => void) {
+  storeListeners.add(listener);
+  listener();
+  return () => {
+    storeListeners.delete(listener);
+  };
+}
+
 function write(state: PersistedDevAuth) {
   storage().setItem(DEV_AUTH_STORAGE_KEY, JSON.stringify(state));
+  for (const listener of storeListeners) listener();
 }
 
 function ensureStudent(state: PersistedDevAuth, student: DevStudent): StudentRecord {
@@ -151,9 +164,38 @@ function persist(state: PersistedDevAuth) {
   write(state);
 }
 
+function artworkFor(species: string, element: string, variant: "a" | "b") {
+  return devCompanionArtworkUrl(species, element, variant);
+}
+
+/** Fill the artwork slots the paid generator would have filled, using local stand-ins. */
+function withArtwork(studio: StudioState): StudioState {
+  const specs = studio.companions?.length
+    ? studio.companions
+    : studio.companion
+      ? [studio.companion]
+      : [];
+  if (!specs.length) return studio;
+  const candidates = specs.map((spec) => {
+    const saved = studio.candidates.find((item) => item.candidate === spec.slot && item.url);
+    return {
+      candidate: spec.slot,
+      url: saved?.url || artworkFor(spec.species, spec.element, spec.slot),
+    };
+  });
+  const chosen = studio.companion;
+  return {
+    ...studio,
+    candidates,
+    companionArtworkUrl:
+      studio.companionArtworkUrl ||
+      (chosen ? candidates.find((item) => item.candidate === chosen.slot)?.url : undefined),
+  };
+}
+
 export function devLoadStudio(): Promise<StudioState> {
   const { record } = activeRecord();
-  return Promise.resolve(structuredClone(record.studio));
+  return Promise.resolve(withArtwork(structuredClone(record.studio)));
 }
 
 export function devSaveStudio(draft: StudioDraft): Promise<StudioDraft> {
@@ -205,7 +247,7 @@ export function devSubmitStudio(): Promise<StudioState> {
     companions: match.candidates,
     companion: null,
     selected: null,
-    // Local dev has no artwork queue. The real matcher result is ready to choose immediately.
+    // The paid generator stays off. Local drawings stand in for its approved images.
     origin: {
       status: "ready",
       revealAfter: new Date(0).toISOString(),
@@ -215,7 +257,10 @@ export function devSubmitStudio(): Promise<StudioState> {
       approved: 2,
       inReview: 0,
     },
-    candidates: [],
+    candidates: match.candidates.map((spec) => ({
+      candidate: spec.slot,
+      url: artworkFor(spec.species, spec.element, spec.slot),
+    })),
   };
   persist(state);
   return Promise.resolve(structuredClone(record.studio));
@@ -228,6 +273,9 @@ export function devChooseStudio(candidate: "a" | "b"): Promise<StudioState> {
   if (!spec || !record.studio.publicId)
     throw new Error("Meet both companions before choosing one.");
   const username = record.studio.draft.username;
+  const artworkUrl =
+    record.studio.candidates.find((item) => item.candidate === candidate)?.url ||
+    artworkFor(spec.species, spec.element, candidate);
   const card: NovaCard = {
     publicId: record.studio.publicId,
     serial: student.serial,
@@ -238,6 +286,7 @@ export function devChooseStudio(candidate: "a" | "b"): Promise<StudioState> {
     rarity: "Rare",
     stage: 1,
     sharing: false,
+    artworkUrl,
   };
   record.card = card;
   record.studio = {
@@ -245,7 +294,8 @@ export function devChooseStudio(candidate: "a" | "b"): Promise<StudioState> {
     selected: candidate,
     companion: spec,
     companions: undefined,
-    candidates: [],
+    companionArtworkUrl: artworkUrl,
+    candidates: [{ candidate, url: artworkUrl }],
   };
   persist(state);
   return Promise.resolve(structuredClone(record.studio));
@@ -264,10 +314,44 @@ export function devDashboardStatus() {
   };
 }
 
+export type DevDemoCompanion =
+  | { discovered: false }
+  | {
+      discovered: true;
+      name: string;
+      species: string;
+      element: string;
+      artworkUrl: string;
+    };
+
+/** What the dashboard and Cosmic Companion page should show for this browser session. */
+export function devDemoCompanion(): DevDemoCompanion {
+  try {
+    const { record } = activeRecord();
+    const companion = record.card?.companion;
+    if (!record.card || !companion) return { discovered: false };
+    return {
+      discovered: true,
+      name: companion.name,
+      species: companion.species,
+      element: companion.element,
+      artworkUrl:
+        record.card.artworkUrl ||
+        artworkFor(companion.species, companion.element, record.card.variant),
+    };
+  } catch {
+    return { discovered: false };
+  }
+}
+
 export function devOwnerNova(): { card: NovaCard | null; entitlement: NovaEntitlement } {
   const { record } = activeRecord();
+  const card = record.card ? structuredClone(record.card) : null;
+  if (card?.companion && !card.artworkUrl) {
+    card.artworkUrl = artworkFor(card.companion.species, card.companion.element, card.variant);
+  }
   return {
-    card: record.card ? structuredClone(record.card) : null,
+    card,
     entitlement: novaEntitlement({
       plan: "explorer",
       status: "active",

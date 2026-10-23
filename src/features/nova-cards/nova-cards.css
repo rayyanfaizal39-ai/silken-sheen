@@ -683,7 +683,20 @@
   max-width: 1080px;
   margin: 0 auto 64px;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 72px;
+}
+.nova-evolution-study {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 28px 24px 32px;
+  border: 1px solid #dfbf7e33;
+  border-radius: 28px;
+  background: #08111f;
+}
+.nova-evolution-study.is-fox .nova-study-heading h2 em {
+  color: #9fd8ff;
 }
 .nova-study-heading {
   display: flex;

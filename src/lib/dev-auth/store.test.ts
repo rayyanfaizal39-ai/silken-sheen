@@ -37,6 +37,9 @@ describe("local dev companion card", () => {
     const submitted = await devSubmitStudio();
     expect(submitted.kind).toBe("cosmic-companion");
     expect(submitted.companions).toHaveLength(2);
+    expect(submitted.candidates).toHaveLength(2);
+    expect(submitted.candidates.every((item) => item.url.length > 0)).toBe(true);
+    expect(JSON.stringify(submitted.candidates)).not.toMatch(/openai|api\.openai/i);
     expect(submitted.origin?.ready).toBe(true);
     expect(journeyStage(devDashboardStatus())).toBe("ready");
 
@@ -54,6 +57,8 @@ describe("local dev companion card", () => {
     expect(barcodeSymbols(card!.serial).length).toBeGreaterThan(0);
     expect(card?.companion?.name).toBe(chosen.companion?.name);
     expect(card?.companion?.species).toBeTruthy();
+    expect(card?.artworkUrl).toBeTruthy();
+    expect(card?.artworkUrl).not.toMatch(/openai|api\.openai/i);
     expect(card?.sharing).toBe(false);
     expect(readDevPublicCard(card!.publicId)).toBeNull();
 

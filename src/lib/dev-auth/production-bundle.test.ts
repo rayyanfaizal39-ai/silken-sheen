@@ -113,7 +113,41 @@ describe("dev auth bypass production bundle", () => {
     const code = result.outputFiles[0].text;
     expect(code).not.toContain("dev-auth/store");
     expect(code).not.toContain("dev-auth/server-gate");
+    expect(code).not.toContain("local-artwork");
+    expect(code).not.toContain("/nova/creatures/");
     expect(code).not.toContain("form1.student@dev.local");
     expect(code).not.toContain("academymy.dev-auth.v1");
+  });
+
+  it("drops the local artwork stand-in from the dashboard hook in production", async () => {
+    const result = await esbuild.build({
+      absWorkingDir: path.join(root, "src/lib/dev-auth"),
+      stdin: {
+        contents: `
+          import { useDevDemoCompanion } from "./use-dev-demo-companion.ts";
+          export function Demo() {
+            return useDevDemoCompanion();
+          }
+        `,
+        resolveDir: path.join(root, "src/lib/dev-auth"),
+        sourcefile: "prod-dashboard.ts",
+        loader: "ts",
+      },
+      bundle: true,
+      format: "esm",
+      write: false,
+      platform: "browser",
+      jsx: "automatic",
+      treeShaking: true,
+      define: prodDefine,
+      plugins: [externalizeExceptDevAuth()],
+    });
+    const code = result.outputFiles[0].text;
+    expect(code).not.toContain("local-artwork");
+    expect(code).not.toContain("/nova/creatures/phoenix.svg");
+    expect(code).not.toContain("/nova/creatures/fox.svg");
+    expect(code).not.toContain("form1.student@dev.local");
+    expect(code).not.toContain("academymy.dev-auth.v1");
+    expect(code).not.toContain("matchCompanions");
   });
 });

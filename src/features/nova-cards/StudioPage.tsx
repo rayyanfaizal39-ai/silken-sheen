@@ -371,6 +371,7 @@ export function StudioExperience({
           <p className="sanctuary-permanent-note">
             Your companion choice is permanent. Your Cosmic Card stays with you.
           </p>
+          <DevGeneratedCardSlot selected={selected} />
           {chosenCompanion ? (
             <CandidateProfile
               companion={chosenCompanion}
@@ -388,7 +389,6 @@ export function StudioExperience({
               />
             </Suspense>
           )}
-          <DevGeneratedCardSlot selected={selected} />
         </div>
       ) : revealReady ? (
         <div className="companion-reveal-flow" data-reveal={hatch}>
