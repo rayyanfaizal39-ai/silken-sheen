@@ -184,9 +184,7 @@ async function loadStudent(
 ): Promise<MonthlyStudent | null> {
   const profileResult = await admin
     .from("profiles")
-    .select(
-      "full_name, plan, email, parent_report_email, parent_email_consent_at, parent_email_consent_version",
-    )
+    .select("full_name, plan, email, parent_report_email")
     .eq("id", studentId)
     .maybeSingle();
   if (profileResult.error || !profileResult.data) return null;
@@ -218,8 +216,6 @@ async function loadStudent(
     profilePlan: profileResult.data.plan ?? null,
     subscriptionPlan: subscriptionResult.data?.plan ?? null,
     parentReportEmail: profileResult.data.parent_report_email ?? null,
-    consentAt: profileResult.data.parent_email_consent_at ?? null,
-    consentVersion: profileResult.data.parent_email_consent_version ?? null,
     accountEmail,
     xp: Number(progress.data?.xp ?? 0),
     streak: Number(progress.data?.streak ?? 0),

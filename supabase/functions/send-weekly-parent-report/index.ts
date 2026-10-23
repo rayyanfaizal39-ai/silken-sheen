@@ -203,9 +203,7 @@ async function deliverStudentReport(
 
   const profileResult = await admin
     .from("profiles")
-    .select(
-      "full_name, plan, parent_report_email, parent_email_consent_at, parent_email_consent_version",
-    )
+    .select("full_name, plan, parent_report_email")
     .eq("id", studentId)
     .maybeSingle();
   if (profileResult.error || !profileResult.data) return done("failed");
@@ -232,8 +230,6 @@ async function deliverStudentReport(
     : resolveParentReportRecipient({
         parentReportEmail: profileResult.data.parent_report_email,
         accountEmail,
-        consentAt: profileResult.data.parent_email_consent_at,
-        consentVersion: profileResult.data.parent_email_consent_version,
       });
   const week = cycle ?? currentKualaLumpurWeek(options?.now ?? new Date());
   const history = await admin

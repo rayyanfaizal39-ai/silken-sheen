@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { describe, expect, it, vi } from "vitest";
 import {
   claimDeliverySlot,
@@ -12,11 +12,8 @@ import {
   type MonthlyStudent,
   type MonthlyStore,
 } from "../../../supabase/functions/_shared/monthly-parent-report-batch";
-import { PARENT_EMAIL_CONSENT_VERSION as clientConsentVersion } from "@/features/parent-report/parentEmailConsent";
-import {
-  PARENT_EMAIL_CONSENT_VERSION,
-  parentEmailWrite,
-} from "../../../supabase/functions/_shared/parent-email-consent";
+import { parentEmailWrite } from "@/features/parent-report/parentEmailConsent";
+import { parentEmailWrite as serverParentEmailWrite } from "../../../supabase/functions/_shared/parent-email-consent";
 import {
   runPaymentReminderBatch,
   type PaymentReminderCandidate,
@@ -30,8 +27,6 @@ function student(overrides: Partial<MonthlyStudent> = {}): MonthlyStudent {
     profilePlan: "paid",
     subscriptionPlan: "premium",
     parentReportEmail: "parent@example.com",
-    consentAt: null,
-    consentVersion: null,
     accountEmail: "maya@example.com",
     xp: 20,
     streak: 2,
@@ -47,14 +42,6 @@ function student(overrides: Partial<MonthlyStudent> = {}): MonthlyStudent {
   };
 }
 
-function consented(overrides: Partial<MonthlyStudent> = {}): MonthlyStudent {
-  return student({
-    consentAt: "2026-10-23T00:00:00.000Z",
-    consentVersion: PARENT_EMAIL_CONSENT_VERSION,
-    ...overrides,
-  });
-}
-
 describe("parent email handlers", () => {
   it("rejects a missing or wrong cron key and accepts only the configured key", () => {
     expect(cronAuthorized("", "secret")).toBe(false);
@@ -63,38 +50,32 @@ describe("parent email handlers", () => {
     expect(cronAuthorized("secret", "secret")).toBe(true);
   });
 
-  it("keeps the client and server parent-email consent versions identical", () => {
-    expect(clientConsentVersion).toBe(PARENT_EMAIL_CONSENT_VERSION);
-    expect(clientConsentVersion).toBe("2026-10-23-monthly");
-  });
-
-  it("records consent when a parent address is saved and clears it when the address is removed", () => {
-    expect(parentEmailWrite(null, true)).toEqual({
-      parent_report_email: null,
-      parent_email_consent_at: null,
-      parent_email_consent_version: null,
-    });
-    expect(() => parentEmailWrite("parent@example.com", false)).toThrow(/consent/i);
-    const grant = parentEmailWrite("parent@example.com", true);
-    expect(grant).toEqual({
+  it("writes only the parent address and does not add consent columns", () => {
+    expect(parentEmailWrite(null)).toEqual(serverParentEmailWrite(null));
+    expect(parentEmailWrite("parent@example.com")).toEqual({
       parent_report_email: "parent@example.com",
-      parent_email_consent_version: PARENT_EMAIL_CONSENT_VERSION,
     });
-    expect(grant).not.toHaveProperty("parent_email_consent_at");
-    const migration = readFileSync(
+    expect(parentEmailWrite("parent@example.com")).not.toHaveProperty("parent_email_consent_at");
+    expect(parentEmailWrite("parent@example.com")).not.toHaveProperty(
+      "parent_email_consent_version",
+    );
+    expect(
+      existsSync(
+        new URL(
+          "../../../supabase/migrations/20261023160000_parent_email_consent.sql",
+          import.meta.url,
+        ),
+      ),
+    ).toBe(false);
+    const comment = readFileSync(
       new URL(
-        "../../../supabase/migrations/20261023160000_parent_email_consent.sql",
+        "../../../supabase/migrations/20261023180000_parent_report_email_monthly_comment.sql",
         import.meta.url,
       ),
       "utf8",
     );
-    expect(migration).toContain("parent_email_consent_at timestamptz");
-    expect(migration).toContain("parent_email_consent_version text");
-    expect(migration).toContain("new.parent_email_consent_at := now()");
-    expect(migration).toContain("new.parent_email_consent_at := old.parent_email_consent_at");
-    expect(migration).toContain("profiles_set_parent_email_consent_at");
-    expect(migration).not.toMatch(/parent_email_consent_at timestamptz\s+default\s+now\(\)/i);
-    expect(migration).not.toMatch(/check\s*\(/i);
+    expect(comment).toContain("monthly progress report");
+    expect(comment).not.toContain("parent_email_consent");
   });
 
   it("claims a manual send inside one locked database function", () => {
@@ -126,7 +107,7 @@ describe("parent email handlers", () => {
     const send = vi.fn();
     const store: MonthlyStore = {
       entitledStudentIds: async () => ["student-1"],
-      loadStudent: async () => consented(),
+      loadStudent: async () => student(),
       claim,
       markSent: vi.fn(),
       markFailed: vi.fn(),
@@ -143,29 +124,39 @@ describe("parent email handlers", () => {
     expect(result.periodLabel).toBe("September 2026");
   });
 
-  it("sends a parent address only when consent is current, including for Premium", async () => {
-    const withoutConsent = vi.fn(async (_input: { to: string }) => ({ id: "student-copy" }));
-    const missingConsent = await runManualParentReport({
+  it("sends a valid parent address with no consent check, otherwise the student email", async () => {
+    const studentCopy = vi.fn(async (_input: { to: string }) => ({ id: "student-copy" }));
+    const missingParent = await runManualParentReport({
+      student: student({ parentReportEmail: null }),
+      userId: "student-1",
+      now: NOW,
+      recordAttempt: async () => "ok",
+      send: studentCopy,
+    });
+    expect(missingParent.status).toBe(200);
+    expect(studentCopy.mock.calls[0]?.[0].to).toBe("maya@example.com");
+    expect(missingParent.body.usedParentEmail).toBe(false);
+
+    const invalidParent = vi.fn(async (_input: { to: string }) => ({ id: "invalid-copy" }));
+    await runManualParentReport({
+      student: student({ parentReportEmail: "not-an-email" }),
+      userId: "student-1",
+      now: NOW,
+      recordAttempt: async () => "ok",
+      send: invalidParent,
+    });
+    expect(invalidParent.mock.calls[0]?.[0].to).toBe("maya@example.com");
+
+    const parentCopy = vi.fn(async (_input: { to: string }) => ({ id: "parent-copy" }));
+    const parentSend = await runManualParentReport({
       student: student(),
       userId: "student-1",
       now: NOW,
       recordAttempt: async () => "ok",
-      send: withoutConsent,
+      send: parentCopy,
     });
-    expect(missingConsent.status).toBe(200);
-    expect(withoutConsent.mock.calls[0]?.[0].to).toBe("maya@example.com");
-    expect(missingConsent.body.usedParentEmail).toBe(false);
-
-    const withConsent = vi.fn(async (_input: { to: string }) => ({ id: "parent-copy" }));
-    const consentedSend = await runManualParentReport({
-      student: consented(),
-      userId: "student-1",
-      now: NOW,
-      recordAttempt: async () => "ok",
-      send: withConsent,
-    });
-    expect(withConsent.mock.calls[0]?.[0].to).toBe("parent@example.com");
-    expect(consentedSend.body.usedParentEmail).toBe(true);
+    expect(parentCopy.mock.calls[0]?.[0].to).toBe("parent@example.com");
+    expect(parentSend.body.usedParentEmail).toBe(true);
   });
 
   it("rejects a manual send when the active subscription is not Premium", async () => {
@@ -173,7 +164,7 @@ describe("parent email handlers", () => {
     const recordAttempt = vi.fn();
     for (const subscriptionPlan of [null, "pro", "basic", "paid"]) {
       const result = await runManualParentReport({
-        student: consented({ subscriptionPlan, profilePlan: "paid" }),
+        student: student({ subscriptionPlan, profilePlan: "paid" }),
         userId: "student-1",
         now: NOW,
         recordAttempt,
@@ -188,7 +179,7 @@ describe("parent email handlers", () => {
   it("returns 429 when the atomic claim is refused and 500 when the claim errors", async () => {
     const send = vi.fn(async (_input: { to: string }) => ({ id: "should-not-send" }));
     const limited = await runManualParentReport({
-      student: consented(),
+      student: student(),
       userId: "student-1",
       now: NOW,
       recordAttempt: async () => "limited",
@@ -196,7 +187,7 @@ describe("parent email handlers", () => {
     });
     expect(limited.status).toBe(429);
     const errored = await runManualParentReport({
-      student: consented(),
+      student: student(),
       userId: "student-1",
       now: NOW,
       recordAttempt: async () => "error",
@@ -212,8 +203,8 @@ describe("parent email handlers", () => {
       entitledStudentIds: async () => ["pro-student", "paid-profile"],
       loadStudent: async (studentId) =>
         studentId === "pro-student"
-          ? consented({ subscriptionPlan: "pro" })
-          : consented({ subscriptionPlan: null, profilePlan: "paid" }),
+          ? student({ subscriptionPlan: "pro" })
+          : student({ subscriptionPlan: null, profilePlan: "paid" }),
       claim: vi.fn(),
       markSent: vi.fn(),
       markFailed: vi.fn(),
@@ -228,7 +219,7 @@ describe("parent email handlers", () => {
     const send = vi.fn();
     const store: MonthlyStore = {
       entitledStudentIds: async () => ["student-1"],
-      loadStudent: async () => consented(),
+      loadStudent: async () => student(),
       claim: async () => "lost",
       markSent: vi.fn(),
       markFailed: vi.fn(),

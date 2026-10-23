@@ -14,7 +14,7 @@ import {
   normalizeParentReportEmail,
   storedPlanGrantsParentReports,
 } from "./weeklyParentReport";
-import { PARENT_EMAIL_CONSENT_VERSION, resolveParentReportRecipient } from "./parentEmailConsent";
+import { resolveParentReportRecipient } from "./parentEmailConsent";
 
 const STORED_PLANS = [
   null,
@@ -66,11 +66,7 @@ describe("parent report email", () => {
     expect(normalizeParentReportEmail("not-an-email").ok).toBe(false);
   });
 
-  it("uses a parent address only when the current consent is recorded", () => {
-    const consent = {
-      consentAt: "2026-10-23T00:00:00.000Z",
-      consentVersion: PARENT_EMAIL_CONSENT_VERSION,
-    };
+  it("uses a valid parent address without a consent check", () => {
     expect(
       resolveParentReportRecipient({ parentReportEmail: null, accountEmail: "Aiman@Gmail.com" }),
     ).toBe("aiman@gmail.com");
@@ -81,28 +77,12 @@ describe("parent report email", () => {
       resolveParentReportRecipient({
         parentReportEmail: "mother@gmail.com",
         accountEmail: "aina@gmail.com",
-        ...consent,
       }),
     ).toBe("mother@gmail.com");
     expect(
       resolveParentReportRecipient({
-        parentReportEmail: "mother@gmail.com",
-        accountEmail: "aina@gmail.com",
-      }),
-    ).toBe("aina@gmail.com");
-    expect(
-      resolveParentReportRecipient({
-        parentReportEmail: "mother@gmail.com",
-        accountEmail: "aina@gmail.com",
-        consentAt: consent.consentAt,
-        consentVersion: "2020-01-01",
-      }),
-    ).toBe("aina@gmail.com");
-    expect(
-      resolveParentReportRecipient({
         parentReportEmail: "not-an-email",
         accountEmail: "aina@gmail.com",
-        ...consent,
       }),
     ).toBe("aina@gmail.com");
     expect(

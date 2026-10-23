@@ -13,14 +13,10 @@ import {
 } from "lucide-react";
 import { useProgress } from "@/hooks/use-progress";
 import { useAuth } from "@/context/auth-context";
-import { ParentEmailConsent } from "@/components/parent/ParentEmailConsent";
+import { ParentEmailNotice } from "@/components/parent/ParentEmailNotice";
 import { ParentPremiumUpsell } from "@/components/parent/ParentPremiumUpsell";
-import { PARENT_EMAIL_CONSENT_ERROR } from "@/features/parent-report/parentEmailCopy";
 import { previousKualaLumpurMonth } from "@/features/parent-report/monthlyParentReport";
-import {
-  hasCurrentParentEmailConsent,
-  parentEmailWrite,
-} from "@/features/parent-report/parentEmailConsent";
+import { parentEmailWrite } from "@/features/parent-report/parentEmailConsent";
 import {
   hasParentReportsAccess,
   normalizeParentReportEmail,
@@ -50,9 +46,7 @@ function ParentPage() {
   const { progress, setParentReport } = useProgress();
   const { user, loading: authLoading } = useAuth();
   const [email, setEmail] = useState("");
-  const [consent, setConsent] = useState(false);
   const [savedEmail, setSavedEmail] = useState<string | null>(null);
-  const [savedConsent, setSavedConsent] = useState(false);
   const [profileReady, setProfileReady] = useState(false);
   const [entitled, setEntitled] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -72,9 +66,7 @@ function ParentPage() {
       const [profileResult, subscriptionResult] = await Promise.all([
         supabase
           .from("profiles")
-          .select(
-            "plan, parent_report_email, parent_email_consent_at, parent_email_consent_version",
-          )
+          .select("plan, parent_report_email")
           .eq("id", user.id)
           .maybeSingle(),
         supabase
@@ -87,19 +79,12 @@ function ParentPage() {
       if (!active) return;
       const data = profileResult.data;
       const stored = data?.parent_report_email ?? "";
-      const consented = hasCurrentParentEmailConsent({
-        parentReportEmail: stored,
-        consentAt: data?.parent_email_consent_at,
-        consentVersion: data?.parent_email_consent_version,
-      });
       setEntitled(
         !subscriptionResult.error &&
           hasParentReportsAccess(subscriptionResult.data?.plan ?? null, data?.plan ?? null),
       );
       setEmail(stored);
-      setConsent(consented);
       setSavedEmail(stored || null);
-      setSavedConsent(consented);
       setProfileReady(true);
     })();
     return () => {
@@ -164,10 +149,6 @@ function ParentPage() {
     if (!user || !normalizedEmail.ok) return;
     setDeliveryError(null);
     setDeliveryNote(null);
-    if (normalizedEmail.email && !consent) {
-      setDeliveryError(PARENT_EMAIL_CONSENT_ERROR);
-      return;
-    }
     if (!isSupabaseConfigured) {
       setDeliveryError("Email delivery is not available.");
       return;
@@ -175,7 +156,7 @@ function ParentPage() {
     setSaving(true);
     const { error } = await supabase
       .from("profiles")
-      .update(parentEmailWrite(normalizedEmail.email, consent))
+      .update(parentEmailWrite(normalizedEmail.email))
       .eq("id", user.id);
     setSaving(false);
     if (error) {
@@ -184,9 +165,7 @@ function ParentPage() {
     }
     const nextEmail = normalizedEmail.email;
     setEmail(nextEmail ?? "");
-    setConsent(Boolean(nextEmail));
     setSavedEmail(nextEmail);
-    setSavedConsent(Boolean(nextEmail));
     setParentReport(nextEmail ?? undefined, "monthly");
     setSaved(true);
     window.setTimeout(() => setSaved(false), 2200);
@@ -203,12 +182,8 @@ function ParentPage() {
       setDeliveryError(normalizedEmail.error);
       return;
     }
-    if (normalizedEmail.email && !consent) {
-      setDeliveryError(PARENT_EMAIL_CONSENT_ERROR);
-      return;
-    }
     const formEmail = normalizedEmail.email;
-    const savedMatches = formEmail === savedEmail && (!formEmail || (consent && savedConsent));
+    const savedMatches = formEmail === savedEmail;
     if (!savedMatches) {
       setDeliveryError("Save the parent email before sending the report.");
       return;
@@ -247,7 +222,7 @@ function ParentPage() {
           </div>
           <div className="min-w-0">
             <p className="text-[10px] font-black uppercase tracking-[0.28em] text-[#6EE7B7] print:text-emerald-700">
-              Parent Mission Report
+              Monthly Parent Report
             </p>
             <h1 className="mt-1 font-display text-2xl font-bold text-white sm:text-3xl print:text-slate-900">
               {studentName}'s progress
@@ -357,8 +332,8 @@ function ParentPage() {
           <Mail className="h-5 w-5 text-[#34D399]" /> Send to a parent
         </h2>
         <p className="mt-1 text-sm text-white/45">
-          This preview is {periodLabel}. Save a parent address with consent, or leave it blank to
-          use your AcadeMY email. The sent report is built on the server.
+          This preview is {periodLabel}, the previous calendar month. Save a parent address, or
+          leave it blank to use your AcadeMY email. The sent report is built on the server.
         </p>
 
         <label
@@ -392,11 +367,7 @@ function ParentPage() {
             Enter a valid email address.
           </p>
         )}
-        <ParentEmailConsent
-          inputId="parent-email-consent"
-          checked={consent}
-          onCheckedChange={setConsent}
-        />
+        <ParentEmailNotice />
 
         <div className="mt-5 flex flex-col gap-2.5 sm:flex-row">
           <button
@@ -429,9 +400,10 @@ function ParentPage() {
 
         <p className="mt-4 flex items-start gap-2 text-[11px] leading-relaxed text-white/35">
           <ShieldCheck className="mt-0.5 h-3.5 w-3.5 shrink-0" />
-          Send report now uses the saved parent email only when consent is on file. Otherwise it
-          goes to your AcadeMY email. Automatic delivery is monthly, on the 1st at 8:00 AM Malaysia
-          time, once that schedule is turned on.
+          Send report now uses the saved parent email when it is a valid address. Otherwise it goes
+          to your AcadeMY email. Automatic delivery is monthly, on the 1st at 8:00 AM Malaysia time,
+          once that schedule is turned on. Parents can see weekly progress any time on the Parent
+          Dashboard.
         </p>
       </div>
     </section>

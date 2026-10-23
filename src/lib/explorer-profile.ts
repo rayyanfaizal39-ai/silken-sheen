@@ -24,7 +24,7 @@ export interface ExplorerProfileInput {
   formLevel: ExplorerFormLevel;
   /** Verified school UUID, or null when the learner skipped school for now. */
   schoolId: string | null;
-  /** Optional parent or guardian address. Null keeps reports and reminders on the student email. */
+  /** Optional parent or guardian address for the monthly progress report. */
   parentReportEmail?: string | null;
 }
 
@@ -151,11 +151,7 @@ export async function saveCompletedExplorerProfile(
         form: normalized.formLevel,
         school_id: normalized.schoolId,
         onboarding_completed: true,
-        // Onboarding reaches this with a parent address only after the consent checkbox.
-        ...parentEmailWrite(
-          normalized.parentReportEmail ?? null,
-          Boolean(normalized.parentReportEmail),
-        ),
+        ...parentEmailWrite(normalized.parentReportEmail ?? null),
       },
       { onConflict: "id" },
     )

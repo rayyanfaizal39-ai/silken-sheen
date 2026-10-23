@@ -46,7 +46,7 @@ const BENEFITS: Benefit[] = [
     src: whyParentsConnected,
     alt: "Parents Stay Connected",
     summary:
-      "Parents Stay Connected. Parents can follow progress, celebrate growth and support learning every step of the way. Weekly insights.",
+      "Parents Stay Connected. Parents can follow progress, celebrate growth and support learning every step of the way. Monthly progress reports.",
   },
 ];
 
