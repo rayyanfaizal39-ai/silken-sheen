@@ -2,7 +2,8 @@
  * Manual parent progress report for the signed-in student.
  * The gateway requires a user JWT (verify_jwt = true). This function builds
  * the previous calendar month itself and sends to the saved parent
- * address when that address is a valid email, otherwise to the student's own email.
+ * address when that address is a valid email and consent is recorded.
+ * Otherwise it sends to the student's own email.
  * The monthly cron uses send-monthly-parent-report.
  */
 import { createClient } from "npm:@supabase/supabase-js@2.108.1";
@@ -124,7 +125,7 @@ async function loadManualStudent(
 ): Promise<MonthlyStudent | null> {
   const profileResult = await admin
     .from("profiles")
-    .select("full_name, plan, email, parent_report_email")
+    .select("full_name, plan, email, parent_report_email, parent_email_consent_at")
     .eq("id", userId)
     .maybeSingle();
   if (profileResult.error || !profileResult.data) return null;
@@ -159,6 +160,7 @@ async function loadManualStudent(
     profilePlan: profileResult.data.plan ?? null,
     subscriptionPlan: subscriptionResult.data?.plan ?? null,
     parentReportEmail: profileResult.data.parent_report_email ?? null,
+    parentEmailConsentAt: profileResult.data.parent_email_consent_at ?? null,
     accountEmail,
     xp: Number(progress.data?.xp ?? 0),
     streak: Number(progress.data?.streak ?? 0),

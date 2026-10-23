@@ -13,10 +13,16 @@ import {
 } from "lucide-react";
 import { useProgress } from "@/hooks/use-progress";
 import { useAuth } from "@/context/auth-context";
+import { ParentEmailConsent } from "@/components/parent/ParentEmailConsent";
 import { ParentEmailNotice } from "@/components/parent/ParentEmailNotice";
 import { ParentPremiumUpsell } from "@/components/parent/ParentPremiumUpsell";
 import { previousKualaLumpurMonth } from "@/features/parent-report/monthlyParentReport";
-import { parentEmailWrite } from "@/features/parent-report/parentEmailConsent";
+import {
+  consentAfterEmailEdit,
+  parentEmailSaveBlocked,
+  parentEmailWrite,
+  recordedParentEmailConsent,
+} from "@/features/parent-report/parentEmailConsent";
 import {
   hasParentReportsAccess,
   normalizeParentReportEmail,
@@ -47,6 +53,8 @@ function ParentPage() {
   const { user, loading: authLoading } = useAuth();
   const [email, setEmail] = useState("");
   const [savedEmail, setSavedEmail] = useState<string | null>(null);
+  const [savedConsent, setSavedConsent] = useState(false);
+  const [consent, setConsent] = useState(false);
   const [profileReady, setProfileReady] = useState(false);
   const [entitled, setEntitled] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -66,7 +74,7 @@ function ParentPage() {
       const [profileResult, subscriptionResult] = await Promise.all([
         supabase
           .from("profiles")
-          .select("plan, parent_report_email")
+          .select("plan, parent_report_email, parent_email_consent_at")
           .eq("id", user.id)
           .maybeSingle(),
         supabase
@@ -79,12 +87,15 @@ function ParentPage() {
       if (!active) return;
       const data = profileResult.data;
       const stored = data?.parent_report_email ?? "";
+      const recorded = recordedParentEmailConsent(data?.parent_email_consent_at) && Boolean(stored);
       setEntitled(
         !subscriptionResult.error &&
           hasParentReportsAccess(subscriptionResult.data?.plan ?? null, data?.plan ?? null),
       );
       setEmail(stored);
       setSavedEmail(stored || null);
+      setSavedConsent(recorded);
+      setConsent(recorded);
       setProfileReady(true);
     })();
     return () => {
@@ -146,7 +157,7 @@ function ParentPage() {
   }
 
   async function save() {
-    if (!user || !normalizedEmail.ok) return;
+    if (!user || !normalizedEmail.ok || parentEmailSaveBlocked({ email, consent })) return;
     setDeliveryError(null);
     setDeliveryNote(null);
     if (!isSupabaseConfigured) {
@@ -156,7 +167,7 @@ function ParentPage() {
     setSaving(true);
     const { error } = await supabase
       .from("profiles")
-      .update(parentEmailWrite(normalizedEmail.email))
+      .update(parentEmailWrite(normalizedEmail.email, consent))
       .eq("id", user.id);
     setSaving(false);
     if (error) {
@@ -164,8 +175,11 @@ function ParentPage() {
       return;
     }
     const nextEmail = normalizedEmail.email;
+    const recorded = Boolean(nextEmail) && consent;
     setEmail(nextEmail ?? "");
     setSavedEmail(nextEmail);
+    setSavedConsent(recorded);
+    setConsent(recorded);
     setParentReport(nextEmail ?? undefined, "monthly");
     setSaved(true);
     window.setTimeout(() => setSaved(false), 2200);
@@ -349,14 +363,18 @@ function ParentPage() {
             inputMode="email"
             autoComplete="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              const nextEmail = e.target.value;
+              setEmail(nextEmail);
+              setConsent(consentAfterEmailEdit({ nextEmail, savedEmail, savedConsent }));
+            }}
             placeholder="parent@example.com"
             className="min-h-[44px] flex-1 rounded-xl border border-white/10 bg-white/[0.05] px-4 text-sm text-white placeholder:text-white/30 focus:border-[#34D399]/50 focus:outline-none focus:ring-2 focus:ring-[#34D399]/30"
           />
           <button
             type="button"
             onClick={() => void save()}
-            disabled={saving || emailInvalid}
+            disabled={saving || parentEmailSaveBlocked({ email, consent })}
             className="min-h-[44px] rounded-xl border border-white/15 bg-white/[0.06] px-5 text-sm font-bold text-white transition-colors hover:bg-white/[0.12] disabled:cursor-not-allowed disabled:opacity-40"
           >
             {saving ? "Saving…" : saved ? "Saved ✓" : "Save"}
@@ -368,6 +386,7 @@ function ParentPage() {
           </p>
         )}
         <ParentEmailNotice />
+        <ParentEmailConsent id="parent-email-consent" checked={consent} onChange={setConsent} />
 
         <div className="mt-5 flex flex-col gap-2.5 sm:flex-row">
           <button
@@ -400,10 +419,11 @@ function ParentPage() {
 
         <p className="mt-4 flex items-start gap-2 text-[11px] leading-relaxed text-white/35">
           <ShieldCheck className="mt-0.5 h-3.5 w-3.5 shrink-0" />
-          Send report now uses the saved parent email when it is a valid address. Otherwise it goes
-          to your AcadeMY email. Automatic delivery is monthly, on the 1st at 8:00 AM Malaysia time,
-          once that schedule is turned on. Parents can see weekly progress any time on the Parent
-          Dashboard.
+          Send report now uses the saved parent email when it is a valid address and consent is
+          recorded. Otherwise it goes to your AcadeMY email. Changing the address clears consent
+          until the checkbox is ticked again. Automatic delivery is monthly, on the 1st at 8:00 AM
+          Malaysia time, once that schedule is turned on. Parents can see weekly progress any time
+          on the Parent Dashboard.
         </p>
       </div>
     </section>

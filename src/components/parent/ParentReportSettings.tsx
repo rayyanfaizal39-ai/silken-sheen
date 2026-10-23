@@ -2,13 +2,19 @@ import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Mail } from "lucide-react";
 import { useAuth } from "@/context/auth-context";
+import { ParentEmailConsent } from "@/components/parent/ParentEmailConsent";
 import { ParentEmailNotice } from "@/components/parent/ParentEmailNotice";
 import { ParentPremiumUpsell } from "@/components/parent/ParentPremiumUpsell";
 import {
   PARENT_REPORT_CARD_TITLE_EN,
   PARENT_REPORT_CARD_TITLE_MS,
 } from "@/features/parent-report/parentEmailCopy";
-import { parentEmailWrite } from "@/features/parent-report/parentEmailConsent";
+import {
+  consentAfterEmailEdit,
+  parentEmailSaveBlocked,
+  parentEmailWrite,
+  recordedParentEmailConsent,
+} from "@/features/parent-report/parentEmailConsent";
 import {
   hasParentReportsAccess,
   normalizeParentReportEmail,
@@ -20,6 +26,9 @@ export function ParentReportSettings({ idPrefix = "parent-report" }: { idPrefix?
   const [ready, setReady] = useState(false);
   const [entitled, setEntitled] = useState(false);
   const [email, setEmail] = useState("");
+  const [savedEmail, setSavedEmail] = useState<string | null>(null);
+  const [savedConsent, setSavedConsent] = useState(false);
+  const [consent, setConsent] = useState(false);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -37,7 +46,7 @@ export function ParentReportSettings({ idPrefix = "parent-report" }: { idPrefix?
       const [profileResult, subscriptionResult] = await Promise.all([
         supabase
           .from("profiles")
-          .select("plan, parent_report_email")
+          .select("plan, parent_report_email, parent_email_consent_at")
           .eq("id", user.id)
           .maybeSingle(),
         supabase
@@ -52,8 +61,14 @@ export function ParentReportSettings({ idPrefix = "parent-report" }: { idPrefix?
         subscriptionResult.data?.plan ?? null,
         profileResult.data?.plan ?? null,
       );
+      const stored = profileResult.data?.parent_report_email ?? "";
+      const recorded =
+        recordedParentEmailConsent(profileResult.data?.parent_email_consent_at) && Boolean(stored);
       setEntitled(allowed);
-      setEmail(profileResult.data?.parent_report_email ?? "");
+      setEmail(stored);
+      setSavedEmail(stored || null);
+      setSavedConsent(recorded);
+      setConsent(recorded);
       setReady(true);
     })();
 
@@ -70,14 +85,14 @@ export function ParentReportSettings({ idPrefix = "parent-report" }: { idPrefix?
     setMessage(null);
     setError(null);
     const normalized = normalizeParentReportEmail(email);
-    if (!normalized.ok) {
-      setError(normalized.error);
+    if (!normalized.ok || parentEmailSaveBlocked({ email, consent })) {
+      setError(normalized.ok ? "Tick the consent checkbox before saving." : normalized.error);
       return;
     }
     setSaving(true);
     const { error: saveError } = await supabase
       .from("profiles")
-      .update(parentEmailWrite(normalized.email))
+      .update(parentEmailWrite(normalized.email, consent))
       .eq("id", user.id);
     setSaving(false);
     if (saveError) {
@@ -85,7 +100,11 @@ export function ParentReportSettings({ idPrefix = "parent-report" }: { idPrefix?
       return;
     }
     const nextEmail = normalized.email ?? "";
+    const recorded = Boolean(normalized.email) && consent;
     setEmail(nextEmail);
+    setSavedEmail(normalized.email);
+    setSavedConsent(recorded);
+    setConsent(recorded);
     setMessage(
       nextEmail
         ? "Saved. The monthly progress report will go to this address."
@@ -118,15 +137,20 @@ export function ParentReportSettings({ idPrefix = "parent-report" }: { idPrefix?
             autoComplete="email"
             placeholder="parent@email.com"
             value={email}
-            onChange={(event) => setEmail(event.target.value)}
+            onChange={(event) => {
+              const nextEmail = event.target.value;
+              setEmail(nextEmail);
+              setConsent(consentAfterEmailEdit({ nextEmail, savedEmail, savedConsent }));
+            }}
             className="mt-2 w-full rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white outline-none placeholder:text-white/30 focus:border-[#818CF8]"
           />
           <ParentEmailNotice />
+          <ParentEmailConsent id={`${idPrefix}-consent`} checked={consent} onChange={setConsent} />
           <div className="mt-4 flex flex-wrap gap-3">
             <button
               type="button"
               onClick={() => void save()}
-              disabled={saving}
+              disabled={saving || parentEmailSaveBlocked({ email, consent })}
               className="inline-flex min-h-11 items-center justify-center rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-5 text-sm font-bold text-white disabled:opacity-60"
             >
               {saving ? "Saving…" : "Save"}

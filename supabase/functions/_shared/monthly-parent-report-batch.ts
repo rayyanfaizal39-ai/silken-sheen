@@ -18,6 +18,7 @@ export type MonthlyStudent = {
   profilePlan: string | null;
   subscriptionPlan: string | null;
   parentReportEmail: string | null;
+  parentEmailConsentAt: string | null;
   accountEmail: string | null;
   xp: number;
   streak: number;

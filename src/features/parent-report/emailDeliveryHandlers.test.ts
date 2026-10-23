@@ -27,6 +27,7 @@ function student(overrides: Partial<MonthlyStudent> = {}): MonthlyStudent {
     profilePlan: "paid",
     subscriptionPlan: "premium",
     parentReportEmail: "parent@example.com",
+    parentEmailConsentAt: "2026-10-23T00:00:00.000Z",
     accountEmail: "maya@example.com",
     xp: 20,
     streak: 2,
@@ -50,13 +51,20 @@ describe("parent email handlers", () => {
     expect(cronAuthorized("secret", "secret")).toBe(true);
   });
 
-  it("writes only the parent address and does not add consent columns", () => {
-    expect(parentEmailWrite(null)).toEqual(serverParentEmailWrite(null));
-    expect(parentEmailWrite("parent@example.com")).toEqual({
+  it("writes a consent acknowledgement and lets the database stamp the clock", () => {
+    expect(parentEmailWrite(null, true)).toEqual(serverParentEmailWrite(null, true));
+    expect(parentEmailWrite("parent@example.com", true)).toEqual(
+      serverParentEmailWrite("parent@example.com", true),
+    );
+    expect(parentEmailWrite("parent@example.com", true)).toMatchObject({
       parent_report_email: "parent@example.com",
+      parent_email_consent_at: "1970-01-01T00:00:00.000Z",
     });
-    expect(parentEmailWrite("parent@example.com")).not.toHaveProperty("parent_email_consent_at");
-    expect(parentEmailWrite("parent@example.com")).not.toHaveProperty(
+    expect(parentEmailWrite("parent@example.com", false)).toMatchObject({
+      parent_report_email: "parent@example.com",
+      parent_email_consent_at: null,
+    });
+    expect(parentEmailWrite("parent@example.com", true)).not.toHaveProperty(
       "parent_email_consent_version",
     );
     expect(
@@ -67,6 +75,19 @@ describe("parent email handlers", () => {
         ),
       ),
     ).toBe(false);
+    const migration = readFileSync(
+      new URL(
+        "../../../supabase/migrations/20261023190000_parent_email_consent_at.sql",
+        import.meta.url,
+      ),
+      "utf8",
+    );
+    expect(migration).toContain("parent_email_consent_at timestamptz");
+    expect(migration).toContain("pg_catalog.now()");
+    expect(migration).toContain("new.parent_report_email is distinct from old.parent_report_email");
+    expect(migration).toContain("new.parent_email_consent_at := null");
+    expect(migration).not.toContain("parent_email_consent_version");
+    expect(migration).toContain("profiles_set_parent_email_consent_at");
     const comment = readFileSync(
       new URL(
         "../../../supabase/migrations/20261023180000_parent_report_email_monthly_comment.sql",
@@ -75,7 +96,6 @@ describe("parent email handlers", () => {
       "utf8",
     );
     expect(comment).toContain("monthly progress report");
-    expect(comment).not.toContain("parent_email_consent");
   });
 
   it("claims a manual send inside one locked database function", () => {
@@ -124,7 +144,7 @@ describe("parent email handlers", () => {
     expect(result.periodLabel).toBe("September 2026");
   });
 
-  it("sends a valid parent address with no consent check, otherwise the student email", async () => {
+  it("sends a parent address only when consent is recorded, otherwise the student email", async () => {
     const studentCopy = vi.fn(async (_input: { to: string }) => ({ id: "student-copy" }));
     const missingParent = await runManualParentReport({
       student: student({ parentReportEmail: null }),
@@ -136,6 +156,16 @@ describe("parent email handlers", () => {
     expect(missingParent.status).toBe(200);
     expect(studentCopy.mock.calls[0]?.[0].to).toBe("maya@example.com");
     expect(missingParent.body.usedParentEmail).toBe(false);
+
+    const missingConsent = vi.fn(async (_input: { to: string }) => ({ id: "missing-consent" }));
+    await runManualParentReport({
+      student: student({ parentEmailConsentAt: null }),
+      userId: "student-1",
+      now: NOW,
+      recordAttempt: async () => "ok",
+      send: missingConsent,
+    });
+    expect(missingConsent.mock.calls[0]?.[0].to).toBe("maya@example.com");
 
     const invalidParent = vi.fn(async (_input: { to: string }) => ({ id: "invalid-copy" }));
     await runManualParentReport({

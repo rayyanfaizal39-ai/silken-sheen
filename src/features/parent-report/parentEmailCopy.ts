@@ -9,3 +9,9 @@ export const PARENT_EMAIL_NOTICE_EN =
 
 export const PARENT_EMAIL_NOTICE_MS =
   "Ibu bapa anda akan menerima laporan kemajuan bulanan di alamat ini pada 1 haribulan. Ibu bapa boleh melihat kemajuan mingguan pada bila-bila masa di Papan Pemuka Ibu Bapa. Jika dibiarkan kosong, laporan bulanan dihantar ke e-mel akaun AcadeMY anda.";
+
+export const PARENT_EMAIL_CONSENT_EN =
+  "My parent or guardian agreed to receive monthly progress emails from AcadeMY at this address.";
+
+export const PARENT_EMAIL_CONSENT_MS =
+  "Ibu bapa atau penjaga saya bersetuju menerima e-mel kemajuan bulanan daripada AcadeMY di alamat ini.";

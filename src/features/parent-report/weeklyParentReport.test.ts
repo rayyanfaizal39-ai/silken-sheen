@@ -66,22 +66,46 @@ describe("parent report email", () => {
     expect(normalizeParentReportEmail("not-an-email").ok).toBe(false);
   });
 
-  it("uses a valid parent address without a consent check", () => {
+  it("uses a valid parent address only after consent is recorded", () => {
+    const consentAt = "2026-10-23T02:00:00.000Z";
     expect(
-      resolveParentReportRecipient({ parentReportEmail: null, accountEmail: "Aiman@Gmail.com" }),
+      resolveParentReportRecipient({
+        parentReportEmail: null,
+        parentEmailConsentAt: consentAt,
+        accountEmail: "Aiman@Gmail.com",
+      }),
     ).toBe("aiman@gmail.com");
     expect(
-      resolveParentReportRecipient({ parentReportEmail: "  ", accountEmail: "aiman@gmail.com" }),
+      resolveParentReportRecipient({
+        parentReportEmail: "  ",
+        parentEmailConsentAt: consentAt,
+        accountEmail: "aiman@gmail.com",
+      }),
     ).toBe("aiman@gmail.com");
     expect(
       resolveParentReportRecipient({
         parentReportEmail: "mother@gmail.com",
+        parentEmailConsentAt: null,
+        accountEmail: "aina@gmail.com",
+      }),
+    ).toBe("aina@gmail.com");
+    expect(
+      resolveParentReportRecipient({
+        parentReportEmail: "mother@gmail.com",
+        accountEmail: "aina@gmail.com",
+      }),
+    ).toBe("aina@gmail.com");
+    expect(
+      resolveParentReportRecipient({
+        parentReportEmail: "mother@gmail.com",
+        parentEmailConsentAt: consentAt,
         accountEmail: "aina@gmail.com",
       }),
     ).toBe("mother@gmail.com");
     expect(
       resolveParentReportRecipient({
         parentReportEmail: "not-an-email",
+        parentEmailConsentAt: consentAt,
         accountEmail: "aina@gmail.com",
       }),
     ).toBe("aina@gmail.com");
@@ -426,6 +450,7 @@ describe("weekly parent report email template", () => {
     expect(source).not.toContain("resolveWeeklyReportRecipient");
     expect(source).toContain('if (!cronKey) return response({ error: "Unauthorized" }, 401);');
     expect(source).toContain("profileResult.data.parent_report_email");
+    expect(source).toContain("profileResult.data.parent_email_consent_at");
     expect(source).toContain("maskEmailAddress(recipient)");
     expect(source).toContain("if (options?.dryRun)");
     expect(source.indexOf("if (options?.dryRun)")).toBeLessThan(
