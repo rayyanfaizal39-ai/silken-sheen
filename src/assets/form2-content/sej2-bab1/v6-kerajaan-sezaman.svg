@@ -5,7 +5,7 @@
 <text x="380" y="68" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="40" font-weight="700" fill="#f1f5f9">Kerajaan Alam Melayu dan</text>
 <text x="380" y="116" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="40" font-weight="700" fill="#f1f5f9">Kerajaan Luar yang Sezaman</text>
 <rect x="340" y="146" width="80" height="5" rx="2.5" fill="#38bdf8"/>
-<rect x="28" y="178" width="704" height="50" rx="12" fill="#38bdf8"/><text x="48" y="213" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="30" font-weight="800" fill="#0f172a">Abad Pertama</text><text x="712" y="212" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="600" fill="#0f172a">hlm. 14</text>
+<rect x="28" y="178" width="704" height="50" rx="12" fill="#38bdf8"/><text x="48" y="213" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="30" font-weight="800" fill="#0f172a">Abad Pertama</text>
 <rect x="28" y="240" width="344" height="206" rx="12" fill="#162033" stroke="#334155" stroke-width="2"/><text x="46" y="276" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="700" fill="#38bdf8">Kerajaan Alam Melayu</text>
 <circle cx="54" cy="307" r="6" fill="#38bdf8"/>
 <text x="72" y="316" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#f1f5f9">Funan</text>
@@ -18,7 +18,7 @@
 <text x="432" y="388" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#f1f5f9">Empayar Kushan</text>
 <circle cx="414" cy="415" r="6" fill="#f59e0b"/>
 <text x="432" y="424" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#f1f5f9">Dinasti Han</text>
-<rect x="28" y="462" width="704" height="50" rx="12" fill="#34d399"/><text x="48" y="497" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="30" font-weight="800" fill="#0f172a">Abad Kesembilan</text><text x="712" y="496" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="600" fill="#0f172a">hlm. 15</text>
+<rect x="28" y="462" width="704" height="50" rx="12" fill="#34d399"/><text x="48" y="497" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="30" font-weight="800" fill="#0f172a">Abad Kesembilan</text>
 <rect x="28" y="524" width="344" height="206" rx="12" fill="#162033" stroke="#334155" stroke-width="2"/><text x="46" y="560" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="700" fill="#38bdf8">Kerajaan Alam Melayu</text>
 <circle cx="54" cy="591" r="6" fill="#38bdf8"/>
 <text x="72" y="600" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#f1f5f9">Champa</text>
@@ -35,7 +35,7 @@
 <text x="432" y="672" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#f1f5f9">Dinasti Tang</text>
 <circle cx="414" cy="699" r="6" fill="#f59e0b"/>
 <text x="432" y="708" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#f1f5f9">Kerajaan Chola</text>
-<rect x="28" y="746" width="704" height="50" rx="12" fill="#f59e0b"/><text x="48" y="781" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="30" font-weight="800" fill="#0f172a">Abad Ke-14</text><text x="712" y="780" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="600" fill="#0f172a">hlm. 15</text>
+<rect x="28" y="746" width="704" height="50" rx="12" fill="#f59e0b"/><text x="48" y="781" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="30" font-weight="800" fill="#0f172a">Abad Ke-14</text>
 <rect x="28" y="808" width="344" height="202" rx="12" fill="#162033" stroke="#334155" stroke-width="2"/><text x="46" y="844" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="700" fill="#38bdf8">Kerajaan Alam Melayu</text>
 <circle cx="54" cy="875" r="6" fill="#38bdf8"/>
 <text x="72" y="884" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#f1f5f9">Champa</text>
