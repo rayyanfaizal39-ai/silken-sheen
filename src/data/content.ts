@@ -5263,13 +5263,13 @@ export const quizzes: QuizQuestion[] = [
       "Menurut A. Aziz Deraman, apakah contoh budaya yang dikongsi oleh masyarakat Alam Melayu?",
     options: [
       "Mata wang, sistem cukai dan pelabuhan",
-      "Silat, wayang kulit dan nilai gotong-royong",
+      "Seni mempertahankan diri, wayang kulit dan nilai gotong-royong",
       "Tulisan Palava, candi dan sistem kasta",
       "Undang-undang bertulis, mahkamah dan penjara",
     ],
     answerIndex: 1,
     explanation:
-      "Menurut A. Aziz Deraman, budaya Alam Melayu berkembang maju dengan kepandaian asli seperti silat, nilai gotong-royong dalam masyarakat serta wayang kulit di Kelantan dan Pulau Jawa.",
+      "Menurut A. Aziz Deraman, budaya Alam Melayu berkembang maju dengan kepandaian asli seperti pembuatan gangsa dan seni mempertahankan diri, nilai gotong-royong dalam masyarakat serta wayang kulit di Kelantan dan Pulau Jawa. Buku teks juga menyatakan bahawa silat menjadi identiti budaya serumpun di Alam Melayu (hlm. 7).",
   },
 
   // 1.2 Kewujudan Kerajaan di Alam Melayu
