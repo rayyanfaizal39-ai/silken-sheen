@@ -4,44 +4,89 @@ import type { Sej2Ch2Content } from "@/content/form2/sejarah/chapter-2/sej2ch2-c
 import { ChipRow } from "./blocks/ChipRow";
 import { FactGrid } from "./blocks/FactGrid";
 import { DataTable } from "./blocks/DataTable";
-import { IconCardGrid, type IconCardGridItem } from "./blocks/IconCardGrid";
-import { KingdomChipGrid, type KingdomChipGridItem } from "./blocks/KingdomChipGrid";
-import { PortGoodsGrid } from "./blocks/PortGoodsGrid";
 import { bgPanel } from "./blocks/neon-tokens";
+import v1Wilayah from "@/assets/form2-content/sej2-bab2/v1-pentadbiran-wilayah.svg";
+import v1WilayahB from "@/assets/form2-content/sej2-bab2/v1-pentadbiran-wilayah-b.svg";
+import v1Desktop from "@/assets/form2-content/sej2-bab2/v1-pentadbiran-wilayah-desktop.svg";
+import v2Pertanian from "@/assets/form2-content/sej2-bab2/v2-kawasan-pertanian.svg";
+import v2Desktop from "@/assets/form2-content/sej2-bab2/v2-kawasan-pertanian-desktop.svg";
+import v3Pelabuhan from "@/assets/form2-content/sej2-bab2/v3-pelabuhan.svg";
+import v3Desktop from "@/assets/form2-content/sej2-bab2/v3-pelabuhan-desktop.svg";
+import v4Pedagang from "@/assets/form2-content/sej2-bab2/v4-pedagang-luar.svg";
+import v4Desktop from "@/assets/form2-content/sej2-bab2/v4-pedagang-luar-desktop.svg";
+import v5Hasil from "@/assets/form2-content/sej2-bab2/v5-hasil-hutan-laut-galian.svg";
+import v5Desktop from "@/assets/form2-content/sej2-bab2/v5-hasil-hutan-laut-galian-desktop.svg";
+
+const P = "text-[13.5px] leading-relaxed text-muted-foreground";
+const H3 = "font-display text-[15px] font-bold text-foreground";
+const FIG_IMG = "notes-figure-img w-full rounded-2xl border border-border";
+const NE = "Peta asas: Natural Earth (domain awam).";
+
+// Same figure pattern as Bab 1: tall version on phones, landscape version from `sm` up, one caption.
+function figure(id: string, src: string, alt: string, caption: string, desktop?: string) {
+  return (
+    <figure id={id} className="space-y-1.5">
+      {desktop ? (
+        <>
+          <div className="sm:hidden">
+            <img src={src} alt={alt} loading="lazy" className={FIG_IMG} />
+          </div>
+          <div className="hidden sm:block">
+            <img src={desktop} alt={alt} loading="lazy" className={`${FIG_IMG} notes-figure-img--wide`} />
+          </div>
+        </>
+      ) : (
+        <img src={src} alt={alt} loading="lazy" className={FIG_IMG} />
+      )}
+      <figcaption className="text-center text-[11px] italic leading-snug text-muted-foreground">{caption}</figcaption>
+    </figure>
+  );
+}
+
+function splitFigure(
+  parts: Array<[id: string, src: string, alt: string, caption: string]>,
+  desktop: [id: string, src: string, alt: string, caption: string],
+) {
+  return (
+    <>
+      <div className="space-y-6 sm:hidden">{parts.map((p) => <div key={p[0]}>{figure(...p)}</div>)}</div>
+      <div className="hidden sm:block">
+        <figure id={desktop[0]} className="space-y-1.5">
+          <img src={desktop[1]} alt={desktop[2]} loading="lazy" className={`${FIG_IMG} notes-figure-img--wide`} />
+          <figcaption className="text-center text-[11px] italic leading-snug text-muted-foreground">{desktop[3]}</figcaption>
+        </figure>
+      </div>
+    </>
+  );
+}
+
+function Note({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="rounded-xl p-3.5" style={{ background: bgPanel }}>
+      <p className="text-[13px] leading-relaxed text-muted-foreground">{children}</p>
+    </div>
+  );
+}
 
 const ORBIT_LABELS = [
-  "Gelaran Raja",
+  "Pemerintahan",
   "Pertanian",
   "Perdagangan",
   "Hasil & Galian",
   "Rumusan",
 ];
 
-const SECTION_CHROME: Array<{ eyebrow: string; title: string; sub?: string }> = [
-  { eyebrow: "◆ 2.1", title: "Sistem Pemerintahan — Gelaran Raja", sub: "Tujuh kerajaan, tujuh cara memaknakan kuasa diraja — namun struktur pusat-wilayah yang sama." },
-  { eyebrow: "◆ 2.2", title: "Kegiatan Ekonomi — Pertanian", sub: "Padi ialah tanaman utama; setiap kerajaan memanfaatkan sungai dan tasik yang berbeza." },
-  { eyebrow: "◆ 2.2", title: "Kegiatan Ekonomi — Perdagangan", sub: "Setiap kerajaan mempunyai pelabuhan dan barangan eksport tersendiri." },
-  { eyebrow: "◆ 2.2", title: "Hasil Hutan, Laut dan Perlombongan", sub: "Kekayaan alam yang menarik pedagang dari serata dunia." },
+const SECTION_CHROME: Array<{ eyebrow: string; title: string }> = [
+  { eyebrow: "◆ 2.1", title: "Sistem Pemerintahan" },
+  { eyebrow: "◆ 2.2", title: "Kegiatan Ekonomi — Pertanian" },
+  { eyebrow: "◆ 2.2", title: "Kegiatan Ekonomi — Perdagangan" },
+  { eyebrow: "◆ 2.2", title: "Hasil Hutan dan Laut, Perlombongan dan Pembuatan" },
   { eyebrow: "◆ Rumusan", title: "Fakta Penting & Istilah Utama" },
 ];
 
 const TOTAL = ORBIT_LABELS.length;
 
-const RESOURCE_ICONS: Record<string, string> = {
-  "Gaharu": "🪵",
-  "Sarang burung": "🪺",
-  "Rotan": "🎋",
-  "Kapur barus": "❄️",
-  "Gamat": "🐚",
-  "Rumpai laut": "🌿",
-  "Mutiara": "🦪",
-};
-
-const MINING_ICONS: Record<string, string> = {
-  "Emas": "🥇",
-  "Perak": "🥈",
-  "Bijih besi": "⛏️",
-};
+const short = (k: string) => k.replace(/^Kerajaan\s+/, "");
 
 export function Sej2Chapter2NotesBlock({
   id,
@@ -78,29 +123,9 @@ export function Sej2Chapter2NotesBlock({
     setCurrent((c) => Math.max(0, Math.min(TOTAL - 1, c + dir)));
   }
 
-  const royalTitleItems: KingdomChipGridItem[] = content.governance.byKingdom.map((k) => ({
-    name: k.kingdom.replace(/^Kerajaan\s+/, ""),
-    chips: k.royalTitles,
-    note: k.regionalAdmin,
-  }));
-
-  const manufacturingItems: KingdomChipGridItem[] = content.economy.manufacturing.map((m) => ({
-    name: m.kingdom,
-    chips: m.products,
-  }));
-
-  const resourceItems: IconCardGridItem[] = [
-    ...content.economy.forestSeaProducts.map((p) => ({
-      icon: RESOURCE_ICONS[p.product] ?? "🌾",
-      label: p.product,
-      detail: [p.source, p.use],
-    })),
-    ...content.economy.mining.map((m) => ({
-      icon: MINING_ICONS[m.mineral] ?? "⛏️",
-      label: m.mineral,
-      detail: [`${m.kingdom} — ${m.location}`],
-    })),
-  ];
+  const g = content.governance;
+  const e = content.economy;
+  const mainKingdoms = g.byKingdom.filter((k) => k.royalTitles.length > 0);
 
   return (
     <section id={id} className="mt-8 animate-fade-up">
@@ -144,69 +169,91 @@ export function Sej2Chapter2NotesBlock({
 
       <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-5 sm:p-8">
         <p className="mb-1 text-xs font-bold uppercase tracking-wider text-primary">{chrome.eyebrow}</p>
-        <h2 className="font-display mb-1 text-xl font-bold text-foreground sm:text-2xl">{chrome.title}</h2>
-        {chrome.sub && <p className="mb-6 text-[13.5px] leading-relaxed text-muted-foreground">{chrome.sub}</p>}
-        {!chrome.sub && <div className="mb-6" />}
+        <h2 className="font-display mb-5 text-xl font-bold text-foreground sm:text-2xl">{chrome.title}</h2>
 
         {current === 0 && (
-          <div className="space-y-6">
-            <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.governance.intro}</p>
-            <KingdomChipGrid items={royalTitleItems} />
-            <ChipRow heading="🏛️ Golongan Masyarakat" items={content.governance.socialClasses} />
+          <div className="space-y-5">
+            <p className={P}>{g.intro}</p>
+            <h3 className={`${H3} pt-1`}>Raja dan pemerintahan pusat</h3>
+            <DataTable
+              headers={["Kerajaan", "Gelaran raja", "Raja dibantu oleh"]}
+              rows={mainKingdoms.map((k) => [short(k.kingdom), k.royalTitles.join("; "), k.centralAdmin])}
+            />
+            {g.majapahitWomen && <Note>{g.majapahitWomen}</Note>}
+            <h3 className={`${H3} pt-2`}>Pemerintahan wilayah</h3>
+            {splitFigure(
+              [
+                ["wilayah-1", v1Wilayah, "Pentadbiran wilayah Funan, Champa dan Srivijaya", "Rajah berdasarkan buku teks hlm. 26 (1/2)."],
+                ["wilayah-2", v1WilayahB, "Pentadbiran wilayah Angkor dan Majapahit", "Rajah berdasarkan buku teks hlm. 27 (2/2)."],
+              ],
+              ["wilayah-desktop", v1Desktop, "Pentadbiran wilayah Funan, Champa, Srivijaya, Angkor dan Majapahit", "Rajah berdasarkan buku teks hlm. 26–27."],
+            )}
+            {g.smallKingdoms && (
+              <>
+                <h3 className={`${H3} pt-2`}>Kedah Tua dan Gangga Nagara</h3>
+                <p className={P}>{g.smallKingdoms}</p>
+              </>
+            )}
+            {g.closing && <p className={P}>{g.closing}</p>}
           </div>
         )}
 
         {current === 1 && (
-          <div className="space-y-6">
-            <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.economy.intro}</p>
+          <div className="space-y-5">
+            <p className={P}>{e.intro}</p>
+            {e.agricultureIntro && <p className={P}>{e.agricultureIntro}</p>}
+            {figure("pertanian-peta", v2Pertanian, "Peta kawasan padi dan rempah kerajaan Alam Melayu", `Ilustrasi berdasarkan buku teks hlm. 28–29. Kedudukan anggaran. ${NE}`, v2Desktop)}
             <DataTable
-              headers={["Kerajaan", "Butiran Penanaman Padi"]}
-              rows={content.economy.riceCultivation.map((r) => [r.kingdom, r.details])}
+              headers={["Kerajaan", "Penanaman padi"]}
+              rows={e.riceCultivation.map((r) => [r.kingdom, r.details])}
             />
-            <DataTable
-              headers={["Rempah", "Kawasan Tumbuhan"]}
-              rows={content.economy.spices.map((s) => [s.spice, s.growingArea])}
-            />
-            <ChipRow heading="🌾 Tanaman Lain" items={content.economy.otherCrops} />
+            {e.spiceNote && <p className={P}>{e.spiceNote}</p>}
+            {e.otherFarming && <p className={P}>{e.otherFarming}</p>}
           </div>
         )}
 
         {current === 2 && (
-          <div className="space-y-6">
-            <PortGoodsGrid
-              items={content.economy.tradePorts.map((t) => ({
-                kingdom: t.kingdom.replace(/^Kerajaan\s+/, ""),
-                ports: t.ports,
-                goods: t.goods,
-              }))}
+          <div className="space-y-5">
+            {e.tradeIntro && <p className={P}>{e.tradeIntro}</p>}
+            {figure("pelabuhan-peta", v3Pelabuhan, "Peta pelabuhan tujuh kerajaan Alam Melayu", `Ilustrasi berdasarkan buku teks hlm. 30–31. Kedudukan anggaran; Sri Banoy, Maliti dan Pangkalan tidak ditanda. ${NE}`, v3Desktop)}
+            <DataTable
+              headers={["Kerajaan", "Barang didagangkan"]}
+              rows={e.tradePorts.map((t) => [short(t.kingdom), t.goods.join(", ")])}
             />
-            <div className="grid gap-3 sm:grid-cols-3">
-              {content.economy.foreignTraders.map((t) => (
-                <div key={t.origin} className="rounded-xl p-3.5" style={{ background: bgPanel }}>
-                  <p className="text-[9.5px] font-semibold uppercase tracking-wide text-muted-foreground">Pedagang</p>
-                  <h5 className="font-display mt-1 mb-1.5 text-[13px] font-bold text-foreground">{t.origin}</h5>
-                  <p className="text-[10px] leading-relaxed text-muted-foreground">
-                    Membawa: {t.broughtGoods.join(", ")}
-                  </p>
-                  <p className="mt-1 text-[10px] leading-relaxed text-muted-foreground">
-                    Mencari: {t.soughtGoods.join(", ")}
-                  </p>
-                </div>
-              ))}
-            </div>
-            <FactGrid heading="⚓ Kesan Perdagangan" facts={content.economy.tradeEffects} />
+            {e.tradeOfficial && <Note>{e.tradeOfficial}</Note>}
+            <h3 className={`${H3} pt-2`}>Pedagang luar</h3>
+            {e.foreignTradersIntro && <p className={P}>{e.foreignTradersIntro}</p>}
+            {figure("pedagang-luar", v4Pedagang, "Barangan yang dibawa dan dicari oleh pedagang China, India, Arab dan Parsi", "Rajah berdasarkan buku teks hlm. 31.", v4Desktop)}
+            {e.silkNote && <p className={P}>{e.silkNote}</p>}
+            {e.tradeClosing && <p className={P}>{e.tradeClosing}</p>}
           </div>
         )}
 
         {current === 3 && (
-          <div className="space-y-6">
-            <IconCardGrid items={resourceItems} />
-            <KingdomChipGrid heading="🛠️ Pembuatan" items={manufacturingItems} />
+          <div className="space-y-5">
+            <h3 className={H3}>Hasil hutan dan laut</h3>
+            {e.forestSeaIntro && <p className={P}>{e.forestSeaIntro}</p>}
+            {figure("hasil-peta", v5Hasil, "Peta sumber hasil hutan, hasil laut dan galian kerajaan Alam Melayu", `Ilustrasi berdasarkan buku teks hlm. 32–33. Kedudukan anggaran. ${NE}`, v5Desktop)}
+            <DataTable
+              headers={["Hasil", "Kegunaan"]}
+              rows={e.forestSeaProducts.map((p) => [p.product, p.use])}
+            />
+            {e.forestSeaDemand && <p className={P}>{e.forestSeaDemand}</p>}
+            <h3 className={`${H3} pt-2`}>Perlombongan dan pembuatan</h3>
+            {e.miningIntro && <p className={P}>{e.miningIntro}</p>}
+            <DataTable
+              headers={["Kerajaan", "Pembuatan"]}
+              rows={e.manufacturing.map((m) => [m.kingdom, m.products.join(", ")])}
+            />
+            {e.economyClosing && <p className={P}>{e.economyClosing}</p>}
           </div>
         )}
 
         {current === 4 && (
           <div className="space-y-6">
+            {content.values && content.values.length > 0 && (
+              <FactGrid heading="🌱 Nilai, Patriotisme dan Iktibar" facts={content.values} />
+            )}
             <FactGrid heading="⭐ Fakta Penting Peperiksaan" facts={content.keyExamFacts} />
             <ChipRow heading="📘 Istilah Utama" items={content.keyTerms} />
             <div>

@@ -6018,11 +6018,11 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 2",
     difficulty: "Medium",
     question:
-      "Funan, Champa dan Angkor memanfaatkan tasik yang manakah untuk membekalkan air bagi pertanian padi?",
+      "Funan dan Angkor memanfaatkan tasik yang manakah untuk membekalkan air bagi pertanian padi?",
     options: ["Tasik Toba", "Tonle Sap", "Tasik Chini", "Tasik Kenyir"],
     answerIndex: 1,
     explanation:
-      "Funan, Champa dan Angkor memanfaatkan kawasan Lembah Sungai Mekong, dengan Tonle Sap membekalkan air untuk pertanian.",
+      "Funan dan Angkor menjalankan pertanian padi di Lembah Sungai Mekong; Tasik Tonle Sap membekalkan air untuk pertanian (hlm. 29).",
   },
   {
     id: "sej-f2-c2-q15",
@@ -6051,14 +6051,14 @@ export const quizzes: QuizQuestion[] = [
     question:
       "Champa mempunyai Ketua Air di setiap kampung, manakala Majapahit menjalankan pertanian di sekitar Sungai Bengawan Solo dan Sungai Brantas. Apakah persamaan pendekatan kedua-dua kerajaan ini dalam bidang pertanian?",
     options: [
-      "Kedua-duanya membina sistem pengairan untuk menampung keperluan pertanian padi",
+      "Kedua-duanya mengurus sistem pengairan untuk menampung keperluan pertanian padi",
       "Kedua-duanya mengutamakan tanaman rempah untuk dieksport",
       "Kedua-duanya menjalankan pertanian pindah di kawasan bukit",
       "Kedua-duanya bergantung kepada air hujan tanpa sistem pengairan",
     ],
     answerIndex: 0,
     explanation:
-      "Champa menyelenggarakan terusan melalui Ketua Air manakala Majapahit membina sistem pengairan menggunakan Sungai Bengawan Solo dan Sungai Brantas — kedua-duanya membina kemudahan pengairan untuk meningkatkan hasil pertanian padi.",
+      "Di Champa, Ketua Air di setiap kampung menyelenggara terusan dan daik, manakala Majapahit mengusahakan padi di sekitar Sungai Bengawan Solo dan Sungai Brantas dengan sistem pengairan — kedua-duanya mengurus pengairan untuk pertanian padi (hlm. 28–29).",
   },
   {
     id: "sej-f2-c2-q17",
@@ -6144,7 +6144,7 @@ export const quizzes: QuizQuestion[] = [
     ],
     answerIndex: 3,
     explanation:
-      "Palembang mendagangkan damar, kapur barus, gaharu, madu, rotan, rempah, mutiara, rumpai laut, gading gajah dan sumbu badak, manakala beras merupakan barang dagangan utama pelabuhan Champa, bukan Palembang.",
+      "Palembang mendagangkan damar, kapur barus, gaharu, madu, rotan, rempah, mutiara, rumpai laut, gading gajah dan sumbu badak, manakala beras didagangkan oleh Champa dan Majapahit, bukan Palembang (hlm. 30–31).",
   },
   {
     id: "sej-f2-c2-q23",
@@ -6155,14 +6155,14 @@ export const quizzes: QuizQuestion[] = [
     question:
       "Pedagang China ke Alam Melayu membawa barangan seperti kain sutera. Apakah barangan yang mereka cari daripada Alam Melayu?",
     options: [
-      "Rempah, gaharu dan kapur barus",
-      "Batu berharga, akik dan manik",
+      "Barangan yang mempunyai nilai perubatan",
+      "Batu berharga seperti akik dan karnelian",
       "Minyak wangi dan barangan kaca",
-      "Tembikar, kain kapas dan kaca",
+      "Kain kapas dan tembikar",
     ],
     answerIndex: 0,
     explanation:
-      "Pedagang China mendapatkan barangan Alam Melayu seperti rempah, gaharu dan kapur barus sambil membawa barangan seperti kain sutera.",
+      "Pedagang China membawa kain sutera dan tembikar, dan mencari barangan yang mempunyai nilai perubatan. Rempah, gaharu dan kapur barus dicari oleh pedagang India (hlm. 31).",
   },
   {
     id: "sej-f2-c2-q24",
@@ -6269,13 +6269,103 @@ export const quizzes: QuizQuestion[] = [
       "Champa menjalankan perlombongan emas dan perak, manakala Majapahit terkenal dengan kegiatan pembuatan. Antara berikut, yang manakah barangan pembuatan Majapahit?",
     options: [
       "Tembikar, cuka kelapa, tikar dan rotan",
-      "Barang perhiasan emas dan bijih besi",
+      "Barang perhiasan daripada emas dan bijih besi",
       "Garam, gula, minyak dan mi beras",
       "Kain sutera dan barangan kaca",
     ],
     answerIndex: 2,
     explanation:
-      "Majapahit menghasilkan garam, gula, minyak dan mi beras, manakala tembikar dan cuka kelapa dihasilkan oleh Champa, dan barang perhiasan emas daripada bijih besi dihasilkan oleh Funan dan Angkor.",
+      "Majapahit menghasilkan garam, gula, minyak dan mi beras, manakala tembikar dan cuka kelapa dihasilkan oleh Champa, dan pelbagai barangan daripada bijih besi dan emas, seperti barang perhiasan, dihasilkan oleh Funan dan Angkor (hlm. 33).",
+  },
+  {
+    id: "sej-f2-c2-q31",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 2",
+    difficulty: "Medium",
+    question:
+      "Apakah kedudukan wanita kerabat diraja dalam pemerintahan Majapahit?",
+    options: [
+      "Mereka menjadi anggota Sapta Prabu dan ada yang dilantik menjadi raja",
+      "Mereka hanya menguruskan istana",
+      "Mereka mengetuai pentadbiran wilayah Kabupaten",
+      "Mereka tidak terlibat dalam pemerintahan",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Wanita kerabat diraja Majapahit mendapat tempat yang tinggi dalam pentadbiran; mereka menjadi anggota Sapta Prabu, malahan ada yang dilantik menjadi raja (hlm. 27).",
+  },
+  {
+    id: "sej-f2-c2-q32",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 2",
+    difficulty: "Medium",
+    question:
+      "Siapakah Tuhan Vatakvurah dalam pemerintahan Srivijaya?",
+    options: [
+      "Penyelia kegiatan perdagangan dan perkapalan",
+      "Ketua wilayah Pradatuan",
+      "Ketua golongan agama",
+      "Ketua tentera",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Di pelabuhan Srivijaya, jawatan Tuhan Vatakvurah berperanan sebagai penyelia kegiatan perdagangan dan perkapalan (hlm. 30).",
+  },
+  {
+    id: "sej-f2-c2-q33",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 2",
+    difficulty: "Easy",
+    question:
+      "Apakah antara kemudahan yang disediakan di pelabuhan kerajaan Alam Melayu?",
+    options: [
+      "Bekalan air, tempat tinggal dan tempat menyimpan barang dagangan",
+      "Lapangan terbang",
+      "Kilang perkapalan moden",
+      "Landasan kereta api",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Pelabuhan dilengkapi kemudahan seperti bekalan air, tempat tinggal, tempat menyimpan barang dagangan dan kawasan berjual beli (hlm. 30).",
+  },
+  {
+    id: "sej-f2-c2-q34",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 2",
+    difficulty: "Medium",
+    question:
+      "Bagaimanakah kegiatan perlombongan dijalankan pada peringkat awal?",
+    options: [
+      "Secara mendulang secara kecil-kecilan",
+      "Menggunakan kapal korek",
+      "Secara lombong dedah yang besar",
+      "Menggunakan jentera berat",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Pada peringkat awal, perlombongan emas, perak dan bijih besi dijalankan dengan cara mendulang secara kecil-kecilan (hlm. 33).",
+  },
+  {
+    id: "sej-f2-c2-q35",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 2",
+    difficulty: "Hard",
+    question:
+      "Majapahit menghasilkan garam, gula, minyak, pembungkusan daging kerbau dan mi daripada beras. Apakah nilai yang dapat dicontohi daripada kegiatan ini?",
+    options: [
+      "Kreatif dalam penciptaan",
+      "Bergantung kepada pedagang asing",
+      "Mengutamakan kemewahan diri",
+      "Menolak pembaharuan",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Kegiatan pembuatan Majapahit menunjukkan masyarakat yang kreatif dan inovatif dalam menghasilkan barangan keperluan (hlm. 33 dan 37).",
   },
   ...sejarahF2C3Quizzes,
   ...sejarahF2C4Quizzes,
