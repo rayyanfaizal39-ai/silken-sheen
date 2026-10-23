@@ -112,8 +112,8 @@ export function Sej2Chapter8NotesBlock({
           <div className="space-y-6">
             <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.founding.intro}</p>
             <figure className="space-y-2">
-              <img src={pusatMobile} alt="Peta pusat pemerintahan awal Kedah, Kelantan, Negeri Sembilan dan Perlis" className={`${FIG_IMG} sm:hidden`} loading="lazy" />
-              <img src={pusatDesktop} alt="Peta pusat pemerintahan awal Kedah, Kelantan, Negeri Sembilan dan Perlis" className={`${FIG_IMG} notes-figure-img--wide hidden sm:block`} loading="lazy" />
+              <div className="sm:hidden"><img src={pusatMobile} alt="Peta pusat pemerintahan awal Kedah, Kelantan, Negeri Sembilan dan Perlis" className={FIG_IMG} loading="lazy" /></div>
+              <div className="hidden sm:block"><img src={pusatDesktop} alt="Peta pusat pemerintahan awal Kedah, Kelantan, Negeri Sembilan dan Perlis" className={`${FIG_IMG} notes-figure-img--wide`} loading="lazy" /></div>
               <figcaption className="text-center text-[11px] italic leading-snug text-muted-foreground">Sumber: buku teks hlm. 138–144. Peta asas: Natural Earth; kedudukan anggaran.</figcaption>
             </figure>
             <div className="grid gap-4 sm:grid-cols-2">
