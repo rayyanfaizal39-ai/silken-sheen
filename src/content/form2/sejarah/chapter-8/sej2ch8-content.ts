@@ -47,7 +47,7 @@ export interface Sej2Ch8Content {
 export const sej2Ch8Content: Sej2Ch8Content = {
   hook: {
     title: "Kenapa ini penting",
-    body: "Kedah ialah kerajaan tertua di negara kita, wujud sejak abad ketujuh — manakala Negeri Sembilan mengamalkan sistem pemerintahan yang benar-benar unik, dijemput dari Minangkabau, Sumatera. Bab ini menunjukkan empat cara berbeza sebuah kerajaan Melayu boleh terbentuk.",
+    body: "Kedah ialah kerajaan terawal diasaskan di negara kita, sekitar tahun 630 Masihi. Kelantan, Negeri Sembilan dan Perlis pula diasaskan selepas berakhirnya Kesultanan Melayu Melaka, dan keempat-empat kerajaan ini menjalin hubungan diplomatik serta perdagangan dengan negeri-negeri Melayu yang lain.",
   },
   founding: {
     intro: "Pengasasan kerajaan Kedah, Kelantan, Negeri Sembilan dan Perlis merupakan penerusan kegemilangan kerajaan-kerajaan Alam Melayu. Kerajaan Kedah merupakan kerajaan terawal diasaskan di negara kita, manakala Kelantan, Negeri Sembilan dan Perlis diasaskan selepas berakhirnya Kesultanan Melayu Melaka.",
@@ -57,12 +57,12 @@ export const sej2Ch8Content: Sej2Ch8Content = {
         origin: "Diasaskan oleh keturunan raja yang datang dari Parsi",
         founder: "Maharaja Derbar Raja",
         foundingYear: "Sekitar 630 Masihi",
-        firstCenter: "Kuala Sungai Merbok, kemudian Sungai Mas",
+        firstCenter: "Sungai Mas (baginda tiba di Kuala Sungai Merbok)",
         notableFacts: [
           "Tan Dermadewa dan Tun Perkasa (ketua orang Melayu Kedah) melantik Maharaja Derbar Raja sebagai Raja Kedah",
           "Alat kebesaran nobat dibawa dari Parsi, dikenali sebagai Qalha — diwarisi sebagai alat kebesaran kerajaan Kedah",
           "Pelabuhan Sungai Mas aktif berdagang sejak abad kelima",
-          "Kota Siputih dibuka Tunku Ahmad (1282) untuk menghadapi ancaman Siam dan Acheh — menjadi tempat bersemayam Sultan Ibrahim, Sultan Kedah keenam",
+          "Kota Siputih dibuka Tunku Ahmad (1282) untuk menghadapi ancaman Siam dan Acheh — menjadi tempat bersemayam Sultan Ibrahim (1321-1373), Sultan Kedah keenam",
           "Kerajaan Kedah kekal hingga kini melalui penggantian pemerintah daripada jurai keturunan pengasasnya",
         ],
         notableRuler: {
@@ -76,10 +76,10 @@ export const sej2Ch8Content: Sej2Ch8Content = {
         origin: "Asalnya sebahagian Negara Patani Besar (diasaskan Raja Sakti I, 1650); berpecah kepada Kelantan Barat (Kota Kubang Labu) dan Kelantan Timur (Kota Pangkalan Datu) selepas kemangkatan Raja Bahar (1670)",
         founder: "Long Yunus (putera pemerintah Kota Kubang Labu)",
         foundingYear: "1762",
-        firstCenter: "Menyatukan Kelantan Barat dan Timur; bergelar Yang di-Pertuan Kelantan, diiktiraf Sultan Terengganu",
+        firstCenter: "Kota Galoh di timur tebing Sungai Kelantan (dari 1777); bergelar Yang di-Pertuan Kelantan, diiktiraf Sultan Terengganu",
         notableFacts: [
-          "1777: pusat pentadbiran dipindah ke Kota Galoh; Masjid Kampung Laut dibina sebagai simbol pentadbiran Islam",
-          "Legenda 2 Raja Perempuan: Che Siti Wan Kembang (awal abad ke-17, simbol kijang) dan Puteri Saadong (1667, pernah ditawan ke Siam)",
+          "Menyatukan Kelantan Barat dan Kelantan Timur; mengarahkan pembinaan Masjid Kampung Laut sebagai simbol pentadbiran Islam",
+          "Legenda Raja Perempuan: Che Siti Wan Kembang (tebing Sungai Lebir, awal abad ke-17; kijang menjadi simbol Kelantan) dan Puteri Saadong (Kota Jelasin, 1667; pernah ditawan ke Siam)",
           "Keturunan Long Yunus mewarisi pemerintahan Kelantan hingga kini",
         ],
         notableRuler: {
@@ -104,18 +104,18 @@ export const sej2Ch8Content: Sej2Ch8Content = {
         notableRuler: {
           name: "Yamtuan Antah",
           reignYears: "1872-1888",
-          achievement: "Menjamin keamanan negeri daripada campur tangan kuasa luar, memperluas hubungan perdagangan",
+          achievement: "Berusaha menjamin keamanan negeri daripada campur tangan kuasa luar; kestabilan membolehkan hubungan perdagangan diperluas",
         },
       },
       {
         name: "Kerajaan Perlis",
-        origin: "Asalnya sebahagian wilayah Kedah; dikembangkan 3 Sultan Kedah (Muhyiddin Mansur Shah, Dhiauddin Mukarram Shah I & II)",
+        origin: "Asalnya sebahagian wilayah Kedah; dijadikan pusat pemerintahan oleh 3 Sultan Kedah (Muhyiddin Mansur Shah, Dhiauddin Mukarram Shah I & II)",
         founder: "Syed Hussin Jamalullail",
         foundingYear: "1843 (diiktiraf Siam dengan gelaran Phya Songkhram Ramu Wichit Willis Asmara Phya Pelit)",
         firstCenter: "Arau",
         notableFacts: [
           "1839: di bawah pengaruh Siam, Kedah dipecahkan kepada 4 unit — Setul, Perlis, Kubang Pasu, Kedah",
-          "Amalan menghantar 'Bunga Mas' (bunga emas) ke Siam setiap 3 tahun sebagai tanda persahabatan (1841-1909, tidak kurang 20 kali)",
+          "Bunga Mas (bunga emas) dihantar ke Bangkok setiap 3 tahun sebagai tanda persahabatan dan menjamin keselamatan (1841-1909, tidak kurang 20 kali)",
           "Keturunan Jamalullail (bergelar Syed) memerintah Perlis hingga kini dengan gelaran Raja Perlis",
         ],
       },
@@ -129,19 +129,19 @@ export const sej2Ch8Content: Sej2Ch8Content = {
       { basis: "Agama", points: ["Berlaku melalui penerimaan Islam oleh pemerintah", "Diperkukuh peranan ulama dalam kegiatan keagamaan", "Berkongsi institusi pendidikan agama (contoh: Masjid Kampung Laut, Kelantan)"] },
     ],
     diplomaticMethods: [
-      { method: "Pengiktirafan", description: "Mengabsahkan sultan sebagai pemerintah, mewujudkan hubungan antara kerajaan berdaulat bertaraf sama" },
-      { method: "Bantuan Pertahanan", description: "Kerjasama ketenteraan antara negeri Melayu untuk menghadapi ancaman luar" },
-      { method: "Perkahwinan Diraja", description: "Mengukuhkan hubungan diplomatik antara keluarga diraja negeri berlainan" },
+      { method: "Pengiktirafan", description: "Mengabsahkan sultan sebagai pemerintah dan mewujudkan hubungan antara kerajaan berdaulat yang setaraf. Contoh: Sultan Mahmud Shah (Melaka) mengiktiraf Kedah pada abad ke-15; Sultan Terengganu mengiktiraf Kelantan di bawah Long Yunus pada tahun 1775" },
+      { method: "Bantuan Pertahanan", description: "Mengekalkan kedaulatan daripada campur tangan kuasa lain. Contoh: Long Yunus dibantu tentera Terengganu dan Reman (Hulu Perak) untuk menyatukan Kelantan; Long Gaffar dari Reman dilantik Perdana Menteri merangkap Panglima Perang Kelantan" },
+      { method: "Perkahwinan Diraja", description: "Mengukuhkan hubungan dan menjamin kedaulatan. Contoh: Onang Kening (puteri Kelantan) dengan Sultan Mahmud Shah (Melaka); Che' Ku Wan (puteri Long Yunus) dengan Tengku Muhammad (putera Sultan Terengganu); Raja Syed Hussin dengan Tengku Nor Asiah (cucunda Sultan Kedah ke-20)" },
     ],
     tradeGoods: [
-      { kingdom: "Kedah", ports: "Pangkalan Lembah Bujang & Kuala Merbok (Sungai Merbok), Pangkalan Kuala Muda (Sungai Muda)", goods: ["Beras", "Garam", "Damar", "Kapur barus", "Emas urai", "Gading dan gajah (entrepot)"] },
-      { kingdom: "Kelantan", ports: "Pangkalan Galoh — 'Pangkalan Permata' (Sungai Kelantan)", goods: ["Emas", "Mata wang dinar digunakan sejak tahun 1181"] },
-      { kingdom: "Negeri Sembilan", ports: "Pangkalan di Sungai Linggi — dikuasai pedagang Rembau", goods: ["Bijih timah", "Sirih", "Kayu gaharu", "Kapur barus"] },
-      { kingdom: "Perlis", ports: "Kuala Perlis (Sungai Perlis), Pekan Kangar", goods: ["Beras", "Bijih timah"] },
+      { kingdom: "Kedah", ports: "Pangkalan Lembah Bujang & Kuala Merbok (Sungai Merbok), Pangkalan Kuala Muda (Sungai Muda)", goods: ["Beras", "Garam", "Damar", "Kapur barus", "Emas urai", "Gading dan gajah (entrepot)", "Dibawa masuk dari Perak dan Melaka: arang kayu, papan, ikan kering"] },
+      { kingdom: "Kelantan", ports: "Pangkalan Galoh — 'Pangkalan Permata' (Sungai Kelantan); mata wang logam dinar digunakan sejak tahun 1181", goods: ["Emas"] },
+      { kingdom: "Negeri Sembilan", ports: "Pangkalan di Sungai Linggi — dikuasai pedagang Rembau", goods: ["Bijih timah", "Sirih", "Kayu gaharu", "Kapur barus (dengan Johor dan Melaka)"] },
+      { kingdom: "Perlis", ports: "Kuala Perlis (Sungai Perlis), Pekan Kangar", goods: ["Beras", "Bijih timah (dengan negeri jiran dan Siam)"] },
     ],
   },
   keyExamFacts: [
-    "Kerajaan Kedah ialah kerajaan tertua di Malaysia — diasaskan Maharaja Derbar Raja dari Parsi, ~630 Masihi",
+    "Kerajaan Kedah ialah kerajaan terawal diasaskan di negara kita — oleh Maharaja Derbar Raja dari Parsi, sekitar 630 Masihi",
     "Nobat regalia Kedah dikenali sebagai Qalha, dibawa dari Parsi",
     "Kerajaan Kelantan diasaskan Long Yunus (1762), menyatukan Kelantan Barat dan Timur",
     "2 legenda Raja Perempuan Kelantan: Che Siti Wan Kembang dan Puteri Saadong",
@@ -149,7 +149,7 @@ export const sej2Ch8Content: Sej2Ch8Content = {
     "Negeri Sembilan bermaksud 9 'negeri': Sungai Ujong, Jelebu, Jempol, Johol, Rembau, Tampin, Ulu Muar, Inas, Gunung Pasir",
     "Undang Yang Empat (Sungai Ujong, Jelebu, Johol, Rembau) menentukan pemilihan Yamtuan",
     "Kerajaan Perlis diasaskan Syed Hussin Jamalullail (1843), diiktiraf Siam",
-    "Perlis menghantar 'Bunga Mas' ke Siam setiap 3 tahun (1841-1909) sebagai tanda persahabatan",
+    "Perlis menghantar Bunga Mas ke Siam setiap 3 tahun (1841-1909) sebagai tanda persahabatan dan menjamin keselamatan",
     "3 asas hubungan antara negeri Melayu: keserumpunan, geografi, agama",
     "3 cara hubungan diplomatik: pengiktirafan, bantuan pertahanan, perkahwinan diraja",
     "Kelantan menggunakan mata wang dinar dalam perdagangan sejak tahun 1181",

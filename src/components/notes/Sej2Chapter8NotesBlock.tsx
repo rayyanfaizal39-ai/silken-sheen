@@ -5,13 +5,17 @@ import { ChipRow } from "./blocks/ChipRow";
 import { FactGrid } from "./blocks/FactGrid";
 import { PortGoodsGrid } from "./blocks/PortGoodsGrid";
 import { bgPanel, groupGlow, hexToRgba, neon } from "./blocks/neon-tokens";
+import pusatMobile from "@/assets/form2-content/sej2-bab8/v1-pusat-empat-kerajaan.svg";
+import pusatDesktop from "@/assets/form2-content/sej2-bab8/v1-pusat-empat-kerajaan-desktop.svg";
+
+const FIG_IMG = "notes-figure-img w-full rounded-2xl border border-border";
 
 const ORBIT_LABELS = ["Pengasasan", "Asas Hubungan", "Diplomatik & Dagang", "Rumusan"];
 
 const SECTION_CHROME: Array<{ eyebrow: string; title: string; sub?: string }> = [
-  { eyebrow: "◆ 8.1", title: "Empat Kerajaan, Empat Cara Pengasasan", sub: "Kedah, Kelantan, Negeri Sembilan dan Perlis muncul melalui proses pengasasan yang tersendiri." },
-  { eyebrow: "◆ 8.2", title: "Asas Hubungan Antara Kerajaan Melayu", sub: "Keserumpunan, geografi dan agama menjadi tiga asas hubungan negeri Melayu." },
-  { eyebrow: "◆ 8.2", title: "Hubungan Diplomatik dan Perdagangan", sub: "Pengiktirafan, bantuan pertahanan dan perkahwinan diraja mengukuhkan kedaulatan; pelabuhan mengukuhkan kemakmuran." },
+  { eyebrow: "◆ 8.1", title: "Empat Kerajaan, Empat Cara Pengasasan" },
+  { eyebrow: "◆ 8.2", title: "Asas Hubungan Antara Kerajaan Melayu" },
+  { eyebrow: "◆ 8.2", title: "Hubungan Diplomatik dan Perdagangan" },
   { eyebrow: "◆ Rumusan", title: "Fakta Penting & Istilah Utama" },
 ];
 
@@ -107,6 +111,11 @@ export function Sej2Chapter8NotesBlock({
         {current === 0 && (
           <div className="space-y-6">
             <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.founding.intro}</p>
+            <figure className="space-y-2">
+              <img src={pusatMobile} alt="Peta pusat pemerintahan awal Kedah, Kelantan, Negeri Sembilan dan Perlis" className={`${FIG_IMG} sm:hidden`} loading="lazy" />
+              <img src={pusatDesktop} alt="Peta pusat pemerintahan awal Kedah, Kelantan, Negeri Sembilan dan Perlis" className={`${FIG_IMG} notes-figure-img--wide hidden sm:block`} loading="lazy" />
+              <figcaption className="text-center text-[11px] italic leading-snug text-muted-foreground">Sumber: buku teks hlm. 138–144. Peta asas: Natural Earth; kedudukan anggaran.</figcaption>
+            </figure>
             <div className="grid gap-4 sm:grid-cols-2">
               {content.founding.kingdoms.map((k) => (
                 <div key={k.name} className="rounded-2xl p-4.5" style={{ background: bgPanel, boxShadow: groupGlow(neon.amber, 16, 0.1) }}>
