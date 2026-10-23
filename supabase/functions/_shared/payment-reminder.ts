@@ -31,17 +31,46 @@ export function paymentReminderQueryWindow(now: Date): { startIso: string; endIs
   };
 }
 
+/** Subscriptions that expired earlier today are still due for the day-of reminder. */
+export function paymentReminderExpiredWindow(now: Date): { startIso: string; endIso: string } {
+  const start = Date.parse(paymentReminderQueryWindow(now).startIso);
+  return {
+    startIso: new Date(start).toISOString(),
+    endIso: new Date(start + 86_400_000).toISOString(),
+  };
+}
+
 /**
- * Calendar days from `now` to `periodEnd` in Asia/Kuala_Lumpur.
- * 7, 1, and 0 are the only reminder days. Every other offset is skipped.
+ * Most relevant reminder inside the next 7 Malaysia calendar days.
+ * Day 0 is due day, day 1 is the one-day reminder, and days 2–7 use the
+ * 7-day reminder so a missed run is still covered. Anything else is skipped.
  */
 export function paymentReminderTypeFor(periodEnd: Date, now: Date): PaymentReminderType | null {
   if (Number.isNaN(periodEnd.getTime())) return null;
   const days = daysBetweenDateKeys(kualaLumpurDateKey(now), kualaLumpurDateKey(periodEnd));
-  if (days === 7) return "7_days";
-  if (days === 1) return "1_day";
   if (days === 0) return "due_day";
+  if (days === 1) return "1_day";
+  if (days >= 2 && days <= 7) return "7_days";
   return null;
+}
+
+/** One reminder per run. A more specific unsent type wins over an older one. */
+export function paymentReminderChoice(
+  periodEnd: Date,
+  now: Date,
+  sentTypes: readonly string[],
+): PaymentReminderType | null {
+  const type = paymentReminderTypeFor(periodEnd, now);
+  if (!type || sentTypes.includes(type)) return null;
+  return type;
+}
+
+/** Active plans through day 7, plus subscriptions that expired earlier today. */
+export function subscriptionInReminderWindow(status: string, periodEnd: Date, now: Date): boolean {
+  const type = paymentReminderTypeFor(periodEnd, now);
+  if (!type) return false;
+  if (status === "active") return true;
+  return status === "expired" && type === "due_day";
 }
 
 export function formatKualaLumpurLongDate(instant: Date): string {
@@ -51,9 +80,9 @@ export function formatKualaLumpurLongDate(instant: Date): string {
 
 export function paymentReminderSubject(studentName: string, type: PaymentReminderType): string {
   const name = oneLine(studentName) || "Student";
-  if (type === "7_days") return `${name} — AcadeMY subscription renews in 7 days`;
-  if (type === "1_day") return `${name} — AcadeMY subscription renews tomorrow`;
-  return `${name} — AcadeMY subscription renews today`;
+  if (type === "7_days") return `${name} — AcadeMY subscription ends in 7 days`;
+  if (type === "1_day") return `${name} — AcadeMY subscription ends tomorrow`;
+  return `${name} — AcadeMY subscription ends today`;
 }
 
 export function paymentReminderIdempotencyKey(
@@ -77,7 +106,7 @@ export type PaymentReminderEmailInput = {
 
 export function buildPaymentReminderEmail(input: PaymentReminderEmailInput): EmailContent {
   const studentName = oneLine(input.studentName) || "Student";
-  const renewsOn = formatKualaLumpurLongDate(input.periodEnd);
+  const endsOn = formatKualaLumpurLongDate(input.periodEnd);
   const subject = paymentReminderSubject(studentName, input.reminderType);
   const planLabel = displayToken(input.plan);
   const intervalLabel = input.billingInterval ? displayToken(input.billingInterval) : "";
@@ -89,8 +118,8 @@ export function buildPaymentReminderEmail(input: PaymentReminderEmailInput): Ema
         ? "The current paid period ends tomorrow."
         : "The current paid period ends today.";
   const intro = input.sentToParent
-    ? `${studentName}'s AcadeMY subscription reaches the end of its current paid period on ${renewsOn}. ${timing}`
-    : `Hi ${studentName}, your AcadeMY subscription reaches the end of its current paid period on ${renewsOn}. ${timing}`;
+    ? `${studentName}'s AcadeMY subscription reaches the end of its current paid period on ${endsOn}. ${timing}`
+    : `Hi ${studentName}, your AcadeMY subscription reaches the end of its current paid period on ${endsOn}. ${timing}`;
   const title =
     input.reminderType === "7_days"
       ? "Seven days left on this paid period."
@@ -103,20 +132,20 @@ export function buildPaymentReminderEmail(input: PaymentReminderEmailInput): Ema
     ${row("Student", studentName)}
     ${row("Plan", intervalLabel ? `${planLabel} · ${intervalLabel}` : planLabel)}
     ${row("Amount", amountLabel)}
-    ${row("Paid period ends", `${renewsOn} (Malaysia time)`)}
+    ${row("Paid period ends", `${endsOn} (Malaysia time)`)}
   </table>
-  <p style="margin:0;font-family:Arial,sans-serif;font-size:16px;line-height:26px;color:#d6d9e7">Sign in on AcadeMY and continue to secure ToyyibPay checkout. Renewing extends the paid period from the date the payment is verified.</p>`;
+  <p style="margin:0;font-family:Arial,sans-serif;font-size:16px;line-height:26px;color:#d6d9e7">Sign in on AcadeMY and continue to secure ToyyibPay checkout. Payment is manual. A new paid period starts only after ToyyibPay confirms it.</p>`;
 
   return {
     subject,
     html: renderEmailLayout({
-      preheader: `${studentName}'s paid period ends on ${renewsOn}.`,
+      preheader: `${studentName}'s paid period ends on ${endsOn}.`,
       eyebrow: "Subscription reminder",
       title,
       intro,
       content,
-      cta: { label: "Renew on AcadeMY", url: SUBSCRIPTION_RENEWAL_URL },
-      outro: "If this period was already renewed, you can ignore this reminder.",
+      cta: { label: "Review plan on AcadeMY", url: SUBSCRIPTION_RENEWAL_URL },
+      outro: "If this period was already paid, you can ignore this reminder.",
     }),
     text: [
       subject,
@@ -125,12 +154,12 @@ export function buildPaymentReminderEmail(input: PaymentReminderEmailInput): Ema
       `Student: ${studentName}`,
       `Plan: ${intervalLabel ? `${planLabel} · ${intervalLabel}` : planLabel}`,
       `Amount: ${amountLabel}`,
-      `Paid period ends: ${renewsOn} (Malaysia time)`,
+      `Paid period ends: ${endsOn} (Malaysia time)`,
       "",
       "Sign in on AcadeMY and continue to secure ToyyibPay checkout.",
-      `Renew: ${SUBSCRIPTION_RENEWAL_URL}`,
+      `Review plan: ${SUBSCRIPTION_RENEWAL_URL}`,
       "",
-      "If this period was already renewed, you can ignore this reminder.",
+      "If this period was already paid, you can ignore this reminder.",
     ].join("\n"),
   };
 }

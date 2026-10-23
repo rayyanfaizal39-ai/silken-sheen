@@ -4,9 +4,12 @@ import { maskEmailAddress } from "../../../supabase/functions/_shared/email-bran
 import {
   SUBSCRIPTION_RENEWAL_URL,
   buildPaymentReminderEmail,
+  paymentReminderChoice,
+  paymentReminderExpiredWindow,
   paymentReminderQueryWindow,
   paymentReminderSubject,
   paymentReminderTypeFor,
+  subscriptionInReminderWindow,
 } from "../../../supabase/functions/_shared/payment-reminder";
 
 const now = new Date("2026-10-23T01:00:00.000Z");
@@ -20,11 +23,29 @@ describe("payment reminder schedule", () => {
     expect(paymentReminderTypeFor(new Date("2026-10-22T16:00:00.000Z"), now)).toBe("due_day");
   });
 
-  it("skips offsets that are not a reminder day, including the Malaysia midnight boundary", () => {
-    expect(paymentReminderTypeFor(new Date("2026-10-29T15:59:59.000Z"), now)).toBeNull();
+  it("covers a missed run inside seven days and stops at the Malaysia midnight boundary", () => {
+    expect(paymentReminderTypeFor(new Date("2026-10-29T15:59:59.000Z"), now)).toBe("7_days");
+    expect(paymentReminderTypeFor(new Date("2026-10-25T01:00:00.000Z"), now)).toBe("7_days");
     expect(paymentReminderTypeFor(new Date("2026-10-30T16:00:00.000Z"), now)).toBeNull();
     expect(paymentReminderTypeFor(new Date("2026-10-22T15:59:59.000Z"), now)).toBeNull();
-    expect(paymentReminderTypeFor(new Date("2026-10-25T01:00:00.000Z"), now)).toBeNull();
+  });
+
+  it("sends the most relevant unsent reminder and keeps expired subscriptions only on the due day", () => {
+    const dueToday = new Date("2026-10-23T08:00:00.000Z");
+    const inSixDays = new Date("2026-10-29T08:00:00.000Z");
+    expect(paymentReminderChoice(inSixDays, now, [])).toBe("7_days");
+    expect(paymentReminderChoice(inSixDays, now, ["7_days"])).toBeNull();
+    expect(paymentReminderChoice(dueToday, now, [])).toBe("due_day");
+    expect(paymentReminderChoice(dueToday, now, ["7_days", "1_day"])).toBe("due_day");
+    expect(subscriptionInReminderWindow("active", inSixDays, now)).toBe(true);
+    expect(subscriptionInReminderWindow("expired", dueToday, now)).toBe(true);
+    expect(subscriptionInReminderWindow("expired", inSixDays, now)).toBe(false);
+    expect(subscriptionInReminderWindow("cancelled", dueToday, now)).toBe(false);
+    expect(subscriptionInReminderWindow("pending", dueToday, now)).toBe(false);
+    expect(paymentReminderExpiredWindow(now)).toEqual({
+      startIso: "2026-10-22T16:00:00.000Z",
+      endIso: "2026-10-23T16:00:00.000Z",
+    });
   });
 
   it("queries from the start of today through the end of the seventh day", () => {
@@ -55,6 +76,10 @@ describe("payment reminder email", () => {
     expect(email.html).toContain("Alya &lt;script&gt;");
     expect(email.html).not.toContain("Alya <script>");
     expect(email.html).toContain("ToyyibPay");
+    expect(email.subject).toContain("ends");
+    expect(email.subject).not.toMatch(/renews/i);
+    expect(email.html).not.toMatch(/renews/i);
+    expect(email.text).not.toMatch(/renews/i);
     expect(email.text).toContain(SUBSCRIPTION_RENEWAL_URL);
     expect(email.text).toContain("24 October 2026");
   });
@@ -102,15 +127,22 @@ describe("payment reminder delivery contract", () => {
     expect(migration).toContain("'0 1 * * *'");
   });
 
-  it("requires the cron key and renders a dry run before any delivery write", () => {
+  it("requires the cron key, includes subscriptions that expired today, and does not use the parent-report gate", () => {
+    expect(source).toContain("cronAuthorized(");
     expect(source).toContain('Deno.env.get("PAYMENT_REMINDER_CRON_KEY")');
     expect(source).toContain('request.headers.get("x-payment-reminder-key")');
-    expect(source).toContain("maskEmailAddress(recipient)");
-    expect(source).toContain("if (dryRun)");
-    const dryRunAt = source.indexOf("if (dryRun) {");
-    const insertAt = source.indexOf(".insert({\n          subscription_id:");
-    expect(dryRunAt).toBeGreaterThan(-1);
-    expect(insertAt).toBeGreaterThan(dryRunAt);
-    expect(source).toContain('action !== "send_due"');
+    expect(source).toContain("paymentReminderExpiredWindow");
+    expect(source).toContain('"expired"');
+    expect(source).toContain("claimDeliverySlot");
+    expect(source).not.toContain("hasParentReportsAccess");
+    expect(source).not.toContain('Access-Control-Allow-Origin": "*"');
+    expect(source).toContain('parsed.action !== "send_due"');
+    const batch = readFileSync(
+      new URL("../../../supabase/functions/_shared/payment-reminder-batch.ts", import.meta.url),
+      "utf8",
+    );
+    expect(batch.indexOf("if (options.dryRun)")).toBeLessThan(batch.indexOf("store.claim"));
+    expect(batch).toContain("resolveParentReportRecipient");
+    expect(batch).toContain("paymentReminderChoice");
   });
 });

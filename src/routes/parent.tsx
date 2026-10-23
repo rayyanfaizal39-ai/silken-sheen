@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   Mail,
   Send,
@@ -11,9 +11,20 @@ import {
   TrendingUp,
   Brain,
 } from "lucide-react";
-import { useProgress, getRank } from "@/hooks/use-progress";
+import { useProgress } from "@/hooks/use-progress";
 import { useAuth } from "@/context/auth-context";
+import { ParentEmailConsent } from "@/components/parent/ParentEmailConsent";
+import { ParentPremiumUpsell } from "@/components/parent/ParentPremiumUpsell";
+import { PARENT_EMAIL_CONSENT_ERROR } from "@/features/parent-report/parentEmailCopy";
 import { previousKualaLumpurMonth } from "@/features/parent-report/monthlyParentReport";
+import {
+  hasCurrentParentEmailConsent,
+  parentEmailWrite,
+} from "@/features/parent-report/parentEmailConsent";
+import {
+  hasParentReportsAccess,
+  normalizeParentReportEmail,
+} from "@/features/parent-report/weeklyParentReport";
 import { analyzeProgress } from "@/lib/tracker";
 import { seoMeta } from "@/lib/seo";
 import { isSupabaseConfigured, supabase } from "@/lib/supabase";
@@ -38,11 +49,63 @@ export const Route = createFileRoute("/parent")({
 function ParentPage() {
   const { progress, setParentReport } = useProgress();
   const { user, loading: authLoading } = useAuth();
-  const [email, setEmail] = useState(progress.parentEmail ?? "");
+  const [email, setEmail] = useState("");
+  const [consent, setConsent] = useState(false);
+  const [savedEmail, setSavedEmail] = useState<string | null>(null);
+  const [savedConsent, setSavedConsent] = useState(false);
+  const [profileReady, setProfileReady] = useState(false);
+  const [entitled, setEntitled] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [saving, setSaving] = useState(false);
   const [sending, setSending] = useState(false);
   const [deliveryError, setDeliveryError] = useState<string | null>(null);
-  const [deliveryComplete, setDeliveryComplete] = useState(false);
+  const [deliveryNote, setDeliveryNote] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (authLoading) return;
+    if (!user || !isSupabaseConfigured) {
+      setProfileReady(true);
+      return;
+    }
+    let active = true;
+    void (async () => {
+      const [profileResult, subscriptionResult] = await Promise.all([
+        supabase
+          .from("profiles")
+          .select(
+            "plan, parent_report_email, parent_email_consent_at, parent_email_consent_version",
+          )
+          .eq("id", user.id)
+          .maybeSingle(),
+        supabase
+          .from("subscriptions")
+          .select("plan")
+          .eq("user_id", user.id)
+          .eq("status", "active")
+          .maybeSingle(),
+      ]);
+      if (!active) return;
+      const data = profileResult.data;
+      const stored = data?.parent_report_email ?? "";
+      const consented = hasCurrentParentEmailConsent({
+        parentReportEmail: stored,
+        consentAt: data?.parent_email_consent_at,
+        consentVersion: data?.parent_email_consent_version,
+      });
+      setEntitled(
+        !subscriptionResult.error &&
+          hasParentReportsAccess(subscriptionResult.data?.plan ?? null, data?.plan ?? null),
+      );
+      setEmail(stored);
+      setConsent(consented);
+      setSavedEmail(stored || null);
+      setSavedConsent(consented);
+      setProfileReady(true);
+    })();
+    return () => {
+      active = false;
+    };
+  }, [authLoading, user]);
 
   const studentName = user?.name ?? "Your child";
   const month = useMemo(() => previousKualaLumpurMonth(new Date()), []);
@@ -57,11 +120,10 @@ function ParentPage() {
     });
     return analyzeProgress(history);
   }, [progress.quizHistory, month.startIso, month.endIso]);
-  const rank = getRank(progress.xp);
+  const normalizedEmail = normalizeParentReportEmail(email);
+  const emailInvalid = email.trim().length > 0 && !normalizedEmail.ok;
 
-  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
-  if (authLoading) {
+  if (authLoading || (user && !profileReady)) {
     return (
       <section className="mx-auto max-w-3xl px-4 py-10" aria-label="Loading Parent Mission Report">
         <div className="h-56 animate-pulse rounded-[2rem] border border-white/[0.08] bg-white/[0.04]" />
@@ -90,55 +152,89 @@ function ParentPage() {
     );
   }
 
-  function save() {
-    setParentReport(emailValid ? email : undefined, "monthly");
+  if (!entitled) {
+    return (
+      <section className="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8">
+        <ParentPremiumUpsell />
+      </section>
+    );
+  }
+
+  async function save() {
+    if (!user || !normalizedEmail.ok) return;
+    setDeliveryError(null);
+    setDeliveryNote(null);
+    if (normalizedEmail.email && !consent) {
+      setDeliveryError(PARENT_EMAIL_CONSENT_ERROR);
+      return;
+    }
+    if (!isSupabaseConfigured) {
+      setDeliveryError("Email delivery is not available.");
+      return;
+    }
+    setSaving(true);
+    const { error } = await supabase
+      .from("profiles")
+      .update(parentEmailWrite(normalizedEmail.email, consent))
+      .eq("id", user.id);
+    setSaving(false);
+    if (error) {
+      setDeliveryError("The parent email could not be saved.");
+      return;
+    }
+    const nextEmail = normalizedEmail.email;
+    setEmail(nextEmail ?? "");
+    setConsent(Boolean(nextEmail));
+    setSavedEmail(nextEmail);
+    setSavedConsent(Boolean(nextEmail));
+    setParentReport(nextEmail ?? undefined, "monthly");
     setSaved(true);
     window.setTimeout(() => setSaved(false), 2200);
   }
 
   async function sendEmail() {
     setDeliveryError(null);
-    setDeliveryComplete(false);
+    setDeliveryNote(null);
     if (!user) {
       setDeliveryError("Sign in before sending a parent report.");
       return;
     }
-    if (!isSupabaseConfigured || !emailValid) {
-      setDeliveryError("Enter a valid parent email address.");
+    if (!normalizedEmail.ok) {
+      setDeliveryError(normalizedEmail.error);
+      return;
+    }
+    if (normalizedEmail.email && !consent) {
+      setDeliveryError(PARENT_EMAIL_CONSENT_ERROR);
+      return;
+    }
+    const formEmail = normalizedEmail.email;
+    const savedMatches = formEmail === savedEmail && (!formEmail || (consent && savedConsent));
+    if (!savedMatches) {
+      setDeliveryError("Save the parent email before sending the report.");
+      return;
+    }
+    if (!isSupabaseConfigured) {
+      setDeliveryError("Email delivery is not available.");
       return;
     }
 
     setSending(true);
-    setParentReport(email, "monthly");
-    const { error } = await supabase.functions.invoke("send-parent-report", {
-      body: {
-        to: email,
-        cadence: "monthly",
-        studentName,
-        periodLabel,
-        totalQuizzes: insight.totalQuizzes,
-        overallAvg: insight.overallAvg,
-        passRate: insight.passRate,
-        rankName: rank.name,
-        totalXp: progress.xp,
-        studyStreak: progress.streak,
-        strongest: insight.strongest
-          ? { name: insight.strongest.name, avgScore: insight.strongest.avgScore }
-          : null,
-        weakSpots: insight.weakSpots.slice(0, 5).map((spot) => ({
-          subjectName: spot.subjectName,
-          chapterLabel: spot.chapterLabel,
-          avgScore: spot.avgScore,
-        })),
-        recommendation: insight.recommendation,
-      },
+    const { data, error } = await supabase.functions.invoke("send-parent-report", {
+      body: { action: "send_now" },
     });
     setSending(false);
     if (error) {
-      setDeliveryError(error.message || "The report could not be sent. Please try again.");
+      setDeliveryError(await functionErrorMessage(error));
       return;
     }
-    setDeliveryComplete(true);
+    const usedParentEmail = Boolean(
+      data && typeof data === "object" && "usedParentEmail" in data && data.usedParentEmail,
+    );
+    setDeliveryNote(
+      usedParentEmail
+        ? "Report sent to the saved parent email."
+        : "Report sent to your AcadeMY email.",
+    );
   }
 
   return (
@@ -261,8 +357,8 @@ function ParentPage() {
           <Mail className="h-5 w-5 text-[#34D399]" /> Send to a parent
         </h2>
         <p className="mt-1 text-sm text-white/45">
-          This preview is {periodLabel}. Send it now, or save the parent address in Profile for the
-          automatic report on the 1st of each month.
+          This preview is {periodLabel}. Save a parent address with consent, or leave it blank to
+          use your AcadeMY email. The sent report is built on the server.
         </p>
 
         <label
@@ -284,24 +380,29 @@ function ParentPage() {
           />
           <button
             type="button"
-            onClick={save}
-            disabled={email.length > 0 && !emailValid}
+            onClick={() => void save()}
+            disabled={saving || emailInvalid}
             className="min-h-[44px] rounded-xl border border-white/15 bg-white/[0.06] px-5 text-sm font-bold text-white transition-colors hover:bg-white/[0.12] disabled:cursor-not-allowed disabled:opacity-40"
           >
-            {saved ? "Saved ✓" : "Save"}
+            {saving ? "Saving…" : saved ? "Saved ✓" : "Save"}
           </button>
         </div>
-        {email.length > 0 && !emailValid && (
+        {emailInvalid && (
           <p role="alert" className="mt-1.5 text-xs text-rose-300">
             Enter a valid email address.
           </p>
         )}
+        <ParentEmailConsent
+          inputId="parent-email-consent"
+          checked={consent}
+          onCheckedChange={setConsent}
+        />
 
         <div className="mt-5 flex flex-col gap-2.5 sm:flex-row">
           <button
             type="button"
             onClick={() => void sendEmail()}
-            disabled={sending || !emailValid}
+            disabled={sending || emailInvalid}
             className="inline-flex min-h-[44px] flex-1 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#34D399] to-[#10B981] px-5 text-sm font-black text-[#04130C] transition-transform hover:scale-[1.02] active:scale-[0.99]"
           >
             <Send className="h-4 w-4" /> {sending ? "Sending…" : "Send report now"}
@@ -320,20 +421,36 @@ function ParentPage() {
             {deliveryError}
           </p>
         )}
-        {deliveryComplete && (
+        {deliveryNote && (
           <p role="status" className="mt-3 text-sm font-semibold text-emerald-300">
-            Report sent to {email}.
+            {deliveryNote}
           </p>
         )}
 
         <p className="mt-4 flex items-start gap-2 text-[11px] leading-relaxed text-white/35">
           <ShieldCheck className="mt-0.5 h-3.5 w-3.5 shrink-0" />
-          "Send report now" delivers securely through AcadeMY. Automatic delivery is monthly, on the
-          1st at 8:00 AM Malaysia time, once that schedule is turned on.
+          Send report now uses the saved parent email only when consent is on file. Otherwise it
+          goes to your AcadeMY email. Automatic delivery is monthly, on the 1st at 8:00 AM Malaysia
+          time, once that schedule is turned on.
         </p>
       </div>
     </section>
   );
+}
+
+async function functionErrorMessage(error: {
+  message?: string;
+  context?: { json?: () => Promise<unknown> };
+}) {
+  try {
+    const body = await error.context?.json?.();
+    if (body && typeof body === "object" && "error" in body && typeof body.error === "string") {
+      return body.error;
+    }
+  } catch {
+    // The function response was not JSON.
+  }
+  return error.message || "The report could not be sent. Please try again.";
 }
 
 function ReportStat({

@@ -30,6 +30,10 @@ create index if not exists subscriptions_active_period_end_idx
   on public.subscriptions (current_period_end)
   where status = 'active' and current_period_end is not null;
 
+create index if not exists subscriptions_expired_period_end_idx
+  on public.subscriptions (current_period_end)
+  where status = 'expired' and current_period_end is not null;
+
 drop trigger if exists payment_reminder_deliveries_updated_at on public.payment_reminder_deliveries;
 create trigger payment_reminder_deliveries_updated_at
   before update on public.payment_reminder_deliveries
@@ -49,9 +53,6 @@ grant all on table public.payment_reminder_deliveries to service_role;
 
 comment on table public.payment_reminder_deliveries is
   'One reminder per subscription, period end, and type (7 days, 1 day, or due day). Stores the recipient and outcome, not the email body.';
-
-comment on column public.profiles.parent_report_email is
-  'Optional parent or guardian address chosen by the student. The monthly parent report and subscription reminders use it when it is set; otherwise they go to the student account email.';
 
 commit;
 

@@ -1,21 +1,28 @@
+/**
+ * Subscription-end reminders. Authorize with x-payment-reminder-key.
+ * One reminder per subscription per run. A parent address is used only
+ * when consent is current.
+ */
 import { createClient } from "npm:@supabase/supabase-js@2.108.1";
-import { maskEmailAddress } from "../_shared/email-brand.ts";
+import { claimDeliverySlot, claimResult, cronAuthorized } from "../_shared/delivery-claim.ts";
 import { scheduleInBackground } from "../_shared/edge-schedule.ts";
 import {
-  buildPaymentReminderEmail,
-  paymentReminderIdempotencyKey,
+  runPaymentReminderBatch,
+  type PaymentReminderCandidate,
+  type PaymentReminderStore,
+} from "../_shared/payment-reminder-batch.ts";
+import {
+  paymentReminderExpiredWindow,
   paymentReminderQueryWindow,
-  paymentReminderTypeFor,
   type PaymentReminderType,
 } from "../_shared/payment-reminder.ts";
 import { sendWithResend } from "../_shared/resend.ts";
-import { resolveWeeklyReportRecipient, usableEmail } from "../_shared/weekly-parent-report.ts";
+import { usableEmail } from "../_shared/weekly-parent-report.ts";
 
 const jsonHeaders = {
   "Access-Control-Allow-Headers":
     "authorization, x-client-info, apikey, content-type, x-payment-reminder-key",
   "Access-Control-Allow-Methods": "POST, OPTIONS",
-  "Access-Control-Allow-Origin": "*",
   "Content-Type": "application/json",
 };
 
@@ -23,22 +30,29 @@ function response(body: Record<string, unknown>, status = 200) {
   return new Response(JSON.stringify(body), { status, headers: jsonHeaders });
 }
 
+function readBody(body: unknown): { action: string | null; dryRun: boolean; wait: boolean } {
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
+    return { action: null, dryRun: false, wait: false };
+  }
+  const record = body as { action?: unknown; dryRun?: unknown; wait?: unknown };
+  return {
+    action: typeof record.action === "string" ? record.action : null,
+    dryRun: record.dryRun === true,
+    wait: record.wait === true,
+  };
+}
+
 type AdminClient = ReturnType<typeof createClient>;
 
 type SubscriptionRow = {
   id: string;
   user_id: string;
+  status: string;
   plan: string;
   billing_interval: string | null;
   amount: number | string | null;
   currency: string | null;
   current_period_end: string;
-};
-
-type DeliveryPreview = {
-  maskedEmail: string;
-  subject: string;
-  reminderType: PaymentReminderType;
 };
 
 Deno.serve(async (request) => {
@@ -50,187 +64,29 @@ Deno.serve(async (request) => {
   if (!supabaseUrl || !serviceRoleKey)
     return response({ error: "Email delivery is not configured" }, 500);
 
-  const body = await request.json().catch(() => ({}));
-  const action =
-    body && typeof body === "object" ? (body as { action?: unknown }).action : undefined;
-  if (action !== "send_due") return response({ error: "Unsupported action" }, 400);
+  const parsed = readBody(await request.json().catch(() => ({})));
+  if (
+    !cronAuthorized(
+      Deno.env.get("PAYMENT_REMINDER_CRON_KEY") ?? "",
+      request.headers.get("x-payment-reminder-key"),
+    )
+  ) {
+    return response({ error: "Unauthorized" }, 401);
+  }
+  if (parsed.action !== "send_due") return response({ error: "Unsupported action" }, 400);
 
-  const cronKey = Deno.env.get("PAYMENT_REMINDER_CRON_KEY") ?? "";
-  const providedCronKey = request.headers.get("x-payment-reminder-key") ?? "";
-  if (!cronKey || providedCronKey !== cronKey) return response({ error: "Unauthorized" }, 401);
-
-  const dryRun = body && typeof body === "object" && (body as { dryRun?: unknown }).dryRun === true;
-  const waitForResult =
-    body && typeof body === "object" && (body as { wait?: unknown }).wait === true;
   const resendApiKey = Deno.env.get("RESEND_API_KEY") ?? "";
-  if (!dryRun && !resendApiKey) return response({ error: "Email delivery is not configured" }, 500);
+  if (!parsed.dryRun && !resendApiKey)
+    return response({ error: "Email delivery is not configured" }, 500);
 
   const admin = createClient(supabaseUrl, serviceRoleKey, {
     auth: { persistSession: false, autoRefreshToken: false },
   });
-  const work = sendDueReminders(admin, resendApiKey, dryRun);
-  if (!dryRun && !waitForResult && scheduleInBackground(work)) {
-    return response({ accepted: true, dryRun: false });
-  }
-  const result = await work;
-  return response(result, result.error ? 500 : 200);
-});
-
-async function sendDueReminders(
-  admin: AdminClient,
-  resendApiKey: string,
-  dryRun: boolean,
-): Promise<Record<string, unknown>> {
   const now = new Date();
-  try {
-    const window = paymentReminderQueryWindow(now);
-    const subscriptions = await listCandidateSubscriptions(admin, window.startIso, window.endIso);
-    const due = subscriptions.flatMap((row) => {
-      const periodEnd = new Date(row.current_period_end);
-      const reminderType = paymentReminderTypeFor(periodEnd, now);
-      return reminderType ? [{ row, reminderType, periodEnd }] : [];
-    });
-    const profiles = await loadProfiles(
-      admin,
-      due.map((item) => item.row.user_id),
-    );
-    const deliveries = await loadDeliveries(
-      admin,
-      due.map((item) => item.row.id),
-    );
-    const counts = { sent: 0, skipped: 0, failed: 0, noRecipient: 0, wouldSend: 0, alreadySent: 0 };
-    const recipients: DeliveryPreview[] = [];
-
-    for (const item of due) {
-      const profile = profiles.get(item.row.user_id);
-      const parentEmail = usableEmail(profile?.parent_report_email);
-      let accountEmail = usableEmail(profile?.email);
-      if (!parentEmail) {
-        const userResult = await admin.auth.admin.getUserById(item.row.user_id);
-        accountEmail = usableEmail(userResult.data.user?.email) ?? accountEmail;
-      }
-      const recipient = resolveWeeklyReportRecipient(parentEmail, accountEmail);
-      const existing = deliveries.find(
-        (delivery) =>
-          delivery.subscription_id === item.row.id &&
-          delivery.reminder_type === item.reminderType &&
-          sameInstant(delivery.period_end, item.row.current_period_end),
-      );
-      if (existing?.status === "sent") {
-        counts.alreadySent += 1;
-        counts.skipped += 1;
-        continue;
-      }
-      if (!recipient) {
-        counts.noRecipient += 1;
-        continue;
-      }
-
-      const content = buildPaymentReminderEmail({
-        reminderType: item.reminderType,
-        studentName: profile?.full_name?.trim() || "Student",
-        plan: item.row.plan,
-        billingInterval: item.row.billing_interval,
-        amount: Number(item.row.amount ?? 0),
-        currency: item.row.currency || "MYR",
-        periodEnd: item.periodEnd,
-        sentToParent: Boolean(parentEmail),
-      });
-      if (dryRun) {
-        counts.wouldSend += 1;
-        recipients.push({
-          maskedEmail: maskEmailAddress(recipient),
-          subject: content.subject,
-          reminderType: item.reminderType,
-        });
-        continue;
-      }
-
-      const claimed = await claimDelivery(admin, {
-        subscriptionId: item.row.id,
-        userId: item.row.user_id,
-        periodEnd: item.row.current_period_end,
-        reminderType: item.reminderType,
-        recipient,
-        hasRow: Boolean(existing),
-      });
-      if (!claimed) {
-        counts.skipped += 1;
-        continue;
-      }
-
-      try {
-        const delivery = await sendWithResend(resendApiKey, {
-          to: recipient,
-          ...content,
-          idempotencyKey: paymentReminderIdempotencyKey(
-            item.row.id,
-            item.row.current_period_end,
-            item.reminderType,
-          ),
-          tags: [
-            { name: "flow", value: "payment_reminder" },
-            { name: "reminder_type", value: item.reminderType },
-          ],
-        });
-        await admin
-          .from("payment_reminder_deliveries")
-          .update({ status: "sent", provider_message_id: delivery.id, error_message: null })
-          .eq("subscription_id", item.row.id)
-          .eq("period_end", item.row.current_period_end)
-          .eq("reminder_type", item.reminderType);
-        counts.sent += 1;
-        console.info(
-          JSON.stringify({
-            scope: "email",
-            event: "payment_reminder_sent",
-            subscriptionId: item.row.id,
-            reminderType: item.reminderType,
-            messageId: delivery.id,
-          }),
-        );
-      } catch (error) {
-        const message =
-          error instanceof Error ? error.message.slice(0, 200) : "Email delivery failed";
-        await admin
-          .from("payment_reminder_deliveries")
-          .update({ status: "failed", error_message: message })
-          .eq("subscription_id", item.row.id)
-          .eq("period_end", item.row.current_period_end)
-          .eq("reminder_type", item.reminderType);
-        counts.failed += 1;
-        console.error(
-          JSON.stringify({
-            scope: "email",
-            event: "payment_reminder_failed",
-            subscriptionId: item.row.id,
-            reminderType: item.reminderType,
-          }),
-        );
-      }
-    }
-
-    console.info(
-      JSON.stringify({
-        scope: "email",
-        event: dryRun ? "payment_reminder_dry_run" : "payment_reminder_batch",
-        due: due.length,
-        ...counts,
-      }),
-    );
-    return {
-      dryRun,
-      windowStart: window.startIso,
-      windowEnd: window.endIso,
-      checked: subscriptions.length,
-      due: due.length,
-      wouldSend: dryRun ? counts.wouldSend : counts.sent,
-      alreadySent: counts.alreadySent,
-      noRecipient: counts.noRecipient,
-      failed: counts.failed,
-      ...(dryRun ? { recipients } : {}),
-    };
-  } catch (error) {
+  const work = runPaymentReminderBatch(reminderStore(admin), sendReminder(resendApiKey), {
+    dryRun: parsed.dryRun,
+    now,
+  }).catch((error) => {
     console.error(
       JSON.stringify({
         scope: "email",
@@ -238,12 +94,154 @@ async function sendDueReminders(
         message: error instanceof Error ? error.message.slice(0, 200) : "batch failed",
       }),
     );
-    return { error: "Payment reminders could not be prepared.", dryRun };
+    return { error: "Payment reminders could not be prepared.", dryRun: parsed.dryRun };
+  });
+  if (!parsed.dryRun && !parsed.wait && scheduleInBackground(work)) {
+    return response({ accepted: true, dryRun: false });
   }
+  const result = await work;
+  if (!result.error) {
+    console.info(
+      JSON.stringify({
+        scope: "email",
+        event: parsed.dryRun ? "payment_reminder_dry_run" : "payment_reminder_batch",
+        due: result.due,
+        wouldSend: result.wouldSend,
+        failed: result.failed,
+        lostRace: result.lostRace,
+      }),
+    );
+  }
+  return response(result, result.error ? 500 : 200);
+});
+
+function sendReminder(resendApiKey: string) {
+  return (input: {
+    to: string;
+    content: { subject: string; html: string; text: string };
+    idempotencyKey: string;
+    reminderType: PaymentReminderType;
+  }) =>
+    sendWithResend(resendApiKey, {
+      to: input.to,
+      ...input.content,
+      idempotencyKey: input.idempotencyKey,
+      tags: [
+        { name: "flow", value: "payment_reminder" },
+        { name: "reminder_type", value: input.reminderType },
+      ],
+    });
 }
 
-async function listCandidateSubscriptions(
+function reminderStore(admin: AdminClient): PaymentReminderStore {
+  return {
+    candidates: (now) => loadCandidates(admin, now),
+    claim: (candidate, reminderType, recipient) =>
+      claimDeliverySlot(
+        {
+          insert: async (row) =>
+            claimResult(await admin.from("payment_reminder_deliveries").insert(row).select("id")),
+          reclaim: async (filter, patch) =>
+            claimResult(
+              await admin
+                .from("payment_reminder_deliveries")
+                .update(patch)
+                .eq("subscription_id", candidate.subscriptionId)
+                .eq("period_end", candidate.periodEnd)
+                .eq("reminder_type", reminderType)
+                .or(filter)
+                .select("id"),
+            ),
+        },
+        {
+          subscription_id: candidate.subscriptionId,
+          user_id: candidate.userId,
+          period_end: candidate.periodEnd,
+          reminder_type: reminderType,
+          recipient_email: recipient,
+        },
+      ),
+    markSent: async (candidate, reminderType, messageId) => {
+      await admin
+        .from("payment_reminder_deliveries")
+        .update({ status: "sent", provider_message_id: messageId, error_message: null })
+        .eq("subscription_id", candidate.subscriptionId)
+        .eq("period_end", candidate.periodEnd)
+        .eq("reminder_type", reminderType);
+    },
+    markFailed: async (candidate, reminderType, message) => {
+      await admin
+        .from("payment_reminder_deliveries")
+        .update({ status: "failed", error_message: message })
+        .eq("subscription_id", candidate.subscriptionId)
+        .eq("period_end", candidate.periodEnd)
+        .eq("reminder_type", reminderType);
+    },
+  };
+}
+
+async function loadCandidates(admin: AdminClient, now: Date): Promise<PaymentReminderCandidate[]> {
+  const activeWindow = paymentReminderQueryWindow(now);
+  const expiredWindow = paymentReminderExpiredWindow(now);
+  const active = await listSubscriptions(
+    admin,
+    "active",
+    activeWindow.startIso,
+    activeWindow.endIso,
+  );
+  const expired = await listSubscriptions(
+    admin,
+    "expired",
+    expiredWindow.startIso,
+    expiredWindow.endIso,
+  );
+  const rows = [...active, ...expired];
+  const profiles = await loadProfiles(
+    admin,
+    rows.map((row) => row.user_id),
+  );
+  const deliveries = await loadDeliveries(
+    admin,
+    rows.map((row) => row.id),
+  );
+  const candidates: PaymentReminderCandidate[] = [];
+  for (const row of rows) {
+    const profile = profiles.get(row.user_id);
+    let accountEmail = usableEmail(profile?.email);
+    if (!accountEmail) {
+      const userResult = await admin.auth.admin.getUserById(row.user_id);
+      accountEmail = usableEmail(userResult.data.user?.email);
+    }
+    candidates.push({
+      subscriptionId: row.id,
+      userId: row.user_id,
+      status: row.status,
+      plan: row.plan,
+      billingInterval: row.billing_interval,
+      amount: Number(row.amount ?? 0),
+      currency: row.currency || "MYR",
+      periodEnd: row.current_period_end,
+      studentName: profile?.full_name ?? null,
+      parentReportEmail: profile?.parent_report_email ?? null,
+      consentAt: profile?.parent_email_consent_at ?? null,
+      consentVersion: profile?.parent_email_consent_version ?? null,
+      accountEmail,
+      sentTypes: deliveries
+        .filter(
+          (delivery) =>
+            delivery.subscription_id === row.id &&
+            delivery.status === "sent" &&
+            sameInstant(delivery.period_end, row.current_period_end),
+        )
+        .map((delivery) => delivery.reminder_type),
+    });
+  }
+  return candidates;
+}
+
+async function listSubscriptions(
   admin: AdminClient,
+  status: "active" | "expired",
   startIso: string,
   endIso: string,
 ): Promise<SubscriptionRow[]> {
@@ -252,8 +250,8 @@ async function listCandidateSubscriptions(
   for (let from = 0; ; from += pageSize) {
     const page = await admin
       .from("subscriptions")
-      .select("id, user_id, plan, billing_interval, amount, currency, current_period_end")
-      .eq("status", "active")
+      .select("id, user_id, status, plan, billing_interval, amount, currency, current_period_end")
+      .eq("status", status)
       .gte("current_period_end", startIso)
       .lt("current_period_end", endIso)
       .order("id", { ascending: true })
@@ -268,19 +266,29 @@ async function listCandidateSubscriptions(
 async function loadProfiles(admin: AdminClient, userIds: string[]) {
   const profiles = new Map<
     string,
-    { full_name: string | null; parent_report_email: string | null; email: string | null }
+    {
+      full_name: string | null;
+      email: string | null;
+      parent_report_email: string | null;
+      parent_email_consent_at: string | null;
+      parent_email_consent_version: string | null;
+    }
   >();
   for (const slice of chunks(unique(userIds), 200)) {
     const result = await admin
       .from("profiles")
-      .select("id, full_name, parent_report_email, email")
+      .select(
+        "id, full_name, email, parent_report_email, parent_email_consent_at, parent_email_consent_version",
+      )
       .in("id", slice);
     if (result.error) throw new Error("Could not read profiles");
     for (const row of result.data ?? []) {
       profiles.set(String(row.id), {
         full_name: row.full_name ?? null,
-        parent_report_email: row.parent_report_email ?? null,
         email: row.email ?? null,
+        parent_report_email: row.parent_report_email ?? null,
+        parent_email_consent_at: row.parent_email_consent_at ?? null,
+        parent_email_consent_version: row.parent_email_consent_version ?? null,
       });
     }
   }
@@ -303,40 +311,6 @@ async function loadDeliveries(admin: AdminClient, subscriptionIds: string[]) {
     rows.push(...((result.data ?? []) as typeof rows));
   }
   return rows;
-}
-
-async function claimDelivery(
-  admin: AdminClient,
-  input: {
-    subscriptionId: string;
-    userId: string;
-    periodEnd: string;
-    reminderType: PaymentReminderType;
-    recipient: string;
-    hasRow: boolean;
-  },
-) {
-  const claim = input.hasRow
-    ? await admin
-        .from("payment_reminder_deliveries")
-        .update({ status: "sending", recipient_email: input.recipient, error_message: null })
-        .eq("subscription_id", input.subscriptionId)
-        .eq("period_end", input.periodEnd)
-        .eq("reminder_type", input.reminderType)
-        .neq("status", "sent")
-        .select("id")
-    : await admin
-        .from("payment_reminder_deliveries")
-        .insert({
-          subscription_id: input.subscriptionId,
-          user_id: input.userId,
-          period_end: input.periodEnd,
-          reminder_type: input.reminderType,
-          recipient_email: input.recipient,
-          status: "sending",
-        })
-        .select("id");
-  return !claim.error && Boolean(claim.data?.length);
 }
 
 function sameInstant(left: string, right: string) {

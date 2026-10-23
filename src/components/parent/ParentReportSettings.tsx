@@ -3,7 +3,12 @@ import { Link } from "@tanstack/react-router";
 import { Mail } from "lucide-react";
 import { useAuth } from "@/context/auth-context";
 import { ParentEmailConsent } from "@/components/parent/ParentEmailConsent";
+import { ParentPremiumUpsell } from "@/components/parent/ParentPremiumUpsell";
 import { PARENT_EMAIL_CONSENT_ERROR } from "@/features/parent-report/parentEmailCopy";
+import {
+  hasCurrentParentEmailConsent,
+  parentEmailWrite,
+} from "@/features/parent-report/parentEmailConsent";
 import {
   hasParentReportsAccess,
   normalizeParentReportEmail,
@@ -33,7 +38,9 @@ export function ParentReportSettings({ idPrefix = "parent-report" }: { idPrefix?
       const [profileResult, subscriptionResult] = await Promise.all([
         supabase
           .from("profiles")
-          .select("plan, parent_report_email")
+          .select(
+            "plan, parent_report_email, parent_email_consent_at, parent_email_consent_version",
+          )
           .eq("id", user.id)
           .maybeSingle(),
         supabase
@@ -49,9 +56,14 @@ export function ParentReportSettings({ idPrefix = "parent-report" }: { idPrefix?
         profileResult.data?.plan ?? null,
       );
       const storedEmail = profileResult.data?.parent_report_email ?? "";
+      const consented = hasCurrentParentEmailConsent({
+        parentReportEmail: storedEmail,
+        consentAt: profileResult.data?.parent_email_consent_at,
+        consentVersion: profileResult.data?.parent_email_consent_version,
+      });
       setEntitled(allowed);
       setEmail(storedEmail);
-      setConsent(Boolean(storedEmail));
+      setConsent(consented);
       setReady(true);
     })();
 
@@ -61,6 +73,7 @@ export function ParentReportSettings({ idPrefix = "parent-report" }: { idPrefix?
   }, [authLoading, user]);
 
   if (!ready || !user || !isSupabaseConfigured) return null;
+  if (!entitled) return <ParentPremiumUpsell compact />;
 
   async function save() {
     if (!user) return;
@@ -78,7 +91,7 @@ export function ParentReportSettings({ idPrefix = "parent-report" }: { idPrefix?
     setSaving(true);
     const { error: saveError } = await supabase
       .from("profiles")
-      .update({ parent_report_email: normalized.email })
+      .update(parentEmailWrite(normalized.email, consent))
       .eq("id", user.id);
     setSaving(false);
     if (saveError) {
@@ -90,8 +103,8 @@ export function ParentReportSettings({ idPrefix = "parent-report" }: { idPrefix?
     setConsent(Boolean(nextEmail));
     setMessage(
       nextEmail
-        ? "Saved. Monthly reports and renewal reminders will go to this address."
-        : "Saved. Monthly reports and renewal reminders will go to your AcadeMY email.",
+        ? "Saved. Progress reports and payment reminders will go to this address."
+        : "Saved. Progress reports and payment reminders will go to your AcadeMY email.",
     );
   }
 
@@ -104,7 +117,7 @@ export function ParentReportSettings({ idPrefix = "parent-report" }: { idPrefix?
         <div className="min-w-0 flex-1">
           <p className="text-xs font-bold uppercase tracking-wider text-[#94A3B8]">Parent email</p>
           <h2 className="mt-1 font-display text-lg font-black text-white">
-            Where should learning summaries and renewal reminders go?
+            Where should progress reports and payment reminders go?
           </h2>
           <label className="mt-4 block text-sm font-bold text-white" htmlFor={`${idPrefix}-email`}>
             Parent / Guardian Email

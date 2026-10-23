@@ -159,7 +159,8 @@ describe("parent dashboard scopes", () => {
     expect(source).not.toContain("Weekly activity");
     expect(source).not.toMatch(/mastery/i);
     expect(source).toContain('title="Last week"');
-    expect(source).toContain("canViewReports ? <LastWeekDetails");
+    expect(source).toContain("<LastWeekDetails model={model} />");
+    expect(source).toContain("canViewReports ? (");
     expect(source).toContain("canViewAnalytics && canViewReports");
     expect(source).not.toMatch(/declined|week-over-week|study hours|retention/i);
   });

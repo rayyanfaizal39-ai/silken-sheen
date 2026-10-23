@@ -42,14 +42,13 @@ verify_jwt = false
 [functions.send-invoice-email]
 verify_jwt = true
 
-# Manual sends check the student JWT. The monthly batch checks
-# x-monthly-report-key. Gateway JWT verification would block that batch.
+# Signed-in manual send. The gateway requires a user JWT. Report content
+# and the recipient are built on the server.
 [functions.send-parent-report]
-verify_jwt = false
+verify_jwt = true
 
-# Legacy weekly sender. Keep it deployable and do not schedule it.
-# Parent progress email is monthly via send-parent-report.
-[functions.send-weekly-parent-report]
+# Monthly batch. The caller sends x-monthly-report-key, not a user JWT.
+[functions.send-monthly-parent-report]
 verify_jwt = false
 
 # Cron key on x-payment-reminder-key. Gateway JWT verification would block

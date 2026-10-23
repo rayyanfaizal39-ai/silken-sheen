@@ -12,9 +12,9 @@ import {
   emailedParentReportCycle,
   hasParentReportsAccess,
   normalizeParentReportEmail,
-  resolveWeeklyReportRecipient,
   storedPlanGrantsParentReports,
 } from "./weeklyParentReport";
+import { PARENT_EMAIL_CONSENT_VERSION, resolveParentReportRecipient } from "./parentEmailConsent";
 
 const STORED_PLANS = [
   null,
@@ -40,11 +40,19 @@ describe("parent report entitlement", () => {
     }
   });
 
-  it("uses the active subscription when one exists, otherwise the profile plan", () => {
+  it("grants parent reports only to an active Premium subscription", () => {
     expect(hasParentReportsAccess("premium", "free")).toBe(true);
+    expect(hasParentReportsAccess("premium", "paid")).toBe(true);
     expect(hasParentReportsAccess("pro", "paid")).toBe(false);
-    expect(hasParentReportsAccess(null, "paid")).toBe(true);
+    expect(hasParentReportsAccess("basic", "paid")).toBe(false);
+    expect(hasParentReportsAccess("paid", "paid")).toBe(false);
+    expect(hasParentReportsAccess(null, "paid")).toBe(false);
+    expect(hasParentReportsAccess(null, "premium")).toBe(false);
     expect(hasParentReportsAccess(null, "free")).toBe(false);
+    expect(hasFeature(resolveStoredPlan("paid"), "parent_reports")).toBe(false);
+    expect(hasFeature(resolveStoredPlan("paid"), "parent_dashboard")).toBe(false);
+    expect(hasFeature(resolveStoredPlan("premium"), "parent_dashboard")).toBe(true);
+    expect(hasFeature(resolveStoredPlan("pro"), "parent_dashboard")).toBe(false);
   });
 });
 
@@ -58,12 +66,48 @@ describe("parent report email", () => {
     expect(normalizeParentReportEmail("not-an-email").ok).toBe(false);
   });
 
-  it("falls back to the student account email when the parent address is empty or invalid", () => {
-    expect(resolveWeeklyReportRecipient(null, "Aiman@Gmail.com")).toBe("aiman@gmail.com");
-    expect(resolveWeeklyReportRecipient("  ", "aiman@gmail.com")).toBe("aiman@gmail.com");
-    expect(resolveWeeklyReportRecipient("mother@gmail.com", "aina@gmail.com")).toBe("mother@gmail.com");
-    expect(resolveWeeklyReportRecipient("not-an-email", "aina@gmail.com")).toBe("aina@gmail.com");
-    expect(resolveWeeklyReportRecipient(null, null)).toBeNull();
+  it("uses a parent address only when the current consent is recorded", () => {
+    const consent = {
+      consentAt: "2026-10-23T00:00:00.000Z",
+      consentVersion: PARENT_EMAIL_CONSENT_VERSION,
+    };
+    expect(
+      resolveParentReportRecipient({ parentReportEmail: null, accountEmail: "Aiman@Gmail.com" }),
+    ).toBe("aiman@gmail.com");
+    expect(
+      resolveParentReportRecipient({ parentReportEmail: "  ", accountEmail: "aiman@gmail.com" }),
+    ).toBe("aiman@gmail.com");
+    expect(
+      resolveParentReportRecipient({
+        parentReportEmail: "mother@gmail.com",
+        accountEmail: "aina@gmail.com",
+        ...consent,
+      }),
+    ).toBe("mother@gmail.com");
+    expect(
+      resolveParentReportRecipient({
+        parentReportEmail: "mother@gmail.com",
+        accountEmail: "aina@gmail.com",
+      }),
+    ).toBe("aina@gmail.com");
+    expect(
+      resolveParentReportRecipient({
+        parentReportEmail: "mother@gmail.com",
+        accountEmail: "aina@gmail.com",
+        consentAt: consent.consentAt,
+        consentVersion: "2020-01-01",
+      }),
+    ).toBe("aina@gmail.com");
+    expect(
+      resolveParentReportRecipient({
+        parentReportEmail: "not-an-email",
+        accountEmail: "aina@gmail.com",
+        ...consent,
+      }),
+    ).toBe("aina@gmail.com");
+    expect(
+      resolveParentReportRecipient({ parentReportEmail: null, accountEmail: null }),
+    ).toBeNull();
   });
 });
 
@@ -187,36 +231,46 @@ describe("emailed weekly parent report cycle", () => {
   });
 
   it("skips empty activity and an existing sent row without treating either as a new send", () => {
-    expect(automatedDeliveryDecision({
-      entitled: false,
-      existingStatus: null,
-      hasAccountEmail: true,
-      quizCount: 4,
-    })).toBe("not_entitled");
-    expect(automatedDeliveryDecision({
-      entitled: true,
-      existingStatus: "sent",
-      hasAccountEmail: true,
-      quizCount: 4,
-    })).toBe("skipped");
-    expect(automatedDeliveryDecision({
-      entitled: true,
-      existingStatus: null,
-      hasAccountEmail: true,
-      quizCount: 0,
-    })).toBe("no_activity");
-    expect(automatedDeliveryDecision({
-      entitled: true,
-      existingStatus: null,
-      hasAccountEmail: false,
-      quizCount: 2,
-    })).toBe("no_recipient");
-    expect(automatedDeliveryDecision({
-      entitled: true,
-      existingStatus: "failed",
-      hasAccountEmail: true,
-      quizCount: 2,
-    })).toBe("send");
+    expect(
+      automatedDeliveryDecision({
+        entitled: false,
+        existingStatus: null,
+        hasAccountEmail: true,
+        quizCount: 4,
+      }),
+    ).toBe("not_entitled");
+    expect(
+      automatedDeliveryDecision({
+        entitled: true,
+        existingStatus: "sent",
+        hasAccountEmail: true,
+        quizCount: 4,
+      }),
+    ).toBe("skipped");
+    expect(
+      automatedDeliveryDecision({
+        entitled: true,
+        existingStatus: null,
+        hasAccountEmail: true,
+        quizCount: 0,
+      }),
+    ).toBe("no_activity");
+    expect(
+      automatedDeliveryDecision({
+        entitled: true,
+        existingStatus: null,
+        hasAccountEmail: false,
+        quizCount: 2,
+      }),
+    ).toBe("no_recipient");
+    expect(
+      automatedDeliveryDecision({
+        entitled: true,
+        existingStatus: "failed",
+        hasAccountEmail: true,
+        quizCount: 2,
+      }),
+    ).toBe("send");
   });
 
   it("uses the repeated weak subject instead of one low score or another subject's chapter", () => {
@@ -280,7 +334,9 @@ describe("weekly parent report email template", () => {
   const view = presentWeeklyReportEmail(report);
 
   it("uses the score subject line, a distinct preheader, and four parent metrics", () => {
-    expect(email.subject).toBe(`${report.studentName}'s week at AcadeMY · ${report.averageQuizScore}% average`);
+    expect(email.subject).toBe(
+      `${report.studentName}'s week at AcadeMY · ${report.averageQuizScore}% average`,
+    );
     expect(email.html).toContain(view.preheader.replaceAll("'", "&#39;"));
     expect(email.subject).not.toContain(view.preheader);
     expect(email.html).toContain("Quizzes");
@@ -294,7 +350,9 @@ describe("weekly parent report email template", () => {
     expect(email.html).not.toContain("Lifetime");
     expect(email.html).not.toContain("Hello");
     expect(email.html).toContain("Steady progress, Maya.");
-    expect(email.html).toContain(`${report.quizzesCompleted} quizzes · ${report.averageQuizScore}% average · active on ${view.activeDays} of 7 days`);
+    expect(email.html).toContain(
+      `${report.quizzesCompleted} quizzes · ${report.averageQuizScore}% average · active on ${view.activeDays} of 7 days`,
+    );
   });
 
   it("shows the strongest subject, repeated focus, biggest win, and at most three next steps", () => {
@@ -364,9 +422,15 @@ describe("weekly parent report email template", () => {
       "utf8",
     );
     expect(source).not.toMatch(/Aina|Puan Farah|5h 45m|2,450|2450|\+22%|7:30|8:30/);
-    expect(email.html).not.toMatch(/Aina|Puan Farah|5h 45m|2,450|2450|\+22%|7:30|8:30|Cosmic Legend/);
-    expect(readFileSync(new URL("../../emails/templates/ParentWeeklyReportEmail.tsx", import.meta.url), "utf8"))
-      .not.toMatch(/Aina|Puan Farah|5h 45m|View Full Parent Dashboard/);
+    expect(email.html).not.toMatch(
+      /Aina|Puan Farah|5h 45m|2,450|2450|\+22%|7:30|8:30|Cosmic Legend/,
+    );
+    expect(
+      readFileSync(
+        new URL("../../emails/templates/ParentWeeklyReportEmail.tsx", import.meta.url),
+        "utf8",
+      ),
+    ).not.toMatch(/Aina|Puan Farah|5h 45m|View Full Parent Dashboard/);
   });
 
   it("leaves the send path's recipient and duplicate protection in place", () => {
@@ -378,7 +442,9 @@ describe("weekly parent report email template", () => {
     expect(source).toContain("emailedParentReportCycle");
     expect(source).toContain("hasParentReportsAccess");
     expect(source).toContain("usableEmail(accountEmail)");
-    expect(source).toContain("resolveWeeklyReportRecipient");
+    expect(source).toContain("resolveParentReportRecipient");
+    expect(source).not.toContain("resolveWeeklyReportRecipient");
+    expect(source).toContain('if (!cronKey) return response({ error: "Unauthorized" }, 401);');
     expect(source).toContain("profileResult.data.parent_report_email");
     expect(source).toContain("maskEmailAddress(recipient)");
     expect(source).toContain("if (options?.dryRun)");

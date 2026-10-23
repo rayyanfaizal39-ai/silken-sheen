@@ -1,10 +1,11 @@
 /**
- * Legacy weekly parent report. Leave this function deployed so an old caller
- * still gets a response, and do not schedule it. Parent progress email is
- * monthly and is sent by send-parent-report.
+ * Legacy weekly parent report. Do not schedule it. Every POST is refused
+ * when WEEKLY_PARENT_REPORT_CRON_KEY is unset. Parent progress email is
+ * monthly and is sent by send-monthly-parent-report.
  */
 import { createClient } from "npm:@supabase/supabase-js@2.108.1";
 import { maskEmailAddress } from "../_shared/email-brand.ts";
+import { resolveParentReportRecipient } from "../_shared/parent-email-consent.ts";
 import { sendWithResend } from "../_shared/resend.ts";
 import { buildWeeklyParentReportEmail } from "../_shared/weekly-parent-report-email.ts";
 import {
@@ -13,7 +14,6 @@ import {
   currentKualaLumpurWeek,
   emailedParentReportCycle,
   hasParentReportsAccess,
-  resolveWeeklyReportRecipient,
   usableEmail,
   type WeeklyQuizRow,
 } from "../_shared/weekly-parent-report.ts";
@@ -35,6 +35,9 @@ Deno.serve(async (request) => {
   if (request.method === "OPTIONS") return new Response("ok", { headers: jsonHeaders });
   if (request.method !== "POST") return response({ error: "Method not allowed" }, 405);
 
+  const cronKey = Deno.env.get("WEEKLY_PARENT_REPORT_CRON_KEY") ?? "";
+  if (!cronKey) return response({ error: "Unauthorized" }, 401);
+
   const supabaseUrl = Deno.env.get("SUPABASE_URL") ?? "";
   const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "";
   const anonKey = Deno.env.get("SUPABASE_ANON_KEY") ?? "";
@@ -46,25 +49,41 @@ Deno.serve(async (request) => {
   const admin = createClient(supabaseUrl, serviceRoleKey, {
     auth: { persistSession: false, autoRefreshToken: false },
   });
-  const cronKey = Deno.env.get("WEEKLY_PARENT_REPORT_CRON_KEY") ?? "";
   const providedCronKey = request.headers.get("x-weekly-report-key") ?? "";
   const body = await request.json().catch(() => ({}));
-  const action = body && typeof body === "object" ? (body as { action?: unknown }).action : undefined;
+  const action =
+    body && typeof body === "object" ? (body as { action?: unknown }).action : undefined;
 
   if (action === "send_entitled") {
     if (!cronKey || providedCronKey !== cronKey) return response({ error: "Unauthorized" }, 401);
-    const dryRun = body && typeof body === "object" && (body as { dryRun?: unknown }).dryRun === true;
+    const dryRun =
+      body && typeof body === "object" && (body as { dryRun?: unknown }).dryRun === true;
     const now = new Date();
     const cycle = emailedParentReportCycle(now);
     const studentIds = await entitledStudentIds(admin);
-    const counts = { sent: 0, skipped: 0, failed: 0, noActivity: 0, noRecipient: 0, wouldSend: 0, withActivity: 0 };
+    const counts = {
+      sent: 0,
+      skipped: 0,
+      failed: 0,
+      noActivity: 0,
+      noRecipient: 0,
+      wouldSend: 0,
+      withActivity: 0,
+    };
     const recipients: Array<{ maskedEmail: string; subject: string }> = [];
     for (const studentId of studentIds) {
-      const result = await deliverStudentReport(admin, resendApiKey, studentId, cycle.weekStart, null, {
-        automated: true,
-        dryRun,
-        now,
-      });
+      const result = await deliverStudentReport(
+        admin,
+        resendApiKey,
+        studentId,
+        cycle.weekStart,
+        null,
+        {
+          automated: true,
+          dryRun,
+          now,
+        },
+      );
       if (result.quizCount > 0) counts.withActivity += 1;
       if (result.outcome === "sent") counts.sent += 1;
       else if (result.outcome === "skipped") counts.skipped += 1;
@@ -112,31 +131,33 @@ Deno.serve(async (request) => {
   if (authError || !authData.user) return response({ error: "Unauthorized" }, 401);
 
   const week = currentKualaLumpurWeek(new Date());
-  const result = await deliverStudentReport(admin, resendApiKey, authData.user.id, week.weekStart, authData.user.email);
+  const result = await deliverStudentReport(
+    admin,
+    resendApiKey,
+    authData.user.id,
+    week.weekStart,
+    authData.user.email,
+  );
   if (result.outcome === "sent") return response({ sent: true, weekStart: week.weekStart });
-  if (result.outcome === "skipped") return response({ sent: false, alreadySent: true, weekStart: week.weekStart });
-  if (result.outcome === "not_entitled") return response({ error: "Parent Reports are not included in this plan." }, 403);
-  if (result.outcome === "no_recipient") return response({ error: "This account has no email address for the report." }, 422);
+  if (result.outcome === "skipped")
+    return response({ sent: false, alreadySent: true, weekStart: week.weekStart });
+  if (result.outcome === "not_entitled")
+    return response({ error: "Parent Reports are included with Premium." }, 403);
+  if (result.outcome === "no_recipient")
+    return response({ error: "This account has no email address for the report." }, 422);
   return response({ error: "The weekly report could not be sent." }, 502);
 });
 
 async function entitledStudentIds(admin: AdminClient): Promise<string[]> {
-  const subscriptions = await admin.from("subscriptions").select("user_id, plan").eq("status", "active");
+  const subscriptions = await admin
+    .from("subscriptions")
+    .select("user_id, plan")
+    .eq("status", "active");
   if (subscriptions.error) throw new Error("Could not read subscriptions");
-  const activeByUser = new Map<string, string>();
+  const ids = new Set<string>();
   for (const row of subscriptions.data ?? []) {
     const userId = String(row.user_id);
-    activeByUser.set(userId, String(row.plan));
-  }
-  const profiles = await admin.from("profiles").select("id, plan").eq("plan", "paid");
-  if (profiles.error) throw new Error("Could not read profiles");
-  const ids = new Set<string>();
-  for (const [userId, plan] of activeByUser) {
-    if (hasParentReportsAccess(plan, null)) ids.add(userId);
-  }
-  for (const row of profiles.data ?? []) {
-    const userId = String(row.id);
-    if (!activeByUser.has(userId) && hasParentReportsAccess(null, String(row.plan))) ids.add(userId);
+    if (hasParentReportsAccess(String(row.plan), null)) ids.add(userId);
   }
   return [...ids];
 }
@@ -183,7 +204,9 @@ async function deliverStudentReport(
 
   const profileResult = await admin
     .from("profiles")
-    .select("full_name, plan, parent_report_email")
+    .select(
+      "full_name, plan, parent_report_email, parent_email_consent_at, parent_email_consent_version",
+    )
     .eq("id", studentId)
     .maybeSingle();
   if (profileResult.error || !profileResult.data) return done("failed");
@@ -207,7 +230,12 @@ async function deliverStudentReport(
   const cycle = options?.automated ? emailedParentReportCycle(options.now ?? new Date()) : null;
   const recipient = cycle
     ? usableEmail(accountEmail)
-    : resolveWeeklyReportRecipient(profileResult.data.parent_report_email, accountEmail);
+    : resolveParentReportRecipient({
+        parentReportEmail: profileResult.data.parent_report_email,
+        accountEmail,
+        consentAt: profileResult.data.parent_email_consent_at,
+        consentVersion: profileResult.data.parent_email_consent_version,
+      });
   const week = cycle ?? currentKualaLumpurWeek(options?.now ?? new Date());
   const history = await admin
     .from("quiz_history")
@@ -216,7 +244,11 @@ async function deliverStudentReport(
     .gte("created_at", week.startIso)
     .lt("created_at", week.endIso);
   if (history.error) return done("failed");
-  const progress = await admin.from("user_progress").select("streak").eq("user_id", studentId).maybeSingle();
+  const progress = await admin
+    .from("user_progress")
+    .select("streak")
+    .eq("user_id", studentId)
+    .maybeSingle();
   if (progress.error) return done("failed");
 
   const quizzes: WeeklyQuizRow[] = (history.data ?? []).map((row) => ({

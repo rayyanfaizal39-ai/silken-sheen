@@ -1,3 +1,4 @@
+import { parentEmailWrite } from "@/features/parent-report/parentEmailConsent";
 import { normalizeParentReportEmail } from "@/features/parent-report/weeklyParentReport";
 import { supabase } from "@/lib/supabase";
 
@@ -150,7 +151,11 @@ export async function saveCompletedExplorerProfile(
         form: normalized.formLevel,
         school_id: normalized.schoolId,
         onboarding_completed: true,
-        parent_report_email: normalized.parentReportEmail ?? null,
+        // Onboarding reaches this with a parent address only after the consent checkbox.
+        ...parentEmailWrite(
+          normalized.parentReportEmail ?? null,
+          Boolean(normalized.parentReportEmail),
+        ),
       },
       { onConflict: "id" },
     )

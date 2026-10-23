@@ -18,13 +18,14 @@ describe("parent email consent", () => {
       />,
     );
 
-    expect(html).toContain("monthly learning summary");
-    expect(html).toContain("subscription renewal reminders");
+    expect(html).toContain("progress reports");
+    expect(html).toContain("payment reminders");
     expect(html).toContain(PARENT_EMAIL_NOTICE_MS);
     expect(html).toContain("I agree that AcadeMY may email this parent or guardian");
     expect(html).toContain(PARENT_EMAIL_CHECKBOX_MS);
-    expect(PARENT_EMAIL_NOTICE_EN).toContain("monthly learning summary");
-    expect(PARENT_EMAIL_CHECKBOX_EN).toContain("learning summary and subscription reminders");
+    expect(PARENT_EMAIL_NOTICE_EN).toContain("progress reports");
+    expect(PARENT_EMAIL_NOTICE_EN).toContain("payment reminders");
+    expect(PARENT_EMAIL_CHECKBOX_EN).toContain("progress reports and payment reminders");
     expect(html).toContain('lang="ms"');
     expect(html).toContain('id="parent-email-consent"');
     expect(html).toContain('type="checkbox"');

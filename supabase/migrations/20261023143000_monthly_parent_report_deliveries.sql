@@ -42,9 +42,6 @@ grant all on table public.monthly_report_deliveries to service_role;
 comment on table public.monthly_report_deliveries is
   'One automatic parent report per student per calendar month. month_start is the first day of the reported month in Asia/Kuala_Lumpur. Stores the recipient and outcome, not the email body.';
 
-comment on column public.profiles.parent_report_email is
-  'Optional parent or guardian address chosen by the student. The monthly parent report and subscription reminders use it when it is set; otherwise they go to the student account email.';
-
 commit;
 
 -- Schedules stay off. After a reviewed dry run, enable pg_cron and pg_net,
@@ -67,7 +64,7 @@ commit;
 --   $$
 --   select net.http_post(
 --     url := (select decrypted_secret from vault.decrypted_secrets where name = 'academy_functions_base_url')
---       || '/functions/v1/send-parent-report',
+--       || '/functions/v1/send-monthly-parent-report',
 --     headers := jsonb_build_object(
 --       'Content-Type', 'application/json',
 --       'x-monthly-report-key', (select decrypted_secret from vault.decrypted_secrets where name = 'monthly_parent_report_cron_key')

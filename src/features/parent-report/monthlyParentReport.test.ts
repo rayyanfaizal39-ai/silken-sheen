@@ -124,9 +124,18 @@ describe("monthly parent report delivery contract", () => {
     "utf8",
   );
   const source = readFileSync(
+    new URL("../../../supabase/functions/send-monthly-parent-report/index.ts", import.meta.url),
+    "utf8",
+  );
+  const manual = readFileSync(
     new URL("../../../supabase/functions/send-parent-report/index.ts", import.meta.url),
     "utf8",
   );
+  const batch = readFileSync(
+    new URL("../../../supabase/functions/_shared/monthly-parent-report-batch.ts", import.meta.url),
+    "utf8",
+  );
+  const config = readFileSync(new URL("../../../supabase/config.toml", import.meta.url), "utf8");
   const parentPage = readFileSync(new URL("../../routes/parent.tsx", import.meta.url), "utf8");
 
   it("logs one row per student per month and keeps the schedule commented", () => {
@@ -139,27 +148,37 @@ describe("monthly parent report delivery contract", () => {
     expect(migration).toContain("-- select cron.schedule(");
     expect(migration).toContain("'0 0 1 * *'");
     expect(migration).toContain('{"action":"send_previous_month"}');
+    expect(migration).toContain("/functions/v1/send-monthly-parent-report");
     expect(migration).not.toContain("/functions/v1/send-weekly-parent-report");
+    expect(migration).not.toContain("comment on column public.profiles.parent_report_email");
   });
 
-  it("authenticates the batch, previews before writing, and refuses a weekly cadence", () => {
+  it("authenticates the cron batch separately from the signed-in manual send", () => {
+    expect(source).toContain("cronAuthorized(");
     expect(source).toContain('Deno.env.get("MONTHLY_PARENT_REPORT_CRON_KEY")');
     expect(source).toContain('request.headers.get("x-monthly-report-key")');
     expect(source).toContain("hasParentReportsAccess");
-    expect(source).toContain("resolveWeeklyReportRecipient");
-    expect(source).toContain("maskEmailAddress(recipient)");
-    expect(source).toContain('action === "send_previous_month"');
-    expect(source).toContain("Parent reports are monthly.");
-    const dryRunAt = source.indexOf("if (dryRun) {");
-    const claimAt = source.indexOf('status: "sending"');
-    expect(dryRunAt).toBeGreaterThan(-1);
-    expect(claimAt).toBeGreaterThan(dryRunAt);
+    expect(source).not.toContain('.eq("plan", "paid")');
+    expect(source).toContain('parsed.action !== "send_previous_month"');
+    expect(batch).toContain("resolveParentReportRecipient");
+    expect(batch).toContain("https://www.myacademy.my/parent-dashboard");
+    expect(batch.indexOf("if (options.dryRun)")).toBeLessThan(batch.indexOf("store.claim"));
+    expect(manual).toContain("runManualParentReport");
+    expect(manual).toContain('readAction(body) !== "send_now"');
+    expect(manual).toContain("https://www.myacademy.my");
+    expect(manual).not.toContain('Access-Control-Allow-Origin": "*"');
+    expect(manual).not.toContain("body.to");
+    expect(config).toMatch(/\[functions\.send-parent-report\]\s+verify_jwt = true/);
+    expect(config).toMatch(/\[functions\.send-monthly-parent-report\]\s+verify_jwt = false/);
+    expect(config).not.toContain("[functions.send-weekly-parent-report]");
   });
 
   it("does not offer a weekly choice on the parent page", () => {
-    expect(parentPage).toContain('cadence: "monthly"');
+    expect(parentPage).toContain('action: "send_now"');
     expect(parentPage).toContain("previousKualaLumpurMonth");
-    expect(parentPage).not.toContain("weekly");
+    expect(parentPage).toContain("ParentPremiumUpsell");
+    expect(parentPage).toContain("hasParentReportsAccess");
+    expect(parentPage).not.toContain('cadence: "weekly"');
     expect(parentPage).not.toContain("CalendarDays");
   });
 });

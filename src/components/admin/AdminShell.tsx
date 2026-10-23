@@ -31,7 +31,7 @@ const NAV: { group: string; items: NavItem[] }[] = [
       { icon: "📝", label: "Quiz activity" },
       { icon: "◉", label: "Visitor traffic", to: "/admin/traffic" },
       { icon: "📊", label: "Reports", to: "/admin/reports" },
-      { icon: "✉", label: "Parent Report", to: "/admin/weekly-report" },
+      { icon: "✉", label: "Legacy weekly preview", to: "/admin/weekly-report" },
     ],
   },
   {
