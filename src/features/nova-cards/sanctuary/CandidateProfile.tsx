@@ -1,17 +1,52 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { CompanionGarden } from "../../cosmic-companion/CompanionGarden";
 import {
-  CANDIDATE_LABEL,
   NOT_AVAILABLE,
   candidateTitle,
   listValues,
   type CompanionCandidate,
 } from "../companion-candidates";
+import { DEMO_CARDS, cardUrl, type NovaCard as Card } from "../model";
+import { NovaCard } from "../NovaCard";
 import { academyHomeHref } from "../paths";
-import { CandidateArt, CandidateCard } from "./CandidateCard";
+import { CandidateCard } from "./CandidateCard";
 import "./awakening-chamber.css";
 import "./companion-comparison.css";
 import "./companion-profile.css";
+
+/** Stable fictional serials for a preview that is not one of the two demo cards. */
+const PREVIEW_SERIAL = { a: "C00000000001", b: "C00000000002" } as const;
+
+function previewFlipCard(
+  companion: CompanionCandidate,
+  username: string,
+  publicId: string | null,
+): Card {
+  const demo = publicId ? DEMO_CARDS.find((card) => card.publicId === publicId) : undefined;
+  return {
+    publicId: publicId ?? `preview-${companion.id}`,
+    serial: demo?.serial ?? PREVIEW_SERIAL[companion.id],
+    username,
+    traits: null,
+    companion: {
+      archetypeId: companion.id,
+      name: candidateTitle(companion),
+      species: companion.species ?? "",
+      element: companion.element ?? "",
+      personality: companion.personality ?? "",
+      tagline: companion.uniqueQuality ?? "",
+      description: companion.description ?? "",
+      traits: companion.qualities ?? [],
+      abilities: companion.abilities ?? [],
+    },
+    variant: companion.id,
+    rarity: "Common",
+    stage: 1,
+    sharing: false,
+    demo: true,
+    artworkUrl: companion.artworkUrl ?? null,
+  };
+}
 
 const rise = (step: number) => ({ "--ccprof-n": step }) as CSSProperties;
 
@@ -24,16 +59,21 @@ export function CandidateProfile({
   companion,
   username,
   fictional,
+  publicId = null,
   collectionHref,
 }: {
   companion: CompanionCandidate;
   username: string;
   fictional: boolean;
+  /** Demo or saved public id. Fictional previews use it only to pick a stable serial. */
+  publicId?: string | null;
   /** Real cards: where the student manages sharing, the QR code and export. */
   collectionHref?: string;
 }) {
   const name = candidateTitle(companion);
   const [viewing, setViewing] = useState(false);
+  const [savedCard, setSavedCard] = useState<Card | null>(null);
+  const [cardError, setCardError] = useState("");
   const dialog = useRef<HTMLDialogElement>(null);
   const opener = useRef<HTMLButtonElement | null>(null);
   useEffect(() => {
@@ -46,6 +86,25 @@ export function CandidateProfile({
       if (trigger?.isConnected) trigger.focus();
     };
   }, [viewing]);
+  useEffect(() => {
+    if (!viewing || fictional) return;
+    let active = true;
+    setSavedCard(null);
+    setCardError("");
+    import("../server")
+      .then(({ getMyCard }) => getMyCard())
+      .then((card) => {
+        if (!active) return;
+        if (!card) setCardError("Your card is not available yet.");
+        else setSavedCard(card);
+      })
+      .catch((error: unknown) => {
+        if (active) setCardError(error instanceof Error ? error.message : "Your card could not be opened.");
+      });
+    return () => {
+      active = false;
+    };
+  }, [viewing, fictional]);
 
   const facts: [string, string | undefined][] = [
     ["Personality", companion.personality],
@@ -186,45 +245,41 @@ export function CandidateProfile({
       {viewing && (
         <dialog
           ref={dialog}
-          className="sanctuary-dialog occ-detail ccprof-full"
-          data-tone={companion.id}
+          className="sanctuary-dialog ccprof-flip"
           aria-labelledby="ccprof-full-title"
           onCancel={(event) => {
             event.preventDefault();
             setViewing(false);
           }}
         >
-          <div className="occ-detail__art">
-            <CandidateArt c={companion} />
-          </div>
-          <div className="occ-detail__body">
-            <p className="occ-card__label">{CANDIDATE_LABEL[companion.id]} · Permanent</p>
-            <h2 id="ccprof-full-title">{name}</h2>
-            <p className="occ-species">{companion.species ?? "Species revealed with artwork"}</p>
-            <p>{companion.description ?? NOT_AVAILABLE}</p>
-            <dl>
-              <div>
-                <dt>Personality</dt>
-                <dd>{companion.personality ?? NOT_AVAILABLE}</dd>
-              </div>
-              <div>
-                <dt>Element</dt>
-                <dd>{companion.element ?? NOT_AVAILABLE}</dd>
-              </div>
-              <div>
-                <dt>Qualities</dt>
-                <dd>{listValues(companion.qualities) ?? NOT_AVAILABLE}</dd>
-              </div>
-              <div>
-                <dt>Abilities</dt>
-                <dd>{listValues(companion.abilities) ?? NOT_AVAILABLE}</dd>
-              </div>
-            </dl>
-            <div className="sanctuary-dialog-actions">
-              <button type="button" autoFocus onClick={() => setViewing(false)}>
-                ← Back to my companion
-              </button>
-            </div>
+          <h2 id="ccprof-full-title" className="ccprof-flip-title">
+            {name}
+          </h2>
+          {fictional ? (
+            <NovaCard
+              card={previewFlipCard(companion, username, publicId)}
+              url={cardUrl(
+                publicId ?? `preview-${companion.id}`,
+                typeof window === "undefined" ? "https://cards.myacademy.my" : window.location.origin,
+              )}
+              appearance="classic"
+            />
+          ) : savedCard ? (
+            <NovaCard
+              card={savedCard}
+              url={cardUrl(
+                savedCard.publicId,
+                typeof window === "undefined" ? "https://cards.myacademy.my" : window.location.origin,
+              )}
+              appearance="classic"
+            />
+          ) : (
+            <p role="status">{cardError || "Opening your card…"}</p>
+          )}
+          <div className="sanctuary-dialog-actions">
+            <button type="button" autoFocus onClick={() => setViewing(false)}>
+              Close
+            </button>
           </div>
         </dialog>
       )}

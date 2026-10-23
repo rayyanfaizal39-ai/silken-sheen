@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { companionSvg } from "./artwork";
 import { barcodeSvg, qrDataUrl, svgUrl } from "./codes";
 import { STAGES, cardFace, type NovaCard as Card } from "./model";
+import { presentedIdentity } from "./serial";
 import { downloadCard } from "./download";
 import { getCardForExport } from "./server";
 
@@ -21,6 +22,7 @@ export function NovaCard({
   const [notice, setNotice] = useState("");
   const [downloading, setDownloading] = useState(false);
   const stage = Math.max(1, Math.min(STAGES.length, card.stage ?? 1));
+  const identity = presentedIdentity(card.serial, stage, card.rarity);
   const face = cardFace(card);
   const artwork = card.artworkUrl || svgUrl(companionSvg(face.fallbackTraits, card.variant, stage));
   useEffect(() => {
@@ -82,7 +84,7 @@ export function NovaCard({
               <span>
                 AcadeMY <b>NOVA COMPANION</b>
               </span>
-              <small>{card.rarity}</small>
+              <small>{identity.rarity}</small>
             </div>
             <div className="nova-art-frame">
               <img
@@ -109,7 +111,7 @@ export function NovaCard({
               <p className="nova-description">{face.description}</p>
               <div className="nova-card-footer">
                 <span>✦ {STAGES[stage - 1].name}</span>
-                <span>{card.serial.slice(-8)}</span>
+                <span>{identity.serial.slice(-8)}</span>
               </div>
             </div>
             <div className="nova-hologram" aria-hidden="true" />
@@ -148,12 +150,12 @@ export function NovaCard({
             </p>
             <img
               className="nova-barcode"
-              src={svgUrl(barcodeSvg(card.serial))}
-              alt={`Code 128 barcode: ${card.serial}`}
+              src={svgUrl(barcodeSvg(identity.serial))}
+              alt={`Code 128 barcode: ${identity.serial}`}
               width="471"
               height="222"
             />
-            <p className="nova-serial">{card.serial}</p>
+            <p className="nova-serial">{identity.serial}</p>
             <p className="nova-back-bottom">
               {card.demo
                 ? "FICTIONAL TEST CARD · NO STUDENT DATA"

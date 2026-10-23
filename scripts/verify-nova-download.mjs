@@ -1,5 +1,5 @@
 // Verify an actual browser-exported 1200 x 1800 card, not only its source codes.
-// node scripts/verify-nova-download.mjs <png> <public-id> <12-digit-serial>
+// node scripts/verify-nova-download.mjs <png> <public-id> <12-character-serial>
 import { readFileSync } from "node:fs";
 import assert from "node:assert/strict";
 import { PNG } from "pngjs";

@@ -384,6 +384,7 @@ export function StudioExperience({
               companion={chosenCompanion}
               username={state.draft.username}
               fictional={fictional}
+              publicId={state.publicId}
               collectionHref={chosenPreview ? undefined : cardsPaths.home}
             />
           ) : (
