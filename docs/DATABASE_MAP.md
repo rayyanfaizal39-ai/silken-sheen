@@ -52,6 +52,22 @@ Quiz XP uses the original AcadeMY economy (the rules before 2026-09-23, recovere
 **Used by:** Admin → "Ace Intel" tab (`src/routes/admin.cikgu-intel.tsx`), public-facing Ace feature (`published = true` rows only, via the `myacademy` RLS policy).
 **This is the AcadeMY Brain's current "Knowledge Engine" pillar** — the only piece of the Brain that's real today; Analytics/Recommendation Engine pillars are still ad-hoc code in `src/lib/analytics.ts`, not dedicated tables.
 
+### `announcements`
+
+One row per student bulletin post on the home Mission Control panel (`HomeMissionControl`).
+
+| column | purpose |
+|---|---|
+| `title`, `body` | Message shown to students. Body may be empty. |
+| `type` | `news` \| `reminder` \| `urgent` \| `event` |
+| `pinned` | Pinned posts sort ahead of newer posts |
+| `published`, `starts_at`, `expires_at` | A row is readable only while published and inside this window |
+| `link_url` | Optional http(s) or in-app link |
+
+**Writes:** service role only. There is no admin screen and no client insert, update, or delete policy.
+**Reads:** `anon` and `authenticated` can `SELECT` live rows. The table is in the `supabase_realtime` publication so the home panel updates without a refresh.
+**Migration:** `supabase/migrations/20261023014000_public_announcements.sql`.
+
 ## How they connect
 
 ```
