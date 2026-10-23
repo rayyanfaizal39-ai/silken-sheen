@@ -124,8 +124,8 @@ export function Sej2Chapter10NotesBlock({
             <div>
               <h4 className="font-display mb-3 text-sm font-bold text-foreground">⚓ Pelabuhan Awal</h4>
               <figure className="mb-4 space-y-2">
-                <img src={portsImg} alt="Peta pelabuhan dan pusat perdagangan awal Sarawak dan Sabah" loading="lazy" className={`${FIG_IMG} sm:hidden`} />
-                <img src={portsImgDesktop} alt="Peta pelabuhan dan pusat perdagangan awal Sarawak dan Sabah" loading="lazy" className={`${FIG_IMG} notes-figure-img--wide hidden sm:block`} />
+                <div className="sm:hidden"><img src={portsImg} alt="Peta pelabuhan dan pusat perdagangan awal Sarawak dan Sabah" loading="lazy" className={FIG_IMG} /></div>
+                <div className="hidden sm:block"><img src={portsImgDesktop} alt="Peta pelabuhan dan pusat perdagangan awal Sarawak dan Sabah" loading="lazy" className={`${FIG_IMG} notes-figure-img--wide`} /></div>
                 <figcaption className="text-center text-[11px] italic leading-snug text-muted-foreground">Sumber: buku teks hlm. 178–179. Peta asas: Natural Earth; kedudukan anggaran.</figcaption>
               </figure>
               <EraDotTimeline
@@ -248,8 +248,8 @@ export function Sej2Chapter10NotesBlock({
             <div>
               <h4 className="font-display mb-3 text-sm font-bold text-foreground">🎭 Kepelbagaian Kaum Bumiputera</h4>
               <figure className="mb-4 space-y-2">
-                <img src={kaumImg} alt="Peta kawasan petempatan kaum bumiputera Sarawak dan Sabah" loading="lazy" className={`${FIG_IMG} sm:hidden`} />
-                <img src={kaumImgDesktop} alt="Peta kawasan petempatan kaum bumiputera Sarawak dan Sabah" loading="lazy" className={`${FIG_IMG} notes-figure-img--wide hidden sm:block`} />
+                <div className="sm:hidden"><img src={kaumImg} alt="Peta kawasan petempatan kaum bumiputera Sarawak dan Sabah" loading="lazy" className={FIG_IMG} /></div>
+                <div className="hidden sm:block"><img src={kaumImgDesktop} alt="Peta kawasan petempatan kaum bumiputera Sarawak dan Sabah" loading="lazy" className={`${FIG_IMG} notes-figure-img--wide`} /></div>
                 <figcaption className="text-center text-[11px] italic leading-snug text-muted-foreground">Sumber: buku teks hlm. 186–189. Peta asas: Natural Earth; kedudukan anggaran.</figcaption>
               </figure>
               <div className="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3">
