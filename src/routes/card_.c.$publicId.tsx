@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { NovaCard } from "@/features/nova-cards/NovaCard";
 import { cardFace, cardUrl } from "@/features/nova-cards/model";
+import { loadOwnedOrPublicCard } from "@/features/nova-cards/local-session";
 import { getPublicCard } from "@/features/nova-cards/server";
 import { SITE_URL } from "@/lib/seo";
 import { novaHead } from "@/features/nova-cards/head";
@@ -42,7 +43,7 @@ function PublicNova() {
     let active = true;
     const check = () => {
       if (!document.hidden)
-        getPublicCard({ data: publicId })
+        loadOwnedOrPublicCard(publicId)
           .then((value) => {
             if (active) setCard(value);
           })
@@ -50,6 +51,7 @@ function PublicNova() {
             if (active) setCard(null);
           });
     };
+    if (import.meta.env.DEV) check();
     window.addEventListener("focus", check);
     document.addEventListener("visibilitychange", check);
     return () => {

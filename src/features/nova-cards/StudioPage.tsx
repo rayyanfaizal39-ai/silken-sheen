@@ -1,12 +1,7 @@
-import { lazy, Suspense, useEffect, useMemo, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useMemo, useRef, useState, type ComponentType } from "react";
 import { QUESTIONS, traitsFromAnswers } from "./model";
 import { type StudioDraft, type StudioState } from "./studio-model";
-import {
-  chooseStudioOrigin,
-  getStudioState,
-  saveStudioDraft,
-  submitStudioOrigin,
-} from "./studio.server";
+import { studioApi } from "./local-session";
 import { CinematicOpening } from "./sanctuary/CinematicOpening";
 import { CinematicFlightWorld } from "./sanctuary/CinematicFlightWorld";
 import { CosmicCanvas } from "./sanctuary/CosmicCanvas";
@@ -29,6 +24,8 @@ import { profilePersonality } from "../../../supabase/functions/_shared/companio
 import { createGuestStudioApi } from "./guest-studio";
 import { academyHomeHref, cardsPaths, signInHref, upgradeHref } from "./paths";
 import { novaAccessCopy, novaAccessProblem, type NovaAccessProblem } from "./access";
+import { isDevAuthBypassEnabled } from "@/lib/dev-auth";
+import { isSupabaseConfigured } from "@/lib/supabase";
 import "./sanctuary/sanctuary.css";
 
 const CompletedCard = lazy(() => import("./StudioCompletedCard"));
@@ -58,12 +55,7 @@ export type StudioApi = {
   submit: () => Promise<StudioState>;
   choose: (candidate: "a" | "b") => Promise<StudioState>;
 };
-const liveApi: StudioApi = {
-  load: () => getStudioState(),
-  save: (d) => saveStudioDraft({ data: d }),
-  submit: () => submitStudioOrigin(),
-  choose: (c) => chooseStudioOrigin({ data: c }),
-};
+const liveApi: StudioApi = studioApi;
 
 export default function StudioPage() {
   const [preview, setPreview] = useState<"rayyan" | "mia" | "guest" | "connected" | null>();
@@ -396,6 +388,7 @@ export function StudioExperience({
               />
             </Suspense>
           )}
+          <DevGeneratedCardSlot selected={selected} />
         </div>
       ) : revealReady ? (
         <div className="companion-reveal-flow" data-reveal={hatch}>
@@ -582,6 +575,27 @@ export function StudioExperience({
     </main>
   );
 }
+function DevGeneratedCardSlot({ selected }: { selected: boolean }) {
+  const [CardView, setCardView] = useState<ComponentType | null>(null);
+  useEffect(() => {
+    if (
+      import.meta.env.DEV &&
+      selected &&
+      isDevAuthBypassEnabled(window.location.hostname, isSupabaseConfigured)
+    ) {
+      let cancelled = false;
+      void import("@/lib/dev-auth/DevGeneratedCard").then((mod) => {
+        if (!cancelled) setCardView(() => mod.DevGeneratedCard);
+      });
+      return () => {
+        cancelled = true;
+      };
+    }
+  }, [selected]);
+  if (!import.meta.env.DEV || !CardView) return null;
+  return <CardView />;
+}
+
 function SceneControls({ calm, onCalm }: { calm: boolean; onCalm: () => void }) {
   return (
     <div className="sanctuary-scene-controls">

@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { NovaCard } from "./NovaCard";
 import { EvolutionPreview } from "./EvolutionPreview";
 import { cardUrl, DEMO_CARDS, STAGES, type NovaCard as Card } from "./model";
-import { getMyCard, getNovaEntitlement, setSharing, type NovaEntitlement } from "./server";
+import { loadOwnerNova, updateCardSharing } from "./local-session";
+import type { NovaEntitlement } from "./server";
 import { NovaTeaser } from "./NovaTeaser";
 import { academyHomeHref, cardsPaths, signInHref } from "./paths";
 import { novaAccessCopy, novaAccessProblem, type NovaAccessProblem } from "./access";
@@ -17,7 +18,7 @@ export function NovaStudio() {
   useEffect(() => {
     setOrigin(window.location.origin);
     let active = true;
-    Promise.all([getMyCard(), getNovaEntitlement()])
+    loadOwnerNova()
       .then(([c, access]) => {
         if (active) {
           setCard(c);
@@ -90,7 +91,7 @@ export function NovaStudio() {
                       const enabled = e.target.checked;
                       setBusy(true);
                       try {
-                        setCard(await setSharing({ data: enabled }));
+                        setCard(await updateCardSharing(enabled));
                         setNotice(
                           enabled
                             ? "Public sharing enabled. Your username, traits, artwork and codes are visible to anyone with the link."
@@ -110,7 +111,8 @@ export function NovaStudio() {
                   onClick={async () => {
                     setBusy(true);
                     try {
-                      setCard(await getMyCard());
+                      const [next] = await loadOwnerNova();
+                      setCard(next);
                     } catch (e) {
                       setNotice((e as Error).message);
                     } finally {
@@ -155,7 +157,7 @@ export function NovaStudio() {
               status={entitlement.status}
               onMakePrivate={async () => {
                 try {
-                  setCard(await setSharing({ data: false }));
+                  setCard(await updateCardSharing(false));
                   setNotice("Your public card is now private.");
                 } catch {
                   setNotice("Could not change sharing. Please retry.");

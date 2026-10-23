@@ -9,7 +9,7 @@ import {
   type JourneyStage,
 } from "@/features/cosmic-companion/journey";
 import { UnrevealedCosmicCard } from "@/features/cosmic-companion/UnrevealedCosmicCard";
-import { getNovaDashboardStatus } from "@/features/nova-cards/studio.server";
+import { loadNovaDashboardStatus } from "@/features/nova-cards/local-session";
 import { useAuth } from "@/context/auth-context";
 import { seoMeta } from "@/lib/seo";
 import "./companion-cards.css";
@@ -216,7 +216,7 @@ function useJourneyStage(preview: JourneyStage | undefined): JourneyStage {
     setStage("new");
     if (!user?.id) return;
     let active = true;
-    getNovaDashboardStatus()
+    loadNovaDashboardStatus()
       .then((status) => {
         if (active) setStage(journeyStage(status));
       })

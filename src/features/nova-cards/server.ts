@@ -56,7 +56,16 @@ export const getPublicCard = createServerFn({ method: "GET" })
     const demo = DEMO_CARDS.find((c) => c.publicId === id);
     if (demo) return demo;
     if (!validPublicId(id)) return null;
-    const db = client();
+    const db = getSupabaseServerClient();
+    if (!db) {
+      // Production builds drop this branch. A localhost dev bypass has no database
+      // row; the browser reads the card from its own storage instead.
+      if (import.meta.env.DEV) {
+        const { devAuthBypassServerAllowed } = await import("@/lib/dev-auth/server-gate");
+        if (devAuthBypassServerAllowed()) return null;
+      }
+      throw new Error(NOVA_ACCESS_ERRORS.unconfigured);
+    }
     const { data, error } = await db.rpc("get_public_nova_card", { requested_public_id: id });
     if (error)
       throw new Error(
