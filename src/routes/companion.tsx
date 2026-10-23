@@ -289,6 +289,10 @@ export function CosmicCompanionPage() {
                   width="600"
                   height="640"
                 />
+              ) : discovered.choosing ? (
+                <div className="ccp-owned__craft">
+                  <strong>Choose your companion art</strong>
+                </div>
               ) : (
                 <div className="ccp-owned__craft">
                   <strong>Your companion is being crafted</strong>

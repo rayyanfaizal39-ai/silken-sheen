@@ -12,6 +12,7 @@ import { WaitingSanctuary } from "./sanctuary/WaitingSanctuary";
 import { OriginReveal } from "./sanctuary/OriginReveal";
 import { CandidateProfile } from "./sanctuary/CandidateProfile";
 import { CardSharePanel } from "./CardSharePanel";
+import { LiveCraftArtChoice } from "./CraftArtChoice";
 import { useSanctuaryPreferences } from "./sanctuary/useSanctuaryPreferences";
 import { soundscape } from "./sanctuary/audio";
 import { GuestNotice } from "./sanctuary/GuestNotice";
@@ -373,6 +374,7 @@ export function StudioExperience({
             Your companion choice is permanent. Your Cosmic Card stays with you.
           </p>
           <DevGeneratedCardSlot selected={selected} />
+          {!fictional ? <LiveCraftArtChoice /> : null}
           {chosenCompanion ? (
             <CandidateProfile
               companion={chosenCompanion}

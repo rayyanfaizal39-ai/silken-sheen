@@ -38,15 +38,25 @@ export const getNovaEntitlement = createServerFn({ method: "GET" }).handler(
   },
 );
 
+async function signedArtwork(db: ReturnType<typeof client>, path: string) {
+  const { data, error } = await db.storage.from("nova-artwork").createSignedUrl(path, 60);
+  if (error || !data?.signedUrl) throw new Error("Companion artwork is temporarily unavailable.");
+  return data.signedUrl;
+}
+
 async function withArtwork(db: ReturnType<typeof client>, card: NovaCard | null) {
-  if (card?.artworkPath) {
-    const { data, error } = await db.storage
-      .from("nova-artwork")
-      .createSignedUrl(card.artworkPath, 60);
-    if (error) throw new Error("Companion artwork is temporarily unavailable.");
-    return { ...card, artworkPath: undefined, artworkUrl: data.signedUrl };
-  }
-  return card;
+  if (!card) return card;
+  const artworkUrl = card.artworkPath ? await signedArtwork(db, card.artworkPath) : card.artworkUrl;
+  const artOptions = card.artOptions
+    ? await Promise.all(
+        card.artOptions.map(async (option) =>
+          option.path
+            ? { option: option.option, url: await signedArtwork(db, option.path) }
+            : option,
+        ),
+      )
+    : undefined;
+  return { ...card, artworkPath: undefined, artworkUrl, artOptions };
 }
 
 export const getPublicCard = createServerFn({ method: "GET" })
@@ -76,6 +86,17 @@ export const getMyCard = createServerFn({ method: "GET" }).handler(
     return withArtwork(db, data as NovaCard | null);
   },
 );
+
+export const chooseCraftArt = createServerFn({ method: "POST" })
+  .validator((input: unknown) => z.union([z.literal(1), z.literal(2)]).parse(input))
+  .handler(async ({ data: option }): Promise<NovaCard> => {
+    const db = client();
+    const { data, error } = await db.rpc("nova_choose_craft_art", { chosen_option: option });
+    if (error) throw new Error(error.message || "The portrait could not be chosen.");
+    const card = await withArtwork(db, data as NovaCard | null);
+    if (!card) throw new Error("The portrait could not be chosen.");
+    return card;
+  });
 
 export const setSharing = createServerFn({ method: "POST" })
   .validator((input: unknown) => z.boolean().parse(input))

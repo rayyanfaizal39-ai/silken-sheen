@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { NovaCard } from "./NovaCard";
 import { EvolutionPreview } from "./EvolutionPreview";
 import { cardUrl, DEMO_CARDS, STAGES, type NovaCard as Card } from "./model";
+import { LiveCraftArtChoice } from "./CraftArtChoice";
 import { loadOwnerNova, republishOwnedDevCard, updateCardSharing } from "./local-session";
 import type { NovaEntitlement } from "./server";
 import { NovaTeaser } from "./NovaTeaser";
@@ -167,7 +168,10 @@ export function NovaStudio() {
             />
           ) : card && (card.traits || card.companion) ? (
             // An owned card stays viewable whatever the subscription status.
-            <NovaCard card={card} url={cardUrl(card.publicId, origin)} />
+            <>
+              <NovaCard card={card} url={cardUrl(card.publicId, origin)} />
+              <LiveCraftArtChoice onChanged={setCard} />
+            </>
           ) : card ? (
             <div className="nova-creation-panel">
               <p className="nova-eyebrow">COSMIC COMPANION</p>

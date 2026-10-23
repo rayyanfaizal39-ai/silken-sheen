@@ -22,6 +22,12 @@ async function readSharedFile(publicId: string): Promise<NovaCard | null> {
   }
 }
 
+function withoutArtOptions(card: NovaCard | null): NovaCard | null {
+  if (!card?.artOptions) return card;
+  const { artOptions: _hidden, ...safe } = card;
+  return safe;
+}
+
 async function withArtwork(
   db: NonNullable<ReturnType<typeof getSupabaseServerClient>>,
   card: NovaCard | null,
@@ -48,7 +54,7 @@ export async function loadPublicNovaCard(id: string): Promise<NovaCard | null> {
       const { devAuthBypassServerAllowed } = await import("@/lib/dev-auth/server-gate");
       if (devAuthBypassServerAllowed()) {
         const { readSharedDevCard } = await import("@/lib/dev-auth/public-registry");
-        return readSharedDevCard(id) ?? (await readSharedFile(id));
+        return withoutArtOptions(readSharedDevCard(id) ?? (await readSharedFile(id)));
       }
     }
     throw new Error(NOVA_ACCESS_ERRORS.unconfigured);
@@ -58,7 +64,7 @@ export async function loadPublicNovaCard(id: string): Promise<NovaCard | null> {
     throw new Error(
       "Nova cards are temporarily unavailable. The reviewed migration may still be pending.",
     );
-  return withArtwork(db, data as NovaCard | null);
+  return withArtwork(db, withoutArtOptions(data as NovaCard | null));
 }
 
 export function publicRequestOrigin(): string {

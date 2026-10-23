@@ -20,6 +20,7 @@ describe("Cards migration order", () => {
       20261020130000: "cosmic_companion_entitlement_parity.sql",
       20261023140000: "nova_staff_craft.sql",
       20261023150000: "nova_public_card.sql",
+      20261023160000: "nova_craft_art_options.sql",
     };
     const cardsVersions = Object.keys(cardsMigrations).map(Number);
 

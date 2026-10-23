@@ -3,7 +3,13 @@ import { isSupabaseConfigured } from "@/lib/supabase";
 import type { NovaCard } from "./model";
 import { devSharePayload } from "./public-card";
 import type { NovaEntitlement } from "./entitlement";
-import { getMyCard, getNovaEntitlement, getPublicCard, setSharing } from "./server";
+import {
+  chooseCraftArt as chooseCraftArtRequest,
+  getMyCard,
+  getNovaEntitlement,
+  getPublicCard,
+  setSharing,
+} from "./server";
 import {
   chooseStudioOrigin,
   getNovaDashboardStatus,
@@ -67,6 +73,13 @@ function publishDevCard(card: NovaCard): Promise<void> {
     });
   }
   return Promise.resolve();
+}
+
+export function chooseCraftArt(option: 1 | 2): Promise<NovaCard> {
+  if (import.meta.env.DEV && devBypassActive()) {
+    return import("@/lib/dev-auth/store").then((store) => store.devChooseCraftArt(option));
+  }
+  return chooseCraftArtRequest({ data: option });
 }
 
 export function updateCardSharing(enabled: boolean): Promise<NovaCard> {

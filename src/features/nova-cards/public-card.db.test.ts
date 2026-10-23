@@ -33,6 +33,12 @@ describe("public companion card", () => {
         "utf8",
       ),
     );
+    await db.exec(
+      readFileSync(
+        resolve(process.cwd(), "supabase/migrations/20261023160000_nova_craft_art_options.sql"),
+        "utf8",
+      ),
+    );
     as = roleQuery(db);
     await addAccount(db, STUDENT);
     const draft = (await as("authenticated", STUDENT, "select public.get_my_nova_studio() as r"))

@@ -652,6 +652,10 @@ function CompanionHeroCard({
               alt={`${chosen.name} the ${chosen.species}`}
               className="h-full max-h-[188px] w-auto rounded-3xl border border-[#E1C27F] object-contain"
             />
+          ) : chosen?.choosing ? (
+            <p className="max-w-[220px] font-display text-lg font-black text-[#F6EAD2]">
+              Choose your companion art
+            </p>
           ) : chosen?.crafting ? (
             <p className="max-w-[220px] font-display text-lg font-black text-[#F6EAD2]">
               Your companion is being crafted
@@ -670,13 +674,15 @@ function CompanionHeroCard({
           )}
         </div>
         <p className="mt-1 text-xs font-bold text-[#E9D5FF]">
-          {chosen?.crafting
-            ? "Your companion is being crafted"
-            : chosen
-              ? `${chosen.element} · ${chosen.species}`
-              : awaiting
-                ? "Your companion is waiting to be discovered."
-                : `Earn Lifetime XP to help ${companionName} grow.`}
+          {chosen?.choosing
+            ? "Choose your companion art"
+            : chosen?.crafting
+              ? "Your companion is being crafted"
+              : chosen
+                ? `${chosen.element} · ${chosen.species}`
+                : awaiting
+                  ? "Your companion is waiting to be discovered."
+                  : `Earn Lifetime XP to help ${companionName} grow.`}
         </p>
       </div>
     </Card>
@@ -1407,6 +1413,10 @@ function CosmicCompanionCard({
                   height={140}
                   className="h-[140px] w-[140px] rounded-3xl border border-[#E1C27F] object-cover"
                 />
+              ) : chosen?.choosing ? (
+                <p className="max-w-[140px] text-center font-display text-sm font-black text-[#F6EAD2]">
+                  Choose your companion art
+                </p>
               ) : chosen?.crafting ? (
                 <p className="max-w-[140px] text-center font-display text-sm font-black text-[#F6EAD2]">
                   Your companion is being crafted
@@ -1424,13 +1434,15 @@ function CosmicCompanionCard({
           {/* CENTER — identity */}
           <div className="flex-1 min-w-0 text-center sm:text-left">
             <p className="text-[10px] font-bold uppercase tracking-widest text-[#C4B5FD]/70">
-              {chosen?.crafting
-                ? "Being crafted"
-                : chosen
-                  ? `${chosen.element} · ${chosen.species}`
-                  : awaiting
-                    ? "Not discovered yet"
-                    : species.name}
+              {chosen?.choosing
+                ? "Choose your companion art"
+                : chosen?.crafting
+                  ? "Being crafted"
+                  : chosen
+                    ? `${chosen.element} · ${chosen.species}`
+                    : awaiting
+                      ? "Not discovered yet"
+                      : species.name}
             </p>
             <p className="font-display text-2xl font-black text-white sm:text-3xl">
               {chosen

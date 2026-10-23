@@ -183,7 +183,7 @@ describe("dev auth bypass production bundle", () => {
     const code = result.outputFiles[0].text;
     expect(code).not.toContain("staff@dev.local");
     expect(code).not.toContain("academymy.dev-auth.v1");
-    expect(code).not.toContain("devAttachCraftPortrait");
+    expect(code).not.toContain("devAttachCraftOptions");
     expect(code).not.toContain("dev-auth/store");
     expect(code).not.toContain("dev-auth/craft-dev");
   });

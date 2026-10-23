@@ -4,13 +4,14 @@ import { craftQueueToCsv, craftQueueToJson } from "@/features/nova-cards/craft-q
 import { journeyStage } from "@/features/cosmic-companion/journey";
 import {
   createMemoryStorage,
-  devApproveCraftPortrait,
-  devAttachCraftPortrait,
+  devAttachCraftOptions,
+  devChooseCraftArt,
   devChooseStudio,
   devCraftQueue,
   devDashboardStatus,
   devLoadStudio,
   devOwnerNova,
+  devResetCraftArt,
   devSaveStudio,
   devSetSharing,
   devSubmitStudio,
@@ -91,7 +92,7 @@ describe("local dev companion card", () => {
     expect((await devLoadStudio()).draft.username).toBe("Aisha");
   });
 
-  it("lets staff attach and approve a portrait without changing the serial", async () => {
+  it("lets staff upload two portraits and the student pick one", async () => {
     useDevAuthStorage(createMemoryStorage());
     const student = DEV_STUDENTS[0];
     const staff = DEV_STUDENTS.find((item) => item.role === "admin");
@@ -106,35 +107,58 @@ describe("local dev companion card", () => {
     const queued = devCraftQueue();
     expect(queued).toHaveLength(1);
     expect(queued[0]).toMatchObject({
-      studentName: "Aisha",
+      displayName: "Aisha",
       form: "Form 1",
       serial: student.serial,
-      status: "awaiting_art",
+      status: "waiting_for_art",
     });
     const csv = craftQueueToCsv(queued);
     const json = craftQueueToJson(queued);
-    expect(csv.split("\n")[0]).toContain("serial");
+    expect(csv.split("\n")[0]).toContain("publicId");
     expect(`${csv}\n${json}`.toLowerCase()).not.toContain("birth year");
-    expect(json).toContain(student.serial);
+    expect(`${csv}\n${json}`).not.toContain(staff!.email);
+    expect(`${csv}\n${json}`).not.toContain(student.email);
+    expect(json).toContain(queued[0].publicId);
 
-    const portrait = "data:image/png;base64,iVBORw0KGgo=";
-    const attached = devAttachCraftPortrait(queued[0].cardId, portrait, "aisha.png");
-    expect(attached.status).toBe("pending_review");
-    expect(attached.previewUrl).toBe(portrait);
+    const first = "data:image/png;base64,iVBORw0KGgo=";
+    const second = "data:image/png;base64,iVBORw0KGgoAAA==";
+    const attached = devAttachCraftOptions(queued[0].publicId, [
+      { option: 1, dataUrl: first },
+      { option: 2, dataUrl: second },
+    ]);
+    expect(attached.status).toBe("options_ready");
+    expect(attached.options.map((option) => option.previewUrl)).toEqual([first, second]);
     signInDevStudentRecord(student.id);
     const waiting = devOwnerNova().card;
     expect(waiting?.serial).toBe(student.serial);
     expect(waiting?.crafting).toBe(true);
     expect(waiting?.artworkUrl).toBeFalsy();
+    expect(waiting?.artOptions).toEqual([
+      { option: 1, url: first },
+      { option: 2, url: second },
+    ]);
+    devSetSharing(true);
+    const shared = readDevPublicCard(waiting!.publicId);
+    expect(shared?.artOptions).toBeUndefined();
+    expect(shared?.crafting).toBe(true);
+
+    const picked = devChooseCraftArt(2);
+    expect(picked.artworkUrl).toBe(second);
+    expect(picked.crafting).toBe(false);
+    expect(picked.artOptions).toBeUndefined();
+    expect(picked.serial).toBe(student.serial);
+    expect(() => devChooseCraftArt(1)).toThrow(/already saved/);
 
     signInDevStudentRecord(staff!.id);
-    const approved = devApproveCraftPortrait(queued[0].cardId);
-    expect(approved.status).toBe("approved");
-    expect(approved.serial).toBe(student.serial);
+    const reset = devResetCraftArt(queued[0].publicId);
+    expect(reset.status).toBe("options_ready");
+    expect(reset.serial).toBe(student.serial);
     signInDevStudentRecord(student.id);
-    const finished = devOwnerNova().card;
-    expect(finished?.artworkUrl).toBe(portrait);
-    expect(finished?.crafting).toBe(false);
-    expect(finished?.serial).toBe(student.serial);
+    const again = devOwnerNova().card;
+    expect(again?.artworkUrl).toBeFalsy();
+    expect(again?.artOptions).toHaveLength(2);
+    const finalPick = devChooseCraftArt(1);
+    expect(finalPick.artworkUrl).toBe(first);
+    expect(finalPick.serial).toBe(student.serial);
   });
 });

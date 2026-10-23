@@ -179,6 +179,8 @@ export interface NovaCard {
    * The card keeps its frame, serial and codes; the portrait is the crafted state.
    */
   crafting?: boolean;
+  /** Two staff portraits the owner may choose. Absent on a public card. */
+  artOptions?: { option: 1 | 2; url?: string; path?: string }[];
 }
 
 /** A card with answer-derived traits: legacy cards and the fictional demo cards. */

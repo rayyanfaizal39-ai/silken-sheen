@@ -4,9 +4,9 @@ import { CompanionCraftQueue, type CraftQueueApi } from "@/components/admin/Comp
 import { isDevAuthBypassEnabled } from "@/lib/dev-auth";
 import { isSupabaseConfigured } from "@/lib/supabase";
 import {
-  attachCraftPortrait,
+  attachCraftOptions,
   getCraftQueue,
-  publishCraftPortrait,
+  resetCraftChoice,
 } from "@/features/nova-cards/craft.server";
 
 export const Route = createFileRoute("/admin/companion-craft")({
@@ -15,20 +15,17 @@ export const Route = createFileRoute("/admin/companion-craft")({
 
 const serverApi: CraftQueueApi = {
   queue: () => getCraftQueue(),
-  attach: async (cardId, dataUrl, fileName) => {
-    await attachCraftPortrait({ data: { cardId, dataUrl, fileName } });
+  attachOptions: async (publicId, options) => {
+    await attachCraftOptions({ data: { publicId, options } });
     const items = await getCraftQueue();
-    const item = items.find((entry) => entry.cardId === cardId);
+    const item = items.find((entry) => entry.publicId === publicId);
     if (!item) throw new Error("That student is no longer in the queue.");
     return item;
   },
-  approve: async (cardId) => {
+  resetChoice: async (publicId) => {
+    await resetCraftChoice({ data: { publicId } });
     const items = await getCraftQueue();
-    const current = items.find((entry) => entry.cardId === cardId);
-    if (!current?.artworkId) throw new Error("Upload a portrait before approving it.");
-    await publishCraftPortrait({ data: { artworkId: current.artworkId } });
-    const next = await getCraftQueue();
-    const item = next.find((entry) => entry.cardId === cardId);
+    const item = items.find((entry) => entry.publicId === publicId);
     if (!item) throw new Error("That student is no longer in the queue.");
     return item;
   },

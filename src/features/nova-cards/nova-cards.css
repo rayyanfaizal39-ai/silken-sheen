@@ -781,6 +781,42 @@
   opacity: 0.45;
   cursor: not-allowed;
 }
+.nova-art-choice {
+  margin: 28px auto 12px;
+  max-width: 640px;
+  color: #f4efe4;
+}
+.nova-art-choice h2 {
+  margin: 0 0 12px;
+  font-size: 18px;
+}
+.nova-art-choice-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.nova-art-choice figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.nova-art-choice img {
+  width: 180px;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid rgba(223, 191, 126, 0.45);
+  background: #101828;
+}
+.nova-art-choice button {
+  border: 1px solid rgba(246, 202, 120, 0.45);
+  border-radius: 999px;
+  background: transparent;
+  color: #f6ca78;
+  padding: 10px 16px;
+  cursor: pointer;
+}
 @keyframes nova-sheen {
   0%,
   100% {

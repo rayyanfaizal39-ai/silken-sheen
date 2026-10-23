@@ -43,4 +43,22 @@ describe("crafted companion card", () => {
     expect(html).toContain("100000000101");
     expect(html.toLowerCase()).not.toContain("birth year");
   });
+
+  it("asks the student to choose once both portraits are ready", () => {
+    const html = renderToStaticMarkup(
+      <NovaCard
+        card={{
+          ...card,
+          artOptions: [
+            { option: 1, url: "data:image/png;base64,aaaa" },
+            { option: 2, url: "data:image/png;base64,bbbb" },
+          ],
+        }}
+        url="http://localhost:8080/card/c/00000000-0000-4000-8000-00000000d101"
+      />,
+    );
+    expect(html).toContain("Choose your companion art");
+    expect(html).not.toContain("Your companion is being crafted");
+    expect(html).not.toContain("form1.student@dev.local");
+  });
 });

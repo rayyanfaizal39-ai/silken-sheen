@@ -29,9 +29,8 @@ interface StudentRecord {
   card: NovaCard | null;
   /** Staff portrait workflow. Absent until the student confirms a companion. */
   craft?: {
-    status: CraftBrief["status"];
-    pendingUrl?: string;
-    fileName?: string;
+    options?: { option: 1 | 2; url: string }[];
+    choice?: 1 | 2;
   };
 }
 
@@ -282,9 +281,10 @@ export function devChooseStudio(candidate: "a" | "b"): Promise<StudioState> {
     stage: 1,
     sharing: false,
     crafting: true,
+    artOptions: undefined,
   };
   record.card = card;
-  record.craft = { status: "awaiting_art" };
+  record.craft = {};
   record.studio = {
     ...record.studio,
     selected: candidate,
@@ -315,6 +315,7 @@ export type DevDemoCompanion =
   | {
       discovered: true;
       crafting: boolean;
+      choosing: boolean;
       name: string;
       species: string;
       element: string;
@@ -327,14 +328,16 @@ export function devDemoCompanion(): DevDemoCompanion {
     const { record } = activeRecord();
     const companion = record.card?.companion;
     if (!record.card || !companion) return { discovered: false };
-    const crafting = Boolean(record.card.crafting) || !record.card.artworkUrl;
+    const choosing = (record.card.artOptions?.length ?? 0) === 2 && !record.card.artworkUrl;
+    const crafting = !choosing && (Boolean(record.card.crafting) || !record.card.artworkUrl);
     return {
       discovered: true,
       crafting,
+      choosing,
       name: companion.name,
       species: companion.species,
       element: companion.element,
-      ...(crafting ? {} : { artworkUrl: record.card.artworkUrl }),
+      ...(crafting || choosing ? {} : { artworkUrl: record.card.artworkUrl }),
     };
   } catch {
     return { discovered: false };
@@ -366,8 +369,10 @@ export function devSetSharing(enabled: boolean): NovaCard {
 export function readDevPublicCard(publicId: string): NovaCard | null {
   const state = read();
   for (const record of Object.values(state.students)) {
-    if (record.card?.publicId === publicId && record.card.sharing)
-      return structuredClone(record.card);
+    if (record.card?.publicId === publicId && record.card.sharing) {
+      const { artOptions: _hidden, ...card } = structuredClone(record.card);
+      return card;
+    }
   }
   return null;
 }
@@ -378,30 +383,31 @@ function requireStaff() {
   if (account?.role !== "admin") throw new Error("An active administrator account is required");
 }
 
+function craftStatus(record: StudentRecord): CraftBrief["status"] {
+  if (record.craft?.choice) return "chosen";
+  if ((record.craft?.options?.length ?? 0) === 2) return "options_ready";
+  return "waiting_for_art";
+}
+
 function briefFor(studentId: string, record: StudentRecord): CraftBrief | null {
   const student = devStudentById(studentId);
   const card = record.card;
   const companion = card?.companion;
   if (!student || student.role === "admin" || !card?.serial || !companion) return null;
-  const craft = record.craft ?? { status: "awaiting_art" as const };
+  const options = record.craft?.options ?? [];
   return {
-    cardId: card.publicId,
     publicId: card.publicId,
     serial: card.serial,
-    username: card.username,
-    studentName: student.name,
+    displayName: card.username,
     form: student.formLevel ?? "",
-    email: student.email,
-    answers: record.studio.identity?.answers ?? record.studio.draft.answers,
-    slot: card.variant,
     companionName: companion.name,
     species: companion.species,
     element: companion.element,
+    traits: companion.traits,
     personality: companion.personality,
-    status: craft.pendingUrl ? "pending_review" : craft.status,
-    artworkId: craft.pendingUrl ? `pending:${card.publicId}` : null,
-    previewUrl:
-      craft.pendingUrl ?? (craft.status === "approved" ? (card.artworkUrl ?? null) : null),
+    status: craftStatus(record),
+    choice: record.craft?.choice ?? null,
+    options: options.map((option) => ({ option: option.option, previewUrl: option.url })),
   };
 }
 
@@ -416,41 +422,89 @@ export function devCraftQueue(): CraftBrief[] {
 
 const MAX_PORTRAIT_CHARS = 1_400_000;
 
-/** Store a staff portrait for preview. The card serial and current approved art stay put. */
-export function devAttachCraftPortrait(
-  studentId: string,
-  dataUrl: string,
-  fileName = "portrait.png",
-): CraftBrief {
-  requireStaff();
+function portraitUrl(dataUrl: string) {
   if (!dataUrl.startsWith("data:image/") || dataUrl.length > MAX_PORTRAIT_CHARS)
     throw new Error("Choose a PNG, JPEG or WebP portrait under 1 MB.");
-  const state = read();
-  const record = state.students[studentId];
-  const brief = record ? briefFor(studentId, record) : null;
-  if (!record || !brief) throw new Error("That student has not confirmed a companion.");
-  const serial = record.card?.serial;
-  record.craft = { status: "pending_review", pendingUrl: dataUrl, fileName };
-  persist(state);
-  if (record.card?.serial !== serial) throw new Error("The card serial must stay the same.");
-  return briefFor(studentId, record)!;
+  return dataUrl;
 }
 
-/** Approve the previewed portrait onto the existing card. */
-export function devApproveCraftPortrait(studentId: string): CraftBrief {
-  requireStaff();
+function recordByPublicId(publicId: string) {
   const state = read();
-  const record = state.students[studentId];
-  if (!record?.card || !record.craft?.pendingUrl)
-    throw new Error("Upload a portrait before approving it.");
+  const found = Object.entries(state.students).find(
+    ([, record]) => record.card?.publicId === publicId,
+  );
+  return found ? { state, studentId: found[0], record: found[1] } : null;
+}
+
+/** Store both staff portraits. The card serial stays the same, and neither is chosen yet. */
+export function devAttachCraftOptions(
+  publicId: string,
+  options: [{ option: 1; dataUrl: string }, { option: 2; dataUrl: string }],
+): CraftBrief {
+  requireStaff();
+  const first = portraitUrl(options[0].dataUrl);
+  const second = portraitUrl(options[1].dataUrl);
+  if (first === second) throw new Error("The two portraits must be different.");
+  const found = recordByPublicId(publicId);
+  if (!found || !briefFor(found.studentId, found.record))
+    throw new Error("That student has not confirmed a companion.");
+  if (found.record.craft?.choice)
+    throw new Error("Reset the student choice before replacing the portraits.");
+  const serial = found.record.card?.serial;
+  const stored = [
+    { option: 1 as const, url: first },
+    { option: 2 as const, url: second },
+  ];
+  found.record.craft = { options: stored };
+  found.record.card = {
+    ...found.record.card!,
+    artworkUrl: undefined,
+    crafting: true,
+    artOptions: stored,
+  };
+  persist(found.state);
+  if (found.record.card.serial !== serial) throw new Error("The card serial must stay the same.");
+  return briefFor(found.studentId, found.record)!;
+}
+
+/** The signed-in student picks one portrait. The choice is kept until staff reset it. */
+export function devChooseCraftArt(option: 1 | 2): NovaCard {
+  const { record, state } = activeRecord();
+  if (!record.card) throw new Error("Your companion is being crafted");
+  const options = record.craft?.options ?? [];
+  if (options.length !== 2) throw new Error("Your companion is being crafted");
+  if (record.craft?.choice) throw new Error("Your art choice is already saved");
+  const picked = options.find((item) => item.option === option);
+  if (!picked) throw new Error("Choose one of the two portraits");
   const serial = record.card.serial;
+  record.craft = { options, choice: option };
   record.card = {
     ...record.card,
-    artworkUrl: record.craft.pendingUrl,
+    artworkUrl: picked.url,
     crafting: false,
+    artOptions: undefined,
   };
-  record.craft = { status: "approved", fileName: record.craft.fileName };
   persist(state);
   if (record.card.serial !== serial) throw new Error("The card serial must stay the same.");
-  return briefFor(studentId, record)!;
+  return structuredClone(record.card);
+}
+
+/** Staff clear the pick. Both portraits stay, and the student may choose again. */
+export function devResetCraftArt(publicId: string): CraftBrief {
+  requireStaff();
+  const found = recordByPublicId(publicId);
+  if (!found?.record.card || !found.record.craft?.choice)
+    throw new Error("This student has not chosen a portrait.");
+  const serial = found.record.card.serial;
+  const options = found.record.craft.options ?? [];
+  found.record.craft = { options };
+  found.record.card = {
+    ...found.record.card,
+    artworkUrl: undefined,
+    crafting: true,
+    artOptions: options,
+  };
+  persist(found.state);
+  if (found.record.card.serial !== serial) throw new Error("The card serial must stay the same.");
+  return briefFor(found.studentId, found.record)!;
 }

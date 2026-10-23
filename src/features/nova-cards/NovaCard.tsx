@@ -22,7 +22,8 @@ export function NovaCard({
   const [downloading, setDownloading] = useState(false);
   const stage = Math.max(1, Math.min(STAGES.length, card.stage ?? 1));
   const face = cardFace(card);
-  const crafting = Boolean(card.crafting) && !card.artworkUrl;
+  const choosing = (card.artOptions?.length ?? 0) === 2 && !card.artworkUrl;
+  const crafting = Boolean(card.crafting) && !card.artworkUrl && !choosing;
   const artwork = crafting
     ? ""
     : card.artworkUrl || svgUrl(companionSvg(face.fallbackTraits, card.variant, stage));
@@ -95,7 +96,15 @@ export function NovaCard({
               <small>{card.rarity}</small>
             </div>
             <div className="nova-art-frame">
-              {crafting ? (
+              {choosing ? (
+                <div className="nova-craft-wait">
+                  <span aria-hidden="true">✦</span>
+                  <strong>Choose your companion art</strong>
+                  <p>
+                    {face.name} the {face.species}
+                  </p>
+                </div>
+              ) : crafting ? (
                 <div className="nova-craft-wait">
                   <span aria-hidden="true">✦</span>
                   <strong>Your companion is being crafted</strong>
