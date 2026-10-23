@@ -81,7 +81,7 @@ export interface Sej2Ch2Content {
     miningIntro?: string;
     economyClosing?: string;
   };
-  values?: string[];
+  citizenship?: { standard: string; title: string; points: string[] }[];
   keyExamFacts: string[];
   keyTerms: string[];
   chapterSummary: string;
@@ -176,11 +176,22 @@ export const sej2Ch2Content: Sej2Ch2Content = {
     miningIntro: "Perlombongan ialah kegiatan melombong emas, perak dan bijih besi; pada peringkat awal, ia dijalankan dengan cara mendulang secara kecil-kecilan. Pembuatan pula ialah kegiatan membuat barang harian dan mewah.",
     economyClosing: "Kekayaan sumber alam dan kebijaksanaan pemerintah mengurusnya, bersama kegigihan rakyat bekerja, telah memakmurkan Alam Melayu."
   },
-  values: [
-    "Pengetahuan tentang sistem pemerintahan kerajaan Alam Melayu menyedarkan kita tentang kepentingan mentaati pemerintah.",
-    "Kestabilan politik dan kemakmuran ekonomi penting untuk membina kegemilangan tamadun bangsa dan negara.",
-    "Kita perlu bijak memanfaatkan kekayaan sumber alam untuk kemakmuran ekonomi negara.",
-    "Kita harus menghargai dan mencontohi kegigihan masyarakat Alam Melayu memajukan diri, serta bersifat kreatif dan inovatif."
+  citizenship: [
+    { standard: "K5.2.6", title: "Kebijaksanaan pemimpin dalam mentadbir negara", points: [
+      "Pengetahuan tentang sistem pemerintahan kerajaan Alam Melayu menyedarkan kita tentang kepentingan mentaati pemerintah (hlm. 37).",
+      "Kita perlulah bijak memanfaatkan kekayaan sumber alam untuk kemakmuran ekonomi negara (hlm. 37).",
+    ] },
+    { standard: "K5.2.7", title: "Menghargai warisan kerajaan Alam Melayu", points: [
+      "Masyarakat kerajaan Alam Melayu mahir membuat kapal dan menguasai ilmu pelayaran; kita harus menghargai dan mencontohi kegigihan mereka memajukan diri (hlm. 31).",
+      "Kita mestilah bersifat kreatif dan inovatif demi kemajuan diri dan keluarga (hlm. 37).",
+    ] },
+    { standard: "K5.2.8", title: "Iktibar daripada kegemilangan kerajaan Alam Melayu", points: [
+      "Kestabilan politik dan kemakmuran ekonomi penting untuk membina kegemilangan tamadun bangsa dan negara (hlm. 37).",
+    ] },
+    { standard: "K5.2.9", title: "Kehidupan berorganisasi membentuk kemakmuran negara", points: [
+      "Kehidupan berorganisasi di bawah sistem pemerintahan yang teratur mewujudkan kestabilan; oleh itu, kita harus menghargai kestabilan dan keamanan negara supaya dapat hidup makmur dan maju (hlm. 27).",
+      "Sebagai rakyat, kita harus terlibat dalam program pembangunan ekonomi negara kerana pembangunan dan kemajuan negara menjadi tanggungjawab kita bersama-sama (hlm. 37).",
+    ] },
   ],
   keyExamFacts: [
     "Sistem pemerintahan kerajaan Alam Melayu ialah sistem beraja, terbahagi pusat dan wilayah",

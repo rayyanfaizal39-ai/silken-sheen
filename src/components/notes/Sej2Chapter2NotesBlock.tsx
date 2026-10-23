@@ -251,8 +251,20 @@ export function Sej2Chapter2NotesBlock({
 
         {current === 4 && (
           <div className="space-y-6">
-            {content.values && content.values.length > 0 && (
-              <FactGrid heading="🌱 Nilai, Patriotisme dan Iktibar" facts={content.values} />
+            {content.citizenship && content.citizenship.length > 0 && (
+              <div className="space-y-3">
+                <h4 className="font-display text-sm font-bold text-foreground">🇲🇾 Elemen Kewarganegaraan dan Nilai Sivik</h4>
+                {content.citizenship.map((c) => (
+                  <div key={c.standard} className="rounded-xl border border-border bg-secondary/40 p-3.5">
+                    <p className="text-[12.5px] font-semibold text-foreground">{c.title}</p>
+                    <ul className="mt-1.5 list-disc space-y-1 pl-4">
+                      {c.points.map((pt) => (
+                        <li key={pt} className="text-[12px] leading-relaxed text-muted-foreground">{pt}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
             )}
             <FactGrid heading="⭐ Fakta Penting Peperiksaan" facts={content.keyExamFacts} />
             <ChipRow heading="📘 Istilah Utama" items={content.keyTerms} />
