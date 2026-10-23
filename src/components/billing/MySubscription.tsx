@@ -383,8 +383,12 @@ export function MySubscriptionContent({
               </div>
               <p>
                 Every successful payment includes a detailed receipt. You can resend or download the
-                latest one here.
+                latest one here. Renewal reminders use the parent or guardian email in Profile, or
+                this account email when that field is blank.
               </p>
+              <Link to="/profile" className="billing-button">
+                Edit parent email
+              </Link>
               <a
                 className="billing-button"
                 href={`mailto:admin@myacademy.my?subject=${encodeURIComponent("Update my AcadeMY billing email")}`}

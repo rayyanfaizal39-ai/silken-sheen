@@ -12,6 +12,7 @@ describe("Explorer Profile UI contract", () => {
     expect(routeSource).toContain("getSchoolById(schoolId)");
     expect(routeSource).toContain("progress.subjectXp[subject.id]");
     expect(routeSource).toContain("ALL_BADGES.filter");
+    expect(routeSource).toContain("<ParentReportSettings");
   });
 
   it("keeps school search behind the edit dialog's dynamic import", () => {

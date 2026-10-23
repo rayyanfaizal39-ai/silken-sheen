@@ -1,4 +1,6 @@
 import { createClient } from "npm:@supabase/supabase-js@2.108.1";
+import { maskEmailAddress } from "../_shared/email-brand.ts";
+import { scheduleInBackground } from "../_shared/edge-schedule.ts";
 import { sendWithResend } from "../_shared/resend.ts";
 import { buildWeeklyParentReportEmail } from "../_shared/weekly-parent-report-email.ts";
 import {
@@ -8,7 +10,6 @@ import {
   emailedParentReportCycle,
   hasParentReportsAccess,
   resolveWeeklyReportRecipient,
-  usableEmail,
   type WeeklyQuizRow,
 } from "../_shared/weekly-parent-report.ts";
 
@@ -32,10 +33,10 @@ Deno.serve(async (request) => {
   const supabaseUrl = Deno.env.get("SUPABASE_URL") ?? "";
   const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "";
   const anonKey = Deno.env.get("SUPABASE_ANON_KEY") ?? "";
-  const resendApiKey = Deno.env.get("RESEND_API_KEY") ?? "";
-  if (!supabaseUrl || !serviceRoleKey || !anonKey || !resendApiKey) {
+  if (!supabaseUrl || !serviceRoleKey || !anonKey) {
     return response({ error: "Email delivery is not configured" }, 500);
   }
+  const resendApiKey = Deno.env.get("RESEND_API_KEY") ?? "";
 
   const admin = createClient(supabaseUrl, serviceRoleKey, {
     auth: { persistSession: false, autoRefreshToken: false },
@@ -43,28 +44,95 @@ Deno.serve(async (request) => {
   const cronKey = Deno.env.get("WEEKLY_PARENT_REPORT_CRON_KEY") ?? "";
   const providedCronKey = request.headers.get("x-weekly-report-key") ?? "";
   const body = await request.json().catch(() => ({}));
-  const action = body && typeof body === "object" ? (body as { action?: unknown }).action : undefined;
+  const action =
+    body && typeof body === "object" ? (body as { action?: unknown }).action : undefined;
 
   if (action === "send_entitled") {
     if (!cronKey || providedCronKey !== cronKey) return response({ error: "Unauthorized" }, 401);
-    const dryRun = body && typeof body === "object" && (body as { dryRun?: unknown }).dryRun === true;
-    const now = new Date();
+    const dryRun =
+      body && typeof body === "object" && (body as { dryRun?: unknown }).dryRun === true;
+    const waitForResult =
+      body && typeof body === "object" && (body as { wait?: unknown }).wait === true;
+    if (!dryRun && !resendApiKey)
+      return response({ error: "Email delivery is not configured" }, 500);
+    const work = runEntitledBatch(admin, resendApiKey, dryRun);
+    if (!dryRun && !waitForResult && scheduleInBackground(work)) {
+      return response({ accepted: true, dryRun: false });
+    }
+    const result = await work;
+    return response(result, result.error ? 500 : 200);
+  }
+
+  if (!resendApiKey) return response({ error: "Email delivery is not configured" }, 500);
+
+  const authorization = request.headers.get("authorization") ?? "";
+  if (!authorization.startsWith("Bearer ")) return response({ error: "Unauthorized" }, 401);
+  const userClient = createClient(supabaseUrl, anonKey, {
+    global: { headers: { Authorization: authorization } },
+    auth: { persistSession: false, autoRefreshToken: false },
+  });
+  const { data: authData, error: authError } = await userClient.auth.getUser();
+  if (authError || !authData.user) return response({ error: "Unauthorized" }, 401);
+
+  const week = currentKualaLumpurWeek(new Date());
+  const result = await deliverStudentReport(
+    admin,
+    resendApiKey,
+    authData.user.id,
+    week.weekStart,
+    authData.user.email,
+  );
+  if (result.outcome === "sent") return response({ sent: true, weekStart: week.weekStart });
+  if (result.outcome === "skipped")
+    return response({ sent: false, alreadySent: true, weekStart: week.weekStart });
+  if (result.outcome === "not_entitled")
+    return response({ error: "Parent Reports are not included in this plan." }, 403);
+  if (result.outcome === "no_recipient")
+    return response({ error: "This account has no email address for the report." }, 422);
+  return response({ error: "The weekly report could not be sent." }, 502);
+});
+
+async function runEntitledBatch(
+  admin: AdminClient,
+  resendApiKey: string,
+  dryRun: boolean,
+): Promise<Record<string, unknown>> {
+  const now = new Date();
+  try {
     const cycle = emailedParentReportCycle(now);
     const studentIds = await entitledStudentIds(admin);
-    const counts = { sent: 0, skipped: 0, failed: 0, noActivity: 0, noRecipient: 0, wouldSend: 0, withActivity: 0 };
+    const counts = {
+      sent: 0,
+      skipped: 0,
+      failed: 0,
+      noActivity: 0,
+      noRecipient: 0,
+      wouldSend: 0,
+      withActivity: 0,
+    };
+    const recipients: Array<{ maskedEmail: string; subject: string }> = [];
     for (const studentId of studentIds) {
-      const result = await deliverStudentReport(admin, resendApiKey, studentId, cycle.weekStart, null, {
-        automated: true,
-        dryRun,
-        now,
-      });
+      const result = await deliverStudentReport(
+        admin,
+        resendApiKey,
+        studentId,
+        cycle.weekStart,
+        null,
+        {
+          automated: true,
+          dryRun,
+          now,
+        },
+      );
       if (result.quizCount > 0) counts.withActivity += 1;
       if (result.outcome === "sent") counts.sent += 1;
       else if (result.outcome === "skipped") counts.skipped += 1;
       else if (result.outcome === "no_activity") counts.noActivity += 1;
       else if (result.outcome === "no_recipient") counts.noRecipient += 1;
-      else if (result.outcome === "would_send") counts.wouldSend += 1;
-      else if (result.outcome !== "not_entitled") counts.failed += 1;
+      else if (result.outcome === "would_send") {
+        counts.wouldSend += 1;
+        if (result.preview) recipients.push(result.preview);
+      } else if (result.outcome !== "not_entitled") counts.failed += 1;
     }
     console.info(
       JSON.stringify({
@@ -75,7 +143,7 @@ Deno.serve(async (request) => {
         ...counts,
       }),
     );
-    return response({
+    return {
       dryRun,
       weekStart: cycle.weekStart,
       weekEnd: cycle.weekEnd,
@@ -89,29 +157,25 @@ Deno.serve(async (request) => {
       wouldSend: dryRun ? counts.wouldSend : counts.sent,
       noRecipient: counts.noRecipient,
       failed: counts.failed,
-    });
+      ...(dryRun ? { recipients } : {}),
+    };
+  } catch (error) {
+    console.error(
+      JSON.stringify({
+        scope: "email",
+        event: "weekly_parent_report_batch_failed",
+        message: error instanceof Error ? error.message.slice(0, 200) : "batch failed",
+      }),
+    );
+    return { error: "The weekly report batch could not be prepared.", dryRun };
   }
-
-  const authorization = request.headers.get("authorization") ?? "";
-  if (!authorization.startsWith("Bearer ")) return response({ error: "Unauthorized" }, 401);
-  const userClient = createClient(supabaseUrl, anonKey, {
-    global: { headers: { Authorization: authorization } },
-    auth: { persistSession: false, autoRefreshToken: false },
-  });
-  const { data: authData, error: authError } = await userClient.auth.getUser();
-  if (authError || !authData.user) return response({ error: "Unauthorized" }, 401);
-
-  const week = currentKualaLumpurWeek(new Date());
-  const result = await deliverStudentReport(admin, resendApiKey, authData.user.id, week.weekStart, authData.user.email);
-  if (result.outcome === "sent") return response({ sent: true, weekStart: week.weekStart });
-  if (result.outcome === "skipped") return response({ sent: false, alreadySent: true, weekStart: week.weekStart });
-  if (result.outcome === "not_entitled") return response({ error: "Parent Reports are not included in this plan." }, 403);
-  if (result.outcome === "no_recipient") return response({ error: "This account has no email address for the report." }, 422);
-  return response({ error: "The weekly report could not be sent." }, 502);
-});
+}
 
 async function entitledStudentIds(admin: AdminClient): Promise<string[]> {
-  const subscriptions = await admin.from("subscriptions").select("user_id, plan").eq("status", "active");
+  const subscriptions = await admin
+    .from("subscriptions")
+    .select("user_id, plan")
+    .eq("status", "active");
   if (subscriptions.error) throw new Error("Could not read subscriptions");
   const activeByUser = new Map<string, string>();
   for (const row of subscriptions.data ?? []) {
@@ -126,7 +190,8 @@ async function entitledStudentIds(admin: AdminClient): Promise<string[]> {
   }
   for (const row of profiles.data ?? []) {
     const userId = String(row.id);
-    if (!activeByUser.has(userId) && hasParentReportsAccess(null, String(row.plan))) ids.add(userId);
+    if (!activeByUser.has(userId) && hasParentReportsAccess(null, String(row.plan)))
+      ids.add(userId);
   }
   return [...ids];
 }
@@ -138,8 +203,30 @@ async function deliverStudentReport(
   weekStart: string,
   knownAccountEmail?: string | null,
   options?: { automated?: boolean; dryRun?: boolean; now?: Date },
-): Promise<{ outcome: "sent" | "skipped" | "failed" | "not_entitled" | "no_recipient" | "no_activity" | "would_send"; quizCount: number }> {
-  const done = (outcome: "sent" | "skipped" | "failed" | "not_entitled" | "no_recipient" | "no_activity" | "would_send", quizCount = 0) => ({ outcome, quizCount });
+): Promise<{
+  outcome:
+    | "sent"
+    | "skipped"
+    | "failed"
+    | "not_entitled"
+    | "no_recipient"
+    | "no_activity"
+    | "would_send";
+  quizCount: number;
+  preview?: { maskedEmail: string; subject: string };
+}> {
+  const done = (
+    outcome:
+      | "sent"
+      | "skipped"
+      | "failed"
+      | "not_entitled"
+      | "no_recipient"
+      | "no_activity"
+      | "would_send",
+    quizCount = 0,
+    preview?: { maskedEmail: string; subject: string },
+  ) => ({ outcome, quizCount, preview });
   const existing = await admin
     .from("weekly_report_deliveries")
     .select("status")
@@ -173,9 +260,10 @@ async function deliverStudentReport(
     accountEmail = userResult.data.user?.email ?? null;
   }
   const cycle = options?.automated ? emailedParentReportCycle(options.now ?? new Date()) : null;
-  const recipient = cycle
-    ? usableEmail(accountEmail)
-    : resolveWeeklyReportRecipient(profileResult.data.parent_report_email, accountEmail);
+  const recipient = resolveWeeklyReportRecipient(
+    profileResult.data.parent_report_email,
+    accountEmail,
+  );
   const week = cycle ?? currentKualaLumpurWeek(options?.now ?? new Date());
   const history = await admin
     .from("quiz_history")
@@ -184,7 +272,11 @@ async function deliverStudentReport(
     .gte("created_at", week.startIso)
     .lt("created_at", week.endIso);
   if (history.error) return done("failed");
-  const progress = await admin.from("user_progress").select("streak").eq("user_id", studentId).maybeSingle();
+  const progress = await admin
+    .from("user_progress")
+    .select("streak")
+    .eq("user_id", studentId)
+    .maybeSingle();
   if (progress.error) return done("failed");
 
   const quizzes: WeeklyQuizRow[] = (history.data ?? []).map((row) => ({
@@ -204,7 +296,6 @@ async function deliverStudentReport(
     if (decision === "skipped") return done("skipped", quizzes.length);
     if (decision === "no_recipient") return done("no_recipient", quizzes.length);
     if (decision === "no_activity") return done("no_activity", quizzes.length);
-    if (options?.dryRun) return done("would_send", quizzes.length);
   } else if (!recipient) {
     return done("no_recipient", quizzes.length);
   }
@@ -218,6 +309,13 @@ async function deliverStudentReport(
     bounds: week,
     preferRepeatedWeakness: Boolean(cycle),
   });
+  const content = buildWeeklyParentReportEmail(report);
+  if (options?.dryRun) {
+    return done("would_send", quizzes.length, {
+      maskedEmail: maskEmailAddress(recipient),
+      subject: content.subject,
+    });
+  }
 
   const claim = existing.data
     ? await admin
@@ -239,7 +337,6 @@ async function deliverStudentReport(
   if (claim.error || !claim.data?.length) return done("skipped", quizzes.length);
 
   try {
-    const content = buildWeeklyParentReportEmail(report);
     const delivery = await sendWithResend(resendApiKey, {
       to: recipient,
       ...content,

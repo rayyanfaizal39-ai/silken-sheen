@@ -21,6 +21,8 @@ describe("Explorer onboarding UI contract", () => {
   it("uses the existing completion mutation once and redirects home", () => {
     expect(routeSource).toContain("if (savingRef.current || !formLevel) return");
     expect(routeSource).toContain("await completeExplorerProfile({");
+    expect(routeSource).toContain("parentReportEmail: parentDestination.email");
+    expect(routeSource).toContain("<ParentEmailConsent");
     expect(routeSource).toContain('await navigate({ to: "/home", replace: true })');
   });
 

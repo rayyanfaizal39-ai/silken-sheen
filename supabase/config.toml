@@ -50,6 +50,11 @@ verify_jwt = true
 [functions.send-weekly-parent-report]
 verify_jwt = false
 
+# Cron key on x-payment-reminder-key, same pattern as the weekly report.
+# Gateway JWT verification would block the scheduled caller.
+[functions.send-payment-reminder]
+verify_jwt = false
+
 [functions.create-toyyibpay-bill]
 verify_jwt = true
 

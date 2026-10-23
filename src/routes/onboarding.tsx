@@ -12,6 +12,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { AcademyLogo } from "@/components/AcademyLogo";
+import { ParentEmailConsent } from "@/components/parent/ParentEmailConsent";
 import { SchoolCombobox } from "@/components/onboarding/SchoolCombobox";
 import { useAuth } from "@/context/auth-context";
 import { EXPLORER_FORM_LEVELS, type ExplorerFormLevel } from "@/lib/explorer-profile";
@@ -22,6 +23,8 @@ import {
   previousExplorerStep,
   type ExplorerOnboardingStep,
 } from "@/lib/explorer-onboarding-flow";
+import { PARENT_EMAIL_CONSENT_ERROR } from "@/features/parent-report/parentEmailCopy";
+import { normalizeParentReportEmail } from "@/features/parent-report/weeklyParentReport";
 import { formatSchoolLocation, type SchoolSearchResult } from "@/lib/schools";
 import { seoMeta } from "@/lib/seo";
 import "./onboarding.css";
@@ -84,6 +87,8 @@ function ExplorerOnboardingPage() {
   const [formLevel, setFormLevel] = useState<ExplorerFormLevel | "">("");
   const [school, setSchool] = useState<SchoolSearchResult | null>(null);
   const [schoolSkipped, setSchoolSkipped] = useState(false);
+  const [parentEmail, setParentEmail] = useState("");
+  const [parentEmailConsent, setParentEmailConsent] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const stepHeadingRef = useRef<HTMLHeadingElement>(null);
@@ -147,6 +152,16 @@ function ExplorerOnboardingPage() {
     }
     if (savingRef.current || !formLevel) return;
 
+    const parentDestination = normalizeParentReportEmail(parentEmail);
+    if (!parentDestination.ok) {
+      setError(parentDestination.error);
+      return;
+    }
+    if (parentDestination.email && !parentEmailConsent) {
+      setError(PARENT_EMAIL_CONSENT_ERROR);
+      return;
+    }
+
     setError(null);
     savingRef.current = true;
     setSaving(true);
@@ -156,6 +171,7 @@ function ExplorerOnboardingPage() {
         age: Number(age),
         formLevel,
         schoolId: school?.id ?? null,
+        parentReportEmail: parentDestination.email,
       });
       await navigate({ to: "/home", replace: true });
     } catch {
@@ -394,6 +410,35 @@ function ExplorerOnboardingPage() {
                       </div>
                     </div>
                   )}
+                  <div className="explorer-onboarding__field explorer-onboarding__parent-email">
+                    <label htmlFor="explorer-parent-email">
+                      Parent / guardian email{" "}
+                      <span className="explorer-onboarding__optional">optional</span>
+                    </label>
+                    <div className="explorer-onboarding__input-wrap">
+                      <input
+                        id="explorer-parent-email"
+                        type="email"
+                        inputMode="email"
+                        autoComplete="email"
+                        maxLength={254}
+                        value={parentEmail}
+                        onChange={(event) => {
+                          setParentEmail(event.target.value);
+                          setError(null);
+                        }}
+                        placeholder="parent@email.com"
+                      />
+                    </div>
+                    <ParentEmailConsent
+                      inputId="explorer-parent-email-consent"
+                      checked={parentEmailConsent}
+                      onCheckedChange={(checked) => {
+                        setParentEmailConsent(checked);
+                        setError(null);
+                      }}
+                    />
+                  </div>
                 </div>
               )}
             </div>

@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { lazy, Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { CompanionImage, getCompanionDisplayName } from "@/companion";
+import { ParentReportSettings } from "@/components/parent/ParentReportSettings";
 import { RankBadge } from "@/components/RankBadge";
 import { useAuth } from "@/context/auth-context";
 import { subjects } from "@/data/subjects-meta";
@@ -376,6 +377,8 @@ function ExplorerProfilePage() {
             )}
           </section>
         </div>
+
+        {user ? <ParentReportSettings idPrefix="profile-parent-email" /> : null}
 
         <section
           className="explorer-profile-panel explorer-profile-account"
