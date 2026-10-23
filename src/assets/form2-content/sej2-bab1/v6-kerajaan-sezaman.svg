@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 1154" width="760" height="1154" role="img" aria-label="Kerajaan Alam Melayu dan kerajaan luar yang sezaman mengikut abad">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 1048" width="760" height="1048" role="img" aria-label="Kerajaan Alam Melayu dan kerajaan luar yang sezaman mengikut abad">
 <title>Kerajaan Alam Melayu dan Kerajaan Luar yang Sezaman</title>
 <metadata>Rajah perbandingan. Sumber: buku teks hlm. 14-15.</metadata>
-<rect width="760" height="1154" rx="20" fill="#0f172a"/>
+<rect width="760" height="1048" rx="20" fill="#0f172a"/>
 <text x="380" y="68" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="40" font-weight="700" fill="#f1f5f9">Kerajaan Alam Melayu dan</text>
 <text x="380" y="116" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="40" font-weight="700" fill="#f1f5f9">Kerajaan Luar yang Sezaman</text>
 <rect x="340" y="146" width="80" height="5" rx="2.5" fill="#38bdf8"/>
@@ -51,7 +51,4 @@
 <text x="432" y="952" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#f1f5f9">Uthmaniyah</text>
 <circle cx="414" cy="979" r="6" fill="#f59e0b"/>
 <text x="432" y="988" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#f1f5f9">Kesultanan Delhi</text>
-<line x1="28" y1="1036" x2="732" y2="1036" stroke="#334155" stroke-width="2"/>
-<text x="380" y="1072" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="26" font-weight="400" fill="#94a3b8">Rajah perbandingan berdasarkan buku teks hlm. 14-15</text>
-<text x="380" y="1106" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="26" font-weight="400" fill="#94a3b8">· ilustrasi</text>
 </svg>

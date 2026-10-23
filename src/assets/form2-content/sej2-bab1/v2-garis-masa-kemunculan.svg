@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 1040" width="760" height="1040" role="img" aria-label="Garis masa kemunculan kerajaan Alam Melayu">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 934" width="760" height="934" role="img" aria-label="Garis masa kemunculan kerajaan Alam Melayu">
 <title>Garis Masa Kemunculan Kerajaan Alam Melayu</title>
 <metadata>Rajah konseptual. Sumber: buku teks hlm. 8 (masa kemunculan), garis masa hlm. 2-3.</metadata>
-<rect width="760" height="1040" rx="20" fill="#0f172a"/>
+<rect width="760" height="934" rx="20" fill="#0f172a"/>
 <text x="380" y="68" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="40" font-weight="700" fill="#f1f5f9">Garis Masa Kemunculan Kerajaan</text>
 <text x="380" y="116" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="40" font-weight="700" fill="#f1f5f9">Alam Melayu</text>
 <rect x="340" y="146" width="80" height="5" rx="2.5" fill="#38bdf8"/>
@@ -34,7 +34,4 @@
 <rect x="210" y="629" width="522" height="50" rx="12" fill="#162033" stroke="#a78bfa" stroke-width="2"/><text x="232" y="664" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="30" font-weight="700" fill="#a78bfa">Angkor</text><text x="712" y="664" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="26" font-weight="500" fill="#cbd5e1">Abad kesembilan</text>
 <circle cx="150" cy="862" r="13" fill="#fb7185" stroke="#0f172a" stroke-width="4"/><line x1="164" y1="862" x2="210" y2="862" stroke="#fb7185" stroke-width="3"/>
 <rect x="210" y="837" width="522" height="50" rx="12" fill="#162033" stroke="#fb7185" stroke-width="2"/><text x="232" y="872" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="30" font-weight="700" fill="#fb7185">Majapahit</text><text x="712" y="872" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="26" font-weight="500" fill="#cbd5e1">Abad ke-13</text>
-<line x1="28" y1="922" x2="732" y2="922" stroke="#334155" stroke-width="2"/>
-<text x="380" y="958" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="26" font-weight="400" fill="#94a3b8">Rajah konseptual berdasarkan buku teks hlm. 8</text>
-<text x="380" y="992" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="26" font-weight="400" fill="#94a3b8">(garis masa hlm. 2-3) · ilustrasi</text>
 </svg>
