@@ -2628,8 +2628,8 @@
 
 .home-mission-control__toggle {
   position: relative;
-  min-height: 44px;
-  margin-top: 0.05rem;
+  min-height: 1.5rem;
+  margin-top: 0.2rem;
   border: 0;
   padding: 0;
   color: color-mix(in srgb, var(--mission-control-accent) 76%, white);
@@ -2638,6 +2638,12 @@
   font-weight: 850;
   background: transparent;
   cursor: pointer;
+}
+
+.home-mission-control__toggle::before {
+  content: "";
+  position: absolute;
+  inset: -0.7rem -0.35rem;
 }
 
 .home-mission-control__toggle:hover {
