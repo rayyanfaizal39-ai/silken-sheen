@@ -184,3 +184,40 @@ export function publicPreviewSvg(
   <text x="96" y="1300" fill="#f4efe4" font-family="DejaVu Sans, sans-serif" font-size="28">${xml(fields.serial)}</text>
 </svg>`;
 }
+
+/** Instagram and TikTok Stories frame. Safe fields only, plus the AcadeMY tags. */
+export const STORY_CARD_WIDTH = 1080;
+export const STORY_CARD_HEIGHT = 1920;
+
+export function storyCardSvg(
+  fields: PublicCardFields,
+  artworkHref: string | null = fields.artworkUrl,
+): string {
+  const art =
+    artworkHref && isSafeArtworkUrl(artworkHref)
+      ? `<image href="${xml(artworkHref)}" x="120" y="280" width="840" height="900" preserveAspectRatio="xMidYMid slice"/>`
+      : `<text x="540" y="700" text-anchor="middle" fill="#f6ca78" font-family="DejaVu Sans, sans-serif" font-size="36">${xml(
+          fields.crafting ? "Your companion is being crafted" : fields.companionName,
+        )}</text>
+         <text x="540" y="756" text-anchor="middle" fill="#d7deee" font-family="DejaVu Sans, sans-serif" font-size="28">${xml(
+           fields.crafting ? fields.companionName : fields.title,
+         )}</text>`;
+  const traitLine = fields.traits.slice(0, 6).join(" · ");
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="${STORY_CARD_WIDTH}" height="${STORY_CARD_HEIGHT}" viewBox="0 0 ${STORY_CARD_WIDTH} ${STORY_CARD_HEIGHT}">
+  <rect width="${STORY_CARD_WIDTH}" height="${STORY_CARD_HEIGHT}" fill="#070b16"/>
+  <rect x="60" y="60" width="960" height="1800" rx="42" fill="#12182b" stroke="#dfbf7e" stroke-width="3"/>
+  <text x="120" y="170" fill="#f6ca78" font-family="DejaVu Sans, sans-serif" font-size="36">AcadeMY</text>
+  <text x="960" y="170" text-anchor="end" fill="#f4efe4" font-family="DejaVu Sans, sans-serif" font-size="28">${xml(fields.rarity)}</text>
+  <rect x="120" y="230" width="840" height="980" rx="32" fill="#1b2338" stroke="#dfbf7e" stroke-opacity="0.35"/>
+  ${art}
+  <text x="120" y="1320" fill="#f4efe4" font-family="DejaVu Sans, sans-serif" font-size="48">${xml(fields.displayName)}</text>
+  <text x="120" y="1384" fill="#f6ca78" font-family="DejaVu Sans, sans-serif" font-size="36">${xml(fields.companionName)}</text>
+  <text x="120" y="1440" fill="#d7deee" font-family="DejaVu Sans, sans-serif" font-size="28">${xml(fields.title)}</text>
+  <text x="120" y="1516" fill="#d7deee" font-family="DejaVu Sans, sans-serif" font-size="26">${xml(traitLine)}</text>
+  <text x="120" y="1600" fill="#f6ca78" font-family="DejaVu Sans, sans-serif" font-size="42">${xml(stars(fields.stars))}</text>
+  <text x="120" y="1664" fill="#d7deee" font-family="DejaVu Sans, sans-serif" font-size="28">${xml(fields.aura)}</text>
+  <text x="120" y="1736" fill="#f4efe4" font-family="DejaVu Sans, sans-serif" font-size="32">${xml(fields.serial)}</text>
+  <text x="120" y="1810" fill="#f6ca78" font-family="DejaVu Sans, sans-serif" font-size="28">#AcadeMY #NovaCompanion</text>
+</svg>`;
+}

@@ -198,12 +198,16 @@ export function NovaCard({
         >
           ↻ Flip card
         </button>
-        <button type="button" onClick={() => void copyLink()} disabled={!card.sharing}>
-          Copy link
-        </button>
-        <button type="button" onClick={() => void share()} disabled={!card.sharing}>
-          Share
-        </button>
+        {card.sharing ? (
+          <>
+            <button type="button" onClick={() => void copyLink()}>
+              Copy link
+            </button>
+            <button type="button" onClick={() => void share()}>
+              Share
+            </button>
+          </>
+        ) : null}
         <button
           disabled={downloading}
           onClick={async () => {

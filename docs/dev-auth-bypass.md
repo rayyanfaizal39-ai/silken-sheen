@@ -45,11 +45,13 @@ Each student's answers, choice, and card stay in this browser's `localStorage` u
 
 ## Public card link
 
-Sharing is off until the student turns it on. On the My Companion tab (`http://localhost:8080/nova/studio`) the card says **Private · only opens after sharing is enabled**. Enable sharing, then use **Copy link**. The link looks like:
+Sharing is off until the student turns it on. On the My Companion tab (`http://localhost:8080/nova/studio`) the card says **Private · only opens after sharing is enabled**. Copy link, Share, WhatsApp, Instagram, TikTok, Download card image, and Copy caption stay hidden until sharing is on. Enable sharing, then use **Copy link**. The link looks like:
 
 `http://localhost:8080/card/c/00000000-0000-4000-8000-00000000d101`
 
 That address is Aisha's public id. It is not the card serial. Open it signed out, or in a private window. The page shows the display name, companion, traits, rarity, stars, aura and serial. The portrait appears only after Staff approves it. The QR code on the card points at the same address.
+
+WhatsApp opens `https://wa.me/?text=` with a caption that names the companion, the card URL, the AcadeMY handles, and `#AcadeMY #NovaCompanion`. Instagram and TikTok have no web share address. On a phone they hand the story image to the share sheet. On a desktop they download that image and ask you to copy the caption. **Download card image** saves the same story at 1080 by 1920. The handles live in `ACADEMY_SOCIAL_HANDLES` as `@ACADEMY_INSTAGRAM_HANDLE` and `@ACADEMY_TIKTOK_HANDLE`. Those are placeholders. Replace them before launch.
 
 Turn sharing off and the same link shows **This card is not available**. The preview image is:
 

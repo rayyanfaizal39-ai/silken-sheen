@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { CardShareOptions } from "./CardShareOptions";
 import { loadOwnerNova, republishOwnedDevCard, updateCardSharing } from "./local-session";
 import { type NovaCard } from "./model";
 import { publicCardLink, publicCardOrigin } from "./public-card";
@@ -93,13 +94,18 @@ export function CardSharePanel({ publicId }: { publicId: string }) {
             Enable sharing
           </button>
         )}
-        <button type="button" disabled={!card.sharing || busy} onClick={() => void copyLink()}>
-          Copy link
-        </button>
-        <button type="button" disabled={!card.sharing || busy} onClick={() => void share()}>
-          Share
-        </button>
+        {card.sharing ? (
+          <>
+            <button type="button" disabled={busy} onClick={() => void copyLink()}>
+              Copy link
+            </button>
+            <button type="button" disabled={busy} onClick={() => void share()}>
+              Share
+            </button>
+          </>
+        ) : null}
       </div>
+      {card.sharing ? <CardShareOptions card={card} url={url} onNotice={setNotice} /> : null}
       <p className="nova-notice" role="status">
         {notice}
       </p>

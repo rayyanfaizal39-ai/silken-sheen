@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { CardShareOptions } from "@/features/nova-cards/CardShareOptions";
 import { NovaCard } from "@/features/nova-cards/NovaCard";
 import { cardUrl, type NovaCard as Card } from "@/features/nova-cards/model";
 import { loadOwnedOrPublicCard } from "@/features/nova-cards/local-session";
@@ -84,6 +85,7 @@ function PublicNova() {
   const { publicId } = Route.useParams();
   const [card, setCard] = useState(initial.card);
   const [origin, setOrigin] = useState(initial.origin);
+  const [notice, setNotice] = useState("");
   // Recheck on return to the tab so revoked cards aren't retained by router history.
   useEffect(() => {
     setOrigin(window.location.origin);
@@ -125,6 +127,19 @@ function PublicNova() {
           </p>
           <PublicFacts card={card} />
           <NovaCard card={card} url={cardUrl(card.publicId, origin)} />
+          {card.sharing ? (
+            <section className="nova-share-panel" aria-label="Share this card">
+              <h2>Share this card</h2>
+              <CardShareOptions
+                card={card}
+                url={cardUrl(card.publicId, origin)}
+                onNotice={setNotice}
+              />
+              <p className="nova-notice" role="status">
+                {notice}
+              </p>
+            </section>
+          ) : null}
         </div>
       ) : (
         <section className="nova-unavailable">

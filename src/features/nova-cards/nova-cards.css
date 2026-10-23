@@ -758,6 +758,29 @@
   opacity: 0.45;
   cursor: not-allowed;
 }
+.nova-share-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+.nova-share-options button,
+.nova-share-options .nova-share-link {
+  border: 1px solid rgba(246, 202, 120, 0.45);
+  border-radius: 999px;
+  background: transparent;
+  color: #f6ca78;
+  padding: 10px 16px;
+  cursor: pointer;
+  font: inherit;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+.nova-share-options button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
 @keyframes nova-sheen {
   0%,
   100% {
