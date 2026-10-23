@@ -1,6 +1,7 @@
 import { isDevAuthBypassEnabled } from "@/lib/dev-auth";
 import { isSupabaseConfigured } from "@/lib/supabase";
 import type { NovaCard } from "./model";
+import { devSharePayload } from "./public-card";
 import type { NovaEntitlement } from "./entitlement";
 import { getMyCard, getNovaEntitlement, getPublicCard, setSharing } from "./server";
 import {
@@ -58,11 +59,30 @@ export function loadOwnerNova(): Promise<[NovaCard | null, NovaEntitlement]> {
   return Promise.all([getMyCard(), getNovaEntitlement()]);
 }
 
+function publishDevCard(card: NovaCard): Promise<void> {
+  if (import.meta.env.DEV && devBypassActive()) {
+    return import("@/lib/dev-auth/public-registry").then(async (registry) => {
+      const result = await registry.publishDevSharedCard({ data: devSharePayload(card) });
+      if (!result.ok) throw new Error("Sharing could not be updated on this dev server.");
+    });
+  }
+  return Promise.resolve();
+}
+
 export function updateCardSharing(enabled: boolean): Promise<NovaCard> {
   if (import.meta.env.DEV && devBypassActive()) {
-    return import("@/lib/dev-auth/store").then((store) => store.devSetSharing(enabled));
+    return import("@/lib/dev-auth/store").then(async (store) => {
+      const card = store.devSetSharing(enabled);
+      await publishDevCard(card);
+      return card;
+    });
   }
   return setSharing({ data: enabled });
+}
+
+/** After a dev-server restart, the owner republishes a card that is already shared. */
+export function republishOwnedDevCard(card: NovaCard): Promise<void> {
+  return publishDevCard(card);
 }
 
 export function loadOwnedOrPublicCard(publicId: string): Promise<NovaCard | null> {

@@ -59,6 +59,7 @@ import { Route as AccountBillingRouteImport } from './routes/account.billing'
 import { Route as AcademyLandingpage3RouteImport } from './routes/academy/landingpage3'
 import { Route as EnglishForm1GrammarRouteImport } from './routes/english.form-1.grammar'
 import { Route as CardCPublicIdRouteImport } from './routes/card_.c.$publicId'
+import { Route as CardCPublicIdPreviewDotpngRouteImport } from './routes/card_.c.$publicId.preview[.]png'
 import { Route as AdminContentQuizImporterRouteImport } from './routes/admin.content.quiz-importer'
 
 const WeeklyReportRoute = WeeklyReportRouteImport.update({
@@ -311,6 +312,12 @@ const CardCPublicIdRoute = CardCPublicIdRouteImport.update({
   path: '/card/c/$publicId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CardCPublicIdPreviewDotpngRoute =
+  CardCPublicIdPreviewDotpngRouteImport.update({
+    id: '/preview.png',
+    path: '/preview.png',
+    getParentRoute: () => CardCPublicIdRoute,
+  } as any)
 const AdminContentQuizImporterRoute =
   AdminContentQuizImporterRouteImport.update({
     id: '/content/quiz-importer',
@@ -368,7 +375,8 @@ export interface FileRoutesByFullPath {
   '/nova/studio': typeof NovaStudioRoute
   '/admin/': typeof AdminIndexRoute
   '/admin/content/quiz-importer': typeof AdminContentQuizImporterRoute
-  '/card/c/$publicId': typeof CardCPublicIdRoute
+  '/card/c/$publicId': typeof CardCPublicIdRouteWithChildren
+  '/card/c/$publicId/preview.png': typeof CardCPublicIdPreviewDotpngRoute
   '/english/form-1/grammar': typeof EnglishForm1GrammarRoute
 }
 export interface FileRoutesByTo {
@@ -420,7 +428,8 @@ export interface FileRoutesByTo {
   '/nova/studio': typeof NovaStudioRoute
   '/admin': typeof AdminIndexRoute
   '/admin/content/quiz-importer': typeof AdminContentQuizImporterRoute
-  '/card/c/$publicId': typeof CardCPublicIdRoute
+  '/card/c/$publicId': typeof CardCPublicIdRouteWithChildren
+  '/card/c/$publicId/preview.png': typeof CardCPublicIdPreviewDotpngRoute
   '/english/form-1/grammar': typeof EnglishForm1GrammarRoute
 }
 export interface FileRoutesById {
@@ -474,7 +483,8 @@ export interface FileRoutesById {
   '/nova_/studio': typeof NovaStudioRoute
   '/admin/': typeof AdminIndexRoute
   '/admin/content/quiz-importer': typeof AdminContentQuizImporterRoute
-  '/card_/c/$publicId': typeof CardCPublicIdRoute
+  '/card_/c/$publicId': typeof CardCPublicIdRouteWithChildren
+  '/card_/c/$publicId/preview.png': typeof CardCPublicIdPreviewDotpngRoute
   '/english/form-1/grammar': typeof EnglishForm1GrammarRoute
 }
 export interface FileRouteTypes {
@@ -530,6 +540,7 @@ export interface FileRouteTypes {
     | '/admin/'
     | '/admin/content/quiz-importer'
     | '/card/c/$publicId'
+    | '/card/c/$publicId/preview.png'
     | '/english/form-1/grammar'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -582,6 +593,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/admin/content/quiz-importer'
     | '/card/c/$publicId'
+    | '/card/c/$publicId/preview.png'
     | '/english/form-1/grammar'
   id:
     | '__root__'
@@ -635,6 +647,7 @@ export interface FileRouteTypes {
     | '/admin/'
     | '/admin/content/quiz-importer'
     | '/card_/c/$publicId'
+    | '/card_/c/$publicId/preview.png'
     | '/english/form-1/grammar'
   fileRoutesById: FileRoutesById
 }
@@ -677,7 +690,7 @@ export interface RootRouteChildren {
   AuthResetPasswordRoute: typeof AuthResetPasswordRoute
   NovaDemoRoute: typeof NovaDemoRoute
   NovaStudioRoute: typeof NovaStudioRoute
-  CardCPublicIdRoute: typeof CardCPublicIdRoute
+  CardCPublicIdRoute: typeof CardCPublicIdRouteWithChildren
   EnglishForm1GrammarRoute: typeof EnglishForm1GrammarRoute
 }
 
@@ -1033,6 +1046,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CardCPublicIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/card_/c/$publicId/preview.png': {
+      id: '/card_/c/$publicId/preview.png'
+      path: '/preview.png'
+      fullPath: '/card/c/$publicId/preview.png'
+      preLoaderRoute: typeof CardCPublicIdPreviewDotpngRouteImport
+      parentRoute: typeof CardCPublicIdRoute
+    }
     '/admin/content/quiz-importer': {
       id: '/admin/content/quiz-importer'
       path: '/content/quiz-importer'
@@ -1081,6 +1101,18 @@ const CardRouteChildren: CardRouteChildren = {
 
 const CardRouteWithChildren = CardRoute._addFileChildren(CardRouteChildren)
 
+interface CardCPublicIdRouteChildren {
+  CardCPublicIdPreviewDotpngRoute: typeof CardCPublicIdPreviewDotpngRoute
+}
+
+const CardCPublicIdRouteChildren: CardCPublicIdRouteChildren = {
+  CardCPublicIdPreviewDotpngRoute: CardCPublicIdPreviewDotpngRoute,
+}
+
+const CardCPublicIdRouteWithChildren = CardCPublicIdRoute._addFileChildren(
+  CardCPublicIdRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRouteWithChildren,
@@ -1120,7 +1152,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthResetPasswordRoute: AuthResetPasswordRoute,
   NovaDemoRoute: NovaDemoRoute,
   NovaStudioRoute: NovaStudioRoute,
-  CardCPublicIdRoute: CardCPublicIdRoute,
+  CardCPublicIdRoute: CardCPublicIdRouteWithChildren,
   EnglishForm1GrammarRoute: EnglishForm1GrammarRoute,
 }
 export const routeTree = rootRouteImport

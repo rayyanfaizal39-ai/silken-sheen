@@ -41,6 +41,16 @@ export function NovaCard({
     };
   }, [url]);
 
+  async function copyLink() {
+    if (!card.sharing) return;
+    try {
+      await navigator.clipboard.writeText(url);
+      setNotice("Link copied.");
+    } catch {
+      setNotice("Select the card address below to copy it.");
+    }
+  }
+
   async function share() {
     try {
       if (!card.sharing) {
@@ -53,10 +63,7 @@ export function NovaCard({
           text: "Meet my AcadeMY Nova companion.",
           url,
         });
-      else {
-        await navigator.clipboard.writeText(url);
-        setNotice("Card link copied.");
-      }
+      else await copyLink();
     } catch (error) {
       if ((error as Error).name !== "AbortError")
         setNotice("Copy the card address below to share it.");
@@ -191,8 +198,11 @@ export function NovaCard({
         >
           ↻ Flip card
         </button>
-        <button onClick={() => void share()} disabled={!card.sharing}>
-          ↗ Share
+        <button type="button" onClick={() => void copyLink()} disabled={!card.sharing}>
+          Copy link
+        </button>
+        <button type="button" onClick={() => void share()} disabled={!card.sharing}>
+          Share
         </button>
         <button
           disabled={downloading}

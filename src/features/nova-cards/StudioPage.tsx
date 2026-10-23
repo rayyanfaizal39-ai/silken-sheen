@@ -11,6 +11,7 @@ import { AwakeningChamber } from "./sanctuary/AwakeningChamber";
 import { WaitingSanctuary } from "./sanctuary/WaitingSanctuary";
 import { OriginReveal } from "./sanctuary/OriginReveal";
 import { CandidateProfile } from "./sanctuary/CandidateProfile";
+import { CardSharePanel } from "./CardSharePanel";
 import { useSanctuaryPreferences } from "./sanctuary/useSanctuaryPreferences";
 import { soundscape } from "./sanctuary/audio";
 import { GuestNotice } from "./sanctuary/GuestNotice";
@@ -389,6 +390,7 @@ export function StudioExperience({
               />
             </Suspense>
           )}
+          {!fictional && state.publicId ? <CardSharePanel publicId={state.publicId} /> : null}
         </div>
       ) : revealReady ? (
         <div className="companion-reveal-flow" data-reveal={hatch}>

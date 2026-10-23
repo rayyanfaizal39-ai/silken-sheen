@@ -1,45 +1,93 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { NovaCard } from "@/features/nova-cards/NovaCard";
-import { cardFace, cardUrl } from "@/features/nova-cards/model";
+import { cardUrl, type NovaCard as Card } from "@/features/nova-cards/model";
 import { loadOwnedOrPublicCard } from "@/features/nova-cards/local-session";
-import { getPublicCard } from "@/features/nova-cards/server";
-import { SITE_URL } from "@/lib/seo";
+import { getPublicCardPage } from "@/features/nova-cards/server";
+import { DEFAULT_OG_IMAGE } from "@/lib/seo";
 import { novaHead } from "@/features/nova-cards/head";
+import {
+  PUBLIC_PREVIEW_HEIGHT,
+  PUBLIC_PREVIEW_WIDTH,
+  publicCardDescription,
+  publicPreviewUrl,
+  toPublicSnapshot,
+} from "@/features/nova-cards/public-card";
 
 export const Route = createFileRoute("/card_/c/$publicId")({
-  loader: ({ params }) => getPublicCard({ data: params.publicId }),
+  loader: ({ params }) => getPublicCardPage({ data: params.publicId }),
   staleTime: 0,
   gcTime: 0,
-  head: ({ loaderData, params }) =>
-    novaHead({
-      title: loaderData ? `${loaderData.username}'s Nova Companion` : "Nova Companion",
-      description: loaderData
-        ? `${cardFace(loaderData).species} · ${cardFace(loaderData).eyebrow}. An AcadeMY Nova collectible companion.`
-        : "This companion card is unavailable.",
-      path: `/card/c/${encodeURIComponent(params.publicId)}`,
+  head: ({ loaderData, params }) => {
+    const card = loaderData?.card ?? null;
+    const shared = card?.sharing ? toPublicSnapshot(card) : null;
+    const path = `/card/c/${encodeURIComponent(params.publicId)}`;
+    if (!shared) {
+      return novaHead({
+        title: "Companion card",
+        description: "This card is not available.",
+        path,
+        noindex: true,
+        image: DEFAULT_OG_IMAGE,
+      });
+    }
+    return novaHead({
+      title: `${shared.displayName}'s ${shared.companionName}`,
+      description: publicCardDescription(shared),
+      path,
       noindex: true,
-      image: `${SITE_URL}/nova-cards/preview.png`,
-    }),
+      image: publicPreviewUrl(params.publicId, loaderData?.origin),
+      imageWidth: PUBLIC_PREVIEW_WIDTH,
+      imageHeight: PUBLIC_PREVIEW_HEIGHT,
+      imageAlt: `${shared.displayName}'s ${shared.companionName}`,
+    });
+  },
   component: PublicNova,
   errorComponent: () => (
     <main className="nova-page nova-unavailable">
-      <h1>Card unavailable</h1>
-      <p>This card is private, does not exist, or cannot be loaded right now.</p>
-      <a href="/nova/demo">Explore fictional demos</a>
+      <h1>This card is not available</h1>
+      <p>The link does not open a public card.</p>
     </main>
   ),
 });
 
+function PublicFacts({ card }: { card: Card }) {
+  const fields = toPublicSnapshot(card);
+  return (
+    <section className="nova-public-facts" aria-label="Public companion card">
+      <h1>{fields.displayName}</h1>
+      <p>
+        {fields.companionName}
+        {fields.title ? ` · ${fields.title}` : ""}
+      </p>
+      {fields.traits.length > 0 ? (
+        <ul>
+          {fields.traits.map((trait) => (
+            <li key={trait}>{trait}</li>
+          ))}
+        </ul>
+      ) : null}
+      <p>
+        {fields.rarity}{" "}
+        <span aria-label={`${fields.stars} ${fields.stars === 1 ? "star" : "stars"}`}>
+          {"★".repeat(fields.stars)}
+        </span>
+      </p>
+      {fields.aura ? <p>{fields.aura}</p> : null}
+      <p>{fields.serial}</p>
+    </section>
+  );
+}
+
 function PublicNova() {
-  const initialCard = Route.useLoaderData();
+  const initial = Route.useLoaderData();
   const { publicId } = Route.useParams();
-  const [card, setCard] = useState(initialCard);
-  const [origin, setOrigin] = useState(SITE_URL);
+  const [card, setCard] = useState(initial.card);
+  const [origin, setOrigin] = useState(initial.origin);
   // Recheck on return to the tab so revoked cards aren't retained by router history.
   useEffect(() => {
     setOrigin(window.location.origin);
-    setCard(initialCard);
+    setCard(initial.card);
     let active = true;
     const check = () => {
       if (!document.hidden)
@@ -59,9 +107,9 @@ function PublicNova() {
       window.removeEventListener("focus", check);
       document.removeEventListener("visibilitychange", check);
     };
-  }, [initialCard, publicId]);
+  }, [initial, publicId]);
   return (
-    <main className="nova-page">
+    <main className="nova-page" data-public-card={card ? "open" : "unavailable"}>
       <header className="nova-topbar">
         <a className="nova-home" href="/nova">
           <img src="/branding/academy-icon.png" alt="AcadeMY" width="32" height="32" />
@@ -75,13 +123,13 @@ function PublicNova() {
           <p className="nova-eyebrow">
             {card.demo ? "FICTIONAL DEMONSTRATION CARD" : "A COMPANION. A COLLECTIBLE. A JOURNEY."}
           </p>
+          <PublicFacts card={card} />
           <NovaCard card={card} url={cardUrl(card.publicId, origin)} />
         </div>
       ) : (
         <section className="nova-unavailable">
-          <h1>Card unavailable</h1>
-          <p>This card is private or does not exist.</p>
-          <a href="/nova/demo">Explore fictional demos</a>
+          <h1>This card is not available</h1>
+          <p>The link does not open a public card.</p>
         </section>
       )}
     </main>

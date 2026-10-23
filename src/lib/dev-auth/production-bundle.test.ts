@@ -113,6 +113,7 @@ describe("dev auth bypass production bundle", () => {
     const code = result.outputFiles[0].text;
     expect(code).not.toContain("dev-auth/store");
     expect(code).not.toContain("dev-auth/server-gate");
+    expect(code).not.toContain("public-registry");
     expect(code).not.toContain("local-artwork");
     expect(code).not.toContain("/nova/creatures/");
     expect(code).not.toContain("form1.student@dev.local");

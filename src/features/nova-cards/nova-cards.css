@@ -698,6 +698,66 @@
   color: #e4c58c;
   text-decoration: underline;
 }
+.nova-public-facts {
+  margin: 0 0 28px;
+  text-align: center;
+}
+.nova-public-facts h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+}
+.nova-public-facts p,
+.nova-public-facts li {
+  color: #d7deee;
+  line-height: 1.6;
+}
+.nova-public-facts ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 14px;
+  margin: 12px 0;
+  padding: 0;
+  list-style: none;
+}
+.nova-share-panel {
+  margin: 28px auto 12px;
+  max-width: 640px;
+  padding: 20px 22px;
+  border: 1px solid rgba(223, 191, 126, 0.35);
+  border-radius: 18px;
+  background: rgba(12, 16, 32, 0.72);
+  color: #f4efe4;
+}
+.nova-share-panel h2 {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+.nova-share-url {
+  word-break: break-all;
+  font-size: 14px;
+}
+.nova-share-url a {
+  color: #f6ca78;
+}
+.nova-share-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+.nova-share-actions button {
+  border: 1px solid rgba(246, 202, 120, 0.45);
+  border-radius: 999px;
+  background: transparent;
+  color: #f6ca78;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+.nova-share-actions button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
 @keyframes nova-sheen {
   0%,
   100% {

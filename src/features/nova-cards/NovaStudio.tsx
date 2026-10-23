@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { NovaCard } from "./NovaCard";
 import { EvolutionPreview } from "./EvolutionPreview";
 import { cardUrl, DEMO_CARDS, STAGES, type NovaCard as Card } from "./model";
-import { loadOwnerNova, updateCardSharing } from "./local-session";
+import { loadOwnerNova, republishOwnedDevCard, updateCardSharing } from "./local-session";
 import type { NovaEntitlement } from "./server";
 import { NovaTeaser } from "./NovaTeaser";
 import { academyHomeHref, cardsPaths, signInHref } from "./paths";
@@ -23,6 +23,7 @@ export function NovaStudio() {
         if (active) {
           setCard(c);
           setEntitlement(access);
+          if (c?.sharing) void republishOwnedDevCard(c);
         }
       })
       .catch((e) => {

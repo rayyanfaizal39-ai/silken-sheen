@@ -43,6 +43,20 @@ Aisha and Haziq cannot open that screen. The same admin check lives in the `nova
 
 Each student's answers, choice, and card stay in this browser's `localStorage` under `academymy.dev-auth.v1`. After pulling this update, refresh the studio page. A journey that was already saved keeps its serial. The card waits for a staff portrait instead of copying the comparison drawing.
 
+## Public card link
+
+Sharing is off until the student turns it on. On the My Companion tab (`http://localhost:8080/nova/studio`) the card says **Private · only opens after sharing is enabled**. Enable sharing, then use **Copy link**. The link looks like:
+
+`http://localhost:8080/card/c/00000000-0000-4000-8000-00000000d101`
+
+That address is Aisha's public id. It is not the card serial. Open it signed out, or in a private window. The page shows the display name, companion, traits, rarity, stars, aura and serial. The portrait appears only after Staff approves it. The QR code on the card points at the same address.
+
+Turn sharing off and the same link shows **This card is not available**. The preview image is:
+
+`http://localhost:8080/card/c/00000000-0000-4000-8000-00000000d101/preview.png`
+
+It is a portrait of the safe fields. It answers 404 when sharing is off. After a dev-server restart, open My Companion or `/nova` once so a shared card is published again. `supabase/migrations/20261023150000_nova_public_card.sql` is review only. Do not apply it from this bypass. Image generation stays off.
+
 ## Turn it off
 
 Delete `VITE_DEV_AUTH_BYPASS` from `.env.local`, or set it to `false`, then restart `npm run dev`. To clear a local journey, remove the `academymy.dev-auth.v1` entry in the browser's site data.
