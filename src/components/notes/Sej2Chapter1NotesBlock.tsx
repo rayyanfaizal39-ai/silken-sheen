@@ -203,10 +203,10 @@ export function Sej2Chapter1NotesBlock({
             <p className={P}>{content.concept.intro}</p>
             {splitFigure(
               [
-                ["geografi-tokoh", v3Tokoh, "Pandangan tokoh tentang kawasan Alam Melayu (bahagian 1: tiga tokoh)", "Ilustrasi berdasarkan buku teks hlm. 4–5 (1/2)."],
-                ["geografi-tokoh-2", v3TokohB, "Pandangan tokoh tentang kawasan Alam Melayu (bahagian 2: dua tokoh)", `Ilustrasi berdasarkan buku teks hlm. 5 (2/2). Sumber petikan: ${geoSources}.`],
+                ["geografi-tokoh", v3Tokoh, "Pandangan tokoh tentang kawasan Alam Melayu (bahagian 1: tiga tokoh)", "Sumber: buku teks hlm. 4–5."],
+                ["geografi-tokoh-2", v3TokohB, "Pandangan tokoh tentang kawasan Alam Melayu (bahagian 2: dua tokoh)", `Sumber: buku teks hlm. 5. Petikan: ${geoSources}.`],
               ],
-              ["geografi-tokoh-desktop", v3Desktop, "Pandangan lima tokoh tentang kawasan Alam Melayu", `Ilustrasi berdasarkan buku teks hlm. 4–5. Sumber petikan: ${geoSources}.`],
+              ["geografi-tokoh-desktop", v3Desktop, "Pandangan lima tokoh tentang kawasan Alam Melayu", `Sumber: buku teks hlm. 4–5. Petikan: ${geoSources}.`],
             )}
             <div className="rounded-xl p-3.5" style={{ background: bgPanel }}>
               <p className="text-[13px] font-semibold text-foreground">Rumusan</p>
@@ -239,15 +239,11 @@ export function Sej2Chapter1NotesBlock({
         {current === 2 && (
           <div className="space-y-5">
             <p className={P}>{content.kingdomEmergence.intro}</p>
-            <DataTable
-              headers={["Kerajaan", "Lokasi"]}
-              rows={content.kingdomEmergence.kingdoms.map((k) => [k.name.replace(/^Kerajaan /, ""), k.location])}
-            />
-            {figure("kewujudan-peta", v1Lokasi, "Peta lokasi tujuh kerajaan awal Alam Melayu", "Ilustrasi berdasarkan buku teks hlm. 8. Kedudukan titik anggaran, tidak berskala. Peta asas: Natural Earth (domain awam).", v1Desktop)}
-            {figure("kewujudan-garis-masa", v2GarisMasa, "Garis masa kemunculan kerajaan Alam Melayu", "Ilustrasi berdasarkan buku teks hlm. 2–3 dan 8.", v2Desktop)}
+            {figure("kewujudan-peta", v1Lokasi, "Peta lokasi tujuh kerajaan awal Alam Melayu", "Sumber: buku teks hlm. 8–13. Kedudukan anggaran, tidak berskala. Peta asas: Natural Earth.", v1Desktop)}
+            {figure("kewujudan-garis-masa", v2GarisMasa, "Garis masa kemunculan kerajaan Alam Melayu", "Sumber: buku teks hlm. 2–3 dan 8.", v2Desktop)}
             <p className={P}>{content.kingdomEmergence.significance}</p>
             {content.evidence && content.evidence.length > 0 &&
-              figure("bukti-kewujudan", v9Bukti, "Peta lokasi bukti kewujudan kerajaan Alam Melayu", "Ilustrasi berdasarkan buku teks hlm. 13 dan 17; gambar penemuan asal terdapat dalam buku teks. Lokasi anggaran. Peta asas: Natural Earth (domain awam).", v9Desktop)}
+              figure("bukti-kewujudan", v9Bukti, "Peta lokasi bukti kewujudan kerajaan Alam Melayu", "Sumber: buku teks hlm. 13 dan 17 (rujuk gambar penemuan di sana). Kedudukan anggaran. Peta asas: Natural Earth.", v9Desktop)}
           </div>
         )}
 
@@ -255,13 +251,13 @@ export function Sej2Chapter1NotesBlock({
           <div className="space-y-5">
             <p className={P}>Kemasyhuran kerajaan Alam Melayu dapat dilihat dalam aspek pemerintahan, ekonomi, agama dan kemunculan pelabuhan.</p>
             <KingdomStageCards kingdoms={content.famousKingdoms} />
-            {figure("masyhur-angkor-thom", angkorThom, "Ilustrasi Angkor Thom", "Ilustrasi (bukan gambar sebenar) Angkor Thom, ibu kota kerajaan Angkor (buku teks hlm. 10–11).")}
+            {figure("masyhur-angkor-thom", angkorThom, "Ilustrasi Angkor Thom", "Ilustrasi, bukan gambar sebenar. Angkor Thom ialah ibu kota kerajaan Angkor. Sumber: buku teks hlm. 10–11.")}
             {splitFigure(
               [
-                ["masyhur-garis-masa", v4Kemasyhuran, "Garis masa kemasyhuran dan kemerosotan kerajaan Alam Melayu (bahagian 1: 192 M hingga 1294)", "Ilustrasi berdasarkan buku teks hlm. 9–13; jarak tarikh tidak berskala (1/2)."],
-                ["masyhur-garis-masa-2", v4KemasyhuranB, "Garis masa kemasyhuran dan kemerosotan kerajaan Alam Melayu (bahagian 2: 1369 hingga 1594)", "Ilustrasi berdasarkan buku teks hlm. 9–13; jarak tarikh tidak berskala (2/2)."],
+                ["masyhur-garis-masa", v4Kemasyhuran, "Garis masa kemasyhuran dan kemerosotan kerajaan Alam Melayu (bahagian 1: 192 M hingga 1294)", "Sumber: buku teks hlm. 9–13. Jarak tarikh tidak berskala."],
+                ["masyhur-garis-masa-2", v4KemasyhuranB, "Garis masa kemasyhuran dan kemerosotan kerajaan Alam Melayu (bahagian 2: 1369 hingga 1594)", "Sumber: buku teks hlm. 9–13. Jarak tarikh tidak berskala."],
               ],
-              ["masyhur-garis-masa-desktop", v4Desktop, "Garis masa kemasyhuran dan kemerosotan kerajaan Alam Melayu (192 M hingga 1594)", "Ilustrasi berdasarkan buku teks hlm. 9–13; jarak tarikh tidak berskala."],
+              ["masyhur-garis-masa-desktop", v4Desktop, "Garis masa kemasyhuran dan kemerosotan kerajaan Alam Melayu (192 M hingga 1594)", "Sumber: buku teks hlm. 9–13. Jarak tarikh tidak berskala."],
             )}
           </div>
         )}
@@ -269,16 +265,16 @@ export function Sej2Chapter1NotesBlock({
         {current === 4 && (
           <div className="space-y-5">
             <p className={P}>{content.contemporaryKingdoms.intro}</p>
-            {figure("sezaman-abad", v6Sezaman, "Kerajaan Alam Melayu dan kerajaan luar yang sezaman mengikut abad", "Ilustrasi berdasarkan buku teks hlm. 14–15.", v6Desktop)}
+            {figure("sezaman-abad", v6Sezaman, "Kerajaan Alam Melayu dan kerajaan luar yang sezaman mengikut abad", "Sumber: buku teks hlm. 14–15.", v6Desktop)}
 
             <h3 className={`${H3} pt-2`}>{trade.type}</h3>
             <p className={P}>{trade.description}</p>
-            {figure("perdagangan-peta", v5Perdagangan, "Peta jalan perdagangan Alam Melayu dengan kerajaan luar", "Ilustrasi berdasarkan peta buku teks hlm. 16. Laluan dipermudah; kedudukan anggaran, tidak berskala. Peta asas: Natural Earth (domain awam).", v5Desktop)}
+            {figure("perdagangan-peta", v5Perdagangan, "Peta jalan perdagangan Alam Melayu dengan kerajaan luar", "Sumber: peta buku teks hlm. 16. Laluan dipermudah; kedudukan anggaran, tidak berskala. Peta asas: Natural Earth.", v5Desktop)}
             {trade.closing && <p className={P}>{trade.closing}</p>}
 
             <h3 className={`${H3} pt-2`}>{religion.type}</h3>
             <p className={P}>{religion.description}</p>
-            {content.contemporaryKingdoms.religionSpread && figure("agama-penyebaran", v8Agama, "Cara penyebaran agama Hindu, Buddha dan Islam ke Alam Melayu", "Ilustrasi berdasarkan buku teks hlm. 17.", v8Desktop)}
+            {content.contemporaryKingdoms.religionSpread && figure("agama-penyebaran", v8Agama, "Cara penyebaran agama Hindu, Buddha dan Islam ke Alam Melayu", "Sumber: buku teks hlm. 17.", v8Desktop)}
             {content.contemporaryKingdoms.religionImpact && <p className={P}>{content.contemporaryKingdoms.religionImpact}</p>}
 
             <h3 className={`${H3} pt-2`}>{diplomacy.type}</h3>
@@ -286,10 +282,10 @@ export function Sej2Chapter1NotesBlock({
             {content.contemporaryKingdoms.diplomaticMissions &&
               splitFigure(
                 [
-                  ["diplomatik-utusan", v7Utusan, "Utusan kerajaan Alam Melayu ke China", "Ilustrasi berdasarkan buku teks hlm. 18."],
-                  ["diplomatik-utusan-2", v7UtusanB, "Utusan kerajaan Alam Melayu ke India", "Ilustrasi berdasarkan buku teks hlm. 19."],
+                  ["diplomatik-utusan", v7Utusan, "Utusan kerajaan Alam Melayu ke China", "Sumber: buku teks hlm. 18."],
+                  ["diplomatik-utusan-2", v7UtusanB, "Utusan kerajaan Alam Melayu ke India", "Sumber: buku teks hlm. 19."],
                 ],
-                ["diplomatik-utusan-desktop", v7Desktop, "Utusan kerajaan Alam Melayu ke China dan India", "Ilustrasi berdasarkan buku teks hlm. 18–19. Tanda — : tiada utusan dinyatakan."],
+                ["diplomatik-utusan-desktop", v7Desktop, "Utusan kerajaan Alam Melayu ke China dan India", "Sumber: buku teks hlm. 18–19. Tanda — : tiada utusan dinyatakan."],
               )}
             {diplomacy.closing && <p className={P}>{diplomacy.closing}</p>}
           </div>
