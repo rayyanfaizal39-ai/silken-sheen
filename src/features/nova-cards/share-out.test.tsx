@@ -5,7 +5,12 @@ import { describe, expect, it } from "vitest";
 import { CardShareOptions } from "./CardShareOptions";
 import { type NovaCard } from "./model";
 import { storyCardSvg, toPublicSnapshot } from "./public-card";
-import { ACADEMY_SOCIAL_HANDLES, shareCaption, whatsAppShareUrl } from "./share-out";
+import {
+  ACADEMY_SOCIAL_HANDLES,
+  ACADEMY_SOCIAL_LINKS,
+  shareCaption,
+  whatsAppShareUrl,
+} from "./share-out";
 
 const card = {
   publicId: "00000000-0000-4000-8000-00000000d101",
@@ -37,8 +42,7 @@ describe("AcadeMY share caption", () => {
     const caption = shareCaption(toPublicSnapshot(dirty), url);
     const href = whatsAppShareUrl(caption);
     expect(href.startsWith("https://wa.me/?text=")).toBe(true);
-    expect(href).not.toContain("instagram.com");
-    expect(href).not.toContain("tiktok.com");
+    expect(new URL(href).origin).toBe("https://wa.me");
     const text = decodeURIComponent(href.slice("https://wa.me/?text=".length));
     expect(text).toContain(url);
     expect(text).toContain("Aisha's Lumi on AcadeMY");
@@ -46,8 +50,12 @@ describe("AcadeMY share caption", () => {
     expect(text).toContain("#NovaCompanion");
     expect(text).toContain(ACADEMY_SOCIAL_HANDLES.instagram);
     expect(text).toContain(ACADEMY_SOCIAL_HANDLES.tiktok);
-    expect(ACADEMY_SOCIAL_HANDLES.instagram).toBe("@ACADEMY_INSTAGRAM_HANDLE");
-    expect(ACADEMY_SOCIAL_HANDLES.tiktok).toBe("@ACADEMY_TIKTOK_HANDLE");
+    expect(text).toContain(ACADEMY_SOCIAL_LINKS.instagram);
+    expect(text).toContain(ACADEMY_SOCIAL_LINKS.tiktok);
+    expect(ACADEMY_SOCIAL_HANDLES.instagram).toBe("@academykssm");
+    expect(ACADEMY_SOCIAL_HANDLES.tiktok).toBe("@myacademymalaysia");
+    expect(ACADEMY_SOCIAL_LINKS.instagram).toBe("https://www.instagram.com/academykssm/");
+    expect(ACADEMY_SOCIAL_LINKS.tiktok).toBe("https://www.tiktok.com/@myacademymalaysia");
     expect(text).not.toContain("form1.student@dev.local");
     expect(text.toLowerCase()).not.toContain("birth year");
   });
@@ -77,16 +85,18 @@ describe("AcadeMY share caption", () => {
     expect(html).toBe("");
   });
 
-  it("offers WhatsApp, a story download, and a caption without social web links", () => {
+  it("offers WhatsApp, a story download, and a caption with the AcadeMY profiles", () => {
     const url = "http://127.0.0.1:8080/card/c/00000000-0000-4000-8000-00000000d101";
     const html = renderToStaticMarkup(<CardShareOptions card={card} url={url} />);
     expect(html).toContain('href="https://wa.me/?text=');
+    expect(html).toContain(encodeURIComponent(ACADEMY_SOCIAL_LINKS.instagram));
+    expect(html).toContain(encodeURIComponent(ACADEMY_SOCIAL_LINKS.tiktok));
     expect(html).toContain("Download card image");
     expect(html).toContain("Copy caption");
     expect(html).toContain("Instagram");
     expect(html).toContain("TikTok");
-    expect(html).not.toContain("instagram.com");
-    expect(html).not.toContain("tiktok.com");
+    expect(html).not.toMatch(/href="https:\/\/www\.instagram\.com/);
+    expect(html).not.toMatch(/href="https:\/\/www\.tiktok\.com/);
     expect(html).not.toContain("form1.student@dev.local");
   });
 
@@ -100,7 +110,12 @@ describe("AcadeMY share caption", () => {
     expect(sources).toContain("Download card image");
     expect(sources).toContain("Copy caption");
     expect(code).not.toMatch(/oauth|client_secret|graph\.instagram|open\.tiktok|business-api/i);
-    expect(code).not.toContain("instagram.com");
-    expect(code).not.toContain("tiktok.com");
+    const withoutProfiles = code
+      .replaceAll(ACADEMY_SOCIAL_LINKS.instagram, "")
+      .replaceAll(ACADEMY_SOCIAL_LINKS.tiktok, "");
+    expect(withoutProfiles).not.toContain("instagram.com");
+    expect(withoutProfiles).not.toContain("tiktok.com");
+    expect(code).toContain(ACADEMY_SOCIAL_LINKS.instagram);
+    expect(code).toContain(ACADEMY_SOCIAL_LINKS.tiktok);
   });
 });

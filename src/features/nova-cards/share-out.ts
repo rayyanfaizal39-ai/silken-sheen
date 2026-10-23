@@ -2,17 +2,19 @@ import type { PublicCardFields } from "./public-card";
 
 /**
  * AcadeMY accounts named in share captions.
- * PLACEHOLDER values only. Replace both with the real handles before launch.
- * Do not guess a real Instagram or TikTok account.
- *
- * These strings are caption text. They are not connected to an Instagram or
- * TikTok API, developer app, or OAuth sign-in.
+ * Caption text only. These strings are not connected to an Instagram or
+ * TikTok API, developer app, or OAuth sign-in. This app does not post to
+ * either network.
  */
 export const ACADEMY_SOCIAL_HANDLES = {
-  /** PLACEHOLDER. Replace with the real AcadeMY Instagram handle. */
-  instagram: "@ACADEMY_INSTAGRAM_HANDLE",
-  /** PLACEHOLDER. Replace with the real AcadeMY TikTok handle. */
-  tiktok: "@ACADEMY_TIKTOK_HANDLE",
+  instagram: "@academykssm",
+  tiktok: "@myacademymalaysia",
+} as const;
+
+/** Public profile pages for the handles above. Caption text, not share targets. */
+export const ACADEMY_SOCIAL_LINKS = {
+  instagram: "https://www.instagram.com/academykssm/",
+  tiktok: "https://www.tiktok.com/@myacademymalaysia",
 } as const;
 
 /** Caption for WhatsApp, Instagram, and TikTok. Safe name fields, the card URL, and the AcadeMY tags. */
@@ -23,7 +25,8 @@ export function shareCaption(
   return [
     `${fields.displayName}'s ${fields.companionName} on AcadeMY`,
     url,
-    `${ACADEMY_SOCIAL_HANDLES.instagram} ${ACADEMY_SOCIAL_HANDLES.tiktok}`,
+    `${ACADEMY_SOCIAL_HANDLES.instagram} ${ACADEMY_SOCIAL_LINKS.instagram}`,
+    `${ACADEMY_SOCIAL_HANDLES.tiktok} ${ACADEMY_SOCIAL_LINKS.tiktok}`,
     "#AcadeMY #NovaCompanion",
   ].join("\n");
 }
