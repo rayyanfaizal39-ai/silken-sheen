@@ -62,6 +62,8 @@ export interface Sej2Ch5Content {
     empire: {
       extent: string;
       formationMethods: EmpireFormationMethod[];
+      importance?: string[];
+      administration?: string[];
     };
     languageTrade: { linguaFranca: string; languageCount: string };
     foreignRelations: { kingdom: string; relationType: string; benefit: string }[];
@@ -69,10 +71,12 @@ export interface Sej2Ch5Content {
   islamSpread: {
     intro: string;
     methods: string[];
+    effects?: string[];
   };
   tradeHub: {
     intro: string;
     aspects: TradeHubAspect[];
+    features?: string[];
   };
   fall: {
     intro: string;
@@ -92,7 +96,7 @@ export interface Sej2Ch5Content {
 export const sej2Ch5Content: Sej2Ch5Content = {
   hook: {
     title: "Kenapa ini penting",
-    body: "Dalam masa kurang seabad, sebuah perkampungan nelayan di muara Sungai Bertam berkembang menjadi empayar yang menggunakan 84 bahasa, mempunyai undang-undang laut sendiri, dan menjadi pusat penyebaran Islam yang paling berpengaruh di Alam Melayu — sebelum jatuh dalam tiga serangan Portugis pada 1511."
+    body: "Sebuah perkampungan nelayan di muara Sungai Bertam berkembang menjadi empayar yang meliputi Semenanjung Tanah Melayu dan pantai timur Sumatera, tempat 84 bahasa dipertuturkan dan pusat penyebaran Islam yang unggul di Alam Melayu, sebelum jatuh ke tangan Portugis pada 24 Ogos 1511."
   },
   founding: {
     founder: "Parameswara",
@@ -114,7 +118,7 @@ export const sej2Ch5Content: Sej2Ch5Content = {
     royalRegalia: ["Cap mohor", "Nobat", "Keris", "Lembing", "Mahkota"],
     notableSultans: [
       { name: "Sultan Muzaffar Shah", reignYears: "1446-1456", trait: "Mengutamakan keamanan dan kebajikan rakyat; memulakan penulisan Hukum Kanun Melaka" },
-      { name: "Sultan Mansur Shah", reignYears: "-", trait: "Menasihatkan puteranya Sultan Alauddin Riayat Shah supaya bersikap adil terhadap rakyat" },
+      { name: "Sultan Mansur Shah", reignYears: "—", trait: "Mengutamakan keamanan dan kebajikan rakyat; menasihatkan Sultan Alauddin Riayat Shah supaya adil, menyiasat tuduhan dengan teliti dan bekerjasama dengan pegawai" },
       { name: "Sultan Mahmud Shah", reignYears: "1489-1511", trait: "Menyusun semula Hukum Kanun Melaka secara teratur; sultan terakhir Melaka sebelum kejatuhan" }
     ],
     administration: {
@@ -128,7 +132,9 @@ export const sej2Ch5Content: Sej2Ch5Content = {
       ],
       systems: [
         { name: "Sistem Serah", description: "Pemberian sebahagian daripada hasil tanaman yang diusahakan oleh rakyat kepada pemerintah, sebagai balasan kepada pembesar yang menyediakan tanah" },
-        { name: "Sistem Kerah", description: "Kerja yang dibuat tanpa upah, seperti membina istana, kubu, jalan dan saliran — menunjukkan sikap taat setia dan sedia berkorban" }
+        { name: "Sistem Kerah", description: "Kerja yang dibuat tanpa upah, seperti membina istana, kubu, jalan dan saliran — menunjukkan sikap taat setia dan sedia berkorban" },
+        { name: "Tugas Pembesar", description: "Menjaga keamanan kawasan, mengutip cukai dan hasil melalui sistem serah, serta membekalkan tentera dan tenaga buruh melalui sistem kerah" },
+        { name: "Kawasan Pegangan dan Pemakanan", description: "Kawasan pembesar berempat dikenali sebagai kawasan pegangan; kawasan pembesar jajahan dan daerah dikenali sebagai kawasan pemakanan. Cukai yang dikutip diserahkan kepada pemerintah sebagai ufti" }
       ]
     },
     legalSystem: [
@@ -145,37 +151,63 @@ export const sej2Ch5Content: Sej2Ch5Content = {
       extent: "Meliputi seluruh Semenanjung Tanah Melayu dan kawasan pantai timur Sumatera, terdiri daripada tanah jajahan dan naungan",
       formationMethods: [
         { method: "Penaklukan", examples: ["Kuala Linggi", "Beruas", "Pahang", "Terengganu", "Kelantan (Semenanjung)", "Siak", "Rokan", "Kampar", "Rupat (Sumatera)"] },
-        { method: "Perkahwinan", examples: ["Sultan Mansur Shah berkahwin dengan puteri Majapahit"] },
-        { method: "Naungan", examples: ["Raja yang berada di bawah naungan Melaka ditabalkan oleh Sultan Melaka"] }
+        { method: "Perkahwinan", examples: ["Sultan Mansur Shah dengan puteri Majapahit, Raden Galuh Cendera Kirana"] },
+        { method: "Naungan", examples: ["Raja naungan ditabalkan oleh Sultan Melaka", "Lingga, Patani dan Kedah"] }
+      ],
+      importance: [
+        "Politik: meluaskan wilayah dan menyekat pengaruh Siam, Majapahit dan Pasai",
+        "Ekonomi: menerima hadiah dan bekalan (hasil pertanian, rempah-ratus, bijih timah) serta menguasai perdagangan Selat Melaka",
+        "Sosial: asimilasi budaya dan wujud masyarakat majmuk",
+        "Agama: Islam berkembang ke Pahang, Kelantan, Perak, timur Sumatera dan Patani"
+      ],
+      administration: [
+        "Pusat: di Melaka, raja dibantu oleh pembesar pusat",
+        "Naungan: mengakui ketuanan Melaka dan menghantar ufti; diketuai pemerintah negeri berkenaan",
+        "Jajahan: diketuai pemerintah yang dilantik oleh Sultan Melaka"
       ]
     },
     languageTrade: { linguaFranca: "Bahasa Melayu muncul sebagai lingua franca", languageCount: "84 bahasa dipertuturkan di Melaka" },
     foreignRelations: [
-      { kingdom: "Siam", relationType: "Diplomatik dan perdagangan (selepas ancaman semasa Parameswara dan Sultan Muzaffar Shah)", benefit: "Bekalan kayu jati, beras dan bahan makanan; jaminan keselamatan" },
-      { kingdom: "Pegu, Luzon, Gujerat, Koromandel, Bengal", relationType: "Perdagangan", benefit: "Rangkaian dagangan serantau" },
-      { kingdom: "Mesir, Parsi, Turki, Arab", relationType: "Perdagangan dan keagamaan", benefit: "Melaka muncul sebagai pusat perdagangan dan penyebaran Islam yang ulung" },
-      { kingdom: "Pasai, Majapahit, Makasar", relationType: "Sesama kerajaan Alam Melayu", benefit: "Perdagangan dan hubungan serantau dalam kalangan kerajaan Alam Melayu" },
-      { kingdom: "China, Ryukyu", relationType: "Perdagangan dan diplomatik", benefit: "Rangkaian dagangan dengan Timur Jauh; pengiktirafan dan perlindungan daripada ancaman Siam" }
+      { kingdom: "Pasai", relationType: "Sama taraf; perkahwinan Sultan Melaka dengan Puteri Ratna Kaumala", benefit: "Perbincangan hal agama membantu Melaka muncul sebagai pusat penyebaran Islam" },
+      { kingdom: "Demak", relationType: "Kepentingan bersama dalam perdagangan dan penyebaran Islam", benefit: "Bekalan beras, bahan makanan, rempah-ratus dan tentera" },
+      { kingdom: "Majapahit", relationType: "Perkahwinan pemerintah Melaka dengan puteri Majapahit", benefit: "Wilayah Melaka bertambah luas dan ancaman Majapahit tamat" },
+      { kingdom: "Makasar", relationType: "Utusan persahabatan", benefit: "Perdagangan, perkapalan, Islam, kebudayaan dan kesenian" },
+      { kingdom: "China", relationType: "Diplomatik, persahabatan dan perdagangan (Yin Ching 1403, Laksamana Zheng He 1405)", benefit: "Pengiktirafan (payung kuning, cap mohor, sepersalinan pakaian) dan perlindungan daripada ancaman Siam" },
+      { kingdom: "Ryukyu", relationType: "Diplomatik dan perdagangan; Sultan Mansur Shah berutus surat", benefit: "Perdagangan dengan Melaka meningkat" },
+      { kingdom: "Siam", relationType: "Pernah mengancam Melaka (zaman Parameswara dan Sultan Muzaffar Shah); kemudian diplomatik dan perdagangan melalui utusan Tun Telanai dan Menteri Jana Putera", benefit: "Bekalan kayu jati, beras dan bahan makanan; keselamatan terjamin" },
+      { kingdom: "Pegu, Luzon, Gujerat, Koromandel, Bengal, Mesir, Parsi, Turki, Arab", relationType: "Perdagangan", benefit: "Melaka muncul sebagai pusat perdagangan dan penyebaran Islam yang ulung" }
     ]
   },
   islamSpread: {
     intro: "Melaka muncul sebagai pusat penyebaran agama Islam yang paling berpengaruh di Alam Melayu, dengan penyebaran berlaku melalui pelbagai cara serentak dengan perkembangan empayar dan perdagangan.",
     methods: [
-      "Pengislaman pemerintah — pemelukan Islam oleh raja menjadi penggerak utama penyebaran Islam kepada rakyat dan wilayah naungan",
-      "Perkahwinan — perkahwinan diraja antara Melaka dengan kerajaan lain turut menyebarkan pengaruh Islam",
-      "Ulama dan mubaligh — golongan agama menyebarkan ajaran Islam melalui pengajaran dan dakwah",
-      "Perdagangan — pedagang Islam dari Arab, Parsi dan India turut menyebarkan Islam semasa berurus niaga",
-      "Peluasan kuasa — Islam tersebar ke wilayah jajahan dan naungan Melaka seiring peluasan empayar"
+      "Pengislaman pemerintah — Sultan Iskandar Shah memeluk Islam pada 1414, diikuti pembesar dan rakyat; Sultan Muzaffar Shah menjadikan Islam agama rasmi",
+      "Perkahwinan — puteri Sultan Mansur Shah berkahwin dengan putera Raja Siak",
+      "Ulama dan mubaligh — dihantar ke seluruh kawasan pengaruh Melaka; antaranya Maulana Abu Bakar dan Maulana Yusuf; Sultan Alauddin Riayat Syah menghantar ulama mengajar Raja Pahang, Kampar dan Inderagiri",
+      "Perdagangan — pedagang Arab, India dan China bersifat mubaligh dan turut menyebarkan Islam ke Brunei, Filipina dan kepulauan Indonesia",
+      "Peluasan kuasa — negeri naungan dan jajahan memeluk Islam sebagai tanda taat setia kepada Melaka"
+    ],
+    effects: [
+      "Tumpuan ulama: Sultan menaungi dakwah dan perbincangan kitab seperti Darul Manzum",
+      "Tempat pembelajaran: madrasah, masjid dan surau (zaman Sultan Muzaffar Shah)",
+      "Persuratan: Hikayat Muhammad Ali Hanafiah dan Hikayat Amir Hamzah; tulisan Jawi dan bahasa Melayu berkembang",
+      "Pemerintahan: undang-undang Islam dalam Hukum Kanun Melaka dan Undang-Undang Laut Melaka; jawatan mufti dan kadi"
     ]
   },
   tradeHub: {
     intro: "Kedudukan strategik menjadikan Melaka pusat pengumpulan dan pengedaran barang dagangan serta pusat perkapalan yang dikunjungi pedagang dari dalam dan luar Alam Melayu.",
     aspects: [
-      { name: "Syahbandar", description: "Pegawai yang menguruskan hal ehwal pelabuhan, menyelia urusan pedagang asing dan memudahkan aktiviti jual beli" },
-      { name: "Cukai Perdagangan", description: "Cukai dikenakan ke atas barang dagangan sebagai salah satu sumber pendapatan utama kerajaan" },
-      { name: "Mata Wang", description: "Penggunaan mata wang memudahkan urus niaga di samping amalan tukar barang" },
-      { name: "Orang Laut", description: "Menjaga keselamatan perairan, membantu pelayaran dan mengawal kegiatan perdagangan di sekitar Selat Melaka" },
-      { name: "Kemudahan Pelabuhan", description: "Menyediakan gudang, tempat tinggal dan kawasan menyimpan barang dagangan bagi pedagang yang singgah" }
+      { name: "Syahbandar", description: "Mengurus pasar dan gudang, menjaga kebajikan dan keselamatan pedagang, memeriksa alat timbang, sukat dan mata wang, menjadi hakim di pelabuhan, mengurus cukai dan peraturan keluar masuk kapal" },
+      { name: "Cukai Perdagangan", description: "Cukai rendah menarik pedagang. Cukai rasmi ialah cukai import (panduan); cukai tidak rasmi dalam bentuk hadiah. Pedagang China dan Jepun hanya memberi hadiah bernilai sama dengan cukai lima peratus" },
+      { name: "Mata Wang", description: "Tukar barang dan mata wang. Awalnya jongkong timah, serbuk emas dan kulit siput; kemudian mata wang timah (Calains), emas dan perak; mata wang Pasai, Hormuz dan Cambay juga digunakan" },
+      { name: "Orang Laut", description: "Taat setia kepada raja; pelayar dan penunjuk arah yang cekap serta tentera yang menjamin keselamatan pedagang di perairan Melaka" },
+      { name: "Kemudahan Pelabuhan", description: "Gudang, pengangkutan, bekalan makanan dan minuman, khidmat membaiki kapal, tempat penginapan dan tempat beribadat" }
+    ],
+    features: [
+      "Barang tempatan: timah, emas, kapur barus, hasil hutan dan rempah-ratus",
+      "Barang luar: benang emas, kain pelikat, batu delima, tembikar, wangian dan bahan makanan",
+      "Pedagang paling ramai: Arab, China dan Gujerat; dari Alam Melayu: Pasai dan Jawa",
+      "Pusat perkapalan: kapal kecil (perahu, sampan, ghurab, lancang dan lain-lain) dan kapal besar (jong, bahtera)"
     ]
   },
   fall: {
@@ -210,8 +242,8 @@ export const sej2Ch5Content: Sej2Ch5Content = {
     "Adat Temenggung diasaskan Datuk Ketemenggungan (Palembang), diamalkan semua negeri Melayu kecuali Negeri Sembilan",
     "3 cara pembentukan empayar: penaklukan, perkahwinan, naungan",
     "84 bahasa dipertuturkan di Melaka; Bahasa Melayu menjadi lingua franca",
-    "5 cara penyebaran Islam: pengislaman pemerintah, perkahwinan, ulama/mubaligh, perdagangan, peluasan kuasa",
-    "Melaka menjadi pusat pengumpulan dan pengedaran barang serta pusat perkapalan, diurus melalui Syahbandar, cukai perdagangan, mata wang, Orang Laut dan kemudahan pelabuhan",
+    "5 cara penyebaran Islam: pengislaman pemerintah (Sultan Iskandar Shah, 1414), perkahwinan, ulama/mubaligh, perdagangan, peluasan kuasa",
+    "Pengurusan perdagangan Melaka: syahbandar, cukai perdagangan yang rendah, tukar barang dan mata wang, Orang Laut dan kemudahan pelabuhan",
     "Portugis menyerang Melaka 3 kali (25 Julai, 10 Ogos, 24 Ogos 1511) di bawah Alfonso de Albuquerque",
     "Melaka jatuh ke tangan Portugis pada 24 Ogos 1511",
     "Sultan Mahmud Shah berundur ke Bentan (1511), cuba merampas semula (1515-1519), Bentan dimusnahkan (1526), mangkat di Kampar (1528)",

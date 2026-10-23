@@ -7,7 +7,10 @@ import { DataTable } from "./blocks/DataTable";
 import { IconCardGrid, type IconCardGridItem } from "./blocks/IconCardGrid";
 import { EraDotTimeline, type EraDotTimelineItem } from "./blocks/EraDotTimeline";
 import { bgPanel, bgCard, groupGlow, neon } from "./blocks/neon-tokens";
-import kejatuhanMelaka from "@/assets/form2-content/kejatuhan-melaka.png";
+import pengunduran from "@/assets/form2-content/sej2-bab5/v1-pengunduran-sultan-mahmud.svg";
+import pengunduranDesktop from "@/assets/form2-content/sej2-bab5/v1-pengunduran-sultan-mahmud-desktop.svg";
+
+const FIG_IMG = "notes-figure-img w-full rounded-2xl border border-border";
 
 const ORBIT_LABELS = [
   "Pengasasan",
@@ -21,13 +24,13 @@ const ORBIT_LABELS = [
 ];
 
 const SECTION_CHROME: Array<{ eyebrow: string; title: string; sub?: string }> = [
-  { eyebrow: "◆ 5.1", title: "Pengasasan Kesultanan Melayu Melaka", sub: "Kebijaksanaan Parameswara memilih lokasi di muara Sungai Bertam." },
-  { eyebrow: "◆ 5.2", title: "Raja dan Sistem Pentadbiran", sub: "Kepemimpinan raja yang berdaulat dan Sistem Pembesar Empat Lipatan." },
-  { eyebrow: "◆ 5.2", title: "Sistem Perundangan", sub: "Hukum Kanun Melaka, Undang-Undang Laut Melaka dan Adat Temenggung." },
-  { eyebrow: "◆ 5.2", title: "Empayar dan Hubungan Luar", sub: "Tiga cara pembentukan empayar dan rangkaian hubungan diplomatik." },
-  { eyebrow: "◆ 5.2", title: "Pusat Perdagangan", sub: "Melaka sebagai pusat pengumpulan dan pengedaran barang dagangan." },
-  { eyebrow: "◆ 5.2", title: "Pusat Penyebaran Agama Islam", sub: "Melaka muncul sebagai pusat penyebaran Islam yang paling berpengaruh di Alam Melayu." },
-  { eyebrow: "◆ 5.3", title: "Kejatuhan Melaka", sub: "Kelemahan dalaman dan tiga serangan Portugis yang menamatkan Kesultanan Melayu Melaka." },
+  { eyebrow: "◆ 5.1", title: "Pengasasan Kesultanan Melayu Melaka" },
+  { eyebrow: "◆ 5.2", title: "Raja dan Sistem Pentadbiran" },
+  { eyebrow: "◆ 5.2", title: "Sistem Perundangan" },
+  { eyebrow: "◆ 5.2", title: "Empayar dan Hubungan Luar" },
+  { eyebrow: "◆ 5.2", title: "Pusat Perdagangan" },
+  { eyebrow: "◆ 5.2", title: "Pusat Penyebaran Agama Islam" },
+  { eyebrow: "◆ 5.3", title: "Kejatuhan Melaka" },
   { eyebrow: "◆ Rumusan", title: "Fakta Penting & Istilah Utama" },
 ];
 
@@ -253,6 +256,8 @@ export function Sej2Chapter5NotesBlock({
           <div className="space-y-6">
             <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.goldenAge.empire.extent}</p>
             <IconCardGrid items={empireItems} />
+            {content.goldenAge.empire.importance && <FactGrid heading="🎯 Kepentingan Pembentukan Empayar" facts={content.goldenAge.empire.importance} />}
+            {content.goldenAge.empire.administration && <FactGrid heading="🏛️ Pentadbiran Empayar" facts={content.goldenAge.empire.administration} />}
             <DataTable
               headers={["Kerajaan", "Jenis Hubungan", "Faedah"]}
               rows={content.goldenAge.foreignRelations.map((r) => [r.kingdom, r.relationType, r.benefit])}
@@ -263,6 +268,7 @@ export function Sej2Chapter5NotesBlock({
         {current === 4 && (
           <div className="space-y-6">
             <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.tradeHub.intro}</p>
+            {content.tradeHub.features && <FactGrid heading="⚓ Ciri Pusat Perdagangan" facts={content.tradeHub.features} />}
             <IconCardGrid items={tradeItems} />
             <div className="rounded-xl p-3.5" style={{ background: bgPanel }}>
               <p className="text-[12.5px] font-semibold text-foreground">🗣️ Bahasa Perdagangan</p>
@@ -277,16 +283,12 @@ export function Sej2Chapter5NotesBlock({
           <div className="space-y-6">
             <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.islamSpread.intro}</p>
             <FactGrid heading="☪️ Cara Penyebaran Islam" facts={content.islamSpread.methods} />
+            {content.islamSpread.effects && <FactGrid heading="📚 Kesan Penyebaran" facts={content.islamSpread.effects} />}
           </div>
         )}
 
         {current === 6 && (
           <div className="space-y-6">
-            <img
-              src={kejatuhanMelaka}
-              alt="Kejatuhan Melaka 1511"
-              className="notes-figure-img rounded-2xl border border-border"
-            />
             <EraDotTimeline items={fallTimelineItems} />
             <div className="grid gap-3.5 sm:grid-cols-2">
               {content.fall.internalWeaknesses.map((w) => (
@@ -303,9 +305,17 @@ export function Sej2Chapter5NotesBlock({
               ))}
             </div>
             <ChipRow heading="🎯 Motif Portugis" items={content.fall.portugueseMotives} />
-            <p className="text-center text-[11px] leading-relaxed text-muted-foreground">
-              {content.fall.resistance.map((r) => `${r.event} (${r.year})`).join(" → ")}
-            </p>
+            <figure className="space-y-2">
+              <div className="sm:hidden">
+                <img src={pengunduran} alt="Peta pengunduran dan perjuangan Sultan Mahmud Shah selepas 1511" className={FIG_IMG} loading="lazy" />
+              </div>
+              <div className="hidden sm:block">
+                <img src={pengunduranDesktop} alt="Peta pengunduran dan perjuangan Sultan Mahmud Shah selepas 1511" className={`${FIG_IMG} notes-figure-img--wide`} loading="lazy" />
+              </div>
+              <figcaption className="text-center text-[11px] italic leading-snug text-muted-foreground">
+                Sumber: buku teks hlm. 91. Peta asas: Natural Earth; kedudukan anggaran.
+              </figcaption>
+            </figure>
           </div>
         )}
 
