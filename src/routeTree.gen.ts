@@ -35,13 +35,13 @@ import { Route as ExploreAcademyRouteImport } from './routes/explore-academy'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CompanionRouteImport } from './routes/companion'
-import { Route as CompanionPortalRouteImport } from './routes/companion_.portal'
 import { Route as CardRouteImport } from './routes/card'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as NovaStudioRouteImport } from './routes/nova_.studio'
 import { Route as NovaDemoRouteImport } from './routes/nova_.demo'
+import { Route as CompanionPortalRouteImport } from './routes/companion_.portal'
 import { Route as CardContactDotvcfRouteImport } from './routes/card.contact[.]vcf'
 import { Route as AuthResetPasswordRouteImport } from './routes/auth.reset-password'
 import { Route as AuthConfirmRouteImport } from './routes/auth.confirm'
@@ -53,6 +53,7 @@ import { Route as AdminTrafficRouteImport } from './routes/admin.traffic'
 import { Route as AdminSchoolReportsRouteImport } from './routes/admin.school-reports'
 import { Route as AdminReportsRouteImport } from './routes/admin.reports'
 import { Route as AdminContentLibraryRouteImport } from './routes/admin.content-library'
+import { Route as AdminCompanionCraftRouteImport } from './routes/admin.companion-craft'
 import { Route as AdminCikguIntelRouteImport } from './routes/admin.cikgu-intel'
 import { Route as AccountBillingRouteImport } from './routes/account.billing'
 import { Route as AcademyLandingpage3RouteImport } from './routes/academy/landingpage3'
@@ -190,11 +191,6 @@ const CompanionRoute = CompanionRouteImport.update({
   path: '/companion',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CompanionPortalRoute = CompanionPortalRouteImport.update({
-  id: '/companion_/portal',
-  path: '/companion/portal',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const CardRoute = CardRouteImport.update({
   id: '/card',
   path: '/card',
@@ -223,6 +219,11 @@ const NovaStudioRoute = NovaStudioRouteImport.update({
 const NovaDemoRoute = NovaDemoRouteImport.update({
   id: '/nova_/demo',
   path: '/nova/demo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompanionPortalRoute = CompanionPortalRouteImport.update({
+  id: '/companion_/portal',
+  path: '/companion/portal',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CardContactDotvcfRoute = CardContactDotvcfRouteImport.update({
@@ -280,6 +281,11 @@ const AdminContentLibraryRoute = AdminContentLibraryRouteImport.update({
   path: '/content-library',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminCompanionCraftRoute = AdminCompanionCraftRouteImport.update({
+  id: '/companion-craft',
+  path: '/companion-craft',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminCikguIntelRoute = AdminCikguIntelRouteImport.update({
   id: '/cikgu-intel',
   path: '/cikgu-intel',
@@ -317,7 +323,6 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRouteWithChildren
   '/card': typeof CardRouteWithChildren
   '/companion': typeof CompanionRoute
-  '/companion/portal': typeof CompanionPortalRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
   '/explore-academy': typeof ExploreAcademyRoute
@@ -346,6 +351,7 @@ export interface FileRoutesByFullPath {
   '/academy/landingpage3': typeof AcademyLandingpage3Route
   '/account/billing': typeof AccountBillingRoute
   '/admin/cikgu-intel': typeof AdminCikguIntelRoute
+  '/admin/companion-craft': typeof AdminCompanionCraftRoute
   '/admin/content-library': typeof AdminContentLibraryRoute
   '/admin/reports': typeof AdminReportsRoute
   '/admin/school-reports': typeof AdminSchoolReportsRoute
@@ -357,6 +363,7 @@ export interface FileRoutesByFullPath {
   '/auth/confirm': typeof AuthConfirmRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/card/contact.vcf': typeof CardContactDotvcfRoute
+  '/companion/portal': typeof CompanionPortalRoute
   '/nova/demo': typeof NovaDemoRoute
   '/nova/studio': typeof NovaStudioRoute
   '/admin/': typeof AdminIndexRoute
@@ -368,7 +375,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/card': typeof CardRouteWithChildren
   '/companion': typeof CompanionRoute
-  '/companion/portal': typeof CompanionPortalRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
   '/explore-academy': typeof ExploreAcademyRoute
@@ -397,6 +403,7 @@ export interface FileRoutesByTo {
   '/academy/landingpage3': typeof AcademyLandingpage3Route
   '/account/billing': typeof AccountBillingRoute
   '/admin/cikgu-intel': typeof AdminCikguIntelRoute
+  '/admin/companion-craft': typeof AdminCompanionCraftRoute
   '/admin/content-library': typeof AdminContentLibraryRoute
   '/admin/reports': typeof AdminReportsRoute
   '/admin/school-reports': typeof AdminSchoolReportsRoute
@@ -408,6 +415,7 @@ export interface FileRoutesByTo {
   '/auth/confirm': typeof AuthConfirmRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/card/contact.vcf': typeof CardContactDotvcfRoute
+  '/companion/portal': typeof CompanionPortalRoute
   '/nova/demo': typeof NovaDemoRoute
   '/nova/studio': typeof NovaStudioRoute
   '/admin': typeof AdminIndexRoute
@@ -421,7 +429,6 @@ export interface FileRoutesById {
   '/admin': typeof AdminRouteWithChildren
   '/card': typeof CardRouteWithChildren
   '/companion': typeof CompanionRoute
-  '/companion_/portal': typeof CompanionPortalRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
   '/explore-academy': typeof ExploreAcademyRoute
@@ -450,6 +457,7 @@ export interface FileRoutesById {
   '/academy/landingpage3': typeof AcademyLandingpage3Route
   '/account/billing': typeof AccountBillingRoute
   '/admin/cikgu-intel': typeof AdminCikguIntelRoute
+  '/admin/companion-craft': typeof AdminCompanionCraftRoute
   '/admin/content-library': typeof AdminContentLibraryRoute
   '/admin/reports': typeof AdminReportsRoute
   '/admin/school-reports': typeof AdminSchoolReportsRoute
@@ -461,6 +469,7 @@ export interface FileRoutesById {
   '/auth/confirm': typeof AuthConfirmRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/card/contact.vcf': typeof CardContactDotvcfRoute
+  '/companion_/portal': typeof CompanionPortalRoute
   '/nova_/demo': typeof NovaDemoRoute
   '/nova_/studio': typeof NovaStudioRoute
   '/admin/': typeof AdminIndexRoute
@@ -475,7 +484,6 @@ export interface FileRouteTypes {
     | '/admin'
     | '/card'
     | '/companion'
-    | '/companion/portal'
     | '/contact'
     | '/dashboard'
     | '/explore-academy'
@@ -504,6 +512,7 @@ export interface FileRouteTypes {
     | '/academy/landingpage3'
     | '/account/billing'
     | '/admin/cikgu-intel'
+    | '/admin/companion-craft'
     | '/admin/content-library'
     | '/admin/reports'
     | '/admin/school-reports'
@@ -515,6 +524,7 @@ export interface FileRouteTypes {
     | '/auth/confirm'
     | '/auth/reset-password'
     | '/card/contact.vcf'
+    | '/companion/portal'
     | '/nova/demo'
     | '/nova/studio'
     | '/admin/'
@@ -526,7 +536,6 @@ export interface FileRouteTypes {
     | '/'
     | '/card'
     | '/companion'
-    | '/companion/portal'
     | '/contact'
     | '/dashboard'
     | '/explore-academy'
@@ -555,6 +564,7 @@ export interface FileRouteTypes {
     | '/academy/landingpage3'
     | '/account/billing'
     | '/admin/cikgu-intel'
+    | '/admin/companion-craft'
     | '/admin/content-library'
     | '/admin/reports'
     | '/admin/school-reports'
@@ -566,6 +576,7 @@ export interface FileRouteTypes {
     | '/auth/confirm'
     | '/auth/reset-password'
     | '/card/contact.vcf'
+    | '/companion/portal'
     | '/nova/demo'
     | '/nova/studio'
     | '/admin'
@@ -578,7 +589,6 @@ export interface FileRouteTypes {
     | '/admin'
     | '/card'
     | '/companion'
-    | '/companion_/portal'
     | '/contact'
     | '/dashboard'
     | '/explore-academy'
@@ -607,6 +617,7 @@ export interface FileRouteTypes {
     | '/academy/landingpage3'
     | '/account/billing'
     | '/admin/cikgu-intel'
+    | '/admin/companion-craft'
     | '/admin/content-library'
     | '/admin/reports'
     | '/admin/school-reports'
@@ -618,6 +629,7 @@ export interface FileRouteTypes {
     | '/auth/confirm'
     | '/auth/reset-password'
     | '/card/contact.vcf'
+    | '/companion_/portal'
     | '/nova_/demo'
     | '/nova_/studio'
     | '/admin/'
@@ -631,7 +643,6 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRouteWithChildren
   CardRoute: typeof CardRouteWithChildren
   CompanionRoute: typeof CompanionRoute
-  CompanionPortalRoute: typeof CompanionPortalRoute
   ContactRoute: typeof ContactRoute
   DashboardRoute: typeof DashboardRoute
   ExploreAcademyRoute: typeof ExploreAcademyRoute
@@ -663,6 +674,7 @@ export interface RootRouteChildren {
   AuthCallbackRoute: typeof AuthCallbackRoute
   AuthConfirmRoute: typeof AuthConfirmRoute
   AuthResetPasswordRoute: typeof AuthResetPasswordRoute
+  CompanionPortalRoute: typeof CompanionPortalRoute
   NovaDemoRoute: typeof NovaDemoRoute
   NovaStudioRoute: typeof NovaStudioRoute
   CardCPublicIdRoute: typeof CardCPublicIdRoute
@@ -853,13 +865,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CompanionRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/companion_/portal': {
-      id: '/companion_/portal'
-      path: '/companion/portal'
-      fullPath: '/companion/portal'
-      preLoaderRoute: typeof CompanionPortalRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/card': {
       id: '/card'
       path: '/card'
@@ -900,6 +905,13 @@ declare module '@tanstack/react-router' {
       path: '/nova/demo'
       fullPath: '/nova/demo'
       preLoaderRoute: typeof NovaDemoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/companion_/portal': {
+      id: '/companion_/portal'
+      path: '/companion/portal'
+      fullPath: '/companion/portal'
+      preLoaderRoute: typeof CompanionPortalRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/card/contact.vcf': {
@@ -979,6 +991,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminContentLibraryRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/companion-craft': {
+      id: '/admin/companion-craft'
+      path: '/companion-craft'
+      fullPath: '/admin/companion-craft'
+      preLoaderRoute: typeof AdminCompanionCraftRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/cikgu-intel': {
       id: '/admin/cikgu-intel'
       path: '/cikgu-intel'
@@ -1026,6 +1045,7 @@ declare module '@tanstack/react-router' {
 
 interface AdminRouteChildren {
   AdminCikguIntelRoute: typeof AdminCikguIntelRoute
+  AdminCompanionCraftRoute: typeof AdminCompanionCraftRoute
   AdminContentLibraryRoute: typeof AdminContentLibraryRoute
   AdminReportsRoute: typeof AdminReportsRoute
   AdminSchoolReportsRoute: typeof AdminSchoolReportsRoute
@@ -1038,6 +1058,7 @@ interface AdminRouteChildren {
 
 const AdminRouteChildren: AdminRouteChildren = {
   AdminCikguIntelRoute: AdminCikguIntelRoute,
+  AdminCompanionCraftRoute: AdminCompanionCraftRoute,
   AdminContentLibraryRoute: AdminContentLibraryRoute,
   AdminReportsRoute: AdminReportsRoute,
   AdminSchoolReportsRoute: AdminSchoolReportsRoute,
@@ -1065,7 +1086,6 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRouteWithChildren,
   CardRoute: CardRouteWithChildren,
   CompanionRoute: CompanionRoute,
-  CompanionPortalRoute: CompanionPortalRoute,
   ContactRoute: ContactRoute,
   DashboardRoute: DashboardRoute,
   ExploreAcademyRoute: ExploreAcademyRoute,
@@ -1097,6 +1117,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthCallbackRoute: AuthCallbackRoute,
   AuthConfirmRoute: AuthConfirmRoute,
   AuthResetPasswordRoute: AuthResetPasswordRoute,
+  CompanionPortalRoute: CompanionPortalRoute,
   NovaDemoRoute: NovaDemoRoute,
   NovaStudioRoute: NovaStudioRoute,
   CardCPublicIdRoute: CardCPublicIdRoute,

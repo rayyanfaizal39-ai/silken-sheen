@@ -646,12 +646,16 @@ function CompanionHeroCard({
           {chosen ? chosen.name : awaiting ? "Awaiting discovery" : species.name}
         </p>
         <div className="mt-1 flex h-[168px] w-full max-w-[280px] items-center justify-center sm:h-[188px] sm:max-w-[288px]">
-          {chosen ? (
+          {chosen?.artworkUrl ? (
             <img
               src={chosen.artworkUrl}
               alt={`${chosen.name} the ${chosen.species}`}
               className="h-full max-h-[188px] w-auto rounded-3xl border border-[#E1C27F] object-contain"
             />
+          ) : chosen?.crafting ? (
+            <p className="max-w-[220px] font-display text-lg font-black text-[#F6EAD2]">
+              Your companion is being crafted
+            </p>
           ) : awaiting ? (
             <span className="font-display text-6xl text-[#F6EAD2]" aria-hidden="true">
               ?
@@ -666,11 +670,13 @@ function CompanionHeroCard({
           )}
         </div>
         <p className="mt-1 text-xs font-bold text-[#E9D5FF]">
-          {chosen
-            ? `${chosen.element} · ${chosen.species}`
-            : awaiting
-              ? "Your companion is waiting to be discovered."
-              : `Earn Lifetime XP to help ${companionName} grow.`}
+          {chosen?.crafting
+            ? "Your companion is being crafted"
+            : chosen
+              ? `${chosen.element} · ${chosen.species}`
+              : awaiting
+                ? "Your companion is waiting to be discovered."
+                : `Earn Lifetime XP to help ${companionName} grow.`}
         </p>
       </div>
     </Card>
@@ -1393,7 +1399,7 @@ function CosmicCompanionCard({
           >
             <div className="cosmic-companion-pedestal absolute bottom-2 left-1/2 -translate-x-1/2" />
             <div className="cosmic-companion-egg relative z-10 mb-3">
-              {chosen ? (
+              {chosen?.artworkUrl ? (
                 <img
                   src={chosen.artworkUrl}
                   alt={`${chosen.name} the ${chosen.species}`}
@@ -1401,6 +1407,10 @@ function CosmicCompanionCard({
                   height={140}
                   className="h-[140px] w-[140px] rounded-3xl border border-[#E1C27F] object-cover"
                 />
+              ) : chosen?.crafting ? (
+                <p className="max-w-[140px] text-center font-display text-sm font-black text-[#F6EAD2]">
+                  Your companion is being crafted
+                </p>
               ) : awaiting ? (
                 <span className="font-display text-6xl text-[#F6EAD2]" aria-hidden="true">
                   ?
@@ -1414,11 +1424,13 @@ function CosmicCompanionCard({
           {/* CENTER — identity */}
           <div className="flex-1 min-w-0 text-center sm:text-left">
             <p className="text-[10px] font-bold uppercase tracking-widest text-[#C4B5FD]/70">
-              {chosen
-                ? `${chosen.element} · ${chosen.species}`
-                : awaiting
-                  ? "Not discovered yet"
-                  : species.name}
+              {chosen?.crafting
+                ? "Being crafted"
+                : chosen
+                  ? `${chosen.element} · ${chosen.species}`
+                  : awaiting
+                    ? "Not discovered yet"
+                    : species.name}
             </p>
             <p className="font-display text-2xl font-black text-white sm:text-3xl">
               {chosen

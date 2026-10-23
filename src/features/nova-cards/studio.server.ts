@@ -149,7 +149,19 @@ export const chooseStudioOrigin = createServerFn({ method: "POST" })
   .validator((v: unknown) => z.enum(["a", "b"]).parse(v))
   .handler(async ({ data: candidate }) => {
     const db = await owner();
-    const { error } = await db.rpc("select_nova_origin", { chosen_candidate: candidate });
+    const { data: current, error: loadError } = await db.rpc("get_my_nova_studio");
+    if (loadError)
+      throw new Error(
+        "Your choice could not be saved. Refresh to check readiness and subscription access.",
+      );
+    // Approved portraits still use the permanent reveal. Before that, the choice is queued
+    // for a staff portrait and the card serial is left untouched.
+    const ready = Boolean(
+      (current as { origin?: { ready?: boolean } | null } | null)?.origin?.ready,
+    );
+    const { error } = ready
+      ? await db.rpc("select_nova_origin", { chosen_candidate: candidate })
+      : await db.rpc("nova_record_craft_choice", { chosen_slot: candidate });
     if (error)
       throw new Error(
         "Your choice could not be saved. Refresh to check readiness and subscription access.",

@@ -17,7 +17,9 @@ export function DevSignInPanel() {
           className="flex w-full items-center justify-between rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-5 py-3 text-left text-sm font-bold text-white shadow-[0_16px_40px_-8px_rgba(99,102,241,0.6)] transition hover:scale-[1.01] active:scale-[0.98]"
         >
           <span>{student.name}</span>
-          <span className="text-xs font-semibold text-white/80">{student.formLevel}</span>
+          <span className="text-xs font-semibold text-white/80">
+            {student.role === "admin" ? "Staff" : student.formLevel}
+          </span>
         </button>
       ))}
     </div>

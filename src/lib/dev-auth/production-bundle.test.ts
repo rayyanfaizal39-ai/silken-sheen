@@ -150,4 +150,40 @@ describe("dev auth bypass production bundle", () => {
     expect(code).not.toContain("academymy.dev-auth.v1");
     expect(code).not.toContain("matchCompanions");
   });
+
+  it("drops the staff craft queue from the admin screen when DEV is false", async () => {
+    const result = await esbuild.build({
+      absWorkingDir: root,
+      entryPoints: [path.join(root, "src/routes/admin.companion-craft.tsx")],
+      bundle: true,
+      format: "esm",
+      write: false,
+      platform: "browser",
+      jsx: "automatic",
+      treeShaking: true,
+      define: prodDefine,
+      plugins: [
+        externalizeExceptDevAuth(),
+        {
+          name: "empty-css",
+          setup(build) {
+            build.onResolve({ filter: /\.css$/ }, (args) => ({
+              path: args.path,
+              namespace: "empty-css",
+            }));
+            build.onLoad({ filter: /.*/, namespace: "empty-css" }, () => ({
+              contents: "",
+              loader: "js",
+            }));
+          },
+        },
+      ],
+    });
+    const code = result.outputFiles[0].text;
+    expect(code).not.toContain("staff@dev.local");
+    expect(code).not.toContain("academymy.dev-auth.v1");
+    expect(code).not.toContain("devAttachCraftPortrait");
+    expect(code).not.toContain("dev-auth/store");
+    expect(code).not.toContain("dev-auth/craft-dev");
+  });
 });

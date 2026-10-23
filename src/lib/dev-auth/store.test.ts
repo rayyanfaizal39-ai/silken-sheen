@@ -1,9 +1,13 @@
 import { afterEach, describe, expect, it } from "vitest";
 import { barcodeSymbols } from "@/features/nova-cards/codes";
+import { craftQueueToCsv, craftQueueToJson } from "@/features/nova-cards/craft-queue";
 import { journeyStage } from "@/features/cosmic-companion/journey";
 import {
   createMemoryStorage,
+  devApproveCraftPortrait,
+  devAttachCraftPortrait,
   devChooseStudio,
+  devCraftQueue,
   devDashboardStatus,
   devLoadStudio,
   devOwnerNova,
@@ -57,8 +61,9 @@ describe("local dev companion card", () => {
     expect(barcodeSymbols(card!.serial).length).toBeGreaterThan(0);
     expect(card?.companion?.name).toBe(chosen.companion?.name);
     expect(card?.companion?.species).toBeTruthy();
-    expect(card?.artworkUrl).toBeTruthy();
-    expect(card?.artworkUrl).not.toMatch(/openai|api\.openai/i);
+    expect(card?.artworkUrl).toBeFalsy();
+    expect(card?.crafting).toBe(true);
+    expect(JSON.stringify(card)).not.toMatch(/openai|api\.openai/i);
     expect(card?.sharing).toBe(false);
     expect(readDevPublicCard(card!.publicId)).toBeNull();
 
@@ -84,5 +89,52 @@ describe("local dev companion card", () => {
 
     signInDevStudentRecord(DEV_STUDENTS[0].id);
     expect((await devLoadStudio()).draft.username).toBe("Aisha");
+  });
+
+  it("lets staff attach and approve a portrait without changing the serial", async () => {
+    useDevAuthStorage(createMemoryStorage());
+    const student = DEV_STUDENTS[0];
+    const staff = DEV_STUDENTS.find((item) => item.role === "admin");
+    expect(staff?.email).toBe("staff@dev.local");
+    signInDevStudentRecord(student.id);
+    await devSaveStudio({ ...(await devLoadStudio()).draft, answers });
+    await devSubmitStudio();
+    await devChooseStudio("b");
+    expect(() => devCraftQueue()).toThrow(/administrator/i);
+
+    signInDevStudentRecord(staff!.id);
+    const queued = devCraftQueue();
+    expect(queued).toHaveLength(1);
+    expect(queued[0]).toMatchObject({
+      studentName: "Aisha",
+      form: "Form 1",
+      serial: student.serial,
+      status: "awaiting_art",
+    });
+    const csv = craftQueueToCsv(queued);
+    const json = craftQueueToJson(queued);
+    expect(csv.split("\n")[0]).toContain("serial");
+    expect(`${csv}\n${json}`.toLowerCase()).not.toContain("birth year");
+    expect(json).toContain(student.serial);
+
+    const portrait = "data:image/png;base64,iVBORw0KGgo=";
+    const attached = devAttachCraftPortrait(queued[0].cardId, portrait, "aisha.png");
+    expect(attached.status).toBe("pending_review");
+    expect(attached.previewUrl).toBe(portrait);
+    signInDevStudentRecord(student.id);
+    const waiting = devOwnerNova().card;
+    expect(waiting?.serial).toBe(student.serial);
+    expect(waiting?.crafting).toBe(true);
+    expect(waiting?.artworkUrl).toBeFalsy();
+
+    signInDevStudentRecord(staff!.id);
+    const approved = devApproveCraftPortrait(queued[0].cardId);
+    expect(approved.status).toBe("approved");
+    expect(approved.serial).toBe(student.serial);
+    signInDevStudentRecord(student.id);
+    const finished = devOwnerNova().card;
+    expect(finished?.artworkUrl).toBe(portrait);
+    expect(finished?.crafting).toBe(false);
+    expect(finished?.serial).toBe(student.serial);
   });
 });

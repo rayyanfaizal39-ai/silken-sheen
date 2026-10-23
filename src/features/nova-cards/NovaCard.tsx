@@ -22,7 +22,10 @@ export function NovaCard({
   const [downloading, setDownloading] = useState(false);
   const stage = Math.max(1, Math.min(STAGES.length, card.stage ?? 1));
   const face = cardFace(card);
-  const artwork = card.artworkUrl || svgUrl(companionSvg(face.fallbackTraits, card.variant, stage));
+  const crafting = Boolean(card.crafting) && !card.artworkUrl;
+  const artwork = crafting
+    ? ""
+    : card.artworkUrl || svgUrl(companionSvg(face.fallbackTraits, card.variant, stage));
   useEffect(() => {
     let active = true;
     setQr("");
@@ -85,13 +88,23 @@ export function NovaCard({
               <small>{card.rarity}</small>
             </div>
             <div className="nova-art-frame">
-              <img
-                className="nova-art"
-                src={artwork}
-                alt={`${face.alt}, stage ${stage}`}
-                width="600"
-                height="640"
-              />
+              {crafting ? (
+                <div className="nova-craft-wait">
+                  <span aria-hidden="true">✦</span>
+                  <strong>Your companion is being crafted</strong>
+                  <p>
+                    {face.name} the {face.species}
+                  </p>
+                </div>
+              ) : (
+                <img
+                  className="nova-art"
+                  src={artwork}
+                  alt={`${face.alt}, stage ${stage}`}
+                  width="600"
+                  height="640"
+                />
+              )}
               <span className="nova-art-label">
                 {card.demo ? "FICTIONAL DEMO · " : ""}STAGE {stage} / {STAGES.length}
               </span>

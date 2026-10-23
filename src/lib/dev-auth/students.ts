@@ -5,10 +5,12 @@ export interface DevStudent {
   id: string;
   email: string;
   name: string;
-  formLevel: ExplorerFormLevel;
-  age: number;
-  /** Twelve-digit Code 128 serial reserved for this browser-only card. */
-  serial: string;
+  formLevel: ExplorerFormLevel | null;
+  age: number | null;
+  /** Twelve-digit Code 128 serial reserved for this browser-only card. Staff have none. */
+  serial: string | null;
+  /** Defaults to student. The staff account is an admin and never receives a card. */
+  role?: "student" | "admin";
 }
 
 export const DEV_STUDENTS: readonly DevStudent[] = [
@@ -27,6 +29,15 @@ export const DEV_STUDENTS: readonly DevStudent[] = [
     formLevel: "Form 2",
     age: 14,
     serial: "100000000102",
+  },
+  {
+    id: "00000000-0000-4000-8000-00000000d201",
+    email: "staff@dev.local",
+    name: "Staff",
+    formLevel: null,
+    age: null,
+    serial: null,
+    role: "admin",
   },
 ];
 

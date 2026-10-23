@@ -21,15 +21,27 @@ Do not put a Supabase URL or key in that file. Restart `npm run dev`, then open:
 
 `http://localhost:8080/login?next=/companion`
 
-Choose **Aisha · Form 1** or **Haziq · Form 2**. Answer the twelve questions, summon the companions, and choose one. Companion artwork is a local stand-in (a drawing already in this repo, or a portrait generated in the browser from the companion's species and element). No image API is called, and `NOVA_AI_ENABLED` stays off.
+Choose **Aisha · Form 1**, **Haziq · Form 2**, or **Staff**. Answer the twelve questions, summon the companions, and choose one. The two companions you compare use a local drawing so you can see them. That drawing is not the card portrait. No image API is called, and `NOVA_AI_ENABLED` / `NOVA_AI_BATCH_ENABLED` stay off.
 
-The finished portrait card, with its gold frame, QR code and barcode, is at:
+Until a staff portrait is approved, the card says **Your companion is being crafted**. The gold frame, serial, QR code and barcode are already there. The portrait appears after Staff uploads it and approves it.
+
+The card is at:
 
 `http://localhost:8080/nova`
 
-The same companion is shown on `http://localhost:8080/companion` and on the student dashboard. Until a companion is chosen, both say **Awaiting discovery**.
+The same companion is shown on `http://localhost:8080/companion` and on the student dashboard. Until a companion is chosen, both say **Awaiting discovery**. After the choice, they say the companion is being crafted. After approval, they show the uploaded portrait.
 
-Each student's answers, choice, and card stay in this browser's `localStorage` under `academymy.dev-auth.v1`. After pulling this update, refresh the studio page. A journey that was already saved will pick up the local artwork.
+## Staff portraits
+
+Sign in as **Staff**, then open:
+
+`http://localhost:8080/admin/companion-craft`
+
+The queue lists the student, form, answers, companion, species, element and card serial. Export CSV or JSON, make the portrait with any tool, upload it, preview it, and approve it. Replacing a portrait before approval does not change the serial. One card stays with the student.
+
+Aisha and Haziq cannot open that screen. The same admin check lives in the `nova_admin_*` database functions. The migration file `supabase/migrations/20261023140000_nova_staff_craft.sql` is for review only. Do not apply it to a Supabase project from this dev bypass.
+
+Each student's answers, choice, and card stay in this browser's `localStorage` under `academymy.dev-auth.v1`. After pulling this update, refresh the studio page. A journey that was already saved keeps its serial. The card waits for a staff portrait instead of copying the comparison drawing.
 
 ## Turn it off
 

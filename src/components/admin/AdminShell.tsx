@@ -16,6 +16,7 @@ interface NavItem {
     | "/admin/users"
     | "/admin/school-reports"
     | "/admin/reports"
+    | "/admin/companion-craft"
     | "/admin/traffic"
     | "/admin/weekly-report";
 }
@@ -25,6 +26,7 @@ const NAV: { group: string; items: NavItem[] }[] = [
     group: "Overview",
     items: [
       { icon: "▣", label: "Dashboard", to: "/admin" },
+      { icon: "✦", label: "Companion craft", to: "/admin/companion-craft" },
       { icon: "👥", label: "Users", to: "/admin/users" },
       { icon: "S", label: "School Reports", to: "/admin/school-reports" },
       { icon: "💳", label: "Payments" },

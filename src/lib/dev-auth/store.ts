@@ -12,6 +12,7 @@ import {
   matchCompanions,
   type CompanionCandidateSpec,
 } from "../../../supabase/functions/_shared/companion-matcher";
+import type { CraftBrief } from "@/features/nova-cards/craft-queue";
 import { devCompanionArtworkUrl } from "./local-artwork";
 import { devStudentById, type DevStudent } from "./students";
 
@@ -26,6 +27,12 @@ export interface KeyValueStorage {
 interface StudentRecord {
   studio: StudioState;
   card: NovaCard | null;
+  /** Staff portrait workflow. Absent until the student confirms a companion. */
+  craft?: {
+    status: CraftBrief["status"];
+    pendingUrl?: string;
+    fileName?: string;
+  };
 }
 
 interface PersistedDevAuth {
@@ -148,7 +155,7 @@ export function devExplorerProfile(student: DevStudent): ExplorerProfile {
     recordedForm: student.formLevel,
     schoolId: null,
     onboardingCompleted: true,
-    role: "student",
+    role: student.role ?? "student",
   };
 }
 
@@ -168,13 +175,9 @@ function artworkFor(species: string, element: string, variant: "a" | "b") {
   return devCompanionArtworkUrl(species, element, variant);
 }
 
-/** Fill the artwork slots the paid generator would have filled, using local stand-ins. */
+/** Comparison drawings only, before the student confirms a companion. */
 function withArtwork(studio: StudioState): StudioState {
-  const specs = studio.companions?.length
-    ? studio.companions
-    : studio.companion
-      ? [studio.companion]
-      : [];
+  const specs = !studio.selected && studio.companions?.length ? studio.companions : [];
   if (!specs.length) return studio;
   const candidates = specs.map((spec) => {
     const saved = studio.candidates.find((item) => item.candidate === spec.slot && item.url);
@@ -183,14 +186,8 @@ function withArtwork(studio: StudioState): StudioState {
       url: saved?.url || artworkFor(spec.species, spec.element, spec.slot),
     };
   });
-  const chosen = studio.companion;
-  return {
-    ...studio,
-    candidates,
-    companionArtworkUrl:
-      studio.companionArtworkUrl ||
-      (chosen ? candidates.find((item) => item.candidate === chosen.slot)?.url : undefined),
-  };
+  // Comparison drawings only. A confirmed card waits for a staff portrait.
+  return { ...studio, candidates };
 }
 
 export function devLoadStudio(): Promise<StudioState> {
@@ -268,14 +265,12 @@ export function devSubmitStudio(): Promise<StudioState> {
 
 export function devChooseStudio(candidate: "a" | "b"): Promise<StudioState> {
   const { student, record, state } = activeRecord();
+  if (!student.serial) throw new Error("This account does not receive a companion card.");
   if (record.studio.selected) return Promise.resolve(structuredClone(record.studio));
   const spec = record.studio.companions?.find((item) => item.slot === candidate);
   if (!spec || !record.studio.publicId)
     throw new Error("Meet both companions before choosing one.");
   const username = record.studio.draft.username;
-  const artworkUrl =
-    record.studio.candidates.find((item) => item.candidate === candidate)?.url ||
-    artworkFor(spec.species, spec.element, candidate);
   const card: NovaCard = {
     publicId: record.studio.publicId,
     serial: student.serial,
@@ -286,16 +281,17 @@ export function devChooseStudio(candidate: "a" | "b"): Promise<StudioState> {
     rarity: "Rare",
     stage: 1,
     sharing: false,
-    artworkUrl,
+    crafting: true,
   };
   record.card = card;
+  record.craft = { status: "awaiting_art" };
   record.studio = {
     ...record.studio,
     selected: candidate,
     companion: spec,
     companions: undefined,
-    companionArtworkUrl: artworkUrl,
-    candidates: [{ candidate, url: artworkUrl }],
+    companionArtworkUrl: undefined,
+    candidates: [],
   };
   persist(state);
   return Promise.resolve(structuredClone(record.studio));
@@ -318,10 +314,11 @@ export type DevDemoCompanion =
   | { discovered: false }
   | {
       discovered: true;
+      crafting: boolean;
       name: string;
       species: string;
       element: string;
-      artworkUrl: string;
+      artworkUrl?: string;
     };
 
 /** What the dashboard and Cosmic Companion page should show for this browser session. */
@@ -330,14 +327,14 @@ export function devDemoCompanion(): DevDemoCompanion {
     const { record } = activeRecord();
     const companion = record.card?.companion;
     if (!record.card || !companion) return { discovered: false };
+    const crafting = Boolean(record.card.crafting) || !record.card.artworkUrl;
     return {
       discovered: true,
+      crafting,
       name: companion.name,
       species: companion.species,
       element: companion.element,
-      artworkUrl:
-        record.card.artworkUrl ||
-        artworkFor(companion.species, companion.element, record.card.variant),
+      ...(crafting ? {} : { artworkUrl: record.card.artworkUrl }),
     };
   } catch {
     return { discovered: false };
@@ -347,9 +344,6 @@ export function devDemoCompanion(): DevDemoCompanion {
 export function devOwnerNova(): { card: NovaCard | null; entitlement: NovaEntitlement } {
   const { record } = activeRecord();
   const card = record.card ? structuredClone(record.card) : null;
-  if (card?.companion && !card.artworkUrl) {
-    card.artworkUrl = artworkFor(card.companion.species, card.companion.element, card.variant);
-  }
   return {
     card,
     entitlement: novaEntitlement({
@@ -376,4 +370,87 @@ export function readDevPublicCard(publicId: string): NovaCard | null {
       return structuredClone(record.card);
   }
   return null;
+}
+
+function requireStaff() {
+  const id = read().activeStudentId;
+  const account = id ? devStudentById(id) : undefined;
+  if (account?.role !== "admin") throw new Error("An active administrator account is required");
+}
+
+function briefFor(studentId: string, record: StudentRecord): CraftBrief | null {
+  const student = devStudentById(studentId);
+  const card = record.card;
+  const companion = card?.companion;
+  if (!student || student.role === "admin" || !card?.serial || !companion) return null;
+  const craft = record.craft ?? { status: "awaiting_art" as const };
+  return {
+    cardId: card.publicId,
+    publicId: card.publicId,
+    serial: card.serial,
+    username: card.username,
+    studentName: student.name,
+    form: student.formLevel ?? "",
+    email: student.email,
+    answers: record.studio.identity?.answers ?? record.studio.draft.answers,
+    slot: card.variant,
+    companionName: companion.name,
+    species: companion.species,
+    element: companion.element,
+    personality: companion.personality,
+    status: craft.pendingUrl ? "pending_review" : craft.status,
+    artworkId: craft.pendingUrl ? `pending:${card.publicId}` : null,
+    previewUrl:
+      craft.pendingUrl ?? (craft.status === "approved" ? (card.artworkUrl ?? null) : null),
+  };
+}
+
+/** Confirmed companions waiting for a staff portrait. Staff only. */
+export function devCraftQueue(): CraftBrief[] {
+  requireStaff();
+  const state = read();
+  return Object.entries(state.students)
+    .map(([id, record]) => briefFor(id, record))
+    .filter((item): item is CraftBrief => item !== null);
+}
+
+const MAX_PORTRAIT_CHARS = 1_400_000;
+
+/** Store a staff portrait for preview. The card serial and current approved art stay put. */
+export function devAttachCraftPortrait(
+  studentId: string,
+  dataUrl: string,
+  fileName = "portrait.png",
+): CraftBrief {
+  requireStaff();
+  if (!dataUrl.startsWith("data:image/") || dataUrl.length > MAX_PORTRAIT_CHARS)
+    throw new Error("Choose a PNG, JPEG or WebP portrait under 1 MB.");
+  const state = read();
+  const record = state.students[studentId];
+  const brief = record ? briefFor(studentId, record) : null;
+  if (!record || !brief) throw new Error("That student has not confirmed a companion.");
+  const serial = record.card?.serial;
+  record.craft = { status: "pending_review", pendingUrl: dataUrl, fileName };
+  persist(state);
+  if (record.card?.serial !== serial) throw new Error("The card serial must stay the same.");
+  return briefFor(studentId, record)!;
+}
+
+/** Approve the previewed portrait onto the existing card. */
+export function devApproveCraftPortrait(studentId: string): CraftBrief {
+  requireStaff();
+  const state = read();
+  const record = state.students[studentId];
+  if (!record?.card || !record.craft?.pendingUrl)
+    throw new Error("Upload a portrait before approving it.");
+  const serial = record.card.serial;
+  record.card = {
+    ...record.card,
+    artworkUrl: record.craft.pendingUrl,
+    crafting: false,
+  };
+  record.craft = { status: "approved", fileName: record.craft.fileName };
+  persist(state);
+  if (record.card.serial !== serial) throw new Error("The card serial must stay the same.");
+  return briefFor(studentId, record)!;
 }

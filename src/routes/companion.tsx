@@ -282,12 +282,18 @@ export function CosmicCompanionPage() {
           </div>
           {discovered ? (
             <div className="ccp-owned">
-              <img
-                src={discovered.artworkUrl}
-                alt={`${discovered.name}, ${discovered.species}`}
-                width="600"
-                height="640"
-              />
+              {discovered.artworkUrl ? (
+                <img
+                  src={discovered.artworkUrl}
+                  alt={`${discovered.name}, ${discovered.species}`}
+                  width="600"
+                  height="640"
+                />
+              ) : (
+                <div className="ccp-owned__craft">
+                  <strong>Your companion is being crafted</strong>
+                </div>
+              )}
               <p className="ccp-owned__name">{discovered.name}</p>
               <p className="ccp-owned__meta">
                 {discovered.element} · {discovered.species}

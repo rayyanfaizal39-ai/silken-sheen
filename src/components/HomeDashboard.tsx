@@ -901,12 +901,16 @@ export function HomeDashboard() {
             />
 
             <div className="cosmic-companion-egg-anim relative flex h-40 w-40 items-center justify-center">
-              {demoChosen ? (
+              {demoChosen?.artworkUrl ? (
                 <img
                   src={demoChosen.artworkUrl}
                   alt={`${demoChosen.name} the ${demoChosen.species}`}
                   className="h-36 w-36 rounded-3xl border border-[#E1C27F] object-cover"
                 />
+              ) : demoChosen?.crafting ? (
+                <p className="max-w-[140px] text-center font-display text-sm font-black text-[#F6EAD2]">
+                  Your companion is being crafted
+                </p>
               ) : demoAwaiting ? (
                 <span className="font-display text-6xl text-[#F6EAD2]" aria-hidden="true">
                   ?
@@ -933,7 +937,9 @@ export function HomeDashboard() {
           </h3>
           {demoChosen ? (
             <p className="mt-1 text-[11px] font-bold uppercase tracking-[0.16em] text-[#E1C27F]">
-              {demoChosen.element} · {demoChosen.species}
+              {demoChosen.crafting
+                ? "Your companion is being crafted"
+                : `${demoChosen.element} · ${demoChosen.species}`}
             </p>
           ) : null}
           <p className="mt-2 max-w-[220px] text-xs italic leading-5 text-white/55">
