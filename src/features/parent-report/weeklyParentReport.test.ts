@@ -375,6 +375,9 @@ describe("weekly parent report email template", () => {
       "utf8",
     );
     expect(source).toContain("automatedDeliveryDecision");
+    expect(source).toContain("emailedParentReportCycle");
+    expect(source).toContain("hasParentReportsAccess");
+    expect(source).toContain("usableEmail(accountEmail)");
     expect(source).toContain("resolveWeeklyReportRecipient");
     expect(source).toContain("profileResult.data.parent_report_email");
     expect(source).toContain("maskEmailAddress(recipient)");
@@ -383,5 +386,6 @@ describe("weekly parent report email template", () => {
       source.indexOf("student_id: studentId"),
     );
     expect(source).toContain('existing.data?.status === "sent"');
+    expect(source).not.toContain("scheduleInBackground");
   });
 });

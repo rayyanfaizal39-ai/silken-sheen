@@ -50,7 +50,7 @@ comment on table public.payment_reminder_deliveries is
   'One reminder per subscription, period end, and type (7 days, 1 day, or due day). Stores the recipient and outcome, not the email body.';
 
 comment on column public.profiles.parent_report_email is
-  'Optional parent or guardian address chosen by the student. Weekly parent reports and subscription reminders use it when it is set; otherwise they go to the student account email.';
+  'Optional parent or guardian address chosen by the student. Subscription reminders, and a weekly report the student sends themselves, use it when it is set; otherwise they go to the student account email. The Sunday automated report is sent to the student account email.';
 
 commit;
 
@@ -71,10 +71,17 @@ commit;
 -- select vault.create_secret('REPLACE_WITH_WEEKLY_PARENT_REPORT_CRON_KEY', 'weekly_parent_report_cron_key');
 -- select vault.create_secret('REPLACE_WITH_PAYMENT_REMINDER_CRON_KEY', 'payment_reminder_cron_key');
 --
--- Monday 08:00 Asia/Kuala_Lumpur is 00:00 UTC. pg_cron runs in UTC.
+-- Sunday 18:05 Asia/Kuala_Lumpur is 10:05 UTC. pg_cron runs in UTC.
+-- The emailed week is [previous Sunday 18:00, this Sunday 18:00) in
+-- Asia/Kuala_Lumpur. The message says "Generated Sunday at 6:00 PM".
+-- 18:05 is five minutes after that cutoff, so the job sends the week that
+-- just closed. A quiz at exactly 18:00 belongs to the next week.
+-- Body stays {"action":"send_entitled"} with no dryRun. The send is
+-- synchronous; unique (student_id, week_start) makes a retry safe if
+-- pg_net times out on a long batch.
 -- select cron.schedule(
 --   'academy-weekly-parent-report',
---   '0 0 * * 1',
+--   '5 10 * * 0',
 --   $$
 --   select net.http_post(
 --     url := (select decrypted_secret from vault.decrypted_secrets where name = 'academy_functions_base_url')
