@@ -3,7 +3,7 @@
  * One reminder per subscription per run. A parent address is used only
  * when consent is current.
  */
-import { createClient } from "npm:@supabase/supabase-js@2.108.1";
+import { createServiceClient, type ServiceClient } from "../_shared/service-client.ts";
 import { claimDeliverySlot, claimResult, cronAuthorized } from "../_shared/delivery-claim.ts";
 import { scheduleInBackground } from "../_shared/edge-schedule.ts";
 import {
@@ -42,7 +42,7 @@ function readBody(body: unknown): { action: string | null; dryRun: boolean; wait
   };
 }
 
-type AdminClient = ReturnType<typeof createClient>;
+type AdminClient = ServiceClient;
 
 type SubscriptionRow = {
   id: string;
@@ -79,14 +79,12 @@ Deno.serve(async (request) => {
   if (!parsed.dryRun && !resendApiKey)
     return response({ error: "Email delivery is not configured" }, 500);
 
-  const admin = createClient(supabaseUrl, serviceRoleKey, {
-    auth: { persistSession: false, autoRefreshToken: false },
-  });
+  const admin = createServiceClient(supabaseUrl, serviceRoleKey);
   const now = new Date();
   const work = runPaymentReminderBatch(reminderStore(admin), sendReminder(resendApiKey), {
     dryRun: parsed.dryRun,
     now,
-  }).catch((error) => {
+  }).catch((error): Record<string, unknown> => {
     console.error(
       JSON.stringify({
         scope: "email",

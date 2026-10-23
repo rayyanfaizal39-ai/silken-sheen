@@ -2,7 +2,7 @@
  * Automatic monthly parent report. Authorize with x-monthly-report-key.
  * verify_jwt stays false so pg_cron can call this without a user JWT.
  */
-import { createClient } from "npm:@supabase/supabase-js@2.108.1";
+import { createServiceClient, type ServiceClient } from "../_shared/service-client.ts";
 import { claimDeliverySlot, claimResult, cronAuthorized } from "../_shared/delivery-claim.ts";
 import { scheduleInBackground } from "../_shared/edge-schedule.ts";
 import {
@@ -37,7 +37,7 @@ function readBody(body: unknown): { action: string | null; dryRun: boolean; wait
   };
 }
 
-type AdminClient = ReturnType<typeof createClient>;
+type AdminClient = ServiceClient;
 
 Deno.serve(async (request) => {
   if (request.method === "OPTIONS") return new Response("ok", { headers: jsonHeaders });
@@ -64,14 +64,12 @@ Deno.serve(async (request) => {
   if (!parsed.dryRun && !resendApiKey)
     return response({ error: "Email delivery is not configured" }, 500);
 
-  const admin = createClient(supabaseUrl, serviceRoleKey, {
-    auth: { persistSession: false, autoRefreshToken: false },
-  });
+  const admin = createServiceClient(supabaseUrl, serviceRoleKey);
   const now = new Date();
   const work = runMonthlyParentBatch(monthlyStore(admin, now), sendReport(resendApiKey), {
     dryRun: parsed.dryRun,
     now,
-  }).catch((error) => {
+  }).catch((error): Record<string, unknown> => {
     console.error(
       JSON.stringify({
         scope: "email",

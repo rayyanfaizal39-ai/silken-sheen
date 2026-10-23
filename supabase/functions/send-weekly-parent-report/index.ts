@@ -4,6 +4,7 @@
  * monthly and is sent by send-monthly-parent-report.
  */
 import { createClient } from "npm:@supabase/supabase-js@2.108.1";
+import { createServiceClient, type ServiceClient } from "../_shared/service-client.ts";
 import { maskEmailAddress } from "../_shared/email-brand.ts";
 import { resolveParentReportRecipient } from "../_shared/parent-email-consent.ts";
 import { sendWithResend } from "../_shared/resend.ts";
@@ -29,7 +30,7 @@ function response(body: Record<string, unknown>, status = 200) {
   return new Response(JSON.stringify(body), { status, headers: jsonHeaders });
 }
 
-type AdminClient = ReturnType<typeof createClient>;
+type AdminClient = ServiceClient;
 
 Deno.serve(async (request) => {
   if (request.method === "OPTIONS") return new Response("ok", { headers: jsonHeaders });
@@ -46,9 +47,7 @@ Deno.serve(async (request) => {
     return response({ error: "Email delivery is not configured" }, 500);
   }
 
-  const admin = createClient(supabaseUrl, serviceRoleKey, {
-    auth: { persistSession: false, autoRefreshToken: false },
-  });
+  const admin = createServiceClient(supabaseUrl, serviceRoleKey);
   const providedCronKey = request.headers.get("x-weekly-report-key") ?? "";
   const body = await request.json().catch(() => ({}));
   const action =

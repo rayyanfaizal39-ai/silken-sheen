@@ -164,6 +164,8 @@ describe("monthly parent report delivery contract", () => {
     expect(batch).toContain("https://www.myacademy.my/parent-dashboard");
     expect(batch.indexOf("if (options.dryRun)")).toBeLessThan(batch.indexOf("store.claim"));
     expect(manual).toContain("runManualParentReport");
+    expect(manual).toContain('admin.rpc("claim_parent_report_send"');
+    expect(manual).not.toContain('.from("email_delivery_attempts")');
     expect(manual).toContain('readAction(body) !== "send_now"');
     expect(manual).toContain("https://www.myacademy.my");
     expect(manual).not.toContain('Access-Control-Allow-Origin": "*"');

@@ -1,6 +1,6 @@
 import { claimDeliverySlot, type ClaimOutcome } from "./delivery-claim.ts";
-import { maskEmailAddress } from "./email-brand.ts";
-import { buildParentReportEmail, type EmailContent } from "./email-templates.ts";
+import { maskEmailAddress, type EmailContent } from "./email-brand.ts";
+import { buildParentReportEmail } from "./email-templates.ts";
 import {
   previousKualaLumpurMonth,
   rankNameForXp,
@@ -131,12 +131,13 @@ export async function runMonthlyParentBatch(
   };
 }
 
+export type ParentReportAttempt = "ok" | "limited" | "error";
+
 export async function runManualParentReport(input: {
   student: MonthlyStudent | null;
   userId: string;
   now?: Date;
-  rateLimited: boolean;
-  recordAttempt: (recipient: string) => Promise<boolean>;
+  recordAttempt: (recipient: string) => Promise<ParentReportAttempt>;
   send: SendParentReport;
 }): Promise<{ status: number; body: Record<string, unknown> }> {
   const student = input.student;
@@ -148,11 +149,12 @@ export async function runManualParentReport(input: {
   if (!recipient) {
     return { status: 422, body: { error: "This account has no email address for the report." } };
   }
-  if (input.rateLimited) {
+  const recorded = await input.recordAttempt(recipient);
+  if (recorded === "limited") {
     return { status: 429, body: { error: "You can send up to five parent reports per hour." } };
   }
-  const recorded = await input.recordAttempt(recipient);
-  if (!recorded) return { status: 500, body: { error: "Could not record the email attempt." } };
+  if (recorded !== "ok")
+    return { status: 500, body: { error: "Could not record the email attempt." } };
 
   const now = input.now ?? new Date();
   const period = previousKualaLumpurMonth(now);

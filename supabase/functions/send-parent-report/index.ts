@@ -6,6 +6,7 @@
  * The monthly cron uses send-monthly-parent-report.
  */
 import { createClient } from "npm:@supabase/supabase-js@2.108.1";
+import { createServiceClient, type ServiceClient } from "../_shared/service-client.ts";
 import {
   runManualParentReport,
   type MonthlyStudent,
@@ -43,7 +44,7 @@ async function sha256(value: string) {
   return Array.from(new Uint8Array(bytes), (byte) => byte.toString(16).padStart(2, "0")).join("");
 }
 
-type AdminClient = ReturnType<typeof createClient>;
+type AdminClient = ServiceClient;
 
 Deno.serve(async (request) => {
   if (request.method === "OPTIONS")
@@ -72,9 +73,7 @@ Deno.serve(async (request) => {
   const { data: authData, error: authError } = await userClient.auth.getUser();
   if (authError || !authData.user) return response(request, { error: "Unauthorized" }, 401);
 
-  const admin = createClient(supabaseUrl, serviceRoleKey, {
-    auth: { persistSession: false, autoRefreshToken: false },
-  });
+  const admin = createServiceClient(supabaseUrl, serviceRoleKey);
   const now = new Date();
   const student = await loadManualStudent(
     admin,
@@ -84,28 +83,17 @@ Deno.serve(async (request) => {
   );
   if (!student) return response(request, { error: "The report could not be prepared." }, 500);
 
-  const since = new Date(now.getTime() - 60 * 60 * 1000).toISOString();
-  const recent = await admin
-    .from("email_delivery_attempts")
-    .select("id", { count: "exact", head: true })
-    .eq("user_id", authData.user.id)
-    .eq("flow", "parent_report")
-    .gte("created_at", since);
-  if (recent.error)
-    return response(request, { error: "Could not verify the email rate limit" }, 500);
-
   const result = await runManualParentReport({
     student,
     userId: authData.user.id,
     now,
-    rateLimited: (recent.count ?? 0) >= 5,
     recordAttempt: async (recipient) => {
-      const attempt = await admin.from("email_delivery_attempts").insert({
-        user_id: authData.user.id,
-        flow: "parent_report",
-        recipient_hash: await sha256(recipient),
+      const claim = await admin.rpc("claim_parent_report_send", {
+        p_user_id: authData.user.id,
+        p_recipient_hash: await sha256(recipient),
       });
-      return !attempt.error;
+      if (claim.error || typeof claim.data !== "boolean") return "error";
+      return claim.data ? "ok" : "limited";
     },
     send: async (input) =>
       sendWithResend(resendApiKey, {

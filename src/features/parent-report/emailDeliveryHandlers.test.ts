@@ -12,6 +12,7 @@ import {
   type MonthlyStudent,
   type MonthlyStore,
 } from "../../../supabase/functions/_shared/monthly-parent-report-batch";
+import { PARENT_EMAIL_CONSENT_VERSION as clientConsentVersion } from "@/features/parent-report/parentEmailConsent";
 import {
   PARENT_EMAIL_CONSENT_VERSION,
   parentEmailWrite,
@@ -62,18 +63,24 @@ describe("parent email handlers", () => {
     expect(cronAuthorized("secret", "secret")).toBe(true);
   });
 
+  it("keeps the client and server parent-email consent versions identical", () => {
+    expect(clientConsentVersion).toBe(PARENT_EMAIL_CONSENT_VERSION);
+    expect(clientConsentVersion).toBe("2026-10-23");
+  });
+
   it("records consent when a parent address is saved and clears it when the address is removed", () => {
-    expect(parentEmailWrite(null, true, NOW)).toEqual({
+    expect(parentEmailWrite(null, true)).toEqual({
       parent_report_email: null,
       parent_email_consent_at: null,
       parent_email_consent_version: null,
     });
-    expect(() => parentEmailWrite("parent@example.com", false, NOW)).toThrow(/consent/i);
-    expect(parentEmailWrite("parent@example.com", true, NOW)).toEqual({
+    expect(() => parentEmailWrite("parent@example.com", false)).toThrow(/consent/i);
+    const grant = parentEmailWrite("parent@example.com", true);
+    expect(grant).toEqual({
       parent_report_email: "parent@example.com",
-      parent_email_consent_at: "2026-10-23T01:00:00.000Z",
       parent_email_consent_version: PARENT_EMAIL_CONSENT_VERSION,
     });
+    expect(grant).not.toHaveProperty("parent_email_consent_at");
     const migration = readFileSync(
       new URL(
         "../../../supabase/migrations/20261023160000_parent_email_consent.sql",
@@ -83,7 +90,35 @@ describe("parent email handlers", () => {
     );
     expect(migration).toContain("parent_email_consent_at timestamptz");
     expect(migration).toContain("parent_email_consent_version text");
+    expect(migration).toContain("new.parent_email_consent_at := now()");
+    expect(migration).toContain("new.parent_email_consent_at := old.parent_email_consent_at");
+    expect(migration).toContain("profiles_set_parent_email_consent_at");
+    expect(migration).not.toMatch(/parent_email_consent_at timestamptz\s+default\s+now\(\)/i);
     expect(migration).not.toMatch(/check\s*\(/i);
+  });
+
+  it("claims a manual send inside one locked database function", () => {
+    const migration = readFileSync(
+      new URL(
+        "../../../supabase/migrations/20261023170000_claim_parent_report_send.sql",
+        import.meta.url,
+      ),
+      "utf8",
+    );
+    const manual = readFileSync(
+      new URL("../../../supabase/functions/send-parent-report/index.ts", import.meta.url),
+      "utf8",
+    );
+    expect(migration).toContain("pg_advisory_xact_lock");
+    expect(migration).toContain("recent_count >= 5");
+    expect(migration).toContain(
+      "grant execute on function public.claim_parent_report_send(uuid, text) to service_role",
+    );
+    expect(migration).toContain(
+      "revoke all on function public.claim_parent_report_send(uuid, text) from public, anon, authenticated",
+    );
+    expect(manual).toContain('admin.rpc("claim_parent_report_send"');
+    expect(manual).not.toContain('.from("email_delivery_attempts")');
   });
 
   it("does not write a delivery or call the mailer during a monthly dry run", async () => {
@@ -109,26 +144,24 @@ describe("parent email handlers", () => {
   });
 
   it("sends a parent address only when consent is current, including for Premium", async () => {
-    const withoutConsent = vi.fn(async () => ({ id: "student-copy" }));
+    const withoutConsent = vi.fn(async (_input: { to: string }) => ({ id: "student-copy" }));
     const missingConsent = await runManualParentReport({
       student: student(),
       userId: "student-1",
       now: NOW,
-      rateLimited: false,
-      recordAttempt: async () => true,
+      recordAttempt: async () => "ok",
       send: withoutConsent,
     });
     expect(missingConsent.status).toBe(200);
     expect(withoutConsent.mock.calls[0]?.[0].to).toBe("maya@example.com");
     expect(missingConsent.body.usedParentEmail).toBe(false);
 
-    const withConsent = vi.fn(async () => ({ id: "parent-copy" }));
+    const withConsent = vi.fn(async (_input: { to: string }) => ({ id: "parent-copy" }));
     const consentedSend = await runManualParentReport({
       student: consented(),
       userId: "student-1",
       now: NOW,
-      rateLimited: false,
-      recordAttempt: async () => true,
+      recordAttempt: async () => "ok",
       send: withConsent,
     });
     expect(withConsent.mock.calls[0]?.[0].to).toBe("parent@example.com");
@@ -143,7 +176,6 @@ describe("parent email handlers", () => {
         student: consented({ subscriptionPlan, profilePlan: "paid" }),
         userId: "student-1",
         now: NOW,
-        rateLimited: false,
         recordAttempt,
         send,
       });
@@ -151,6 +183,27 @@ describe("parent email handlers", () => {
     }
     expect(send).not.toHaveBeenCalled();
     expect(recordAttempt).not.toHaveBeenCalled();
+  });
+
+  it("returns 429 when the atomic claim is refused and 500 when the claim errors", async () => {
+    const send = vi.fn(async (_input: { to: string }) => ({ id: "should-not-send" }));
+    const limited = await runManualParentReport({
+      student: consented(),
+      userId: "student-1",
+      now: NOW,
+      recordAttempt: async () => "limited",
+      send,
+    });
+    expect(limited.status).toBe(429);
+    const errored = await runManualParentReport({
+      student: consented(),
+      userId: "student-1",
+      now: NOW,
+      recordAttempt: async () => "error",
+      send,
+    });
+    expect(errored.status).toBe(500);
+    expect(send).not.toHaveBeenCalled();
   });
 
   it("skips Pro and legacy paid profiles in the monthly batch", async () => {
@@ -279,7 +332,7 @@ describe("payment reminder handler", () => {
   });
 
   it("sends one reminder to the student when parent consent is missing", async () => {
-    const send = vi.fn(async () => ({ id: "reminder-1" }));
+    const send = vi.fn(async (_input: { to: string }) => ({ id: "reminder-1" }));
     const result = await runPaymentReminderBatch(
       {
         candidates: async () => [candidate(), candidate()],
@@ -301,7 +354,7 @@ describe("payment reminder handler", () => {
     const result = await runPaymentReminderBatch(
       {
         candidates: async () => [candidate({ sentTypes: ["7_days"] })],
-        claim: vi.fn(async () => "claimed"),
+        claim: vi.fn(async () => "claimed" as const),
         markSent: vi.fn(),
         markFailed: vi.fn(),
       },

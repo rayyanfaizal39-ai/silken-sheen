@@ -29,7 +29,11 @@ export function resolveParentReportRecipient(input: {
   return usableEmail(input.accountEmail);
 }
 
-export function parentEmailWrite(email: string | null, consent: boolean, now = new Date()) {
+/**
+ * Columns the student may write. parent_email_consent_at is set by the
+ * profiles trigger from the database clock, so a grant never sends a timestamp.
+ */
+export function parentEmailWrite(email: string | null, consent: boolean) {
   if (!email) {
     return {
       parent_report_email: null,
@@ -40,7 +44,6 @@ export function parentEmailWrite(email: string | null, consent: boolean, now = n
   if (!consent) throw new Error("Parent email consent is required.");
   return {
     parent_report_email: email,
-    parent_email_consent_at: now.toISOString(),
     parent_email_consent_version: PARENT_EMAIL_CONSENT_VERSION,
   };
 }
