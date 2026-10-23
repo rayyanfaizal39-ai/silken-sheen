@@ -227,7 +227,7 @@ function TrackerPage() {
             <div className="min-w-0 flex-1">
               <p className="font-bold text-emerald-100">Share this progress with a parent</p>
               <p className="text-sm text-emerald-300/70">
-                Send an automatic weekly or monthly Mission Report.
+                Send an automatic monthly Mission Report.
               </p>
             </div>
             <ArrowRight className="h-4 w-4 shrink-0 text-[#34D399] transition-transform group-hover:translate-x-0.5" />

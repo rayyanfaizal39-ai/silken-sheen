@@ -20,6 +20,7 @@ describe("Explorer Profile validation", () => {
       age: 14,
       formLevel: "Form 2",
       schoolId: "123e4567-e89b-42d3-a456-426614174000",
+      parentReportEmail: null,
     });
   });
 
@@ -131,6 +132,27 @@ describe("Explorer Profile validation", () => {
         schoolId: null,
       }),
     ).toThrow("whole number");
+  });
+
+  it("stores a lowercase parent email and rejects an invalid one", () => {
+    expect(
+      normalizeExplorerProfileInput({
+        displayName: "Alya",
+        age: 14,
+        formLevel: "Form 2",
+        schoolId: null,
+        parentReportEmail: " Parent@School.edu.MY ",
+      }).parentReportEmail,
+    ).toBe("parent@school.edu.my");
+    expect(() =>
+      normalizeExplorerProfileInput({
+        displayName: "Alya",
+        age: 14,
+        formLevel: "Form 2",
+        schoolId: null,
+        parentReportEmail: "not-an-email",
+      }),
+    ).toThrow("valid email");
   });
 
   it("requires onboarding only for incomplete students", () => {

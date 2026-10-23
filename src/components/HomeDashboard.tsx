@@ -956,7 +956,7 @@ export function HomeDashboard() {
           <p className="text-[10px] font-bold uppercase tracking-widest text-[#6EE7B7]">
             For parents
           </p>
-          <p className="font-bold text-white">Send a weekly or monthly Mission Report</p>
+          <p className="font-bold text-white">Send a monthly Mission Report</p>
           <p className="text-sm text-white/45">
             Keep parents in the loop with a clear, syllabus-aligned summary.
           </p>

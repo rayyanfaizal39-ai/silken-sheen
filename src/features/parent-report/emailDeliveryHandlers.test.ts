@@ -1,0 +1,391 @@
+import { existsSync, readFileSync } from "node:fs";
+import { describe, expect, it, vi } from "vitest";
+import {
+  claimDeliverySlot,
+  cronAuthorized,
+  deliveryReclaimOrFilter,
+} from "../../../supabase/functions/_shared/delivery-claim";
+import { maskEmailAddress } from "../../../supabase/functions/_shared/email-brand";
+import {
+  runManualParentReport,
+  runMonthlyParentBatch,
+  type MonthlyStudent,
+  type MonthlyStore,
+} from "../../../supabase/functions/_shared/monthly-parent-report-batch";
+import { parentEmailWrite } from "@/features/parent-report/parentEmailConsent";
+import { parentEmailWrite as serverParentEmailWrite } from "../../../supabase/functions/_shared/parent-email-consent";
+import {
+  runPaymentReminderBatch,
+  type PaymentReminderCandidate,
+} from "../../../supabase/functions/_shared/payment-reminder-batch";
+
+const NOW = new Date("2026-10-23T01:00:00.000Z");
+
+function student(overrides: Partial<MonthlyStudent> = {}): MonthlyStudent {
+  return {
+    fullName: "Maya",
+    profilePlan: "paid",
+    subscriptionPlan: "premium",
+    parentReportEmail: "parent@example.com",
+    parentEmailConsentAt: "2026-10-23T00:00:00.000Z",
+    accountEmail: "maya@example.com",
+    xp: 20,
+    streak: 2,
+    quizzes: [
+      {
+        createdAt: "2026-09-15T04:00:00.000Z",
+        scorePct: 90,
+        subjectId: "math",
+        chapterKey: "Chapter 1",
+      },
+    ],
+    ...overrides,
+  };
+}
+
+describe("parent email handlers", () => {
+  it("rejects a missing or wrong cron key and accepts only the configured key", () => {
+    expect(cronAuthorized("", "secret")).toBe(false);
+    expect(cronAuthorized("secret", null)).toBe(false);
+    expect(cronAuthorized("secret", "wrong")).toBe(false);
+    expect(cronAuthorized("secret", "secret")).toBe(true);
+  });
+
+  it("writes a consent acknowledgement and lets the database stamp the clock", () => {
+    expect(parentEmailWrite(null, true)).toEqual(serverParentEmailWrite(null, true));
+    expect(parentEmailWrite("parent@example.com", true)).toEqual(
+      serverParentEmailWrite("parent@example.com", true),
+    );
+    expect(parentEmailWrite("parent@example.com", true)).toMatchObject({
+      parent_report_email: "parent@example.com",
+      parent_email_consent_at: "1970-01-01T00:00:00.000Z",
+    });
+    expect(parentEmailWrite("parent@example.com", false)).toMatchObject({
+      parent_report_email: "parent@example.com",
+      parent_email_consent_at: null,
+    });
+    expect(parentEmailWrite("parent@example.com", true)).not.toHaveProperty(
+      "parent_email_consent_version",
+    );
+    expect(
+      existsSync(
+        new URL(
+          "../../../supabase/migrations/20261023160000_parent_email_consent.sql",
+          import.meta.url,
+        ),
+      ),
+    ).toBe(false);
+    const migration = readFileSync(
+      new URL(
+        "../../../supabase/migrations/20261023190000_parent_email_consent_at.sql",
+        import.meta.url,
+      ),
+      "utf8",
+    );
+    expect(migration).toContain("parent_email_consent_at timestamptz");
+    expect(migration).toContain("pg_catalog.now()");
+    expect(migration).toContain("new.parent_report_email is distinct from old.parent_report_email");
+    expect(migration).toContain("new.parent_email_consent_at := null");
+    expect(migration).not.toContain("parent_email_consent_version");
+    expect(migration).toContain("profiles_set_parent_email_consent_at");
+    const comment = readFileSync(
+      new URL(
+        "../../../supabase/migrations/20261023180000_parent_report_email_monthly_comment.sql",
+        import.meta.url,
+      ),
+      "utf8",
+    );
+    expect(comment).toContain("monthly progress report");
+  });
+
+  it("claims a manual send inside one locked database function", () => {
+    const migration = readFileSync(
+      new URL(
+        "../../../supabase/migrations/20261023170000_claim_parent_report_send.sql",
+        import.meta.url,
+      ),
+      "utf8",
+    );
+    const manual = readFileSync(
+      new URL("../../../supabase/functions/send-parent-report/index.ts", import.meta.url),
+      "utf8",
+    );
+    expect(migration).toContain("pg_advisory_xact_lock");
+    expect(migration).toContain("recent_count >= 5");
+    expect(migration).toContain(
+      "grant execute on function public.claim_parent_report_send(uuid, text) to service_role",
+    );
+    expect(migration).toContain(
+      "revoke all on function public.claim_parent_report_send(uuid, text) from public, anon, authenticated",
+    );
+    expect(manual).toContain('admin.rpc("claim_parent_report_send"');
+    expect(manual).not.toContain('.from("email_delivery_attempts")');
+  });
+
+  it("does not write a delivery or call the mailer during a monthly dry run", async () => {
+    const claim = vi.fn();
+    const send = vi.fn();
+    const store: MonthlyStore = {
+      entitledStudentIds: async () => ["student-1"],
+      loadStudent: async () => student(),
+      claim,
+      markSent: vi.fn(),
+      markFailed: vi.fn(),
+    };
+    const result = await runMonthlyParentBatch(store, send, { dryRun: true, now: NOW });
+    expect(claim).not.toHaveBeenCalled();
+    expect(send).not.toHaveBeenCalled();
+    expect(store.markSent).not.toHaveBeenCalled();
+    expect(result.wouldSend).toBe(1);
+    expect(result.lostRace).toBe(0);
+    const recipients = result.recipients as Array<{ maskedEmail: string; subject: string }>;
+    expect(recipients[0]?.maskedEmail).toBe(maskEmailAddress("parent@example.com"));
+    expect(recipients[0]?.subject).toContain("Monthly Report");
+    expect(result.periodLabel).toBe("September 2026");
+  });
+
+  it("sends a parent address only when consent is recorded, otherwise the student email", async () => {
+    const studentCopy = vi.fn(async (_input: { to: string }) => ({ id: "student-copy" }));
+    const missingParent = await runManualParentReport({
+      student: student({ parentReportEmail: null }),
+      userId: "student-1",
+      now: NOW,
+      recordAttempt: async () => "ok",
+      send: studentCopy,
+    });
+    expect(missingParent.status).toBe(200);
+    expect(studentCopy.mock.calls[0]?.[0].to).toBe("maya@example.com");
+    expect(missingParent.body.usedParentEmail).toBe(false);
+
+    const missingConsent = vi.fn(async (_input: { to: string }) => ({ id: "missing-consent" }));
+    await runManualParentReport({
+      student: student({ parentEmailConsentAt: null }),
+      userId: "student-1",
+      now: NOW,
+      recordAttempt: async () => "ok",
+      send: missingConsent,
+    });
+    expect(missingConsent.mock.calls[0]?.[0].to).toBe("maya@example.com");
+
+    const invalidParent = vi.fn(async (_input: { to: string }) => ({ id: "invalid-copy" }));
+    await runManualParentReport({
+      student: student({ parentReportEmail: "not-an-email" }),
+      userId: "student-1",
+      now: NOW,
+      recordAttempt: async () => "ok",
+      send: invalidParent,
+    });
+    expect(invalidParent.mock.calls[0]?.[0].to).toBe("maya@example.com");
+
+    const parentCopy = vi.fn(async (_input: { to: string }) => ({ id: "parent-copy" }));
+    const parentSend = await runManualParentReport({
+      student: student(),
+      userId: "student-1",
+      now: NOW,
+      recordAttempt: async () => "ok",
+      send: parentCopy,
+    });
+    expect(parentCopy.mock.calls[0]?.[0].to).toBe("parent@example.com");
+    expect(parentSend.body.usedParentEmail).toBe(true);
+  });
+
+  it("rejects a manual send when the active subscription is not Premium", async () => {
+    const send = vi.fn();
+    const recordAttempt = vi.fn();
+    for (const subscriptionPlan of [null, "pro", "basic", "paid"]) {
+      const result = await runManualParentReport({
+        student: student({ subscriptionPlan, profilePlan: "paid" }),
+        userId: "student-1",
+        now: NOW,
+        recordAttempt,
+        send,
+      });
+      expect(result.status).toBe(403);
+    }
+    expect(send).not.toHaveBeenCalled();
+    expect(recordAttempt).not.toHaveBeenCalled();
+  });
+
+  it("returns 429 when the atomic claim is refused and 500 when the claim errors", async () => {
+    const send = vi.fn(async (_input: { to: string }) => ({ id: "should-not-send" }));
+    const limited = await runManualParentReport({
+      student: student(),
+      userId: "student-1",
+      now: NOW,
+      recordAttempt: async () => "limited",
+      send,
+    });
+    expect(limited.status).toBe(429);
+    const errored = await runManualParentReport({
+      student: student(),
+      userId: "student-1",
+      now: NOW,
+      recordAttempt: async () => "error",
+      send,
+    });
+    expect(errored.status).toBe(500);
+    expect(send).not.toHaveBeenCalled();
+  });
+
+  it("skips Pro and legacy paid profiles in the monthly batch", async () => {
+    const send = vi.fn();
+    const store: MonthlyStore = {
+      entitledStudentIds: async () => ["pro-student", "paid-profile"],
+      loadStudent: async (studentId) =>
+        studentId === "pro-student"
+          ? student({ subscriptionPlan: "pro" })
+          : student({ subscriptionPlan: null, profilePlan: "paid" }),
+      claim: vi.fn(),
+      markSent: vi.fn(),
+      markFailed: vi.fn(),
+    };
+    const result = await runMonthlyParentBatch(store, send, { dryRun: true, now: NOW });
+    expect(send).not.toHaveBeenCalled();
+    expect(store.claim).not.toHaveBeenCalled();
+    expect(result.wouldSend).toBe(0);
+  });
+
+  it("counts a lost delivery claim without calling the mailer or marking it failed", async () => {
+    const send = vi.fn();
+    const store: MonthlyStore = {
+      entitledStudentIds: async () => ["student-1"],
+      loadStudent: async () => student(),
+      claim: async () => "lost",
+      markSent: vi.fn(),
+      markFailed: vi.fn(),
+    };
+    const result = await runMonthlyParentBatch(store, send, { dryRun: false, now: NOW });
+    expect(send).not.toHaveBeenCalled();
+    expect(result.lostRace).toBe(1);
+    expect(result.failed).toBe(0);
+    expect(result.alreadySent).toBe(1);
+  });
+
+  it("reclaims only a failed row or a stale sending row", async () => {
+    const reclaim = vi.fn(async () => ({ data: [], error: null }));
+    const lost = await claimDeliverySlot(
+      {
+        insert: async () => ({ data: null, error: { code: "23505", message: "duplicate key" } }),
+        reclaim,
+      },
+      { student_id: "student-1", recipient_email: "maya@example.com" },
+      NOW,
+    );
+    expect(lost).toBe("lost");
+    expect(reclaim).toHaveBeenCalledTimes(1);
+    expect(deliveryReclaimOrFilter(NOW)).toContain("status.eq.failed");
+    expect(deliveryReclaimOrFilter(NOW)).toContain('updated_at.lt."2026-10-23T00:30:00.000Z"');
+
+    const claimed = await claimDeliverySlot(
+      {
+        insert: async () => ({ data: null, error: { code: "23505", message: "duplicate key" } }),
+        reclaim: async () => ({ data: [{ id: "row-1" }], error: null }),
+      },
+      { student_id: "student-1" },
+      NOW,
+    );
+    expect(claimed).toBe("claimed");
+
+    const fresh = await claimDeliverySlot(
+      {
+        insert: async () => ({ data: [{ id: "new-row" }], error: null }),
+        reclaim: vi.fn(),
+      },
+      { student_id: "student-1" },
+      NOW,
+    );
+    expect(fresh).toBe("claimed");
+  });
+});
+
+describe("payment reminder handler", () => {
+  function candidate(overrides: Partial<PaymentReminderCandidate> = {}): PaymentReminderCandidate {
+    return {
+      subscriptionId: "sub-pro",
+      userId: "student-pro",
+      status: "active",
+      plan: "pro",
+      billingInterval: "monthly",
+      amount: 29,
+      currency: "MYR",
+      periodEnd: "2026-10-29T08:00:00.000Z",
+      studentName: "Alya",
+      accountEmail: "alya@example.com",
+      sentTypes: [],
+      ...overrides,
+    };
+  }
+
+  it("dry-runs Pro and expired Premium subscriptions without writing or sending", async () => {
+    const claim = vi.fn();
+    const send = vi.fn();
+    const result = await runPaymentReminderBatch(
+      {
+        candidates: async () => [
+          candidate(),
+          candidate({
+            subscriptionId: "sub-premium",
+            userId: "student-premium",
+            plan: "premium",
+            status: "expired",
+            periodEnd: "2026-10-23T08:00:00.000Z",
+          }),
+        ],
+        claim,
+        markSent: vi.fn(),
+        markFailed: vi.fn(),
+      },
+      send,
+      { dryRun: true, now: NOW },
+    );
+    expect(claim).not.toHaveBeenCalled();
+    expect(send).not.toHaveBeenCalled();
+    expect(result.wouldSend).toBe(2);
+    const recipients = result.recipients as Array<{
+      maskedEmail: string;
+      subject: string;
+      reminderType: string;
+    }>;
+    expect(recipients.map((item) => item.reminderType).sort()).toEqual(["7_days", "due_day"]);
+    expect(
+      recipients.every((item) => item.maskedEmail === maskEmailAddress("alya@example.com")),
+    ).toBe(true);
+    expect(recipients.every((item) => item.subject.includes("ends"))).toBe(true);
+    expect(recipients.some((item) => /renews/i.test(item.subject))).toBe(false);
+  });
+
+  it("sends one reminder to the student account email", async () => {
+    const send = vi.fn(async (_input: { to: string }) => ({ id: "reminder-1" }));
+    const result = await runPaymentReminderBatch(
+      {
+        candidates: async () => [candidate(), candidate()],
+        claim: async () => "claimed",
+        markSent: vi.fn(),
+        markFailed: vi.fn(),
+      },
+      send,
+      { dryRun: false, now: NOW },
+    );
+    expect(send).toHaveBeenCalledTimes(1);
+    expect(send.mock.calls[0]?.[0].to).toBe("alya@example.com");
+    expect(result.wouldSend).toBe(1);
+    expect(result.failed).toBe(0);
+  });
+
+  it("does not send a second reminder when the relevant one was already sent", async () => {
+    const send = vi.fn();
+    const result = await runPaymentReminderBatch(
+      {
+        candidates: async () => [candidate({ sentTypes: ["7_days"] })],
+        claim: vi.fn(async () => "claimed" as const),
+        markSent: vi.fn(),
+        markFailed: vi.fn(),
+      },
+      send,
+      { dryRun: false, now: NOW },
+    );
+    expect(send).not.toHaveBeenCalled();
+    expect(result.wouldSend).toBe(0);
+    expect(result.alreadySent).toBe(1);
+  });
+});

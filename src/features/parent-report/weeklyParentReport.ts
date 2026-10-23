@@ -8,7 +8,6 @@ export {
   hasParentReportsAccess,
   kualaLumpurDateKey,
   normalizeParentReportEmail,
-  resolveWeeklyReportRecipient,
   storedPlanGrantsParentReports,
   usableEmail,
   type EmailedReportCycle,

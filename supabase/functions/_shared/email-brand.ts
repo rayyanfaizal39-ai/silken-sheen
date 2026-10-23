@@ -1,5 +1,18 @@
-export const EMAIL_FROM = "AcadeMY <noreply@myacademy.my>";
+export const EMAIL_FROM = "AcadeMY <support@myacademy.my>";
 export const EMAIL_REPLY_TO = "support@myacademy.my";
+
+/** Operator-safe address for dry-run previews. Keeps one local character, one domain character, and the public suffix. */
+export function maskEmailAddress(email: string): string {
+  const trimmed = email.trim().toLowerCase();
+  const at = trimmed.lastIndexOf("@");
+  if (at <= 0 || at === trimmed.length - 1) return "***";
+  const local = trimmed.slice(0, at);
+  const domain = trimmed.slice(at + 1);
+  const dot = domain.lastIndexOf(".");
+  const tld = dot > 0 ? domain.slice(dot + 1).replace(/[^a-z]/g, "") : "";
+  const masked = `${local.slice(0, 1)}***@${domain.slice(0, 1)}***`;
+  return tld ? `${masked}.${tld}` : masked;
+}
 
 export interface EmailContent {
   subject: string;

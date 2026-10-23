@@ -3,7 +3,7 @@ import { Check, Crown, Sparkles, Zap, BarChart3, MessageCircle, ShieldCheck } fr
 
 const CAPTAIN_PERKS = [
   { icon: MessageCircle, label: "Unlimited Ace tutor" },
-  { icon: BarChart3, label: "Deep progress insights & weekly reports" },
+  { icon: BarChart3, label: "Deep progress insights & monthly reports" },
   { icon: Zap, label: "Priority AI answers + faster mind maps" },
   { icon: ShieldCheck, label: "Parent Dashboard & family view" },
 ];
