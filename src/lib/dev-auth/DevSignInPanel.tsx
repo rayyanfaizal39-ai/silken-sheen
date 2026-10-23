@@ -1,5 +1,7 @@
+import { useEffect, useState } from "react";
 import { DEV_STUDENTS } from "./students";
 import { signInDevStudent } from "./session";
+import { devCompanionPremium, devSetCompanionPremium, subscribeDevStore } from "./store";
 
 /** Localhost-only student picker. Loaded only while the dev bypass is active. */
 export function DevSignInPanel() {
@@ -9,6 +11,7 @@ export function DevSignInPanel() {
         Local dev sign-in. These demo students exist only in this browser. No account is created and
         nothing is sent to a cloud project.
       </p>
+      <DevPremiumToggle />
       {DEV_STUDENTS.map((student) => (
         <button
           key={student.id}
@@ -22,6 +25,36 @@ export function DevSignInPanel() {
           </span>
         </button>
       ))}
+    </div>
+  );
+}
+
+/** Switches the local demo between a paid cosmic_companion plan and a free plan. */
+export function DevPremiumToggle() {
+  const [premium, setPremium] = useState(true);
+  useEffect(() => subscribeDevStore(() => setPremium(devCompanionPremium())), []);
+  return (
+    <div className="grid grid-cols-2 gap-2" role="group" aria-label="Demo plan">
+      <button
+        type="button"
+        aria-pressed={premium}
+        onClick={() => devSetCompanionPremium(true)}
+        className={`rounded-2xl px-3 py-2 text-xs font-bold ${
+          premium ? "bg-[#F59E0B] text-[#1a1203]" : "border border-white/15 text-white/70"
+        }`}
+      >
+        Premium
+      </button>
+      <button
+        type="button"
+        aria-pressed={!premium}
+        onClick={() => devSetCompanionPremium(false)}
+        className={`rounded-2xl px-3 py-2 text-xs font-bold ${
+          premium ? "border border-white/15 text-white/70" : "bg-white text-[#1a1203]"
+        }`}
+      >
+        Free
+      </button>
     </div>
   );
 }

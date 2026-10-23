@@ -4,6 +4,7 @@ import { describe, expect, it } from "vitest";
 const read = (path: string) => readFileSync(new URL(path, import.meta.url), "utf8");
 const shellSource = read("../components/AppShell.tsx");
 const companionSource = read("../routes/companion.tsx");
+const entrySource = read("../features/cosmic-companion/use-companion-entry.ts");
 const portalRoute = read("../routes/companion_.portal.tsx");
 const companionCss = read("../routes/companion-cards.css");
 
@@ -21,6 +22,8 @@ describe("Cosmic Companion card-first experience", () => {
     expect(companionSource).toContain("JOURNEY_CTA[stage].label");
     expect(companionSource).toContain('to="/companion/portal"');
     expect(companionSource).toContain("unrevealed placeholder");
+    expect(companionSource).toContain('to="/companion/portal"');
+    expect(companionSource).toContain('to="/upgrade"');
     expect(companionCss).toContain(".ccp-stage");
   });
 
@@ -37,7 +40,8 @@ describe("Cosmic Companion card-first experience", () => {
       "useProgress",
     ]) expect(companionSource).not.toContain(legacy);
     // The only data the dashboard reads is the existing read-only Studio status.
-    expect(companionSource).toContain("getNovaDashboardStatus()");
+    expect(companionSource).toContain("useCompanionEntry");
+    expect(entrySource).toContain("loadNovaDashboardStatus()");
   });
 
   it("keeps the Celestial Gateway separate and gives users a return route", () => {

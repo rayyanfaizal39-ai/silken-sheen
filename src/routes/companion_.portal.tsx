@@ -1,7 +1,8 @@
-import { Link, createFileRoute } from "@tanstack/react-router";
+import { Link, createFileRoute, useNavigate } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import { useCompanionEntry } from "@/features/cosmic-companion/use-companion-entry";
 import {
   PREVIEW_SCENE,
   parseJourneyPreview,
@@ -41,14 +42,29 @@ function CelestialGatewayPage() {
   // Students enter the real Studio, which shows the screen their saved state allows: the
   // questions, the waiting sanctuary, the reveal or their permanent companion. A fictional
   // scene is used only when a preview is requested; it runs on in-memory data and never
-  // writes to, or unlocks, a real student's journey.
+  // writes to, or unlocks, a real student's journey. A free student is sent to Upgrade.
+  // A finished journey opens the card instead of starting the questions again.
   const { preview } = Route.useSearch();
+  const { ready, entry } = useCompanionEntry(preview);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!ready || entry.kind === "journey") return;
+    if (entry.kind === "upgrade") {
+      void navigate({ to: "/upgrade", search: { next: entry.search.next } });
+      return;
+    }
+    void navigate({ to: "/nova" });
+  }, [ready, entry, navigate]);
   const studio = cardsIntegrationEnabled ? cardsStudioUrl : "/nova/studio";
   const destination = preview ? `${studio}?preview=rayyan&scene=${PREVIEW_SCENE[preview]}` : studio;
   // The app shell's page transition leaves a transform on its <main>, which would trap a
   // fixed-position child inside the content area. Rendering into <body> keeps it truly fullscreen.
   const [body, setBody] = useState<HTMLElement | null>(null);
   useEffect(() => setBody(document.body), []);
+
+  if (!ready || entry.kind !== "journey") {
+    return <main className="ccp-fullscreen-gateway" aria-busy="true" />;
+  }
 
   const page = (
     <main className="ccp-fullscreen-gateway">

@@ -27,6 +27,8 @@ export interface KeyValueStorage {
 interface StudentRecord {
   studio: StudioState;
   card: NovaCard | null;
+  /** Set when this card was created under an active cosmic_companion entitlement. */
+  journeyEntitled?: boolean;
   /** Staff portrait workflow. Absent until the student confirms a companion. */
   craft?: {
     options?: { option: 1 | 2; url: string }[];
@@ -36,6 +38,8 @@ interface StudentRecord {
 
 interface PersistedDevAuth {
   activeStudentId: string | null;
+  /** Demo plan. True is the paid cosmic_companion entitlement. False is free. */
+  premium: boolean;
   students: Record<string, StudentRecord>;
 }
 
@@ -83,7 +87,7 @@ function blankStudio(student: DevStudent): StudioState {
 }
 
 function emptyState(): PersistedDevAuth {
-  return { activeStudentId: null, students: {} };
+  return { activeStudentId: null, premium: true, students: {} };
 }
 
 function read(): PersistedDevAuth {
@@ -93,13 +97,28 @@ function read(): PersistedDevAuth {
     const parsed = JSON.parse(raw) as PersistedDevAuth;
     if (!parsed || typeof parsed !== "object" || typeof parsed.students !== "object")
       return emptyState();
+    for (const record of Object.values(parsed.students)) {
+      if (record?.card && record.journeyEntitled === undefined) record.journeyEntitled = true;
+    }
     return {
       activeStudentId: typeof parsed.activeStudentId === "string" ? parsed.activeStudentId : null,
+      premium: parsed.premium !== false,
       students: parsed.students,
     };
   } catch {
     return emptyState();
   }
+}
+
+/** Local demo plan. Premium grants cosmic_companion. Free does not. */
+export function devCompanionPremium() {
+  return read().premium;
+}
+
+export function devSetCompanionPremium(premium: boolean) {
+  const state = read();
+  state.premium = premium;
+  write(state);
 }
 
 const storeListeners = new Set<() => void>();
@@ -190,13 +209,16 @@ function withArtwork(studio: StudioState): StudioState {
 }
 
 export function devLoadStudio(): Promise<StudioState> {
-  const { record } = activeRecord();
-  return Promise.resolve(withArtwork(structuredClone(record.studio)));
+  const { record, state } = activeRecord();
+  const studio = withArtwork(structuredClone(record.studio));
+  return Promise.resolve({ ...studio, active: state.premium });
 }
 
-export function devSaveStudio(draft: StudioDraft): Promise<StudioDraft> {
+export async function devSaveStudio(draft: StudioDraft): Promise<StudioDraft> {
   const { record, state } = activeRecord();
-  if (record.studio.publicId) return Promise.resolve(structuredClone(record.studio.draft));
+  if (record.studio.publicId) throw new Error("Your companion journey is already complete.");
+  if (!state.premium)
+    throw new Error("An eligible learning plan is required to begin your companion journey.");
   record.studio = {
     ...record.studio,
     draft: { ...draft, revision: draft.revision + 1 },
@@ -219,9 +241,11 @@ function toPublicCompanion(spec: CompanionCandidateSpec): PublicCompanion {
   };
 }
 
-export function devSubmitStudio(): Promise<StudioState> {
+export async function devSubmitStudio(): Promise<StudioState> {
   const { student, record, state } = activeRecord();
-  if (record.studio.publicId) return Promise.resolve(structuredClone(record.studio));
+  if (record.studio.publicId) throw new Error("Your companion journey is already complete.");
+  if (!state.premium)
+    throw new Error("An eligible learning plan is required to begin your companion journey.");
   const answers = record.studio.draft.answers;
   let match;
   try {
@@ -258,6 +282,7 @@ export function devSubmitStudio(): Promise<StudioState> {
       url: artworkFor(spec.species, spec.element, spec.slot),
     })),
   };
+  record.journeyEntitled = true;
   persist(state);
   return Promise.resolve(structuredClone(record.studio));
 }
@@ -345,15 +370,19 @@ export function devDemoCompanion(): DevDemoCompanion {
 }
 
 export function devOwnerNova(): { card: NovaCard | null; entitlement: NovaEntitlement } {
-  const { record } = activeRecord();
+  const { record, state } = activeRecord();
   const card = record.card ? structuredClone(record.card) : null;
   return {
     card,
-    entitlement: novaEntitlement({
-      plan: "explorer",
-      status: "active",
-      current_period_end: "2099-01-01T00:00:00.000Z",
-    }),
+    entitlement: novaEntitlement(
+      state.premium
+        ? {
+            plan: "premium",
+            status: "active",
+            current_period_end: "2099-01-01T00:00:00.000Z",
+          }
+        : null,
+    ),
   };
 }
 
@@ -393,7 +422,8 @@ function briefFor(studentId: string, record: StudentRecord): CraftBrief | null {
   const student = devStudentById(studentId);
   const card = record.card;
   const companion = card?.companion;
-  if (!student || student.role === "admin" || !card?.serial || !companion) return null;
+  if (!student || student.role === "admin" || !card?.serial || !companion || !record.journeyEntitled)
+    return null;
   const options = record.craft?.options ?? [];
   return {
     publicId: card.publicId,

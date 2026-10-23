@@ -84,6 +84,10 @@ export const saveStudioDraft = createServerFn({ method: "POST" })
   )
   .handler(async ({ data: input }): Promise<StudioDraft> => {
     const db = await owner();
+    const current = await state(db);
+    if (current.publicId) throw new Error("Your companion journey is already complete.");
+    if (!(await resolveNovaEntitlement(db, accountOf.get(db)!)).active)
+      throw new Error("An eligible learning plan is required to begin your companion journey.");
     const { data, error } = await db.rpc("save_nova_studio_draft", {
       questionnaire: input.answers,
       display_username: input.username,
@@ -93,7 +97,11 @@ export const saveStudioDraft = createServerFn({ method: "POST" })
       throw new Error(
         error.message.includes("another device")
           ? "Your answers changed on another device. Refresh to continue."
-          : "Your answers could not be saved. Please try again.",
+          : error.message.includes("already saved") || error.message.includes("already complete")
+            ? "Your companion journey is already complete."
+            : error.message.includes("learning plan") || error.message.includes("subscription")
+              ? "An eligible learning plan is required to begin your companion journey."
+              : "Your answers could not be saved. Please try again.",
       );
     return data as StudioDraft;
   });
@@ -101,14 +109,14 @@ export const saveStudioDraft = createServerFn({ method: "POST" })
  * Submit the saved answers and store two matched companions. Takes no input: the browser never
  * supplies answers, candidates or identities. The student is verified from their session, the
  * shared matcher runs here on the answers saved in the database, and only the service-role
- * function can store the result. Safe to repeat: an existing card is returned unchanged.
+ * function can store the result. A second journey is refused.
  */
 export const submitStudioOrigin = createServerFn({ method: "POST" }).handler(async () => {
   const db = await owner();
   if (!submissionsOpen())
     throw new Error("Cosmic Companion has not opened yet. Your answers are saved.");
   const current = await state(db);
-  if (current.publicId) return current;
+  if (current.publicId) throw new Error("Your companion journey is already complete.");
   // Starting a journey needs the cosmic_companion feature (decided by the feature system);
   // the database re-checks eligibility in the same transaction that stores the match.
   if (!(await resolveNovaEntitlement(db, accountOf.get(db)!)).active)

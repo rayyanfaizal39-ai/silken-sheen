@@ -1,15 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
-import { useEffect, useState, type CSSProperties } from "react";
+import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
+import type { CompanionEntry } from "@/features/cosmic-companion/entry";
 import { CompanionGarden } from "@/features/cosmic-companion/CompanionGarden";
-import {
-  JOURNEY_CTA,
-  journeyStage,
-  parseJourneyPreview,
-  type JourneyStage,
-} from "@/features/cosmic-companion/journey";
+import { JOURNEY_CTA, parseJourneyPreview, type JourneyStage } from "@/features/cosmic-companion/journey";
+import { useCompanionEntry } from "@/features/cosmic-companion/use-companion-entry";
 import { UnrevealedCosmicCard } from "@/features/cosmic-companion/UnrevealedCosmicCard";
-import { loadNovaDashboardStatus } from "@/features/nova-cards/local-session";
 import { useAuth } from "@/context/auth-context";
 import { useDevDemoCompanion } from "@/lib/dev-auth/use-dev-demo-companion";
 import { seoMeta } from "@/lib/seo";
@@ -201,38 +197,10 @@ function PortalIcon() {
  * requests artwork, reveals a creature, reads card records, or changes XP. The cinematic
  * gateway lives independently at /companion/portal.
  */
-/**
- * The student's journey stage: an explicit fictional preview, or the saved status from the
- * existing Studio status call. Guests and failed lookups see the first-time entrance; the
- * Studio still routes every student by their saved server state after the portal.
- */
-function useJourneyStage(preview: JourneyStage | undefined): JourneyStage {
-  const { user } = useAuth();
-  const [stage, setStage] = useState<JourneyStage>(preview ?? "new");
-  useEffect(() => {
-    if (preview) {
-      setStage(preview);
-      return;
-    }
-    setStage("new");
-    if (!user?.id) return;
-    let active = true;
-    loadNovaDashboardStatus()
-      .then((status) => {
-        if (active) setStage(journeyStage(status));
-      })
-      .catch(() => {});
-    return () => {
-      active = false;
-    };
-  }, [preview, user?.id]);
-  return stage;
-}
-
 export function CosmicCompanionPage() {
   const { preview } = Route.useSearch();
-  const stage = useJourneyStage(preview);
-  const { user } = useAuth();
+  const { ready, entry, stage } = useCompanionEntry(preview);
+  const { user, devAuthBypass } = useAuth();
   const demo = useDevDemoCompanion();
   const discovered = demo !== "off" && demo?.discovered ? demo : null;
   return (
@@ -311,20 +279,20 @@ export function CosmicCompanionPage() {
               pedestal={<span className="ccp-stage__platform" aria-hidden="true" />}
             />
           )}
-          <Link
-            className="ccp-discover"
-            to="/companion/portal"
-            search={{ preview }}
-            data-journey-stage={stage}
-          >
-            <PortalIcon />
-            <span>{JOURNEY_CTA[stage].label}</span>
-            <ArrowRight size={21} aria-hidden="true" />
-          </Link>
+          {ready ? (
+            <CompanionEntryLink entry={entry} stage={stage} preview={preview} />
+          ) : (
+            <span className="ccp-discover" aria-busy="true">
+              Checking your plan…
+            </span>
+          )}
           <p className="ccp-journey-note">
             {preview && <b>Fictional preview · </b>}
-            {JOURNEY_CTA[stage].note}
+            {entry.kind === "upgrade"
+              ? "An eligible AcadeMY learning plan is required to begin your companion journey."
+              : JOURNEY_CTA[stage].note}
           </p>
+          {import.meta.env.DEV && devAuthBypass ? <LocalPlanToggle /> : null}
           {!user && !preview && (
             <p className="ccp-guest" role="note">
               <b>You’re exploring as a guest.</b> Your progress won’t be saved.{" "}
@@ -349,4 +317,69 @@ export function CosmicCompanionPage() {
       </section>
     </main>
   );
+}
+
+function CompanionEntryLink({
+  entry,
+  stage,
+  preview,
+}: {
+  entry: CompanionEntry;
+  stage: JourneyStage;
+  preview?: JourneyStage;
+}) {
+  const label = (
+    <>
+      <PortalIcon />
+      <span>{JOURNEY_CTA[stage].label}</span>
+      <ArrowRight size={21} aria-hidden="true" />
+    </>
+  );
+  if (entry.kind === "upgrade") {
+    return (
+      <Link
+        className="ccp-discover"
+        to="/upgrade"
+        search={{ next: entry.search.next }}
+        data-journey-stage={stage}
+        data-companion-entry="upgrade"
+      >
+        {label}
+      </Link>
+    );
+  }
+  if (entry.kind === "card") {
+    return (
+      <Link className="ccp-discover" to="/nova" data-journey-stage={stage} data-companion-entry="card">
+        {label}
+      </Link>
+    );
+  }
+  return (
+    <Link
+      className="ccp-discover"
+      to="/companion/portal"
+      search={preview ? { preview } : entry.search}
+      data-journey-stage={stage}
+      data-companion-entry="journey"
+    >
+      {label}
+    </Link>
+  );
+}
+
+/** Localhost-only Premium / Free switch. The import stays inside the dev branch. */
+function LocalPlanToggle() {
+  const [toggle, setToggle] = useState<ReactNode>(null);
+  useEffect(() => {
+    if (!import.meta.env.DEV) return;
+    let cancelled = false;
+    void import("@/lib/dev-auth/DevSignInPanel").then((mod) => {
+      if (!cancelled) setToggle(<mod.DevPremiumToggle />);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  return toggle;
 }

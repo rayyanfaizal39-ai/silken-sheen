@@ -8,9 +8,11 @@ import {
   devChooseCraftArt,
   devChooseStudio,
   devCraftQueue,
+  devCompanionPremium,
   devDashboardStatus,
   devLoadStudio,
   devOwnerNova,
+  devSetCompanionPremium,
   devResetCraftArt,
   devSaveStudio,
   devSetSharing,
@@ -74,6 +76,29 @@ describe("local dev companion card", () => {
 
     signOutDevStudentRecord();
     expect(() => devOwnerNova()).toThrow(/sign in/i);
+  });
+
+  it("blocks a free demo student, allows one premium journey, and refuses a second", async () => {
+    useDevAuthStorage(createMemoryStorage());
+    signInDevStudentRecord(DEV_STUDENTS[0].id);
+    expect(devCompanionPremium()).toBe(true);
+    devSetCompanionPremium(false);
+    expect(devOwnerNova().entitlement.active).toBe(false);
+    const draft = (await devLoadStudio()).draft;
+    await expect(devSaveStudio({ ...draft, answers })).rejects.toThrow(/learning plan/i);
+    await expect(devSubmitStudio()).rejects.toThrow(/learning plan/i);
+    expect(() => devCraftQueue()).toThrow(/administrator/i);
+
+    devSetCompanionPremium(true);
+    expect(devOwnerNova().entitlement.active).toBe(true);
+    await devSaveStudio({ ...(await devLoadStudio()).draft, answers });
+    await devSubmitStudio();
+    await expect(devSubmitStudio()).rejects.toThrow(/already complete/i);
+    await devChooseStudio("a");
+
+    signInDevStudentRecord(DEV_STUDENTS.find((item) => item.role === "admin")!.id);
+    expect(devCraftQueue()).toHaveLength(1);
+    expect(devCraftQueue()[0].status).toBe("waiting_for_art");
   });
 
   it("keeps Form 1 and Form 2 journeys separate", async () => {

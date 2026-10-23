@@ -24,7 +24,7 @@ import {
 } from "./companion-candidates";
 import { profilePersonality } from "../../../supabase/functions/_shared/companion-profile";
 import { createGuestStudioApi } from "./guest-studio";
-import { academyHomeHref, cardsPaths, signInHref, upgradeHref } from "./paths";
+import { academyHomeHref, cardsPaths, companionUpgradeHref, signInHref } from "./paths";
 import { novaAccessCopy, novaAccessProblem, type NovaAccessProblem } from "./access";
 import { isDevAuthBypassEnabled } from "@/lib/dev-auth";
 import { isSupabaseConfigured } from "@/lib/supabase";
@@ -89,15 +89,22 @@ export default function StudioPage() {
     </Suspense>
   );
 }
-/** A student's real, account-linked journey. The server decides who is signed in: a signed-out
- * or anonymous visitor is moved to the temporary guest journey, never shown saved data. */
+/** A student's real, account-linked journey. A signed-out visitor is sent to Upgrade.
+ * They do not start the twelve questions. Saved journeys stay on the server. */
 function AccountStudio() {
-  const [guest, setGuest] = useState(false);
-  return guest ? (
-    <GuestStudio />
-  ) : (
-    <StudioExperience api={liveApi} onSignedOut={() => setGuest(true)} />
-  );
+  const [signedOut, setSignedOut] = useState(false);
+  if (signedOut) {
+    return (
+      <main className="nova-sanctuary sanctuary-access">
+        <h1 tabIndex={-1}>Your journey is safe.</h1>
+        <p>An eligible AcadeMY learning plan is required to begin your companion journey.</p>
+        <a className="sanctuary-primary" href={companionUpgradeHref}>
+          Explore Nova plans ↗
+        </a>
+      </main>
+    );
+  }
+  return <StudioExperience api={liveApi} onSignedOut={() => setSignedOut(true)} />;
 }
 
 /** The guest journey: in memory only, reset by a refresh, unable to submit or choose. */
@@ -364,7 +371,7 @@ export function StudioExperience({
             An eligible AcadeMY learning plan is required to begin your companion journey. Your
             saved answers are preserved.
           </p>
-          <a className="sanctuary-primary" href={upgradeHref}>
+          <a className="sanctuary-primary" href={companionUpgradeHref}>
             Explore Nova plans ↗
           </a>
         </section>

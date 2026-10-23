@@ -21,7 +21,13 @@ Do not put a Supabase URL or key in that file. Restart `npm run dev`, then open:
 
 `http://localhost:8080/login?next=/companion`
 
-Choose **Aisha · Form 1**, **Haziq · Form 2**, or **Staff**. Answer the twelve questions, summon the companions, and choose one. The two companions you compare use a local drawing so you can see them. That drawing is not the card portrait. No image API is called, and `NOVA_AI_ENABLED` / `NOVA_AI_BATCH_ENABLED` stay off.
+Choose **Aisha · Form 1**, **Haziq · Form 2**, or **Staff**. On the sign-in screen, and again on the Cosmic Companion page, the demo plan switch is **Premium** or **Free**. Premium is the paid plan that includes Cosmic Companion. Free does not.
+
+**Free.** Open `http://localhost:8080/companion` and choose **Enter My Cosmic Portal** (or **Discover My Companion** before a journey exists). The button goes to `http://localhost:8080/upgrade?next=/companion`. **Back to Cosmic Companion** on that page returns here. The twelve questions do not start, and Staff do not see this student in the artwork queue.
+
+**Premium.** The same button opens the generator once. Answer the twelve questions, summon, and choose one companion. That creates the one permanent card and places the student in the staff queue with status waiting for art (**Your companion is being crafted** on the card, then two portraits, then the student picks). Choose the button again and it opens the existing card at `http://localhost:8080/nova`. It does not start the questions again. A second summon is refused.
+
+Answer the twelve questions, summon the companions, and choose one. The two companions you compare use a local drawing so you can see them. That drawing is not the card portrait. No image API is called, and `NOVA_AI_ENABLED` / `NOVA_AI_BATCH_ENABLED` stay off.
 
 Until staff upload two portraits, the card says **Your companion is being crafted**. The gold frame, serial, QR code and barcode are already there. After both portraits are uploaded, the card says **Choose your companion art**. The portrait the student picks becomes the card artwork.
 
@@ -39,7 +45,7 @@ Sign in as **Staff**, then open:
 
 The queue lists the display name, form, companion, species, element, traits, quiz personality and card public id. Export CSV or JSON for the artist. That file has no email and no phone. Upload exactly two images for the card public id. The student picks one on the card page. **Reset art choice** lets them pick again. The serial does not change. One card stays with the student.
 
-Aisha and Haziq cannot open that screen. The same admin check lives in the `nova_admin_*` database functions. `supabase/migrations/20261023140000_nova_staff_craft.sql` and `supabase/migrations/20261023160000_nova_craft_art_options.sql` are for review only. Do not apply them to a Supabase project from this dev bypass. `nova_card_candidates` stays the companion identity. The two portraits are stored beside it.
+Aisha and Haziq cannot open that screen. The same admin check lives in the `nova_admin_*` database functions. `supabase/migrations/20261023140000_nova_staff_craft.sql`, `supabase/migrations/20261023160000_nova_craft_art_options.sql`, and `supabase/migrations/20261023170000_nova_companion_journey_gate.sql` are for review only. Do not apply them to a Supabase project from this dev bypass. The journey gate records `journey_entitled` on the card when a paid plan finishes the generator. Staff only see that card after the student confirms a companion. `nova_card_candidates` stays the companion identity. The two portraits are stored beside it.
 
 Each student's answers, choice, and card stay in this browser's `localStorage` under `academymy.dev-auth.v1`. After pulling this update, refresh the studio page. A journey that was already saved keeps its serial. The card waits for a staff portrait instead of copying the comparison drawing.
 

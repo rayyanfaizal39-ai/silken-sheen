@@ -77,54 +77,32 @@ async function answerAll(host: HTMLElement) {
 }
 
 describe("Guest journey", () => {
-  it("lets a signed-out visitor explore all 12 questions without saving anything", async () => {
-    const setItem = vi.spyOn(Storage.prototype, "setItem");
+  it("sends a signed-out visitor to Upgrade instead of the twelve questions", async () => {
     const { host } = await render(<StudioPage />);
-    expect(host.textContent).toContain("You’re exploring as a guest.");
-    expect(host.textContent).toContain("Your progress won’t be saved.");
-    await click(host, "Begin My Journey");
-    expect(host.textContent).toContain("As a guest, your answers aren't saved.");
-    expect(host.textContent).not.toContain("Your answers save as you go");
-    await answerAll(host);
-
-    expect(host.querySelector("h1")?.textContent).toBe("Your Cosmic Connection Has Awakened");
-    expect(button(host, "Sign in to save my companion")).toBeTruthy();
-    expect(host.textContent).not.toContain("Public nickname");
-    expect(button(host, "Summon")).toBeUndefined();
-
+    expect(host.textContent).toContain("An eligible AcadeMY learning plan is required");
+    expect(host.querySelector("a")?.getAttribute("href")).toBe(
+      "/upgrade?next=%2Fcompanion",
+    );
+    expect(host.querySelectorAll("[data-nova-answer]")).toHaveLength(0);
+    expect(button(host, "Begin My Journey")).toBeUndefined();
     expect(saveStudioDraft).not.toHaveBeenCalled();
     expect(submitStudioOrigin).not.toHaveBeenCalled();
     expect(chooseStudioOrigin).not.toHaveBeenCalled();
-    for (const [key, value] of setItem.mock.calls) {
-      expect(key).not.toMatch(/answer|draft|identity|companion|nova-studio/i);
-      expect(value).not.toMatch(/answers|traits|personality/);
-    }
-    expect(document.cookie).toBe("");
   });
 
-  it("starts again from the beginning after a refresh", async () => {
+  it("still offers Upgrade after a refresh", async () => {
     const first = await render(<StudioPage />);
-    await click(first.host, "Begin My Journey");
-    await act(async () =>
-      first.host.querySelector<HTMLButtonElement>("[data-nova-answer]")!.click(),
-    );
-    expect(first.host.querySelector("h1")?.textContent).toBe(QUESTIONS[1].label);
+    expect(first.host.querySelector("a")?.getAttribute("href")).toContain("/upgrade?next=");
     await act(async () => first.root.unmount());
     roots.splice(roots.indexOf(first.root), 1);
-
     const again = await render(<StudioPage />);
-    expect(button(again.host, "Begin My Journey")).toBeTruthy();
+    expect(again.host.textContent).toContain("Explore Nova plans");
     expect(again.host.querySelectorAll("[data-nova-answer]")).toHaveLength(0);
   });
 
-  it("sends the guest to the existing AcadeMY login without transferring their answers", async () => {
+  it("does not transfer answers because the questions never start", async () => {
     const { host } = await render(<StudioPage />);
-    await click(host, "Begin My Journey");
-    await answerAll(host);
-    await click(host, "Sign in to save my companion");
-    expect(navigation.assign).toHaveBeenCalledExactlyOnceWith(
-      `/login?next=${encodeURIComponent("/nova/studio")}`,
-    );
+    expect(host.textContent).not.toContain("Sign in to save my companion");
     expect(saveStudioDraft).not.toHaveBeenCalled();
     expect(submitStudioOrigin).not.toHaveBeenCalled();
   });
