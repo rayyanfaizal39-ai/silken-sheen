@@ -864,7 +864,7 @@ export const sejarahF2C7MindMap: MindNode = {
               "children": [
                 {
                   "id": "sejarah-f2-c7-node-190",
-                  "label": "Menjamin keamanan"
+                  "label": "Melengkapkan sistem pemerintahan"
                 },
                 {
                   "id": "sejarah-f2-c7-node-191",
@@ -872,11 +872,11 @@ export const sejarahF2C7MindMap: MindNode = {
                 },
                 {
                   "id": "sejarah-f2-c7-node-192",
-                  "label": "Mengukuhkan pentadbiran"
+                  "label": "Melengkapkan sistem kesultanan"
                 },
                 {
                   "id": "sejarah-f2-c7-node-193",
-                  "label": "Menyesuaikan perubahan politik dan ekonomi"
+                  "label": "Menyesuaikan perubahan politik dan sosioekonomi"
                 }
               ]
             }
@@ -1136,7 +1136,7 @@ export const sejarahF2C7MindMap: MindNode = {
                 },
                 {
                   "id": "sejarah-f2-c7-node-250",
-                  "label": "Perdagangan strategik di Selat Melaka"
+                  "label": "Perak dan Selangor strategik di Selat Melaka"
                 },
                 {
                   "id": "sejarah-f2-c7-node-251",

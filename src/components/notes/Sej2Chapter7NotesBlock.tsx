@@ -6,14 +6,17 @@ import { FactGrid } from "./blocks/FactGrid";
 import { DataTable } from "./blocks/DataTable";
 import { PerakRotationWheel } from "./blocks/PerakRotationWheel";
 import { bgPanel, hexToRgba, neon } from "./blocks/neon-tokens";
-import regaliaEmpatNegeri from "@/assets/form2-content/regalia-diraja-empat-negeri.png";
+import pusatMobile from "@/assets/form2-content/sej2-bab7/v1-pusat-empat-kesultanan.svg";
+import pusatDesktop from "@/assets/form2-content/sej2-bab7/v1-pusat-empat-kesultanan-desktop.svg";
 
-const ORBIT_LABELS = ["Pengasasan", "Sistem Penggiliran", "Warisan Islam", "Rumusan"];
+const FIG_IMG = "w-full rounded-2xl border border-border";
+
+const ORBIT_LABELS = ["Pengasasan", "Sistem Penggiliran", "Warisan", "Rumusan"];
 
 const SECTION_CHROME: Array<{ eyebrow: string; title: string; sub?: string }> = [
-  { eyebrow: "◆ 7.1", title: "Empat Kesultanan, Empat Pengasas", sub: "Legasi Kesultanan Melayu Melaka diteruskan dengan cara berbeza-beza." },
-  { eyebrow: "◆ 7.2", title: "Sistem Penggiliran Perak — Keunikan Yang Tiada Tandingan", sub: "Enam gelaran mesti dilalui sebelum menjadi Sultan." },
-  { eyebrow: "◆ 7.2", title: "Warisan Islam dalam Pemerintahan", sub: "Tradisi Melaka sebagai pusat Islam diwarisi dan termaktub dalam Perlembagaan Malaysia." },
+  { eyebrow: "◆ 7.1", title: "Empat Kesultanan, Empat Pengasas" },
+  { eyebrow: "◆ 7.2", title: "Warisan Sistem Pemerintahan" },
+  { eyebrow: "◆ 7.2", title: "Warisan Islam, Perundangan, Adat Istiadat, Persuratan dan Ekonomi" },
   { eyebrow: "◆ Rumusan", title: "Fakta Penting & Istilah Utama" },
 ];
 
@@ -105,11 +108,11 @@ export function Sej2Chapter7NotesBlock({
         {current === 0 && (
           <div className="space-y-6">
             <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.founding.intro}</p>
-            <img
-              src={regaliaEmpatNegeri}
-              alt="Alat Kebesaran Diraja Empat Negeri"
-              className="notes-figure-img rounded-2xl border border-border"
-            />
+            <figure className="space-y-2">
+              <img src={pusatMobile} alt="Peta pusat pemerintahan pertama Kesultanan Pahang, Perak, Terengganu dan Selangor" className={`${FIG_IMG} sm:hidden`} />
+              <img src={pusatDesktop} alt="Peta pusat pemerintahan pertama Kesultanan Pahang, Perak, Terengganu dan Selangor" className={`${FIG_IMG} notes-figure-img--wide hidden sm:block`} />
+              <figcaption className="text-center text-[11px] italic leading-snug text-muted-foreground">Sumber: buku teks hlm. 116–122. Peta asas: Natural Earth; kedudukan anggaran.</figcaption>
+            </figure>
             <div className="grid gap-4 sm:grid-cols-2">
               {content.founding.sultanates.map((s) => (
                 <div key={s.name} className="rounded-2xl p-4.5" style={{ background: bgPanel }}>
@@ -139,7 +142,7 @@ export function Sej2Chapter7NotesBlock({
               <>
                 <PerakRotationWheel centerLabel={perak.rotationOrder[0]} outerLabels={perak.rotationOrder.slice(1)} />
                 <p className="text-center text-[11px] text-muted-foreground">
-                  Dipilih dan dilantik oleh {perak.selectionBody} — sistem penggiliran unik yang tiada di negeri Melayu lain
+                  Susunan penggiliran Perak; sultan dipilih dan dilantik oleh {perak.selectionBody}
                 </p>
               </>
             )}
@@ -171,6 +174,9 @@ export function Sej2Chapter7NotesBlock({
                 );
               })}
             </div>
+            {content.legacyAspects?.map((a) => (
+              <FactGrid key={a.title} heading={a.title} facts={a.points} />
+            ))}
           </div>
         )}
 
