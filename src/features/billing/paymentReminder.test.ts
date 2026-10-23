@@ -95,10 +95,10 @@ describe("payment reminder delivery contract", () => {
     );
     expect(migration).not.toMatch(/^\s*select cron\.schedule/m);
     expect(migration).toContain("-- select cron.schedule(");
-    expect(migration).toContain("'5 10 * * 0'");
-    expect(migration).toContain("Sunday 18:05 Asia/Kuala_Lumpur");
-    expect(migration).toContain("Generated Sunday at 6:00 PM");
+    expect(migration).not.toContain("'5 10 * * 0'");
     expect(migration).not.toContain("'0 0 * * 1'");
+    expect(migration).not.toContain("/functions/v1/send-weekly-parent-report");
+    expect(migration).toContain("cron.unschedule('academy-weekly-parent-report')");
     expect(migration).toContain("'0 1 * * *'");
   });
 

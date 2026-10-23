@@ -90,8 +90,8 @@ export function ParentReportSettings({ idPrefix = "parent-report" }: { idPrefix?
     setConsent(Boolean(nextEmail));
     setMessage(
       nextEmail
-        ? "Saved. Weekly reports and renewal reminders will go to this address."
-        : "Saved. Weekly reports and renewal reminders will go to your AcadeMY email.",
+        ? "Saved. Monthly reports and renewal reminders will go to this address."
+        : "Saved. Monthly reports and renewal reminders will go to your AcadeMY email.",
     );
   }
 
@@ -136,7 +136,7 @@ export function ParentReportSettings({ idPrefix = "parent-report" }: { idPrefix?
             </button>
             {entitled ? (
               <Link
-                to="/weekly-report"
+                to="/parent"
                 className="inline-flex min-h-11 items-center justify-center rounded-2xl border border-white/15 px-5 text-sm font-bold text-white"
               >
                 Preview My Report

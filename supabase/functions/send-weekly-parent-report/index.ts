@@ -1,3 +1,8 @@
+/**
+ * Legacy weekly parent report. Leave this function deployed so an old caller
+ * still gets a response, and do not schedule it. Parent progress email is
+ * monthly and is sent by send-parent-report.
+ */
 import { createClient } from "npm:@supabase/supabase-js@2.108.1";
 import { maskEmailAddress } from "../_shared/email-brand.ts";
 import { sendWithResend } from "../_shared/resend.ts";

@@ -42,16 +42,18 @@ verify_jwt = false
 [functions.send-invoice-email]
 verify_jwt = true
 
+# Manual sends check the student JWT. The monthly batch checks
+# x-monthly-report-key. Gateway JWT verification would block that batch.
 [functions.send-parent-report]
-verify_jwt = true
+verify_jwt = false
 
-# The function checks the student JWT itself, and a separate cron key for
-# the weekly batch. Gateway JWT verification would block that batch caller.
+# Legacy weekly sender. Keep it deployable and do not schedule it.
+# Parent progress email is monthly via send-parent-report.
 [functions.send-weekly-parent-report]
 verify_jwt = false
 
-# Cron key on x-payment-reminder-key, same pattern as the weekly report.
-# Gateway JWT verification would block the scheduled caller.
+# Cron key on x-payment-reminder-key. Gateway JWT verification would block
+# the scheduled caller.
 [functions.send-payment-reminder]
 verify_jwt = false
 

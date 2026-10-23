@@ -3,12 +3,12 @@ import cloudLight from "@/assets/landing-cinematic/decor/cloud-light.webp";
 import { CinematicAuthCta } from "./CinematicAuthActions";
 import { useCinematicMotion } from "./cinematicMotionContext";
 
-/** Weekly key metrics, mirroring the Weekly Parent Report design. */
+/** Monthly key metrics, mirroring the monthly parent report design. */
 const METRICS = [
   {
     label: "Study Time",
     value: "5h 45m",
-    meta: "+18% from last week",
+    meta: "+18% from last month",
     tone: "good" as const,
     icon: (
       <svg
@@ -66,7 +66,7 @@ const METRICS = [
   {
     label: "Avg Quiz Score",
     value: "88%",
-    meta: "Strong improvement this week",
+    meta: "Strong improvement this month",
     tone: "good" as const,
     icon: (
       <svg
@@ -84,7 +84,7 @@ const METRICS = [
   {
     label: "XP Earned",
     value: "2,450 XP",
-    meta: "New weekly personal best!",
+    meta: "New monthly personal best!",
     tone: "violet" as const,
     icon: (
       <svg
@@ -136,16 +136,16 @@ const SUBJECTS = [
     badge: "Improving",
     tone: "improving",
     pct: 41,
-    delta: "+9% this week",
+    delta: "+9% this month",
     up: true,
   },
-  { name: "Science", badge: "Strong", tone: "strong", pct: 46, delta: "+12% this week", up: true },
+  { name: "Science", badge: "Strong", tone: "strong", pct: 46, delta: "+12% this month", up: true },
   {
     name: "Sejarah",
     badge: "Needs Revision",
     tone: "revision",
     pct: 29,
-    delta: "-2% this week",
+    delta: "-2% this month",
     up: false,
   },
 ];
@@ -165,7 +165,7 @@ function MomentumRing() {
       className="preport__ring"
       viewBox="0 0 64 64"
       role="img"
-      aria-label="Weekly learning momentum: 85 percent"
+      aria-label="Monthly learning momentum: 85 percent"
     >
       <circle cx="32" cy="32" r={r} fill="none" stroke="#e6dcfb" strokeWidth="7" />
       <circle
@@ -295,20 +295,20 @@ export default function ParentScene() {
               </span>
             </h2>
             <p className="parents__body">
-              Every week we send one clear email — progress, strengths, weak topics and exactly how
+              Every month we send one clear email — progress, strengths, weak topics and exactly how
               you can help.
             </p>
           </header>
 
           <div className="parents__grid">
-            {/* ---------- the weekly parent report email ---------- */}
+            {/* ---------- the monthly parent report email ---------- */}
             <div className="pdash preport">
               <div className="preport__bar">
                 <span className="preport__brand">
                   <span className="preport__brand-mark">A</span>
                   Acade<em>MY</em>
                 </span>
-                <span className="preport__badge">Weekly Parent Report</span>
+                <span className="preport__badge">Monthly Parent Report</span>
               </div>
 
               <div className="preport__intro">
@@ -316,23 +316,23 @@ export default function ParentScene() {
                   A
                 </span>
                 <div>
-                  <strong className="preport__intro-title">Aina's Week at AcadeMY</strong>
-                  <span className="preport__intro-meta">Demo weekly learning report</span>
+                  <strong className="preport__intro-title">Aina's Month at AcadeMY</strong>
+                  <span className="preport__intro-meta">Demo monthly learning report</span>
                 </div>
               </div>
 
               <div className="preport__momentum">
                 <MomentumRing />
                 <div className="preport__momentum-copy">
-                  <strong>Status: Excellent week</strong>
+                  <strong>Status: Excellent month</strong>
                   <p>
-                    Aina completed all core missions early this week, showing strong focus on
+                    Aina completed all core missions early this month, showing strong focus on
                     advanced Mathematics equations.
                   </p>
                 </div>
               </div>
 
-              <div className="preport__section-title">Weekly Key Metrics</div>
+              <div className="preport__section-title">Monthly Key Metrics</div>
               <div className="preport__metrics">
                 {METRICS.map((m) => (
                   <div key={m.label} className="preport__metric">
@@ -400,7 +400,7 @@ export default function ParentScene() {
               </div>
             </div>
 
-            {/* ---------- insight, focus areas and next week ---------- */}
+            {/* ---------- insight, focus areas and next month ---------- */}
             <aside className="parents__side">
               <div className="parents__side-card pinsight">
                 <span className="pinsight__badge">
@@ -430,7 +430,7 @@ export default function ParentScene() {
                     <path d="M8 6H5v1.5A3.5 3.5 0 0 0 8.5 11M16 6h3v1.5a3.5 3.5 0 0 1-3.5 3.5" />
                     <path d="M12 12.5V17M8.5 20h7M10 17h4" />
                   </svg>
-                  Biggest win this week
+                  Biggest win this month
                 </p>
                 <p className="pfocus__text">
                   Completed the "Trigonometry Challenge Part 2" module with a perfect 100% quiz
@@ -452,13 +452,13 @@ export default function ParentScene() {
                   Needs support · <strong>Sejarah Bab 3</strong>
                 </p>
                 <p className="pfocus__text">
-                  Suggested support: 10 minutes on the Bab 3 animated timeline before next week's
+                  Suggested support: 10 minutes on the Bab 3 animated timeline before next month's
                   mock test.
                 </p>
               </div>
 
               <div className="parents__side-card pplan">
-                <span className="parents__side-label">Recommended plan for next week</span>
+                <span className="parents__side-label">Recommended plan for next month</span>
                 <ol className="pplan__list">
                   {PLAN.map((g, i) => (
                     <li key={i}>

@@ -20,6 +20,10 @@ const SUBJECT_NAMES: Record<string, string> = {
   geography: "Geography",
 };
 
+export function subjectDisplayName(subjectId: string): string {
+  return SUBJECT_NAMES[subjectId] ?? subjectId;
+}
+
 export type WeeklyQuizRow = {
   createdAt: string;
   scorePct: number | string | null;

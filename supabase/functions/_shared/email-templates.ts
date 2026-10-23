@@ -83,6 +83,8 @@ export type ParentReportEmailData = {
   weakSpots: Array<{ subjectName: string; chapterLabel: string; avgScore: number }>;
   recommendation: string;
   dashboardUrl: string;
+  /** Automatic monthly batch. Manual sends keep the learner-sent outro. */
+  automatic?: boolean;
 };
 
 export function buildParentReportEmail(report: ParentReportEmailData): EmailContent {
@@ -115,7 +117,9 @@ export function buildParentReportEmail(report: ParentReportEmailData): EmailCont
       intro: `Here is a clear learning summary for ${report.periodLabel}.`,
       content,
       cta: { label: "View parent dashboard", url: report.dashboardUrl },
-      outro: "This report was sent manually from AcadeMY by the learner or account holder.",
+      outro: report.automatic
+        ? "AcadeMY sent this monthly report automatically."
+        : "This report was sent manually from AcadeMY by the learner or account holder.",
     }),
     text: [
       `AcadeMY ${cadenceLabel} Mission Report`,

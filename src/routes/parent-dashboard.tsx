@@ -271,11 +271,11 @@ function DashboardContent({ model, progress, canViewDashboard, canViewPremiumAna
       </section>
 
       <section className="mb-8">
-        <SectionHeading id="report" eyebrow="Monday–Sunday report" title="Weekly Parent Report" />
+        <SectionHeading id="report" eyebrow="Previous calendar month" title="Monthly Parent Report" />
         <LockedSection locked={!canViewReports} label="Captain report">
           <Panel>
-            <p className="text-sm leading-6 text-slate-300">The Monday–Sunday report uses this week's recorded quizzes and the current streak.</p>
-            <Link to="/weekly-report" className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-xl bg-violet-500 px-4 py-2 text-sm font-bold text-white hover:bg-violet-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300">Preview this week's report <ArrowRight className="h-4 w-4" /></Link>
+            <p className="text-sm leading-6 text-slate-300">The monthly report uses the previous calendar month in Malaysia and the current streak.</p>
+            <Link to="/parent" className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-xl bg-violet-500 px-4 py-2 text-sm font-bold text-white hover:bg-violet-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300">Open the monthly report <ArrowRight className="h-4 w-4" /></Link>
           </Panel>
         </LockedSection>
       </section>
@@ -367,7 +367,7 @@ function LockedSection({ locked, label, children, flush = false }: { locked: boo
   </div>;
 }
 
-function UpgradeBanner() { return <div className="mb-8 flex flex-col gap-4 rounded-2xl border border-violet-300/20 bg-violet-400/[.07] p-4 sm:flex-row sm:items-center sm:justify-between"><div className="flex gap-3"><Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-violet-300" /><div><p className="font-semibold text-white">Parent Dashboard preview</p><p className="mt-1 text-sm text-slate-300">Core progress is visible. Captain unlocks detailed insights and weekly reports.</p></div></div><Link to="/upgrade" className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-xl border border-violet-300/25 px-4 text-sm font-bold text-violet-100 hover:bg-violet-300/10">View plans</Link></div>; }
+function UpgradeBanner() { return <div className="mb-8 flex flex-col gap-4 rounded-2xl border border-violet-300/20 bg-violet-400/[.07] p-4 sm:flex-row sm:items-center sm:justify-between"><div className="flex gap-3"><Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-violet-300" /><div><p className="font-semibold text-white">Parent Dashboard preview</p><p className="mt-1 text-sm text-slate-300">Core progress is visible. Captain unlocks detailed insights and monthly reports.</p></div></div><Link to="/upgrade" className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-xl border border-violet-300/25 px-4 text-sm font-bold text-violet-100 hover:bg-violet-300/10">View plans</Link></div>; }
 function Panel({ children, className = "" }: { children: ReactNode; className?: string }) { return <div className={`rounded-[2rem] border border-white/[.08] bg-[#0B1322]/80 p-5 shadow-[0_18px_60px_rgba(2,6,23,.28)] sm:p-6 ${className}`}>{children}</div>; }
 function SectionHeading({ id, eyebrow, title, compact = false }: { id: string; eyebrow: string; title: string; compact?: boolean }) { return <div className={compact ? "" : "mb-4"}><p className="text-xs font-bold uppercase tracking-[.16em] text-emerald-300">{eyebrow}</p><h2 id={id} className="mt-1 font-display text-xl font-bold text-white sm:text-2xl">{title}</h2></div>; }
 function HeaderFact({ label, value }: { label: string; value: string }) { return <div className="rounded-2xl border border-white/[.08] bg-white/[.045] p-3"><p className="text-[11px] font-bold uppercase tracking-wide text-slate-400">{label}</p><p className="mt-1 text-sm font-semibold text-white">{value}</p></div>; }

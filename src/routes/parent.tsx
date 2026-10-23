@@ -4,7 +4,6 @@ import {
   Mail,
   Send,
   Printer,
-  CalendarDays,
   ShieldCheck,
   Flame,
   Trophy,
@@ -12,27 +11,33 @@ import {
   TrendingUp,
   Brain,
 } from "lucide-react";
-import { useProgress, getRank, type ReportCadence } from "@/hooks/use-progress";
+import { useProgress, getRank } from "@/hooks/use-progress";
 import { useAuth } from "@/context/auth-context";
-import { analyzeProgress, withinDays } from "@/lib/tracker";
+import { previousKualaLumpurMonth } from "@/features/parent-report/monthlyParentReport";
+import { analyzeProgress } from "@/lib/tracker";
 import { seoMeta } from "@/lib/seo";
 import { isSupabaseConfigured, supabase } from "@/lib/supabase";
 import { Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/parent")({
-  head: () => seoMeta({
-    title: "Parent Mission Report",
-    description: "A clear weekly or monthly summary of your child's KSSM study progress — a parent learning dashboard for Malaysian families.",
-    path: "/parent",
-    keywords: ["parent learning dashboard", "KSSM progress report", "student learning platform Malaysia"],
-  }),
+  head: () =>
+    seoMeta({
+      title: "Parent Mission Report",
+      description:
+        "A clear monthly summary of your child's KSSM study progress — a parent learning dashboard for Malaysian families.",
+      path: "/parent",
+      keywords: [
+        "parent learning dashboard",
+        "KSSM progress report",
+        "student learning platform Malaysia",
+      ],
+    }),
   component: ParentPage,
 });
 
 function ParentPage() {
   const { progress, setParentReport } = useProgress();
   const { user, loading: authLoading } = useAuth();
-  const [cadence, setCadence] = useState<ReportCadence>(progress.reportCadence ?? "weekly");
   const [email, setEmail] = useState(progress.parentEmail ?? "");
   const [saved, setSaved] = useState(false);
   const [sending, setSending] = useState(false);
@@ -40,13 +45,18 @@ function ParentPage() {
   const [deliveryComplete, setDeliveryComplete] = useState(false);
 
   const studentName = user?.name ?? "Your child";
-  const days = cadence === "weekly" ? 7 : 30;
-  const periodLabel = cadence === "weekly" ? "the past 7 days" : "the past 30 days";
+  const month = useMemo(() => previousKualaLumpurMonth(new Date()), []);
+  const periodLabel = month.periodLabel;
 
-  const insight = useMemo(
-    () => analyzeProgress(withinDays(progress.quizHistory ?? [], days)),
-    [progress.quizHistory, days],
-  );
+  const insight = useMemo(() => {
+    const start = Date.parse(month.startIso);
+    const end = Date.parse(month.endIso);
+    const history = (progress.quizHistory ?? []).filter((quiz) => {
+      const at = new Date(quiz.date).getTime();
+      return at >= start && at < end;
+    });
+    return analyzeProgress(history);
+  }, [progress.quizHistory, month.startIso, month.endIso]);
   const rank = getRank(progress.xp);
 
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -81,7 +91,7 @@ function ParentPage() {
   }
 
   function save() {
-    setParentReport(emailValid ? email : undefined, cadence);
+    setParentReport(emailValid ? email : undefined, "monthly");
     setSaved(true);
     window.setTimeout(() => setSaved(false), 2200);
   }
@@ -99,11 +109,11 @@ function ParentPage() {
     }
 
     setSending(true);
-    setParentReport(email, cadence);
+    setParentReport(email, "monthly");
     const { error } = await supabase.functions.invoke("send-parent-report", {
       body: {
         to: email,
-        cadence,
+        cadence: "monthly",
         studentName,
         periodLabel,
         totalQuizzes: insight.totalQuizzes,
@@ -147,35 +157,12 @@ function ParentPage() {
               {studentName}'s progress
             </h1>
             <p className="mt-2 text-sm leading-relaxed text-white/55 print:text-slate-600">
-              A clear, syllabus-aligned summary of {periodLabel}. Sent automatically to a parent so
-              they always know how study is going — no surprises.
+              A clear, syllabus-aligned summary of {periodLabel}. The automatic report covers the
+              previous calendar month in Malaysia.
             </p>
           </div>
         </div>
       </header>
-
-      {/* ── Cadence toggle ── */}
-      <div className="flex items-center gap-3 print:hidden">
-        <span className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-white/40">
-          <CalendarDays className="h-4 w-4" /> Report period
-        </span>
-        <div className="inline-flex rounded-xl border border-white/10 bg-white/[0.04] p-1">
-          {(["weekly", "monthly"] as ReportCadence[]).map((c) => (
-            <button
-              key={c}
-              type="button"
-              onClick={() => setCadence(c)}
-              className={`rounded-lg px-4 py-1.5 text-xs font-bold capitalize transition-all ${
-                cadence === c
-                  ? "bg-gradient-to-r from-[#34D399] to-[#10B981] text-[#04130C]"
-                  : "text-white/50 hover:text-white"
-              }`}
-            >
-              {c}
-            </button>
-          ))}
-        </div>
-      </div>
 
       {/* ── Summary stats ── */}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
@@ -274,7 +261,8 @@ function ParentPage() {
           <Mail className="h-5 w-5 text-[#34D399]" /> Send to a parent
         </h2>
         <p className="mt-1 text-sm text-white/45">
-          Save a parent's email to enable {cadence} Mission Reports. You can send one right now too.
+          This preview is {periodLabel}. Send it now, or save the parent address in Profile for the
+          automatic report on the 1st of each month.
         </p>
 
         <label
@@ -340,8 +328,8 @@ function ParentPage() {
 
         <p className="mt-4 flex items-start gap-2 text-[11px] leading-relaxed text-white/35">
           <ShieldCheck className="mt-0.5 h-3.5 w-3.5 shrink-0" />
-          "Send report now" delivers securely through AcadeMY. Scheduled {cadence} delivery is
-          still being prepared; your saved preference is remembered.
+          "Send report now" delivers securely through AcadeMY. Automatic delivery is monthly, on the
+          1st at 8:00 AM Malaysia time, once that schedule is turned on.
         </p>
       </div>
     </section>
