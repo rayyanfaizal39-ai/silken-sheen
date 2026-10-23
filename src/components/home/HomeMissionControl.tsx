@@ -6,9 +6,16 @@ import {
   Megaphone,
   Pin,
   RadioTower,
+  Vote,
   type LucideIcon,
 } from "lucide-react";
-import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
+import { AnnouncementPoll } from "@/components/home/AnnouncementPoll";
+import {
+  groupPollBallotRows,
+  withCastVote,
+  type PollBallot,
+} from "@/components/home/announcement-polls";
 import {
   ANNOUNCEMENT_COLUMNS,
   announcementLink,
@@ -18,6 +25,7 @@ import {
   type Announcement,
   type AnnouncementType,
 } from "@/components/home/announcements";
+import { useAuth } from "@/context/auth-context";
 import { isSupabaseConfigured, supabase } from "@/lib/supabase";
 
 type AnnouncementPresentation = {
@@ -31,11 +39,18 @@ const PRESENTATION: Record<AnnouncementType, AnnouncementPresentation> = {
   reminder: { icon: Bell, accent: "#fbbf24", label: "Reminder" },
   urgent: { icon: AlertTriangle, accent: "#fb7185", label: "Urgent" },
   event: { icon: CalendarDays, accent: "#a78bfa", label: "Event" },
+  poll: { icon: Vote, accent: "#f472b6", label: "Poll" },
 };
 
 // Unpublish and expiry are not always delivered to a reader whose new row fails
 // the SELECT policy, so the visible tab also refreshes on this interval.
 const REFRESH_MS = 30_000;
+
+async function loadPollBallots(): Promise<Record<string, PollBallot>> {
+  const { data, error } = await supabase.rpc("announcement_poll_ballots");
+  if (error) throw error;
+  return groupPollBallotRows(Array.isArray(data) ? data : []);
+}
 
 async function loadAnnouncements(): Promise<Announcement[]> {
   const { data, error } = await supabase
@@ -63,7 +78,21 @@ function useClampedOverflow<T extends HTMLElement>(expanded: boolean, text: stri
   return { ref, overflows };
 }
 
-function AnnouncementCard({ item, now }: { item: Announcement; now: number }) {
+function AnnouncementCard({
+  item,
+  now,
+  ballot,
+  ballotsReady,
+  userId,
+  onVote,
+}: {
+  item: Announcement;
+  now: number;
+  ballot: PollBallot | null;
+  ballotsReady: boolean;
+  userId: string | null;
+  onVote: (announcementId: string, pollId: string, optionId: string) => Promise<void>;
+}) {
   const presentation = PRESENTATION[item.type];
   const Icon = presentation.icon;
   const [expanded, setExpanded] = useState(false);
@@ -130,6 +159,16 @@ function AnnouncementCard({ item, now }: { item: Announcement; now: number }) {
           </button>
         ) : null}
 
+        {item.type === "poll" ? (
+          <AnnouncementPoll
+            ballot={ballot}
+            ballotsReady={ballotsReady}
+            userId={userId}
+            now={now}
+            onVote={onVote}
+          />
+        ) : null}
+
         <footer className="home-mission-control__item-footer">
           <span>{posted}</span>
           {link ? (
@@ -148,10 +187,51 @@ function AnnouncementCard({ item, now }: { item: Announcement; now: number }) {
 }
 
 export function HomeMissionControl() {
+  const { user } = useAuth();
   const [rows, setRows] = useState<Announcement[]>([]);
+  const [ballots, setBallots] = useState<Record<string, PollBallot>>({});
+  const [ballotsReady, setBallotsReady] = useState(false);
   const [status, setStatus] = useState<"loading" | "ready" | "error">("loading");
   const [now, setNow] = useState(() => Date.now());
   const [reloadKey, setReloadKey] = useState(0);
+  const userId = user?.id ?? null;
+  const ballotsRef = useRef(ballots);
+  ballotsRef.current = ballots;
+
+  const refreshBallots = useCallback(async () => {
+    const next = await loadPollBallots();
+    setBallots(next);
+    setBallotsReady(true);
+  }, []);
+
+  const castVote = useCallback(
+    async (announcementId: string, pollId: string, optionId: string) => {
+      if (!userId) return;
+      const snapshot = ballotsRef.current[announcementId] ?? null;
+      if (snapshot) {
+        setBallots((current) => ({
+          ...current,
+          [announcementId]: withCastVote(current[announcementId] ?? snapshot, optionId),
+        }));
+      }
+      const { error } = await supabase
+        .from("announcement_poll_votes")
+        .upsert(
+          { poll_id: pollId, option_id: optionId, user_id: userId },
+          { onConflict: "poll_id,user_id" },
+        );
+      if (error) {
+        if (snapshot) setBallots((current) => ({ ...current, [announcementId]: snapshot }));
+        throw error;
+      }
+      try {
+        await refreshBallots();
+      } catch {
+        // The vote is saved. The next refresh replaces the optimistic counts.
+      }
+    },
+    [refreshBallots, userId],
+  );
 
   useEffect(() => {
     if (!isSupabaseConfigured) {
@@ -166,10 +246,20 @@ export function HomeMissionControl() {
     const load = async () => {
       const id = ++request;
       try {
-        const next = await loadAnnouncements();
+        const [next, nextBallots] = await Promise.all([
+          loadAnnouncements(),
+          loadPollBallots().then(
+            (loaded) => ({ ready: true as const, ballots: loaded }),
+            () => ({ ready: false as const, ballots: null }),
+          ),
+        ]);
         if (!active || id !== request) return;
         seen.current = true;
         setRows(next);
+        if (nextBallots.ready && nextBallots.ballots) {
+          setBallots(nextBallots.ballots);
+          setBallotsReady(true);
+        }
         setStatus("ready");
         setNow(Date.now());
       } catch {
@@ -202,17 +292,20 @@ export function HomeMissionControl() {
   }, [reloadKey]);
 
   useEffect(() => {
-    const upcoming = rows
-      .flatMap((row) => [
+    const upcoming = [
+      ...rows.flatMap((row) => [
         Date.parse(row.starts_at),
         row.expires_at ? Date.parse(row.expires_at) : Number.NaN,
-      ])
-      .filter((time) => time > now);
+      ]),
+      ...Object.values(ballots).map((ballot) =>
+        ballot.closesAt ? Date.parse(ballot.closesAt) : Number.NaN,
+      ),
+    ].filter((time) => time > now);
     if (upcoming.length === 0) return;
     const delay = Math.max(250, Math.min(...upcoming) - now + 250);
     const timer = window.setTimeout(() => setNow(Date.now()), delay);
     return () => window.clearTimeout(timer);
-  }, [rows, now]);
+  }, [ballots, rows, now]);
 
   const items = useMemo(() => liveAnnouncements(rows, now), [rows, now]);
 
@@ -264,7 +357,17 @@ export function HomeMissionControl() {
         ) : null}
 
         {status === "ready"
-          ? items.map((item) => <AnnouncementCard key={item.id} item={item} now={now} />)
+          ? items.map((item) => (
+              <AnnouncementCard
+                key={item.id}
+                item={item}
+                now={now}
+                ballot={ballots[item.id] ?? null}
+                ballotsReady={ballotsReady}
+                userId={userId}
+                onVote={castVote}
+              />
+            ))
           : null}
       </div>
     </section>

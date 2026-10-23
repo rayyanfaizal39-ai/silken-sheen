@@ -1,4 +1,4 @@
-export const ANNOUNCEMENT_TYPES = ["news", "reminder", "urgent", "event"] as const;
+export const ANNOUNCEMENT_TYPES = ["news", "reminder", "urgent", "event", "poll"] as const;
 
 export type AnnouncementType = (typeof ANNOUNCEMENT_TYPES)[number];
 

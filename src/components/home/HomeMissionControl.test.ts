@@ -11,10 +11,12 @@ describe("Mission Control bulletin", () => {
     expect(source).toContain('table: "announcements"');
     expect(source).not.toContain("MISSION_CONTROL_ITEMS");
     expect(source).toContain("No announcements yet");
+    expect(source).toContain("announcement_poll_ballots");
+    expect(source).toContain("announcement_poll_votes");
   });
 
   it("gives every bulletin type its own neon badge, with urgent called out", () => {
-    for (const label of ["News", "Reminder", "Urgent", "Event"]) {
+    for (const label of ["News", "Reminder", "Urgent", "Event", "Poll"]) {
       expect(source).toContain(`label: "${label}"`);
     }
     expect(source).toContain("home-mission-control__badge--urgent");
