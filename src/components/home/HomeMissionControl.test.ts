@@ -1,33 +1,32 @@
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { MISSION_CONTROL_ITEMS } from "./mission-control-data";
 
-describe("Mission Control transmissions", () => {
-  it("ships four data-driven transmission categories", () => {
-    expect(MISSION_CONTROL_ITEMS).toHaveLength(4);
-    expect(MISSION_CONTROL_ITEMS.map((item) => item.type)).toEqual([
-      "new-mission",
-      "event",
-      "community",
-      "update",
-    ]);
-    expect(new Set(MISSION_CONTROL_ITEMS.map((item) => item.id)).size).toBe(4);
+const source = readFileSync(new URL("./HomeMissionControl.tsx", import.meta.url), "utf8");
+const styles = readFileSync(new URL("./homeSkeleton.css", import.meta.url), "utf8");
+
+describe("Mission Control bulletin", () => {
+  it("loads announcements and subscribes to realtime changes", () => {
+    expect(source).toContain('.from("announcements")');
+    expect(source).toContain("postgres_changes");
+    expect(source).toContain('table: "announcements"');
+    expect(source).not.toContain("MISSION_CONTROL_ITEMS");
+    expect(source).toContain("No announcements yet");
+    expect(source).toContain("announcement_poll_ballots");
+    expect(source).toContain("announcement_poll_votes");
   });
 
-  it("uses the registered Science Form 3 Chapter 8 notes destination", () => {
-    expect(MISSION_CONTROL_ITEMS[0]).toMatchObject({
-      actionLabel: "Explore",
-      actionUrl: "/notes",
-      actionSearch: {
-        subject: "science",
-        form: 3,
-        chapter: "Chapter 8",
-      },
-    });
+  it("gives every bulletin type its own neon badge, with urgent called out", () => {
+    for (const label of ["News", "Reminder", "Urgent", "Event", "Poll"]) {
+      expect(source).toContain(`label: "${label}"`);
+    }
+    expect(source).toContain("home-mission-control__badge--urgent");
+    expect(styles).toContain(".home-mission-control__badge--urgent");
+    expect(styles).toContain("home-mission-control-urgent");
   });
 
-  it("keeps temporary community content isolated in the replaceable data model", () => {
-    expect(MISSION_CONTROL_ITEMS.find((item) => item.type === "community")?.title).toBe(
-      "1,248 students completed Mathematics today",
+  it("keeps the feed to one column on a phone", () => {
+    expect(styles).toMatch(
+      /@media \(max-width: 760px\)[\s\S]*\.home-mission-control__feed\s*\{\s*grid-template-columns:\s*minmax\(0,\s*1fr\)/,
     );
   });
 });
