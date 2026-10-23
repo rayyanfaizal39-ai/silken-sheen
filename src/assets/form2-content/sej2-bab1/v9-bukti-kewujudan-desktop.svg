@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 760" width="1400" height="760" role="img" aria-label="Peta lokasi bukti kewujudan kerajaan Alam Melayu">
+<title>Bukti Kewujudan Kerajaan Alam Melayu</title>
+<metadata>Peta asas: Natural Earth 1:50m (domain awam). Lokasi: buku teks hlm. 13 dan 17. Kedudukan titik anggaran.</metadata>
+<rect width="1400" height="760" rx="20" fill="#0f172a"/>
+<text x="700" y="68" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="40" font-weight="700" fill="#f1f5f9">Bukti Kewujudan Kerajaan Alam Melayu</text>
+<rect x="660" y="98" width="80" height="5" rx="2.5" fill="#38bdf8"/>
+<defs><clipPath id="c8957"><rect x="28" y="130" width="760" height="608" rx="14"/></clipPath><radialGradient id="gc8957" cx="50%" cy="45%" r="75%"><stop offset="0" stop-color="#123049"/><stop offset="1" stop-color="#0e2a40"/></radialGradient></defs>
+<g clip-path="url(#c8957)"><rect x="28" y="130" width="760" height="608" fill="url(#gc8957)"/>
+<path d="M40 317L46 328L50 340L77 367L79 377L76 391L83 402L121 420L126 430L134 438L175 458L215 487L238 501L257 522L281 559L300 579L316 601L324 609L332 615L341 616L356 631L363 635L362 624L356 614L357 603L362 599L368 597L380 601L400 618L408 628L419 656L427 663L450 666L461 671L486 690L495 699L501 710L509 738L153 738L136 684L126 662L111 640L50 604L28 599L28 307L40 317ZM28 724L40 738L28 738L28 724ZM294 253L304 259L298 272L295 275L288 273L289 255L294 253ZM240 151L250 145L258 156L252 163L248 161L243 166L239 167L235 158L230 155L228 150L235 149L240 151ZM224 130L233 130L234 133L228 139L224 130ZM462 144L495 169L514 173L521 176L542 210L570 234L582 243L591 247L603 259L614 275L638 320L642 340L643 370L638 415L632 437L633 448L642 464L639 480L641 493L640 528L645 539L651 545L681 566L683 574L698 601L725 660L732 686L732 693L728 696L720 698L714 693L711 690L712 685L709 680L699 670L700 689L692 690L681 686L668 689L652 702L645 702L636 684L631 679L581 652L563 645L544 625L500 602L472 581L460 567L432 555L420 541L408 533L414 520L408 493L388 470L378 453L359 437L345 416L353 410L349 402L339 388L334 372L334 341L318 299L305 240L307 219L304 197L295 175L284 160L280 147L266 130L453 130L462 144ZM544 724L553 732L561 738L538 738L539 728L544 724ZM593 731L601 738L579 738L563 734L560 732L563 721L570 720L593 731ZM749 733L728 736L728 730L728 727L740 718L748 717L755 718L765 715L765 723L772 727L773 738L751 738L749 733ZM627 730L634 723L639 733L639 738L632 737L627 730ZM701 723L704 718L711 723L716 720L715 728L709 738L697 737L695 733L694 730L696 723L701 723ZM532 713L533 721L530 738L520 738L514 730L512 722L509 700L512 695L523 700L532 713ZM681 689L701 698L698 702L682 709L663 703L669 692L681 689ZM535 683L537 688L538 702L530 698L524 693L514 689L502 687L493 684L486 677L486 674L489 670L535 683ZM445 616L452 621L458 630L459 636L455 642L454 652L441 660L430 658L426 656L419 640L420 627L424 622L435 623L445 616ZM715 546L721 535L725 545L725 550L720 551L717 550L715 546ZM411 516L410 522L405 524L405 517L409 514L411 516Z" fill="#3b4a5f" stroke="#8fa3bb" stroke-width="1.4" stroke-linejoin="round" fill-rule="evenodd"/>
+<text x="158" y="586" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="26" font-weight="600" fill="#7dd3fc" font-style="italic" letter-spacing="3" transform="rotate(-45 158 586)">SELAT MELAKA</text>
+<text x="527" y="239" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="26" font-weight="500" fill="#e2e8f0" font-style="italic">Tanah Melayu</text>
+<text x="267" y="673" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="26" font-weight="500" fill="#e2e8f0" font-style="italic">Sumatera</text>
+<line x1="316" y1="228" x2="466" y2="168" stroke="#38bdf8" stroke-width="2.5"/>
+<circle cx="316" cy="228" r="11" fill="#38bdf8" stroke="#0f172a" stroke-width="3.5"/>
+<rect x="295" y="144" width="342" height="44" rx="22" fill="#0f172a" fill-opacity="0.92" stroke="#38bdf8" stroke-width="2.5"/><text x="466" y="176" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="28" font-weight="700" fill="#38bdf8">Lembah Bujang, Kedah</text>
+<line x1="352" y1="358" x2="522" y2="398" stroke="#fbbf24" stroke-width="2.5"/>
+<circle cx="352" cy="358" r="11" fill="#fbbf24" stroke="#0f172a" stroke-width="3.5"/>
+<rect x="406" y="374" width="232" height="44" rx="22" fill="#0f172a" fill-opacity="0.92" stroke="#fbbf24" stroke-width="2.5"/><text x="522" y="406" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="28" font-weight="700" fill="#fbbf24">Beruas, Perak</text>
+<rect x="656" y="674" width="126" height="56" rx="10" fill="#0f172a" fill-opacity="0.85"/><line x1="670" y1="714" x2="768" y2="714" stroke="#f1f5f9" stroke-width="5" stroke-linecap="round"/><text x="719" y="700" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="600" fill="#f1f5f9">100 km</text>
+</g>
+<rect x="28" y="130" width="760" height="608" rx="14" fill="none" stroke="#334155" stroke-width="2"/>
+<rect x="812" y="130" width="560" height="194" rx="16" fill="#162033" stroke="#334155" stroke-width="2"/>
+<rect x="812" y="130" width="8" height="194" rx="4" fill="#38bdf8"/>
+<text x="840" y="174" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="30" font-weight="700" fill="#38bdf8">Lembah Bujang</text>
+<text x="840" y="206" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="500" fill="#94a3b8">Kedah</text>
+<text x="840" y="242" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="26" font-weight="400" fill="#cbd5e1">Candi (hlm. 13)</text>
+<text x="840" y="274" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="26" font-weight="400" fill="#cbd5e1">Artifak pengaruh Hindu dan Buddha</text>
+<text x="840" y="306" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="26" font-weight="400" fill="#cbd5e1">(hlm. 17)</text>
+<rect x="812" y="348" width="560" height="130" rx="16" fill="#162033" stroke="#334155" stroke-width="2"/>
+<rect x="812" y="348" width="8" height="130" rx="4" fill="#fbbf24"/>
+<text x="840" y="392" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="30" font-weight="700" fill="#fbbf24">Beruas</text>
+<text x="840" y="424" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="500" fill="#94a3b8">Perak</text>
+<text x="840" y="460" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="26" font-weight="400" fill="#cbd5e1">Ukiran pengaruh Islam (hlm. 17)</text>
+</svg>

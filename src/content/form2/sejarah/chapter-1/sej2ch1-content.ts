@@ -48,36 +48,37 @@ export interface Sej2Ch1Content {
   hook: { title: string; body: string };
   concept: {
     intro: string;
-    sundaShelfLink: string;
     geographyViews: ScholarView[];
     geographyConsensus: string;
     language: {
-      familyName: string;
-      scholarView: string;
-      spread?: string;
+      intro: string;
+      scholars: { scholar: string; role: string; view: string }[];
       comparisonTable: LanguageComparison[];
+      conclusion: string;
     };
     culture: {
+      intro: string;
       sharedElements: string[];
-      scholarView: string;
+      scholar: { scholar: string; role: string; view: string };
+      conclusion: string;
     };
   };
   kingdomEmergence: {
     intro: string;
     kingdoms: { name: string; location: string; era: string; capital: string }[];
+    significance: string;
   };
   famousKingdoms: EarlyKingdom[];
   contemporaryKingdoms: {
     intro: string;
     eras: ContemporaryEra[];
-    relations: { type: string; description: string }[];
+    relations: { type: string; description: string; closing?: string }[];
     tradePorts?: { malayWorld: string[]; india: string[]; china: string[]; westAsiaAndRome: string[] };
     religionSpread?: ReligionSpread[];
     religionImpact?: string;
     diplomaticMissions?: { china: DiplomaticMission[]; india: DiplomaticMission[] };
   };
   evidence?: { find: string; place: string; page: string }[];
-  kingdomNotes?: string[];
   citizenship?: { standard: string; title: string; points: string[] }[];
   kbatPrompts?: string[];
   didYouKnow?: string[];
@@ -93,62 +94,67 @@ export const sej2Ch1Content: Sej2Ch1Content = {
     body: "Semasa Funan muncul pada abad pertama, Empayar Rom dan Dinasti Han juga wujud. Pada abad kesembilan, ketika Srivijaya, Champa dan Angkor berkembang, Dinasti Tang memerintah China. Bab ini menunjukkan bahawa kerajaan-kerajaan Alam Melayu bukan sekadar wujud — mereka setanding dengan tamadun-tamadun besar dunia pada zaman yang sama.",
   },
   concept: {
-    intro: "Alam Melayu merangkumi gugusan kepulauan dan tanah besar di bahagian tenggara benua Asia. Turut dikenali sebagai Kepulauan Melayu dan Dunia Melayu — istilah berbeza mengikut peredaran zaman.",
-    sundaShelfLink: "Gugusan tanah luas yang menghubungkan kawasan daratan dengan kepulauan ini dahulunya dikenali sebagai Pentas Sunda (dipelajari di Tingkatan 1). Manusia di kawasan ini berkongsi tamadun yang sama — kepercayaan, asal usul keturunan, bahasa, budaya dan masyarakat.",
+    intro: "Alam Melayu merangkumi gugusan kepulauan dan tanah besar di bahagian tenggara benua Asia. Kawasan ini juga dikenali sebagai Kepulauan Melayu dan Dunia Melayu; istilahnya berbeza mengikut peredaran zaman. Pada masa dahulu, gugusan tanah ini dikenali sebagai Pentas Sunda (Tingkatan 1). Penduduknya berkongsi kepercayaan, asal usul keturunan, bahasa, budaya dan masyarakat. Oleh itu, konsep Alam Melayu dilihat dari sudut geografi, bahasa dan budaya.",
     geographyViews: [
-      { scholar: "Prof. Emeritus Dato' Dr. Nik Hassan Shuhaimi Nik Abdul Rahman", role: "Ahli arkeologi", view: "Alam Melayu meliputi kawasan dari Madagaskar ke Tanah Melayu, Papua New Guinea, Australia, New Zealand, Kepulauan Pasifik dan sampai ke Taiwan.", source: "Asal Usul Melayu, Induknya di Benua Sunda (2016)" },
-      { scholar: "Abdul Hadi Haji Hassan", role: "Ahli akademik", view: "Alam Melayu merupakan suatu lingkungan geografi yang luas meliputi Kepulauan Melayu hingga selatan Thailand.", source: "Buku teks Sejarah Tingkatan 2, hlm. 4" },
-      { scholar: "Prof. Emeritus Tan Sri Dato' Pendeta (Dr.) Ismail Hussein", role: "Ahli bahasa dan budayawan", view: "Dunia Melayu meliputi selatan Vietnam, Kemboja, selatan Myanmar, Segenting Kra, Malaysia, Indonesia, Brunei dan Filipina.", source: "Antara Dunia Melayu dengan Dunia Kebangsaan (1993)" },
+      { scholar: "Nik Hassan Shuhaimi Nik Abdul Rahman", role: "Ahli arkeologi", view: "Alam Melayu meliputi kawasan dari Madagaskar ke Tanah Melayu, Papua New Guinea, Australia, New Zealand, Kepulauan Pasifik dan sampai ke Taiwan.", source: "Asal Usul Melayu, Induknya di Benua Sunda (2016)" },
+      { scholar: "Abdul Hadi Haji Hassan", role: "Ahli akademik", view: "Alam Melayu merupakan suatu lingkungan geografi yang luas meliputi Kepulauan Melayu hingga selatan Thailand.", source: "" },
+      { scholar: "Ismail Hussein", role: "Ahli bahasa dan budayawan", view: "Dunia Melayu meliputi selatan Vietnam, Kemboja, selatan Myanmar, Segenting Kra, Malaysia, Indonesia, Brunei dan Filipina.", source: "Antara Dunia Melayu dengan Dunia Kebangsaan (1993)" },
       { scholar: "Alfred Russel Wallace", role: "Sarjana Barat", view: "Kepulauan Melayu meliputi Tanah Melayu hingga Tenasserim dan Kepulauan Nicobar, Filipina dan Kepulauan Solomon hingga Papua New Guinea.", source: "The Annotated Malay Archipelago (2009)" },
-      { scholar: "Prof. Dr. Ding Choo Ming", role: "Pengkaji manuskrip Melayu", view: "Dunia Melayu merupakan sebuah kawasan yang luas meliputi Malaysia, Indonesia, Brunei, Singapura, selatan Thailand dan Filipina.", source: "Manuskrip Melayu: Sumber Maklumat Peribumi (2016)" },
+      { scholar: "Ding Choo Ming", role: "Pengkaji manuskrip Melayu", view: "Dunia Melayu merupakan sebuah kawasan yang luas meliputi Malaysia, Indonesia, Brunei, Singapura, selatan Thailand dan Filipina.", source: "Manuskrip Melayu: Sumber Maklumat Peribumi (2016)" },
     ],
-    geographyConsensus: "Pandangan tokoh-tokoh ini hampir sama dari aspek geografi — kawasan merangkumi Malaysia, Indonesia, Singapura, Brunei, Filipina, selatan Thailand, selatan Myanmar dan selatan Indochina. Alam Melayu kini merupakan sebahagian daripada Asia Tenggara.",
+    geographyConsensus: "Pandangan tokoh-tokoh ini hampir sama dari aspek geografi — kawasan merangkumi Malaysia, Indonesia, Singapura, Brunei, Filipina, selatan Thailand, selatan Myanmar dan selatan Indochina. Pada hari ini, Alam Melayu merupakan sebahagian daripada Asia Tenggara.",
     language: {
-      familyName: "Bahasa Austronesia (istilah Melayu Polinesia digunakan sebelum digantikan dengan Austronesia)",
-      scholarView: "Bahasa Melayu tergolong dalam bahasa Austronesia — antara 200 bahasa yang dipertuturkan di Alam Melayu. Bahasa serumpun ini mempunyai perkaitan dengan bahasa etnik peribumi (Prof. Emeritus Dato' Dr. Asmah Haji Omar).",
-      spread: "Bahasa Melayu telah digunakan secara meluas di Alam Melayu sejak awal Masihi lagi. Sifat orang Melayu yang gemar belayar telah mengembangkan bahasa Melayu, dan sifat bahasa Melayu yang sederhana dan mudah dipelajari membolehkannya diterima di Alam Melayu (Sutan Takdir Alisjahbana, tokoh bahasa; hlm. 6).",
+      intro: "Konsep Alam Melayu juga dilihat melalui bahasa serumpun yang dikaitkan dengan bahasa Melayu. Bahasa Melayu tergolong dalam bahasa Austronesia, iaitu antara 200 bahasa yang dipertuturkan di Alam Melayu.",
+      scholars: [
+        { scholar: "Asmah Haji Omar", role: "Tokoh bahasa", view: "Bahasa serumpun di Alam Melayu berkait dengan bahasa etnik peribumi. Persamaannya dapat dikenal pasti melalui kata-kata tertentu dan menunjukkan pertalian kekeluargaan dengan bahasa Melayu." },
+        { scholar: "Sutan Takdir Alisjahbana", role: "Tokoh bahasa", view: "Bahasa Melayu digunakan secara meluas sejak awal Masihi kerana orang Melayu gemar belayar, dan bahasanya sederhana serta mudah dipelajari." },
+      ],
       comparisonTable: [
         { word: "Empat", translations: [{ language: "Melayu (Malaysia)", term: "Empat" }, { language: "Jawa (Indonesia)", term: "Papat" }, { language: "Melayu (Brunei)", term: "Ampat" }, { language: "Tagalog (Filipina)", term: "Apat" }, { language: "Melanau (Sibu, Sarawak)", term: "Pat" }, { language: "Kadazandusun (Sabah)", term: "Apat" }] },
         { word: "Lima", translations: [{ language: "Melayu (Malaysia)", term: "Lima" }, { language: "Jawa (Indonesia)", term: "Limo" }, { language: "Melayu (Brunei)", term: "Lima" }, { language: "Tagalog (Filipina)", term: "Lima" }, { language: "Melanau (Sibu, Sarawak)", term: "Limah" }, { language: "Kadazandusun (Sabah)", term: "Limo" }] },
       ],
+      conclusion: "Persamaan bunyi sebutan ini menunjukkan bahawa bahasa di Alam Melayu adalah serumpun.",
     },
     culture: {
+      intro: "Penduduk Alam Melayu mempunyai budaya serumpun yang merangkumi:",
       sharedElements: ["Bahasa dan tulisan", "Persuratan", "Struktur sosial", "Kesenian", "Kepercayaan", "Adat"],
-      scholarView: "Budaya di Alam Melayu berkembang maju sejak awal dengan kepandaian asli seperti pembuatan gangsa dan seni mempertahankan diri (silat). Nilai gotong-royong wujud dalam masyarakat, dan wayang kulit muncul di Kelantan dan Pulau Jawa (Dato' A. Aziz Deraman, budayawan).",
+      scholar: { scholar: "A. Aziz Deraman", role: "Budayawan", view: "Budaya Alam Melayu berkembang maju sejak awal dengan kepandaian asli seperti pembuatan gangsa dan seni mempertahankan diri. Nilai gotong-royong wujud dalam masyarakat, manakala wayang kulit muncul di Kelantan dan Pulau Jawa." },
+      conclusion: "Persamaan budaya ini membuktikan bahawa Alam Melayu memiliki kebudayaan serumpun; silat menjadi salah satu identitinya.",
     },
   },
   kingdomEmergence: {
-    intro: "Kerajaan Alam Melayu bermula daripada petempatan kecil yang berkembang menjadi pelabuhan, kemudian berkembang menjadi kerajaan — muncul seawal abad pertama.",
+    intro: "Kerajaan Alam Melayu bermula daripada petempatan kecil yang berkembang menjadi pelabuhan, lalu menjadi kerajaan. Kerajaan terawal muncul seawal abad pertama.",
     kingdoms: [
       { name: "Kerajaan Funan", location: "Lembah Sungai Mekong", era: "Abad Pertama", capital: "Vyadhapura" },
       { name: "Kerajaan Champa", location: "Selatan dan tengah Vietnam", era: "Abad Kedua", capital: "Indrapura" },
+      { name: "Kerajaan Kedah Tua", location: "Sungai Mas dan Sungai Bujang", era: "Abad Kelima", capital: "Sungai Mas dan Pangkalan Bujang" },
+      { name: "Kerajaan Gangga Nagara", location: "Pantai barat bahagian tengah Tanah Melayu", era: "Abad Keenam", capital: "Pangkalan" },
       { name: "Kerajaan Srivijaya", location: "Lembah Sungai Musi, Sumatera", era: "Abad Ketujuh", capital: "Palembang" },
       { name: "Kerajaan Angkor", location: "Lembah Sungai Mekong", era: "Abad Kesembilan", capital: "Hariharalaya" },
       { name: "Kerajaan Majapahit", location: "Lembah Sungai Brantas, Jawa Timur", era: "Abad Ke-13", capital: "Kota Trowulan" },
-      { name: "Kerajaan Kedah Tua", location: "Sungai Mas dan Sungai Bujang", era: "Abad Kelima", capital: "Sungai Mas dan Pangkalan Bujang" },
-      { name: "Kerajaan Gangga Nagara", location: "Pantai barat bahagian tengah Tanah Melayu", era: "Abad Keenam", capital: "Pangkalan" },
     ],
+    significance: "Kewujudan kerajaan sejak abad pertama membuktikan bahawa Alam Melayu mempunyai kerajaan yang sezaman dengan tamadun lain dan berjaya membina kegemilangan yang agung.",
   },
   famousKingdoms: [
-    { name: "Kerajaan Funan", location: "Lembah Sungai Mekong", era: "Abad Pertama", capital: "Vyadhapura", founder: "Kaundinya (Brahmin)", foundingStory: "Kaundinya berkahwin dengan Soma, pemerintah wanita di Sungai Mekong, membentuk kerajaan Funan", glory: "Masyhur di bawah Fan Shih-man, yang meluaskan empayar ke Sungai Mekong hingga Teluk Camranh, menguasai selatan Myanmar dan Segenting Kra — menjadikan Funan pusat perdagangan utama Alam Melayu pada abad ketiga", keyRuler: "Fan Shih-man", decline: "Raja terakhir Rudravarman; serangan kerajaan Chenla di utara menyebabkan kemerosotan" },
-    { name: "Kerajaan Champa", location: "Selatan dan tengah Vietnam", era: "Abad Kedua", capital: "Indrapura", founder: "Chu-Lien (192 M)", foundingStory: "Champa sering berhadapan dengan serangan dari Dai Viet; Chu-Lien berjaya membebaskan Champa daripada pengaruh China (hlm. 9)", glory: "Zaman kemasyhuran di bawah Che Bong Nga, yang mengatasi ancaman Dai Viet dan meluaskan empayar hingga Lembah Sungai Merah, membunuh Raja Tran Due Tong; mendapat pengiktirafan Dinasti Ming pada 1369", keyRuler: "Che Bong Nga", decline: "Kematian Indravarman (1441); Dai Viet menawan Champa pada 1471" },
-    { name: "Kerajaan Srivijaya", location: "Lembah Sungai Musi, Sumatera", era: "Abad Ketujuh", capital: "Palembang", founder: "Dapunta Hyang Sri Jayanasa (683 M)", foundingStory: "Menakluk kawasan sekitar seperti Bangka dan Taruma", glory: "Di bawah Sangramadhananjaya (abad kelapan), menakluk Sumatera, selatan Myanmar, Tanah Melayu dan Segenting Kra — menguasai Selat Melaka dan Selat Sunda, menjadi kuasa perdagangan utama dan pusat pengajian agama Buddha", keyRuler: "Sangramadhananjaya", decline: "Serangan tentera Chola dari selatan India pada 1025" },
-    { name: "Kerajaan Angkor", location: "Lembah Sungai Mekong", era: "Abad Kesembilan", capital: "Hariharalaya", founder: "Jayavarman II (dari Chenla)", foundingStory: "Menyatukan wilayah di Lembah Sungai Mekong", glory: "Suryavarman II meluaskan empayar ke sekitar Lembah Sungai Mekong hingga selatan Myanmar, menghalang ancaman Champa dan Dai Viet, serta mewujudkan jalinan perdagangan antara pedagang tempatan dengan pedagang luar (hlm. 10); Jayavarman VII meluaskan hingga sempadan Annam, membina Angkor Thom dan mendirikan 102 buah hospital", keyRuler: "Jayavarman VII", decline: "Selepas kematian Jayavarman VII, serangan Siam pada 1594 melemahkan kerajaan" },
-    { name: "Kerajaan Majapahit", location: "Lembah Sungai Brantas, Jawa Timur", era: "Abad Ke-13", capital: "Kota Trowulan", founder: "Raden Vijaya (1294, dibantu tentera Mongol)", foundingStory: "Kemenangan dalam perebutan kuasa di Jawa", glory: "Patih Gajah Mada (Perdana Menteri, dilantik Tribuana Tunggadewi) meluaskan jajahan ke timur Jawa, pesisir timur Sumatera, selatan/barat Borneo, selatan/timur Sulawesi, Kepulauan Maluku — pusat perdagangan abad ke-14", keyRuler: "Patih Gajah Mada", decline: "Kematian Patih Gajah Mada dan serangan kerajaan Demak pada 1478" },
-    { name: "Kerajaan Kedah Tua", location: "Sungai Mas dan Sungai Bujang", era: "Abad Kelima", capital: "Sungai Mas dan Pangkalan Bujang", foundingStory: "Bermula dengan masyarakat Guar Kepah berdagang dengan pedagang luar di Sungai Mas; dikenali sebagai Chieh Ch'a (China), Kataha (India), Kalah-bar (Arab)", glory: "Kepesatan perdagangan di Lembah Bujang, menjadi pusat keagamaan Buddha — menyebabkan Srivijaya menguasainya", decline: "Serangan tentera Chola dari India pada tahun 1025 telah melemahkan kegiatan perdagangan di Kedah Tua (hlm. 12)" },
-    { name: "Kerajaan Gangga Nagara", location: "Pantai barat bahagian tengah Tanah Melayu", era: "Abad Keenam (pelabuhan sejak abad kelima)", capital: "Pangkalan", founder: "Raja Ganji Sarjuna (atau Raja Khmer dari Kemboja, menurut pendapat lain)", glory: "Kemasyhuran bermula abad kesembilan — dikunjungi pedagang luar kerana kekayaan emas dan bijih timah; berjaya mempertahankan kedaulatan daripada serangan Srivijaya pada 850 M", decline: "Serangan tentera Chola dari India pada 1025 memusnahkan pelabuhan" },
+    { name: "Kerajaan Funan", location: "Lembah Sungai Mekong", era: "Abad Pertama", capital: "Vyadhapura", foundingStory: "Diasaskan oleh Kaundinya, seorang Brahmin, yang berkahwin dengan Soma, pemerintah wanita di Sungai Mekong. Berpusat di Vyadhapura.", glory: "Fan Shih-man meluaskan empayar ke Sungai Mekong hingga Teluk Camranh, kemudian menguasai selatan Myanmar dan Segenting Kra. Funan menguasai jalan perdagangan utama timur–barat dan menjadi pusat perdagangan utama Alam Melayu pada abad ketiga.", keyRuler: "Fan Shih-man", decline: "Raja terakhir ialah Rudravarman. Serangan kerajaan Chenla dari utara menyebabkan kemerosotan Funan." },
+    { name: "Kerajaan Champa", location: "Selatan dan tengah Vietnam", era: "Abad Kedua", capital: "Indrapura", foundingStory: "Diasaskan oleh Chu-Lien pada tahun 192 M dan berpusat di Indrapura. Walaupun sering diserang Dai Viet, Chu-Lien membebaskan Champa daripada pengaruh China.", glory: "Che Bong Nga mengatasi ancaman Dai Viet dan meluaskan empayar ke wilayah Dai Viet hingga Lembah Sungai Merah; Raja Tran Due Tong terbunuh. Pemerintahannya diiktiraf Dinasti Ming pada tahun 1369.", keyRuler: "Che Bong Nga", decline: "Indravarman meninggal dunia pada tahun 1441. Dai Viet melancarkan beberapa serangan dan menawan Champa pada tahun 1471." },
+    { name: "Kerajaan Srivijaya", location: "Lembah Sungai Musi, Sumatera", era: "Abad Ketujuh", capital: "Palembang", foundingStory: "Diasaskan oleh Dapunta Hyang Sri Jayanasa pada tahun 683 M di Palembang. Beliau memperkukuh kerajaan dengan menakluk Bangka dan Taruma.", glory: "Pada abad kelapan, Sangramadhananjaya menakluk Sumatera, selatan Myanmar, Tanah Melayu dan Segenting Kra. Srivijaya menguasai Selat Melaka dan Selat Sunda, menjadi kuasa perdagangan utama Alam Melayu dan pusat pengajian agama Buddha.", keyRuler: "Sangramadhananjaya", decline: "Serangan tentera Chola dari selatan India pada tahun 1025 melemahkan Srivijaya." },
+    { name: "Kerajaan Angkor", location: "Lembah Sungai Mekong", era: "Abad Kesembilan", capital: "Hariharalaya", foundingStory: "Diasaskan oleh Jayavarman II dari Chenla dan berpusat di Hariharalaya. Beliau menyatukan wilayah di Lembah Sungai Mekong.", glory: "Suryavarman II meluaskan empayar hingga selatan Myanmar, menghalang ancaman Champa dan Dai Viet, serta menjalinkan perdagangan dengan pedagang luar. Jayavarman VII pula meluaskan empayar hingga sempadan Annam, membina Angkor Thom dan mendirikan 102 buah hospital.", keyRuler: "Jayavarman VII", decline: "Angkor mula lemah selepas kematian Jayavarman VII. Serangan Siam pada tahun 1594 melemahkan kerajaan ini." },
+    { name: "Kerajaan Majapahit", location: "Lembah Sungai Brantas, Jawa Timur", era: "Abad Ke-13", capital: "Kota Trowulan", foundingStory: "Diasaskan oleh Raden Vijaya pada tahun 1294 dengan bantuan tentera Mongol dalam perebutan kuasa di Jawa. Berpusat di Kota Trowulan.", glory: "Tribuana Tunggadewi melantik Patih Gajah Mada sebagai Perdana Menteri. Beliau mengembalikan keamanan dan meluaskan jajahan ke timur Pulau Jawa, pesisir timur Sumatera, pesisir selatan dan barat Borneo, selatan dan timur Sulawesi serta Kepulauan Maluku. Majapahit menjadi pusat perdagangan pada abad ke-14.", keyRuler: "Patih Gajah Mada", decline: "Kematian Patih Gajah Mada dan serangan kerajaan Demak pada tahun 1478 melemahkan Majapahit." },
+    { name: "Kerajaan Kedah Tua", location: "Sungai Mas dan Sungai Bujang", era: "Abad Kelima", capital: "Sungai Mas dan Pangkalan Bujang", foundingStory: "Bermula apabila masyarakat Guar Kepah berdagang dengan pedagang luar di Sungai Mas. Pusat awalnya di Sungai Mas dan Pangkalan Bujang. Sumber China, India dan Arab menamakannya Chieh Ch'a, Kataha dan Kalah-bar.", glory: "Perdagangan di Lembah Bujang berkembang pesat dengan kedatangan pedagang dari timur dan barat. Kedah Tua juga menjadi pusat keagamaan agama Buddha.", decline: "Kemasyhurannya menyebabkan Srivijaya menguasai Kedah Tua. Serangan tentera Chola dari India pada tahun 1025 melemahkan perdagangannya. Pemerintahan mula berubah pada abad ketujuh apabila Kesultanan Kedah diasaskan sebagai kerajaan baharu." },
+    { name: "Kerajaan Gangga Nagara", location: "Pantai barat bahagian tengah Tanah Melayu", era: "Abad Keenam", capital: "Pangkalan", foundingStory: "Muncul pada abad keenam tetapi sudah berfungsi sebagai pelabuhan sejak abad kelima. Menurut sumber tradisi, pengasasnya ialah Raja Ganji Sarjuna; pendapat lain menyatakan ia dibuka oleh Raja Khmer dari Kemboja. Pusat awalnya di Pangkalan.", glory: "Kemasyhuran bermula pada abad kesembilan. Pedagang luar datang kerana emas dan bijih timah. Gangga Nagara berjaya mempertahankan kedaulatannya daripada serangan Srivijaya pada tahun 850 M.", decline: "Serangan tentera Chola dari India pada tahun 1025 memusnahkan pelabuhannya." },
   ],
   contemporaryKingdoms: {
-    intro: "Kemunculan kerajaan Alam Melayu sezaman dengan kerajaan-kerajaan luar yang lain, membuktikan Alam Melayu membangun dan maju setanding dengan tamadun besar dunia.",
+    intro: "Kerajaan Alam Melayu muncul sezaman dengan kerajaan luar yang lain. Hal ini menunjukkan bahawa kerajaan Alam Melayu membangun dan maju setanding dengan kerajaan tersebut, serta menjalinkan hubungan perdagangan, keagamaan dan diplomatik dengannya.",
     eras: [
       { century: "Abad Pertama", malayKingdoms: ["Funan"], foreignKingdoms: ["Empayar Rom", "Empayar Parsi", "Empayar Kushan", "Dinasti Han"] },
       { century: "Abad Kesembilan", malayKingdoms: ["Champa", "Srivijaya", "Angkor"], foreignKingdoms: ["Kerajaan Abbasiyah", "Empayar Byzantine", "Dinasti Tang", "Kerajaan Chola"] },
       { century: "Abad Ke-14", malayKingdoms: ["Champa", "Angkor", "Majapahit"], foreignKingdoms: ["Empayar Mongol", "Kerajaan Turki Uthmaniyah", "Kesultanan Delhi"] },
     ],
     relations: [
-      { type: "Perdagangan", description: "Kedudukan strategik di laluan perdagangan timur dan barat serta kekayaan hasil bumi mendorong pemerintah kerajaan Alam Melayu menjalinkan hubungan perdagangan dengan kerajaan lain, bermula dari abad pertama hingga abad ke-15. Sikap keterbukaan pemerintah membawa kemakmuran ekonomi. Kedudukan strategik menyumbang kepada kemajuan kerajaan: Funan yang menguasai jalan perdagangan utama antara timur dengan barat menjadi pusat perdagangan utama pada abad ketiga (hlm. 9), manakala Srivijaya yang menguasai Selat Melaka dan Selat Sunda menjadi kuasa perdagangan utama di Alam Melayu (hlm. 10)." },
-      { type: "Keagamaan", description: "Hubungan dengan kerajaan luar mendorong penyebaran agama Hindu, Buddha dan Islam ke Alam Melayu. Penyebaran ini menggambarkan sikap keterbukaan penduduk Alam Melayu." },
-      { type: "Diplomatik", description: "Hubungan diplomatik ialah hubungan politik antara dua kerajaan. Kerajaan Alam Melayu menjalin hubungan diplomatik dengan China dan India bagi mengukuhkan kedudukannya dan membuka jalan kepada perkembangan perdagangan. Kerajaan-kerajaan Alam Melayu bersifat terbuka dan saling menghormati; pemerintah kerajaan Alam Melayu bijak mengurus hubungan kerajaannya dengan kerajaan luar (hlm. 18-19)." },
+      { type: "Hubungan Perdagangan", description: "Kedudukan strategik di laluan perdagangan timur dan barat serta kekayaan hasil bumi mendorong pemerintah kerajaan Alam Melayu menjalinkan hubungan perdagangan dengan kerajaan lain, dari abad pertama hingga abad ke-15.", closing: "Sikap keterbukaan para pemerintah ini membawa kemakmuran ekonomi." },
+      { type: "Hubungan Keagamaan", description: "Hubungan dengan kerajaan luar mendorong penyebaran agama Hindu, Buddha dan Islam, sekali gus menggambarkan sikap keterbukaan penduduk Alam Melayu." },
+      { type: "Hubungan Diplomatik", description: "Hubungan diplomatik ialah hubungan politik antara dua kerajaan. Kerajaan Alam Melayu menjalinkan hubungan dengan China dan India untuk mengukuhkan kedudukannya dan membuka jalan kepada perkembangan perdagangan.", closing: "Hubungan ini menunjukkan usaha persahabatan antara kerajaan. Kerajaan Alam Melayu bersifat terbuka dan saling menghormati dalam hubungan dengan kerajaan luar." },
     ],
     tradePorts: {
       malayWorld: ["Oc Eo", "Turan", "Kedah Tua", "Palembang", "Tuban"],
@@ -185,10 +191,6 @@ export const sej2Ch1Content: Sej2Ch1Content = {
     { find: "Artifak pengaruh Buddha", place: "Lembah Bujang, Kedah", page: "hlm. 17" },
     { find: "Ukiran pengaruh Islam", place: "Beruas, Perak", page: "hlm. 17" },
   ],
-  kingdomNotes: [
-    "Kedah Tua: Kerajaan Kedah Tua mula mengalami perubahan pemerintahan pada abad ketujuh apabila munculnya pengasasan Kesultanan Kedah yang memulakan kerajaan baharu di Kedah (hlm. 12).",
-    "Angkor Thom merupakan ibu kota kerajaan Angkor dan dibina oleh Jayavarman VII (hlm. 10-11).",
-  ],
   citizenship: [
     { standard: "K5.1.5", title: "Kepentingan kedudukan strategik", points: [
       "Kedudukan strategik di laluan perdagangan timur dan barat serta kekayaan hasil bumi mendorong pemerintah kerajaan Alam Melayu menjalinkan hubungan perdagangan dengan kerajaan lain (hlm. 16).",
@@ -223,8 +225,6 @@ export const sej2Ch1Content: Sej2Ch1Content = {
   ],
   values: [
     "Apabila mempelajari budaya serumpun, kita memperoleh pengetahuan tentang persamaan amalan budaya masyarakat.",
-    "Pemahaman sejarah kewujudan kerajaan Alam Melayu dapat melahirkan rasa bangga akan kegemilangan negara.",
-    "Hubungan antara kerajaan Alam Melayu dengan kerajaan luar mendidik kita agar menjalinkan kerjasama dan bersifat terbuka untuk kemakmuran negara.",
     "Diri dan keluarga: sikap toleransi dan berbaik-baik dengan ahli keluarga akan mengukuhkan institusi kekeluargaan.",
     "Negara: kita harus berbangga kerana negara kita bersifat terbuka dalam menjalinkan hubungan persahabatan dengan negara luar dan perlu menjaga imej baik negara di mata masyarakat antarabangsa.",
   ],
