@@ -65,7 +65,6 @@ describe("payment reminder email", () => {
     amount: 59,
     currency: "MYR",
     periodEnd: new Date("2026-10-24T02:00:00.000Z"),
-    sentToParent: true,
   });
 
   it("uses the shared brand, the renewal page, and escaped student data", () => {
@@ -82,6 +81,8 @@ describe("payment reminder email", () => {
     expect(email.text).not.toMatch(/renews/i);
     expect(email.text).toContain(SUBSCRIPTION_RENEWAL_URL);
     expect(email.text).toContain("24 October 2026");
+    expect(email.text).toContain("Hi Alya <script>");
+    expect(email.html).toContain("Hi Alya &lt;script&gt;");
   });
 
   it("changes the subject for each reminder day", () => {
@@ -142,7 +143,10 @@ describe("payment reminder delivery contract", () => {
       "utf8",
     );
     expect(batch.indexOf("if (options.dryRun)")).toBeLessThan(batch.indexOf("store.claim"));
-    expect(batch).toContain("resolveParentReportRecipient");
+    expect(batch).toContain("usableEmail(candidate.accountEmail)");
+    expect(batch).not.toContain("resolveParentReportRecipient");
+    expect(batch).not.toContain("parentReportEmail");
     expect(batch).toContain("paymentReminderChoice");
+    expect(source).not.toContain("parent_report_email");
   });
 });

@@ -1,7 +1,7 @@
 /**
  * Subscription-end reminders. Authorize with x-payment-reminder-key.
- * One reminder per subscription per run. A parent address is used only
- * when consent is current.
+ * One reminder per subscription per run. The recipient is always the
+ * student's account email.
  */
 import { createServiceClient, type ServiceClient } from "../_shared/service-client.ts";
 import { claimDeliverySlot, claimResult, cronAuthorized } from "../_shared/delivery-claim.ts";
@@ -220,9 +220,6 @@ async function loadCandidates(admin: AdminClient, now: Date): Promise<PaymentRem
       currency: row.currency || "MYR",
       periodEnd: row.current_period_end,
       studentName: profile?.full_name ?? null,
-      parentReportEmail: profile?.parent_report_email ?? null,
-      consentAt: profile?.parent_email_consent_at ?? null,
-      consentVersion: profile?.parent_email_consent_version ?? null,
       accountEmail,
       sentTypes: deliveries
         .filter(
@@ -267,26 +264,15 @@ async function loadProfiles(admin: AdminClient, userIds: string[]) {
     {
       full_name: string | null;
       email: string | null;
-      parent_report_email: string | null;
-      parent_email_consent_at: string | null;
-      parent_email_consent_version: string | null;
     }
   >();
   for (const slice of chunks(unique(userIds), 200)) {
-    const result = await admin
-      .from("profiles")
-      .select(
-        "id, full_name, email, parent_report_email, parent_email_consent_at, parent_email_consent_version",
-      )
-      .in("id", slice);
+    const result = await admin.from("profiles").select("id, full_name, email").in("id", slice);
     if (result.error) throw new Error("Could not read profiles");
     for (const row of result.data ?? []) {
       profiles.set(String(row.id), {
         full_name: row.full_name ?? null,
         email: row.email ?? null,
-        parent_report_email: row.parent_report_email ?? null,
-        parent_email_consent_at: row.parent_email_consent_at ?? null,
-        parent_email_consent_version: row.parent_email_consent_version ?? null,
       });
     }
   }

@@ -106,7 +106,8 @@ export function buildParentReportEmail(report: ParentReportEmailData): EmailCont
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:calc(100% + 16px);margin:0 -8px"><tr>${metric("Rank", report.rankName)}${metric("Total XP", report.totalXp.toLocaleString("en-MY"), true)}${metric("Study streak", `${report.studyStreak}d`)}</tr></table>
     ${strongest}
     ${weakSpots}
-    <div style="margin-top:26px;padding:17px 18px;border-left:4px solid #8b5cf6;border-radius:0 10px 10px 0;background:#15132a"><p style="margin:0 0 7px;font-family:Arial,sans-serif;font-size:12px;line-height:18px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:#c4b5fd">Recommended next step</p><p style="margin:0;font-family:Arial,sans-serif;font-size:15px;line-height:24px;color:#e7e4f4">${escapeHtml(report.recommendation)}</p></div>`;
+    <div style="margin-top:26px;padding:17px 18px;border-left:4px solid #8b5cf6;border-radius:0 10px 10px 0;background:#15132a"><p style="margin:0 0 7px;font-family:Arial,sans-serif;font-size:12px;line-height:18px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:#c4b5fd">Recommended next step</p><p style="margin:0;font-family:Arial,sans-serif;font-size:15px;line-height:24px;color:#e7e4f4">${escapeHtml(report.recommendation)}</p></div>
+    <p style="margin:26px 0 0;font-family:Arial,sans-serif;font-size:15px;line-height:24px;color:#d6d9e7">Weekly quizzes, scores, subjects, and the current streak are on the Parent Dashboard.</p>`;
 
   return {
     subject: `AcadeMY ${cadenceLabel} Report — ${report.studentName}`,
@@ -116,7 +117,7 @@ export function buildParentReportEmail(report: ParentReportEmailData): EmailCont
       title: `${report.studentName}'s progress`,
       intro: `Here is a clear learning summary for ${report.periodLabel}.`,
       content,
-      cta: { label: "View parent dashboard", url: report.dashboardUrl },
+      cta: { label: "Open the Parent Dashboard", url: report.dashboardUrl },
       outro: report.automatic
         ? "AcadeMY sent this monthly report automatically."
         : "This report was sent manually from AcadeMY by the learner or account holder.",
@@ -141,6 +142,7 @@ export function buildParentReportEmail(report: ParentReportEmailData): EmailCont
       "",
       `Recommendation: ${report.recommendation}`,
       "",
+      "Weekly quizzes, scores, subjects, and the current streak are on the Parent Dashboard.",
       `Parent dashboard: ${report.dashboardUrl}`,
     ]
       .filter(Boolean)

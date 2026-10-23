@@ -1,9 +1,5 @@
 import { claimDeliverySlot, type ClaimOutcome } from "./delivery-claim.ts";
-import { maskEmailAddress } from "./email-brand.ts";
-import {
-  hasCurrentParentEmailConsent,
-  resolveParentReportRecipient,
-} from "./parent-email-consent.ts";
+import { maskEmailAddress, type EmailContent } from "./email-brand.ts";
 import {
   buildPaymentReminderEmail,
   paymentReminderChoice,
@@ -11,7 +7,7 @@ import {
   subscriptionInReminderWindow,
   type PaymentReminderType,
 } from "./payment-reminder.ts";
-import type { EmailContent } from "./email-brand.ts";
+import { usableEmail } from "./weekly-parent-report.ts";
 
 export type PaymentReminderCandidate = {
   subscriptionId: string;
@@ -23,9 +19,6 @@ export type PaymentReminderCandidate = {
   currency: string;
   periodEnd: string;
   studentName: string | null;
-  parentReportEmail: string | null;
-  consentAt: string | null;
-  consentVersion: string | null;
   accountEmail: string | null;
   /** Reminder types already marked sent for this subscription and period end. */
   sentTypes: readonly string[];
@@ -95,12 +88,11 @@ export async function runPaymentReminderBatch(
     }
     counts.due += 1;
 
-    const recipient = resolveParentReportRecipient(candidate);
+    const recipient = usableEmail(candidate.accountEmail);
     if (!recipient) {
       counts.noRecipient += 1;
       continue;
     }
-    const sentToParent = hasCurrentParentEmailConsent(candidate);
     const content = buildPaymentReminderEmail({
       reminderType,
       studentName: candidate.studentName?.trim() || "Student",
@@ -109,7 +101,6 @@ export async function runPaymentReminderBatch(
       amount: candidate.amount,
       currency: candidate.currency || "MYR",
       periodEnd,
-      sentToParent,
     });
     if (options.dryRun) {
       counts.wouldSend += 1;

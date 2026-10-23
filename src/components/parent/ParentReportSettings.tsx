@@ -103,8 +103,8 @@ export function ParentReportSettings({ idPrefix = "parent-report" }: { idPrefix?
     setConsent(Boolean(nextEmail));
     setMessage(
       nextEmail
-        ? "Saved. Progress reports and payment reminders will go to this address."
-        : "Saved. Progress reports and payment reminders will go to your AcadeMY email.",
+        ? "Saved. The monthly progress report will go to this address."
+        : "Saved. The monthly progress report will go to your AcadeMY email.",
     );
   }
 
@@ -117,7 +117,7 @@ export function ParentReportSettings({ idPrefix = "parent-report" }: { idPrefix?
         <div className="min-w-0 flex-1">
           <p className="text-xs font-bold uppercase tracking-wider text-[#94A3B8]">Parent email</p>
           <h2 className="mt-1 font-display text-lg font-black text-white">
-            Where should progress reports and payment reminders go?
+            Where should the monthly progress report go?
           </h2>
           <label className="mt-4 block text-sm font-bold text-white" htmlFor={`${idPrefix}-email`}>
             Parent / Guardian Email

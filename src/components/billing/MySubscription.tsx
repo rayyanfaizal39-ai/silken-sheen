@@ -383,8 +383,8 @@ export function MySubscriptionContent({
               </div>
               <p>
                 Every successful payment includes a detailed receipt. You can resend or download the
-                latest one here. Renewal reminders use the parent or guardian email in Profile, or
-                this account email when that field is blank.
+                latest one here. Payment reminders go to this account email. The parent email in
+                Profile is used for the monthly progress report only.
               </p>
               <Link to="/profile" className="billing-button">
                 Edit parent email

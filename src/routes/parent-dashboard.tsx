@@ -263,20 +263,13 @@ function DashboardContent({
 
       <section aria-labelledby="this-week" className="mb-8">
         <SectionHeading id="this-week" eyebrow="Monday–Sunday" title="This week" />
-        <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-3 lg:grid-cols-5">
           <Metric
             icon={<BarChart3 />}
             label="Quizzes this week"
             value={String(model.thisWeek.quizzes)}
             detail="Recorded quizzes"
             color="#38BDF8"
-          />
-          <Metric
-            icon={<Star />}
-            label="Weekly quiz XP"
-            value={model.thisWeek.weeklyXp.toLocaleString()}
-            detail="From this week's quizzes"
-            color="#A78BFA"
           />
           <Metric
             icon={<Trophy />}
@@ -286,13 +279,54 @@ function DashboardContent({
             color="#34D399"
           />
           <Metric
+            icon={<Star />}
+            label="Weekly quiz XP"
+            value={model.thisWeek.weeklyXp.toLocaleString()}
+            detail="From this week's quizzes"
+            color="#A78BFA"
+          />
+          <Metric
             icon={<CheckCircle2 />}
             label="Active quiz days"
             value={String(model.thisWeek.activeDays)}
             detail="Days with a quiz"
+            color="#2DD4BF"
+          />
+          <Metric
+            icon={<Flame />}
+            label="Current streak"
+            value={`${progress.streak} days`}
+            detail="From study activity"
             color="#F59E0B"
           />
         </div>
+        {model.thisWeek.subjects.length > 0 ? (
+          <Panel className="mt-4">
+            <h3 className="text-sm font-bold text-white">This week&apos;s subjects</h3>
+            <ul className="mt-4 space-y-4">
+              {model.thisWeek.subjects.map((subject) => (
+                <li key={subject.subjectId}>
+                  <p className="font-semibold text-white">
+                    {subject.name}
+                    <span className="ml-2 text-sm font-medium text-slate-300">
+                      {formatQuizAverage(subject.average)} · {subject.quizzes} quiz
+                      {subject.quizzes === 1 ? "" : "zes"}
+                    </span>
+                  </p>
+                  <ul className="mt-2 space-y-1">
+                    {subject.chapters.map((chapter) => (
+                      <li key={chapter.chapterKey} className="text-sm text-slate-300">
+                        {chapter.chapterKey} · {formatQuizAverage(chapter.average)} ·{" "}
+                        {chapter.attempts} quiz
+                        {chapter.attempts === 1 ? "" : "zes"}
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ul>
+          </Panel>
+        ) : null}
       </section>
 
       <section aria-labelledby="last-week" className="mb-8">

@@ -110,6 +110,9 @@ describe("monthly parent report summary", () => {
     expect(email.subject).toBe("AcadeMY Monthly Report — Maya <script>");
     expect(email.html).toContain("September 2026");
     expect(email.html).toContain("AcadeMY sent this monthly report automatically.");
+    expect(email.html).toContain("Open the Parent Dashboard");
+    expect(email.html).toContain("https://myacademy.my/parent-dashboard");
+    expect(email.text).toContain("Parent dashboard: https://myacademy.my/parent-dashboard");
     expect(email.html).not.toContain("sent manually");
     expect(email.html).toContain("Maya &lt;script&gt;");
   });

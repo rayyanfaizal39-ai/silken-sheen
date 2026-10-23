@@ -65,7 +65,7 @@ describe("parent email handlers", () => {
 
   it("keeps the client and server parent-email consent versions identical", () => {
     expect(clientConsentVersion).toBe(PARENT_EMAIL_CONSENT_VERSION);
-    expect(clientConsentVersion).toBe("2026-10-23");
+    expect(clientConsentVersion).toBe("2026-10-23-monthly");
   });
 
   it("records consent when a parent address is saved and clears it when the address is removed", () => {
@@ -289,9 +289,6 @@ describe("payment reminder handler", () => {
       currency: "MYR",
       periodEnd: "2026-10-29T08:00:00.000Z",
       studentName: "Alya",
-      parentReportEmail: "parent@example.com",
-      consentAt: null,
-      consentVersion: null,
       accountEmail: "alya@example.com",
       sentTypes: [],
       ...overrides,
@@ -311,8 +308,6 @@ describe("payment reminder handler", () => {
             plan: "premium",
             status: "expired",
             periodEnd: "2026-10-23T08:00:00.000Z",
-            consentAt: "2026-10-23T00:00:00.000Z",
-            consentVersion: PARENT_EMAIL_CONSENT_VERSION,
           }),
         ],
         claim,
@@ -325,13 +320,20 @@ describe("payment reminder handler", () => {
     expect(claim).not.toHaveBeenCalled();
     expect(send).not.toHaveBeenCalled();
     expect(result.wouldSend).toBe(2);
-    const recipients = result.recipients as Array<{ subject: string; reminderType: string }>;
+    const recipients = result.recipients as Array<{
+      maskedEmail: string;
+      subject: string;
+      reminderType: string;
+    }>;
     expect(recipients.map((item) => item.reminderType).sort()).toEqual(["7_days", "due_day"]);
+    expect(
+      recipients.every((item) => item.maskedEmail === maskEmailAddress("alya@example.com")),
+    ).toBe(true);
     expect(recipients.every((item) => item.subject.includes("ends"))).toBe(true);
     expect(recipients.some((item) => /renews/i.test(item.subject))).toBe(false);
   });
 
-  it("sends one reminder to the student when parent consent is missing", async () => {
+  it("sends one reminder to the student account email", async () => {
     const send = vi.fn(async (_input: { to: string }) => ({ id: "reminder-1" }));
     const result = await runPaymentReminderBatch(
       {

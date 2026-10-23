@@ -1,9 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import {
-  buildParentDashboardModel,
-  type ParentDashboardQuiz,
-} from "./parentDashboardData";
+import { buildParentDashboardModel, type ParentDashboardQuiz } from "./parentDashboardData";
 
 const NOW = new Date("2026-10-05T04:00:00.000Z");
 
@@ -40,7 +37,13 @@ describe("parent dashboard scopes", () => {
       ],
     });
 
-    expect(model.thisWeek).toEqual({ quizzes: 0, weeklyXp: 0, average: null, activeDays: 0 });
+    expect(model.thisWeek).toEqual({
+      quizzes: 0,
+      weeklyXp: 0,
+      average: null,
+      activeDays: 0,
+      subjects: [],
+    });
     expect(model.recent.quizzes).toBe(13);
     expect(model.recent.average).toBeCloseTo(80.8, 1);
     expect(model.recent.strongest).toMatchObject({ name: "Geography", average: 90, quizzes: 9 });
@@ -51,7 +54,9 @@ describe("parent dashboard scopes", () => {
       attempts: 3,
     });
     expect(model.recent.insight).toContain("completed 13 quizzes in the last 30 days");
-    expect(model.recent.insight).toContain("Geography is currently Rayyan's strongest recent subject.");
+    expect(model.recent.insight).toContain(
+      "Geography is currently Rayyan's strongest recent subject.",
+    );
     expect(model.recent.insight).not.toMatch(/retention|study time|memory/i);
     expect(model.mostImproved).toBeNull();
   });
@@ -66,14 +71,34 @@ describe("parent dashboard scopes", () => {
       ],
     });
 
-    expect(model.thisWeek).toEqual({ quizzes: 1, weeklyXp: 25, average: 100, activeDays: 1 });
+    expect(model.thisWeek).toEqual({
+      quizzes: 1,
+      weeklyXp: 25,
+      average: 100,
+      activeDays: 1,
+      subjects: [
+        {
+          subjectId: "science",
+          name: "Science",
+          quizzes: 1,
+          average: 100,
+          chapters: [{ chapterKey: "Chapter 1", attempts: 1, average: 100 }],
+        },
+      ],
+    });
     expect(model.recent.quizzes).toBe(2);
   });
 
   it("does not invent recent insight for a student with no quiz history", () => {
     const model = buildParentDashboardModel({ studentName: "New Student", now: NOW, quizzes: [] });
 
-    expect(model.thisWeek).toEqual({ quizzes: 0, weeklyXp: 0, average: null, activeDays: 0 });
+    expect(model.thisWeek).toEqual({
+      quizzes: 0,
+      weeklyXp: 0,
+      average: null,
+      activeDays: 0,
+      subjects: [],
+    });
     expect(model.recent.quizzes).toBe(0);
     expect(model.recent.average).toBeNull();
     expect(model.recent.strongest).toBeNull();
@@ -152,12 +177,18 @@ describe("parent dashboard scopes", () => {
   });
 
   it("does not describe subject XP share as mastery or current progress", () => {
-    const source = readFileSync(new URL("../../routes/parent-dashboard.tsx", import.meta.url), "utf8");
+    const source = readFileSync(
+      new URL("../../routes/parent-dashboard.tsx", import.meta.url),
+      "utf8",
+    );
     expect(source).toContain("Share of subject XP");
     expect(source).not.toContain("Current progress");
     expect(source).not.toContain("Chapters completed");
     expect(source).not.toContain("Weekly activity");
     expect(source).not.toMatch(/mastery/i);
+    expect(source).toContain('title="This week"');
+    expect(source).toContain("This week&apos;s subjects");
+    expect(source).toContain('label="Current streak"');
     expect(source).toContain('title="Last week"');
     expect(source).toContain("<LastWeekDetails model={model} />");
     expect(source).toContain("canViewReports ? (");
@@ -197,8 +228,21 @@ describe("previous completed Malaysia week", () => {
     expect(model.lastWeek.quizzes).toBe(1);
     expect(model.lastWeek.xpEarned).toBe(15);
     expect(model.lastWeek.average).toBe(88);
-    expect(model.lastWeek.biggestWin).toMatchObject({ subjectName: "Geography", chapterKey: "Chapter 2", scorePct: 88 });
-    expect(model.thisWeek).toEqual({ quizzes: 1, weeklyXp: 25, average: 100, activeDays: 1 });
+    expect(model.lastWeek.biggestWin).toMatchObject({
+      subjectName: "Geography",
+      chapterKey: "Chapter 2",
+      scorePct: 88,
+    });
+    expect(model.thisWeek.quizzes).toBe(1);
+    expect(model.thisWeek.subjects).toEqual([
+      {
+        subjectId: "science",
+        name: "Science",
+        quizzes: 1,
+        average: 100,
+        chapters: [{ chapterKey: "Chapter 3", attempts: 1, average: 100 }],
+      },
+    ]);
   });
 
   it("counts quizzes, XP, average, and active days across the completed week", () => {
@@ -217,7 +261,9 @@ describe("previous completed Malaysia week", () => {
     expect(model.lastWeek.average).toBe(90);
     expect(model.lastWeek.xpEarned).toBe(45);
     expect(model.lastWeek.activeDays).toBe(3);
-    expect(model.lastWeek.summary).toBe("Rayyan completed 3 quizzes last week with an average score of 90%.");
+    expect(model.lastWeek.summary).toBe(
+      "Rayyan completed 3 quizzes last week with an average score of 90%.",
+    );
     expect(model.thisWeek.quizzes).toBe(1);
     expect(model.lastWeek.summary).not.toMatch(/improved|declined|mastery|chapter completed/i);
   });
@@ -255,7 +301,11 @@ describe("previous completed Malaysia week", () => {
       ],
     });
 
-    expect(model.lastWeek.strongest).toMatchObject({ name: "Geography", average: 93.25, quizzes: 4 });
+    expect(model.lastWeek.strongest).toMatchObject({
+      name: "Geography",
+      average: 93.25,
+      quizzes: 4,
+    });
     expect(model.lastWeek.weakestSubject).toMatchObject({ name: "Sejarah" });
     expect(model.lastWeek.weakestChapter).toMatchObject({
       subjectName: "Sejarah",

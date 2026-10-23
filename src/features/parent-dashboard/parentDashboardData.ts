@@ -63,6 +63,20 @@ export type CompletedWeek = {
   summary: string;
 };
 
+export type WeekChapterLine = {
+  chapterKey: string;
+  attempts: number;
+  average: number;
+};
+
+export type WeekSubjectLine = {
+  subjectId: string;
+  name: string;
+  quizzes: number;
+  average: number;
+  chapters: WeekChapterLine[];
+};
+
 export type ParentDashboardModel = {
   studentName: string;
   thisWeek: {
@@ -70,6 +84,7 @@ export type ParentDashboardModel = {
     weeklyXp: number;
     average: number | null;
     activeDays: number;
+    subjects: WeekSubjectLine[];
   };
   lastWeek: CompletedWeek;
   recent: {
@@ -104,16 +119,23 @@ export function buildParentDashboardModel(input: {
   const lastWeek = previousKualaLumpurWeek(now);
   const recentStart = now.getTime() - 30 * DAY_MS;
   const previousStart = now.getTime() - 60 * DAY_MS;
-  const thisWeekRows = input.quizzes.filter((quiz) => inHalfOpenRange(quiz.createdAt, week.startIso, week.endIso));
-  const lastWeekRows = input.quizzes.filter((quiz) => inHalfOpenRange(quiz.createdAt, lastWeek.startIso, lastWeek.endIso));
-  const recentRows = input.quizzes.filter((quiz) => instant(quiz.createdAt) >= recentStart && instant(quiz.createdAt) <= now.getTime());
+  const thisWeekRows = input.quizzes.filter((quiz) =>
+    inHalfOpenRange(quiz.createdAt, week.startIso, week.endIso),
+  );
+  const lastWeekRows = input.quizzes.filter((quiz) =>
+    inHalfOpenRange(quiz.createdAt, lastWeek.startIso, lastWeek.endIso),
+  );
+  const recentRows = input.quizzes.filter(
+    (quiz) => instant(quiz.createdAt) >= recentStart && instant(quiz.createdAt) <= now.getTime(),
+  );
   const previousRows = input.quizzes.filter((quiz) => {
     const time = instant(quiz.createdAt);
     return time >= previousStart && time < recentStart;
   });
   const recentSubjects = rankSubjects(recentRows);
   const strongest = recentSubjects[0] ?? null;
-  const weakestSubject = recentSubjects.length > 1 ? recentSubjects[recentSubjects.length - 1] : null;
+  const weakestSubject =
+    recentSubjects.length > 1 ? recentSubjects[recentSubjects.length - 1] : null;
   const weakestChapter = weakestRepeatedChapter(recentRows, weakestSubject?.subjectId ?? null);
   const name = input.studentName.trim() || "Student";
 
@@ -145,7 +167,32 @@ function weekSnapshot(quizzes: ParentDashboardQuiz[]) {
     weeklyXp: quizzes.reduce((sum, quiz) => sum + (quiz.xpEarned ?? 0), 0),
     average: mean(quizzes.map((quiz) => quiz.scorePct)),
     activeDays: activeQuizDays(quizzes),
+    subjects: weekSubjects(quizzes),
   };
+}
+
+function weekSubjects(quizzes: ParentDashboardQuiz[]): WeekSubjectLine[] {
+  const chaptersBySubject = new Map<string, WeekChapterLine[]>();
+  for (const chapter of chapterGroups(quizzes)) {
+    const list = chaptersBySubject.get(chapter.subjectId) ?? [];
+    list.push({
+      chapterKey: chapter.chapterKey,
+      attempts: chapter.attempts,
+      average: chapter.average,
+    });
+    chaptersBySubject.set(chapter.subjectId, list);
+  }
+  return subjectGroups(quizzes)
+    .map((subject) => ({
+      subjectId: subject.subjectId,
+      name: subject.name,
+      quizzes: subject.quizzes,
+      average: subject.average,
+      chapters: (chaptersBySubject.get(subject.subjectId) ?? []).sort((a, b) =>
+        a.chapterKey.localeCompare(b.chapterKey),
+      ),
+    }))
+    .sort((a, b) => b.quizzes - a.quizzes || a.name.localeCompare(b.name));
 }
 
 function completedWeekSnapshot(
@@ -156,7 +203,8 @@ function completedWeekSnapshot(
 ): CompletedWeek {
   const subjectsThisWeek = rankSubjects(quizzes);
   const strongest = subjectsThisWeek[0] ?? null;
-  const weakestSubject = subjectsThisWeek.length > 1 ? subjectsThisWeek[subjectsThisWeek.length - 1] : null;
+  const weakestSubject =
+    subjectsThisWeek.length > 1 ? subjectsThisWeek[subjectsThisWeek.length - 1] : null;
   return {
     weekStart,
     weekEnd,
@@ -167,7 +215,9 @@ function completedWeekSnapshot(
     activeDays: activeQuizDays(quizzes),
     strongest,
     weakestSubject,
-    weakestChapter: weakestRepeatedChapter(quizzes, weakestSubject?.subjectId ?? null, { stayInSubject: true }),
+    weakestChapter: weakestRepeatedChapter(quizzes, weakestSubject?.subjectId ?? null, {
+      stayInSubject: true,
+    }),
     biggestWin: highestQuiz(quizzes),
     summary: lastWeekSummary(studentName, quizzes),
   };
@@ -187,7 +237,12 @@ function highestQuiz(quizzes: ParentDashboardQuiz[]): WeekQuizHighlight | null {
   let best: ParentDashboardQuiz | null = null;
   for (const quiz of quizzes) {
     if (quiz.scorePct === null || !Number.isFinite(quiz.scorePct)) continue;
-    if (!best || best.scorePct === null || quiz.scorePct > best.scorePct || (quiz.scorePct === best.scorePct && instant(quiz.createdAt) > instant(best.createdAt))) {
+    if (
+      !best ||
+      best.scorePct === null ||
+      quiz.scorePct > best.scorePct ||
+      (quiz.scorePct === best.scorePct && instant(quiz.createdAt) > instant(best.createdAt))
+    ) {
       best = quiz;
     }
   }
@@ -199,7 +254,11 @@ function highestQuiz(quizzes: ParentDashboardQuiz[]): WeekQuizHighlight | null {
   };
 }
 
-function recentInsight(name: string, quizzes: ParentDashboardQuiz[], strongest: RecentSubject | null): string {
+function recentInsight(
+  name: string,
+  quizzes: ParentDashboardQuiz[],
+  strongest: RecentSubject | null,
+): string {
   if (quizzes.length === 0) return "Not enough recent data.";
   const count = `${quizzes.length} quiz${quizzes.length === 1 ? "" : "zes"}`;
   const summary = `${name} completed ${count} in the last 30 days with an average score of ${formatQuizAverage(mean(quizzes.map((quiz) => quiz.scorePct)))}.`;
@@ -207,7 +266,10 @@ function recentInsight(name: string, quizzes: ParentDashboardQuiz[], strongest: 
   return `${summary} ${strongest.name} is currently ${name}'s strongest recent subject.`;
 }
 
-function recentRecommendation(chapter: RecentChapter | null, subject: RecentSubject | null): string {
+function recentRecommendation(
+  chapter: RecentChapter | null,
+  subject: RecentSubject | null,
+): string {
   if (chapter) {
     return `Revise ${chapter.subjectName} — ${chapter.chapterKey}, averaging ${formatQuizAverage(chapter.average)} over ${chapter.attempts} quizzes in the last 30 days.`;
   }
@@ -217,12 +279,18 @@ function recentRecommendation(chapter: RecentChapter | null, subject: RecentSubj
   return "Not enough recent data.";
 }
 
-function compareWindows(previousRows: ParentDashboardQuiz[], recentRows: ParentDashboardQuiz[]): SubjectImprovement | null {
-  const earlier = new Map(subjectGroups(previousRows).map((subject) => [subject.subjectId, subject]));
+function compareWindows(
+  previousRows: ParentDashboardQuiz[],
+  recentRows: ParentDashboardQuiz[],
+): SubjectImprovement | null {
+  const earlier = new Map(
+    subjectGroups(previousRows).map((subject) => [subject.subjectId, subject]),
+  );
   let best: SubjectImprovement | null = null;
   for (const recent of subjectGroups(recentRows)) {
     const prior = earlier.get(recent.subjectId);
-    if (!prior || prior.quizzes < MIN_COMPARISON_QUIZZES || recent.quizzes < MIN_COMPARISON_QUIZZES) continue;
+    if (!prior || prior.quizzes < MIN_COMPARISON_QUIZZES || recent.quizzes < MIN_COMPARISON_QUIZZES)
+      continue;
     const change = Math.round((recent.average - prior.average) * 10) / 10;
     if (change <= 0) continue;
     if (!best || change > best.change) best = { name: recent.name, change };
@@ -241,7 +309,9 @@ function weakestRepeatedChapter(
   preferredSubjectId: string | null,
   options?: { stayInSubject?: boolean },
 ): RecentChapter | null {
-  const chapters = chapterGroups(quizzes).filter((chapter) => chapter.attempts >= MIN_CHAPTER_ATTEMPTS);
+  const chapters = chapterGroups(quizzes).filter(
+    (chapter) => chapter.attempts >= MIN_CHAPTER_ATTEMPTS,
+  );
   const preferred = preferredSubjectId
     ? chapters.filter((chapter) => chapter.subjectId === preferredSubjectId)
     : [];
@@ -286,7 +356,9 @@ function chapterGroups(quizzes: ParentDashboardQuiz[]): RecentChapter[] {
 }
 
 function mean(values: Array<number | null>): number | null {
-  const scores = values.filter((value): value is number => value !== null && Number.isFinite(value));
+  const scores = values.filter(
+    (value): value is number => value !== null && Number.isFinite(value),
+  );
   if (scores.length === 0) return null;
   return scores.reduce((sum, score) => sum + score, 0) / scores.length;
 }

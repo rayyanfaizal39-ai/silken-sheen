@@ -15,7 +15,7 @@ comment on column public.profiles.parent_email_consent_version is
   'Consent copy version the student accepted. A parent address is used only when this matches the current copy.';
 
 comment on column public.profiles.parent_report_email is
-  'Optional parent or guardian address. Monthly progress reports and subscription-end payment reminders use it only when parent_email_consent_at and parent_email_consent_version are current. Otherwise those emails go to the student account email.';
+  'Optional parent or guardian address. The monthly progress report uses it only when parent_email_consent_at and parent_email_consent_version are current. Otherwise that report goes to the student account email. Payment reminders always go to the student account email.';
 
 -- The consent clock is the database. A column default of now() would stamp
 -- every profile insert, including students who never saved a parent email.

@@ -101,7 +101,6 @@ export type PaymentReminderEmailInput = {
   amount: number;
   currency: string;
   periodEnd: Date;
-  sentToParent: boolean;
 };
 
 export function buildPaymentReminderEmail(input: PaymentReminderEmailInput): EmailContent {
@@ -117,9 +116,7 @@ export function buildPaymentReminderEmail(input: PaymentReminderEmailInput): Ema
       : input.reminderType === "1_day"
         ? "The current paid period ends tomorrow."
         : "The current paid period ends today.";
-  const intro = input.sentToParent
-    ? `${studentName}'s AcadeMY subscription reaches the end of its current paid period on ${endsOn}. ${timing}`
-    : `Hi ${studentName}, your AcadeMY subscription reaches the end of its current paid period on ${endsOn}. ${timing}`;
+  const intro = `Hi ${studentName}, your AcadeMY subscription reaches the end of its current paid period on ${endsOn}. ${timing}`;
   const title =
     input.reminderType === "7_days"
       ? "Seven days left on this paid period."

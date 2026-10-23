@@ -1,7 +1,7 @@
 import { usableEmail } from "./weekly-parent-report.ts";
 
 /** Bump this when the English or Bahasa Melayu consent copy changes. */
-export const PARENT_EMAIL_CONSENT_VERSION = "2026-10-23";
+export const PARENT_EMAIL_CONSENT_VERSION = "2026-10-23-monthly";
 
 export function hasCurrentParentEmailConsent(input: {
   parentReportEmail?: string | null;
