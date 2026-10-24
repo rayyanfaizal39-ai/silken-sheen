@@ -1,5 +1,5 @@
 // Staff queue for Cosmic Companion portraits. Students do not call an image
-// generator. Staff export an artist brief, then upload exactly two portraits.
+// generator. Staff make two portraits of the student's one companion.
 import { useCallback, useEffect, useState } from "react";
 import {
   craftQueueToCsv,
@@ -16,7 +16,7 @@ import { Panel } from "./ui";
 export type { CraftQueueApi };
 
 const STATUS_LABEL: Record<CraftBrief["status"], string> = {
-  waiting_for_art: "Waiting for two portraits",
+  waiting_for_art: "Make two portraits of this companion",
   options_ready: "Waiting for the student to choose",
   chosen: "Student chose a portrait",
 };
@@ -225,9 +225,9 @@ export function CompanionCraftQueue({ api }: { api: CraftQueueApi }) {
         badge={<span className="chip chip-orange">{visible.length} students</span>}
       >
         <p>
-          Paid students who have the Cosmic Companion feature appear here after they confirm a
-          companion. Premium (RM59) includes that feature. Export the artist brief, make two
-          portraits offline, and upload both for that card's public id. The student picks one. The
+          Paid students who have the Cosmic Companion feature appear here as soon as they summon
+          their companion. Premium (RM59) includes that feature. Make two portraits of that
+          companion, then upload both for the card's public id. The student picks one portrait. The
           card serial stays the same. No image generator runs for the student.
         </p>
         <p>

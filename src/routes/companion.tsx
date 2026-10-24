@@ -3,7 +3,11 @@ import { ArrowRight } from "lucide-react";
 import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
 import type { CompanionEntry } from "@/features/cosmic-companion/entry";
 import { CompanionGarden } from "@/features/cosmic-companion/CompanionGarden";
-import { JOURNEY_CTA, parseJourneyPreview, type JourneyStage } from "@/features/cosmic-companion/journey";
+import {
+  JOURNEY_CTA,
+  parseJourneyPreview,
+  type JourneyStage,
+} from "@/features/cosmic-companion/journey";
 import { useCompanionEntry } from "@/features/cosmic-companion/use-companion-entry";
 import { UnrevealedCosmicCard } from "@/features/cosmic-companion/UnrevealedCosmicCard";
 import { useAuth } from "@/context/auth-context";
@@ -263,7 +267,7 @@ export function CosmicCompanionPage() {
                 </div>
               ) : (
                 <div className="ccp-owned__craft">
-                  <strong>Your companion is being crafted</strong>
+                  <strong>Your portrait is being crafted</strong>
                 </div>
               )}
               <p className="ccp-owned__name">{discovered.name}</p>
@@ -350,7 +354,12 @@ function CompanionEntryLink({
   }
   if (entry.kind === "card") {
     return (
-      <Link className="ccp-discover" to="/nova" data-journey-stage={stage} data-companion-entry="card">
+      <Link
+        className="ccp-discover"
+        to="/nova"
+        data-journey-stage={stage}
+        data-companion-entry="card"
+      >
         {label}
       </Link>
     );

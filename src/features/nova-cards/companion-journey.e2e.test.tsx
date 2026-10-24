@@ -204,17 +204,6 @@ async function mount(api: StudioApi) {
 }
 const button = (scope: ParentNode, label: string) =>
   [...scope.querySelectorAll("button")].find((b) => b.textContent?.includes(label));
-async function click(scope: ParentNode, label: string) {
-  const target = button(scope, label);
-  expect(target, `Missing ${label}`).toBeTruthy();
-  await act(async () => target!.click());
-}
-async function hatch(host: HTMLElement) {
-  await click(host, "Hatch egg");
-  await act(async () => {
-    await new Promise((resolve) => setTimeout(resolve, 5));
-  });
-}
 
 beforeEach(async () => {
   // Every test starts from the shipped defaults: generation off, caps at $0.
@@ -224,7 +213,7 @@ beforeEach(async () => {
 });
 
 describe("the complete journey (mock provider)", () => {
-  it("submits, generates, reviews, waits 24 hours, reveals, chooses and returns", async () => {
+  it("submits, generates, reviews, and shows the one preference companion", async () => {
     const student = await newStudent();
     const api = studentApi(student);
     const [A, B] = prepareCompanionSubmission(ANSWERS, student, TEST_DNA_SECRET).match.candidates;
@@ -278,36 +267,21 @@ describe("the complete journey (mock provider)", () => {
     await expect(api.choose("a")).rejects.toThrow(/not ready/);
     api.choose.mockClear();
 
-    // After 24 hours: the reveal shows both, with their artwork; the student chooses B.
+    // After the portraits exist, the student still sees only the preference companion.
     await passReveal(student);
     host = await mount(api);
-    await hatch(host);
-    const cards = [...host.querySelectorAll(".occ-card")];
-    expect(cards.map((c) => c.querySelector("h2")?.textContent)).toEqual([A.name, B.name]);
-    expect(cards.map((c) => c.querySelector("img")?.getAttribute("src"))).toEqual([
-      expect.stringMatching(/^mock-signed:\/\/nova-artwork\/.+\/a\/[0-9a-f]{64}\.png$/),
-      expect.stringMatching(/^mock-signed:\/\/nova-artwork\/.+\/b\/[0-9a-f]{64}\.png$/),
-    ]);
-    await click(host, "Choose Companion B");
-    await click(host, "Confirm My Companion");
-    await click(host.querySelector("dialog")!, "Confirm my companion");
-    expect(api.choose).toHaveBeenCalledExactlyOnceWith("b");
-    expect(host.querySelector("h1")?.textContent).toBe(`Your ${B.name}`);
-    expect(host.querySelector(".ccprof-card img")?.getAttribute("src")).toMatch(
-      /\/b\/[0-9a-f]{64}\.png$/,
-    );
-    expect(host.textContent).not.toContain(A.name);
+    expect(host.querySelector("h1")?.textContent).toBe(`Your ${A.name}`);
+    expect(host.textContent).toContain("Your portrait is being crafted.");
+    expect(button(host, "Hatch egg")).toBeUndefined();
+    expect(button(host, "Choose Companion")).toBeUndefined();
+    expect(host.textContent).not.toContain(B.name);
+    expect(api.choose).not.toHaveBeenCalled();
     await act(async () => roots.pop()!.unmount());
 
-    // Returning student: straight to the permanent companion, from the database alone.
     host = await mount(studentApi(student));
-    expect(host.querySelector("h1")?.textContent).toBe(`Your ${B.name}`);
+    expect(host.querySelector("h1")?.textContent).toBe(`Your ${A.name}`);
     expect(host.querySelectorAll("[data-nova-answer]")).toHaveLength(0);
-    expect(host.textContent).not.toContain(A.name);
-
-    // The choice is permanent.
-    await expect(api.choose("a")).rejects.toThrow(/already selected/);
-    expect((await studioState(student)).selected).toBe("b");
+    expect(host.textContent).not.toContain(B.name);
   });
 
   it("keeps the unchosen companion out of sharing, QR, export and storage", async () => {
@@ -583,12 +557,13 @@ describe("recovery (mock provider)", () => {
     await tick(worker, provider);
     await reviewAll(accepted);
     await passReveal(accepted);
-    const host = await mount(studentApi(accepted));
-    await hatch(host);
-    await click(host, "Choose Companion A");
-    await click(host, "Confirm My Companion");
-    await click(host.querySelector("dialog")!, "Confirm my companion");
-    expect((await studioState(accepted)).selected).toBe("a");
+    const [A, B] = prepareCompanionSubmission(ANSWERS, accepted, TEST_DNA_SECRET).match.candidates;
+    const api = studentApi(accepted);
+    const host = await mount(api);
+    expect(host.querySelector("h1")?.textContent).toBe(`Your ${A.name}`);
+    expect(host.textContent).not.toContain(B.name);
+    expect(button(host, "Hatch egg")).toBeUndefined();
+    expect(api.choose).not.toHaveBeenCalled();
 
     const blocked = await newStudent();
     await db.query("update public.subscriptions set status='expired' where user_id=$1", [blocked]);

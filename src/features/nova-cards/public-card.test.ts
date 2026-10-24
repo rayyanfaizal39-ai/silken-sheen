@@ -63,7 +63,7 @@ describe("public companion card", () => {
     expect(svg).toContain("Lumi");
     expect(svg).toContain("100000000101");
     expect(svg).toContain("Starlight aura");
-    expect(svg).toContain("Your companion is being crafted");
+    expect(svg).toContain("Your portrait is being crafted");
     expect(svg).not.toContain("form1.student@dev.local");
     expect(svg.toLowerCase()).not.toContain("birth year");
     expect(svg).not.toContain("data:image/png");

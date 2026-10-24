@@ -913,7 +913,7 @@ export function HomeDashboard() {
                 </p>
               ) : demoChosen?.crafting ? (
                 <p className="max-w-[140px] text-center font-display text-sm font-black text-[#F6EAD2]">
-                  Your companion is being crafted
+                  Your portrait is being crafted
                 </p>
               ) : demoAwaiting ? (
                 <span className="font-display text-6xl text-[#F6EAD2]" aria-hidden="true">
@@ -944,7 +944,7 @@ export function HomeDashboard() {
               {demoChosen.choosing
                 ? "Choose your companion art"
                 : demoChosen.crafting
-                  ? "Your companion is being crafted"
+                  ? "Your portrait is being crafted"
                   : `${demoChosen.element} · ${demoChosen.species}`}
             </p>
           ) : null}

@@ -58,12 +58,12 @@ export function NovaStudio() {
             <em>Your companion.</em>
           </h1>
           <p className="nova-lead">
-            One Nova, uniquely yours. Discover two original designs and make one permanent.
+            One Nova, uniquely yours. One companion, and a portrait crafted for that companion.
           </p>
           <div className="nova-feature-list">
             <span>
               01 <b>Discover your companion</b>
-              <small>Twelve questions. Two original designs. One lifelong bond.</small>
+              <small>Twelve questions. One companion. One lifelong bond.</small>
             </span>
             <span>
               02 <b>Grow through five stages</b>
@@ -175,10 +175,8 @@ export function NovaStudio() {
           ) : card ? (
             <div className="nova-creation-panel">
               <p className="nova-eyebrow">COSMIC COMPANION</p>
-              <h2>Your two companions are on their way</h2>
-              <p>
-                Your card appears here once you have met both companions and chosen one forever.
-              </p>
+              <h2>Your portrait is being crafted</h2>
+              <p>Your companion is saved. The card portrait appears here once you choose it.</p>
               <a href={cardsPaths.studio}>Open your Cosmic Companion Studio ↗</a>
             </div>
           ) : (

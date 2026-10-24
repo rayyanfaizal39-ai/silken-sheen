@@ -658,7 +658,7 @@ function CompanionHeroCard({
             </p>
           ) : chosen?.crafting ? (
             <p className="max-w-[220px] font-display text-lg font-black text-[#F6EAD2]">
-              Your companion is being crafted
+              Your portrait is being crafted
             </p>
           ) : awaiting ? (
             <span className="font-display text-6xl text-[#F6EAD2]" aria-hidden="true">
@@ -677,7 +677,7 @@ function CompanionHeroCard({
           {chosen?.choosing
             ? "Choose your companion art"
             : chosen?.crafting
-              ? "Your companion is being crafted"
+              ? "Your portrait is being crafted"
               : chosen
                 ? `${chosen.element} · ${chosen.species}`
                 : awaiting
@@ -1419,7 +1419,7 @@ function CosmicCompanionCard({
                 </p>
               ) : chosen?.crafting ? (
                 <p className="max-w-[140px] text-center font-display text-sm font-black text-[#F6EAD2]">
-                  Your companion is being crafted
+                  Your portrait is being crafted
                 </p>
               ) : awaiting ? (
                 <span className="font-display text-6xl text-[#F6EAD2]" aria-hidden="true">

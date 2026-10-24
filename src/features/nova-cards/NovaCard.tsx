@@ -107,7 +107,7 @@ export function NovaCard({
               ) : crafting ? (
                 <div className="nova-craft-wait">
                   <span aria-hidden="true">✦</span>
-                  <strong>Your companion is being crafted</strong>
+                  <strong>Your portrait is being crafted</strong>
                   <p>
                     {face.name} the {face.species}
                   </p>

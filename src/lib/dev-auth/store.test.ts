@@ -6,7 +6,6 @@ import {
   createMemoryStorage,
   devAttachCraftOptions,
   devChooseCraftArt,
-  devChooseStudio,
   devCraftBrief,
   devCraftQueue,
   devCompanionPremium,
@@ -44,18 +43,12 @@ describe("local dev companion card", () => {
 
     const submitted = await devSubmitStudio();
     expect(submitted.kind).toBe("cosmic-companion");
-    expect(submitted.companions).toHaveLength(2);
-    expect(submitted.candidates).toHaveLength(2);
-    expect(submitted.candidates.every((item) => item.url.length > 0)).toBe(true);
-    expect(JSON.stringify(submitted.candidates)).not.toMatch(/openai|api\.openai/i);
-    expect(submitted.origin?.ready).toBe(true);
-    expect(journeyStage(devDashboardStatus())).toBe("ready");
-
-    const chosen = await devChooseStudio("b");
-    expect(chosen.selected).toBe("b");
-    expect(chosen.companion?.slot).toBe("b");
-    expect(chosen.companions).toBeUndefined();
-    expect(journeyStage(devDashboardStatus())).toBe("selected");
+    expect(submitted.selected).toBe("a");
+    expect(submitted.companion?.slot).toBe("a");
+    expect(submitted.companions).toBeUndefined();
+    expect(submitted.candidates).toEqual([]);
+    expect(JSON.stringify(submitted)).not.toMatch(/openai|api\.openai/i);
+    expect(journeyStage(devDashboardStatus())).toBe("waiting");
 
     const { card, entitlement } = devOwnerNova();
     expect(entitlement.active).toBe(true);
@@ -63,7 +56,7 @@ describe("local dev companion card", () => {
     expect(card?.serial).toBe(student.serial);
     expect(card?.serial).toMatch(/^\d{12}$/);
     expect(barcodeSymbols(card!.serial).length).toBeGreaterThan(0);
-    expect(card?.companion?.name).toBe(chosen.companion?.name);
+    expect(card?.companion?.name).toBe(submitted.companion?.name);
     expect(card?.companion?.species).toBeTruthy();
     expect(card?.artworkUrl).toBeFalsy();
     expect(card?.crafting).toBe(true);
@@ -95,7 +88,6 @@ describe("local dev companion card", () => {
     await devSaveStudio({ ...(await devLoadStudio()).draft, answers });
     await devSubmitStudio();
     await expect(devSubmitStudio()).rejects.toThrow(/already complete/i);
-    await devChooseStudio("a");
 
     signInDevStudentRecord(DEV_STUDENTS.find((item) => item.role === "admin")!.id);
     expect(devCraftQueue()).toHaveLength(1);
@@ -126,7 +118,6 @@ describe("local dev companion card", () => {
     signInDevStudentRecord(student.id);
     await devSaveStudio({ ...(await devLoadStudio()).draft, answers });
     await devSubmitStudio();
-    await devChooseStudio("b");
     expect(() => devCraftQueue()).toThrow(/administrator/i);
 
     signInDevStudentRecord(staff!.id);

@@ -29,10 +29,10 @@ export const JOURNEY_CTA: Record<JourneyStage, { label: string; note: string }> 
     note: "Your saved answers are waiting where you left off.",
   },
   waiting: {
-    label: "Return to My Sanctuary",
-    note: "Your companions are being prepared. Check their arrival.",
+    label: "See My Companion",
+    note: "Your portrait is being crafted.",
   },
-  ready: { label: "Meet My Companions", note: "Your two companions are ready to meet you." },
+  ready: { label: "See My Companion", note: "Your portrait is being crafted." },
   selected: { label: "Enter My Cosmic Portal", note: "Visit your permanent Cosmic Companion." },
 };
 

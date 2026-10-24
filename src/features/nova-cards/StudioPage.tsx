@@ -244,9 +244,6 @@ export function StudioExperience({
   // The opening plays once the account has loaded, so no student finishes it into a dead end.
   const intro = !busy && !started && !!state && !state.origin && !state.selected;
   const chamber = !!state?.active && !selected && !awakening && !quiz && !!traits;
-  const revealReady = awakening && !!state?.origin?.ready && revealCompanions.length === 2;
-  const revealing = revealReady && hatch !== "sealed";
-  const waiting = awakening && !revealing;
   const revealKey = `${fictional ? "preview" : "student"}:${state?.publicId ?? "current"}`;
   // In the fictional preview each candidate carries its own data, so the confirmed companion is
   // the very candidate the student chose. Real accounts load their saved card instead.
@@ -260,6 +257,22 @@ export function StudioExperience({
     (matched && state?.companion
       ? companionFromSpec(state.companion, state.companionArtworkUrl, { chosen: true })
       : undefined);
+  // A real student has one companion: the preference match. The other stored candidate
+  // is never offered, and the 24-hour two-card reveal is not part of this journey.
+  const preferenceSpec =
+    !fictional && matched
+      ? (state?.companion ?? state?.companions?.find((spec) => spec.slot === "a"))
+      : undefined;
+  const oneCompanion =
+    chosenCompanion ??
+    (preferenceSpec
+      ? companionFromSpec(preferenceSpec, state?.companionArtworkUrl, { chosen: true })
+      : undefined);
+  const showOne = selected || (!!oneCompanion && !fictional && matched);
+  const revealReady =
+    !showOne && awakening && !!state?.origin?.ready && revealCompanions.length === 2;
+  const revealing = revealReady && hatch !== "sealed";
+  const waiting = awakening && !revealing;
   useEffect(() => {
     root.current?.querySelector<HTMLHeadingElement>("h1")?.focus({ preventScroll: true });
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
@@ -375,16 +388,23 @@ export function StudioExperience({
             Explore Nova plans ↗
           </a>
         </section>
-      ) : selected ? (
-        <div className={chosenCompanion ? "ccprof-page" : "sanctuary-content sanctuary-owned"}>
-          <p className="sanctuary-permanent-note">
-            Your companion choice is permanent. Your Cosmic Card stays with you.
+      ) : showOne ? (
+        <div className={oneCompanion ? "ccprof-page" : "sanctuary-content sanctuary-owned"}>
+          <p
+            className="sanctuary-permanent-note"
+            data-portrait-status={oneCompanion && !oneCompanion.artworkUrl ? "crafting" : "kept"}
+          >
+            {oneCompanion && !oneCompanion.artworkUrl
+              ? "Your portrait is being crafted."
+              : oneCompanion
+                ? "Your Cosmic Card stays with you."
+                : "Your companion choice is permanent. Your Cosmic Card stays with you."}
           </p>
           <DevGeneratedCardSlot selected={selected} />
           {!fictional ? <LiveCraftArtChoice /> : null}
-          {chosenCompanion ? (
+          {oneCompanion ? (
             <CandidateProfile
-              companion={chosenCompanion}
+              companion={oneCompanion}
               username={state.draft.username}
               fictional={fictional}
               collectionHref={chosenPreview ? undefined : cardsPaths.home}
@@ -506,7 +526,7 @@ export function StudioExperience({
             !confirming
               ? "These are the unique traits that make your connection with your companion special."
               : state.enabled
-                ? "Your answers will be matched with two different companions. They can be revealed 24 hours after you summon them, once both of their portraits are ready, and then you make your permanent choice."
+                ? "Summoning matches you with one companion. You will see their name, story and traits straight away. Staff then craft two portraits, and you choose the portrait for your card."
                 : "Your identity is saved. Companion matching has not opened yet, so nothing has been submitted."
           }
           nickname={
@@ -554,7 +574,7 @@ export function StudioExperience({
             !state.enabled && (
               <p className="sanctuary-status-box">
                 Cosmic Companion has not opened yet. Your answers are saved, and you can summon your
-                companions as soon as it opens.
+                companion as soon as it opens.
               </p>
             )
           }

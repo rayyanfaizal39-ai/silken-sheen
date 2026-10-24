@@ -100,7 +100,7 @@ export function filterCraftQueue(items: readonly CraftBrief[], tab: CraftQueueTa
   return [...visible].sort((a, b) => a.position - b.position);
 }
 
-/** The oldest student still waiting for two portraits. */
+/** The oldest student still waiting for two portraits of their companion. */
 export function nextCraftStudent(items: readonly CraftBrief[]): string | null {
   let best: CraftBrief | null = null;
   for (const item of items) {

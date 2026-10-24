@@ -161,7 +161,7 @@ export function publicPreviewSvg(
     artworkHref && isSafeArtworkUrl(artworkHref)
       ? `<image href="${xml(artworkHref)}" x="150" y="250" width="600" height="560" preserveAspectRatio="xMidYMid slice"/>`
       : `<text x="450" y="520" text-anchor="middle" fill="#f6ca78" font-family="DejaVu Sans, sans-serif" font-size="28">${xml(
-          fields.crafting ? "Your companion is being crafted" : fields.companionName,
+          fields.crafting ? "Your portrait is being crafted" : fields.companionName,
         )}</text>
          <text x="450" y="568" text-anchor="middle" fill="#d7deee" font-family="DejaVu Sans, sans-serif" font-size="22">${xml(
            fields.crafting ? `${fields.companionName}` : fields.title,
@@ -197,7 +197,7 @@ export function storyCardSvg(
     artworkHref && isSafeArtworkUrl(artworkHref)
       ? `<image href="${xml(artworkHref)}" x="120" y="280" width="840" height="900" preserveAspectRatio="xMidYMid slice"/>`
       : `<text x="540" y="700" text-anchor="middle" fill="#f6ca78" font-family="DejaVu Sans, sans-serif" font-size="36">${xml(
-          fields.crafting ? "Your companion is being crafted" : fields.companionName,
+          fields.crafting ? "Your portrait is being crafted" : fields.companionName,
         )}</text>
          <text x="540" y="756" text-anchor="middle" fill="#d7deee" font-family="DejaVu Sans, sans-serif" font-size="28">${xml(
            fields.crafting ? fields.companionName : fields.title,

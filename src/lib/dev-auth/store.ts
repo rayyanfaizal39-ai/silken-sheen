@@ -264,6 +264,24 @@ export async function devSubmitStudio(): Promise<StudioState> {
       throw new Error("Answer all twelve questions before summoning your companion.");
     throw error;
   }
+  const preference = match.candidates.find((spec) => spec.slot === "a") ?? match.candidates[0];
+  if (!student.serial) throw new Error("This account does not receive a companion card.");
+  const username = record.studio.draft.username;
+  record.card = {
+    publicId: student.id,
+    serial: student.serial,
+    username,
+    traits: null,
+    companion: toPublicCompanion(preference),
+    variant: "a",
+    rarity: "Rare",
+    stage: 1,
+    sharing: false,
+    crafting: true,
+  };
+  record.craft = {};
+  if (!record.queuedAt) record.queuedAt = new Date().toISOString();
+  if (!record.localCardId) record.localCardId = crypto.randomUUID();
   record.studio = {
     ...record.studio,
     publicId: student.id,
@@ -273,23 +291,17 @@ export async function devSubmitStudio(): Promise<StudioState> {
       traits: traitsFromAnswers(answers),
     },
     kind: "cosmic-companion",
-    companions: match.candidates,
-    companion: null,
-    selected: null,
-    // The paid generator stays off. Local drawings stand in for its approved images.
+    companions: undefined,
+    companion: preference,
+    selected: "a",
     origin: {
-      status: "ready",
-      revealAfter: new Date(0).toISOString(),
-      ready: true,
+      status: "queued",
+      revealAfter: new Date().toISOString(),
+      ready: false,
       errorCode: null,
-      completed: 2,
-      approved: 2,
-      inReview: 0,
+      completed: 0,
     },
-    candidates: match.candidates.map((spec) => ({
-      candidate: spec.slot,
-      url: artworkFor(spec.species, spec.element, spec.slot),
-    })),
+    candidates: [],
   };
   record.journeyEntitled = true;
   persist(state);
@@ -336,11 +348,12 @@ export function devChooseStudio(candidate: "a" | "b"): Promise<StudioState> {
 export function devDashboardStatus() {
   const { record } = activeRecord();
   const studio = record.studio;
+  const portraitReady = !!record.card?.artworkUrl;
   return {
     active: studio.active,
-    selected: !!studio.selected,
-    ready: !!studio.origin?.ready,
-    pending: !!studio.origin && !studio.selected,
+    selected: portraitReady,
+    ready: false,
+    pending: !!record.card && !portraitReady,
     failed: studio.origin?.status === "failed",
     unfinished: !studio.publicId && studio.draft.answers.length > 0,
   };

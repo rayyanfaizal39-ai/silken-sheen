@@ -106,10 +106,11 @@ export const saveStudioDraft = createServerFn({ method: "POST" })
     return data as StudioDraft;
   });
 /**
- * Submit the saved answers and store two matched companions. Takes no input: the browser never
+ * Submit the saved answers and store the preference companion. Takes no input: the browser never
  * supplies answers, candidates or identities. The student is verified from their session, the
  * shared matcher runs here on the answers saved in the database, and only the service-role
- * function can store the result. A second journey is refused.
+ * function can store the result. A second journey is refused. The preference companion enters
+ * the staff portrait queue in that same transaction.
  */
 export const submitStudioOrigin = createServerFn({ method: "POST" }).handler(async () => {
   const db = await owner();
@@ -135,7 +136,7 @@ export const submitStudioOrigin = createServerFn({ method: "POST" }).handler(asy
       throw new Error("Answer all twelve questions before summoning your companion.");
     if (error instanceof DnaError)
       throw new Error("Cosmic Companion is not fully configured yet. Your answers are saved.");
-    throw new Error("Your companions could not be prepared. Please try again.");
+    throw new Error("Your companion could not be prepared. Please try again.");
   }
   const { error } = await getSupabaseAdminClient().rpc("nova_submit_companions", {
     student: accountOf.get(db),
@@ -149,7 +150,7 @@ export const submitStudioOrigin = createServerFn({ method: "POST" }).handler(asy
         ? "Your answers changed on another device. Refresh to continue."
         : error.message.includes("nickname")
           ? "Complete all twelve questions and choose a nickname."
-          : "Your companions could not be prepared. Check your active subscription and try again.",
+          : "Your companion could not be prepared. Check your active subscription and try again.",
     );
   return state(db);
 });
@@ -182,12 +183,14 @@ export const getNovaDashboardStatus = createServerFn({ method: "GET" }).handler(
   const { data, error } = await db.rpc("get_my_nova_studio");
   if (error) throw new Error("Nova status unavailable");
   const s = data as StudioState;
+  const portraitReady = !!s.companionArtworkUrl;
   return {
     active: s.active,
-    selected: !!s.selected,
-    // A submitted journey can finish without an active subscription.
-    ready: !!s.origin?.ready,
-    pending: !!s.origin && !s.selected,
+    // The portal opens the card once the chosen portrait is on it.
+    selected: portraitReady,
+    // There is no second companion to reveal.
+    ready: false,
+    pending: !!s.origin && !portraitReady,
     failed: s.origin?.status === "failed",
     // Answers saved but not yet submitted: continue rather than restart.
     unfinished: !s.publicId && s.draft.answers.length > 0,

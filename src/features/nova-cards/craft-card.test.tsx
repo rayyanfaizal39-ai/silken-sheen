@@ -34,7 +34,7 @@ describe("crafted companion card", () => {
         url="http://localhost:8080/card/c/00000000-0000-4000-8000-00000000d101"
       />,
     );
-    expect(html).toContain("Your companion is being crafted");
+    expect(html).toContain("Your portrait is being crafted");
     expect(html).toContain("Lumi the Magical Fox");
     expect(html).toContain("nova-art-frame");
     expect(html).toContain("nova-craft-wait");
@@ -58,7 +58,7 @@ describe("crafted companion card", () => {
       />,
     );
     expect(html).toContain("Choose your companion art");
-    expect(html).not.toContain("Your companion is being crafted");
+    expect(html).not.toContain("Your portrait is being crafted");
     expect(html).not.toContain("form1.student@dev.local");
   });
 });
