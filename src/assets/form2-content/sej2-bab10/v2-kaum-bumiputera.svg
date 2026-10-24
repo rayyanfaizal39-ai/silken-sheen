@@ -1,56 +1,68 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 1344" width="760" height="1344" role="img" aria-label="Peta kawasan petempatan kaum bumiputera Sarawak dan Sabah">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 1672" width="760" height="1672" role="img" aria-label="Peta kawasan petempatan kaum bumiputera Sarawak dan Sabah">
 <title>Kawasan Petempatan Kaum Bumiputera Sarawak dan Sabah</title>
 <metadata>Peta asas: Natural Earth 1:50m (domain awam). Kedudukan anggaran.</metadata>
-<rect width="760" height="1344" rx="20" fill="#0f172a"/>
+<rect width="760" height="1672" rx="20" fill="#0f172a"/>
 <text x="380" y="68" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="40" font-weight="700" fill="#f1f5f9">Kawasan Petempatan Kaum</text>
 <text x="380" y="116" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="40" font-weight="700" fill="#f1f5f9">Bumiputera Sarawak dan Sabah</text>
 <rect x="340" y="146" width="80" height="5" rx="2.5" fill="#38bdf8"/>
-<defs><clipPath id="c8235"><rect x="28" y="178" width="704" height="478" rx="14"/></clipPath><radialGradient id="gc8235" cx="50%" cy="45%" r="75%"><stop offset="0" stop-color="#123049"/><stop offset="1" stop-color="#0e2a40"/></radialGradient></defs>
-<g clip-path="url(#c8235)"><rect x="28" y="178" width="704" height="478" fill="url(#gc8235)"/>
+<defs><clipPath id="c7688"><rect x="28" y="178" width="704" height="478" rx="14"/></clipPath><radialGradient id="gc7688" cx="50%" cy="45%" r="75%"><stop offset="0" stop-color="#123049"/><stop offset="1" stop-color="#0e2a40"/></radialGradient></defs>
+<g clip-path="url(#c7688)"><rect x="28" y="178" width="704" height="478" fill="url(#gc7688)"/>
 <path d="M580 246L588 248L596 252L598 255L600 258L602 263L602 269L596 274L599 282L598 287L596 291L589 295L610 291L616 289L623 284L627 288L631 297L628 299L618 302L618 303L621 307L625 307L633 304L640 300L643 300L647 301L654 304L658 306L661 309L663 315L671 318L688 326L691 327L694 327L703 326L706 328L708 331L709 335L709 339L708 342L706 345L700 349L685 354L669 358L660 358L649 354L645 355L640 356L635 367L645 378L661 390L663 393L663 396L660 398L657 399L648 401L638 402L631 404L623 407L616 406L605 401L602 401L599 403L596 410L593 413L588 415L586 419L593 425L593 429L598 432L604 438L604 440L606 442L607 445L603 448L597 449L593 446L589 442L588 447L585 449L574 449L566 449L558 450L562 451L566 452L578 463L581 467L576 476L578 479L583 481L589 485L593 486L596 488L596 492L598 496L593 497L598 498L602 500L600 502L598 504L600 506L606 508L608 510L609 515L615 524L625 535L627 539L627 543L625 546L620 550L615 555L615 557L608 559L611 561L613 563L618 570L628 581L633 585L655 601L666 607L681 623L688 626L690 630L684 637L674 640L659 642L644 640L636 638L629 634L624 626L617 622L619 627L621 632L620 637L617 641L613 644L607 646L605 648L601 656L28 656L28 576L29 573L33 566L50 559L55 568L57 570L67 577L75 580L84 581L93 582L96 581L100 580L103 581L122 592L129 594L137 593L140 594L151 602L154 603L159 602L148 596L146 591L147 586L152 582L155 579L156 567L158 562L161 556L163 551L158 547L158 540L158 535L161 531L168 536L172 536L175 535L175 532L174 527L174 517L179 510L187 505L194 502L221 498L263 488L275 483L280 481L284 478L290 469L303 454L311 442L330 424L344 407L346 404L348 395L349 391L348 387L350 385L353 384L361 384L370 383L378 379L386 375L393 370L400 364L407 359L417 354L421 355L421 358L419 363L427 363L443 360L447 358L453 352L455 349L457 342L450 338L446 333L446 327L456 317L459 314L460 318L464 319L468 319L472 319L478 314L480 306L490 295L493 287L495 279L520 252L523 248L537 221L539 220L543 222L544 231L543 235L541 240L540 246L541 246L548 242L556 233L560 225L563 221L570 223L572 225L571 230L572 234L574 241L580 246ZM165 510L167 508L168 509L170 512L170 521L170 529L171 532L169 533L165 531L165 510ZM592 463L598 463L601 465L599 473L598 475L593 470L591 466L592 463ZM600 410L600 407L603 406L606 407L615 411L617 418L617 420L605 424L597 416L600 410ZM558 207L559 201L564 196L572 195L573 199L573 204L571 206L564 208L560 211L558 207Z" fill="#3b4a5f" stroke="#8fa3bb" stroke-width="1.4" stroke-linejoin="round" fill-rule="evenodd"/>
-<text x="254" y="315" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="20" font-weight="600" fill="#7dd3fc" font-style="italic" letter-spacing="3">LAUT CHINA</text>
-<text x="254" y="341" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="20" font-weight="600" fill="#7dd3fc" font-style="italic" letter-spacing="3">SELATAN</text>
-<text x="691" y="226" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="600" fill="#7dd3fc" font-style="italic" letter-spacing="3">LAUT</text>
-<text x="691" y="250" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="600" fill="#7dd3fc" font-style="italic" letter-spacing="3">SULU</text>
-<circle cx="233" cy="588" r="10" fill="#f59e0b" stroke="#0f172a" stroke-width="3.5"/>
-<text x="247" y="596" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="21" font-weight="700" fill="#f1f5f9">1  Iban</text>
-<circle cx="117" cy="612" r="10" fill="#fb7185" stroke="#0f172a" stroke-width="3.5"/>
-<text x="127" y="642" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="21" font-weight="700" fill="#f1f5f9">2  Bidayuh</text>
-<circle cx="243" cy="523" r="10" fill="#38bdf8" stroke="#0f172a" stroke-width="3.5"/>
-<text x="229" y="511" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="21" font-weight="700" fill="#f1f5f9">3  Melanau</text>
-<circle cx="390" cy="492" r="10" fill="#34d399" stroke="#0f172a" stroke-width="3.5"/>
-<text x="404" y="500" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="21" font-weight="700" fill="#f1f5f9">4  Orang Ulu</text>
-<circle cx="500" cy="304" r="10" fill="#f59e0b" stroke="#0f172a" stroke-width="3.5"/>
-<text x="486" y="310" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="21" font-weight="700" fill="#f1f5f9">5  Kadazandusun</text>
-<circle cx="486" cy="383" r="10" fill="#fb7185" stroke="#0f172a" stroke-width="3.5"/>
-<text x="500" y="393" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="21" font-weight="700" fill="#f1f5f9">6  Murut</text>
-<circle cx="643" cy="363" r="10" fill="#38bdf8" stroke="#0f172a" stroke-width="3.5"/>
-<text x="629" y="347" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="21" font-weight="700" fill="#f1f5f9">7  Bajau/Sama</text>
-<rect x="575" y="592" width="151" height="56" rx="10" fill="#0f172a" fill-opacity="0.85"/><line x1="589" y1="632" x2="712" y2="632" stroke="#f1f5f9" stroke-width="5" stroke-linecap="round"/><text x="651" y="618" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="600" fill="#f1f5f9">200 km</text>
+<text x="226" y="287" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="600" fill="#7dd3fc" font-style="italic" letter-spacing="3">LAUT CHINA</text>
+<text x="226" y="325" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="600" fill="#7dd3fc" font-style="italic" letter-spacing="3">SELATAN</text>
+<text x="674" y="226" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="600" fill="#7dd3fc" font-style="italic" letter-spacing="3">LAUT</text>
+<text x="674" y="264" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="600" fill="#7dd3fc" font-style="italic" letter-spacing="3">SULU</text>
+<circle cx="233" cy="588" r="6" fill="#f59e0b"/>
+<line x1="233" y1="588" x2="263" y2="558" stroke="#f59e0b" stroke-width="2"/>
+<circle cx="263" cy="558" r="21" fill="#0f172a" stroke="#f59e0b" stroke-width="2.5"/><text x="263" y="569" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="700" fill="#f1f5f9">1</text>
+<circle cx="117" cy="612" r="6" fill="#fb7185"/>
+<line x1="117" y1="612" x2="87" y2="582" stroke="#fb7185" stroke-width="2"/>
+<circle cx="87" cy="582" r="21" fill="#0f172a" stroke="#fb7185" stroke-width="2.5"/><text x="87" y="593" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="700" fill="#f1f5f9">2</text>
+<circle cx="243" cy="523" r="6" fill="#38bdf8"/>
+<line x1="243" y1="523" x2="207" y2="493" stroke="#38bdf8" stroke-width="2"/>
+<circle cx="207" cy="493" r="21" fill="#0f172a" stroke="#38bdf8" stroke-width="2.5"/><text x="207" y="504" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="700" fill="#f1f5f9">3</text>
+<circle cx="390" cy="492" r="6" fill="#34d399"/>
+<line x1="390" y1="492" x2="426" y2="462" stroke="#34d399" stroke-width="2"/>
+<circle cx="426" cy="462" r="21" fill="#0f172a" stroke="#34d399" stroke-width="2.5"/><text x="426" y="473" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="700" fill="#f1f5f9">4</text>
+<circle cx="500" cy="304" r="6" fill="#f59e0b"/>
+<line x1="500" y1="304" x2="460" y2="280" stroke="#f59e0b" stroke-width="2"/>
+<circle cx="460" cy="280" r="21" fill="#0f172a" stroke="#f59e0b" stroke-width="2.5"/><text x="460" y="291" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="700" fill="#f1f5f9">5</text>
+<circle cx="486" cy="383" r="6" fill="#fb7185"/>
+<line x1="486" y1="383" x2="446" y2="407" stroke="#fb7185" stroke-width="2"/>
+<circle cx="446" cy="407" r="21" fill="#0f172a" stroke="#fb7185" stroke-width="2.5"/><text x="446" y="418" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="700" fill="#f1f5f9">6</text>
+<circle cx="643" cy="363" r="6" fill="#38bdf8"/>
+<line x1="643" y1="363" x2="673" y2="393" stroke="#38bdf8" stroke-width="2"/>
+<circle cx="673" cy="393" r="21" fill="#0f172a" stroke="#38bdf8" stroke-width="2.5"/><text x="673" y="404" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="700" fill="#f1f5f9">7</text>
+<rect x="575" y="584" width="151" height="64" rx="10" fill="#0f172a" fill-opacity="0.85"/><line x1="589" y1="632" x2="712" y2="632" stroke="#f1f5f9" stroke-width="5" stroke-linecap="round"/><text x="651" y="618" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="600" fill="#f1f5f9">200 km</text>
 </g>
 <rect x="28" y="178" width="704" height="478" rx="14" fill="none" stroke="#334155" stroke-width="2"/>
-<circle cx="46" cy="698" r="17" fill="#0f172a" stroke="#f59e0b" stroke-width="2.5"/><text x="46" y="706" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#f1f5f9">1</text>
-<text x="74" y="708" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" fill="#f59e0b">Iban</text>
-<text x="74" y="742" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="400" fill="#cbd5e1">Dari Sungai Kapuas; menetap di hulu Batang Lupar,</text>
-<text x="74" y="772" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="400" fill="#cbd5e1">Sungai Rajang hingga Sungai Baram.</text>
-<circle cx="46" cy="806" r="17" fill="#0f172a" stroke="#fb7185" stroke-width="2.5"/><text x="46" y="814" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#f1f5f9">2</text>
-<text x="74" y="816" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" fill="#fb7185">Bidayuh</text>
-<text x="74" y="850" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="400" fill="#cbd5e1">Dari Sungkung, Kalimantan; berhijrah ke selatan</text>
-<text x="74" y="880" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="400" fill="#cbd5e1">Sarawak.</text>
-<circle cx="46" cy="914" r="17" fill="#0f172a" stroke="#38bdf8" stroke-width="2.5"/><text x="46" y="922" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#f1f5f9">3</text>
-<text x="74" y="924" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" fill="#38bdf8">Melanau</text>
-<text x="74" y="958" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="400" fill="#cbd5e1">Mendiami kawasan tengah Sarawak sejak dahulu.</text>
-<circle cx="46" cy="992" r="17" fill="#0f172a" stroke="#34d399" stroke-width="2.5"/><text x="46" y="1000" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#f1f5f9">4</text>
-<text x="74" y="1002" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" fill="#34d399">Orang Ulu</text>
-<text x="74" y="1036" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="400" fill="#cbd5e1">Kayan, Kenyah, Kelabit, Penan, Punan; hulu Sungai</text>
-<text x="74" y="1066" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="400" fill="#cbd5e1">Rajang, Balui, Baram dan Hulu Kemena.</text>
-<circle cx="46" cy="1100" r="17" fill="#0f172a" stroke="#f59e0b" stroke-width="2.5"/><text x="46" y="1108" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#f1f5f9">5</text>
-<text x="74" y="1110" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" fill="#f59e0b">Kadazandusun</text>
-<text x="74" y="1144" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="400" fill="#cbd5e1">Penampang, Papar, Tuaran, Tambunan dan Ranau.</text>
-<circle cx="46" cy="1178" r="17" fill="#0f172a" stroke="#fb7185" stroke-width="2.5"/><text x="46" y="1186" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#f1f5f9">6</text>
-<text x="74" y="1188" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" fill="#fb7185">Murut</text>
-<text x="74" y="1222" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="400" fill="#cbd5e1">Kawasan Tenom hingga Kalabakan.</text>
-<circle cx="46" cy="1256" r="17" fill="#0f172a" stroke="#38bdf8" stroke-width="2.5"/><text x="46" y="1264" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#f1f5f9">7</text>
-<text x="74" y="1266" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" fill="#38bdf8">Bajau/Sama</text>
-<text x="74" y="1300" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="400" fill="#cbd5e1">Kebanyakannya di pantai timur dan barat Sabah.</text>
+<circle cx="46" cy="698" r="21" fill="#0f172a" stroke="#f59e0b" stroke-width="2.5"/><text x="46" y="709" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="700" fill="#f1f5f9">1</text>
+<text x="74" y="708" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="34" font-weight="700" fill="#f59e0b">Iban</text>
+<text x="74" y="750" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="400" fill="#cbd5e1">Dari Sungai Kapuas; menetap di hulu</text>
+<text x="74" y="790" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="400" fill="#cbd5e1">Batang Lupar, Sungai Rajang hingga</text>
+<text x="74" y="830" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="400" fill="#cbd5e1">Sungai Baram.</text>
+<circle cx="46" cy="870" r="21" fill="#0f172a" stroke="#fb7185" stroke-width="2.5"/><text x="46" y="881" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="700" fill="#f1f5f9">2</text>
+<text x="74" y="880" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="34" font-weight="700" fill="#fb7185">Bidayuh</text>
+<text x="74" y="922" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="400" fill="#cbd5e1">Dari Sungkung, Kalimantan; berhijrah</text>
+<text x="74" y="962" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="400" fill="#cbd5e1">ke selatan Sarawak.</text>
+<circle cx="46" cy="1002" r="21" fill="#0f172a" stroke="#38bdf8" stroke-width="2.5"/><text x="46" y="1013" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="700" fill="#f1f5f9">3</text>
+<text x="74" y="1012" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="34" font-weight="700" fill="#38bdf8">Melanau</text>
+<text x="74" y="1054" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="400" fill="#cbd5e1">Mendiami kawasan tengah Sarawak sejak</text>
+<text x="74" y="1094" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="400" fill="#cbd5e1">dahulu.</text>
+<circle cx="46" cy="1134" r="21" fill="#0f172a" stroke="#34d399" stroke-width="2.5"/><text x="46" y="1145" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="700" fill="#f1f5f9">4</text>
+<text x="74" y="1144" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="34" font-weight="700" fill="#34d399">Orang Ulu</text>
+<text x="74" y="1186" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="400" fill="#cbd5e1">Kayan, Kenyah, Kelabit, Penan, Punan;</text>
+<text x="74" y="1226" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="400" fill="#cbd5e1">hulu Sungai Rajang, Balui, Baram dan</text>
+<text x="74" y="1266" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="400" fill="#cbd5e1">Hulu Kemena.</text>
+<circle cx="46" cy="1306" r="21" fill="#0f172a" stroke="#f59e0b" stroke-width="2.5"/><text x="46" y="1317" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="700" fill="#f1f5f9">5</text>
+<text x="74" y="1316" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="34" font-weight="700" fill="#f59e0b">Kadazandusun</text>
+<text x="74" y="1358" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="400" fill="#cbd5e1">Penampang, Papar, Tuaran, Tambunan dan</text>
+<text x="74" y="1398" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="400" fill="#cbd5e1">Ranau.</text>
+<circle cx="46" cy="1438" r="21" fill="#0f172a" stroke="#fb7185" stroke-width="2.5"/><text x="46" y="1449" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="700" fill="#f1f5f9">6</text>
+<text x="74" y="1448" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="34" font-weight="700" fill="#fb7185">Murut</text>
+<text x="74" y="1490" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="400" fill="#cbd5e1">Kawasan Tenom hingga Kalabakan.</text>
+<circle cx="46" cy="1530" r="21" fill="#0f172a" stroke="#38bdf8" stroke-width="2.5"/><text x="46" y="1541" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="700" fill="#f1f5f9">7</text>
+<text x="74" y="1540" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="34" font-weight="700" fill="#38bdf8">Bajau/Sama</text>
+<text x="74" y="1582" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="400" fill="#cbd5e1">Kebanyakannya di pantai timur dan</text>
+<text x="74" y="1622" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="32" font-weight="400" fill="#cbd5e1">barat Sabah.</text>
 </svg>

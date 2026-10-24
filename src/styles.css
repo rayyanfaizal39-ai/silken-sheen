@@ -8301,3 +8301,8 @@
   border-left: 3px solid var(--primary); padding-left: 0.6rem;
   margin-bottom: -0.5rem;
 }
+
+/* Sejarah F2 figures: let tall mobile maps use full width (no 58vh cap) */
+@media (max-width: 639px) {
+  .sej2-notes .notes-figure-img { max-height: none; }
+}
