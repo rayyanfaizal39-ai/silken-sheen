@@ -5,6 +5,7 @@ import { AcademyPageShell } from "@/components/AcademyPage";
 import { useAuth } from "@/context/auth-context";
 import { seoMeta } from "@/lib/seo";
 import { getPaymentReturnStatus } from "./-upgrade.server";
+import { finishCheckoutAttempt } from "@/lib/checkout-attempt";
 
 type ReturnStatus = Awaited<ReturnType<typeof getPaymentReturnStatus>>;
 const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -26,13 +27,13 @@ export const Route = createFileRoute("/payment-return")({
 function PaymentReturnPage() {
   const { order_id: paymentId } = Route.useSearch();
   const { user, loading: authLoading } = useAuth();
-  const [payment, setPayment] = useState<ReturnStatus | null>(null);
+  const [result, setResult] = useState<ReturnStatus | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const validReference = uuidPattern.test(paymentId);
 
   useEffect(() => {
     if (authLoading) return;
-    if (!user || !uuidPattern.test(paymentId)) {
+    if (!user || !validReference) {
       setLoading(false);
       return;
     }
@@ -41,20 +42,25 @@ function PaymentReturnPage() {
     let timer: ReturnType<typeof setTimeout> | undefined;
     let attempt = 0;
     async function refresh() {
+      let next: ReturnStatus;
       try {
-        const result = await getPaymentReturnStatus({ data: { paymentId } });
-        if (!active) return;
-        setPayment(result);
-        setError(null);
-        setLoading(false);
-        if (result.status === "pending" && attempt < 8) {
-          attempt += 1;
-          timer = setTimeout(refresh, 2500);
-        }
+        next = await getPaymentReturnStatus({ data: { paymentId } });
       } catch {
-        if (!active) return;
-        setError("We couldn't find this payment in your account.");
-        setLoading(false);
+        next = { state: "unavailable" };
+      }
+      if (!active) return;
+      if (user && next.state === "found" && next.status !== "pending") {
+        try {
+          finishCheckoutAttempt(window.sessionStorage, user.id, next.paymentId);
+        } catch {
+          /* Status display must not depend on browser storage. */
+        }
+      }
+      setResult(next);
+      setLoading(false);
+      if (next.state === "found" && next.status === "pending" && attempt < 8) {
+        attempt += 1;
+        timer = setTimeout(refresh, 2500);
       }
     }
     void refresh();
@@ -62,7 +68,7 @@ function PaymentReturnPage() {
       active = false;
       if (timer) clearTimeout(timer);
     };
-  }, [authLoading, paymentId, user]);
+  }, [authLoading, paymentId, user, validReference]);
 
   if (authLoading || loading) {
     return (
@@ -73,27 +79,48 @@ function PaymentReturnPage() {
       />
     );
   }
-  if (!user) {
+  if (!user || result?.state === "signed_out") {
     return (
       <StatusShell
         icon={<Clock3 className="h-12 w-12 text-amber-300" />}
         title="Sign in to check your payment"
-        body="Payment details are private and can only be viewed by the account that started checkout."
+        body="Payment details are private and can only be viewed by the account that started checkout. Your payment is not affected."
         action={<LinkButton to="/login" label="Sign in" />}
       />
     );
   }
-  if (!uuidPattern.test(paymentId) || error) {
+  if (!validReference) {
     return (
       <StatusShell
         icon={<XCircle className="h-12 w-12 text-red-300" />}
         title="Payment reference not found"
-        body={error ?? "The return link did not include a valid AcadeMY payment reference."}
+        body="The return link did not include a valid AcadeMY payment reference."
         action={<LinkButton to="/upgrade" label="Back to pricing" />}
       />
     );
   }
-  if (payment?.status === "successful") {
+  if (result?.state === "not_found") {
+    return (
+      <StatusShell
+        icon={<XCircle className="h-12 w-12 text-red-300" />}
+        title="This payment isn’t in this account"
+        body={`You’re signed in as ${user.email || "a different account"}. Sign in with the account that paid to see this payment. Your payment is not affected.`}
+        action={<LinkButton to="/login" label="Sign in with another account" />}
+      />
+    );
+  }
+  if (!result || result.state !== "found") {
+    return (
+      <StatusShell
+        icon={<Clock3 className="h-12 w-12 text-amber-300" />}
+        title="We couldn’t check your payment just now"
+        body="Your payment is safe. Refresh this page in a moment, or check My Subscription."
+        action={<LinkButton to="/upgrade" label="View My Subscription" />}
+      />
+    );
+  }
+  const payment = result;
+  if (payment.status === "successful") {
     return (
       <StatusShell
         icon={<CheckCircle2 className="h-12 w-12 text-emerald-300" />}
@@ -107,7 +134,7 @@ function PaymentReturnPage() {
       />
     );
   }
-  if (payment?.status === "failed" || payment?.status === "cancelled") {
+  if (payment.status === "failed" || payment.status === "cancelled") {
     return (
       <StatusShell
         icon={<XCircle className="h-12 w-12 text-red-300" />}
