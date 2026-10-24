@@ -64,7 +64,7 @@ const sejarahF2C6NotesSource: StructuredNotes = {
     "Johor membantu Belanda menewaskan Portugis dan menawan Melaka pada tahun 1641.",
     "Sulalatus Salatin menceritakan asal usul keturunan raja-raja Melaka, adat istiadat kerajaan dan sejarah Kesultanan Melayu Melaka.",
     "Hikayat Hang Tuah mengisahkan ketaatan dan kesetiaan Hang Tuah kepada raja dan Kesultanan Melayu Melaka.",
-    "Tajul Salatin dikarang oleh Bukhari al-Jauhari di Aceh dan menjadi panduan untuk mentadbir kerajaan.",
+    "Tajul Salatin atau Mahkota Raja-Raja ditulis oleh Bukhari al-Jauhari pada zaman Kesultanan Johor Riau.",
   ],
   sections: [
     {
@@ -426,7 +426,6 @@ const sejarahF2C6NotesSource: StructuredNotes = {
           title: "Tajul Salatin",
           bulletPoints: [
             "Tajul Salatin dikarang oleh Bukhari al-Jauhari.",
-            "Karya ini dihasilkan di Acheh pada tahun 1603.",
             "Tajul Salatin merupakan karya tentang pemerintahan dan panduan bagi raja serta golongan pemerintah mentadbir negara.",
           ],
         },
