@@ -1,5 +1,5 @@
 import type { CraftQueueApi } from "@/features/nova-cards/craft-queue";
-import { devAttachCraftOptions, devCraftQueue, devResetCraftArt } from "./store";
+import { devAttachCraftOptions, devCraftBrief, devCraftQueue, devResetCraftArt } from "./store";
 
 /** Browser-only craft queue. Loaded only while the localhost dev bypass is on. */
 export const devCraftApi: CraftQueueApi = {
@@ -14,4 +14,5 @@ export const devCraftApi: CraftQueueApi = {
     );
   },
   resetChoice: (publicId) => Promise.resolve(devResetCraftArt(publicId)),
+  brief: (publicId) => Promise.resolve(devCraftBrief(publicId)),
 };

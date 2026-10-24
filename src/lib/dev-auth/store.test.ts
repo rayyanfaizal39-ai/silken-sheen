@@ -7,6 +7,7 @@ import {
   devAttachCraftOptions,
   devChooseCraftArt,
   devChooseStudio,
+  devCraftBrief,
   devCraftQueue,
   devCompanionPremium,
   devDashboardStatus,
@@ -136,7 +137,15 @@ describe("local dev companion card", () => {
       form: "Form 1",
       serial: student.serial,
       status: "waiting_for_art",
+      position: 1,
     });
+    expect(queued[0].queuedAt).toEqual(expect.any(String));
+    const artist = devCraftBrief(queued[0].publicId);
+    expect(artist.cardId).not.toBe(student.id);
+    expect(artist.output).toMatchObject({ format: "PNG", minSize: "1024x1536", text: "none" });
+    expect(artist.dna.genes).toEqual(expect.objectContaining({ faceShape: expect.any(String) }));
+    expect(JSON.stringify(artist)).not.toContain(student.email);
+    expect(JSON.stringify(artist)).not.toContain("userId");
     const csv = craftQueueToCsv(queued);
     const json = craftQueueToJson(queued);
     expect(csv.split("\n")[0]).toContain("publicId");

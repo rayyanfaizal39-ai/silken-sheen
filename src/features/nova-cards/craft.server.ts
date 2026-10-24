@@ -7,7 +7,7 @@ import { setResponseHeader } from "@tanstack/start-server-core";
 import { z } from "zod";
 import { getSupabaseAdminClient } from "@/lib/billing.server";
 import { getSupabaseServerClient } from "@/lib/supabase.server";
-import type { CraftBrief, CraftOptionUpload } from "./craft-queue";
+import type { CraftArtistBrief, CraftBrief, CraftOptionUpload } from "./craft-queue";
 
 const MAX_BYTES = 1_000_000;
 
@@ -39,6 +39,8 @@ function choiceOf(value: unknown): 1 | 2 | null {
 type StoredOption = { option?: unknown; path?: unknown };
 
 type QueueRow = {
+  position: number;
+  queuedAt: string | null;
   publicId: string;
   serial: string;
   displayName: string;
@@ -87,6 +89,8 @@ export const getCraftQueue = createServerFn({ method: "GET" }).handler(async () 
         }),
       );
       return {
+        position: Number(row.position) || 0,
+        queuedAt: typeof row.queuedAt === "string" ? row.queuedAt : null,
         publicId: row.publicId,
         serial: row.serial,
         displayName: row.displayName,
@@ -105,6 +109,18 @@ export const getCraftQueue = createServerFn({ method: "GET" }).handler(async () 
     }),
   );
 });
+
+export const getCraftBrief = createServerFn({ method: "POST" })
+  .validator((input: unknown) => z.object({ publicId: z.string().uuid() }).parse(input))
+  .handler(async ({ data }) => {
+    const db = await reviewer();
+    const { data: brief, error } = await db.rpc("nova_admin_craft_brief", {
+      requested_public_id: data.publicId,
+    });
+    if (error || !brief)
+      throw failure(error ?? { message: "That student is not in the craft queue." });
+    return brief as CraftArtistBrief;
+  });
 
 export const attachCraftOptions = createServerFn({ method: "POST" })
   .validator((input: unknown) =>

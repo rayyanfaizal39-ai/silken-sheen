@@ -4,8 +4,12 @@ import { useCallback, useEffect, useState } from "react";
 import {
   craftQueueToCsv,
   craftQueueToJson,
+  craftWaitLabel,
+  filterCraftQueue,
+  nextCraftStudent,
   type CraftBrief,
   type CraftQueueApi,
+  type CraftQueueTab,
 } from "@/features/nova-cards/craft-queue";
 import { Panel } from "./ui";
 
@@ -16,6 +20,13 @@ const STATUS_LABEL: Record<CraftBrief["status"], string> = {
   options_ready: "Waiting for the student to choose",
   chosen: "Student chose a portrait",
 };
+
+const TABS: { id: CraftQueueTab; label: string }[] = [
+  { id: "waiting_for_art", label: "Waiting for art" },
+  { id: "options_ready", label: "Options ready" },
+  { id: "chosen", label: "Chosen" },
+  { id: "all", label: "All" },
+];
 
 function download(filename: string, contents: string, type: string) {
   const blob = new Blob([contents], { type });
@@ -42,14 +53,18 @@ function readPortrait(file: File): Promise<string> {
 
 function StudentRow({
   item,
+  nextUp,
   busy,
   onUpload,
   onReset,
+  onBrief,
 }: {
   item: CraftBrief;
+  nextUp: boolean;
   busy: boolean;
   onUpload: (publicId: string, files: [File, File]) => Promise<void>;
   onReset: (publicId: string) => Promise<void>;
+  onBrief: (publicId: string) => Promise<void>;
 }) {
   const [files, setFiles] = useState<{ 1?: File; 2?: File }>({});
   const chosen = item.status === "chosen";
@@ -87,9 +102,17 @@ function StudentRow({
       </div>
       <div style={{ flex: "1 1 280px", minWidth: 0 }}>
         <p>
+          <strong data-craft-position={item.position}>{item.position}</strong>
+          {" · "}
           <strong>{item.displayName}</strong>
           {item.form ? ` · ${item.form}` : ""}
+          {nextUp ? (
+            <span className="chip chip-orange" data-next-up="true" style={{ marginLeft: 8 }}>
+              Next up
+            </span>
+          ) : null}
         </p>
+        <p>{craftWaitLabel(item.queuedAt)}</p>
         <p>
           {item.companionName} the {item.species} · {item.element} · {item.personality}
         </p>
@@ -98,6 +121,17 @@ function StudentRow({
         <p style={{ color: "var(--muted)" }}>Serial {item.serial}</p>
         <p>{STATUS_LABEL[item.status]}</p>
         {item.choice ? <p>Chosen option {item.choice}</p> : null}
+        <p>
+          <button
+            type="button"
+            className="btn"
+            data-craft-brief={item.publicId}
+            disabled={busy}
+            onClick={() => void onBrief(item.publicId)}
+          >
+            Download brief (JSON)
+          </button>
+        </p>
         {chosen ? (
           <button
             type="button"
@@ -151,8 +185,11 @@ function StudentRow({
 
 export function CompanionCraftQueue({ api }: { api: CraftQueueApi }) {
   const [items, setItems] = useState<CraftBrief[]>([]);
+  const [tab, setTab] = useState<CraftQueueTab>("waiting_for_art");
   const [message, setMessage] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const visible = filterCraftQueue(items, tab);
+  const nextUpId = nextCraftStudent(items);
 
   const load = useCallback(async () => {
     try {
@@ -185,7 +222,7 @@ export function CompanionCraftQueue({ api }: { api: CraftQueueApi }) {
     <div className="admin-content">
       <Panel
         title="Companion craft queue"
-        badge={<span className="chip chip-orange">{items.length} students</span>}
+        badge={<span className="chip chip-orange">{visible.length} students</span>}
       >
         <p>
           Paid students who have the Cosmic Companion feature appear here after they confirm a
@@ -215,13 +252,50 @@ export function CompanionCraftQueue({ api }: { api: CraftQueueApi }) {
             Export JSON
           </button>
         </p>
+        <div role="tablist" aria-label="Craft queue status">
+          {TABS.map((entry) => {
+            const count =
+              entry.id === "all"
+                ? items.length
+                : items.filter((item) => item.status === entry.id).length;
+            return (
+              <button
+                key={entry.id}
+                type="button"
+                role="tab"
+                aria-selected={tab === entry.id}
+                className="btn"
+                onClick={() => setTab(entry.id)}
+              >
+                {entry.label} ({count})
+              </button>
+            );
+          })}
+        </div>
         {message && <p role="status">{message}</p>}
-        {!items.length && <div className="empty">No companion is waiting for a portrait.</div>}
-        {items.map((item) => (
+        {!visible.length && <div className="empty">No companion is in this list.</div>}
+        {visible.map((item) => (
           <StudentRow
             key={item.publicId}
             item={item}
+            nextUp={item.publicId === nextUpId}
             busy={busy}
+            onBrief={async (publicId) => {
+              setBusy(true);
+              try {
+                const brief = await api.brief(publicId);
+                download(
+                  `companion-brief-${publicId}.json`,
+                  JSON.stringify(brief, null, 2),
+                  "application/json",
+                );
+                setMessage("Artist brief downloaded.");
+              } catch (error) {
+                setMessage((error as Error).message);
+              } finally {
+                setBusy(false);
+              }
+            }}
             onUpload={(publicId, [one, two]) =>
               run(async () => {
                 const [first, second] = await Promise.all([readPortrait(one), readPortrait(two)]);

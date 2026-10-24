@@ -5,6 +5,7 @@ import { isDevAuthBypassEnabled } from "@/lib/dev-auth";
 import { isSupabaseConfigured } from "@/lib/supabase";
 import {
   attachCraftOptions,
+  getCraftBrief,
   getCraftQueue,
   resetCraftChoice,
 } from "@/features/nova-cards/craft.server";
@@ -29,6 +30,7 @@ const serverApi: CraftQueueApi = {
     if (!item) throw new Error("That student is no longer in the queue.");
     return item;
   },
+  brief: (publicId) => getCraftBrief({ data: { publicId } }),
 };
 
 function CompanionCraftPage() {

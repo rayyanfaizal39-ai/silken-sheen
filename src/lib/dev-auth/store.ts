@@ -12,7 +12,12 @@ import {
   matchCompanions,
   type CompanionCandidateSpec,
 } from "../../../supabase/functions/_shared/companion-matcher";
-import type { CraftBrief } from "@/features/nova-cards/craft-queue";
+import {
+  CRAFT_OUTPUT_RULES,
+  type CraftArtistBrief,
+  type CraftBrief,
+} from "@/features/nova-cards/craft-queue";
+import { deriveVisualDna } from "../../../supabase/functions/_shared/companion-dna";
 import { devCompanionArtworkUrl } from "./local-artwork";
 import { devStudentById, type DevStudent } from "./students";
 
@@ -29,6 +34,10 @@ interface StudentRecord {
   card: NovaCard | null;
   /** Set when this card was created under an active cosmic_companion entitlement. */
   journeyEntitled?: boolean;
+  /** Card id for the artist brief. Separate from the demo account id. */
+  localCardId?: string;
+  /** When the student confirmed a companion and entered the staff queue. */
+  queuedAt?: string | null;
   /** Staff portrait workflow. Absent until the student confirms a companion. */
   craft?: {
     options?: { option: 1 | 2; url: string }[];
@@ -310,6 +319,8 @@ export function devChooseStudio(candidate: "a" | "b"): Promise<StudioState> {
   };
   record.card = card;
   record.craft = {};
+  if (!record.queuedAt) record.queuedAt = new Date().toISOString();
+  if (!record.localCardId) record.localCardId = crypto.randomUUID();
   record.studio = {
     ...record.studio,
     selected: candidate,
@@ -362,7 +373,9 @@ export function devDemoCompanion(): DevDemoCompanion {
       name: companion.name,
       species: companion.species,
       element: companion.element,
-      ...(crafting || choosing ? {} : { artworkUrl: record.card.artworkUrl }),
+      ...(crafting || choosing || typeof record.card.artworkUrl !== "string"
+        ? {}
+        : { artworkUrl: record.card.artworkUrl }),
     };
   } catch {
     return { discovered: false };
@@ -418,14 +431,35 @@ function craftStatus(record: StudentRecord): CraftBrief["status"] {
   return "waiting_for_art";
 }
 
-function briefFor(studentId: string, record: StudentRecord): CraftBrief | null {
-  const student = devStudentById(studentId);
-  const card = record.card;
-  const companion = card?.companion;
-  if (!student || student.role === "admin" || !card?.serial || !companion || !record.journeyEntitled)
-    return null;
+function queueOrder(state: PersistedDevAuth): [string, StudentRecord][] {
+  return Object.entries(state.students)
+    .filter((entry): entry is [string, StudentRecord] => {
+      const [studentId, record] = entry;
+      const student = devStudentById(studentId);
+      return Boolean(
+        student &&
+        student.role !== "admin" &&
+        record.card?.serial &&
+        record.card.companion &&
+        record.journeyEntitled,
+      );
+    })
+    .sort((a, b) => {
+      const left = a[1].queuedAt ?? "9999";
+      const right = b[1].queuedAt ?? "9999";
+      if (left !== right) return left < right ? -1 : 1;
+      return a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0;
+    });
+}
+
+function toBrief(studentId: string, record: StudentRecord, position: number): CraftBrief {
+  const student = devStudentById(studentId)!;
+  const card = record.card!;
+  const companion = card.companion!;
   const options = record.craft?.options ?? [];
   return {
+    position,
+    queuedAt: record.queuedAt ?? null,
     publicId: card.publicId,
     serial: card.serial,
     displayName: card.username,
@@ -441,13 +475,76 @@ function briefFor(studentId: string, record: StudentRecord): CraftBrief | null {
   };
 }
 
-/** Confirmed companions waiting for a staff portrait. Staff only. */
+function briefFor(state: PersistedDevAuth, studentId: string): CraftBrief | null {
+  const index = queueOrder(state).findIndex(([id]) => id === studentId);
+  if (index < 0) return null;
+  const record = state.students[studentId];
+  return toBrief(studentId, record, index + 1);
+}
+
+/** Confirmed companions waiting for a staff portrait. Staff only. Oldest first. */
 export function devCraftQueue(): CraftBrief[] {
   requireStaff();
   const state = read();
-  return Object.entries(state.students)
-    .map(([id, record]) => briefFor(id, record))
-    .filter((item): item is CraftBrief => item !== null);
+  return queueOrder(state).map(([id, record], index) => toBrief(id, record, index + 1));
+}
+
+const DEV_DNA_SECRET = "dev-companion-dna-secret-not-for-production";
+
+function demoCardId(publicId: string) {
+  const hex = publicId.replace(/-/g, "");
+  const flipped = `${hex[0] === "0" ? "a" : "0"}${hex.slice(1)}`;
+  return `${flipped.slice(0, 8)}-${flipped.slice(8, 12)}-${flipped.slice(12, 16)}-${flipped.slice(16, 20)}-${flipped.slice(20)}`;
+}
+
+/** Local stand-in for nova_admin_craft_brief. No email and no account id. */
+export function devCraftBrief(publicId: string): CraftArtistBrief {
+  requireStaff();
+  const state = read();
+  const found = Object.entries(state.students).find(
+    ([, record]) => record.card?.publicId === publicId,
+  );
+  if (!found || !briefFor(state, found[0]))
+    throw new Error("That student has not confirmed a companion.");
+  const [studentId, record] = found;
+  const spec = record.studio.companion;
+  const card = record.card;
+  if (!spec || !card) throw new Error("That student has not confirmed a companion.");
+  let dna: CraftArtistBrief["dna"] = { genes: null, palette: null, identityLock: null };
+  try {
+    const derived = deriveVisualDna(spec, { studentId, secret: DEV_DNA_SECRET });
+    dna = {
+      genes: derived.genes as CraftArtistBrief["dna"]["genes"],
+      palette: derived.palette as CraftArtistBrief["dna"]["palette"],
+      identityLock: derived.identityLock as unknown as CraftArtistBrief["dna"]["identityLock"],
+    };
+  } catch {
+    dna = { genes: null, palette: null, identityLock: null };
+  }
+  return {
+    cardId: record.localCardId ?? demoCardId(card.publicId),
+    publicId: card.publicId,
+    nickname: card.username,
+    form: devStudentById(studentId)?.formLevel ?? "",
+    rarity: card.rarity,
+    submittedAt: record.queuedAt ?? null,
+    answers: [...(record.studio.identity?.answers ?? record.studio.draft.answers)],
+    traits: (record.studio.identity?.traits ?? null) as CraftArtistBrief["traits"],
+    companion: {
+      name: spec.name,
+      species: spec.species,
+      element: spec.element,
+      personality: spec.personality,
+      visual: {
+        canonical: spec.visual
+          .canonical as unknown as CraftArtistBrief["companion"]["visual"]["canonical"],
+        personalisation: spec.visual
+          .personalisation as unknown as CraftArtistBrief["companion"]["visual"]["personalisation"],
+      },
+    },
+    dna,
+    output: CRAFT_OUTPUT_RULES,
+  };
 }
 
 const MAX_PORTRAIT_CHARS = 1_400_000;
@@ -476,7 +573,7 @@ export function devAttachCraftOptions(
   const second = portraitUrl(options[1].dataUrl);
   if (first === second) throw new Error("The two portraits must be different.");
   const found = recordByPublicId(publicId);
-  if (!found || !briefFor(found.studentId, found.record))
+  if (!found || !briefFor(found.state, found.studentId))
     throw new Error("That student has not confirmed a companion.");
   if (found.record.craft?.choice)
     throw new Error("Reset the student choice before replacing the portraits.");
@@ -494,7 +591,7 @@ export function devAttachCraftOptions(
   };
   persist(found.state);
   if (found.record.card.serial !== serial) throw new Error("The card serial must stay the same.");
-  return briefFor(found.studentId, found.record)!;
+  return briefFor(found.state, found.studentId)!;
 }
 
 /** The signed-in student picks one portrait. The choice is kept until staff reset it. */
@@ -536,5 +633,5 @@ export function devResetCraftArt(publicId: string): CraftBrief {
   };
   persist(found.state);
   if (found.record.card.serial !== serial) throw new Error("The card serial must stay the same.");
-  return briefFor(found.studentId, found.record)!;
+  return briefFor(found.state, found.studentId)!;
 }
