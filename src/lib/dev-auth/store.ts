@@ -217,16 +217,21 @@ function withArtwork(studio: StudioState): StudioState {
   return { ...studio, candidates };
 }
 
+/** Students follow the Premium toggle. An admin may summon on their own card either way. */
+function ownJourneyOpen(student: DevStudent, premium: boolean) {
+  return premium || student.role === "admin";
+}
+
 export function devLoadStudio(): Promise<StudioState> {
-  const { record, state } = activeRecord();
+  const { student, record, state } = activeRecord();
   const studio = withArtwork(structuredClone(record.studio));
-  return Promise.resolve({ ...studio, active: state.premium });
+  return Promise.resolve({ ...studio, active: ownJourneyOpen(student, state.premium) });
 }
 
 export async function devSaveStudio(draft: StudioDraft): Promise<StudioDraft> {
-  const { record, state } = activeRecord();
+  const { student, record, state } = activeRecord();
   if (record.studio.publicId) throw new Error("Your companion journey is already complete.");
-  if (!state.premium)
+  if (!ownJourneyOpen(student, state.premium))
     throw new Error("An eligible learning plan is required to begin your companion journey.");
   record.studio = {
     ...record.studio,
@@ -253,7 +258,7 @@ function toPublicCompanion(spec: CompanionCandidateSpec): PublicCompanion {
 export async function devSubmitStudio(): Promise<StudioState> {
   const { student, record, state } = activeRecord();
   if (record.studio.publicId) throw new Error("Your companion journey is already complete.");
-  if (!state.premium)
+  if (!ownJourneyOpen(student, state.premium))
     throw new Error("An eligible learning plan is required to begin your companion journey.");
   const answers = record.studio.draft.answers;
   let match;
@@ -346,11 +351,11 @@ export function devChooseStudio(candidate: "a" | "b"): Promise<StudioState> {
 }
 
 export function devDashboardStatus() {
-  const { record } = activeRecord();
+  const { student, record, state } = activeRecord();
   const studio = record.studio;
   const portraitReady = !!record.card?.artworkUrl;
   return {
-    active: studio.active,
+    active: ownJourneyOpen(student, state.premium),
     selected: portraitReady,
     ready: false,
     pending: !!record.card && !portraitReady,
@@ -396,19 +401,12 @@ export function devDemoCompanion(): DevDemoCompanion {
 }
 
 export function devOwnerNova(): { card: NovaCard | null; entitlement: NovaEntitlement } {
-  const { record, state } = activeRecord();
+  const { student, record, state } = activeRecord();
   const card = record.card ? structuredClone(record.card) : null;
+  const open = ownJourneyOpen(student, state.premium);
   return {
     card,
-    entitlement: novaEntitlement(
-      state.premium
-        ? {
-            plan: "premium",
-            status: "active",
-            current_period_end: "2099-01-01T00:00:00.000Z",
-          }
-        : null,
-    ),
+    entitlement: open ? { active: true, status: "active" } : novaEntitlement(null),
   };
 }
 
@@ -450,11 +448,7 @@ function queueOrder(state: PersistedDevAuth): [string, StudentRecord][] {
       const [studentId, record] = entry;
       const student = devStudentById(studentId);
       return Boolean(
-        student &&
-        student.role !== "admin" &&
-        record.card?.serial &&
-        record.card.companion &&
-        record.journeyEntitled,
+        student && record.card?.serial && record.card.companion && record.journeyEntitled,
       );
     })
     .sort((a, b) => {
@@ -483,6 +477,7 @@ function toBrief(studentId: string, record: StudentRecord, position: number): Cr
     traits: companion.traits,
     personality: companion.personality,
     status: craftStatus(record),
+    staffTest: student.role === "admin",
     choice: record.craft?.choice ?? null,
     options: options.map((option) => ({ option: option.option, previewUrl: option.url })),
   };
@@ -556,6 +551,7 @@ export function devCraftBrief(publicId: string): CraftArtistBrief {
       },
     },
     dna,
+    staffTest: devStudentById(studentId)?.role === "admin",
     output: CRAFT_OUTPUT_RULES,
   };
 }

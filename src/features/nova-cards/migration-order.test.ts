@@ -26,6 +26,7 @@ describe("Cards migration order", () => {
       20261024120100: "nova_artwork_bucket_limits.sql",
       20261024130000: "nova_single_companion_submit.sql",
       20261024140000: "nova_craft_portrait_read.sql",
+      20261024150000: "nova_admin_own_journey.sql",
     };
     const cardsVersions = Object.keys(cardsMigrations).map(Number);
 

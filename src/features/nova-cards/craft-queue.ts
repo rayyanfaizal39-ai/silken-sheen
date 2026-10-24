@@ -44,6 +44,8 @@ export interface CraftBrief extends Omit<ArtistBrief, "traits"> {
   status: "waiting_for_art" | "options_ready" | "chosen";
   choice: 1 | 2 | null;
   options: CraftArtPreview[];
+  /** True when the card owner is an admin testing their own journey. */
+  staffTest?: boolean;
 }
 
 export type CraftQueueTab = CraftBrief["status"] | "all";
@@ -75,6 +77,8 @@ export interface CraftArtistBrief {
   form: string;
   rarity: string;
   submittedAt: string | null;
+  /** True when the card owner is an admin testing their own journey. */
+  staffTest?: boolean;
   answers: number[];
   traits: CraftJson;
   companion: {

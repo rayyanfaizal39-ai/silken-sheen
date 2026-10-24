@@ -10,6 +10,7 @@ import { novaDashboardStatus } from "./dashboard-status";
 import type { StudioDraft, StudioState } from "./studio-model";
 import { validNovaAnswer } from "./model";
 import { NOVA_ACCESS_ERRORS } from "./access";
+import { novaJourneyAllowed } from "./entitlement";
 import { resolveNovaEntitlement } from "./server";
 
 /** The verified account each request's client belongs to, so state can say whose it is. */
@@ -28,6 +29,30 @@ async function owner() {
  * stays governed by NOVA_AI_* and the database settings). Off unless explicitly enabled.
  */
 const submissionsOpen = () => process.env.COSMIC_COMPANION_SUBMISSIONS_ENABLED === "true";
+
+/** Own profile only. A failed read stays closed: the account is not treated as staff. */
+async function signedInStaff(
+  db: NonNullable<ReturnType<typeof getSupabaseServerClient>>,
+  userId: string,
+): Promise<boolean> {
+  const { data, error } = await db
+    .from("profiles")
+    .select("role, status")
+    .eq("id", userId)
+    .maybeSingle();
+  if (error || !data) return false;
+  const profile = data as { role?: string | null; status?: string | null };
+  return profile.role === "admin" && profile.status === "active";
+}
+
+async function journeyOpen(db: NonNullable<ReturnType<typeof getSupabaseServerClient>>) {
+  const userId = accountOf.get(db)!;
+  const [entitlement, staff] = await Promise.all([
+    resolveNovaEntitlement(db, userId),
+    signedInStaff(db, userId),
+  ]);
+  return novaJourneyAllowed(entitlement, staff);
+}
 async function state(
   db: NonNullable<ReturnType<typeof getSupabaseServerClient>>,
 ): Promise<StudioState> {
@@ -87,7 +112,7 @@ export const saveStudioDraft = createServerFn({ method: "POST" })
     const db = await owner();
     const current = await state(db);
     if (current.publicId) throw new Error("Your companion journey is already complete.");
-    if (!(await resolveNovaEntitlement(db, accountOf.get(db)!)).active)
+    if (!(await journeyOpen(db)))
       throw new Error("An eligible learning plan is required to begin your companion journey.");
     const { data, error } = await db.rpc("save_nova_studio_draft", {
       questionnaire: input.answers,
@@ -121,7 +146,7 @@ export const submitStudioOrigin = createServerFn({ method: "POST" }).handler(asy
   if (current.publicId) throw new Error("Your companion journey is already complete.");
   // Starting a journey needs the cosmic_companion feature (decided by the feature system);
   // the database re-checks eligibility in the same transaction that stores the match.
-  if (!(await resolveNovaEntitlement(db, accountOf.get(db)!)).active)
+  if (!(await journeyOpen(db)))
     throw new Error("An eligible learning plan is required to begin your companion journey.");
   // The match and both candidates' Visual DNA are computed here, on the saved answers, with
   // a server-only secret. The browser can supply none of them.
@@ -185,9 +210,11 @@ export const getNovaDashboardStatus = createServerFn({ method: "GET" }).handler(
   const { data, error } = await db.rpc("get_my_nova_studio");
   if (error) throw new Error("Nova status unavailable");
   const s = data as StudioState;
+  const staff = await signedInStaff(db, accountOf.get(db)!);
   const { data: card, error: cardError } = await db.rpc("get_my_nova_card");
   return novaDashboardStatus({
     studio: s,
+    staff,
     // The card payload says whether a portrait path exists. Signing that path is separate.
     card: cardError
       ? null

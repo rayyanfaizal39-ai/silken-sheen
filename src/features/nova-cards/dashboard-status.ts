@@ -37,6 +37,8 @@ export type NovaDashboardStatus = {
 export function novaDashboardStatus(input: {
   studio: NovaDashboardStudio;
   card: NovaDashboardCard;
+  /** Active admin on their own account. Forces the journey open. */
+  staff?: boolean;
 }): NovaDashboardStatus {
   const portraitReady = Boolean(input.card?.artworkPath);
   const queued =
@@ -45,7 +47,7 @@ export function novaDashboardStatus(input: {
     Boolean(input.card?.crafting) ||
     (input.card?.artOptions?.length ?? 0) > 0;
   return {
-    active: input.studio.active,
+    active: input.staff ? true : input.studio.active,
     selected: portraitReady,
     ready: false,
     pending: queued && !portraitReady,

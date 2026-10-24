@@ -7,9 +7,9 @@ export interface DevStudent {
   name: string;
   formLevel: ExplorerFormLevel | null;
   age: number | null;
-  /** Twelve-digit Code 128 serial reserved for this browser-only card. Staff have none. */
+  /** Twelve-digit Code 128 serial reserved for this browser-only card. */
   serial: string | null;
-  /** Defaults to student. The staff account is an admin and never receives a card. */
+  /** Defaults to student. The staff account is an admin and can summon their own card. */
   role?: "student" | "admin";
 }
 
@@ -36,7 +36,7 @@ export const DEV_STUDENTS: readonly DevStudent[] = [
     name: "Staff",
     formLevel: null,
     age: null,
-    serial: null,
+    serial: "100000000201",
     role: "admin",
   },
 ];

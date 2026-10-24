@@ -52,6 +52,7 @@ type QueueRow = {
   personality: string;
   status: CraftBrief["status"];
   choice: unknown;
+  staffTest?: unknown;
   optionPaths: StoredOption[] | null;
 };
 
@@ -101,6 +102,7 @@ export const getCraftQueue = createServerFn({ method: "GET" }).handler(async () 
         traits: traitsOf(row.traits),
         personality: row.personality,
         status: row.status,
+        staffTest: row.staffTest === true,
         choice: choiceOf(row.choice),
         options: options.filter(
           (option): option is CraftBrief["options"][number] => option !== null,

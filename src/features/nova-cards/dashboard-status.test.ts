@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { companionEntry } from "@/features/cosmic-companion/entry";
 import { journeyStage } from "@/features/cosmic-companion/journey";
-import { novaEntitlement } from "./entitlement";
+import { novaEntitlement, novaJourneyAllowed } from "./entitlement";
 import { novaDashboardStatus, type NovaDashboardStudio } from "./dashboard-status";
 
 const ANSWERS = [0, 1, 2, 0, 0, 0, 2, 0, 0, 0, 0, 0];
@@ -83,6 +83,31 @@ describe("single companion entry status", () => {
     expect(companionEntry({ entitled: status.active, stage: "new" }).kind).toBe("upgrade");
   });
 
+  it("lets an active admin open the journey instead of Upgrade", () => {
+    const status = novaDashboardStatus({
+      studio: {
+        active: false,
+        enabled: false,
+        selected: null,
+        origin: null,
+        publicId: null,
+        draft: { answers: [] },
+      },
+      card: null,
+      staff: true,
+    });
+    expect(status.active).toBe(true);
+    expect(journeyStage(status)).toBe("new");
+    expect(companionEntry({ entitled: status.active, stage: "new" })).toEqual({
+      kind: "journey",
+      to: "/companion/portal",
+      search: {},
+    });
+    expect(novaJourneyAllowed({ active: false, status: "free" }, true)).toBe(true);
+    expect(novaJourneyAllowed({ active: false, status: "free" }, false)).toBe(false);
+    expect(novaJourneyAllowed({ active: true, status: "active" }, false)).toBe(true);
+  });
+
   it("decides cosmic_companion from the subscription feature, not profiles.plan", () => {
     const now = Date.parse("2026-10-24T00:00:00Z");
     expect(
@@ -110,8 +135,14 @@ describe("single companion entry status", () => {
     ];
     for (const file of files) {
       const source = readFileSync(new URL(file, import.meta.url), "utf8");
-      expect(source, file).not.toMatch(/profiles\.plan|from\(["']profiles["']\)/);
+      expect(source, file).not.toMatch(/profiles\.plan/);
+      expect(source, file).not.toMatch(
+        /\bplan\s*===?\s*["'](?:Captain|Explorer|Basic|premium|pro|free)["']/,
+      );
     }
+    const studio = readFileSync(new URL("studio.server.ts", import.meta.url), "utf8");
+    expect(studio).toMatch(/\.from\(["']profiles["']\)/);
+    expect(studio).toMatch(/select\(["']role, status["']\)/);
     expect(
       readFileSync(new URL("../cosmic-companion/use-companion-entry.ts", import.meta.url), "utf8"),
     ).not.toContain("loadOwnerNova");

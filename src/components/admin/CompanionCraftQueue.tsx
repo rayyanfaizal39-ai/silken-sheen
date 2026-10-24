@@ -105,6 +105,11 @@ function StudentRow({
           <strong data-craft-position={item.position}>{item.position}</strong>
           {" · "}
           <strong>{item.displayName}</strong>
+          {item.staffTest ? (
+            <span className="chip" data-staff-test="true" style={{ marginLeft: 8 }}>
+              Staff test
+            </span>
+          ) : null}
           {item.form ? ` · ${item.form}` : ""}
           {nextUp ? (
             <span className="chip chip-orange" data-next-up="true" style={{ marginLeft: 8 }}>

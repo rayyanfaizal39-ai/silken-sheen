@@ -53,6 +53,7 @@ const newer = item({
   status: "waiting_for_art",
   displayName: "Later",
   queuedAt: new Date(Date.now() - 20 * 60 * 1000).toISOString(),
+  staffTest: true,
 });
 const ready = item({
   publicId: "00000000-0000-4000-8000-00000000aa03",
@@ -132,6 +133,14 @@ describe("staff craft queue page", () => {
     expect(host.querySelectorAll("[data-next-up]")).toHaveLength(1);
     expect(host.querySelector("[data-next-up]")?.parentElement?.textContent).toContain("Early");
     expect(host.querySelector("[data-craft-position='1']")?.textContent).toBe("1");
+    expect(host.querySelectorAll("[data-staff-test]")).toHaveLength(1);
+    expect(
+      host.querySelector(`[data-craft-public-id="${newer.publicId}"] [data-staff-test="true"]`)
+        ?.textContent,
+    ).toContain("Staff test");
+    expect(
+      host.querySelector(`[data-craft-public-id="${older.publicId}"] [data-staff-test]`),
+    ).toBeNull();
     expect(host.textContent).toContain("Queued for 3 hours");
     expect(host.textContent).toContain("Queued for 20 minutes");
 

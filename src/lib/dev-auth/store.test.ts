@@ -129,6 +129,7 @@ describe("local dev companion card", () => {
       serial: student.serial,
       status: "waiting_for_art",
       position: 1,
+      staffTest: false,
     });
     expect(queued[0].queuedAt).toEqual(expect.any(String));
     const artist = devCraftBrief(queued[0].publicId);
@@ -185,5 +186,66 @@ describe("local dev companion card", () => {
     const finalPick = devChooseCraftArt(1);
     expect(finalPick.artworkUrl).toBe(first);
     expect(finalPick.serial).toBe(student.serial);
+  });
+
+  it("lets staff summon their own companion while the premium toggle is off", async () => {
+    useDevAuthStorage(createMemoryStorage());
+    const staff = DEV_STUDENTS.find((item) => item.role === "admin")!;
+    const student = DEV_STUDENTS[0];
+    expect(staff.serial).toBe("100000000201");
+    signInDevStudentRecord(staff.id);
+    devSetCompanionPremium(false);
+    expect(devDashboardStatus().active).toBe(true);
+    expect(devOwnerNova().entitlement.active).toBe(true);
+    expect((await devLoadStudio()).active).toBe(true);
+    await devSaveStudio({ ...(await devLoadStudio()).draft, answers, username: "Staff" });
+    const summoned = await devSubmitStudio();
+    expect(summoned.selected).toBe("a");
+    expect(summoned.publicId).toBe(staff.id);
+    await expect(devSubmitStudio()).rejects.toThrow(/already complete/i);
+
+    signInDevStudentRecord(student.id);
+    devSetCompanionPremium(false);
+    await expect(devSubmitStudio()).rejects.toThrow(/learning plan/i);
+    devSetCompanionPremium(true);
+    await devSaveStudio({ ...(await devLoadStudio()).draft, answers });
+    await devSubmitStudio();
+
+    signInDevStudentRecord(staff.id);
+    const queue = devCraftQueue();
+    expect(queue).toHaveLength(2);
+    const staffRow = queue.find((row) => row.displayName === "Staff");
+    const studentRow = queue.find((row) => row.displayName === "Aisha");
+    expect(staffRow).toMatchObject({ staffTest: true, serial: staff.serial, position: 1 });
+    expect(studentRow).toMatchObject({ staffTest: false, serial: student.serial, position: 2 });
+    const brief = devCraftBrief(staffRow!.publicId);
+    expect(brief.staffTest).toBe(true);
+    expect(JSON.stringify(brief)).not.toContain(staff.email);
+    expect(JSON.stringify(brief)).not.toContain("userId");
+
+    const studentFirst = "data:image/png;base64,iVBORw0KGgo=";
+    const studentSecond = "data:image/png;base64,iVBORw0KGgoAAA==";
+    const staffFirst = "data:image/png;base64,iVBORw0KGgoSTAFF1";
+    const staffSecond = "data:image/png;base64,iVBORw0KGgoSTAFF2";
+    devAttachCraftOptions(studentRow!.publicId, [
+      { option: 1, dataUrl: studentFirst },
+      { option: 2, dataUrl: studentSecond },
+    ]);
+    devAttachCraftOptions(staffRow!.publicId, [
+      { option: 1, dataUrl: staffFirst },
+      { option: 2, dataUrl: staffSecond },
+    ]);
+    const picked = devChooseCraftArt(1);
+    expect(picked.publicId).toBe(staff.id);
+    expect(picked.artworkUrl).toBe(staffFirst);
+
+    signInDevStudentRecord(student.id);
+    const card = devOwnerNova().card;
+    expect(card?.artworkUrl).toBeFalsy();
+    expect(card?.artOptions).toEqual([
+      { option: 1, url: studentFirst },
+      { option: 2, url: studentSecond },
+    ]);
+    expect(devDashboardStatus().active).toBe(true);
   });
 });
