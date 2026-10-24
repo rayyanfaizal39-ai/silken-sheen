@@ -7,11 +7,14 @@ import { DataTable } from "./blocks/DataTable";
 import { KingdomChipGrid, type KingdomChipGridItem } from "./blocks/KingdomChipGrid";
 import { NarrowingHierarchyTiers, type NarrowingHierarchyTier } from "./blocks/NarrowingHierarchyTiers";
 import { bgPanel, groupGlow, neon } from "./blocks/neon-tokens";
-import angkorWatBorobudur from "@/assets/form2-content/angkor-wat-borobudur.png";
+import v1SeniBina from "@/assets/form2-content/sej2-bab3/v1-tapak-seni-bina.svg";
+import v1SeniBinaDesktop from "@/assets/form2-content/sej2-bab3/v1-tapak-seni-bina-desktop.svg";
+
+const FIG_IMG = "notes-figure-img w-full rounded-2xl border border-border";
 
 const ORBIT_LABELS = [
   "Bahasa & Tulisan",
-  "Talang Tuwo",
+  "Bukti & Pengaruh",
   "Persuratan",
   "Seni Bina",
   "Struktur Sosial",
@@ -19,11 +22,11 @@ const ORBIT_LABELS = [
 ];
 
 const SECTION_CHROME: Array<{ eyebrow: string; title: string; sub?: string }> = [
-  { eyebrow: "◆ 3.1", title: "Bahasa dan Tulisan Mengikut Kerajaan", sub: "Sifat keterbukaan masyarakat Alam Melayu membolehkan sistem tulisan berkembang dalam pelbagai kerajaan." },
-  { eyebrow: "◆ 3.1", title: "Batu Bersurat Talang Tuwo", sub: "Inskripsi 1,300 tahun yang masih boleh dibaca hari ini." },
-  { eyebrow: "◆ 3.2", title: "Persuratan", sub: "Daripada tradisi lisan kepada batu bersurat dan manuskrip — bukti keintelektualan masyarakat." },
-  { eyebrow: "◆ 3.3", title: "Seni Bina Kerajaan Alam Melayu", sub: "Candi, perkapalan dan sistem pengairan — kecemerlangan yang masih berdiri hingga kini." },
-  { eyebrow: "◆ 3.4", title: "Struktur Sosial — Empat Lapisan", sub: "Kelas atasan (golongan pemerintah) dan kelas bawahan (golongan diperintah)." },
+  { eyebrow: "◆ 3.1", title: "Bahasa dan Tulisan Mengikut Kerajaan" },
+  { eyebrow: "◆ 3.1", title: "Bukti dan Pengaruh Bahasa" },
+  { eyebrow: "◆ 3.2", title: "Persuratan" },
+  { eyebrow: "◆ 3.3", title: "Seni Bina Kerajaan Alam Melayu" },
+  { eyebrow: "◆ 3.4", title: "Struktur Sosial — Empat Lapisan" },
   { eyebrow: "◆ Rumusan", title: "Fakta Penting & Istilah Utama" },
 ];
 
@@ -156,6 +159,15 @@ export function Sej2Chapter3NotesBlock({
                 "{content.languageWriting.talangTuwoInscription.translation}"
               </p>
             </div>
+            <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.languageWriting.importance}</p>
+            <div>
+              <h4 className="font-display mb-2 text-sm font-bold text-foreground">🔤 Pengaruh Bahasa Asing dalam Bahasa Melayu</h4>
+              <DataTable
+                headers={["Bahasa", "Contoh perkataan"]}
+                rows={content.languageWriting.loanwords.map((l) => [l.language, l.words.join(", ")])}
+              />
+            </div>
+            <p className="text-[12.5px] leading-relaxed text-muted-foreground">{content.languageWriting.jawiLetters}</p>
           </div>
         )}
 
@@ -202,11 +214,15 @@ export function Sej2Chapter3NotesBlock({
 
         {current === 3 && (
           <div className="space-y-6">
-            <img
-              src={angkorWatBorobudur}
-              alt="Angkor Wat dan Candi Borobudur"
-              className="notes-figure-img rounded-2xl border border-border"
-            />
+            <figure id="seni-bina-peta" className="space-y-1.5">
+              <div className="sm:hidden">
+                <img src={v1SeniBina} alt="Peta tapak candi dan binaan kerajaan Alam Melayu" loading="lazy" className={FIG_IMG} />
+              </div>
+              <div className="hidden sm:block">
+                <img src={v1SeniBinaDesktop} alt="Peta tapak candi dan binaan kerajaan Alam Melayu" loading="lazy" className={`${FIG_IMG} notes-figure-img--wide`} />
+              </div>
+              <figcaption className="text-center text-[11px] italic leading-snug text-muted-foreground">Sumber: buku teks hlm. 46–48. Peta asas: Natural Earth; kedudukan anggaran.</figcaption>
+            </figure>
             <div className="grid gap-3.5 sm:grid-cols-2">
               {content.architecture.byKingdom.map((a) => (
                 <div
@@ -250,6 +266,7 @@ export function Sej2Chapter3NotesBlock({
         {current === 5 && (
           <div className="space-y-6">
             <FactGrid heading="⭐ Fakta Penting Peperiksaan" facts={content.keyExamFacts} />
+            <FactGrid heading="🤝 Nilai dan Iktibar" facts={content.values} />
             <ChipRow heading="📘 Istilah Utama" items={content.keyTerms} />
             <div>
               <h4 className="font-display mb-2 text-sm font-bold text-foreground">⭐ Rumusan Bab</h4>

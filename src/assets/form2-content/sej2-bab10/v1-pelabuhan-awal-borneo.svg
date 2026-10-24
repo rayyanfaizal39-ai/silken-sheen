@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 1248" width="760" height="1248" role="img" aria-label="Peta pelabuhan awal Sarawak dan Sabah">
+<title>Pelabuhan dan Pusat Perdagangan Awal Sarawak dan Sabah</title>
+<metadata>Peta asas: Natural Earth 1:50m (domain awam). Kedudukan anggaran.</metadata>
+<rect width="760" height="1248" rx="20" fill="#0f172a"/>
+<text x="380" y="68" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="40" font-weight="700" fill="#f1f5f9">Pelabuhan dan Pusat Perdagangan</text>
+<text x="380" y="116" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="40" font-weight="700" fill="#f1f5f9">Awal Sarawak dan Sabah</text>
+<rect x="340" y="146" width="80" height="5" rx="2.5" fill="#38bdf8"/>
+<defs><clipPath id="c1774"><rect x="28" y="178" width="704" height="478" rx="14"/></clipPath><radialGradient id="gc1774" cx="50%" cy="45%" r="75%"><stop offset="0" stop-color="#123049"/><stop offset="1" stop-color="#0e2a40"/></radialGradient></defs>
+<g clip-path="url(#c1774)"><rect x="28" y="178" width="704" height="478" fill="url(#gc1774)"/>
+<path d="M580 246L588 248L596 252L598 255L600 258L602 263L602 269L596 274L599 282L598 287L596 291L589 295L610 291L616 289L623 284L627 288L631 297L628 299L618 302L618 303L621 307L625 307L633 304L640 300L643 300L647 301L654 304L658 306L661 309L663 315L671 318L688 326L691 327L694 327L703 326L706 328L708 331L709 335L709 339L708 342L706 345L700 349L685 354L669 358L660 358L649 354L645 355L640 356L635 367L645 378L661 390L663 393L663 396L660 398L657 399L648 401L638 402L631 404L623 407L616 406L605 401L602 401L599 403L596 410L593 413L588 415L586 419L593 425L593 429L598 432L604 438L604 440L606 442L607 445L603 448L597 449L593 446L589 442L588 447L585 449L574 449L566 449L558 450L562 451L566 452L578 463L581 467L576 476L578 479L583 481L589 485L593 486L596 488L596 492L598 496L593 497L598 498L602 500L600 502L598 504L600 506L606 508L608 510L609 515L615 524L625 535L627 539L627 543L625 546L620 550L615 555L615 557L608 559L611 561L613 563L618 570L628 581L633 585L655 601L666 607L681 623L688 626L690 630L684 637L674 640L659 642L644 640L636 638L629 634L624 626L617 622L619 627L621 632L620 637L617 641L613 644L607 646L605 648L601 656L28 656L28 576L29 573L33 566L50 559L55 568L57 570L67 577L75 580L84 581L93 582L96 581L100 580L103 581L122 592L129 594L137 593L140 594L151 602L154 603L159 602L148 596L146 591L147 586L152 582L155 579L156 567L158 562L161 556L163 551L158 547L158 540L158 535L161 531L168 536L172 536L175 535L175 532L174 527L174 517L179 510L187 505L194 502L221 498L263 488L275 483L280 481L284 478L290 469L303 454L311 442L330 424L344 407L346 404L348 395L349 391L348 387L350 385L353 384L361 384L370 383L378 379L386 375L393 370L400 364L407 359L417 354L421 355L421 358L419 363L427 363L443 360L447 358L453 352L455 349L457 342L450 338L446 333L446 327L456 317L459 314L460 318L464 319L468 319L472 319L478 314L480 306L490 295L493 287L495 279L520 252L523 248L537 221L539 220L543 222L544 231L543 235L541 240L540 246L541 246L548 242L556 233L560 225L563 221L570 223L572 225L571 230L572 234L574 241L580 246ZM165 510L167 508L168 509L170 512L170 521L170 529L171 532L169 533L165 531L165 510ZM592 463L598 463L601 465L599 473L598 475L593 470L591 466L592 463ZM600 410L600 407L603 406L606 407L615 411L617 418L617 420L605 424L597 416L600 410ZM558 207L559 201L564 196L572 195L573 199L573 204L571 206L564 208L560 211L558 207Z" fill="#3b4a5f" stroke="#8fa3bb" stroke-width="1.4" stroke-linejoin="round" fill-rule="evenodd"/>
+<text x="254" y="315" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="20" font-weight="600" fill="#7dd3fc" font-style="italic" letter-spacing="3">LAUT CHINA</text>
+<text x="254" y="341" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="20" font-weight="600" fill="#7dd3fc" font-style="italic" letter-spacing="3">SELATAN</text>
+<text x="691" y="226" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="600" fill="#7dd3fc" font-style="italic" letter-spacing="3">LAUT</text>
+<text x="691" y="250" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="600" fill="#7dd3fc" font-style="italic" letter-spacing="3">SULU</text>
+<text x="336" y="615" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="19" font-weight="600" fill="#cbd5e1">KALIMANTAN</text>
+<circle cx="655" cy="391" r="10" fill="#f59e0b" stroke="#0f172a" stroke-width="3.5"/>
+<text x="641" y="379" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="21" font-weight="700" fill="#f1f5f9">1  Bukit Tengkorak</text>
+<circle cx="554" cy="229" r="10" fill="#38bdf8" stroke="#0f172a" stroke-width="3.5"/>
+<text x="540" y="235" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="21" font-weight="700" fill="#f1f5f9">2  Chu-Po (utara Sabah)</text>
+<circle cx="98" cy="580" r="10" fill="#fb7185" stroke="#0f172a" stroke-width="3.5"/>
+<text x="86" y="556" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="21" font-weight="700" fill="#f1f5f9">3  Santubong</text>
+<circle cx="141" cy="619" r="10" fill="#34d399" stroke="#0f172a" stroke-width="3.5"/>
+<text x="155" y="627" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="21" font-weight="700" fill="#f1f5f9">4  Gedong</text>
+<circle cx="175" cy="578" r="10" fill="#34d399" stroke="#0f172a" stroke-width="3.5"/>
+<text x="189" y="572" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="21" font-weight="700" fill="#f1f5f9">4  Kalka</text>
+<circle cx="561" cy="202" r="10" fill="#a78bfa" stroke="#0f172a" stroke-width="3.5"/>
+<text x="575" y="196" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="21" font-weight="700" fill="#f1f5f9">5  Pulau Banggi</text>
+<circle cx="418" cy="373" r="10" fill="#a78bfa" stroke="#0f172a" stroke-width="3.5"/>
+<text x="404" y="379" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="21" font-weight="700" fill="#f1f5f9">5  Limbang</text>
+<rect x="575" y="592" width="151" height="56" rx="10" fill="#0f172a" fill-opacity="0.85"/><line x1="589" y1="632" x2="712" y2="632" stroke="#f1f5f9" stroke-width="5" stroke-linecap="round"/><text x="651" y="618" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="600" fill="#f1f5f9">200 km</text>
+</g>
+<rect x="28" y="178" width="704" height="478" rx="14" fill="none" stroke="#334155" stroke-width="2"/>
+<circle cx="46" cy="698" r="17" fill="#0f172a" stroke="#f59e0b" stroke-width="2.5"/><text x="46" y="706" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#f1f5f9">1</text>
+<text x="74" y="708" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" fill="#f59e0b">Bukit Tengkorak — sebelum Masihi</text>
+<text x="74" y="742" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="400" fill="#cbd5e1">Pusat pembuatan tembikar di Semporna; berdagang dengan</text>
+<text x="74" y="772" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="400" fill="#cbd5e1">kawasan luar Sabah.</text>
+<circle cx="46" cy="806" r="17" fill="#0f172a" stroke="#38bdf8" stroke-width="2.5"/><text x="46" y="814" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#f1f5f9">2</text>
+<text x="74" y="816" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" fill="#38bdf8">Chu-Po — abad ketiga</text>
+<text x="74" y="850" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="400" fill="#cbd5e1">Pelabuhan di utara Sabah; mengeksport besi ke Funan dan</text>
+<text x="74" y="880" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="400" fill="#cbd5e1">Champa.</text>
+<circle cx="46" cy="914" r="17" fill="#0f172a" stroke="#fb7185" stroke-width="2.5"/><text x="46" y="922" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#f1f5f9">3</text>
+<text x="74" y="924" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" fill="#fb7185">Santubong — abad ketujuh</text>
+<text x="74" y="958" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="400" fill="#cbd5e1">Pusat perdagangan utama Sarawak; tembikar Dinasti T’ang</text>
+<text x="74" y="988" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="400" fill="#cbd5e1">dan Sung ditemukan.</text>
+<circle cx="46" cy="1022" r="17" fill="#0f172a" stroke="#34d399" stroke-width="2.5"/><text x="46" y="1030" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#f1f5f9">4</text>
+<text x="74" y="1032" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" fill="#34d399">Gedong, Bukit Sandong, Kalka</text>
+<text x="74" y="1066" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="400" fill="#cbd5e1">Pusat perdagangan lain di Sarawak (Bukit Sandong tidak</text>
+<text x="74" y="1096" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="400" fill="#cbd5e1">ditanda).</text>
+<circle cx="46" cy="1130" r="17" fill="#0f172a" stroke="#a78bfa" stroke-width="2.5"/><text x="46" y="1138" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#f1f5f9">5</text>
+<text x="74" y="1140" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" fill="#a78bfa">Pulau Banggi dan Limbang</text>
+<text x="74" y="1174" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="400" fill="#cbd5e1">Gendang gangsa jenis Moko (Majapahit) di Pulau Banggi;</text>
+<text x="74" y="1204" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="400" fill="#cbd5e1">patung Ganesha di Limbang.</text>
+</svg>

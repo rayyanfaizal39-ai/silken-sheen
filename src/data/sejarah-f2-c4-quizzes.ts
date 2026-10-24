@@ -239,15 +239,15 @@ const quizContent: QuizSeed[] = [
   ],
   [
     "Medium",
-    "Mengapakah Srivijaya dan Majapahit menghantar utusan persahabatan ke China?",
+    "Apakah bentuk hubungan yang dijalinkan oleh Srivijaya (abad ketujuh) dan Majapahit (abad ke-14) dengan China?",
     [
-      "Untuk menjalinkan hubungan persahabatan dan diplomatik dengan China",
-      "Untuk meminta bantuan ketenteraan bagi menentang tentera Chola",
-      "Untuk mendapatkan gelaran varman daripada maharaja China",
-      "Untuk menyekat pedagang China daripada berdagang dengan Champa",
+      "Hubungan persahabatan sebagai satu bentuk hubungan diplomatik",
+      "Bantuan ketenteraan untuk menentang tentera Chola",
+      "Perkahwinan diraja dengan puteri maharaja China",
+      "Perjanjian menyekat pedagang China daripada berdagang dengan Champa",
     ],
     0,
-    "Srivijaya menghantar utusan persahabatan ke China sejak abad ketujuh dan Majapahit menjalin persahabatan dengan China pada abad ke-14 bagi mengukuhkan hubungan diplomatik.",
+    "Srivijaya menghantar utusan persahabatan ke China sejak abad ketujuh dan Majapahit menjalin persahabatan dengan China pada abad ke-14 sebagai satu bentuk hubungan diplomatik.",
   ],
   [
     "Hard",

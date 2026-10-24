@@ -5,7 +5,10 @@ import { ChipRow } from "./blocks/ChipRow";
 import { FactGrid } from "./blocks/FactGrid";
 import { DataTable } from "./blocks/DataTable";
 import { bgPanel, hexToRgba, neon, type NeonColor } from "./blocks/neon-tokens";
-import pelabuhanRiau from "@/assets/form2-content/pelabuhan-riau.png";
+import pelabuhanMap from "@/assets/form2-content/sej2-bab6/v1-pelabuhan-johor-riau.svg";
+import pelabuhanMapDesktop from "@/assets/form2-content/sej2-bab6/v1-pelabuhan-johor-riau-desktop.svg";
+
+const FIG_IMG = "notes-figure-img w-full rounded-2xl border border-border";
 
 const ORBIT_LABELS = [
   "Pengasasan",
@@ -17,11 +20,11 @@ const ORBIT_LABELS = [
 ];
 
 const SECTION_CHROME: Array<{ eyebrow: string; title: string; sub?: string }> = [
-  { eyebrow: "◆ 6.1", title: "Pengasasan & Pemindahan Pusat Pemerintahan", sub: "Setiap pemindahan didorong ancaman keselamatan." },
-  { eyebrow: "◆ 6.3", title: "Empat Cabaran Kegemilangan", sub: "Setiap cabaran diselesaikan, mengukuhkan kedaulatan Johor Riau." },
-  { eyebrow: "◆ 6.4", title: "Strategi Menghadapi Cabaran", sub: "Pemindahan pusat pemerintahan, kota pertahanan dan pakatan dengan Belanda." },
-  { eyebrow: "◆ 6.2", title: "Pusat Perdagangan Entrepot", sub: "Barangan dagangan dan pengurusan Pelabuhan Riau." },
-  { eyebrow: "◆ 6.5", title: "Persuratan Johor Riau", sub: "Pusat penghasilan karya persuratan Melayu yang penting." },
+  { eyebrow: "◆ 6.1", title: "Pengasasan & Pemindahan Pusat Pemerintahan" },
+  { eyebrow: "◆ 6.1", title: "Empat Cabaran Kegemilangan" },
+  { eyebrow: "◆ 6.1", title: "Strategi Menghadapi Cabaran" },
+  { eyebrow: "◆ 6.2", title: "Pusat Perdagangan Entrepot" },
+  { eyebrow: "◆ 6.2", title: "Persuratan Johor Riau" },
   { eyebrow: "◆ Rumusan", title: "Fakta Penting & Istilah Utama" },
 ];
 
@@ -176,21 +179,17 @@ export function Sej2Chapter6NotesBlock({
               headers={["Asal Pedagang", "Catatan"]}
               rows={content.goldenAge.tradersOrigin.map((t) => [t.origin, t.note])}
             />
-            <img
-              src={pelabuhanRiau}
-              alt="Pelabuhan Riau"
-              className="notes-figure-img rounded-2xl border border-border"
-            />
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {content.goldenAge.tradeGoods.map((g) => (
-                <div key={g.good} className="rounded-xl p-3.5" style={{ background: bgPanel }}>
-                  <p className="text-[11.5px] font-bold" style={{ color: neon.amber }}>
-                    {g.good}
-                  </p>
-                  <p className="mt-1 text-[10px] text-muted-foreground">{g.origin}</p>
-                </div>
-              ))}
-            </div>
+            <figure className="space-y-2">
+              <div className="sm:hidden">
+                <img src={pelabuhanMap} alt="Peta pelabuhan Johor Riau dan asal barang dagangan" className={FIG_IMG} loading="lazy" />
+              </div>
+              <div className="hidden sm:block">
+                <img src={pelabuhanMapDesktop} alt="Peta pelabuhan Johor Riau dan asal barang dagangan" className={`${FIG_IMG} notes-figure-img--wide`} loading="lazy" />
+              </div>
+              <figcaption className="text-center text-[11px] italic leading-snug text-muted-foreground">
+                Sumber: buku teks hlm. 104–105. Peta asas: Natural Earth; kedudukan anggaran.
+              </figcaption>
+            </figure>
             <p className="text-center text-[11px] text-muted-foreground">{content.goldenAge.portOperations.shipCount}</p>
             <ChipRow heading="🏗️ Kemudahan Pelabuhan" items={content.goldenAge.portOperations.facilities} />
             <div className="flex flex-wrap justify-center gap-4">

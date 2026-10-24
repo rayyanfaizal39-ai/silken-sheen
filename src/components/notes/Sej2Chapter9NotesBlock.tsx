@@ -13,10 +13,10 @@ import { bgPanel, groupGlow, neon } from "./blocks/neon-tokens";
 const ORBIT_LABELS = ["Warisan 3 Kerajaan", "Salasilah & Pertabalan", "Adat Perpatih", "Hierarki Adat", "Rumusan"];
 
 const SECTION_CHROME: Array<{ eyebrow: string; title: string; sub?: string }> = [
-  { eyebrow: "◆ 9.1", title: "5 Aspek Warisan Kedah, Kelantan dan Perlis", sub: "Sistem pemerintahan beraja, adat istiadat, perundangan, persuratan dan kesenian kekal hingga kini." },
-  { eyebrow: "◆ 9.1", title: "Salasilah Raja Perlis & Istiadat Pertabalan", sub: "Tujuh Raja Perlis meneruskan salasilah Jamalullail; pertabalan mengikut empat langkah tetap." },
-  { eyebrow: "◆ 9.2", title: "Keunikan Adat Perpatih Negeri Sembilan", sub: "Sistem matrilineal yang unik — jurai ibu, perkahwinan luar suku, dan upacara kedim." },
-  { eyebrow: "◆ 9.2", title: "Hierarki Pemerintahan Adat Perpatih", sub: "Daripada Yamtuan Besar hingga Ibu Soko — dipilih melalui permuafakatan, bukan diwarisi terus." },
+  { eyebrow: "◆ 9.1", title: "5 Aspek Warisan Kedah, Kelantan dan Perlis" },
+  { eyebrow: "◆ 9.1", title: "Salasilah Raja Perlis & Istiadat Pertabalan" },
+  { eyebrow: "◆ 9.2", title: "Keunikan Adat Perpatih Negeri Sembilan" },
+  { eyebrow: "◆ 9.2", title: "Hierarki Pemerintahan Adat Perpatih" },
   { eyebrow: "◆ Rumusan", title: "Fakta Penting & Istilah Utama" },
 ];
 

@@ -7,7 +7,10 @@ import { DataTable } from "./blocks/DataTable";
 import { IconCardGrid, type IconCardGridItem } from "./blocks/IconCardGrid";
 import { EraDotTimeline, type EraDotTimelineItem } from "./blocks/EraDotTimeline";
 import { bgPanel, groupGlow, neon } from "./blocks/neon-tokens";
-import penyebaranAgama from "@/assets/form2-content/penyebaran-agama-alam-melayu.png";
+import penyebaranAgama from "@/assets/form2-content/sej2-bab4/v1-penyebaran-agama.svg";
+import penyebaranAgamaDesktop from "@/assets/form2-content/sej2-bab4/v1-penyebaran-agama-desktop.svg";
+
+const FIG_IMG = "notes-figure-img w-full rounded-2xl border border-border";
 
 const ORBIT_LABELS = [
   "Kepercayaan Awal",
@@ -19,22 +22,22 @@ const ORBIT_LABELS = [
 ];
 
 const SECTION_CHROME: Array<{ eyebrow: string; title: string; sub?: string }> = [
-  { eyebrow: "◆ 4.1", title: "Kepercayaan Awal", sub: "Sebelum Hindu, Buddha dan Islam — animisme dan dinamisme membentuk pandangan alam masyarakat." },
-  { eyebrow: "◆ 4.1", title: "Penyebaran Agama — Detik Penting", sub: "Daripada animisme kepada Islam, merentas tujuh kerajaan Alam Melayu." },
-  { eyebrow: "◆ 4.2", title: "Keunikan Warisan — Pemerintahan dan Kebijaksanaan", sub: "Bagaimana pemerintah mengasimilasikan pengaruh agama dan memilih lokasi strategik." },
-  { eyebrow: "◆ 4.2", title: "Keunikan Warisan — Ekonomi dan Sosiobudaya", sub: "Kesuburan tanah, pengairan, pelabuhan, tulisan, persuratan dan seni bina yang diwarisi." },
-  { eyebrow: "◆ 4.2", title: "Amalan Beragama & Lima Aspek Keunikan Warisan", sub: "Legasi yang membentuk tamadun Melayu, diwarisi hingga kini." },
+  { eyebrow: "◆ 4.1", title: "Kepercayaan Awal" },
+  { eyebrow: "◆ 4.1", title: "Penyebaran Agama — Detik Penting" },
+  { eyebrow: "◆ 4.2", title: "Keunikan Warisan — Pemerintahan dan Kebijaksanaan" },
+  { eyebrow: "◆ 4.2", title: "Keunikan Warisan — Ekonomi dan Sosiobudaya" },
+  { eyebrow: "◆ 4.2", title: "Amalan Beragama & Lima Aspek Keunikan Warisan" },
   { eyebrow: "◆ Rumusan", title: "Fakta Penting & Istilah Utama" },
 ];
 
 const TOTAL = ORBIT_LABELS.length;
 
 const RELIGION_TIMELINE: EraDotTimelineItem[] = [
-  { label: "Abad 1", detail: "Hindu/Buddha tersebar — Funan", color: "amber" },
+  { label: "Abad 1", detail: "Hindu dan Buddha tersebar dalam kerajaan Funan", color: "amber" },
   { label: "Abad 7", detail: "Islam tiba di Alam Melayu", color: "blue" },
-  { label: "Abad 13", detail: "Merah Silu (Pasai) → Sultan Malik al-Saleh", color: "green" },
   { label: "1136", detail: "Maharaja Derbar Raja II (Kedah) memeluk Islam", color: "violet" },
-  { label: "Abad 16", detail: "Masjid Demak — pusat pengajian Islam terbesar Jawa", color: "red" },
+  { label: "Abad 13", detail: "Merah Silu (Pasai) → Sultan Malik al-Saleh", color: "green" },
+  { label: "Abad 16", detail: "Kerajaan Demak — pusat pengajian Islam terbesar di Jawa", color: "red" },
 ];
 
 export function Sej2Chapter4NotesBlock({
@@ -155,15 +158,18 @@ export function Sej2Chapter4NotesBlock({
         {current === 1 && (
           <div className="space-y-6">
             <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.religionSpread.intro}</p>
-            <img
-              src={penyebaranAgama}
-              alt="Penyebaran Agama di Alam Melayu"
-              className="notes-figure-img rounded-2xl border border-border"
-            />
+            <figure className="space-y-2">
+              <div className="sm:hidden">
+                <img src={penyebaranAgama} alt="Peta penyebaran agama Hindu, Buddha dan Islam ke Alam Melayu sebelum abad ke-15" className={FIG_IMG} loading="lazy" />
+              </div>
+              <div className="hidden sm:block">
+                <img src={penyebaranAgamaDesktop} alt="Peta penyebaran agama Hindu, Buddha dan Islam ke Alam Melayu sebelum abad ke-15" className={`${FIG_IMG} notes-figure-img--wide`} loading="lazy" />
+              </div>
+              <figcaption className="text-center text-[11px] italic leading-snug text-muted-foreground">
+                Sumber: buku teks hlm. 57. Peta asas: Natural Earth; kedudukan anggaran.
+              </figcaption>
+            </figure>
             <EraDotTimeline items={RELIGION_TIMELINE} />
-            <p className="text-center text-[11px] text-muted-foreground">
-              Toleransi: Candi Prambanan (Hindu) dibina berdekatan Candi Borobudur (Buddha), Jawa Tengah
-            </p>
             <DataTable
               headers={["Kerajaan", "Perkembangan Agama", "Bukti"]}
               rows={content.religionSpread.byKingdom.map((k) => [

@@ -66,7 +66,7 @@ export interface Sej2Ch4Content {
 export const sej2Ch4Content: Sej2Ch4Content = {
   hook: {
     title: "Kenapa ini penting",
-    body: "Candi Hindu Prambanan dibina bersebelahan Candi Buddha Borobudur — bukan sebagai pertembungan, tetapi sebagai bukti toleransi. Bab ini menunjukkan bagaimana kerajaan Alam Melayu menyerap animisme, Hindu, Buddha dan Islam menjadi satu warisan yang unik dan bertahan hingga hari ini."
+    body: "Candi Hindu Prambanan dibina berdekatan dengan Candi Buddha Borobudur — bukan sebagai pertembungan, tetapi sebagai bukti toleransi. Bab ini menunjukkan bagaimana kerajaan Alam Melayu menyerap animisme, Hindu, Buddha dan Islam menjadi satu warisan yang unik dan bertahan hingga hari ini."
   },
   earlyBeliefs: {
     intro: "Agama merupakan sistem berkaitan anutan, keimanan dan penyembahan terhadap tuhan. Kepercayaan pula merupakan pegangan yang diyakini dapat menjadi panduan dalam kehidupan.",
@@ -98,7 +98,7 @@ export const sej2Ch4Content: Sej2Ch4Content = {
     locationChoice: ["Memilih lokasi strategik di pesisiran pantai atau lembah sungai", "Mengembangkan pertanian di kawasan subur (Angkor, Majapahit)", "Memilih laluan antarabangsa timur-barat (Oc Eo di Funan, Palembang di Srivijaya)", "Mengambil kira petunjuk arah seperti Gunung Jerai (mercu tanda Kedah)"],
     diplomaticRelations: [
       { type: "Hubungan persahabatan", example: "Srivijaya menghantar utusan ke China (abad ketujuh); Majapahit menjalin persahabatan dengan China (abad ke-14)" },
-      { type: "Bantuan ketenteraan", example: "Maharaja Chola dari India menghantar bantuan tentera ke Srivijaya untuk pemberontakan (abad ke-11)" },
+      { type: "Bantuan ketenteraan", example: "Maharaja Chola dari India menghantar bantuan tentera ke Srivijaya untuk membantu menyelesaikan pemberontakan (abad ke-11)" },
       { type: "Perkahwinan diraja", example: "Raden Wijaya (Majapahit) berkahwin dengan puteri kerajaan Singhasari (abad ke-13)" }
     ]
   },
@@ -126,7 +126,7 @@ export const sej2Ch4Content: Sej2Ch4Content = {
     "Hindu dan Buddha tersebar sebelum Masihi; Islam tiba mulai abad ketujuh",
     "Maharaja Derbar Raja II (Kedah Tua) memeluk Islam pada 1136",
     "Merah Silu (Pasai) memeluk Islam, bergelar Sultan Malik al-Saleh, abad ke-13",
-    "Masjid Demak menjadi pusat pengajian Islam terbesar di Jawa (abad ke-16)",
+    "Selepas Majapahit runtuh, kerajaan Demak menjadi pusat pengajian Islam terbesar di Jawa (abad ke-16)",
     "Gelaran Sanskrit 'varman' digunakan raja Funan, Champa, Angkor dan Srivijaya",
     "3 jenis pelabuhan: Pembekal, Kerajaan, Entrepot",
     "Candi Prambanan (Hindu) dan Candi Borobudur (Buddha) dibina berdekatan — bukti toleransi beragama",

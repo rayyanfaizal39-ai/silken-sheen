@@ -14,7 +14,7 @@ const sejarahF2C10NotesSource: StructuredNotes = {
     "Sungai penting untuk kegunaan harian, pengangkutan, petempatan, sumber rezeki, perdagangan dan rekreasi.",
     "Masyarakat bumiputera Sarawak dan Sabah terdiri daripada pelbagai kaum dengan tradisi tersendiri.",
     "Pua Kumbu, keringkam, tenunan Inavol dan Dastar ialah antara warisan tenunan.",
-    "Hari Gawai, Kaul, Pesta Kaamatan dan Regatta Lepa ialah perayaan penting.",
+    "Hari Gawai, Kaul, Pesta Kaamatan dan Regata Lepa ialah perayaan penting.",
     "Ngajat dan Bermukun terkenal di Sarawak, manakala Sumazau, Magunatip dan Limbai terkenal di Sabah.",
     "Rumah panjang, rumah tinggi, rumah Baruk dan lepa menggambarkan keunikan seni bina masyarakat.",
   ],
@@ -39,7 +39,7 @@ const sejarahF2C10NotesSource: StructuredNotes = {
     "Hari Gawai",
     "Kaul",
     "Pesta Kaamatan",
-    "Regatta Lepa",
+    "Regata Lepa",
     "Ngajat",
     "Sumazau",
     "Magunatip",
@@ -428,7 +428,7 @@ const sejarahF2C10NotesSource: StructuredNotes = {
         {
           title: "Kesenian Sarawak: Tenunan kain",
           bulletPoints: [
-            "Keringkam ialah kain kapas atau sutera Melayu yang disulam benang logam.",
+            "Keringkam ialah kain kapas atau sutera Melayu yang disulam benang emas, perak dan tembaga.",
             "Pua Kumbu Iban digunakan dalam majlis kelahiran, perkahwinan dan kematian.",
           ],
         },
@@ -493,9 +493,9 @@ const sejarahF2C10NotesSource: StructuredNotes = {
           ],
         },
         {
-          title: "Perayaan Sabah: Regatta Lepa",
+          title: "Perayaan Sabah: Regata Lepa",
           bulletPoints: [
-            "Regatta Lepa menghargai peranan lepa dalam kehidupan Bajau atau Sama di pantai timur.",
+            "Regata Lepa menghargai peranan lepa dalam kehidupan Bajau atau Sama di pantai timur.",
           ],
         },
         {
