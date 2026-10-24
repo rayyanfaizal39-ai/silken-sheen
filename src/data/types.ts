@@ -9,6 +9,7 @@ export type {
   FactorVisual,
 } from "./content";
 import type { ScienceChapter2Notes } from "./content";
+import type { FlashcardStudyMeta } from "@/features/flashcards/structuredFlashcard";
 
 export type Form = "Form 1" | "Form 2" | "Form 3";
 
@@ -54,7 +55,7 @@ export interface QuizQuestion {
   mathNotation?: "indices";
 }
 
-export interface Flashcard {
+export interface Flashcard extends FlashcardStudyMeta {
   id: string;
   subjectId: string;
   form: Form;

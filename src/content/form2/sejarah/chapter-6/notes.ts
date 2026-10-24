@@ -64,7 +64,7 @@ const sejarahF2C6NotesSource: StructuredNotes = {
     "Johor membantu Belanda menewaskan Portugis dan menawan Melaka pada tahun 1641.",
     "Sulalatus Salatin menceritakan asal usul keturunan raja-raja Melaka, adat istiadat kerajaan dan sejarah Kesultanan Melayu Melaka.",
     "Hikayat Hang Tuah mengisahkan ketaatan dan kesetiaan Hang Tuah kepada raja dan Kesultanan Melayu Melaka.",
-    "Tajul Salatin dikarang oleh Bukhari al-Jauhari di Aceh dan menjadi panduan untuk mentadbir kerajaan.",
+    "Tajul Salatin atau Mahkota Raja-Raja ditulis oleh Bukhari al-Jauhari pada zaman Kesultanan Johor Riau.",
   ],
   sections: [
     {
@@ -318,7 +318,7 @@ const sejarahF2C6NotesSource: StructuredNotes = {
           bulletPoints: [
             "Pusat pemerintahan sering dipindahkan di sepanjang Sungai Johor untuk keperluan strategi ketenteraan dan pertahanan.",
             "Apabila berlaku serangan dan ancaman kuasa luar, pusat pemerintahan dipindahkan dari Pekan Tua ke Kota Sayong, Kota Batu, Seluyut, Tanah Puteh, Batu Sawar dan Makam Tauhid.",
-            "Semasa pemerintahan Sultan Ibrahim, pusat pemerintahan dipindahkan ke Riau pada tahun 1678.",
+            "Semasa pemerintahan Sultan Ibrahim (1677-1685), Kepulauan Riau Lingga menjadi pusat pemerintahan yang baharu.",
             "Pulau-pulau di Sungai Johor memudahkan masyarakat mengundurkan diri apabila diserang Portugis dan Acheh.",
           ],
         },
@@ -346,7 +346,7 @@ const sejarahF2C6NotesSource: StructuredNotes = {
           bulletPoints: [
             "Johor menjalinkan hubungan dengan Belanda untuk menghadapi Portugis di Melaka.",
             "Hubungan bermula pada tahun 1602 apabila Belanda menawarkan bantuan kepada Sultan Alauddin Riayat Shah II untuk melindungi Johor daripada serangan Portugis dan Acheh.",
-            "Perjanjian Johor-Belanda ditandatangani pada 17 Mei 1608 di atas kapal Belanda bernama Oranje.",
+            "Perjanjian Johor-Belanda ditandatangani pada 17 Mei 1606 di atas kapal Belanda bernama Oranje.",
             "Belanda meminta bantuan Johor untuk menyerang Melaka.",
             "Johor membantu Belanda mengepung dan menyerang Portugis di Melaka dari 2 Ogos 1640 hingga Januari 1641.",
             "Portugis di Melaka berjaya ditewaskan pada Januari 1641.",
@@ -426,7 +426,6 @@ const sejarahF2C6NotesSource: StructuredNotes = {
           title: "Tajul Salatin",
           bulletPoints: [
             "Tajul Salatin dikarang oleh Bukhari al-Jauhari.",
-            "Karya ini dihasilkan di Acheh pada tahun 1603.",
             "Tajul Salatin merupakan karya tentang pemerintahan dan panduan bagi raja serta golongan pemerintah mentadbir negara.",
           ],
         },

@@ -42,11 +42,16 @@ export const sejarahF2C3Quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     difficulty: "Medium",
     question:
-      "Kerajaan Champa menggunakan bahasa Melayu Champa dan bahasa Sanskrit. Tulisan manakah digunakan untuk merakamkan kedua-dua bahasa ini?",
-    options: ["Tulisan Khmer", "Tulisan Kawi", "Tulisan Jawi", "Tulisan Palava"],
+      "Kerajaan Champa menggunakan bahasa Melayu Champa dan bahasa Sanskrit. Apakah dua jenis tulisan yang digunakan oleh masyarakat Champa?",
+    options: [
+      "Tulisan Khmer dan Kawi",
+      "Tulisan Kawi dan Pegon",
+      "Tulisan Palava dan Pegon",
+      "Tulisan Palava dan Champa Kuno",
+    ],
     answerIndex: 3,
     explanation:
-      "Champa menggunakan tulisan Palava untuk merakamkan bahasa Melayu Champa dan bahasa Sanskrit.",
+      "Masyarakat Champa menggunakan tulisan Palava dan tulisan Champa Kuno. Penggunaan tulisan Palava dibuktikan oleh inskripsi abad keenam yang ditulis oleh Raja Sambhuvarman.",
   },
   {
     id: "sej-f2-c3-q5",
@@ -64,7 +69,7 @@ export const sejarahF2C3Quizzes: QuizQuestion[] = [
     ],
     answerIndex: 2,
     explanation:
-      "Angkor menggunakan tulisan Palava dan tulisan Khmer, dengan bukti daripada pelbagai inskripsi kerajaan.",
+      "Angkor menggunakan tulisan Palava dan tulisan Khmer, dengan bukti inskripsi pada dinding candi.",
   },
   {
     id: "sej-f2-c3-q6",
@@ -185,16 +190,16 @@ export const sejarahF2C3Quizzes: QuizQuestion[] = [
     chapter: "Chapter 3",
     difficulty: "Medium",
     question:
-      "Batu Bersurat Karang Brahi dan Palas Pasemah di Srivijaya digunakan terutamanya untuk tujuan apakah?",
+      "Apakah yang dimerihalkan oleh Batu Bersurat Karang Brahi dan Palas Pasemah di Srivijaya?",
     options: [
       "Merekod hasil pertanian",
-      "Mengukuhkan kesetiaan rakyat kepada raja",
+      "Memerihalkan pengukuhan kerajaan dan kepentingan taat setia terhadap raja",
       "Mencatat perjanjian perdagangan dengan China",
       "Mengumumkan pertukaran agama rasmi",
     ],
     answerIndex: 1,
     explanation:
-      "Batu bersurat seperti Karang Brahi dan Palas Pasemah digunakan untuk mengukuhkan kesetiaan rakyat kepada raja Srivijaya.",
+      "Batu bersurat Karang Brahi dan Palas Pasemah (abad ketujuh) memerihalkan pengukuhan kerajaan Srivijaya, terutama kepentingan taat setia terhadap raja.",
   },
   {
     id: "sej-f2-c3-q15",
@@ -286,7 +291,7 @@ export const sejarahF2C3Quizzes: QuizQuestion[] = [
     ],
     answerIndex: 1,
     explanation:
-      "Baray Angkor berfungsi sebagai kolam simpanan air bagi keperluan pertanian, dengan keupayaan menampung berjuta-juta meter padu air.",
+      "Baray Angkor berfungsi sebagai kolam simpanan air bagi keperluan pertanian, berukuran 2 x 8 kilometer dan dapat menampung 30 juta meter padu air untuk disalurkan ke sawah padi.",
   },
   {
     id: "sej-f2-c3-q21",

@@ -6,6 +6,45 @@
 // You can pass additional config via defineConfig({ vite: { ... } }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 import { VitePWA } from "vite-plugin-pwa";
+import type { Plugin } from "vite";
+
+/**
+ * `vite build` builds the client, SSR and nitro environments one after another
+ * in a single Node process. Each Rollup module graph for this curriculum is
+ * ~1.2 GB of heap, so every graph must be collectable once its environment is
+ * done — otherwise they stack up and the Cloudflare Pages build (Node 22,
+ * ~2 GB default heap) dies with "JavaScript heap out of memory" (exit 134).
+ *
+ * exsolve (nitro's resolver) memoises failed lookups as Error objects in
+ * globalThis.__EXSOLVE_CACHE__; an Error whose stack was never read keeps its
+ * call-site receivers alive, which pinned the finished SSR graph through the
+ * nitro build. The cache is only a memo, so it is cleared after each bundle.
+ * Two other retainers (TanStack Start's server-fn compiler cache and
+ * @tailwindcss/vite's per-environment CSS roots) live inside those packages and
+ * are released by scripts/patch-build-memory.mjs at install time.
+ *
+ * BUILD_MEMORY_TRACE=1 (with NODE_OPTIONS=--expose-gc) logs the heap left
+ * after each environment, for checking this stays flat.
+ */
+function releaseBuildMemory(): Plugin {
+  const trace = (stage: string, env?: string) => {
+    if (!process.env.BUILD_MEMORY_TRACE) return;
+    (globalThis as { gc?: () => void }).gc?.();
+    const heap = Math.round(process.memoryUsage().heapUsed / 1048576);
+    console.log(`[build-memory] ${env ?? "?"} ${stage}: ${heap} MB heap in use`);
+  };
+  return {
+    name: "academy:release-build-memory",
+    apply: "build",
+    buildStart() {
+      trace("start", this.environment?.name);
+    },
+    closeBundle() {
+      (globalThis as { __EXSOLVE_CACHE__?: Map<string, unknown> }).__EXSOLVE_CACHE__?.clear();
+      trace("done", this.environment?.name);
+    },
+  };
+}
 
 // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
 // Nitro's cloudflare-module preset emits it as dist/server/index.mjs; the Pages
@@ -74,6 +113,7 @@ export default defineConfig({
     // in dev/preview (devOptions.enabled: false), so Lovable previews and
     // `vite dev` never serve a service worker.
     plugins: [
+      releaseBuildMemory(),
       VitePWA({
         registerType: "autoUpdate",
         injectRegister: null,
@@ -247,6 +287,11 @@ export default defineConfig({
     // real entry vs. a route chunk that happens to share the "index" name).
     build: {
       manifest: true,
+      // Skip the gzip-size column in the build report. With ~600 chunks per
+      // environment it gzipped ~20 MB of output three times (client, SSR,
+      // nitro) purely to print sizes, holding the buffers in the same heap
+      // the next environment builds in. Output files are unaffected.
+      reportCompressedSize: false,
     },
 
     // @tanstack/start-server-core@1.169+ uses dynamic '#' package-subpath imports

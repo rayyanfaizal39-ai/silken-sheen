@@ -46,7 +46,7 @@ const sejarahF2C3NotesSource: StructuredNotes = {
     "Tulisan Pegon",
     "Tradisi lisan",
     "Manuskrip",
-    "Nagarakretagama",
+    "Nagarakertagama",
     "Pararaton",
     "Ramayana",
     "Mahabharata",
@@ -72,7 +72,7 @@ const sejarahF2C3NotesSource: StructuredNotes = {
     "Tema tradisi lisan merangkumi asal-usul, binatang, nasihat, teladan dan adat.",
     "Batu bersurat tertua Champa bertarikh 192M dan lebih 200 batu bersurat telah ditemukan.",
     "Batu bersurat Srivijaya digunakan untuk mengukuhkan kesetiaan kepada raja.",
-    "Nagarakretagama, Pararaton dan Tantu Panggelaran ialah karya persuratan Majapahit.",
+    "Nagarakertagama, Pararaton dan Tantu Panggelaran ialah karya persuratan Majapahit.",
     "Ramayana, Mahabharata, Purana dan Jataka merupakan pengaruh sastera Hindu-Buddha.",
   ],
   sections: [
@@ -522,7 +522,7 @@ const sejarahF2C3NotesSource: StructuredNotes = {
         },
         {
           title: "Karya Persuratan",
-          bulletPoints: ["Nagarakretagama.", "Pararaton.", "Tantu Panggelaran."],
+          bulletPoints: ["Nagarakertagama.", "Pararaton.", "Tantu Panggelaran."],
         },
         {
           title: "Quick Revision",
@@ -530,7 +530,7 @@ const sejarahF2C3NotesSource: StructuredNotes = {
             headers: ["Jenis", "Bukti"],
             rows: [
               ["Batu bersurat", "Batu Bersurat Trowulan"],
-              ["Karya persuratan", "Nagarakretagama, Pararaton dan Tantu Panggelaran"],
+              ["Karya persuratan", "Nagarakertagama, Pararaton dan Tantu Panggelaran"],
             ],
           },
         },
@@ -603,7 +603,7 @@ const sejarahF2C3NotesSource: StructuredNotes = {
             "Bahasa Melayu dipengaruhi bahasa Sanskrit, Tamil, Cina, Parsi dan Arab.",
             "Tradisi lisan mendahului perkembangan batu bersurat dan manuskrip.",
             "Batu bersurat menjadi bukti persuratan kerajaan Alam Melayu.",
-            "Persuratan Majapahit termasuk Nagarakretagama, Pararaton dan Tantu Panggelaran.",
+            "Persuratan Majapahit termasuk Nagarakertagama, Pararaton dan Tantu Panggelaran.",
             "Sastera Alam Melayu menerima pengaruh Hindu-Buddha dan Islam.",
           ],
         },

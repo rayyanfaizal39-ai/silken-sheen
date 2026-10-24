@@ -39,6 +39,7 @@ import {
 } from "@/data/content";
 import { getSejarahF1Subtopics } from "@/data/sejarah-f1-subtopics";
 import { getEducationalVideo } from "@/data/educationalVideos";
+import { attachGeographyF1QuizVisuals } from "@/content/form1/geography/quiz-visuals";
 import { getGeographyF1Subtopics } from "@/data/geography-f1-subtopics";
 import { getQuizQuestionCount } from "@/lib/quiz-counts";
 import {
@@ -942,7 +943,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 1",
     title: "Kerajaan Alam Melayu",
     sej2Chapter1Data: sej2Ch1Content,
-    mindMap: { data: sejarahF2C1MindMap, title: "Kerajaan Alam Melayu yang Masyhur" },
+    mindMap: { data: sejarahF2C1MindMap, title: "Kerajaan Alam Melayu" },
     flashcards: sejarahF2FlashcardsFor(1),
     quiz: sejarahF2QuizzesFor(1),
   },
@@ -3809,6 +3810,7 @@ export function getChapterQuizQuestions(
       (!lang || (question.lang ?? defaultQuizLanguage(question.subjectId)) === lang),
   );
 
+  // Preserve canonical object identity; presentation-only visuals resolve in the quiz view.
   const resolvedQuestions = registeredQuestions.length > 0 ? registeredQuestions : legacyQuestions;
   const language = lang ?? defaultQuizLanguage(subjectId);
   const identity = {
@@ -3830,6 +3832,9 @@ export function getChapterQuizQuestions(
     return [];
   }
 
+  if (subjectId === "geography" && form === "Form 1") {
+    return attachGeographyF1QuizVisuals(resolvedQuestions);
+  }
   return resolvedQuestions;
 }
 

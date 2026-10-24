@@ -8259,3 +8259,50 @@
     transition: none !important;
   }
 }
+
+/* ─── Sejarah Form 2 notes · reading size & mobile layout (scoped to .sej2-notes) ─── */
+.sej2-notes { font-size: 16px; }
+.sej2-notes :is(.text-\[9px\], .text-\[9\.5px\], .text-\[10px\], .text-\[10\.5px\]) { font-size: 13px; line-height: 1.45; }
+.sej2-notes :is(.text-\[11px\], .text-\[11\.5px\], .text-xs) { font-size: 14px; line-height: 1.5; }
+.sej2-notes :is(.text-\[12px\], .text-\[12\.5px\], .text-\[13px\]) { font-size: 15.5px; line-height: 1.55; }
+.sej2-notes :is(.text-\[13\.5px\], .text-sm) { font-size: 16.5px; line-height: 1.6; }
+.sej2-notes :is(.text-\[14px\], .text-\[15px\], .text-base) { font-size: 17px; line-height: 1.55; }
+.sej2-notes :is(h3, h4).font-display { font-size: 17.5px; line-height: 1.35; }
+/* step-nav labels stay compact so the row fits */
+.sej2-notes button > span.text-\[10px\] { font-size: 12px; max-width: 76px; }
+.sej2-notes figcaption { font-size: 13.5px; line-height: 1.45; }
+@media (min-width: 640px) {
+  .sej2-notes :is(.text-\[11px\], .text-\[11\.5px\], .text-xs) { font-size: 13.5px; }
+  .sej2-notes :is(.text-\[12px\], .text-\[12\.5px\], .text-\[13px\]) { font-size: 15px; }
+  .sej2-notes :is(.text-\[13\.5px\], .text-sm) { font-size: 15.5px; }
+  .sej2-notes :is(.text-\[14px\], .text-\[15px\], .text-base) { font-size: 16px; }
+}
+@media (max-width: 639px) {
+  /* less wasted padding on narrow screens */
+  .sej2-notes .p-5, .sej2-notes .p-4\.5 { padding: 0.875rem; }
+  .sej2-notes .space-y-6 > :not(:last-child) { margin-bottom: 1.25rem; }
+  .sej2-notes > div.relative.rounded-2xl { padding: 1rem; }
+  /* tables become stacked cards */
+  .sej2-notes table, .sej2-notes tbody, .sej2-notes tr, .sej2-notes td { display: block; width: 100%; }
+  .sej2-notes thead { display: none; }
+  .sej2-notes tr { padding: 0.625rem 0.875rem; }
+  .sej2-notes td { padding: 0.15rem 0 !important; }
+  .sej2-notes td:first-child { font-size: 17px; padding-bottom: 0.3rem !important; }
+  .sej2-notes td[data-label]:not(:first-child)::before {
+    content: attr(data-label) ": ";
+    font-weight: 600;
+    color: var(--foreground);
+  }
+}
+.sej2-notes .sej2-block-label {
+  font-family: var(--font-display, inherit);
+  font-size: 17.5px; font-weight: 700; line-height: 1.35;
+  color: var(--foreground);
+  border-left: 3px solid var(--primary); padding-left: 0.6rem;
+  margin-bottom: -0.5rem;
+}
+
+/* Sejarah F2 figures: let tall mobile maps use full width (no 58vh cap) */
+@media (max-width: 639px) {
+  .sej2-notes .notes-figure-img { max-height: none; }
+}

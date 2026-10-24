@@ -9,7 +9,7 @@ const sejarahF2C4NotesSource: StructuredNotes = {
     "Masyarakat mempercayai semangat alam, roh nenek moyang, semangat padi serta semangat baik dan jahat.",
     "Agama Hindu, Buddha dan Islam tersebar sebelum abad ke-15 melalui pengaruh India, China dan Arab.",
     "Funan menerima agama Hindu dan Buddha serta mempunyai Candi Go Cay Thi.",
-    "Champa menerima agama Hindu dan mempunyai kaitan dengan Shiva, Dong Duong dan Panduranga.",
+    "Champa menerima agama Hindu (candi Siva-Bhadresvara di Lembah Mi Son), agama Buddha (Candi Dong Duong) dan Islam (bukti awal di Panduranga).",
     "Srivijaya menjadi pusat agama Buddha dan dikunjungi pelajar dari China.",
     "Angkor menerima agama Hindu dan mempunyai Angkor Wat.",
     "Majapahit menerima agama Hindu dan Buddha, manakala Islam mula berkembang.",
@@ -30,7 +30,7 @@ const sejarahF2C4NotesSource: StructuredNotes = {
     "Hindu",
     "Buddha",
     "Islam",
-    "Shiva",
+    "Siva-Bhadresvara",
     "Daulat",
     "Baray",
     "Pelabuhan entrepot",
@@ -50,7 +50,7 @@ const sejarahF2C4NotesSource: StructuredNotes = {
     "Arca Buddha menjadi bukti agama Buddha di Gangga Negara.",
     "Tasik Tonle Sap, Palembang dan Sungai Musi berkaitan dengan kebijaksanaan memilih lokasi.",
     "Srivijaya menjalinkan persahabatan dengan China.",
-    "Majapahit menjalinkan hubungan dengan Sunda.",
+    "Majapahit menjalinkan persahabatan dengan China pada abad ke-14 dan Raden Wijaya berkahwin dengan puteri Singhasari pada abad ke-13.",
     "Sungai Mekong, Sungai Musi, Sungai Bengawan Solo dan Sungai Brantas menyokong kegiatan ekonomi.",
     "Pelabuhan terdiri daripada pelabuhan pembekal, pelabuhan kerajaan dan pelabuhan entrepot.",
     "Tulisan Palava, Kawi dan Jawi menjadi warisan perkembangan sosiobudaya.",
@@ -167,16 +167,20 @@ const sejarahF2C4NotesSource: StructuredNotes = {
       subsections: [
         {
           title: "Agama dan Warisan",
-          bulletPoints: ["Agama Hindu.", "Shiva.", "Dong Duong.", "Panduranga."],
+          bulletPoints: [
+            "Hindu: candi Siva-Bhadresvara di Lembah Mi Son.",
+            "Buddha: Candi Dong Duong.",
+            "Islam: batu bersurat 1035 dan batu nisan 1039 di Panduranga.",
+          ],
         },
         {
           title: "Quick Revision",
           table: {
             headers: ["Aspek", "Fakta"],
             rows: [
-              ["Agama", "Hindu"],
-              ["Dewa", "Shiva"],
-              ["Lokasi", "Dong Duong dan Panduranga"],
+              ["Hindu", "Candi Siva-Bhadresvara, Lembah Mi Son"],
+              ["Buddha", "Candi Dong Duong"],
+              ["Islam", "Panduranga (1035 dan 1039)"],
             ],
           },
         },
@@ -215,14 +219,14 @@ const sejarahF2C4NotesSource: StructuredNotes = {
         },
         {
           title: "Pemerintah",
-          bulletPoints: ["Suryavarman II.", "Jayavarman VII."],
+          bulletPoints: ["Suryavarman II.", "Jayavarman VII: agama Buddha mengambil alih sebagai agama utama (abad ke-12)."],
         },
         {
           title: "Quick Revision",
           table: {
             headers: ["Aspek", "Fakta"],
             rows: [
-              ["Agama", "Hindu"],
+              ["Agama", "Hindu; Buddha menjadi agama utama semasa Jayavarman VII (abad ke-12)"],
               ["Warisan", "Angkor Wat"],
               ["Pemerintah", "Suryavarman II dan Jayavarman VII"],
             ],
@@ -383,8 +387,8 @@ const sejarahF2C4NotesSource: StructuredNotes = {
           table: {
             headers: ["Kerajaan", "Hubungan"],
             rows: [
-              ["Srivijaya", "China"],
-              ["Majapahit", "Sunda"],
+              ["Srivijaya", "Utusan persahabatan ke China (abad ketujuh); bantuan tentera Chola (abad ke-11)"],
+              ["Majapahit", "Persahabatan dengan China (abad ke-14); perkahwinan Raden Wijaya dengan puteri Singhasari (abad ke-13)"],
             ],
           },
         },

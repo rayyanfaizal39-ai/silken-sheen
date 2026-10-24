@@ -9,7 +9,12 @@ export const scienceF1C6QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "What is an atom?",
-    options: ["The basic unit of matter", "A mixture of elements", "A non-metal substance", "A positively charged particle"],
+    options: [
+      "The basic unit of matter",
+      "A mixture of elements",
+      "A non-metal substance",
+      "A positively charged particle",
+    ],
     answerIndex: 0,
     explanation: "An atom is the basic unit that makes up all matter.",
   },
@@ -57,7 +62,12 @@ export const scienceF1C6QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "Where are protons and neutrons found in an atom?",
-    options: ["Nucleus", "Electron shells", "Outside the atom", "Only in molecules"],
+    options: [
+      "Both are in the nucleus",
+      "Both move around the nucleus",
+      "Protons are in the nucleus; neutrons move around it",
+      "Neutrons are in the nucleus; protons move around it",
+    ],
     answerIndex: 0,
     explanation: "The nucleus is at the centre of the atom and contains protons and neutrons.",
   },
@@ -68,10 +78,16 @@ export const scienceF1C6QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 6",
     lang: "dlp",
     difficulty: "Easy",
-    question: "Where do electrons move around the nucleus?",
-    options: ["In shells", "Inside protons", "Inside neutrons", "Only inside compounds"],
+    question: "Which description correctly locates electrons in an atom?",
+    options: [
+      "They move around the nucleus",
+      "They remain together with protons inside the nucleus",
+      "They occupy the centres of neutrons",
+      "They form the positive centre of the atom",
+    ],
     answerIndex: 0,
-    explanation: "Electrons move around the nucleus in shells.",
+    explanation:
+      "Electrons move around the nucleus, while protons and neutrons are in the nucleus.",
   },
   {
     id: "sci-f1-c6-dlp-q7",
@@ -105,7 +121,8 @@ export const scienceF1C6QuizzesDLP: QuizQuestion[] = [
       "A shell around an atom",
     ],
     answerIndex: 0,
-    explanation: "A molecule is a neutral particle made up of two or more atoms chemically combined.",
+    explanation:
+      "A molecule is a neutral particle made up of two or more atoms chemically combined.",
   },
   {
     id: "sci-f1-c6-dlp-q9",
@@ -148,7 +165,8 @@ export const scienceF1C6QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 6",
     lang: "dlp",
     difficulty: "Easy",
-    question: "Which statement is most accurate about the classification of elements in the Periodic Table?",
+    question:
+      "Which statement is most accurate about the classification of elements in the Periodic Table?",
     options: [
       "Metals, non-metals and noble gases can be identified from their positions in the Periodic Table",
       "All elements on the left side of the Periodic Table are non-metals",
@@ -156,7 +174,8 @@ export const scienceF1C6QuizzesDLP: QuizQuestion[] = [
       "Elements and compounds are arranged together in the Periodic Table",
     ],
     answerIndex: 0,
-    explanation: "The Periodic Table arranges elements systematically and allows metals, non-metals and noble gases to be identified from their positions.",
+    explanation:
+      "The Periodic Table arranges elements systematically and allows metals, non-metals and noble gases to be identified from their positions.",
   },
   {
     id: "sci-f1-c6-dlp-q12",
@@ -166,7 +185,12 @@ export const scienceF1C6QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "Where are metals usually located in the Periodic Table?",
-    options: ["On the left side", "On the right side", "Only in Group 18", "Outside the Periodic Table"],
+    options: [
+      "On the left side",
+      "On the right side",
+      "Only in Group 18",
+      "Outside the Periodic Table",
+    ],
     answerIndex: 0,
     explanation: "Metals are usually located on the left side of the Periodic Table.",
   },
@@ -178,7 +202,12 @@ export const scienceF1C6QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "Where are non-metals usually located in the Periodic Table?",
-    options: ["On the right side", "On the left side", "In the middle of all metals", "Inside atomic shells"],
+    options: [
+      "On the right side",
+      "On the left side",
+      "In the middle of all metals",
+      "Inside atomic shells",
+    ],
     answerIndex: 0,
     explanation: "Non-metals are usually located on the right side of the Periodic Table.",
   },
@@ -201,15 +230,12 @@ export const scienceF1C6QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 6",
     lang: "dlp",
     difficulty: "Easy",
-    question: "A substance has a shiny surface, can be hammered into shape and conducts electricity well. How should it most likely be classified?",
-    options: [
-      "Non-metal",
-      "Noble gas",
-      "Metal",
-      "Non-metal compound",
-    ],
+    question:
+      "A substance has a shiny surface, can be hammered into shape and conducts electricity well. How should it most likely be classified?",
+    options: ["Non-metal", "Noble gas", "Metal", "Non-metal compound"],
     answerIndex: 2,
-    explanation: "A shiny surface, malleability and good electrical conductivity are common properties of metals.",
+    explanation:
+      "A shiny surface, malleability and good electrical conductivity are common properties of metals.",
   },
   {
     id: "sci-f1-c6-dlp-q16",
@@ -218,7 +244,8 @@ export const scienceF1C6QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 6",
     lang: "dlp",
     difficulty: "Medium",
-    question: "A mixture of iron filings and sulfur can still be separated using a magnet before it is heated. What does this show?",
+    question:
+      "A mixture of iron filings and sulfur can still be separated using a magnet before it is heated. What does this show?",
     options: [
       "The substances in a mixture retain their original properties",
       "The mixture has produced a new substance through chemical combination",
@@ -226,7 +253,8 @@ export const scienceF1C6QuizzesDLP: QuizQuestion[] = [
       "The mixture can only be separated by chemical methods",
     ],
     answerIndex: 0,
-    explanation: "In a mixture, substances are not chemically combined and retain their original properties.",
+    explanation:
+      "In a mixture, substances are not chemically combined and retain their original properties.",
   },
   {
     id: "sci-f1-c6-dlp-q17",
@@ -243,7 +271,8 @@ export const scienceF1C6QuizzesDLP: QuizQuestion[] = [
       "Both elements and compounds consist of only one type of atom",
     ],
     answerIndex: 0,
-    explanation: "An element consists of one type of atom. A compound forms when different elements combine chemically.",
+    explanation:
+      "An element consists of one type of atom. A compound forms when different elements combine chemically.",
   },
   {
     id: "sci-f1-c6-dlp-q18",
@@ -251,13 +280,13 @@ export const scienceF1C6QuizzesDLP: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     lang: "dlp",
-    difficulty: "Medium",
+    difficulty: "Easy",
     question: "What does ductility mean?",
     options: [
-      "Can be pulled into wires",
-      "Can float on water",
-      "Can dissolve in all liquids",
-      "Can change into an inert gas",
+      "Can be drawn into wires",
+      "Can be hammered into sheets",
+      "Can conduct heat well",
+      "Has a shiny surface",
     ],
     answerIndex: 0,
     explanation: "Ductility is the ability of a material to be pulled into wires.",
@@ -268,16 +297,17 @@ export const scienceF1C6QuizzesDLP: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     lang: "dlp",
-    difficulty: "Medium",
+    difficulty: "Easy",
     question: "What does malleability mean?",
     options: [
-      "Can be hammered or shaped without breaking",
-      "Can be pulled into liquid",
-      "Can produce light",
-      "Can be separated only by magnet",
+      "Can be hammered into shape without breaking",
+      "Can be drawn into wires",
+      "Can conduct electricity well",
+      "Has a shiny surface",
     ],
     answerIndex: 0,
-    explanation: "Malleability is the ability of a material to be shaped or hammered without breaking.",
+    explanation:
+      "Malleability is the ability of a material to be shaped or hammered without breaking.",
   },
   {
     id: "sci-f1-c6-dlp-q20",
@@ -294,7 +324,8 @@ export const scienceF1C6QuizzesDLP: QuizQuestion[] = [
       "A substance separated only by electrolysis",
     ],
     answerIndex: 0,
-    explanation: "A mixture is formed when substances are mixed physically without forming a new substance.",
+    explanation:
+      "A mixture is formed when substances are mixed physically without forming a new substance.",
   },
   {
     id: "sci-f1-c6-dlp-q21",
@@ -315,15 +346,12 @@ export const scienceF1C6QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 6",
     lang: "dlp",
     difficulty: "Medium",
-    question: "A mixture contains iron filings and sand. What is the simplest method for separating them?",
-    options: [
-      "Filtration",
-      "Using a magnet",
-      "Distillation",
-      "Flotation",
-    ],
+    question:
+      "A mixture contains iron filings and sand. What is the simplest method for separating them?",
+    options: ["Filtration", "Using a magnet", "Distillation", "Flotation"],
     answerIndex: 1,
-    explanation: "Iron is attracted to a magnet while sand is not, so this difference in physical properties can be used for separation.",
+    explanation:
+      "Iron is attracted to a magnet while sand is not, so this difference in physical properties can be used for separation.",
   },
   {
     id: "sci-f1-c6-dlp-q23",
@@ -340,7 +368,8 @@ export const scienceF1C6QuizzesDLP: QuizQuestion[] = [
       "Salt evaporates first and its vapour condenses into pure water",
     ],
     answerIndex: 1,
-    explanation: "Distillation separates substances based on differences in boiling point. Water evaporates and is then condensed back into liquid.",
+    explanation:
+      "Distillation separates substances based on differences in boiling point. Water evaporates and is then condensed back into liquid.",
   },
   {
     id: "sci-f1-c6-dlp-q24",
@@ -349,15 +378,17 @@ export const scienceF1C6QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 6",
     lang: "dlp",
     difficulty: "Medium",
-    question: "A student wants to determine whether black ink contains several different dyes. Which method is most suitable?",
+    question:
+      "A black ink sample produces four separate coloured spots in paper chromatography. Which conclusion is supported?",
     options: [
-      "Filtration",
-      "Flotation",
-      "Chromatography",
-      "Magnetic separation",
+      "The ink contains at least four dyes separated by this method",
+      "The ink is a pure substance because it began as one spot",
+      "Four new dyes were formed by a chemical reaction",
+      "The four spots show that the ink contains four elements",
     ],
-    answerIndex: 2,
-    explanation: "Chromatography can separate and identify different dyes present in a mixture.",
+    answerIndex: 0,
+    explanation:
+      "Separated coloured spots provide evidence of different dye components in the ink mixture. Chromatography is a physical separation method.",
   },
   {
     id: "sci-f1-c6-dlp-q25",
@@ -382,16 +413,12 @@ export const scienceF1C6QuizzesDLP: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     lang: "dlp",
-    difficulty: "Hard",
+    difficulty: "Easy",
     question: "Which of the following is a chemical change?",
-    options: [
-      "Ice melting",
-      "Salt dissolving in water",
-      "Iron rusting",
-      "Water freezing",
-    ],
+    options: ["Ice melting", "Salt dissolving in water", "Iron rusting", "Water freezing"],
     answerIndex: 2,
-    explanation: "Rusting produces a new substance, so it is a chemical change. Melting, dissolving and freezing are physical changes.",
+    explanation:
+      "Rusting produces a new substance, so it is a chemical change. Melting, dissolving and freezing are physical changes.",
   },
   {
     id: "sci-f1-c6-dlp-q27",
@@ -399,8 +426,9 @@ export const scienceF1C6QuizzesDLP: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     lang: "dlp",
-    difficulty: "Hard",
-    question: "Why can a compound not be separated into its elements using physical methods such as filtration or a magnet?",
+    difficulty: "Medium",
+    question:
+      "Why can a compound not be separated into its elements using physical methods such as filtration or a magnet?",
     options: [
       "The elements in a compound are chemically combined",
       "The elements in a compound are physically mixed but have particles of the same size",
@@ -408,7 +436,8 @@ export const scienceF1C6QuizzesDLP: QuizQuestion[] = [
       "The elements in a compound can be separated physically if the sample size is increased",
     ],
     answerIndex: 0,
-    explanation: "Elements in a compound are chemically bonded, so chemical methods are required to separate them.",
+    explanation:
+      "Elements in a compound are chemically bonded, so chemical methods are required to separate them.",
   },
   {
     id: "sci-f1-c6-dlp-q28",
@@ -416,16 +445,13 @@ export const scienceF1C6QuizzesDLP: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     lang: "dlp",
-    difficulty: "Hard",
-    question: "Why are metals suitable for making electrical wires?",
-    options: [
-      "Metals are good electrical conductors and ductile",
-      "Metals are brittle and dull",
-      "Metals cannot be pulled into wires",
-      "Metals do not have electrons",
-    ],
+    difficulty: "Medium",
+    question:
+      "Four materials are tested for electrical wires: P conducts but is brittle; Q conducts and can be drawn into wire; R is ductile but insulating; S conducts but breaks easily. Which is most suitable?",
+    options: ["Material Q", "Material P", "Material R", "Material S"],
     answerIndex: 0,
-    explanation: "Metals conduct electricity well and can be pulled into wires.",
+    explanation:
+      "Wire material must conduct electricity well and be ductile enough to be drawn into wire. Only Q satisfies both criteria.",
   },
   {
     id: "sci-f1-c6-dlp-q29",
@@ -433,16 +459,12 @@ export const scienceF1C6QuizzesDLP: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     lang: "dlp",
-    difficulty: "Hard",
-    question: "10 g of substance X reacts completely with 6 g of substance Y in a closed system. What is the total mass of the products formed?",
-    options: [
-      "4 g",
-      "10 g",
-      "16 g",
-      "60 g",
-    ],
-    answerIndex: 2,
-    explanation: "Mass is conserved during a chemical change. The total mass of the reactants equals the total mass of the products, which is 16 g.",
+    difficulty: "Medium",
+    question:
+      "In a closed container, 10 g of substance X reacts completely with 6 g of Y. If 12 g of solid forms and the remaining product is gas, what is the mass of the gas?",
+    options: ["4 g", "6 g", "12 g", "16 g"],
+    answerIndex: 0,
+    explanation: "Total mass in the closed system stays 10 + 6 = 16 g. Gas mass = 16 − 12 = 4 g.",
   },
   {
     id: "sci-f1-c6-dlp-q30",
@@ -450,8 +472,9 @@ export const scienceF1C6QuizzesDLP: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 6",
     lang: "dlp",
-    difficulty: "Hard",
-    question: "Iron and sulfur are heated together until a new substance forms. Why is the product classified as a compound?",
+    difficulty: "Medium",
+    question:
+      "Iron and sulfur are heated together until a new substance forms. Why is the product classified as a compound?",
     options: [
       "Iron and sulfur are physically mixed and retain their original properties",
       "A new substance forms through chemical combination and has properties different from the original substances",
@@ -459,6 +482,7 @@ export const scienceF1C6QuizzesDLP: QuizQuestion[] = [
       "The product can be separated back into iron and sulfur by physical methods",
     ],
     answerIndex: 1,
-    explanation: "A compound forms when elements combine chemically to form a new substance with different properties.",
+    explanation:
+      "A compound forms when elements combine chemically to form a new substance with different properties.",
   },
 ];

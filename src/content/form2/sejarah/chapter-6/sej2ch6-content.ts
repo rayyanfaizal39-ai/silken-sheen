@@ -64,7 +64,7 @@ export interface Sej2Ch6Content {
 export const sej2Ch6Content: Sej2Ch6Content = {
   hook: {
     title: "Kenapa ini penting",
-    body: "Selepas Melaka jatuh pada 1511, warisannya tidak lenyap — ia berpindah ke Johor Riau, yang terpaksa memindahkan pusat pemerintahannya empat kali dan mengalahkan perebut takhta bersenjatakan tentera Bugis, sebelum muncul sebagai pelabuhan entrepot yang disinggahi 500-600 kapal serentak."
+    body: "Waris Kesultanan Melayu Melaka mengasaskan Johor Riau pada 1528. Walaupun berdepan Portugis, Acheh, Jambi dan perebutan takhta, kerajaan ini muncul sebagai pelabuhan entrepot yang menjadi tempat berlabuh 500 hingga 600 buah kapal dagang dan pusat persuratan Melayu, sehingga Perjanjian Inggeris-Belanda 1824."
   },
   founding: {
     founder: "Raja Ali, putera Sultan Mahmud Shah dan Tun Fatimah",
@@ -79,15 +79,15 @@ export const sej2Ch6Content: Sej2Ch6Content = {
     dynastyNote: "1528-1699: diperintah waris berketurunan Kesultanan Melayu Melaka. 1699-1824: diteruskan sultan berketurunan Bendahara Johor. Turut dikenali sebagai Kesultanan Johor Riau Lingga kerana Lingga menjadi pusat pemerintahan semasa Sultan Abdullah Ma'ayat Shah (1615-1623), Sultan Abdul Jalil Rahmat Shah (1718-1722) dan Sultan Mahmud Shah II (1761-1812)"
   },
   challenges: [
-    { name: "Persaingan Johor-Acheh-Portugis (Perang Tiga Segi / Perang Seratus Tahun)", description: "Johor menyerang Portugis di Melaka untuk merampas semula Melaka; Acheh menyerang Johor kerana pakatan Johor-Belanda mengancam perdagangan Acheh; Portugis menyerang Acheh kerana hendak menguasai perdagangan Acheh", outcome: "Berakhir apabila Johor membantu Belanda mengalahkan Portugis dan menguasai Melaka pada 1641; Acheh merosot selepas kemangkatan Sultan Iskandar Thani" },
+    { name: "Persaingan Johor-Acheh-Portugis (Perang Tiga Segi / Perang Seratus Tahun)", description: "Johor menyerang Portugis di Melaka untuk merampas semula Melaka; Acheh menyerang Johor kerana perdagangan Acheh tergugat; Portugis menyerang Johor kerana pakatan Johor-Acheh; Acheh menyerang Portugis di Melaka kerana Portugis hendak menguasai perdagangan Acheh", outcome: "Berakhir apabila Johor membantu Belanda mengalahkan Portugis dan menguasai Melaka pada 1641; Acheh merosot selepas kemangkatan Sultan Iskandar Thani" },
     { name: "Perang Johor-Jambi", description: "Johor menuntut wilayah Tungkal daripada Jambi; krisis dan peperangan berlaku 1659-1679", outcome: "Johor menyerang Jambi pada Jun 1679; Jambi tewas dan tunduk di bawah kuasa Kesultanan Johor Riau yang berpusat di Riau" },
     { name: "Konflik Pembesar", description: "Konflik antara Bendahara Tun Habib Abdul Majid dengan Laksamana Tun Abdul Jamil untuk menguasai pemerintahan", outcome: "Laksamana Tun Abdul Jamil berundur ke Terengganu; keturunan Bendahara kembali berpengaruh — Tun Habib (Bendahara Padang Saujana) digantikan anaknya Tun Abdul Jalil" },
     { name: "Ancaman Raja Kechil", description: "Raja Kechil menyerang Johor (1718), mendakwa diri putera Sultan Mahmud Shah I (Sultan Mahmud Mangkat Dijulang) dan mengisytiharkan diri Sultan Abdul Jalil Rahmat Shah; Raja Sulaiman meminta bantuan Opu Bugis Lima Bersaudara", outcome: "Raja Kechil dikalahkan 4 Oktober 1722; Raja Sulaiman ditabalkan sebagai Sultan Sulaiman Badrul Alam Shah (1722-1760); Daeng Merewah dilantik Yamtuan Muda Bugis pertama di Johor" }
   ],
   strategies: [
-    "Memindahkan pusat pemerintahan (keperluan strategi ketenteraan dan pertahanan)",
-    "Membina kota pertahanan",
-    "Menjalinkan hubungan dengan Belanda — tawaran bantuan bermula 1602; Perjanjian Johor-Belanda ditandatangani 17 Mei 1608 di atas kapal Belanda bernama Oranje; Johor membantu Belanda mengepung dan menyerang Portugis di Melaka dari 2 Ogos 1640 hingga Januari 1641, menewaskan Portugis"
+    "Memindahkan pusat pemerintahan — kebanyakannya di sepanjang Sungai Johor; semasa Sultan Ibrahim (1677-1685) pusat pemerintahan berpindah ke Kepulauan Riau Lingga. Pemindahan dibuat atas keperluan strategi ketenteraan dan pertahanan daripada ancaman Portugis dan Acheh",
+    "Membina kota pertahanan — bentuk dan ciri berubah mengikut lokasi pusat pemerintahan. Contoh: Kota Kara di Kuala Sungai Telor, berpagar pancang kayu besar setinggi 40 kaki (12 meter) dan diperkuatkan dengan bedil serta meriam",
+    "Menjalinkan hubungan dengan Belanda — tawaran bantuan bermula 1602; Perjanjian Johor-Belanda ditandatangani pada 17 Mei 1606 oleh Cornelis Matelief de Jonge dan Sultan Alauddin Riayat Shah II di atas kapal Oranje; Johor membantu mengangkut peralatan perang, membuat tapak meriam, menggali parit kubu dan mengepung Portugis di Melaka sejak 2 Ogos 1640; Portugis tewas pada Januari 1641"
   ],
   goldenAge: {
     intro: "Kesultanan Johor Riau mencapai kegemilangan dalam aspek perdagangan dan persuratan Melayu pada abad ke-16 dan ke-17, menghidupkan kembali tradisi perdagangan dengan Arab, India dan China.",
@@ -124,11 +124,14 @@ export const sej2Ch6Content: Sej2Ch6Content = {
     }
   },
   literature: {
-    intro: "Kesultanan Johor Riau menjadi pusat persuratan Melayu sejak abad ke-16, meneruskan tradisi ilmu Kesultanan Melayu Melaka melalui karya sejarah, hikayat dan keagamaan yang dihasilkan serta disalin di pusat pemerintahan seperti Batu Sawar dan Pulau Penyengat.",
+    intro: "Kesultanan Johor Riau menjadi pusat persuratan Alam Melayu pada abad ke-17 dan ke-18. Batu Sawar dan Pulau Penyengat, Riau memainkan peranan penting dalam penulisan karya persuratan.",
     works: [
-      { title: "Sulalatus Salatin", author: "Disusun dan ditulis semula oleh Tun Seri Lanang (1612)", note: "Bermaksud Salasilah Raja-Raja; naskhah asal bernama Hikayat Melayu; menceritakan asal usul keturunan raja-raja Melaka, adat istiadat kerajaan dan sejarah Kesultanan Melayu Melaka. Tun Seri Lanang (nama sebenar Tun Muhammad bin Tun Ahmad Paduka Raja) ialah Bendahara Johor, dilahirkan di Bukit Seluyut, Kota Tinggi, 1565" },
+      { title: "Sulalatus Salatin", author: "Disusun dan ditulis semula oleh Tun Seri Lanang (1612)", note: "Bermaksud Salasilah Raja-Raja; naskhah asal bernama Hikayat Melayu; menceritakan asal usul keturunan raja-raja Melaka, adat istiadat kerajaan dan sejarah Kesultanan Melayu Melaka. Tun Seri Lanang (nama sebenar Tun Muhammad bin Tun Ahmad Paduka Raja), dilahirkan di Bukit Seluyut, Kota Tinggi pada 1565, ialah Bendahara Johor semasa Sultan Alauddin Riayat Shah II; menulis atas titah Raja Abdullah dan kemudian menjadi penasihat Sultan Iskandar Muda, Acheh" },
       { title: "Hikayat Hang Tuah", author: "Pengarang dari Johor, selepas kekalahan Portugis di Melaka (1641)", note: "Epik kepahlawanan mengenai ketaatan dan kesetiaan Hang Tuah kepada raja dan Kesultanan Melayu Melaka" },
-      { title: "Tajul Salatin", author: "Bukhari al-Jauhari, dihasilkan di Acheh (1603)", note: "Bermaksud Makota Raja-Raja; karya tentang pemerintahan — panduan bagi raja dan golongan pemerintah mentadbir negara secara adil" }
+      { title: "Tajul Salatin", author: "Bukhari al-Jauhari", note: "Atau Mahkota Raja-Raja; antara karya persuratan yang tersohor pada zaman Kesultanan Johor Riau" },
+      { title: "Tuhfat al-Nafis, Salasilah Melayu dan Bugis, Gurindam Dua Belas", author: "Raja Ali Haji", note: "Karya persuratan zaman Kesultanan Johor Riau" },
+      { title: "Hikayat Anak Panah Sedasa", author: "Tun Hisap Misai", note: "Karya persuratan zaman Kesultanan Johor Riau" },
+      { title: "Syair Ungku Puteri", author: "Raja Ahmad", note: "Karya persuratan zaman Kesultanan Johor Riau" }
     ]
   },
   keyExamFacts: [
@@ -138,13 +141,13 @@ export const sej2Ch6Content: Sej2Ch6Content = {
     "Perang Johor-Jambi (1659-1679) — Jambi tewas Jun 1679",
     "Raja Kechil menyerang Johor 1718; dikalahkan 4 Oktober 1722 dengan bantuan Opu Bugis Lima Bersaudara",
     "Daeng Merewah menjadi Yamtuan Muda Bugis pertama di Johor",
-    "Perjanjian Johor-Belanda ditandatangani 17 Mei 1608 di atas kapal Oranje; Portugis ditewaskan di Melaka Januari 1641",
-    "500-600 kapal dagang berlabuh di Pelabuhan Riau — pelabuhan entrepot",
+    "Perjanjian Johor-Belanda ditandatangani 17 Mei 1606 di atas kapal Oranje; Portugis ditewaskan di Melaka Januari 1641",
+    "500 hingga 600 buah kapal dagang berlabuh di pelabuhan Johor, terutamanya di Riau",
     "3 mata wang Johor Riau: Mas (emas), Kupang (perak), Katun (timah)",
     "Sistem Naungan memberi perlindungan kepada pedagang melalui Bendahara, Temenggung, Laksamana dan Raja Indera Bongsu",
     "Orang Laut menjaga keselamatan, menunjuk arah dan mahir membina kapal seperti kolek, banteng, penjajap, balok dan pencalang",
     "Johor Riau turut dikenali sebagai Kesultanan Johor Riau Lingga",
-    "Sulalatus Salatin disusun semula oleh Tun Seri Lanang pada 1612; Tajul Salatin (Makota Raja-Raja) dikarang Bukhari al-Jauhari di Acheh pada 1603"
+    "Sulalatus Salatin disusun semula oleh Tun Seri Lanang pada 1612; Tajul Salatin (Mahkota Raja-Raja) dikarang oleh Bukhari al-Jauhari"
   ],
   keyTerms: [
     "Raja Ali", "Sultan Alauddin Riayat Shah I", "Perang Tiga Segi", "Perang Seratus Tahun",
@@ -152,5 +155,5 @@ export const sej2Ch6Content: Sej2Ch6Content = {
     "Syahbandar", "Mas", "Kupang", "Katun", "Pelabuhan entrepot", "Sistem Naungan", "Orang Laut",
     "Sulalatus Salatin", "Tun Seri Lanang", "Hikayat Hang Tuah", "Tajul Salatin"
   ],
-  chapterSummary: "Bab 6 mengkaji pengasasan Kesultanan Johor Riau oleh Sultan Alauddin Riayat Shah I (1528) sebagai waris Melaka, empat cabaran ke arah kegemilangan (Perang Tiga Segi, Perang Johor-Jambi, konflik pembesar, ancaman Raja Kechil), strategi menghadapi cabaran termasuk pakatan dengan Belanda, kegemilangan sebagai pusat perdagangan entrepot dengan sistem mata wang, Sistem Naungan dan peranan Orang Laut, serta kedudukannya sebagai pusat persuratan Melayu yang melahirkan Sulalatus Salatin, Hikayat Hang Tuah dan Tajul Salatin."
+  chapterSummary: "Bab 6 mengkaji pengasasan Kesultanan Johor Riau oleh Sultan Alauddin Riayat Shah I (1528) sebagai waris Melaka, empat cabaran ke arah kegemilangan (Perang Tiga Segi, Perang Johor-Jambi, konflik pembesar, ancaman Raja Kechil), strategi menghadapi cabaran termasuk pakatan dengan Belanda, kegemilangan sebagai pusat perdagangan entrepot dengan sistem mata wang, Sistem Naungan dan peranan Orang Laut, serta kedudukannya sebagai pusat persuratan Melayu yang melahirkan Sulalatus Salatin, Hikayat Hang Tuah dan Tajul Salatin. Sistem pemerintahan bercorak empayar ini berakhir dengan Perjanjian Inggeris-Belanda 1824."
 };

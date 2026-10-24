@@ -33,7 +33,8 @@ export const scienceF1C5QuizzesDLP: QuizQuestion[] = [
       "Air has mass but does not occupy space",
     ],
     answerIndex: 2,
-    explanation: "Matter is anything that has mass and occupies space. Air has both of these properties.",
+    explanation:
+      "Matter is anything that has mass and occupies space. Air has both of these properties.",
   },
   {
     id: "sci-f1-c5-dlp-q3",
@@ -74,9 +75,9 @@ export const scienceF1C5QuizzesDLP: QuizQuestion[] = [
     question: "What does occupying space mean?",
     options: [
       "Having volume",
-      "Cannot be seen",
-      "Having no weight",
-      "Producing light",
+      "Having a fixed shape",
+      "Having a fixed temperature",
+      "Having a high density",
     ],
     answerIndex: 0,
     explanation: "An object that occupies space has volume.",
@@ -91,7 +92,8 @@ export const scienceF1C5QuizzesDLP: QuizQuestion[] = [
     question: "Which of the following is a physical property of matter?",
     options: ["Melting point", "Flammability", "Rusting", "Decomposition"],
     answerIndex: 0,
-    explanation: "Melting point is a physical property because it can be identified without forming a new substance.",
+    explanation:
+      "Melting point is a physical property because it can be identified without forming a new substance.",
   },
   {
     id: "sci-f1-c5-dlp-q7",
@@ -103,7 +105,8 @@ export const scienceF1C5QuizzesDLP: QuizQuestion[] = [
     question: "Which of the following is a chemical property of matter?",
     options: ["Flammability", "Boiling point", "Density", "Solubility"],
     answerIndex: 0,
-    explanation: "Flammability is a chemical property because burning changes a substance into new substances.",
+    explanation:
+      "Flammability is a chemical property because burning changes a substance into new substances.",
   },
   {
     id: "sci-f1-c5-dlp-q8",
@@ -112,8 +115,13 @@ export const scienceF1C5QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 5",
     lang: "dlp",
     difficulty: "Easy",
-    question: "Which state of matter has a fixed shape and fixed volume?",
-    options: ["Solid", "Liquid", "Gas", "Vapour"],
+    question: "Which combination describes a solid?",
+    options: [
+      "Fixed shape and fixed volume",
+      "Fixed shape and variable volume",
+      "Variable shape and fixed volume",
+      "Variable shape and variable volume",
+    ],
     answerIndex: 0,
     explanation: "A solid has a fixed shape and a fixed volume.",
   },
@@ -141,8 +149,14 @@ export const scienceF1C5QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 5",
     lang: "dlp",
     difficulty: "Easy",
-    question: "Which state of matter takes the shape of its container but has a fixed volume?",
-    options: ["Liquid", "Solid", "Gas", "Light"],
+    question:
+      "Water is poured from a narrow bottle into a wide bowl without loss. Which change is expected?",
+    options: [
+      "Shape changes but volume stays the same",
+      "Shape stays the same but volume changes",
+      "Both shape and volume stay the same",
+      "Both shape and volume increase",
+    ],
     answerIndex: 0,
     explanation: "A liquid takes the shape of its container but has a fixed volume.",
   },
@@ -161,7 +175,8 @@ export const scienceF1C5QuizzesDLP: QuizQuestion[] = [
       "Each gas particle loses mass when pressure is applied",
     ],
     answerIndex: 0,
-    explanation: "The large spaces between gas particles allow the particles to be pushed closer together when pressure is applied.",
+    explanation:
+      "The large spaces between gas particles allow the particles to be pushed closer together when pressure is applied.",
   },
   {
     id: "sci-f1-c5-dlp-q12",
@@ -178,7 +193,8 @@ export const scienceF1C5QuizzesDLP: QuizQuestion[] = [
       "Production of a new substance",
     ],
     answerIndex: 0,
-    explanation: "Diffusion occurs when particles move from an area of high concentration to an area of low concentration.",
+    explanation:
+      "Diffusion occurs when particles move from an area of high concentration to an area of low concentration.",
   },
   {
     id: "sci-f1-c5-dlp-q13",
@@ -187,8 +203,13 @@ export const scienceF1C5QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 5",
     lang: "dlp",
     difficulty: "Easy",
-    question: "In which state of matter does diffusion happen the fastest?",
-    options: ["Gas", "Liquid", "Solid", "Ice"],
+    question: "Which order shows diffusion from fastest to slowest?",
+    options: [
+      "Gas → liquid → solid",
+      "Liquid → gas → solid",
+      "Solid → liquid → gas",
+      "Gas → solid → liquid",
+    ],
     answerIndex: 0,
     explanation: "Diffusion is fastest in gases because gas particles move freely and rapidly.",
   },
@@ -212,7 +233,12 @@ export const scienceF1C5QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "What is the formula for density?",
-    options: ["Density = Mass / Volume", "Density = Volume / Mass", "Density = Mass x Temperature", "Density = Force / Area"],
+    options: [
+      "Density = Mass / Volume",
+      "Density = Volume / Mass",
+      "Density = Mass x Temperature",
+      "Density = Force / Area",
+    ],
     answerIndex: 0,
     explanation: "Density is calculated by dividing mass by volume.",
   },
@@ -223,7 +249,8 @@ export const scienceF1C5QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 5",
     lang: "dlp",
     difficulty: "Medium",
-    question: "Two substances have the same colour but different boiling points. Which property is most suitable for distinguishing between them?",
+    question:
+      "Two substances have the same colour but different boiling points. Which property is most suitable for distinguishing between them?",
     options: [
       "Colour of the substances",
       "Boiling point",
@@ -231,7 +258,8 @@ export const scienceF1C5QuizzesDLP: QuizQuestion[] = [
       "Amount of substance",
     ],
     answerIndex: 1,
-    explanation: "Boiling point is a physical property that can be used to identify and classify substances.",
+    explanation:
+      "Boiling point is a physical property that can be used to identify and classify substances.",
   },
   {
     id: "sci-f1-c5-dlp-q17",
@@ -242,10 +270,10 @@ export const scienceF1C5QuizzesDLP: QuizQuestion[] = [
     difficulty: "Medium",
     question: "Why does gas take the shape and volume of its container?",
     options: [
-      "Gas particles are far apart and move freely",
-      "Gas particles are closely packed and fixed",
-      "Gas has no particles",
-      "Gas always becomes solid",
+      "Particles are far apart and move freely throughout the container",
+      "Particles are close together and vibrate at fixed positions",
+      "Particles are close together and slide past one another",
+      "Particles are far apart but remain at fixed positions",
     ],
     answerIndex: 0,
     explanation: "Gas particles are far apart and move freely, so gas fills the whole container.",
@@ -265,7 +293,8 @@ export const scienceF1C5QuizzesDLP: QuizQuestion[] = [
       "The particles release heat and become more orderly in their arrangement",
     ],
     answerIndex: 1,
-    explanation: "As the solid is heated, its particles absorb heat energy and move more actively until the fixed arrangement of the solid can no longer be maintained.",
+    explanation:
+      "As the solid is heated, its particles absorb heat energy and move more actively until the fixed arrangement of the solid can no longer be maintained.",
   },
   {
     id: "sci-f1-c5-dlp-q19",
@@ -273,7 +302,7 @@ export const scienceF1C5QuizzesDLP: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 5",
     lang: "dlp",
-    difficulty: "Medium",
+    difficulty: "Easy",
     question: "What is the change from liquid to gas at boiling point called?",
     options: ["Boiling", "Freezing", "Condensation", "Melting"],
     answerIndex: 0,
@@ -286,7 +315,8 @@ export const scienceF1C5QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 5",
     lang: "dlp",
     difficulty: "Medium",
-    question: "Water vapour forms water droplets on the outside of a cold glass. What happens to the water vapour particles?",
+    question:
+      "Water vapour forms water droplets on the outside of a cold glass. What happens to the water vapour particles?",
     options: [
       "They absorb heat, move faster and become further apart",
       "They release heat, move faster and become further apart",
@@ -294,7 +324,8 @@ export const scienceF1C5QuizzesDLP: QuizQuestion[] = [
       "They absorb heat, move more slowly and become closer together",
     ],
     answerIndex: 2,
-    explanation: "During condensation, a gas releases heat. Its particles lose kinetic energy, move more slowly and become closer together to form a liquid.",
+    explanation:
+      "During condensation, a gas releases heat. Its particles lose kinetic energy, move more slowly and become closer together to form a liquid.",
   },
   {
     id: "sci-f1-c5-dlp-q21",
@@ -315,7 +346,8 @@ export const scienceF1C5QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 5",
     lang: "dlp",
     difficulty: "Medium",
-    question: "Ice is melting at its melting point. Although heat continues to be supplied, its temperature remains constant for a period of time. Why?",
+    question:
+      "Ice is melting at its melting point. Although heat continues to be supplied, its temperature remains constant for a period of time. Why?",
     options: [
       "The heat energy is used to overcome the forces of attraction between particles during the change of state",
       "The heat energy is used to increase the mass of each particle in the ice",
@@ -323,7 +355,8 @@ export const scienceF1C5QuizzesDLP: QuizQuestion[] = [
       "The heat energy is no longer absorbed while any ice remains",
     ],
     answerIndex: 0,
-    explanation: "During a change of state, the absorbed heat energy is used to overcome forces of attraction between particles rather than increase the temperature.",
+    explanation:
+      "During a change of state, the absorbed heat energy is used to overcome forces of attraction between particles rather than increase the temperature.",
   },
   {
     id: "sci-f1-c5-dlp-q23",
@@ -332,15 +365,12 @@ export const scienceF1C5QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 5",
     lang: "dlp",
     difficulty: "Medium",
-    question: "100 g of water is completely frozen into ice without any substance entering or leaving the container. What is the mass of the ice?",
-    options: [
-      "Less than 100 g",
-      "More than 100 g",
-      "0 g",
-      "100 g",
-    ],
+    question:
+      "100 g of water is completely frozen into ice without any substance entering or leaving the container. What is the mass of the ice?",
+    options: ["Less than 100 g", "More than 100 g", "0 g", "100 g"],
     answerIndex: 3,
-    explanation: "Mass remains unchanged during a physical change as long as no matter enters or leaves the system.",
+    explanation:
+      "Mass remains unchanged during a physical change as long as no matter enters or leaves the system.",
   },
   {
     id: "sci-f1-c5-dlp-q24",
@@ -361,15 +391,12 @@ export const scienceF1C5QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 5",
     lang: "dlp",
     difficulty: "Medium",
-    question: "Wet clothes become dry when they are left outside. Which process changes the water in the clothes into water vapour?",
-    options: [
-      "Condensation",
-      "Evaporation",
-      "Freezing",
-      "Sublimation",
-    ],
+    question:
+      "Wet clothes become dry when they are left outside. Which process changes the water in the clothes into water vapour?",
+    options: ["Condensation", "Evaporation", "Freezing", "Sublimation"],
     answerIndex: 1,
-    explanation: "Evaporation is the change of a liquid into a gas from the surface of the liquid.",
+    explanation:
+      "Evaporation changes liquid water into water vapour and can occur at any temperature.",
   },
   {
     id: "sci-f1-c5-dlp-q26",
@@ -378,15 +405,17 @@ export const scienceF1C5QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 5",
     lang: "dlp",
     difficulty: "Hard",
-    question: "Why does gas diffuse faster than solid?",
+    question:
+      "Copper(II) sulfate spreads faster through water than through jelly at the same temperature. Which conclusion and test condition are justified?",
     options: [
-      "Gas particles are far apart and move more freely",
-      "Gas particles are arranged closely",
-      "Gas has a fixed volume",
-      "Solids do not have particles",
+      "Diffusion is faster in the liquid; temperature must be controlled",
+      "Diffusion is faster in the solid; temperature must be controlled",
+      "Diffusion is faster in the liquid; use different temperatures for comparison",
+      "Diffusion is equally fast; the different spreading times can be ignored",
     ],
     answerIndex: 0,
-    explanation: "Gas particles are far apart and move quickly, so diffusion occurs faster.",
+    explanation:
+      "The observations support faster diffusion in liquid than in solid. Keeping temperature the same allows the diffusion media to be compared.",
   },
   {
     id: "sci-f1-c5-dlp-q27",
@@ -394,16 +423,17 @@ export const scienceF1C5QuizzesDLP: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 5",
     lang: "dlp",
-    difficulty: "Hard",
+    difficulty: "Medium",
     question: "Why does ice float on water?",
     options: [
       "Ice is less dense than water",
       "Ice is denser than water",
-      "Ice has no mass",
-      "Water is non-matter",
+      "Ice and water have the same density",
+      "Ice floats because all solids float in liquids",
     ],
     answerIndex: 0,
-    explanation: "An object floats if it is less dense than the liquid. Ice is less dense than water.",
+    explanation:
+      "An object floats if it is less dense than the liquid. Ice is less dense than water.",
   },
   {
     id: "sci-f1-c5-dlp-q28",
@@ -411,16 +441,18 @@ export const scienceF1C5QuizzesDLP: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 5",
     lang: "dlp",
-    difficulty: "Hard",
-    question: "If heat continues to be supplied to a liquid, what is the best prediction about its particles?",
+    difficulty: "Medium",
+    question:
+      "A liquid is boiling while heat continues to be supplied. Its temperature stays constant. Which statement about the heat and particles is correct?",
     options: [
-      "Particles move faster and may change into gas",
-      "Particles become closer and fixed",
-      "Particles disappear completely",
-      "Particles change into sound",
+      "Heat overcomes attraction between particles as liquid changes to gas",
+      "Heat makes each particle grow larger while the liquid stays unchanged",
+      "Heat is no longer absorbed until all liquid has disappeared",
+      "Heat continuously increases particle kinetic energy during the plateau",
     ],
     answerIndex: 0,
-    explanation: "Heat increases particle kinetic energy. A liquid may change into gas through boiling or evaporation.",
+    explanation:
+      "During boiling, heat is used to overcome attraction between particles. Temperature remains constant during the change of state.",
   },
   {
     id: "sci-f1-c5-dlp-q29",
@@ -428,11 +460,18 @@ export const scienceF1C5QuizzesDLP: QuizQuestion[] = [
     form: "Form 1",
     chapter: "Chapter 5",
     lang: "dlp",
-    difficulty: "Hard",
-    question: "Ali wants to test whether a material burns easily. What type of property is being tested?",
-    options: ["Chemical property", "Physical property", "Volume", "Mass only"],
+    difficulty: "Medium",
+    question:
+      "Two experiments are performed: P melts candle wax, while Q burns magnesium ribbon to form a white powder. Which statement distinguishes chemical from physical change?",
+    options: [
+      "Q forms a new substance, whereas P undergoes melting only",
+      "P forms a new substance, whereas Q undergoes melting only",
+      "Both form new substances because heat is supplied",
+      "Both only change shape without forming a new substance",
+    ],
     answerIndex: 0,
-    explanation: "Flammability is a chemical property because burning produces new substances.",
+    explanation:
+      "Burning magnesium forms magnesium oxide, a new substance. Melting wax is mainly a physical change of state without producing a new substance.",
   },
   {
     id: "sci-f1-c5-dlp-q30",
@@ -441,14 +480,16 @@ export const scienceF1C5QuizzesDLP: QuizQuestion[] = [
     chapter: "Chapter 5",
     lang: "dlp",
     difficulty: "Hard",
-    question: "An object sinks in water. What is the most suitable conclusion?",
+    question:
+      "Object X has a mass of 24 g and volume of 30 cm³, while Y has a mass of 42 g and volume of 30 cm³. Both are placed in water of density 1.0 g cm⁻³. Which prediction is correct?",
     options: [
-      "The object is denser than water",
-      "The object is less dense than water",
-      "The object is non-matter",
-      "The object has no volume",
+      "X floats while Y sinks",
+      "X sinks while Y floats",
+      "Both objects float",
+      "Both objects sink",
     ],
     answerIndex: 0,
-    explanation: "An object that is denser than a liquid will sink.",
+    explanation:
+      "Density of X = 24 ÷ 30 = 0.8 g cm⁻³, less than water; density of Y = 42 ÷ 30 = 1.4 g cm⁻³, greater than water. Hence X floats and Y sinks.",
   },
 ];

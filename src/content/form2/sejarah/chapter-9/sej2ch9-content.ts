@@ -57,7 +57,7 @@ export interface Sej2Ch9Content {
 export const sej2Ch9Content: Sej2Ch9Content = {
   hook: {
     title: "Kenapa ini penting",
-    body: "Di Negeri Sembilan, jika tiada Ibu Soko, tiada seorang pun pemimpin adat boleh dilantik pada sebarang peringkat — sebuah sistem matrilineal yang unik di seluruh Malaysia. Bab ini menunjukkan bagaimana warisan pemerintahan boleh kekal relevan hingga kini dalam bentuk yang sangat berbeza antara satu negeri dengan yang lain.",
+    body: "Kedah, Kelantan dan Perlis mewarisi sistem pemerintahan beraja, adat istiadat, perundangan, persuratan dan kesenian hingga kini. Di Negeri Sembilan, Adat Perpatih menurut jurai keturunan sebelah ibu, dan jika tiada Ibu Soko, semua peringkat pelantikan pemimpin adat tidak boleh dilaksanakan.",
   },
   legacyOfThreeKingdoms: {
     intro: "Kelangsungan kewujudan kerajaan Kedah, Kelantan dan Perlis hingga kini diiringi kegemilangan mengharungi pelbagai cabaran sejak pengasasan. Warisan ini dapat dilihat menerusi sistem pemerintahan beraja, adat istiadat, perundangan, persuratan dan kesenian.",
@@ -135,7 +135,7 @@ export const sej2Ch9Content: Sej2Ch9Content = {
     features: [
       { feature: "Jurai Keturunan Sebelah Ibu", points: ["Kaum perempuan dianggap Ibu Soko — ibu yang melahirkan anggota masyarakat", "Setiap anak merupakan anggota suku ibunya", "Anggota suku dianggap sedarah kerana berasal daripada moyang perempuan yang sama"] },
       { feature: "Pelaksanaan Hukuman", points: ["Bersifat pemulihan, mengutamakan kebaikan pesalah", "Kesalahan kecil diselesaikan dengan bermaafan atau denda ringan"] },
-      { feature: "Perkahwinan", points: ["Perkahwinan sesama suku tidak digalakkan (dianggap keluarga besar/bersaudara)", "Digalakkan berkahwin luar suku untuk mewujudkan hubungan persaudaraan antara suku", "Lelaki yang berkahwin menjadi 'orang semenda' (tinggal di rumah isteri, anggota suku isteri)", "Wanita berkahwin sesama suku hilang hak mewarisi pusaka; lelaki hilang hak jawatan adat — boleh dipulihkan melalui adat memulih pusaka"] },
+      { feature: "Perkahwinan", points: ["Perkahwinan sesama suku tidak digalakkan (dianggap keluarga besar/bersaudara)", "Digalakkan berkahwin luar suku untuk mewujudkan hubungan persaudaraan antara suku", "Lelaki yang berkahwin menjadi 'orang semenda' (tinggal di rumah isteri, menjadi anggota suku isteri dan mengerjakan tanah pusaka isteri)", "Wanita berkahwin sesama suku hilang hak mewarisi pusaka; lelaki hilang hak jawatan adat — boleh dipulihkan melalui adat memulih pusaka"] },
       { feature: "Upacara Kedim", points: ["Menerima orang luar suku menjadi ahli suku", "Bersumpah taat setia dan bersaudara dengan ahli suku yang disertai"] },
       { feature: "Wanita Mewarisi Pusaka", points: ["Wanita mewarisi harta pusaka (termasuk tanah dan rumah) supaya tidak terabai", "Diwarisi turun-temurun daripada ibu kepada anak perempuan"] },
     ],
@@ -146,7 +146,7 @@ export const sej2Ch9Content: Sej2Ch9Content = {
       { role: "Undang", selectedBy: "Dilantik oleh Lembaga", functions: ["Ketua Luak (Sungai Ujong, Jelebu, Johol, Rembau)", "Berkerapatan memilih Yamtuan Besar daripada keturunan Yamtuan Radin"] },
       { role: "Lembaga", selectedBy: "Dilantik oleh Buapak", functions: ["Ketua Suku", "Memilih Undang dan Penghulu", "Menjaga keamanan dan keselamatan", "Menyelesaikan pertelingkahan antara suku", "Mengurus pembahagian harta pusaka"] },
       { role: "Buapak", selectedBy: "Dilantik oleh Anak Buah dalam Perut", functions: ["Ketua rujukan aspek adat dan hukum"] },
-      { role: "Ibu Soko", selectedBy: "Peranan diwarisi (Ibu Waris di Johol; Ibu Telapak di Tampin)", functions: ["Mengetahui, memahami, menghafal adat dan asal usul kelompok", "Terlibat langsung dalam pemilihan dan pelantikan Buapak", "Tanpa Ibu Soko, semua peringkat pelantikan pemimpin adat tidak boleh dilaksanakan"] },
+      { role: "Ibu Soko", selectedBy: "Dikenali juga sebagai Ibu Waris (Johol), Ibu Telapak (Tampin) dan Bundo Kanduang (Minangkabau)", functions: ["Mengetahui, memahami, menghafal adat dan asal usul kelompok", "Terlibat langsung dalam pemilihan dan pelantikan Buapak", "Tanpa Ibu Soko, semua peringkat pelantikan pemimpin adat tidak boleh dilaksanakan"] },
     ],
     societalGroups: ["Perut (unit terkecil, keturunan sebelah ibu)", "Suku (dibentuk beberapa Perut)", "Luak (daerah/jajahan, kumpulan terbesar)"],
   },
@@ -169,6 +169,6 @@ export const sej2Ch9Content: Sej2Ch9Content = {
     "Perut", "Suku", "Luak", "Undang Yang Empat", "Lembaga", "Buapak", "Yamtuan Besar",
     "Mek Mulung", "Awang Batil",
   ],
-  chapterSummary: "Bab 9 mengkaji warisan kerajaan Kedah, Kelantan dan Perlis dalam 5 aspek (pemerintahan beraja, adat istiadat, perundangan, persuratan, kesenian), termasuk salasilah lengkap Raja Perlis dan langkah istiadat pertabalan, serta keunikan Adat Perpatih Negeri Sembilan — sistem matrilineal yang meliputi jurai keturunan sebelah ibu, peraturan perkahwinan luar suku, upacara kedim, pewarisan harta oleh wanita, dan hierarki pemerintahan adat (Yamtuan Besar, Undang, Lembaga, Buapak, Ibu Soko).",
+  chapterSummary: "Bab 9 mengkaji warisan kerajaan Kedah, Kelantan dan Perlis dalam 5 aspek (pemerintahan beraja, adat istiadat, perundangan, persuratan, kesenian), termasuk salasilah lengkap Raja Perlis dan langkah istiadat pertabalan, serta keunikan Adat Perpatih Negeri Sembilan — meliputi jurai keturunan sebelah ibu, peraturan perkahwinan luar suku, upacara kedim, pewarisan harta oleh wanita, dan hierarki pemerintahan adat (Yamtuan Besar, Undang, Lembaga, Buapak, Ibu Soko).",
 };
 

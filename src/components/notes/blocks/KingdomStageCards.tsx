@@ -20,35 +20,32 @@ export function KingdomStageCards({ kingdoms }: { kingdoms: KingdomStageItem[] }
       {kingdoms.map((k, i) => {
         const glow = neon[ROTATION[i % ROTATION.length]];
         return (
-          <div key={k.name} className="rounded-2xl p-4" style={{ background: bgPanel, boxShadow: groupGlow(glow, 16, 0.12) }}>
+          <div key={k.name} className={`rounded-2xl p-4 ${kingdoms.length % 2 === 1 && i === kingdoms.length - 1 ? "sm:col-span-2" : ""}`} style={{ background: bgPanel, boxShadow: groupGlow(glow, 16, 0.12) }}>
             <h4 className="font-display text-[14px] font-bold text-foreground">{k.name}</h4>
-            <p className="mt-1 text-[10.5px] text-muted-foreground">
-              {k.location} · {k.era} · {k.capital}
-            </p>
 
             {(k.founder || k.foundingStory) && (
               <div className="mt-3 rounded-lg p-2.5" style={{ background: bgCard }}>
-                <p className="text-[9.5px] font-bold uppercase tracking-wide" style={{ color: neon.blue }}>
+                <p className="text-[10px] font-bold uppercase tracking-wide" style={{ color: neon.blue }}>
                   Pengasas
                 </p>
-                <p className="mt-0.5 text-[10.5px] leading-relaxed text-muted-foreground">
+                <p className="mt-0.5 text-[12px] leading-relaxed text-muted-foreground">
                   {[k.founder, k.foundingStory].filter(Boolean).join(" — ")}
                 </p>
               </div>
             )}
 
             <div className="mt-2 rounded-lg p-2.5" style={{ background: bgCard }}>
-              <p className="text-[9.5px] font-bold uppercase tracking-wide" style={{ color: neon.amber }}>
+              <p className="text-[10px] font-bold uppercase tracking-wide" style={{ color: neon.amber }}>
                 Kemasyhuran
               </p>
-              <p className="mt-0.5 text-[10.5px] leading-relaxed text-muted-foreground">{k.glory}</p>
+              <p className="mt-0.5 text-[12px] leading-relaxed text-muted-foreground">{k.glory}</p>
             </div>
 
             <div className="mt-2 rounded-lg p-2.5" style={{ background: bgCard }}>
-              <p className="text-[9.5px] font-bold uppercase tracking-wide" style={{ color: neon.red }}>
+              <p className="text-[10px] font-bold uppercase tracking-wide" style={{ color: neon.red }}>
                 Kemerosotan
               </p>
-              <p className="mt-0.5 text-[10.5px] leading-relaxed text-muted-foreground">{k.decline}</p>
+              <p className="mt-0.5 text-[12px] leading-relaxed text-muted-foreground">{k.decline}</p>
             </div>
           </div>
         );

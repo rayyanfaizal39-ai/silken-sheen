@@ -10,7 +10,7 @@ const cardContent: Array<[front: string, back: string]> = [
   ["Apakah bukti tulisan kerajaan Funan?", "Penemuan batu bersurat."],
   ["Apakah bahasa kerajaan Champa?", "Bahasa Melayu Champa dan Sanskrit."],
   ["Apakah tulisan kerajaan Champa?", "Tulisan Palava dan tulisan Champa Kuno."],
-  ["Apakah bahasa utama Champa selepas Islam?", "Bahasa Melayu."],
+  ["Apakah bahasa utama Champa selepas Islam?", "Bahasa Melayu Champa."],
   ["Tulisan apakah berkembang di Champa selepas Islam?", "Tulisan Jawi."],
   ["Apakah bahasa utama Srivijaya?", "Bahasa Melayu."],
   ["Apakah tulisan kerajaan Srivijaya?", "Tulisan Palava."],
@@ -23,7 +23,7 @@ const cardContent: Array<[front: string, back: string]> = [
   ["Apakah fungsi huruf Arab dalam tulisan Pegon?", "Menulis bahasa Jawa."],
   ["Apakah bahasa kerajaan Kedah Tua?", "Bahasa Sanskrit."],
   ["Apakah tulisan kerajaan Kedah Tua?", "Tulisan Palava."],
-  ["Apakah batu bersurat di Sungai Mas?", "Batu Bersurat Sungai Mas."],
+  ["Batu bersurat Sungai Mas dan Cherok Tok Kun di Kedah Tua bertarikh abad berapa?", "Abad kelima."],
   ["Apakah satu lagi batu bersurat Kedah Tua?", "Batu Bersurat Cherok Tok Kun."],
 
   // Deck 2: Persuratan
@@ -31,16 +31,16 @@ const cardContent: Array<[front: string, back: string]> = [
   ["Namakan satu tema tradisi lisan.", "Asal-usul, binatang, nasihat, teladan atau adat."],
   ["Apakah bukti awal persuratan?", "Batu bersurat."],
   ["Batu bersurat Funan berasal dari abad berapa?", "Abad ke-2."],
-  ["Batu bersurat tertua Champa bertarikh bila?", "Tahun 192M."],
-  ["Berapa batu bersurat Champa ditemukan?", "Lebih 200 batu bersurat."],
+  ["Batu bersurat tertua Champa bertarikh bila?", "Tahun 192 M (di Kauthara)."],
+  ["Berapa batu bersurat Champa ditemukan?", "Sebanyak 206 buah batu bersurat."],
   ["Namakan satu karya terkenal Champa.", "Akayet Inra Patra atau Akayet Deva Mano."],
   ["Karang Brahi ialah batu bersurat kerajaan mana?", "Kerajaan Srivijaya."],
   ["Palas Pasemah ialah batu bersurat kerajaan mana?", "Kerajaan Srivijaya."],
-  ["Apakah tujuan batu bersurat Srivijaya?", "Mengukuhkan kesetiaan kepada raja."],
+  ["Apakah isi batu bersurat Karang Brahi dan Palas Pasemah?", "Pengukuhan kerajaan, terutama kepentingan taat setia terhadap raja."],
   ["Talang Tuwo bertarikh tahun berapa?", "Tahun Saka 606."],
   ["Apakah kandungan Batu Bersurat Talang Tuwo?", "Pembukaan taman oleh Sri Jayanasa."],
   ["Sdok Kok Thom ialah batu bersurat kerajaan mana?", "Kerajaan Angkor."],
-  ["Di manakah inskripsi Angkor turut ditemukan?", "Pada dinding kuil."],
+  ["Di manakah inskripsi Angkor turut ditemukan?", "Pada dinding candi."],
   ["Trowulan ialah batu bersurat kerajaan mana?", "Kerajaan Majapahit."],
   [
     "Namakan satu karya persuratan Majapahit.",
@@ -75,7 +75,7 @@ const cardContent: Array<[front: string, back: string]> = [
   ["Di manakah seni bina candi Kedah Tua banyak ditemukan?", "Di Lembah Bujang."],
   [
     "Apakah bukti seni bina kerajaan Gangga Nagara di Tanjung Rambutan?",
-    "Patung Buddha daripada gangsa.",
+    "Patung Buddha gangsa setinggi 18 meter.",
   ],
   [
     "Apakah dua kelas utama struktur sosial masyarakat Alam Melayu?",

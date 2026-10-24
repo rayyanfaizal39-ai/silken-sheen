@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 1000" width="760" height="1000" role="img" aria-label="Kerajaan Alam Melayu dan kerajaan luar yang sezaman mengikut abad">
+<title>Kerajaan Sezaman Mengikut Abad</title>
+<metadata>Rajah perbandingan. Sumber: buku teks hlm. 14-15.</metadata>
+<rect width="760" height="1000" rx="20" fill="#0f172a"/>
+<text x="380" y="68" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="40" font-weight="700" fill="#f1f5f9">Kerajaan Sezaman Mengikut Abad</text>
+<rect x="340" y="98" width="80" height="5" rx="2.5" fill="#38bdf8"/>
+<rect x="28" y="130" width="704" height="50" rx="12" fill="#38bdf8"/><text x="48" y="165" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="30" font-weight="800" fill="#0f172a">Abad Pertama</text>
+<rect x="28" y="192" width="344" height="206" rx="12" fill="#162033" stroke="#334155" stroke-width="2"/><text x="46" y="228" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="700" fill="#38bdf8">Kerajaan Alam Melayu</text>
+<circle cx="54" cy="259" r="6" fill="#38bdf8"/>
+<text x="72" y="268" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#f1f5f9">Funan</text>
+<rect x="388" y="192" width="344" height="206" rx="12" fill="#162033" stroke="#334155" stroke-width="2"/><text x="406" y="228" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="700" fill="#f59e0b">Kerajaan luar sezaman</text>
+<circle cx="414" cy="259" r="6" fill="#f59e0b"/>
+<text x="432" y="268" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#f1f5f9">Empayar Rom</text>
+<circle cx="414" cy="295" r="6" fill="#f59e0b"/>
+<text x="432" y="304" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#f1f5f9">Empayar Parsi</text>
+<circle cx="414" cy="331" r="6" fill="#f59e0b"/>
+<text x="432" y="340" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#f1f5f9">Empayar Kushan</text>
+<circle cx="414" cy="367" r="6" fill="#f59e0b"/>
+<text x="432" y="376" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#f1f5f9">Dinasti Han</text>
+<rect x="28" y="414" width="704" height="50" rx="12" fill="#34d399"/><text x="48" y="449" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="30" font-weight="800" fill="#0f172a">Abad Kesembilan</text>
+<rect x="28" y="476" width="344" height="206" rx="12" fill="#162033" stroke="#334155" stroke-width="2"/><text x="46" y="512" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="700" fill="#38bdf8">Kerajaan Alam Melayu</text>
+<circle cx="54" cy="543" r="6" fill="#38bdf8"/>
+<text x="72" y="552" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#f1f5f9">Champa</text>
+<circle cx="54" cy="579" r="6" fill="#38bdf8"/>
+<text x="72" y="588" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#f1f5f9">Srivijaya</text>
+<circle cx="54" cy="615" r="6" fill="#38bdf8"/>
+<text x="72" y="624" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#f1f5f9">Angkor</text>
+<rect x="388" y="476" width="344" height="206" rx="12" fill="#162033" stroke="#334155" stroke-width="2"/><text x="406" y="512" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="700" fill="#f59e0b">Kerajaan luar sezaman</text>
+<circle cx="414" cy="543" r="6" fill="#f59e0b"/>
+<text x="432" y="552" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#f1f5f9">Kerajaan Abbasiyah</text>
+<circle cx="414" cy="579" r="6" fill="#f59e0b"/>
+<text x="432" y="588" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#f1f5f9">Empayar Byzantine</text>
+<circle cx="414" cy="615" r="6" fill="#f59e0b"/>
+<text x="432" y="624" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#f1f5f9">Dinasti Tang</text>
+<circle cx="414" cy="651" r="6" fill="#f59e0b"/>
+<text x="432" y="660" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#f1f5f9">Kerajaan Chola</text>
+<rect x="28" y="698" width="704" height="50" rx="12" fill="#f59e0b"/><text x="48" y="733" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="30" font-weight="800" fill="#0f172a">Abad Ke-14</text>
+<rect x="28" y="760" width="344" height="202" rx="12" fill="#162033" stroke="#334155" stroke-width="2"/><text x="46" y="796" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="700" fill="#38bdf8">Kerajaan Alam Melayu</text>
+<circle cx="54" cy="827" r="6" fill="#38bdf8"/>
+<text x="72" y="836" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#f1f5f9">Champa</text>
+<circle cx="54" cy="863" r="6" fill="#38bdf8"/>
+<text x="72" y="872" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#f1f5f9">Angkor</text>
+<circle cx="54" cy="899" r="6" fill="#38bdf8"/>
+<text x="72" y="908" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#f1f5f9">Majapahit</text>
+<rect x="388" y="760" width="344" height="202" rx="12" fill="#162033" stroke="#334155" stroke-width="2"/><text x="406" y="796" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="700" fill="#f59e0b">Kerajaan luar sezaman</text>
+<circle cx="414" cy="827" r="6" fill="#f59e0b"/>
+<text x="432" y="836" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#f1f5f9">Empayar Mongol</text>
+<circle cx="414" cy="863" r="6" fill="#f59e0b"/>
+<text x="432" y="872" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#f1f5f9">Kerajaan Turki</text>
+<text x="432" y="904" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#f1f5f9">Uthmaniyah</text>
+<circle cx="414" cy="931" r="6" fill="#f59e0b"/>
+<text x="432" y="940" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#f1f5f9">Kesultanan Delhi</text>
+</svg>

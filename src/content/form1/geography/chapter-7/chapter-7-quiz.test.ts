@@ -191,7 +191,7 @@ describe("Geografi Form 1 Bab 7 textbook coverage", () => {
 
   it("2.3.3: compares river and lake importance (membandingkan)", () => {
     expect(correct(30)).toBe(
-      "Kedua-duanya menjana hidroelektrik; hanya sungai menjadi sempadan semula jadi",
+      "Kedua-duanya penting untuk hidroelektrik; Sungai Bernam menjadi sempadan Perak–Selangor",
     );
     expect(byId(30).explanation).toMatch(/Sungai dan tasik sama-sama/);
   });
@@ -269,7 +269,7 @@ describe("Geografi Form 1 Bab 7 difficulty and catalog", () => {
     // q13: four landforms classified by stage; q29: four-step sequence; q30: two importance lists.
     expect(byId(13).question.match(/\([PQRS]\)/g)).toHaveLength(4);
     expect(byId(29).question.match(/\b[PQRS]:/g)).toHaveLength(4);
-    expect(byId(30).options.every((o) => /^Kedua-duanya .+; hanya /.test(o))).toBe(true);
+    expect(byId(30).options.every((o) => /^Kedua-duanya .+; .+/.test(o))).toBe(true);
   });
 
   it("matches the server catalog rows and the seeded SQL", () => {

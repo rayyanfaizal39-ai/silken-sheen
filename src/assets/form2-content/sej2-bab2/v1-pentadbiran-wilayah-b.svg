@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 812" width="760" height="812" role="img" aria-label="Pentadbiran wilayah kerajaan Alam Melayu, bahagian 2 daripada 2">
+<title>Pentadbiran Wilayah Kerajaan Alam Melayu (2/2)</title>
+<metadata>Rajah konseptual. Sumber: buku teks hlm. 26–27.</metadata>
+<rect width="760" height="812" rx="20" fill="#0f172a"/>
+<text x="380" y="68" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="40" font-weight="700" fill="#f1f5f9">Pentadbiran Wilayah Kerajaan</text>
+<text x="380" y="116" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="40" font-weight="700" fill="#f1f5f9">Alam Melayu (2/2)</text>
+<rect x="340" y="146" width="80" height="5" rx="2.5" fill="#38bdf8"/>
+<rect x="28" y="178" width="704" height="354" rx="16" fill="#162033" stroke="#334155" stroke-width="2"/><rect x="28" y="178" width="704" height="8" rx="4" fill="#a78bfa"/>
+<text x="48" y="218" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="30" font-weight="700" fill="#a78bfa">Angkor</text>
+<rect x="48" y="228" width="664" height="52" rx="10" fill="#1e293b" stroke="#a78bfa" stroke-opacity="0.6" stroke-width="2"/>
+<text x="62" y="263" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="600" fill="#f1f5f9">Wilayah</text>
+<path d="M380 284 L380 300 M373 293 L380 301 L387 293" stroke="#a78bfa" stroke-width="2.5" fill="none"/>
+<rect x="48" y="306" width="664" height="52" rx="10" fill="#1e293b" stroke="#a78bfa" stroke-opacity="0.6" stroke-width="2"/>
+<text x="62" y="341" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#cbd5e1">Daerah</text>
+<path d="M380 362 L380 378 M373 371 L380 379 L387 371" stroke="#a78bfa" stroke-width="2.5" fill="none"/>
+<rect x="48" y="384" width="664" height="52" rx="10" fill="#1e293b" stroke="#a78bfa" stroke-opacity="0.6" stroke-width="2"/>
+<text x="62" y="419" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#cbd5e1">Daerah kecil</text>
+<path d="M380 440 L380 456 M373 449 L380 457 L387 449" stroke="#a78bfa" stroke-width="2.5" fill="none"/>
+<rect x="48" y="462" width="664" height="52" rx="10" fill="#1e293b" stroke="#a78bfa" stroke-opacity="0.6" stroke-width="2"/>
+<text x="62" y="497" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#cbd5e1">Kampung</text>
+<rect x="28" y="546" width="704" height="230" rx="16" fill="#162033" stroke="#334155" stroke-width="2"/><rect x="28" y="546" width="704" height="8" rx="4" fill="#fb7185"/>
+<text x="48" y="586" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="30" font-weight="700" fill="#fb7185">Majapahit</text>
+<rect x="48" y="596" width="664" height="52" rx="10" fill="#1e293b" stroke="#fb7185" stroke-opacity="0.6" stroke-width="2"/>
+<text x="62" y="631" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="600" fill="#f1f5f9">14 wilayah</text>
+<path d="M380 652 L380 668 M373 661 L380 669 L387 661" stroke="#fb7185" stroke-width="2.5" fill="none"/>
+<rect x="48" y="674" width="664" height="84" rx="10" fill="#1e293b" stroke="#fb7185" stroke-opacity="0.6" stroke-width="2"/>
+<text x="62" y="709" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#cbd5e1">Kabupaten, Kawadanan, Pakuwuan dan Kebuyutan</text>
+<text x="62" y="741" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#cbd5e1">(daerah, daerah kecil dan kampung)</text>
+</svg>

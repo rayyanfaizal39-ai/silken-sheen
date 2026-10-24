@@ -7,7 +7,10 @@ import { DataTable } from "./blocks/DataTable";
 import { IconCardGrid, type IconCardGridItem } from "./blocks/IconCardGrid";
 import { EraDotTimeline, type EraDotTimelineItem } from "./blocks/EraDotTimeline";
 import { bgPanel, groupGlow, neon } from "./blocks/neon-tokens";
-import penyebaranAgama from "@/assets/form2-content/penyebaran-agama-alam-melayu.png";
+import penyebaranAgama from "@/assets/form2-content/sej2-bab4/v1-penyebaran-agama.svg";
+import penyebaranAgamaDesktop from "@/assets/form2-content/sej2-bab4/v1-penyebaran-agama-desktop.svg";
+
+const FIG_IMG = "notes-figure-img w-full rounded-2xl border border-border";
 
 const ORBIT_LABELS = [
   "Kepercayaan Awal",
@@ -18,23 +21,23 @@ const ORBIT_LABELS = [
   "Rumusan",
 ];
 
-const SECTION_CHROME: Array<{ eyebrow: string; title: string; sub?: string }> = [
-  { eyebrow: "◆ 4.1", title: "Kepercayaan Awal", sub: "Sebelum Hindu, Buddha dan Islam — animisme dan dinamisme membentuk pandangan alam masyarakat." },
-  { eyebrow: "◆ 4.1", title: "Penyebaran Agama — Detik Penting", sub: "Daripada animisme kepada Islam, merentas tujuh kerajaan Alam Melayu." },
-  { eyebrow: "◆ 4.2", title: "Keunikan Warisan — Pemerintahan dan Kebijaksanaan", sub: "Bagaimana pemerintah mengasimilasikan pengaruh agama dan memilih lokasi strategik." },
-  { eyebrow: "◆ 4.2", title: "Keunikan Warisan — Ekonomi dan Sosiobudaya", sub: "Kesuburan tanah, pengairan, pelabuhan, tulisan, persuratan dan seni bina yang diwarisi." },
-  { eyebrow: "◆ 4.2", title: "Amalan Beragama & Lima Aspek Keunikan Warisan", sub: "Legasi yang membentuk tamadun Melayu, diwarisi hingga kini." },
-  { eyebrow: "◆ Rumusan", title: "Fakta Penting & Istilah Utama" },
+const SECTION_CHROME: Array<{ eyebrow: string; title: string; sub: string }> = [
+  { eyebrow: "4.1 Agama dan Kepercayaan", title: "Kepercayaan Awal", sub: "Bahagian ini menerangkan kepercayaan masyarakat sebelum kedatangan agama." },
+  { eyebrow: "4.1 Agama dan Kepercayaan", title: "Penyebaran Agama — Detik Penting", sub: "Bahagian ini menerangkan penyebaran agama Hindu, Buddha dan Islam mengikut kerajaan." },
+  { eyebrow: "4.2 Keunikan Warisan Masyarakat Kerajaan Alam Melayu", title: "Keunikan Warisan — Pemerintahan dan Kebijaksanaan", sub: "Bahagian ini menerangkan keunikan sistem pemerintahan dan kebijaksanaan pemerintah." },
+  { eyebrow: "4.2 Keunikan Warisan Masyarakat Kerajaan Alam Melayu", title: "Keunikan Warisan — Ekonomi dan Sosiobudaya", sub: "Bahagian ini menerangkan keunikan kegiatan ekonomi dan sosiobudaya masyarakat." },
+  { eyebrow: "4.2 Keunikan Warisan Masyarakat Kerajaan Alam Melayu", title: "Amalan Beragama & Lima Aspek Keunikan Warisan", sub: "Bahagian ini merumuskan amalan beragama dan lima aspek keunikan warisan." },
+  { eyebrow: "Rumusan Bab 4", title: "Fakta Penting & Istilah Utama", sub: "Bahagian ini mengumpulkan fakta penting dan istilah utama Bab 4 untuk ulang kaji." },
 ];
 
 const TOTAL = ORBIT_LABELS.length;
 
 const RELIGION_TIMELINE: EraDotTimelineItem[] = [
-  { label: "Abad 1", detail: "Hindu/Buddha tersebar — Funan", color: "amber" },
+  { label: "Abad 1", detail: "Hindu dan Buddha tersebar dalam kerajaan Funan", color: "amber" },
   { label: "Abad 7", detail: "Islam tiba di Alam Melayu", color: "blue" },
-  { label: "Abad 13", detail: "Merah Silu (Pasai) → Sultan Malik al-Saleh", color: "green" },
   { label: "1136", detail: "Maharaja Derbar Raja II (Kedah) memeluk Islam", color: "violet" },
-  { label: "Abad 16", detail: "Masjid Demak — pusat pengajian Islam terbesar Jawa", color: "red" },
+  { label: "Abad 13", detail: "Merah Silu (Pasai) → Sultan Malik al-Saleh", color: "green" },
+  { label: "Abad 16", detail: "Kerajaan Demak — pusat pengajian Islam terbesar di Jawa", color: "red" },
 ];
 
 export function Sej2Chapter4NotesBlock({
@@ -81,7 +84,7 @@ export function Sej2Chapter4NotesBlock({
   ];
 
   return (
-    <section id={id} className="mt-8 animate-fade-up">
+    <section id={id} className="sej2-notes mt-8 animate-fade-up">
       <div className="mb-6 flex items-start gap-4 rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 via-accent/5 to-transparent p-5">
         <div className="shrink-0 text-2xl">🕌</div>
         <div>
@@ -121,10 +124,9 @@ export function Sej2Chapter4NotesBlock({
       </div>
 
       <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-5 sm:p-8">
-        <p className="mb-1 text-xs font-bold uppercase tracking-wider text-primary">{chrome.eyebrow}</p>
-        <h2 className="font-display mb-1 text-xl font-bold text-foreground sm:text-2xl">{chrome.title}</h2>
-        {chrome.sub && <p className="mb-6 text-[13.5px] leading-relaxed text-muted-foreground">{chrome.sub}</p>}
-        {!chrome.sub && <div className="mb-6" />}
+        <p className="mb-1.5 font-display text-[15px] font-bold leading-snug text-primary">{chrome.eyebrow}</p>
+        <h2 className="font-display mb-2 text-[22px] font-bold leading-tight text-foreground sm:text-2xl">{chrome.title}</h2>
+        <p className="mb-6 border-l-2 border-primary/50 pl-3 text-base leading-relaxed text-muted-foreground">{chrome.sub}</p>
 
         {current === 0 && (
           <div className="space-y-6">
@@ -155,15 +157,19 @@ export function Sej2Chapter4NotesBlock({
         {current === 1 && (
           <div className="space-y-6">
             <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.religionSpread.intro}</p>
-            <img
-              src={penyebaranAgama}
-              alt="Penyebaran Agama di Alam Melayu"
-              className="notes-figure-img rounded-2xl border border-border"
-            />
+            <figure className="space-y-2">
+              <div className="sm:hidden">
+                <img src={penyebaranAgama} alt="Peta penyebaran agama Hindu, Buddha dan Islam ke Alam Melayu sebelum abad ke-15" className={FIG_IMG} loading="lazy" />
+              </div>
+              <div className="hidden sm:block">
+                <img src={penyebaranAgamaDesktop} alt="Peta penyebaran agama Hindu, Buddha dan Islam ke Alam Melayu sebelum abad ke-15" className={`${FIG_IMG} notes-figure-img--wide`} loading="lazy" />
+              </div>
+              <figcaption className="text-center text-[11px] italic leading-snug text-muted-foreground">
+                Sumber: buku teks hlm. 57. Peta asas: Natural Earth; kedudukan anggaran.
+              </figcaption>
+            </figure>
             <EraDotTimeline items={RELIGION_TIMELINE} />
-            <p className="text-center text-[11px] text-muted-foreground">
-              Toleransi: Candi Prambanan (Hindu) dibina berdekatan Candi Borobudur (Buddha), Jawa Tengah
-            </p>
+            <h4 className="sej2-block-label">Perkembangan agama mengikut kerajaan</h4>
             <DataTable
               headers={["Kerajaan", "Perkembangan Agama", "Bukti"]}
               rows={content.religionSpread.byKingdom.map((k) => [
@@ -195,6 +201,7 @@ export function Sej2Chapter4NotesBlock({
 
         {current === 3 && (
           <div className="space-y-6">
+            <h4 className="sej2-block-label">Warisan ekonomi</h4>
             <div className="grid gap-3.5 sm:grid-cols-2">
               <div className="rounded-xl p-3.5" style={{ background: bgPanel }}>
                 <p className="text-[12.5px] font-semibold text-foreground">🌾 Kesuburan Tanah</p>
@@ -205,10 +212,12 @@ export function Sej2Chapter4NotesBlock({
                 <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">{content.economicHeritage.irrigation}</p>
               </div>
             </div>
+            <h4 className="sej2-block-label">Jenis pelabuhan</h4>
             <DataTable
               headers={["Jenis Pelabuhan", "Definisi"]}
               rows={content.economicHeritage.ports.map((p) => [p.type, p.definition])}
             />
+            <h4 className="sej2-block-label">Warisan sosiobudaya</h4>
             <div className="grid gap-3.5 sm:grid-cols-3">
               <div className="rounded-xl p-3.5" style={{ background: bgPanel }}>
                 <p className="text-[12.5px] font-semibold text-foreground">✍️ Tulisan & Bahasa</p>
@@ -228,6 +237,7 @@ export function Sej2Chapter4NotesBlock({
 
         {current === 4 && (
           <div className="space-y-6">
+            <h4 className="sej2-block-label">Amalan beragama</h4>
             <div className="grid gap-3.5 sm:grid-cols-2">
               <div className="rounded-xl p-3.5" style={{ background: bgPanel }}>
                 <p className="text-[12.5px] font-semibold text-foreground">🌐 Keterbukaan</p>
