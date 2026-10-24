@@ -100,13 +100,13 @@ const ORBIT_LABELS = [
   "Rumusan",
 ];
 
-const SECTION_CHROME: Array<{ eyebrow: string; title: string }> = [
-  { eyebrow: "◆ 1.1", title: "Konsep Alam Melayu — Geografi" },
-  { eyebrow: "◆ 1.1", title: "Konsep Alam Melayu — Bahasa dan Budaya" },
-  { eyebrow: "◆ 1.2", title: "Kewujudan Kerajaan di Alam Melayu" },
-  { eyebrow: "◆ 1.3", title: "Kerajaan Alam Melayu yang Masyhur" },
-  { eyebrow: "◆ 1.4", title: "Kerajaan Alam Melayu dan Kerajaan Luar yang Sezaman" },
-  { eyebrow: "◆ Rumusan", title: "Fakta Penting & Istilah Utama" },
+const SECTION_CHROME: Array<{ eyebrow: string; title: string; sub: string }> = [
+  { eyebrow: "1.1 Konsep Alam Melayu", title: "Konsep Alam Melayu — Geografi", sub: "Bahagian ini menerangkan kedudukan dan kawasan yang dikenali sebagai Alam Melayu." },
+  { eyebrow: "1.1 Konsep Alam Melayu", title: "Konsep Alam Melayu — Bahasa dan Budaya", sub: "Bahagian ini menerangkan persamaan bahasa dan budaya masyarakat di Alam Melayu." },
+  { eyebrow: "1.2 Kewujudan Kerajaan di Alam Melayu", title: "Kewujudan Kerajaan di Alam Melayu", sub: "Bahagian ini menerangkan bila dan di mana kerajaan awal Alam Melayu muncul." },
+  { eyebrow: "1.3 Kerajaan Alam Melayu yang Masyhur", title: "Kerajaan Alam Melayu yang Masyhur", sub: "Bahagian ini menerangkan kemasyhuran dan kemerosotan kerajaan-kerajaan Alam Melayu." },
+  { eyebrow: "1.4 Kerajaan Alam Melayu dan Kerajaan Luar yang Sezaman", title: "Kerajaan Alam Melayu dan Kerajaan Luar yang Sezaman", sub: "Bahagian ini menerangkan hubungan kerajaan Alam Melayu dengan kerajaan luar pada zaman yang sama." },
+  { eyebrow: "Rumusan Bab 1", title: "Fakta Penting & Istilah Utama", sub: "Bahagian ini mengumpulkan fakta penting dan istilah utama Bab 1 untuk ulang kaji." },
 ];
 
 const TOTAL = ORBIT_LABELS.length;
@@ -155,7 +155,7 @@ export function Sej2Chapter1NotesBlock({
   const languageHeaders = content.concept.language.comparisonTable[0]?.translations.map((t) => t.language) ?? [];
 
   return (
-    <section id={id} className="mt-8 animate-fade-up">
+    <section id={id} className="sej2-notes mt-8 animate-fade-up">
       <div className="mb-6 flex items-start gap-4 rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 via-accent/5 to-transparent p-5">
         <div className="shrink-0 text-2xl">👑</div>
         <div>
@@ -195,8 +195,9 @@ export function Sej2Chapter1NotesBlock({
       </div>
 
       <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-5 sm:p-8">
-        <p className="mb-1 text-xs font-bold uppercase tracking-wider text-primary">{chrome.eyebrow}</p>
-        <h2 className="font-display mb-5 text-xl font-bold text-foreground sm:text-2xl">{chrome.title}</h2>
+        <p className="mb-1.5 font-display text-[15px] font-bold leading-snug text-primary">{chrome.eyebrow}</p>
+        <h2 className="font-display mb-2 text-[22px] font-bold leading-tight text-foreground sm:text-2xl">{chrome.title}</h2>
+        <p className="mb-6 border-l-2 border-primary/50 pl-3 text-base leading-relaxed text-muted-foreground">{chrome.sub}</p>
 
         {current === 0 && (
           <div className="space-y-5">
@@ -220,6 +221,7 @@ export function Sej2Chapter1NotesBlock({
             <h3 className={H3}>Bahasa</h3>
             <p className={P}>{content.concept.language.intro}</p>
             <ScholarList items={content.concept.language.scholars} />
+            <h4 className="sej2-block-label">Perbandingan perkataan dalam bahasa serumpun</h4>
             <DataTable
               headers={["Perkataan", ...languageHeaders]}
               rows={content.concept.language.comparisonTable.map((c) => [
@@ -250,6 +252,7 @@ export function Sej2Chapter1NotesBlock({
         {current === 3 && (
           <div className="space-y-5">
             <p className={P}>Kemasyhuran kerajaan Alam Melayu dapat dilihat dalam aspek pemerintahan, ekonomi, agama dan kemunculan pelabuhan.</p>
+            <h4 className="sej2-block-label">Kerajaan Alam Melayu yang masyhur</h4>
             <KingdomStageCards kingdoms={content.famousKingdoms} />
             {figure("masyhur-angkor-thom", angkorThom, "Ilustrasi Angkor Thom", "Ilustrasi, bukan gambar sebenar. Angkor Thom ialah ibu kota kerajaan Angkor. Sumber: buku teks hlm. 10–11.")}
             {splitFigure(

@@ -13,11 +13,11 @@ const FIG_IMG = "w-full rounded-2xl border border-border";
 
 const ORBIT_LABELS = ["Pengasasan", "Sistem Penggiliran", "Warisan", "Rumusan"];
 
-const SECTION_CHROME: Array<{ eyebrow: string; title: string; sub?: string }> = [
-  { eyebrow: "◆ 7.1", title: "Empat Kesultanan, Empat Pengasas" },
-  { eyebrow: "◆ 7.2", title: "Warisan Sistem Pemerintahan" },
-  { eyebrow: "◆ 7.2", title: "Warisan Islam, Perundangan, Adat Istiadat, Persuratan dan Ekonomi" },
-  { eyebrow: "◆ Rumusan", title: "Fakta Penting & Istilah Utama" },
+const SECTION_CHROME: Array<{ eyebrow: string; title: string; sub: string }> = [
+  { eyebrow: "7.1 Pengasasan Kesultanan Pahang, Perak, Terengganu dan Selangor", title: "Empat Kesultanan, Empat Pengasas", sub: "Bahagian ini menerangkan pengasas dan pusat pemerintahan pertama setiap kesultanan." },
+  { eyebrow: "7.2 Warisan Kesultanan Melayu Melaka di Pahang, Perak, Terengganu dan Selangor", title: "Warisan Sistem Pemerintahan", sub: "Bahagian ini menerangkan sistem pemerintahan Melaka yang diwarisi oleh keempat-empat negeri." },
+  { eyebrow: "7.2 Warisan Kesultanan Melayu Melaka di Pahang, Perak, Terengganu dan Selangor", title: "Warisan Islam, Perundangan, Adat Istiadat, Persuratan dan Ekonomi", sub: "Bahagian ini menerangkan warisan lain Melaka yang masih diamalkan di negeri-negeri ini." },
+  { eyebrow: "Rumusan Bab 7", title: "Fakta Penting & Istilah Utama", sub: "Bahagian ini mengumpulkan fakta penting dan istilah utama Bab 7 untuk ulang kaji." },
 ];
 
 const TOTAL = ORBIT_LABELS.length;
@@ -60,7 +60,7 @@ export function Sej2Chapter7NotesBlock({
   const perak = content.governanceLegacy.succession.find((s) => s.sultanate === "Perak");
 
   return (
-    <section id={id} className="mt-8 animate-fade-up">
+    <section id={id} className="sej2-notes mt-8 animate-fade-up">
       <div className="mb-6 flex items-start gap-4 rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 via-accent/5 to-transparent p-5">
         <div className="shrink-0 text-2xl">👑</div>
         <div>
@@ -100,10 +100,9 @@ export function Sej2Chapter7NotesBlock({
       </div>
 
       <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-5 sm:p-8">
-        <p className="mb-1 text-xs font-bold uppercase tracking-wider text-primary">{chrome.eyebrow}</p>
-        <h2 className="font-display mb-1 text-xl font-bold text-foreground sm:text-2xl">{chrome.title}</h2>
-        {chrome.sub && <p className="mb-6 text-[13.5px] leading-relaxed text-muted-foreground">{chrome.sub}</p>}
-        {!chrome.sub && <div className="mb-6" />}
+        <p className="mb-1.5 font-display text-[15px] font-bold leading-snug text-primary">{chrome.eyebrow}</p>
+        <h2 className="font-display mb-2 text-[22px] font-bold leading-tight text-foreground sm:text-2xl">{chrome.title}</h2>
+        <p className="mb-6 border-l-2 border-primary/50 pl-3 text-base leading-relaxed text-muted-foreground">{chrome.sub}</p>
 
         {current === 0 && (
           <div className="space-y-6">
@@ -113,6 +112,7 @@ export function Sej2Chapter7NotesBlock({
               <div className="hidden sm:block"><img src={pusatDesktop} alt="Peta pusat pemerintahan pertama Kesultanan Pahang, Perak, Terengganu dan Selangor" className={`${FIG_IMG} notes-figure-img--wide`} /></div>
               <figcaption className="text-center text-[11px] italic leading-snug text-muted-foreground">Sumber: buku teks hlm. 116–122. Peta asas: Natural Earth; kedudukan anggaran.</figcaption>
             </figure>
+            <h4 className="sej2-block-label">Pengasas dan pusat pemerintahan pertama</h4>
             <div className="grid gap-4 sm:grid-cols-2">
               {content.founding.sultanates.map((s) => (
                 <div key={s.name} className="rounded-2xl p-4.5" style={{ background: bgPanel }}>
@@ -140,12 +140,14 @@ export function Sej2Chapter7NotesBlock({
             <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.governanceLegacy.intro}</p>
             {perak && perak.rotationOrder && (
               <>
+                <h4 className="sej2-block-label">Sistem penggiliran takhta Perak</h4>
                 <PerakRotationWheel centerLabel={perak.rotationOrder[0]} outerLabels={perak.rotationOrder.slice(1)} />
                 <p className="text-center text-[11px] text-muted-foreground">
                   Susunan penggiliran Perak; sultan dipilih dan dilantik oleh {perak.selectionBody}
                 </p>
               </>
             )}
+            <h4 className="sej2-block-label">Pewarisan takhta mengikut negeri</h4>
             <DataTable
               headers={["Negeri", "Gelaran Waris", "Badan Pemilihan", "Pembesar Utama"]}
               rows={content.governanceLegacy.succession.map((s) => [
@@ -161,6 +163,7 @@ export function Sej2Chapter7NotesBlock({
         {current === 2 && (
           <div className="space-y-6">
             <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.islamLegacy.intro}</p>
+            <h4 className="sej2-block-label">Bentuk warisan Islam</h4>
             <div className="grid gap-3.5 sm:grid-cols-2">
               {content.islamLegacy.manifestations.map((m, i) => {
                 const [title, ...rest] = m.split(" — ");

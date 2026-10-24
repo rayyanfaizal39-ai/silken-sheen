@@ -23,15 +23,15 @@ const ORBIT_LABELS = [
   "Rumusan",
 ];
 
-const SECTION_CHROME: Array<{ eyebrow: string; title: string; sub?: string }> = [
-  { eyebrow: "◆ 5.1", title: "Pengasasan Kesultanan Melayu Melaka" },
-  { eyebrow: "◆ 5.2", title: "Raja dan Sistem Pentadbiran" },
-  { eyebrow: "◆ 5.2", title: "Sistem Perundangan" },
-  { eyebrow: "◆ 5.2", title: "Empayar dan Hubungan Luar" },
-  { eyebrow: "◆ 5.2", title: "Pusat Perdagangan" },
-  { eyebrow: "◆ 5.2", title: "Pusat Penyebaran Agama Islam" },
-  { eyebrow: "◆ 5.3", title: "Kejatuhan Melaka" },
-  { eyebrow: "◆ Rumusan", title: "Fakta Penting & Istilah Utama" },
+const SECTION_CHROME: Array<{ eyebrow: string; title: string; sub: string }> = [
+  { eyebrow: "5.1 Pengasasan Kesultanan Melayu Melaka", title: "Pengasasan Kesultanan Melayu Melaka", sub: "Bahagian ini menerangkan cara Melaka diasaskan dan sebab lokasinya dipilih." },
+  { eyebrow: "5.2 Kegemilangan Kesultanan Melayu Melaka", title: "Raja dan Sistem Pentadbiran", sub: "Bahagian ini menerangkan cara Melaka ditadbir." },
+  { eyebrow: "5.2 Kegemilangan Kesultanan Melayu Melaka", title: "Sistem Perundangan", sub: "Bahagian ini menerangkan undang-undang yang digunakan di Melaka." },
+  { eyebrow: "5.2 Kegemilangan Kesultanan Melayu Melaka", title: "Empayar dan Hubungan Luar", sub: "Bahagian ini menerangkan kawasan empayar Melaka dan hubungannya dengan kerajaan lain." },
+  { eyebrow: "5.2 Kegemilangan Kesultanan Melayu Melaka", title: "Pusat Perdagangan", sub: "Bahagian ini menerangkan peranan Melaka sebagai pusat perdagangan." },
+  { eyebrow: "5.2 Kegemilangan Kesultanan Melayu Melaka", title: "Pusat Penyebaran Agama Islam", sub: "Bahagian ini menerangkan peranan Melaka dalam penyebaran agama Islam." },
+  { eyebrow: "5.3 Pengakhiran Kesultanan Melayu Melaka yang Berpusat di Melaka", title: "Kejatuhan Melaka", sub: "Bahagian ini menerangkan faktor dan peristiwa yang membawa kepada kejatuhan Melaka." },
+  { eyebrow: "Rumusan Bab 5", title: "Fakta Penting & Istilah Utama", sub: "Bahagian ini mengumpulkan fakta penting dan istilah utama Bab 5 untuk ulang kaji." },
 ];
 
 const TOTAL = ORBIT_LABELS.length;
@@ -113,7 +113,7 @@ export function Sej2Chapter5NotesBlock({
   }));
 
   return (
-    <section id={id} className="mt-8 animate-fade-up">
+    <section id={id} className="sej2-notes mt-8 animate-fade-up">
       <div className="mb-6 flex items-start gap-4 rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 via-accent/5 to-transparent p-5">
         <div className="shrink-0 text-2xl">⚓</div>
         <div>
@@ -153,16 +153,16 @@ export function Sej2Chapter5NotesBlock({
       </div>
 
       <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-5 sm:p-8">
-        <p className="mb-1 text-xs font-bold uppercase tracking-wider text-primary">{chrome.eyebrow}</p>
-        <h2 className="font-display mb-1 text-xl font-bold text-foreground sm:text-2xl">{chrome.title}</h2>
-        {chrome.sub && <p className="mb-6 text-[13.5px] leading-relaxed text-muted-foreground">{chrome.sub}</p>}
-        {!chrome.sub && <div className="mb-6" />}
+        <p className="mb-1.5 font-display text-[15px] font-bold leading-snug text-primary">{chrome.eyebrow}</p>
+        <h2 className="font-display mb-2 text-[22px] font-bold leading-tight text-foreground sm:text-2xl">{chrome.title}</h2>
+        <p className="mb-6 border-l-2 border-primary/50 pl-3 text-base leading-relaxed text-muted-foreground">{chrome.sub}</p>
 
         {current === 0 && (
           <div className="space-y-6">
             <p className="text-[13.5px] leading-relaxed text-muted-foreground">
               <b className="text-foreground">{content.founding.founder}</b> membuka Melaka {content.founding.year.toLowerCase()} di {content.founding.locationName}. {content.founding.priorUse}.
             </p>
+            <h4 className="sej2-block-label">Faktor strategik lokasi Melaka</h4>
             <IconCardGrid items={factorItems} />
           </div>
         )}
@@ -255,6 +255,7 @@ export function Sej2Chapter5NotesBlock({
         {current === 3 && (
           <div className="space-y-6">
             <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.goldenAge.empire.extent}</p>
+            <h4 className="sej2-block-label">Kawasan empayar Melaka</h4>
             <IconCardGrid items={empireItems} />
             {content.goldenAge.empire.importance && <FactGrid heading="🎯 Kepentingan Pembentukan Empayar" facts={content.goldenAge.empire.importance} />}
             {content.goldenAge.empire.administration && <FactGrid heading="🏛️ Pentadbiran Empayar" facts={content.goldenAge.empire.administration} />}
@@ -289,7 +290,9 @@ export function Sej2Chapter5NotesBlock({
 
         {current === 6 && (
           <div className="space-y-6">
+            <h4 className="sej2-block-label">Garis masa kejatuhan Melaka</h4>
             <EraDotTimeline items={fallTimelineItems} />
+            <h4 className="sej2-block-label">Kelemahan dalaman</h4>
             <div className="grid gap-3.5 sm:grid-cols-2">
               {content.fall.internalWeaknesses.map((w) => (
                 <div key={w.category} className="rounded-2xl p-4" style={{ background: bgPanel }}>

@@ -76,12 +76,12 @@ const ORBIT_LABELS = [
   "Rumusan",
 ];
 
-const SECTION_CHROME: Array<{ eyebrow: string; title: string }> = [
-  { eyebrow: "◆ 2.1", title: "Sistem Pemerintahan" },
-  { eyebrow: "◆ 2.2", title: "Kegiatan Ekonomi — Pertanian" },
-  { eyebrow: "◆ 2.2", title: "Kegiatan Ekonomi — Perdagangan" },
-  { eyebrow: "◆ 2.2", title: "Hasil Hutan dan Laut, Perlombongan dan Pembuatan" },
-  { eyebrow: "◆ Rumusan", title: "Fakta Penting & Istilah Utama" },
+const SECTION_CHROME: Array<{ eyebrow: string; title: string; sub: string }> = [
+  { eyebrow: "2.1 Sistem Pemerintahan", title: "Sistem Pemerintahan", sub: "Bahagian ini menerangkan susunan pemerintahan kerajaan Alam Melayu, daripada raja hingga pembesar." },
+  { eyebrow: "2.2 Kegiatan Ekonomi", title: "Kegiatan Ekonomi — Pertanian", sub: "Bahagian ini menerangkan kegiatan pertanian masyarakat kerajaan Alam Melayu." },
+  { eyebrow: "2.2 Kegiatan Ekonomi", title: "Kegiatan Ekonomi — Perdagangan", sub: "Bahagian ini menerangkan kegiatan perdagangan dan pelabuhan kerajaan Alam Melayu." },
+  { eyebrow: "2.2 Kegiatan Ekonomi", title: "Hasil Hutan dan Laut, Perlombongan dan Pembuatan", sub: "Bahagian ini menerangkan kegiatan ekonomi lain selain pertanian dan perdagangan." },
+  { eyebrow: "Rumusan Bab 2", title: "Fakta Penting & Istilah Utama", sub: "Bahagian ini mengumpulkan fakta penting dan istilah utama Bab 2 untuk ulang kaji." },
 ];
 
 const TOTAL = ORBIT_LABELS.length;
@@ -128,7 +128,7 @@ export function Sej2Chapter2NotesBlock({
   const mainKingdoms = g.byKingdom.filter((k) => k.royalTitles.length > 0);
 
   return (
-    <section id={id} className="mt-8 animate-fade-up">
+    <section id={id} className="sej2-notes mt-8 animate-fade-up">
       <div className="mb-6 flex items-start gap-4 rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 via-accent/5 to-transparent p-5">
         <div className="shrink-0 text-2xl">👑</div>
         <div>
@@ -168,8 +168,9 @@ export function Sej2Chapter2NotesBlock({
       </div>
 
       <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-5 sm:p-8">
-        <p className="mb-1 text-xs font-bold uppercase tracking-wider text-primary">{chrome.eyebrow}</p>
-        <h2 className="font-display mb-5 text-xl font-bold text-foreground sm:text-2xl">{chrome.title}</h2>
+        <p className="mb-1.5 font-display text-[15px] font-bold leading-snug text-primary">{chrome.eyebrow}</p>
+        <h2 className="font-display mb-2 text-[22px] font-bold leading-tight text-foreground sm:text-2xl">{chrome.title}</h2>
+        <p className="mb-6 border-l-2 border-primary/50 pl-3 text-base leading-relaxed text-muted-foreground">{chrome.sub}</p>
 
         {current === 0 && (
           <div className="space-y-5">
@@ -203,6 +204,7 @@ export function Sej2Chapter2NotesBlock({
             <p className={P}>{e.intro}</p>
             {e.agricultureIntro && <p className={P}>{e.agricultureIntro}</p>}
             {figure("pertanian-peta", v2Pertanian, "Peta kawasan padi dan rempah kerajaan Alam Melayu", `Ilustrasi berdasarkan buku teks hlm. 28–29. Kedudukan anggaran. ${NE}`, v2Desktop)}
+            <h4 className="sej2-block-label">Penanaman padi mengikut kerajaan</h4>
             <DataTable
               headers={["Kerajaan", "Penanaman padi"]}
               rows={e.riceCultivation.map((r) => [r.kingdom, r.details])}
@@ -216,6 +218,7 @@ export function Sej2Chapter2NotesBlock({
           <div className="space-y-5">
             {e.tradeIntro && <p className={P}>{e.tradeIntro}</p>}
             {figure("pelabuhan-peta", v3Pelabuhan, "Peta pelabuhan tujuh kerajaan Alam Melayu", `Ilustrasi berdasarkan buku teks hlm. 30–31. Kedudukan anggaran; Sri Banoy, Maliti dan Pangkalan tidak ditanda. ${NE}`, v3Desktop)}
+            <h4 className="sej2-block-label">Barang yang didagangkan mengikut kerajaan</h4>
             <DataTable
               headers={["Kerajaan", "Barang didagangkan"]}
               rows={e.tradePorts.map((t) => [short(t.kingdom), t.goods.join(", ")])}
@@ -234,6 +237,7 @@ export function Sej2Chapter2NotesBlock({
             <h3 className={H3}>Hasil hutan dan laut</h3>
             {e.forestSeaIntro && <p className={P}>{e.forestSeaIntro}</p>}
             {figure("hasil-peta", v5Hasil, "Peta sumber hasil hutan, hasil laut dan galian kerajaan Alam Melayu", `Ilustrasi berdasarkan buku teks hlm. 32–33. Kedudukan anggaran. ${NE}`, v5Desktop)}
+            <h4 className="sej2-block-label">Hasil hutan dan hasil laut serta kegunaannya</h4>
             <DataTable
               headers={["Hasil", "Kegunaan"]}
               rows={e.forestSeaProducts.map((p) => [p.product, p.use])}
