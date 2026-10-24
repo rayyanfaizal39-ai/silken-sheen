@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
+import { novaAccessCopy } from "@/features/nova-cards/access";
 import type { CompanionEntry } from "@/features/cosmic-companion/entry";
 import { CompanionGarden } from "@/features/cosmic-companion/CompanionGarden";
 import {
@@ -203,7 +204,7 @@ function PortalIcon() {
  */
 export function CosmicCompanionPage() {
   const { preview } = Route.useSearch();
-  const { ready, entry, stage } = useCompanionEntry(preview);
+  const { ready, entry, stage, problem, retry } = useCompanionEntry(preview);
   const { user, devAuthBypass } = useAuth();
   const demo = useDevDemoCompanion();
   const discovered = demo !== "off" && demo?.discovered ? demo : null;
@@ -283,18 +284,33 @@ export function CosmicCompanionPage() {
               pedestal={<span className="ccp-stage__platform" aria-hidden="true" />}
             />
           )}
-          {ready ? (
-            <CompanionEntryLink entry={entry} stage={stage} preview={preview} />
-          ) : (
+          {!ready ? (
             <span className="ccp-discover" aria-busy="true">
               Checking your plan…
             </span>
+          ) : problem || !entry ? (
+            <button
+              type="button"
+              className="ccp-discover"
+              data-companion-entry="retry"
+              onClick={retry}
+            >
+              <PortalIcon />
+              <span>Try again</span>
+              <ArrowRight size={21} aria-hidden="true" />
+            </button>
+          ) : (
+            <CompanionEntryLink entry={entry} stage={stage} preview={preview} />
           )}
           <p className="ccp-journey-note">
             {preview && <b>Fictional preview · </b>}
-            {entry.kind === "upgrade"
-              ? "An eligible AcadeMY learning plan is required to begin your companion journey."
-              : JOURNEY_CTA[stage].note}
+            {!ready
+              ? "Checking your companion…"
+              : problem
+                ? novaAccessCopy(problem).body
+                : entry?.kind === "upgrade"
+                  ? "An eligible AcadeMY learning plan is required to begin your companion journey."
+                  : JOURNEY_CTA[stage].note}
           </p>
           {import.meta.env.DEV && devAuthBypass ? <LocalPlanToggle /> : null}
           {!user && !preview && (

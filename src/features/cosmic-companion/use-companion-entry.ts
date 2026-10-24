@@ -1,50 +1,60 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "@/context/auth-context";
-import { loadNovaDashboardStatus, loadOwnerNova } from "@/features/nova-cards/local-session";
+import { novaAccessProblem, type NovaAccessProblem } from "@/features/nova-cards/access";
+import { loadNovaDashboardStatus } from "@/features/nova-cards/local-session";
 import { companionEntry, type CompanionEntry } from "./entry";
 import { journeyStage, type JourneyStage } from "./journey";
 
-/** The button destination for this student. Guests are not entitled. */
+/** The button destination for this student. Guests are not entitled. A failed load is not
+ * the same as a free plan: the page shows a retry instead of Upgrade. */
 export function useCompanionEntry(preview?: JourneyStage): {
   ready: boolean;
-  entry: CompanionEntry;
+  entry: CompanionEntry | null;
   stage: JourneyStage;
+  problem: NovaAccessProblem | null;
+  retry: () => void;
 } {
   const { user, devAuthBypass } = useAuth();
   const [stage, setStage] = useState<JourneyStage>(preview ?? "new");
-  const [entry, setEntry] = useState<CompanionEntry>(() =>
+  const [entry, setEntry] = useState<CompanionEntry | null>(() =>
     companionEntry({ entitled: Boolean(preview), stage: preview ?? "new", preview }),
   );
+  const [problem, setProblem] = useState<NovaAccessProblem | null>(null);
   const [ready, setReady] = useState(Boolean(preview) || !user?.id);
+  const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
     if (preview) {
       setStage(preview);
+      setProblem(null);
       setEntry(companionEntry({ entitled: true, stage: preview, preview }));
       setReady(true);
       return;
     }
     if (!user?.id) {
       setStage("new");
+      setProblem(null);
       setEntry(companionEntry({ entitled: false, stage: "new" }));
       setReady(true);
       return;
     }
     let active = true;
     setReady(false);
+    setProblem(null);
     const load = () =>
-      Promise.all([loadNovaDashboardStatus(), loadOwnerNova()])
-        .then(([status, bundle]) => {
+      loadNovaDashboardStatus()
+        .then((status) => {
           if (!active) return;
           const nextStage = journeyStage(status);
           setStage(nextStage);
-          setEntry(companionEntry({ entitled: bundle[1].active, stage: nextStage }));
+          setProblem(null);
+          setEntry(companionEntry({ entitled: status.active, stage: nextStage }));
           setReady(true);
         })
-        .catch(() => {
+        .catch((error: unknown) => {
           if (!active) return;
-          setStage("new");
-          setEntry(companionEntry({ entitled: false, stage: "new" }));
+          setProblem(novaAccessProblem(error));
+          setEntry(null);
           setReady(true);
         });
     void load();
@@ -61,7 +71,13 @@ export function useCompanionEntry(preview?: JourneyStage): {
       active = false;
       stop();
     };
-  }, [preview, user?.id, devAuthBypass]);
+  }, [preview, user?.id, devAuthBypass, attempt]);
 
-  return { ready, entry, stage };
+  return {
+    ready,
+    entry,
+    stage,
+    problem,
+    retry: () => setAttempt((current) => current + 1),
+  };
 }

@@ -6,6 +6,7 @@ import { getSupabaseAdminClient } from "@/lib/billing.server";
 import { CompanionMatchError } from "../../../supabase/functions/_shared/companion-matcher";
 import { DnaError } from "../../../supabase/functions/_shared/companion-dna";
 import { prepareCompanionSubmission } from "../../../supabase/functions/_shared/companion-submission";
+import { novaDashboardStatus } from "./dashboard-status";
 import type { StudioDraft, StudioState } from "./studio-model";
 import { validNovaAnswer } from "./model";
 import { NOVA_ACCESS_ERRORS } from "./access";
@@ -178,21 +179,22 @@ export const chooseStudioOrigin = createServerFn({ method: "POST" })
     return state(db);
   });
 // Dashboard does not import a card renderer, artwork engine, QR generator or candidate URLs.
+// It also does not sign portrait files. A storage error must not be mistaken for entitlement.
 export const getNovaDashboardStatus = createServerFn({ method: "GET" }).handler(async () => {
   const db = await owner();
   const { data, error } = await db.rpc("get_my_nova_studio");
   if (error) throw new Error("Nova status unavailable");
   const s = data as StudioState;
-  const portraitReady = !!s.companionArtworkUrl;
-  return {
-    active: s.active,
-    // The portal opens the card once the chosen portrait is on it.
-    selected: portraitReady,
-    // There is no second companion to reveal.
-    ready: false,
-    pending: !!s.origin && !portraitReady,
-    failed: s.origin?.status === "failed",
-    // Answers saved but not yet submitted: continue rather than restart.
-    unfinished: !s.publicId && s.draft.answers.length > 0,
-  };
+  const { data: card, error: cardError } = await db.rpc("get_my_nova_card");
+  return novaDashboardStatus({
+    studio: s,
+    // The card payload says whether a portrait path exists. Signing that path is separate.
+    card: cardError
+      ? null
+      : (card as {
+          artworkPath?: string | null;
+          crafting?: boolean;
+          artOptions?: unknown[];
+        } | null),
+  });
 });

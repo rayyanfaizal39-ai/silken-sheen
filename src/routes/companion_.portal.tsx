@@ -2,6 +2,7 @@ import { Link, createFileRoute, useNavigate } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import { novaAccessCopy } from "@/features/nova-cards/access";
 import { useCompanionEntry } from "@/features/cosmic-companion/use-companion-entry";
 import {
   PREVIEW_SCENE,
@@ -45,16 +46,16 @@ function CelestialGatewayPage() {
   // writes to, or unlocks, a real student's journey. A free student is sent to Upgrade.
   // A finished journey opens the card instead of starting the questions again.
   const { preview } = Route.useSearch();
-  const { ready, entry } = useCompanionEntry(preview);
+  const { ready, entry, problem, retry } = useCompanionEntry(preview);
   const navigate = useNavigate();
   useEffect(() => {
-    if (!ready || entry.kind === "journey") return;
+    if (!ready || problem || !entry || entry.kind === "journey") return;
     if (entry.kind === "upgrade") {
       void navigate({ to: "/upgrade", search: { next: entry.search.next } });
       return;
     }
     void navigate({ to: "/nova" });
-  }, [ready, entry, navigate]);
+  }, [ready, entry, navigate, problem]);
   const studio = cardsIntegrationEnabled ? cardsStudioUrl : "/nova/studio";
   const destination = preview ? `${studio}?preview=rayyan&scene=${PREVIEW_SCENE[preview]}` : studio;
   // The app shell's page transition leaves a transform on its <main>, which would trap a
@@ -62,7 +63,22 @@ function CelestialGatewayPage() {
   const [body, setBody] = useState<HTMLElement | null>(null);
   useEffect(() => setBody(document.body), []);
 
-  if (!ready || entry.kind !== "journey") {
+  if (!ready || problem || !entry || entry.kind !== "journey") {
+    if (problem) {
+      const copy = novaAccessCopy(problem);
+      return (
+        <main className="ccp-fullscreen-gateway" data-companion-entry="retry">
+          <Link className="ccp-fullscreen-gateway__back" to="/companion">
+            <ArrowLeft size={17} aria-hidden="true" />
+            Back to Cosmic Companion
+          </Link>
+          <p role="alert">{copy.body}</p>
+          <button type="button" onClick={retry}>
+            Try again
+          </button>
+        </main>
+      );
+    }
     return <main className="ccp-fullscreen-gateway" aria-busy="true" />;
   }
 
