@@ -1189,7 +1189,7 @@ export const sejarahF2C10MindMap: MindNode = {
                 },
                 {
                   "id": "sejarah-f2-c10-282",
-                  "label": "Terkenal kemahiran berkuda dan laut"
+                  "label": "Pantai barat: budaya menunggang kuda"
                 }
               ]
             },
@@ -1265,7 +1265,7 @@ export const sejarahF2C10MindMap: MindNode = {
                   "children": [
                     {
                       "id": "sejarah-f2-c10-297",
-                      "label": "Kain sulaman benang logam"
+                      "label": "Disulam benang emas, perak dan tembaga"
                     },
                     {
                       "id": "sejarah-f2-c10-298",
@@ -1421,7 +1421,7 @@ export const sejarahF2C10MindMap: MindNode = {
                 },
                 {
                   "id": "sejarah-f2-c10-328",
-                  "label": "Buan atau Duang",
+                  "label": "Duang",
                   "children": [
                     {
                       "id": "sejarah-f2-c10-329",
@@ -1450,20 +1450,6 @@ export const sejarahF2C10MindMap: MindNode = {
                 {
                   "id": "sejarah-f2-c10-335",
                   "label": "Warisan masyarakat Bajau atau Sama"
-                }
-              ]
-            },
-            {
-              "id": "sejarah-f2-c10-336",
-              "label": "Alat Muzik",
-              "children": [
-                {
-                  "id": "sejarah-f2-c10-337",
-                  "label": "Sompoton"
-                },
-                {
-                  "id": "sejarah-f2-c10-338",
-                  "label": "Kulintangan"
                 }
               ]
             }
@@ -1559,7 +1545,7 @@ export const sejarahF2C10MindMap: MindNode = {
             },
             {
               "id": "sejarah-f2-c10-358",
-              "label": "Regatta Lepa",
+              "label": "Regata Lepa",
               "children": [
                 {
                   "id": "sejarah-f2-c10-359",
