@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 868" width="760" height="868" role="img" aria-label="Pentadbiran wilayah kerajaan Alam Melayu, bahagian 1 daripada 2">
+<title>Pentadbiran Wilayah Kerajaan Alam Melayu (1/2)</title>
+<metadata>Rajah konseptual. Sumber: buku teks hlm. 26–27.</metadata>
+<rect width="760" height="868" rx="20" fill="#0f172a"/>
+<text x="380" y="68" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="40" font-weight="700" fill="#f1f5f9">Pentadbiran Wilayah Kerajaan</text>
+<text x="380" y="116" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="40" font-weight="700" fill="#f1f5f9">Alam Melayu (1/2)</text>
+<rect x="340" y="146" width="80" height="5" rx="2.5" fill="#38bdf8"/>
+<rect x="28" y="178" width="704" height="198" rx="16" fill="#162033" stroke="#334155" stroke-width="2"/><rect x="28" y="178" width="704" height="8" rx="4" fill="#f59e0b"/>
+<text x="48" y="218" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="30" font-weight="700" fill="#f59e0b">Funan</text>
+<rect x="48" y="228" width="664" height="52" rx="10" fill="#1e293b" stroke="#f59e0b" stroke-opacity="0.6" stroke-width="2"/>
+<text x="62" y="263" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="600" fill="#f1f5f9">7 wilayah</text>
+<path d="M380 284 L380 300 M373 293 L380 301 L387 293" stroke="#f59e0b" stroke-width="2.5" fill="none"/>
+<rect x="48" y="306" width="664" height="52" rx="10" fill="#1e293b" stroke="#f59e0b" stroke-opacity="0.6" stroke-width="2"/>
+<text x="62" y="341" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#cbd5e1">Ketua wilayah: putera raja bergelar Raja Kecil</text>
+<rect x="28" y="390" width="704" height="230" rx="16" fill="#162033" stroke="#334155" stroke-width="2"/><rect x="28" y="390" width="704" height="8" rx="4" fill="#f472b6"/>
+<text x="48" y="430" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="30" font-weight="700" fill="#f472b6">Champa</text>
+<rect x="48" y="440" width="664" height="52" rx="10" fill="#1e293b" stroke="#f472b6" stroke-opacity="0.6" stroke-width="2"/>
+<text x="62" y="475" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="600" fill="#f1f5f9">5 wilayah</text>
+<path d="M380 496 L380 512 M373 505 L380 513 L387 505" stroke="#f472b6" stroke-width="2.5" fill="none"/>
+<rect x="48" y="518" width="664" height="84" rx="10" fill="#1e293b" stroke="#f472b6" stroke-opacity="0.6" stroke-width="2"/>
+<text x="62" y="553" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#cbd5e1">Indrapura · Amaravati · Vijaya · Kauthara ·</text>
+<text x="62" y="585" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#cbd5e1">Panduranga</text>
+<rect x="28" y="634" width="704" height="198" rx="16" fill="#162033" stroke="#334155" stroke-width="2"/><rect x="28" y="634" width="704" height="8" rx="4" fill="#34d399"/>
+<text x="48" y="674" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="30" font-weight="700" fill="#34d399">Srivijaya</text>
+<rect x="48" y="684" width="664" height="52" rx="10" fill="#1e293b" stroke="#34d399" stroke-opacity="0.6" stroke-width="2"/>
+<text x="62" y="719" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="600" fill="#f1f5f9">Kedatuan: ditadbir Datu berketurunan raja</text>
+<path d="M380 740 L380 756 M373 749 L380 757 L387 749" stroke="#34d399" stroke-width="2.5" fill="none"/>
+<rect x="48" y="762" width="664" height="52" rx="10" fill="#1e293b" stroke="#34d399" stroke-opacity="0.6" stroke-width="2"/>
+<text x="62" y="797" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="400" fill="#cbd5e1">Pradatuan: ditadbir Datu bukan berketurunan raja</text>
+</svg>

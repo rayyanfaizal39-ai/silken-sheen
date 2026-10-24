@@ -21,13 +21,13 @@ const ORBIT_LABELS = [
   "Rumusan",
 ];
 
-const SECTION_CHROME: Array<{ eyebrow: string; title: string; sub?: string }> = [
-  { eyebrow: "◆ 4.1", title: "Kepercayaan Awal" },
-  { eyebrow: "◆ 4.1", title: "Penyebaran Agama — Detik Penting" },
-  { eyebrow: "◆ 4.2", title: "Keunikan Warisan — Pemerintahan dan Kebijaksanaan" },
-  { eyebrow: "◆ 4.2", title: "Keunikan Warisan — Ekonomi dan Sosiobudaya" },
-  { eyebrow: "◆ 4.2", title: "Amalan Beragama & Lima Aspek Keunikan Warisan" },
-  { eyebrow: "◆ Rumusan", title: "Fakta Penting & Istilah Utama" },
+const SECTION_CHROME: Array<{ eyebrow: string; title: string; sub: string }> = [
+  { eyebrow: "4.1 Agama dan Kepercayaan", title: "Kepercayaan Awal", sub: "Bahagian ini menerangkan kepercayaan masyarakat sebelum kedatangan agama." },
+  { eyebrow: "4.1 Agama dan Kepercayaan", title: "Penyebaran Agama — Detik Penting", sub: "Bahagian ini menerangkan penyebaran agama Hindu, Buddha dan Islam mengikut kerajaan." },
+  { eyebrow: "4.2 Keunikan Warisan Masyarakat Kerajaan Alam Melayu", title: "Keunikan Warisan — Pemerintahan dan Kebijaksanaan", sub: "Bahagian ini menerangkan keunikan sistem pemerintahan dan kebijaksanaan pemerintah." },
+  { eyebrow: "4.2 Keunikan Warisan Masyarakat Kerajaan Alam Melayu", title: "Keunikan Warisan — Ekonomi dan Sosiobudaya", sub: "Bahagian ini menerangkan keunikan kegiatan ekonomi dan sosiobudaya masyarakat." },
+  { eyebrow: "4.2 Keunikan Warisan Masyarakat Kerajaan Alam Melayu", title: "Amalan Beragama & Lima Aspek Keunikan Warisan", sub: "Bahagian ini merumuskan amalan beragama dan lima aspek keunikan warisan." },
+  { eyebrow: "Rumusan Bab 4", title: "Fakta Penting & Istilah Utama", sub: "Bahagian ini mengumpulkan fakta penting dan istilah utama Bab 4 untuk ulang kaji." },
 ];
 
 const TOTAL = ORBIT_LABELS.length;
@@ -84,7 +84,7 @@ export function Sej2Chapter4NotesBlock({
   ];
 
   return (
-    <section id={id} className="mt-8 animate-fade-up">
+    <section id={id} className="sej2-notes mt-8 animate-fade-up">
       <div className="mb-6 flex items-start gap-4 rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 via-accent/5 to-transparent p-5">
         <div className="shrink-0 text-2xl">🕌</div>
         <div>
@@ -124,10 +124,9 @@ export function Sej2Chapter4NotesBlock({
       </div>
 
       <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-5 sm:p-8">
-        <p className="mb-1 text-xs font-bold uppercase tracking-wider text-primary">{chrome.eyebrow}</p>
-        <h2 className="font-display mb-1 text-xl font-bold text-foreground sm:text-2xl">{chrome.title}</h2>
-        {chrome.sub && <p className="mb-6 text-[13.5px] leading-relaxed text-muted-foreground">{chrome.sub}</p>}
-        {!chrome.sub && <div className="mb-6" />}
+        <p className="mb-1.5 font-display text-[15px] font-bold leading-snug text-primary">{chrome.eyebrow}</p>
+        <h2 className="font-display mb-2 text-[22px] font-bold leading-tight text-foreground sm:text-2xl">{chrome.title}</h2>
+        <p className="mb-6 border-l-2 border-primary/50 pl-3 text-base leading-relaxed text-muted-foreground">{chrome.sub}</p>
 
         {current === 0 && (
           <div className="space-y-6">
@@ -170,6 +169,7 @@ export function Sej2Chapter4NotesBlock({
               </figcaption>
             </figure>
             <EraDotTimeline items={RELIGION_TIMELINE} />
+            <h4 className="sej2-block-label">Perkembangan agama mengikut kerajaan</h4>
             <DataTable
               headers={["Kerajaan", "Perkembangan Agama", "Bukti"]}
               rows={content.religionSpread.byKingdom.map((k) => [
@@ -201,6 +201,7 @@ export function Sej2Chapter4NotesBlock({
 
         {current === 3 && (
           <div className="space-y-6">
+            <h4 className="sej2-block-label">Warisan ekonomi</h4>
             <div className="grid gap-3.5 sm:grid-cols-2">
               <div className="rounded-xl p-3.5" style={{ background: bgPanel }}>
                 <p className="text-[12.5px] font-semibold text-foreground">🌾 Kesuburan Tanah</p>
@@ -211,10 +212,12 @@ export function Sej2Chapter4NotesBlock({
                 <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">{content.economicHeritage.irrigation}</p>
               </div>
             </div>
+            <h4 className="sej2-block-label">Jenis pelabuhan</h4>
             <DataTable
               headers={["Jenis Pelabuhan", "Definisi"]}
               rows={content.economicHeritage.ports.map((p) => [p.type, p.definition])}
             />
+            <h4 className="sej2-block-label">Warisan sosiobudaya</h4>
             <div className="grid gap-3.5 sm:grid-cols-3">
               <div className="rounded-xl p-3.5" style={{ background: bgPanel }}>
                 <p className="text-[12.5px] font-semibold text-foreground">✍️ Tulisan & Bahasa</p>
@@ -234,6 +237,7 @@ export function Sej2Chapter4NotesBlock({
 
         {current === 4 && (
           <div className="space-y-6">
+            <h4 className="sej2-block-label">Amalan beragama</h4>
             <div className="grid gap-3.5 sm:grid-cols-2">
               <div className="rounded-xl p-3.5" style={{ background: bgPanel }}>
                 <p className="text-[12.5px] font-semibold text-foreground">🌐 Keterbukaan</p>

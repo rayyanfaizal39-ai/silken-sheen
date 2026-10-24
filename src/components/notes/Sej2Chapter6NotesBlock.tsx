@@ -19,13 +19,13 @@ const ORBIT_LABELS = [
   "Rumusan",
 ];
 
-const SECTION_CHROME: Array<{ eyebrow: string; title: string; sub?: string }> = [
-  { eyebrow: "◆ 6.1", title: "Pengasasan & Pemindahan Pusat Pemerintahan" },
-  { eyebrow: "◆ 6.1", title: "Empat Cabaran Kegemilangan" },
-  { eyebrow: "◆ 6.1", title: "Strategi Menghadapi Cabaran" },
-  { eyebrow: "◆ 6.2", title: "Pusat Perdagangan Entrepot" },
-  { eyebrow: "◆ 6.2", title: "Persuratan Johor Riau" },
-  { eyebrow: "◆ Rumusan", title: "Fakta Penting & Istilah Utama" },
+const SECTION_CHROME: Array<{ eyebrow: string; title: string; sub: string }> = [
+  { eyebrow: "6.1 Pengasasan Kesultanan Johor Riau", title: "Pengasasan & Pemindahan Pusat Pemerintahan", sub: "Bahagian ini menerangkan pengasasan Kesultanan Johor Riau dan perpindahan pusat pemerintahannya." },
+  { eyebrow: "6.1 Pengasasan Kesultanan Johor Riau", title: "Empat Cabaran Kegemilangan", sub: "Bahagian ini menerangkan cabaran yang dihadapi oleh Kesultanan Johor Riau." },
+  { eyebrow: "6.1 Pengasasan Kesultanan Johor Riau", title: "Strategi Menghadapi Cabaran", sub: "Bahagian ini menerangkan langkah yang diambil untuk menghadapi cabaran tersebut." },
+  { eyebrow: "6.2 Kegemilangan Kesultanan Johor Riau", title: "Pusat Perdagangan Entrepot", sub: "Bahagian ini menerangkan peranan Johor Riau sebagai pusat perdagangan." },
+  { eyebrow: "6.2 Kegemilangan Kesultanan Johor Riau", title: "Persuratan Johor Riau", sub: "Bahagian ini menerangkan tokoh dan karya persuratan zaman Johor Riau." },
+  { eyebrow: "Rumusan Bab 6", title: "Fakta Penting & Istilah Utama", sub: "Bahagian ini mengumpulkan fakta penting dan istilah utama Bab 6 untuk ulang kaji." },
 ];
 
 const TOTAL = ORBIT_LABELS.length;
@@ -69,7 +69,7 @@ export function Sej2Chapter6NotesBlock({
   }
 
   return (
-    <section id={id} className="mt-8 animate-fade-up">
+    <section id={id} className="sej2-notes mt-8 animate-fade-up">
       <div className="mb-6 flex items-start gap-4 rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 via-accent/5 to-transparent p-5">
         <div className="shrink-0 text-2xl">🏰</div>
         <div>
@@ -109,10 +109,9 @@ export function Sej2Chapter6NotesBlock({
       </div>
 
       <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-5 sm:p-8">
-        <p className="mb-1 text-xs font-bold uppercase tracking-wider text-primary">{chrome.eyebrow}</p>
-        <h2 className="font-display mb-1 text-xl font-bold text-foreground sm:text-2xl">{chrome.title}</h2>
-        {chrome.sub && <p className="mb-6 text-[13.5px] leading-relaxed text-muted-foreground">{chrome.sub}</p>}
-        {!chrome.sub && <div className="mb-6" />}
+        <p className="mb-1.5 font-display text-[15px] font-bold leading-snug text-primary">{chrome.eyebrow}</p>
+        <h2 className="font-display mb-2 text-[22px] font-bold leading-tight text-foreground sm:text-2xl">{chrome.title}</h2>
+        <p className="mb-6 border-l-2 border-primary/50 pl-3 text-base leading-relaxed text-muted-foreground">{chrome.sub}</p>
 
         {current === 0 && (
           <div className="space-y-6">
@@ -201,6 +200,7 @@ export function Sej2Chapter6NotesBlock({
                 </div>
               ))}
             </div>
+            <h4 className="sej2-block-label">Pengurusan pelabuhan</h4>
             <div className="grid gap-3 sm:grid-cols-3">
               <div className="rounded-xl p-3.5" style={{ background: bgPanel }}>
                 <p className="text-[12px] font-semibold text-foreground">⚖️ Syahbandar</p>
@@ -221,6 +221,7 @@ export function Sej2Chapter6NotesBlock({
         {current === 4 && (
           <div className="space-y-6">
             <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.literature.intro}</p>
+            <h4 className="sej2-block-label">Karya persuratan dan pengarangnya</h4>
             <div className="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3">
               {content.literature.works.map((w) => (
                 <div key={w.title} className="rounded-2xl p-4" style={{ background: bgPanel, boxShadow: `0 0 16px ${hexToRgba(neon.violet, 0.1)}` }}>

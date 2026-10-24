@@ -17,12 +17,12 @@ const FIG_IMG = "notes-figure-img w-full rounded-2xl border border-border";
 
 const ORBIT_LABELS = ["Alam Melayu", "Pemerintahan Tempatan", "Ekonomi & Sungai", "Kaum & Warisan", "Rumusan"];
 
-const SECTION_CHROME: Array<{ eyebrow: string; title: string; sub?: string }> = [
-  { eyebrow: "◆ 10.1", title: "Sarawak dan Sabah dalam Alam Melayu" },
-  { eyebrow: "◆ 10.2", title: "Kemunculan Pemerintahan Tempatan" },
-  { eyebrow: "◆ 10.3", title: "Kegiatan Ekonomi dan Kepentingan Sungai" },
-  { eyebrow: "◆ 10.4", title: "Keunikan Kaum Bumiputera dan Warisan" },
-  { eyebrow: "◆ Rumusan", title: "Fakta Penting & Istilah Utama" },
+const SECTION_CHROME: Array<{ eyebrow: string; title: string; sub: string }> = [
+  { eyebrow: "10.1 Sarawak dan Sabah dalam Alam Melayu", title: "Sarawak dan Sabah dalam Alam Melayu", sub: "Bahagian ini menerangkan kedudukan Sarawak dan Sabah sebagai sebahagian daripada Alam Melayu." },
+  { eyebrow: "10.2 Kemunculan Pemerintahan Tempatan", title: "Kemunculan Pemerintahan Tempatan", sub: "Bahagian ini menerangkan bentuk pemerintahan tempatan di Sarawak dan Sabah." },
+  { eyebrow: "10.3 Kegiatan Ekonomi Masyarakat Sarawak dan Sabah", title: "Kegiatan Ekonomi dan Kepentingan Sungai", sub: "Bahagian ini menerangkan kegiatan ekonomi masyarakat dan peranan sungai." },
+  { eyebrow: "10.4 Keunikan Masyarakat Bumiputera Sarawak dan Sabah", title: "Keunikan Kaum Bumiputera dan Warisan", sub: "Bahagian ini menerangkan kaum bumiputera serta kesenian, perayaan dan seni bina mereka." },
+  { eyebrow: "Rumusan Bab 10", title: "Fakta Penting & Istilah Utama", sub: "Bahagian ini mengumpulkan fakta penting dan istilah utama Bab 10 untuk ulang kaji." },
 ];
 
 const TOTAL = ORBIT_LABELS.length;
@@ -73,7 +73,7 @@ export function Sej2Chapter10NotesBlock({
   const empireChain = ["Srivijaya", "Majapahit", "Sambas", "Brunei", "Sulu"];
 
   return (
-    <section id={id} className="mt-8 animate-fade-up">
+    <section id={id} className="sej2-notes mt-8 animate-fade-up">
       <div className="mb-6 flex items-start gap-4 rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 via-accent/5 to-transparent p-5">
         <div className="shrink-0 text-2xl">🌴</div>
         <div>
@@ -113,10 +113,9 @@ export function Sej2Chapter10NotesBlock({
       </div>
 
       <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-5 sm:p-8">
-        <p className="mb-1 text-xs font-bold uppercase tracking-wider text-primary">{chrome.eyebrow}</p>
-        <h2 className="font-display mb-1 text-xl font-bold text-foreground sm:text-2xl">{chrome.title}</h2>
-        {chrome.sub && <p className="mb-6 text-[13.5px] leading-relaxed text-muted-foreground">{chrome.sub}</p>}
-        {!chrome.sub && <div className="mb-6" />}
+        <p className="mb-1.5 font-display text-[15px] font-bold leading-snug text-primary">{chrome.eyebrow}</p>
+        <h2 className="font-display mb-2 text-[22px] font-bold leading-tight text-foreground sm:text-2xl">{chrome.title}</h2>
+        <p className="mb-6 border-l-2 border-primary/50 pl-3 text-base leading-relaxed text-muted-foreground">{chrome.sub}</p>
 
         {current === 0 && (
           <div className="space-y-8">
@@ -188,6 +187,7 @@ export function Sej2Chapter10NotesBlock({
                 }))}
               />
             </div>
+            <h4 className="sej2-block-label">Wakil Raja</h4>
             <div className="grid gap-3.5 sm:grid-cols-2">
               <div className="rounded-2xl p-4" style={{ background: bgPanel, boxShadow: groupGlow(neon.green, 14, 0.1) }}>
                 <h5 className="font-display mb-1.5 text-[12.5px] font-bold" style={{ color: neon.green }}>
