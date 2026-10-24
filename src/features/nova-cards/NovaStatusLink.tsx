@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "@/context/auth-context";
-import { getNovaDashboardStatus } from "./studio.server";
+import { loadNovaDashboardStatus } from "./local-session";
 import { ARRIVED } from "./studio-model";
 import { cardsIntegrationEnabled } from "@/lib/cards-integration";
 export function NovaStatusLink() {
@@ -12,7 +12,7 @@ export function NovaStatusLink() {
     if (!userId) return;
     let active = true;
     const update = () =>
-      getNovaDashboardStatus()
+      loadNovaDashboardStatus()
         .then((s) => {
           if (active)
             setText(

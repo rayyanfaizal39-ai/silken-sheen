@@ -43,6 +43,7 @@ import {
   type LastVisited,
 } from "@/hooks/use-progress";
 import { CompanionImage, getCompanionDisplayName, useCompanionMessage } from "@/companion";
+import { useDevDemoCompanion } from "@/lib/dev-auth/use-dev-demo-companion";
 import { buildLeaderboard } from "@/lib/leaderboard";
 import { PlanetCardArt, subjectPlanetStyles, type SubjectPlanetId } from "@/components/AcademyPage";
 import type { FormStat } from "@/content/registry";
@@ -524,7 +525,16 @@ export function HomeDashboard() {
   const companionProgress = getCompanionLevelProgress(progress.xp);
   const companionStage = companionProgress.currentStage;
   const nextCompanionStage = companionProgress.nextStage;
-  const companionName = progress.companion ? getCompanionDisplayName(progress.companion) : "Nova";
+  const demoCompanion = useDevDemoCompanion();
+  const demoChosen = demoCompanion !== "off" && demoCompanion?.discovered ? demoCompanion : null;
+  const demoAwaiting = demoCompanion !== "off" && !!demoCompanion && !demoCompanion.discovered;
+  const companionName = demoChosen
+    ? demoChosen.name
+    : demoAwaiting
+      ? "Awaiting discovery"
+      : progress.companion
+        ? getCompanionDisplayName(progress.companion)
+        : "Nova";
   const companionDailyMessage = useCompanionMessage();
 
   return (
@@ -891,11 +901,31 @@ export function HomeDashboard() {
             />
 
             <div className="cosmic-companion-egg-anim relative flex h-40 w-40 items-center justify-center">
-              <CompanionImage
-                speciesId={progress.companion?.id ?? "nova"}
-                stage={companionStage.id}
-                size={148}
-              />
+              {demoChosen?.artworkUrl ? (
+                <img
+                  src={demoChosen.artworkUrl}
+                  alt={`${demoChosen.name} the ${demoChosen.species}`}
+                  className="h-36 w-36 rounded-3xl border border-[#E1C27F] object-cover"
+                />
+              ) : demoChosen?.choosing ? (
+                <p className="max-w-[140px] text-center font-display text-sm font-black text-[#F6EAD2]">
+                  Choose your companion art
+                </p>
+              ) : demoChosen?.crafting ? (
+                <p className="max-w-[140px] text-center font-display text-sm font-black text-[#F6EAD2]">
+                  Your portrait is being crafted
+                </p>
+              ) : demoAwaiting ? (
+                <span className="font-display text-6xl text-[#F6EAD2]" aria-hidden="true">
+                  ?
+                </span>
+              ) : (
+                <CompanionImage
+                  speciesId={progress.companion?.id ?? "nova"}
+                  stage={companionStage.id}
+                  size={148}
+                />
+              )}
             </div>
           </div>
 
@@ -903,8 +933,21 @@ export function HomeDashboard() {
             Cosmic Companion
           </p>
           <h3 className="mt-1 font-display text-xl font-black text-white">
-            {companionName} {companionStage.name}
+            {demoChosen
+              ? demoChosen.name
+              : demoAwaiting
+                ? "Awaiting discovery"
+                : `${companionName} ${companionStage.name}`}
           </h3>
+          {demoChosen ? (
+            <p className="mt-1 text-[11px] font-bold uppercase tracking-[0.16em] text-[#E1C27F]">
+              {demoChosen.choosing
+                ? "Choose your companion art"
+                : demoChosen.crafting
+                  ? "Your portrait is being crafted"
+                  : `${demoChosen.element} · ${demoChosen.species}`}
+            </p>
+          ) : null}
           <p className="mt-2 max-w-[220px] text-xs italic leading-5 text-white/55">
             "{companionDailyMessage}"
           </p>

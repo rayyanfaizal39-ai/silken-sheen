@@ -22,7 +22,11 @@ export function NovaCard({
   const [downloading, setDownloading] = useState(false);
   const stage = Math.max(1, Math.min(STAGES.length, card.stage ?? 1));
   const face = cardFace(card);
-  const artwork = card.artworkUrl || svgUrl(companionSvg(face.fallbackTraits, card.variant, stage));
+  const choosing = (card.artOptions?.length ?? 0) === 2 && !card.artworkUrl;
+  const crafting = Boolean(card.crafting) && !card.artworkUrl && !choosing;
+  const artwork = crafting
+    ? ""
+    : card.artworkUrl || svgUrl(companionSvg(face.fallbackTraits, card.variant, stage));
   useEffect(() => {
     let active = true;
     setQr("");
@@ -38,6 +42,16 @@ export function NovaCard({
     };
   }, [url]);
 
+  async function copyLink() {
+    if (!card.sharing) return;
+    try {
+      await navigator.clipboard.writeText(url);
+      setNotice("Link copied.");
+    } catch {
+      setNotice("Select the card address below to copy it.");
+    }
+  }
+
   async function share() {
     try {
       if (!card.sharing) {
@@ -50,10 +64,7 @@ export function NovaCard({
           text: "Meet my AcadeMY Nova companion.",
           url,
         });
-      else {
-        await navigator.clipboard.writeText(url);
-        setNotice("Card link copied.");
-      }
+      else await copyLink();
     } catch (error) {
       if ((error as Error).name !== "AbortError")
         setNotice("Copy the card address below to share it.");
@@ -85,13 +96,31 @@ export function NovaCard({
               <small>{card.rarity}</small>
             </div>
             <div className="nova-art-frame">
-              <img
-                className="nova-art"
-                src={artwork}
-                alt={`${face.alt}, stage ${stage}`}
-                width="600"
-                height="640"
-              />
+              {choosing ? (
+                <div className="nova-craft-wait">
+                  <span aria-hidden="true">✦</span>
+                  <strong>Choose your companion art</strong>
+                  <p>
+                    {face.name} the {face.species}
+                  </p>
+                </div>
+              ) : crafting ? (
+                <div className="nova-craft-wait">
+                  <span aria-hidden="true">✦</span>
+                  <strong>Your portrait is being crafted</strong>
+                  <p>
+                    {face.name} the {face.species}
+                  </p>
+                </div>
+              ) : (
+                <img
+                  className="nova-art"
+                  src={artwork}
+                  alt={`${face.alt}, stage ${stage}`}
+                  width="600"
+                  height="640"
+                />
+              )}
               <span className="nova-art-label">
                 {card.demo ? "FICTIONAL DEMO · " : ""}STAGE {stage} / {STAGES.length}
               </span>
@@ -178,9 +207,16 @@ export function NovaCard({
         >
           ↻ Flip card
         </button>
-        <button onClick={() => void share()} disabled={!card.sharing}>
-          ↗ Share
-        </button>
+        {card.sharing ? (
+          <>
+            <button type="button" onClick={() => void copyLink()}>
+              Copy link
+            </button>
+            <button type="button" onClick={() => void share()}>
+              Share
+            </button>
+          </>
+        ) : null}
         <button
           disabled={downloading}
           onClick={async () => {

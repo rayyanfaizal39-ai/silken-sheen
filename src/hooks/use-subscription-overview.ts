@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useAuth } from "@/context/auth-context";
 import type { SubscriptionOverview } from "@/lib/billing.types";
+import { isSupabaseConfigured } from "@/lib/supabase";
 import { getSubscriptionOverview } from "@/routes/-upgrade.server";
 
 export interface SubscriptionOverviewState {
@@ -19,10 +20,11 @@ export function useSubscriptionOverview(): SubscriptionOverviewState {
   const [error, setError] = useState<string | null>(null);
 
   const refresh = useCallback(async () => {
-    if (!user) {
+    if (!user || !isSupabaseConfigured) {
       setOverview(null);
-      setResolvedUserId(null);
+      setResolvedUserId(user?.id ?? null);
       setError(null);
+      setLoading(false);
       return;
     }
     setOverview(null);

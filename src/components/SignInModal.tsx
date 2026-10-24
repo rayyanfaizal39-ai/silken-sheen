@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { X, Mail, Lock, AlertCircle, CheckCircle2, Loader2 } from "lucide-react";
 import { useAuth } from "@/context/auth-context";
 import { AcademyLogo } from "@/components/AcademyLogo";
+import { DevSignInSlot } from "@/lib/dev-auth/DevSignInSlot";
 
 function GoogleIcon() {
   return (
@@ -44,6 +45,8 @@ export function SignInModal({
     signUpWithEmail,
     requestPasswordReset,
     isConfigured,
+    devAuthBypass,
+    loading,
     user,
   } = useAuth();
   const [mode, setMode] = useState<Mode>(initialMode);
@@ -197,135 +200,141 @@ export function SignInModal({
             </div>
           </div>
 
-          {mode !== "reset" && (
+          {devAuthBypass ? (
+            <DevSignInSlot active={devAuthBypass} />
+          ) : (
             <>
-              {/* Google */}
-              <button
-                type="button"
-                onClick={handleGoogle}
-                disabled={!isConfigured || busy !== null}
-                className="group flex w-full items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white px-5 py-3 text-sm font-semibold text-gray-800 shadow-[0_2px_16px_rgba(0,0,0,0.3)] transition hover:scale-[1.01] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
-              >
-                {busy === "google" ? (
-                  <Loader2 className="h-5 w-5 animate-spin text-gray-500" />
-                ) : (
-                  <GoogleIcon />
+              {mode !== "reset" && (
+                <>
+                  {/* Google */}
+                  <button
+                    type="button"
+                    onClick={handleGoogle}
+                    disabled={!isConfigured || busy !== null}
+                    className="group flex w-full items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white px-5 py-3 text-sm font-semibold text-gray-800 shadow-[0_2px_16px_rgba(0,0,0,0.3)] transition hover:scale-[1.01] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
+                  >
+                    {busy === "google" ? (
+                      <Loader2 className="h-5 w-5 animate-spin text-gray-500" />
+                    ) : (
+                      <GoogleIcon />
+                    )}
+                    <span>{busy === "google" ? "Redirecting…" : "Continue with Google"}</span>
+                  </button>
+
+                  {/* Divider */}
+                  <div className="my-5 flex items-center gap-3">
+                    <div className="h-px flex-1 bg-white/[0.07]" />
+                    <span className="text-[10px] font-semibold uppercase tracking-widest text-white/30">
+                      or
+                    </span>
+                    <div className="h-px flex-1 bg-white/[0.07]" />
+                  </div>
+                </>
+              )}
+
+              {/* Email form */}
+              <form onSubmit={handleEmail} className="space-y-3">
+                <label className="block">
+                  <span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wider text-white/40">
+                    Email
+                  </span>
+                  <div className="relative">
+                    <Mail className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-white/30" />
+                    <input
+                      type="email"
+                      autoComplete="email"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="you@school.my"
+                      className="w-full rounded-2xl border border-white/[0.08] bg-white/[0.04] py-3 pl-10 pr-3.5 text-sm text-white placeholder:text-white/25 outline-none transition focus:border-[#8B5CF6]/50 focus:bg-white/[0.06]"
+                    />
+                  </div>
+                </label>
+
+                {mode !== "reset" && (
+                  <label className="block">
+                    <span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wider text-white/40">
+                      Password
+                    </span>
+                    <div className="relative">
+                      <Lock className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-white/30" />
+                      <input
+                        type="password"
+                        autoComplete={mode === "signin" ? "current-password" : "new-password"}
+                        required
+                        minLength={mode === "signup" ? 6 : undefined}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder={mode === "signup" ? "At least 6 characters" : "Your password"}
+                        className="w-full rounded-2xl border border-white/[0.08] bg-white/[0.04] py-3 pl-10 pr-3.5 text-sm text-white placeholder:text-white/25 outline-none transition focus:border-[#8B5CF6]/50 focus:bg-white/[0.06]"
+                      />
+                    </div>
+                  </label>
                 )}
-                <span>{busy === "google" ? "Redirecting…" : "Continue with Google"}</span>
-              </button>
 
-              {/* Divider */}
-              <div className="my-5 flex items-center gap-3">
-                <div className="h-px flex-1 bg-white/[0.07]" />
-                <span className="text-[10px] font-semibold uppercase tracking-widest text-white/30">
-                  or
-                </span>
-                <div className="h-px flex-1 bg-white/[0.07]" />
-              </div>
-            </>
-          )}
+                {mode === "signin" && (
+                  <div className="text-right">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMode("reset");
+                        setError(null);
+                        setNotice(null);
+                      }}
+                      className="min-h-11 px-1 text-xs font-semibold text-violet-300 underline-offset-4 hover:text-violet-200 hover:underline"
+                    >
+                      Forgot password?
+                    </button>
+                  </div>
+                )}
 
-          {/* Email form */}
-          <form onSubmit={handleEmail} className="space-y-3">
-            <label className="block">
-              <span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wider text-white/40">
-                Email
-              </span>
-              <div className="relative">
-                <Mail className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-white/30" />
-                <input
-                  type="email"
-                  autoComplete="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="you@school.my"
-                  className="w-full rounded-2xl border border-white/[0.08] bg-white/[0.04] py-3 pl-10 pr-3.5 text-sm text-white placeholder:text-white/25 outline-none transition focus:border-[#8B5CF6]/50 focus:bg-white/[0.06]"
-                />
-              </div>
-            </label>
+                {error && (
+                  <div className="flex items-start gap-2 rounded-xl border border-red-500/20 bg-red-500/10 px-3 py-2.5 text-xs text-red-300">
+                    <AlertCircle className="mt-0.5 h-3.5 w-3.5 shrink-0" />
+                    <span>{error}</span>
+                  </div>
+                )}
+                {notice && (
+                  <div className="flex items-start gap-2 rounded-xl border border-emerald-500/20 bg-emerald-500/10 px-3 py-2.5 text-xs text-emerald-300">
+                    <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0" />
+                    <span>{notice}</span>
+                  </div>
+                )}
 
-            {mode !== "reset" && (
-              <label className="block">
-                <span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wider text-white/40">
-                  Password
-                </span>
-                <div className="relative">
-                  <Lock className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-white/30" />
-                  <input
-                    type="password"
-                    autoComplete={mode === "signin" ? "current-password" : "new-password"}
-                    required
-                    minLength={mode === "signup" ? 6 : undefined}
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder={mode === "signup" ? "At least 6 characters" : "Your password"}
-                    className="w-full rounded-2xl border border-white/[0.08] bg-white/[0.04] py-3 pl-10 pr-3.5 text-sm text-white placeholder:text-white/25 outline-none transition focus:border-[#8B5CF6]/50 focus:bg-white/[0.06]"
-                  />
-                </div>
-              </label>
-            )}
+                <button
+                  type="submit"
+                  disabled={!isConfigured || busy !== null}
+                  className="flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-5 py-3 text-sm font-bold text-white shadow-[0_16px_40px_-8px_rgba(99,102,241,0.6)] transition hover:scale-[1.01] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  {busy === "email" ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
+                  {mode === "signin"
+                    ? "Sign in"
+                    : mode === "signup"
+                      ? "Create account"
+                      : "Send reset link"}
+                </button>
+              </form>
 
-            {mode === "signin" && (
-              <div className="text-right">
+              {/* Mode toggle */}
+              <p className="mt-5 text-center text-xs text-white/40">
+                {mode === "signin" ? "New to AcadeMY?" : "Ready to sign in?"}{" "}
                 <button
                   type="button"
                   onClick={() => {
-                    setMode("reset");
+                    setMode(mode === "signin" ? "signup" : "signin");
                     setError(null);
                     setNotice(null);
                   }}
-                  className="min-h-11 px-1 text-xs font-semibold text-violet-300 underline-offset-4 hover:text-violet-200 hover:underline"
+                  className="font-semibold text-white/80 underline underline-offset-2 transition hover:text-white"
                 >
-                  Forgot password?
+                  {mode === "signin" ? "Create an account" : "Back to sign in"}
                 </button>
-              </div>
-            )}
+              </p>
+            </>
+          )}
 
-            {error && (
-              <div className="flex items-start gap-2 rounded-xl border border-red-500/20 bg-red-500/10 px-3 py-2.5 text-xs text-red-300">
-                <AlertCircle className="mt-0.5 h-3.5 w-3.5 shrink-0" />
-                <span>{error}</span>
-              </div>
-            )}
-            {notice && (
-              <div className="flex items-start gap-2 rounded-xl border border-emerald-500/20 bg-emerald-500/10 px-3 py-2.5 text-xs text-emerald-300">
-                <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0" />
-                <span>{notice}</span>
-              </div>
-            )}
-
-            <button
-              type="submit"
-              disabled={!isConfigured || busy !== null}
-              className="flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-5 py-3 text-sm font-bold text-white shadow-[0_16px_40px_-8px_rgba(99,102,241,0.6)] transition hover:scale-[1.01] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
-            >
-              {busy === "email" ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
-              {mode === "signin"
-                ? "Sign in"
-                : mode === "signup"
-                  ? "Create account"
-                  : "Send reset link"}
-            </button>
-          </form>
-
-          {/* Mode toggle */}
-          <p className="mt-5 text-center text-xs text-white/40">
-            {mode === "signin" ? "New to AcadeMY?" : "Ready to sign in?"}{" "}
-            <button
-              type="button"
-              onClick={() => {
-                setMode(mode === "signin" ? "signup" : "signin");
-                setError(null);
-                setNotice(null);
-              }}
-              className="font-semibold text-white/80 underline underline-offset-2 transition hover:text-white"
-            >
-              {mode === "signin" ? "Create an account" : "Back to sign in"}
-            </button>
-          </p>
-
-          {!isConfigured && (
+          {!loading && !isConfigured && (
             <p className="mt-3 text-center text-[10px] text-amber-300/70">
               Cloud sync isn't configured yet.
             </p>

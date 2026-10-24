@@ -2,6 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { NovaCard } from "../../../../src/features/nova-cards/NovaCard";
 import { cardUrl } from "../../../../src/features/nova-cards/model";
+import {
+  publicCardDescription,
+  toPublicSnapshot,
+} from "../../../../src/features/nova-cards/public-card";
 import { cardsPaths } from "../../../../src/features/nova-cards/paths";
 import { getPublicCard } from "../../../../src/features/nova-cards/server";
 import { novaHead } from "../../../../src/features/nova-cards/head";
@@ -11,16 +15,16 @@ export const Route = createFileRoute("/card_/c/$publicId")({
   loader: ({ params }) => getPublicCard({ data: params.publicId }),
   staleTime: 0,
   gcTime: 0,
-  head: ({ loaderData, params }) =>
-    novaHead({
-      title: loaderData ? `${loaderData.username}'s Companion` : "Companion Card",
-      description: loaderData
-        ? `${loaderData.traits.creature} · ${loaderData.traits.element} · ${loaderData.traits.personality}. An AcadeMY Cards collectible companion.`
-        : "This companion card is unavailable.",
+  head: ({ loaderData, params }) => {
+    const shared = loaderData?.sharing ? toPublicSnapshot(loaderData) : null;
+    return novaHead({
+      title: shared ? `${shared.displayName}'s ${shared.companionName}` : "Companion card",
+      description: shared ? publicCardDescription(shared) : "This card is not available.",
       path: `/card/c/${encodeURIComponent(params.publicId)}`,
       noindex: true,
       image: `${SITE_URL}/nova-cards/preview.png`,
-    }),
+    });
+  },
   component: PublicCard,
   errorComponent: UnavailableCard,
 });
@@ -28,8 +32,8 @@ export const Route = createFileRoute("/card_/c/$publicId")({
 function UnavailableCard() {
   return (
     <main className="nova-page nova-unavailable">
-      <h1>Card unavailable</h1>
-      <p>This card is private, does not exist, or cannot be loaded right now.</p>
+      <h1>This card is not available</h1>
+      <p>The link does not open a public card.</p>
       <a href={cardsPaths.demo}>Explore fictional demos</a>
     </main>
   );

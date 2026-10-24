@@ -142,150 +142,47 @@ describe("Real accounts: Cosmic Identity", () => {
   });
 });
 
-describe("Real accounts: Waiting Sanctuary", () => {
-  it("waits for the 24-hour minimum without revealing either companion", async () => {
-    const { api } = server(submitted());
-    const host = await mount(api);
-    expect(host.querySelector("h1")?.textContent).toBe("Your Companion Is Almost Here");
-    expect(button(host, "Hatch egg")).toBeUndefined();
-    for (const c of [A, B]) expect(text(host)).not.toContain(c.name);
-  });
-
-  it("keeps waiting, with a friendly message, when 24 hours have passed but artwork is not ready", async () => {
-    const { api } = server(submitted({ origin: { ...submitted().origin!, revealAfter: PAST } }));
-    const host = await mount(api);
-    expect(text(host)).toMatch(/still preparing/i);
-    expect(button(host, "Hatch egg")).toBeUndefined();
-    expect(host.querySelectorAll(".occ-card")).toHaveLength(0);
-  });
-
-  it("explains a delay or failure without exposing companions", async () => {
-    const { api } = server(
-      submitted({
-        origin: { status: "failed", revealAfter: PAST, ready: false, errorCode: "x", completed: 0 },
-      }),
-    );
-    const host = await mount(api);
-    expect(host.querySelector("h1")?.textContent).toBe("Your Companion Needs A Little More Care");
-    for (const c of [A, B]) expect(text(host)).not.toContain(c.name);
-  });
-
-  it("never opens a reveal without both stored companions, even if marked ready", async () => {
-    const { api } = server(ready({ companions: [] }));
-    const host = await mount(api);
-    await click(host, "Hatch egg");
-    await act(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 5));
+describe("Real accounts: one companion", () => {
+  const summoned = () =>
+    submitted({
+      selected: "a",
+      companion: A,
+      companions: [A, B],
+      origin: { status: "queued", revealAfter: PAST, ready: false, errorCode: null, completed: 0 },
     });
-    expect(host.querySelectorAll(".occ-card")).toHaveLength(0);
-    expect(api.choose).not.toHaveBeenCalled();
-  });
 
-  it("checks arrival against the server and reveals once it is ready", async () => {
-    const s = server(submitted());
-    const host = await mount(s.api);
-    s.set(ready());
-    await click(host, "Check arrival");
-    await hatch(host);
-    expect(host.querySelectorAll(".occ-card")).toHaveLength(2);
-  });
-});
-
-describe("Real accounts: two independent companions", () => {
-  it("coordinates one purple-egg dissolve with two inert cards and an immediate skip", async () => {
-    vi.mocked(window.matchMedia).mockReturnValueOnce({
-      matches: false,
-      addEventListener: vi.fn(),
-      removeEventListener: vi.fn(),
-    } as unknown as MediaQueryList);
-    const { api } = server(ready());
+  it("shows the preference companion and the portrait wait, never the other companion", async () => {
+    const { api } = server(summoned());
     const host = await mount(api);
-
-    await click(host, "Hatch egg");
-    expect(host.querySelector(".companion-reveal-flow")?.getAttribute("data-reveal")).toBe(
-      "hatching",
+    expect(host.querySelector("h1")?.textContent).toBe(`Your ${A.name}`);
+    expect(text(host)).toContain(A.species);
+    expect(text(host)).toContain(A.element);
+    expect(host.querySelector(".ccprof-story p")?.textContent).toBe(A.story);
+    expect(text(host)).toContain(A.traits[0]);
+    expect(host.querySelector(".ccprof-match p")?.textContent).toBe(A.match.headline);
+    expect(
+      [...host.querySelectorAll(".ccprof-reasons li")].map((item) => item.textContent),
+    ).toEqual(
+      A.match.reasons
+        .filter((reason) => reason.basis !== "difference")
+        .map((reason) => reason.text),
     );
-    expect(host.querySelector(".sanctuary-egg-awakening")).toBeTruthy();
-    expect(host.querySelector(".sanctuary-egg-hatching")).toBeNull();
-    expect(host.querySelectorAll(".occ-card")).toHaveLength(2);
-    expect(host.querySelector(".occ")?.hasAttribute("inert")).toBe(true);
-    expect(button(host, "Hatch egg")?.hasAttribute("disabled")).toBe(true);
-
-    await click(host, "Skip reveal");
-    expect(host.querySelector(".companion-reveal-flow")?.getAttribute("data-reveal")).toBe(
-      "revealed",
+    expect(host.querySelector("[data-portrait-status]")?.textContent).toBe(
+      "Your portrait is being crafted.",
     );
-    expect(host.querySelector(".occ")?.hasAttribute("inert")).toBe(false);
-    expect(button(host, "Skip reveal")).toBeUndefined();
-  });
-
-  it("shows each companion's own stored identity and artwork", async () => {
-    const { api } = server(ready());
-    const host = await mount(api);
-    await hatch(host);
-    const cards = [...host.querySelectorAll(".occ-card")];
-    expect(cards.map((c) => c.querySelector("h2")?.textContent)).toEqual([A.name, B.name]);
-    expect(cards.map((c) => c.querySelector("img")?.getAttribute("src"))).toEqual([
-      ART[0].url,
-      ART[1].url,
-    ]);
-    for (const c of [A, B])
-      for (const value of [c.species, c.element, c.personality, c.learningStyle, c.tagline])
-        expect(text(host)).toContain(value);
-    // Never the old shared identity: the legacy notice and its traits are absent.
-    expect(host.querySelector(".occ-shared")).toBeNull();
-    expect(text(host)).not.toContain(traitsFromAnswers(ANSWERS).marking);
-    expect(text(host)).not.toMatch(/Fictional preview/);
-  });
-
-  it("explores a companion with its own matching explanation", async () => {
-    const { api } = server(ready());
-    const host = await mount(api);
-    await hatch(host);
-    await act(async () => host.querySelectorAll<HTMLButtonElement>(".occ-explore")[1].click());
-    const dialog = host.querySelector("dialog[open]")!;
-    expect(dialog.textContent).toContain(B.name);
-    expect(dialog.textContent).toContain(B.match.headline);
-    expect(dialog.textContent).not.toContain(A.match.headline);
-  });
-
-  it("permanently confirms Companion B and shows only Companion B", async () => {
-    const { api } = server(ready());
-    const host = await mount(api);
-    await hatch(host);
-    await click(host, "Choose Companion B");
-    await click(host, "Confirm My Companion");
-    expect(api.choose).not.toHaveBeenCalled();
-    await click(host.querySelector("dialog")!, "Confirm my companion");
-    expect(api.choose).toHaveBeenCalledExactlyOnceWith("b");
-    expect(host.querySelector("h1")?.textContent).toBe(`Your ${B.name}`);
-    expect(host.querySelector(".ccprof-story p")?.textContent).toBe(B.story);
-    expect(host.querySelector(".ccprof-match p")?.textContent).toBe(B.match.headline);
-    // Every reason except the one comparing B with A by name.
-    expect([...host.querySelectorAll(".ccprof-reasons li")].map((l) => l.textContent)).toEqual(
-      B.match.reasons.filter((r) => r.basis !== "difference").map((r) => r.text),
-    );
-    expect(host.querySelector(".ccprof-card img")?.getAttribute("src")).toBe(
-      "https://example.test/chosen-b.png",
-    );
-    expect(text(host)).not.toContain(A.name);
-    expect(text(host)).not.toContain("Saved collectible");
-    expect(host.querySelector<HTMLAnchorElement>(".ccprof-link")?.textContent).toMatch(/QR/);
+    expect(text(host)).not.toContain(B.name);
     expect(button(host, "Choose Companion")).toBeUndefined();
+    expect(button(host, "Hatch egg")).toBeUndefined();
+    expect(api.choose).not.toHaveBeenCalled();
   });
 
-  it("shows a choice failure without changing anything", async () => {
-    const s = server(ready());
-    s.api.choose = vi.fn(async () => {
-      throw new Error("Your choice could not be saved. Refresh to check readiness.");
-    });
-    const host = await mount(s.api);
-    await hatch(host);
-    await click(host, "Choose Companion A");
-    await click(host, "Confirm My Companion");
-    await click(host.querySelector("dialog")!, "Confirm my companion");
-    expect(text(host)).toContain("could not be saved");
-    expect(host.querySelectorAll(".occ-card")).toHaveLength(2);
+  it("keeps the preference companion when the server also sends the other candidate", async () => {
+    const { api } = server(ready());
+    const host = await mount(api);
+    expect(host.querySelector("h1")?.textContent).toBe(`Your ${A.name}`);
+    expect(host.querySelectorAll(".occ-card")).toHaveLength(1);
+    expect(text(host)).not.toContain(B.name);
+    expect(api.choose).not.toHaveBeenCalled();
   });
 
   it("returns a selected student straight to their permanent companion", async () => {
@@ -305,14 +202,20 @@ describe("Real accounts: two independent companions", () => {
 });
 
 describe("Real accounts: expired subscription", () => {
-  it("can still reveal and choose a validly submitted journey", async () => {
-    const { api } = server(ready({ active: false }));
+  it("keeps a summoned companion viewable without a second choice", async () => {
+    const { api } = server(
+      submitted({
+        active: false,
+        selected: "a",
+        companion: A,
+        companions: [A, B],
+      }),
+    );
     const host = await mount(api);
-    await hatch(host);
-    await click(host, "Choose Companion A");
-    await click(host, "Confirm My Companion");
-    await click(host.querySelector("dialog")!, "Confirm my companion");
     expect(host.querySelector("h1")?.textContent).toBe(`Your ${A.name}`);
+    expect(text(host)).not.toContain(B.name);
+    expect(text(host)).not.toContain("learning plan is required");
+    expect(api.choose).not.toHaveBeenCalled();
   });
 
   it("keeps a chosen companion viewable", async () => {

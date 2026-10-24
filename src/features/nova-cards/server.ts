@@ -38,31 +38,41 @@ export const getNovaEntitlement = createServerFn({ method: "GET" }).handler(
   },
 );
 
+async function signedArtwork(db: ReturnType<typeof client>, path: string) {
+  const { data, error } = await db.storage.from("nova-artwork").createSignedUrl(path, 60);
+  if (error || !data?.signedUrl) throw new Error("Companion artwork is temporarily unavailable.");
+  return data.signedUrl;
+}
+
 async function withArtwork(db: ReturnType<typeof client>, card: NovaCard | null) {
-  if (card?.artworkPath) {
-    const { data, error } = await db.storage
-      .from("nova-artwork")
-      .createSignedUrl(card.artworkPath, 60);
-    if (error) throw new Error("Companion artwork is temporarily unavailable.");
-    return { ...card, artworkPath: undefined, artworkUrl: data.signedUrl };
-  }
-  return card;
+  if (!card) return card;
+  const artworkUrl = card.artworkPath ? await signedArtwork(db, card.artworkPath) : card.artworkUrl;
+  const artOptions = card.artOptions
+    ? await Promise.all(
+        card.artOptions.map(async (option) =>
+          option.path
+            ? { option: option.option, url: await signedArtwork(db, option.path) }
+            : option,
+        ),
+      )
+    : undefined;
+  return { ...card, artworkPath: undefined, artworkUrl, artOptions };
 }
 
 export const getPublicCard = createServerFn({ method: "GET" })
   .validator((input: unknown) => z.string().max(64).parse(input))
   .handler(async ({ data: id }): Promise<NovaCard | null> => {
     setResponseHeader("Cache-Control", "private, no-store, max-age=0");
-    const demo = DEMO_CARDS.find((c) => c.publicId === id);
-    if (demo) return demo;
-    if (!validPublicId(id)) return null;
-    const db = client();
-    const { data, error } = await db.rpc("get_public_nova_card", { requested_public_id: id });
-    if (error)
-      throw new Error(
-        "Nova cards are temporarily unavailable. The reviewed migration may still be pending.",
-      );
-    return withArtwork(db, data as NovaCard | null);
+    const { loadPublicNovaCard } = await import("./public-loader.server");
+    return loadPublicNovaCard(id);
+  });
+
+export const getPublicCardPage = createServerFn({ method: "GET" })
+  .validator((input: unknown) => z.string().max(64).parse(input))
+  .handler(async ({ data: id }): Promise<{ card: NovaCard | null; origin: string }> => {
+    setResponseHeader("Cache-Control", "private, no-store, max-age=0");
+    const { loadPublicNovaCard, publicRequestOrigin } = await import("./public-loader.server");
+    return { card: await loadPublicNovaCard(id), origin: publicRequestOrigin() };
   });
 
 export const getMyCard = createServerFn({ method: "GET" }).handler(
@@ -76,6 +86,17 @@ export const getMyCard = createServerFn({ method: "GET" }).handler(
     return withArtwork(db, data as NovaCard | null);
   },
 );
+
+export const chooseCraftArt = createServerFn({ method: "POST" })
+  .validator((input: unknown) => z.union([z.literal(1), z.literal(2)]).parse(input))
+  .handler(async ({ data: option }): Promise<NovaCard> => {
+    const db = client();
+    const { data, error } = await db.rpc("nova_choose_craft_art", { chosen_option: option });
+    if (error) throw new Error(error.message || "The portrait could not be chosen.");
+    const card = await withArtwork(db, data as NovaCard | null);
+    if (!card) throw new Error("The portrait could not be chosen.");
+    return card;
+  });
 
 export const setSharing = createServerFn({ method: "POST" })
   .validator((input: unknown) => z.boolean().parse(input))

@@ -46,6 +46,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { AcademyLogo } from "@/components/AcademyLogo";
 import { CompanionInfoPopover, StreakInfoPopover } from "@/components/progression/ProgressionHelp";
 import { getCompanionDisplayName } from "@/companion";
+import { useDevDemoCompanion } from "@/lib/dev-auth/use-dev-demo-companion";
 import { isRouteActive } from "@/lib/study-routing";
 import { getProfileForAdminCheck, hasAdministratorRole } from "@/lib/admin-access";
 import { BackgroundMusicControl } from "@/components/audio/BackgroundMusicControl";
@@ -810,7 +811,14 @@ function HeaderCompanion() {
   const { progress } = useProgress();
   const companion = progress.companion ?? { id: "nova" as const, level: 1 };
   const companionLevel = getCompanionLevelProgress(progress.xp).currentLevel;
-  const companionName = getCompanionDisplayName(companion);
+  const demoCompanion = useDevDemoCompanion();
+  const demoChosen = demoCompanion !== "off" && demoCompanion?.discovered ? demoCompanion : null;
+  const demoAwaiting = demoCompanion !== "off" && !!demoCompanion && !demoCompanion.discovered;
+  const companionName = demoChosen
+    ? demoChosen.name
+    : demoAwaiting
+      ? "Awaiting discovery"
+      : getCompanionDisplayName(companion);
   if (pathname === "/companion" || pathname === "/companion/portal") {
     return (
       <Link
@@ -828,11 +836,25 @@ function HeaderCompanion() {
       <Link
         to="/companion"
         className="flex min-h-11 items-center gap-1.5 rounded-l-xl border border-r-0 border-[#F0ABFC]/25 bg-[#F0ABFC]/10 px-2.5 transition-colors hover:bg-[#F0ABFC]/20"
-        aria-label={`Open ${companionName}, Companion Level ${companionLevel}`}
+        aria-label={
+          demoAwaiting
+            ? "Awaiting discovery"
+            : demoChosen
+              ? `Open ${demoChosen.name}, ${demoChosen.element}`
+              : `Open ${companionName}, Companion Level ${companionLevel}`
+        }
       >
         <Sparkles className="h-4 w-4 text-[#F0ABFC]" />
         <span className="text-xs font-bold tabular-nums text-white">
-          <span className="hidden sm:inline">Companion </span>Lv {companionLevel}
+          {demoAwaiting ? (
+            "Awaiting discovery"
+          ) : demoChosen ? (
+            demoChosen.name
+          ) : (
+            <>
+              <span className="hidden sm:inline">Companion </span>Lv {companionLevel}
+            </>
+          )}
         </span>
       </Link>
       <CompanionInfoPopover

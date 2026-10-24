@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { NovaCard } from "./NovaCard";
 import { EvolutionPreview } from "./EvolutionPreview";
 import { cardUrl, DEMO_CARDS, STAGES, type NovaCard as Card } from "./model";
-import { getMyCard, getNovaEntitlement, setSharing, type NovaEntitlement } from "./server";
+import { LiveCraftArtChoice } from "./CraftArtChoice";
+import { loadOwnerNova, republishOwnedDevCard, updateCardSharing } from "./local-session";
+import type { NovaEntitlement } from "./server";
 import { NovaTeaser } from "./NovaTeaser";
 import { academyHomeHref, cardsPaths, signInHref } from "./paths";
 import { novaAccessCopy, novaAccessProblem, type NovaAccessProblem } from "./access";
@@ -17,11 +19,12 @@ export function NovaStudio() {
   useEffect(() => {
     setOrigin(window.location.origin);
     let active = true;
-    Promise.all([getMyCard(), getNovaEntitlement()])
+    loadOwnerNova()
       .then(([c, access]) => {
         if (active) {
           setCard(c);
           setEntitlement(access);
+          if (c?.sharing) void republishOwnedDevCard(c);
         }
       })
       .catch((e) => {
@@ -55,12 +58,12 @@ export function NovaStudio() {
             <em>Your companion.</em>
           </h1>
           <p className="nova-lead">
-            One Nova, uniquely yours. Discover two original designs and make one permanent.
+            One Nova, uniquely yours. One companion, and a portrait crafted for that companion.
           </p>
           <div className="nova-feature-list">
             <span>
               01 <b>Discover your companion</b>
-              <small>Twelve questions. Two original designs. One lifelong bond.</small>
+              <small>Twelve questions. One companion. One lifelong bond.</small>
             </span>
             <span>
               02 <b>Grow through five stages</b>
@@ -90,7 +93,7 @@ export function NovaStudio() {
                       const enabled = e.target.checked;
                       setBusy(true);
                       try {
-                        setCard(await setSharing({ data: enabled }));
+                        setCard(await updateCardSharing(enabled));
                         setNotice(
                           enabled
                             ? "Public sharing enabled. Your username, traits, artwork and codes are visible to anyone with the link."
@@ -110,7 +113,8 @@ export function NovaStudio() {
                   onClick={async () => {
                     setBusy(true);
                     try {
-                      setCard(await getMyCard());
+                      const [next] = await loadOwnerNova();
+                      setCard(next);
                     } catch (e) {
                       setNotice((e as Error).message);
                     } finally {
@@ -155,7 +159,7 @@ export function NovaStudio() {
               status={entitlement.status}
               onMakePrivate={async () => {
                 try {
-                  setCard(await setSharing({ data: false }));
+                  setCard(await updateCardSharing(false));
                   setNotice("Your public card is now private.");
                 } catch {
                   setNotice("Could not change sharing. Please retry.");
@@ -164,14 +168,15 @@ export function NovaStudio() {
             />
           ) : card && (card.traits || card.companion) ? (
             // An owned card stays viewable whatever the subscription status.
-            <NovaCard card={card} url={cardUrl(card.publicId, origin)} />
+            <>
+              <NovaCard card={card} url={cardUrl(card.publicId, origin)} />
+              <LiveCraftArtChoice onChanged={setCard} />
+            </>
           ) : card ? (
             <div className="nova-creation-panel">
               <p className="nova-eyebrow">COSMIC COMPANION</p>
-              <h2>Your two companions are on their way</h2>
-              <p>
-                Your card appears here once you have met both companions and chosen one forever.
-              </p>
+              <h2>Your portrait is being crafted</h2>
+              <p>Your companion is saved. The card portrait appears here once you choose it.</p>
               <a href={cardsPaths.studio}>Open your Cosmic Companion Studio ↗</a>
             </div>
           ) : (

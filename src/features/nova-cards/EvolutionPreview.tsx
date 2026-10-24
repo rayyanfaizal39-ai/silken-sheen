@@ -56,7 +56,9 @@ function CompanionComparison({ card }: { card: LegacyNovaCard }) {
               <figcaption className="nova-preview-caption">
                 <img src="/branding/academy-icon.png" alt="AcadeMY" width="28" height="28" />
                 <span>
-                  <small>STAGE {stage.toString().padStart(2, "0")}</small>
+                  <small>
+                    {card.username}&apos;s {card.traits.creature}
+                  </small>
                   <strong>{stage === 1 ? "Origin" : "Awakened"}</strong>
                 </span>
                 <span className="nova-preview-type">

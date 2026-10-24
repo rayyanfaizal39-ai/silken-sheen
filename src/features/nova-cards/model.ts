@@ -174,6 +174,13 @@ export interface NovaCard {
   demo?: boolean;
   artworkPath?: string | null;
   artworkUrl?: string | null;
+  /**
+   * The companion is confirmed and the portrait is waiting for staff.
+   * The card keeps its frame, serial and codes; the portrait is the crafted state.
+   */
+  crafting?: boolean;
+  /** Two staff portraits the owner may choose. Absent on a public card. */
+  artOptions?: { option: 1 | 2; url?: string; path?: string }[];
 }
 
 /** A card with answer-derived traits: legacy cards and the fictional demo cards. */

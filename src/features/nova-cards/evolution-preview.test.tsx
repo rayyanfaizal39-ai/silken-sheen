@@ -66,6 +66,13 @@ describe("fictional Origin / Awakened visual study", () => {
     expect(html.match(/<figure/g)).toHaveLength(4);
     expect(html).toContain("Rayyan&#x27;s comparison view");
     expect(html).toContain("Mia&#x27;s comparison view");
+    const phoenixHeading = html.indexOf("Rayyan&#x27;s <em>Phoenix</em>");
+    const foxHeading = html.indexOf("Mia&#x27;s <em>Magical Fox</em>");
+    expect(phoenixHeading).toBeGreaterThan(-1);
+    expect(foxHeading).toBeGreaterThan(phoenixHeading);
+    const foxSection = html.slice(foxHeading);
+    expect(foxSection).toContain("Mia&#x27;s Magical Fox");
+    expect(foxSection).not.toContain("Rayyan");
     expect(html.match(/Stage 2 — Awakened/g)).toHaveLength(4);
     expect(() => companionPreviewSvg(DEMO_CARDS[0].traits, "a", 3 as 2)).toThrow(/Only Origin/);
   });

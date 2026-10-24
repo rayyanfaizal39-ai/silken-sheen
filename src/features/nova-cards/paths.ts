@@ -43,6 +43,9 @@ export const academyHomeHref = isStandaloneCardsApp ? `${mainSiteUrl}/home` : "/
 
 export const upgradeHref = isStandaloneCardsApp ? `${mainSiteUrl}/upgrade` : "/upgrade";
 
+/** Upgrade page, with a return to the Cosmic Companion page after the student is done. */
+export const companionUpgradeHref = `${upgradeHref}?next=${encodeURIComponent("/companion")}`;
+
 export function signInHref(destination = cardsPaths.home) {
   if (!isStandaloneCardsApp) {
     return `/login?next=${encodeURIComponent(destination)}`;

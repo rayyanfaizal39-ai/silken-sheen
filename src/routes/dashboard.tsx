@@ -26,6 +26,8 @@ import {
   getCompanionStageForXp,
 } from "@/hooks/use-progress";
 import { CompanionImage, getCompanionDisplayName, getCompanionSpecies } from "@/companion";
+import { useDevDemoCompanion } from "@/lib/dev-auth/use-dev-demo-companion";
+import type { DevDemoCompanion } from "@/lib/dev-auth/store";
 import { subjects } from "@/data/subjects-meta";
 import {
   Target,
@@ -56,10 +58,7 @@ import { useSignInModal } from "@/context/sign-in-modal";
 import { isGuestMode } from "@/lib/guest-mode";
 import { seoMeta } from "@/lib/seo";
 import { buildResumeSearch } from "@/lib/study-routing";
-import {
-  completeJourneyUnlock,
-  subscribeToJourneyUnlocks,
-} from "@/lib/progression-events";
+import { completeJourneyUnlock, subscribeToJourneyUnlocks } from "@/lib/progression-events";
 import {
   CompanionInfoPopover,
   StreakInfoPopover,
@@ -251,6 +250,7 @@ function DashboardPage() {
 
   const firstName = user?.name?.split(" ")[0] ?? "Student";
   const greeting = useLocalGreeting(firstName);
+  const demoCompanion = useDevDemoCompanion();
   const companionId = progress.companion?.id ?? "nova";
   const companionName = getCompanionDisplayName(progress.companion ?? { id: "nova" });
   const nextGoalLabel = getNextGoalLabel(todaysMissions);
@@ -319,6 +319,7 @@ function DashboardPage() {
         rankPct={rankPct}
         companionId={companionId}
         companionName={companionName}
+        demoCompanion={demoCompanion}
         nextGoalLabel={nextGoalLabel}
       />
 
@@ -395,7 +396,11 @@ function DashboardPage() {
 
       {/* ── ROW 5 — Companion Evolution / Ace ──────────── */}
       <div className="mb-6 grid gap-6 lg:grid-cols-2">
-        <CosmicCompanionCard xp={progress.xp} companionId={companionId} />
+        <CosmicCompanionCard
+          xp={progress.xp}
+          companionId={companionId}
+          demoCompanion={demoCompanion}
+        />
         <div className="space-y-4">
           {/* Ace CTA */}
           <div className="rounded-[2rem] border border-[#6366F1]/25 bg-gradient-to-br from-[#6366F1]/15 to-[#8B5CF6]/15 p-5 backdrop-blur-2xl">
@@ -512,6 +517,7 @@ function HeroRow({
   rankPct,
   companionId,
   companionName,
+  demoCompanion,
   nextGoalLabel,
 }: {
   rank: SpaceRank;
@@ -520,12 +526,18 @@ function HeroRow({
   rankPct: number;
   companionId: CompanionId;
   companionName: string;
+  demoCompanion: "off" | DevDemoCompanion | null;
   nextGoalLabel: string;
 }) {
   return (
     <div className="mb-6 grid gap-4 sm:grid-cols-3">
       <RankHeroCard rank={rank} nextRank={nextRank} xp={xp} rankPct={rankPct} />
-      <CompanionHeroCard xp={xp} companionId={companionId} companionName={companionName} />
+      <CompanionHeroCard
+        xp={xp}
+        companionId={companionId}
+        companionName={companionName}
+        demoCompanion={demoCompanion}
+      />
       <NextGoalHeroCard nextGoalLabel={nextGoalLabel} nextRank={nextRank} xp={xp} />
     </div>
   );
@@ -603,13 +615,17 @@ function CompanionHeroCard({
   xp,
   companionId,
   companionName,
+  demoCompanion,
 }: {
   xp: number;
   companionId: CompanionId;
   companionName: string;
+  demoCompanion: "off" | DevDemoCompanion | null;
 }) {
   const stageId = getCompanionStageForXp(xp);
   const species = getCompanionSpecies(companionId);
+  const chosen = demoCompanion !== "off" && demoCompanion?.discovered ? demoCompanion : null;
+  const awaiting = demoCompanion !== "off" && !!demoCompanion && !demoCompanion.discovered;
 
   return (
     <Card className="relative flex h-[280px] flex-col overflow-hidden text-center !p-4 sm:h-[300px] sm:!p-5">
@@ -626,17 +642,47 @@ function CompanionHeroCard({
       />
       <div className="relative z-10 flex flex-1 flex-col items-center justify-center">
         <SectionLabel>Companion</SectionLabel>
-        <p className="mt-1 font-display text-xl font-black text-white">{species.name}</p>
+        <p className="mt-1 font-display text-xl font-black text-white">
+          {chosen ? chosen.name : awaiting ? "Awaiting discovery" : species.name}
+        </p>
         <div className="mt-1 flex h-[168px] w-full max-w-[280px] items-center justify-center sm:h-[188px] sm:max-w-[288px]">
-          <CompanionImage
-            speciesId={companionId}
-            stage={stageId}
-            size={288}
-            className="!h-full !w-full object-contain"
-          />
+          {chosen?.artworkUrl ? (
+            <img
+              src={chosen.artworkUrl}
+              alt={`${chosen.name} the ${chosen.species}`}
+              className="h-full max-h-[188px] w-auto rounded-3xl border border-[#E1C27F] object-contain"
+            />
+          ) : chosen?.choosing ? (
+            <p className="max-w-[220px] font-display text-lg font-black text-[#F6EAD2]">
+              Choose your companion art
+            </p>
+          ) : chosen?.crafting ? (
+            <p className="max-w-[220px] font-display text-lg font-black text-[#F6EAD2]">
+              Your portrait is being crafted
+            </p>
+          ) : awaiting ? (
+            <span className="font-display text-6xl text-[#F6EAD2]" aria-hidden="true">
+              ?
+            </span>
+          ) : (
+            <CompanionImage
+              speciesId={companionId}
+              stage={stageId}
+              size={288}
+              className="!h-full !w-full object-contain"
+            />
+          )}
         </div>
         <p className="mt-1 text-xs font-bold text-[#E9D5FF]">
-          Earn Lifetime XP to help {companionName} grow.
+          {chosen?.choosing
+            ? "Choose your companion art"
+            : chosen?.crafting
+              ? "Your portrait is being crafted"
+              : chosen
+                ? `${chosen.element} · ${chosen.species}`
+                : awaiting
+                  ? "Your companion is waiting to be discovered."
+                  : `Earn Lifetime XP to help ${companionName} grow.`}
         </p>
       </div>
     </Card>
@@ -1323,13 +1369,23 @@ function CompanionEvolutionPath({ currentStageId }: { currentStageId: CompanionS
 }
 
 /** Large, prominent companion card — current stage, next evolution, and the full evolution path. */
-function CosmicCompanionCard({ xp, companionId }: { xp: number; companionId: CompanionId }) {
+function CosmicCompanionCard({
+  xp,
+  companionId,
+  demoCompanion,
+}: {
+  xp: number;
+  companionId: CompanionId;
+  demoCompanion: "off" | DevDemoCompanion | null;
+}) {
   const companionProgress = getCompanionLevelProgress(xp);
   const stageId = companionProgress.currentStage.id;
   const stage = companionProgress.currentStage;
   const nextStage = companionProgress.nextStage;
   const xpNeeded = companionProgress.remainingXp;
   const species = getCompanionSpecies(companionId);
+  const chosen = demoCompanion !== "off" && demoCompanion?.discovered ? demoCompanion : null;
+  const awaiting = demoCompanion !== "off" && !!demoCompanion && !demoCompanion.discovered;
 
   return (
     <Card className="relative overflow-hidden">
@@ -1349,17 +1405,51 @@ function CosmicCompanionCard({ xp, companionId }: { xp: number; companionId: Com
           >
             <div className="cosmic-companion-pedestal absolute bottom-2 left-1/2 -translate-x-1/2" />
             <div className="cosmic-companion-egg relative z-10 mb-3">
-              <CompanionImage speciesId={companionId} stage={stageId} size={140} />
+              {chosen?.artworkUrl ? (
+                <img
+                  src={chosen.artworkUrl}
+                  alt={`${chosen.name} the ${chosen.species}`}
+                  width={140}
+                  height={140}
+                  className="h-[140px] w-[140px] rounded-3xl border border-[#E1C27F] object-cover"
+                />
+              ) : chosen?.choosing ? (
+                <p className="max-w-[140px] text-center font-display text-sm font-black text-[#F6EAD2]">
+                  Choose your companion art
+                </p>
+              ) : chosen?.crafting ? (
+                <p className="max-w-[140px] text-center font-display text-sm font-black text-[#F6EAD2]">
+                  Your portrait is being crafted
+                </p>
+              ) : awaiting ? (
+                <span className="font-display text-6xl text-[#F6EAD2]" aria-hidden="true">
+                  ?
+                </span>
+              ) : (
+                <CompanionImage speciesId={companionId} stage={stageId} size={140} />
+              )}
             </div>
           </div>
 
           {/* CENTER — identity */}
           <div className="flex-1 min-w-0 text-center sm:text-left">
             <p className="text-[10px] font-bold uppercase tracking-widest text-[#C4B5FD]/70">
-              {species.name}
+              {chosen?.choosing
+                ? "Choose your companion art"
+                : chosen?.crafting
+                  ? "Being crafted"
+                  : chosen
+                    ? `${chosen.element} · ${chosen.species}`
+                    : awaiting
+                      ? "Not discovered yet"
+                      : species.name}
             </p>
             <p className="font-display text-2xl font-black text-white sm:text-3xl">
-              {species.fallbackEmoji[stageId]} {stage.name}
+              {chosen
+                ? chosen.name
+                : awaiting
+                  ? "Awaiting discovery"
+                  : `${species.fallbackEmoji[stageId]} ${stage.name}`}
             </p>
             <p className="mt-2 text-sm font-bold text-white">
               XP: <span className="text-[#A78BFA]">{xp.toLocaleString()}</span>
