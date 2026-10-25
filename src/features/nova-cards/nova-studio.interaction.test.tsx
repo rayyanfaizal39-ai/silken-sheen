@@ -9,7 +9,7 @@ env.IS_REACT_ACT_ENVIRONMENT = true;
 
 const card: Card = {
   publicId: "00000000-0000-4000-8000-00000000d101",
-  serial: "000000000101",
+  serial: "R-4H7K2M9P",
   username: "Aisha",
   traits: null,
   companion: {

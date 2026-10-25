@@ -14,7 +14,7 @@ import { SITE_URL } from "@/lib/seo";
 
 const matched: NovaCard = {
   publicId: "00000000-0000-4000-8000-00000000d101",
-  serial: "100000000101",
+  serial: "R-4H7K2M9P",
   username: "Aisha",
   traits: null,
   companion: {
@@ -54,7 +54,7 @@ describe("public companion card", () => {
     expect(snapshot.traits).toEqual(["curious", "gentle"]);
     expect(snapshot.stars).toBe(2);
     expect(snapshot.aura).toBe("Starlight aura");
-    expect(snapshot.serial).toBe("100000000101");
+    expect(snapshot.serial).toBe("R-4H7K2M9P");
     expect(snapshot.artworkUrl).toBeNull();
     expect(json).not.toContain("form1.student@dev.local");
     expect(json).not.toContain("North School");
@@ -70,7 +70,7 @@ describe("public companion card", () => {
     const svg = publicPreviewSvg(toPublicSnapshot(matched));
     expect(svg).toContain("Aisha");
     expect(svg).toContain("Lumi");
-    expect(svg).not.toContain("100000000101");
+    expect(svg).not.toContain("R-4H7K2M9P");
     expect(svg).toContain("Starlight aura");
     expect(svg).toContain("Your portrait is being crafted");
     expect(svg).not.toContain("form1.student@dev.local");

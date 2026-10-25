@@ -31,7 +31,7 @@ const PUBLIC_ID = "9b4c6f6e-55e6-4b52-9d5f-3c1c0f6e2a11";
 function card(over: Partial<NovaCard> = {}): NovaCard {
   return {
     publicId: PUBLIC_ID,
-    serial: "100000000101",
+    serial: "R-4H7K2M9P",
     username: "Aisyah",
     traits: null,
     companion: {

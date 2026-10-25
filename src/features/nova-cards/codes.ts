@@ -109,31 +109,75 @@ const WIDTHS = [
   "2331112",
 ];
 
+/** Human-readable body alphabet — no O/0 or I/1. Matches DB generator. */
+export const NOVA_SERIAL_BODY_ALPHABET = "23456789ABCDEFGHJKLMNPQRSTUVWXYZ";
+
+/** Permanent collectible serial: rarity prefix + hyphen + 8 secure body chars. */
+export const NOVA_COLLECTIBLE_SERIAL_PATTERN =
+  /^[CREL]-[23456789ABCDEFGHJKLMNPQRSTUVWXYZ]{8}$/;
+
+const CODE128_START_B = 104;
+const CODE128_STOP = 106;
+
+export type NovaSerialPrefix = "C" | "R" | "E" | "L";
+
+/** Map stored rarity to the collectible serial letter prefix. */
+export function raritySerialPrefix(rarity: string): NovaSerialPrefix {
+  switch (rarity) {
+    case "Common":
+      return "C";
+    case "Rare":
+      return "R";
+    case "Epic":
+      return "E";
+    case "Legendary":
+      return "L";
+    default:
+      throw new Error("Unknown Nova rarity");
+  }
+}
+
 /**
- * Permanent collectible serial: exactly twelve digit characters, leading zeros kept.
- * Rejects anything else — never pad or rewrite a stored serial into a different id.
+ * Permanent collectible serial: `R-XXXXXXXX` (C/R/E/L + 8 body chars).
+ * Rejects anything else — never rewrite a stored serial into a different id.
  */
-export function novaSerialDigits(serial: string): string {
+export function novaCollectibleSerial(serial: string): string {
   const value = String(serial ?? "");
-  if (!/^\d{12}$/.test(value)) {
-    throw new Error("Nova serial must contain twelve digits.");
+  if (!NOVA_COLLECTIBLE_SERIAL_PATTERN.test(value)) {
+    throw new Error("Nova serial must be R-XXXXXXXX collectible format.");
   }
   return value;
 }
 
+/** @deprecated Use novaCollectibleSerial — Stage 1 final format is alphanumeric. */
+export const novaSerialDigits = novaCollectibleSerial;
+
+/** Eight-character body shown on the card front footer. */
+export function novaSerialBody(serial: string): string {
+  return novaCollectibleSerial(serial).slice(2);
+}
+
 export function barcodeSymbols(serial: string) {
-  const padded = novaSerialDigits(serial);
-  const data = padded.match(/../g)!.map(Number);
-  const checksum = data.reduce((sum, code, i) => sum + code * (i + 1), 105) % 103;
-  return [105, ...data, checksum, 106]; // Start C, six digit pairs, checksum, stop.
+  const value = novaCollectibleSerial(serial);
+  // Code 128 Subset B: printable ASCII (space–~) via charCode - 32.
+  const data = [...value].map((ch) => {
+    const code = ch.charCodeAt(0) - 32;
+    if (code < 0 || code > 94) {
+      throw new Error("Unsupported Code 128 character");
+    }
+    return code;
+  });
+  const checksum =
+    data.reduce((sum, code, i) => sum + code * (i + 1), CODE128_START_B) % 103;
+  return [CODE128_START_B, ...data, checksum, CODE128_STOP];
 }
 
 export function barcodeSvg(serial: string) {
-  const padded = novaSerialDigits(serial);
+  const value = novaCollectibleSerial(serial);
   const quiet = 10; // ISO quiet zone: ≥10 narrow modules on both ends.
   let x = quiet;
   let bars = "";
-  for (const symbol of barcodeSymbols(padded)) {
+  for (const symbol of barcodeSymbols(value)) {
     [...WIDTHS[symbol]].forEach((width, i) => {
       // Full viewBox height — scanners need tall bars; quiet zones are horizontal only.
       if (i % 2 === 0) bars += `<rect x="${x}" y="0" width="${width}" height="74"/>`;
@@ -144,7 +188,7 @@ export function barcodeSvg(serial: string) {
   // Wide strip aspect so CSS width:100% + fixed height fills the card, not a letterboxed box.
   const svgWidth = modules * 8;
   const svgHeight = 64;
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${svgWidth}" height="${svgHeight}" viewBox="0 0 ${modules} 74" preserveAspectRatio="none" shape-rendering="crispEdges" role="img" aria-label="Code 128 barcode ${padded}"><rect width="100%" height="100%" fill="white"/><g fill="black">${bars}</g></svg>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${svgWidth}" height="${svgHeight}" viewBox="0 0 ${modules} 74" preserveAspectRatio="none" shape-rendering="crispEdges" role="img" aria-label="Code 128 barcode ${value}"><rect width="100%" height="100%" fill="white"/><g fill="black">${bars}</g></svg>`;
 }
 
 export const svgUrl = (svg: string) =>

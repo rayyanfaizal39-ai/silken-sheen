@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { companionSvg } from "./artwork";
 import { CompanionArtworkImage } from "./CompanionArtworkImage";
-import { barcodeSvg, novaSerialDigits, qrDataUrl, svgUrl } from "./codes";
+import { barcodeSvg, novaCollectibleSerial, novaSerialBody, qrDataUrl, svgUrl } from "./codes";
 import { STAGES, cardFace, type NovaCard as Card } from "./model";
 import { CardShareOptions } from "./CardShareOptions";
 import { downloadCard } from "./download";
@@ -35,7 +35,7 @@ export function NovaCard({
       ? svgUrl(companionSvg(face.fallbackTraits, card.variant, stage))
       : null;
   // Collectible identifier only — not authentication or prize entitlement.
-  const serial = novaSerialDigits(card.serial);
+  const serial = novaCollectibleSerial(card.serial);
   const barcode = svgUrl(barcodeSvg(serial));
 
   useEffect(() => {
@@ -182,7 +182,7 @@ export function NovaCard({
               <p className="nova-description">{face.description}</p>
               <div className="nova-card-footer">
                 <span>✦ {STAGES[stage - 1].name}</span>
-                <span>{serial.slice(-8)}</span>
+                <span>{novaSerialBody(serial)}</span>
               </div>
             </div>
             <div className="nova-hologram" aria-hidden="true" />
