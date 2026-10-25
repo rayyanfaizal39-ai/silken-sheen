@@ -112,11 +112,15 @@ const WIDTHS = [
 /** Human-readable body alphabet — no O/0 or I/1. Matches DB generator. */
 export const NOVA_SERIAL_BODY_ALPHABET = "23456789ABCDEFGHJKLMNPQRSTUVWXYZ";
 
+/** Legacy production serials until a separately approved reissue completes. */
+export const NOVA_LEGACY_SERIAL_PATTERN = /^\d{12}$/;
+
 /** Permanent collectible serial: rarity prefix + hyphen + 8 secure body chars. */
 export const NOVA_COLLECTIBLE_SERIAL_PATTERN =
   /^[CREL]-[23456789ABCDEFGHJKLMNPQRSTUVWXYZ]{8}$/;
 
 const CODE128_START_B = 104;
+const CODE128_START_C = 105;
 const CODE128_STOP = 106;
 
 export type NovaSerialPrefix = "C" | "R" | "E" | "L";
@@ -137,28 +141,45 @@ export function raritySerialPrefix(rarity: string): NovaSerialPrefix {
   }
 }
 
-/**
- * Permanent collectible serial: `R-XXXXXXXX` (C/R/E/L + 8 body chars).
- * Rejects anything else — never rewrite a stored serial into a different id.
- */
-export function novaCollectibleSerial(serial: string): string {
-  const value = String(serial ?? "");
-  if (!NOVA_COLLECTIBLE_SERIAL_PATTERN.test(value)) {
-    throw new Error("Nova serial must be R-XXXXXXXX collectible format.");
-  }
-  return value;
+export function isLegacyNovaSerial(serial: string): boolean {
+  return NOVA_LEGACY_SERIAL_PATTERN.test(serial);
 }
 
-/** @deprecated Use novaCollectibleSerial — Stage 1 final format is alphanumeric. */
-export const novaSerialDigits = novaCollectibleSerial;
+export function isCollectibleNovaSerial(serial: string): boolean {
+  return NOVA_COLLECTIBLE_SERIAL_PATTERN.test(serial);
+}
 
-/** Eight-character body shown on the card front footer. */
+/**
+ * Stored card serial as returned by the database — never rewritten here.
+ * Accepts legacy twelve-digit serials and the new R-XXXXXXXX collectible format
+ * so existing production cards keep rendering until a gated reissue is applied.
+ */
+export function novaCardSerial(serial: string): string {
+  const value = String(serial ?? "");
+  if (isLegacyNovaSerial(value) || isCollectibleNovaSerial(value)) return value;
+  throw new Error("Nova serial must be twelve digits or R-XXXXXXXX collectible format.");
+}
+
+/** @deprecated Prefer novaCardSerial — accepts both formats during the transition. */
+export const novaCollectibleSerial = novaCardSerial;
+
+/** @deprecated Prefer novaCardSerial — accepts both formats during the transition. */
+export const novaSerialDigits = novaCardSerial;
+
+/** Short body shown on the card front footer (never mutates the stored serial). */
 export function novaSerialBody(serial: string): string {
-  return novaCollectibleSerial(serial).slice(2);
+  const value = novaCardSerial(serial);
+  return isLegacyNovaSerial(value) ? value.slice(-8) : value.slice(2);
 }
 
 export function barcodeSymbols(serial: string) {
-  const value = novaCollectibleSerial(serial);
+  const value = novaCardSerial(serial);
+  if (isLegacyNovaSerial(value)) {
+    // Code 128 Subset C: six digit pairs for exactly twelve numeric characters.
+    const data = value.match(/../g)!.map(Number);
+    const checksum = data.reduce((sum, code, i) => sum + code * (i + 1), CODE128_START_C) % 103;
+    return [CODE128_START_C, ...data, checksum, CODE128_STOP];
+  }
   // Code 128 Subset B: printable ASCII (space–~) via charCode - 32.
   const data = [...value].map((ch) => {
     const code = ch.charCodeAt(0) - 32;
@@ -173,7 +194,7 @@ export function barcodeSymbols(serial: string) {
 }
 
 export function barcodeSvg(serial: string) {
-  const value = novaCollectibleSerial(serial);
+  const value = novaCardSerial(serial);
   const quiet = 10; // ISO quiet zone: ≥10 narrow modules on both ends.
   let x = quiet;
   let bars = "";

@@ -58,6 +58,25 @@ describe("crafted companion card", () => {
     expect(html).toContain("data-nova-codes");
   });
 
+  it("renders Ace's legacy twelve-digit serial without rewriting it", () => {
+    const html = renderToStaticMarkup(
+      <NovaCard
+        card={{
+          ...card,
+          serial: "000001000000",
+          username: "Ace",
+          crafting: false,
+          artworkUrl: "https://example.test/ace.png",
+        }}
+        url="http://localhost:8080/card/c/f2c18bdb-9de8-44fd-89b7-61b56bb52964"
+      />,
+    );
+    expect(html).toContain("000001000000");
+    expect(html).toContain("Code 128 barcode: 000001000000");
+    expect(html).toContain("01000000");
+    expect(html).toContain('aria-label="Ace&#x27;s Nova companion card"');
+  });
+
   it("asks the student to choose once both portraits are ready", () => {
     const html = renderToStaticMarkup(
       <NovaCard

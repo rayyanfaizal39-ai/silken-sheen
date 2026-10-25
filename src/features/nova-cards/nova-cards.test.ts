@@ -20,11 +20,23 @@ import { companionSvg } from "./artwork";
 import {
   barcodeSvg,
   barcodeSymbols,
-  novaCollectibleSerial,
+  isCollectibleNovaSerial,
+  isLegacyNovaSerial,
+  novaCardSerial,
+  novaSerialBody,
   raritySerialPrefix,
   qrDataUrl,
 } from "./codes";
 import { isOnboardingExemptRoute } from "@/lib/onboarding-routing";
+
+function decodeBarcodeSvg(svg: string) {
+  const width = Number(svg.match(/viewBox="0 0 (\d+)/)![1]);
+  const pixels = new BitArray(width * 3);
+  for (const match of svg.matchAll(/<rect x="(\d+)" y="0" width="(\d+)" height="74"/g)) {
+    pixels.setRange(Number(match[1]) * 3, (Number(match[1]) + Number(match[2])) * 3);
+  }
+  return new Code128Reader().decodeRow(30, pixels).getText();
+}
 
 describe("Nova permanent identities and scannable codes", () => {
   for (const card of DEMO_CARDS) {
@@ -35,12 +47,7 @@ describe("Nova permanent identities and scannable codes", () => {
     });
     it(`independently decodes ${card.username}'s rendered Code 128 bars`, () => {
       const svg = barcodeSvg(card.serial);
-      const width = Number(svg.match(/viewBox="0 0 (\d+)/)![1]);
-      const pixels = new BitArray(width * 3);
-      for (const match of svg.matchAll(/<rect x="(\d+)" y="0" width="(\d+)" height="74"/g)) {
-        pixels.setRange(Number(match[1]) * 3, (Number(match[1]) + Number(match[2])) * 3);
-      }
-      expect(new Code128Reader().decodeRow(30, pixels).getText()).toBe(card.serial);
+      expect(decodeBarcodeSvg(svg)).toBe(card.serial);
       expect(barcodeSymbols(card.serial).at(-1)).toBe(106);
       expect(svg).toContain(`aria-label="Code 128 barcode ${card.serial}"`);
       const svgW = Number(svg.match(/\bwidth="(\d+)"/)![1]);
@@ -48,7 +55,7 @@ describe("Nova permanent identities and scannable codes", () => {
       expect(svgW).toBeGreaterThan(svgH * 4);
     });
     it(`decodes ${card.username}'s barcode rasterized at mobile and export sizes`, async () => {
-      // Collectible Code 128 B is longer than the old numeric Code C; keep ≥~290 CSS px
+      // Collectible Code 128 B is longer than numeric Code C; keep ≥~290 CSS px
       // so modules stay scannable after fill-scaling on the card back.
       for (const width of [292, 320, 375, 480, 750]) {
         const { data } = await sharp(
@@ -68,30 +75,56 @@ describe("Nova permanent identities and scannable codes", () => {
       }
     });
   }
-  it("validates collectible serials and encodes all rarity prefixes", () => {
-    expect(novaCollectibleSerial("R-7K4M9Q2X")).toBe("R-7K4M9Q2X");
-    expect(novaCollectibleSerial("L-8P3W6T9A")).toBe("L-8P3W6T9A");
-    expect(() => novaCollectibleSerial("1")).toThrow(/collectible format/);
-    expect(() => novaCollectibleSerial("R-7K4M9Q2")).toThrow(/collectible format/);
-    expect(() => novaCollectibleSerial("R-0K4M9Q2X")).toThrow(/collectible format/);
-    expect(() => barcodeSymbols("1")).toThrow(/collectible format/);
+
+  it("accepts legacy twelve-digit and collectible serials without rewriting them", () => {
+    expect(novaCardSerial("000001000000")).toBe("000001000000");
+    expect(novaCardSerial("R-7K4M9Q2X")).toBe("R-7K4M9Q2X");
+    expect(isLegacyNovaSerial("000001000000")).toBe(true);
+    expect(isCollectibleNovaSerial("000001000000")).toBe(false);
+    expect(isCollectibleNovaSerial("R-7K4M9Q2X")).toBe(true);
+    expect(novaSerialBody("000001000000")).toBe("01000000");
+    expect(novaSerialBody("R-7K4M9Q2X")).toBe("7K4M9Q2X");
+    expect(() => novaCardSerial("1")).toThrow(/twelve digits or R-XXXXXXXX/);
+    expect(() => novaCardSerial("R-7K4M9Q2")).toThrow(/twelve digits or R-XXXXXXXX/);
+    expect(() => novaCardSerial("R-0K4M9Q2X")).toThrow(/twelve digits or R-XXXXXXXX/);
+    expect(() => barcodeSymbols("1")).toThrow(/twelve digits or R-XXXXXXXX/);
+  });
+
+  it("encodes Ace's legacy serial with Code 128 C and collectible serials with Code B", () => {
+    const ace = "000001000000";
+    expect(decodeBarcodeSvg(barcodeSvg(ace))).toBe(ace);
+    expect(barcodeSymbols(ace)[0]).toBe(105); // Start C
+    expect(barcodeSymbols(ace).at(-1)).toBe(106);
+
     expect(raritySerialPrefix("Common")).toBe("C");
     expect(raritySerialPrefix("Rare")).toBe("R");
     expect(raritySerialPrefix("Epic")).toBe("E");
     expect(raritySerialPrefix("Legendary")).toBe("L");
     for (const serial of ["C-2A3B4C5D", "R-7K4M9Q2X", "E-X5K8D2M7", "L-8P3W6T9A"] as const) {
-      const svg = barcodeSvg(serial);
-      const width = Number(svg.match(/viewBox="0 0 (\d+)/)![1]);
-      const pixels = new BitArray(width * 3);
-      for (const match of svg.matchAll(/<rect x="(\d+)" y="0" width="(\d+)" height="74"/g)) {
-        pixels.setRange(Number(match[1]) * 3, (Number(match[1]) + Number(match[2])) * 3);
-      }
-      expect(new Code128Reader().decodeRow(30, pixels).getText()).toBe(serial);
+      expect(decodeBarcodeSvg(barcodeSvg(serial))).toBe(serial);
       expect(barcodeSymbols(serial)[0]).toBe(104); // Start B
       expect(barcodeSymbols(serial).at(-1)).toBe(106);
     }
     expect(() => barcodeSvg("<script>")).toThrow();
   });
+
+  it("raster-decodes Ace's legacy barcode at mobile and desktop sizes", async () => {
+    const ace = "000001000000";
+    for (const width of [234, 292, 375, 750]) {
+      const { data } = await sharp(
+        Buffer.from(
+          barcodeSvg(ace).replace(/width="\d+" height="\d+"/, `width="${width}" height="64"`),
+        ),
+      )
+        .removeAlpha()
+        .raw()
+        .toBuffer({ resolveWithObject: true });
+      const row = new BitArray(width);
+      for (let x = 0; x < width; x++) if (data[(30 * width + x) * 3] < 128) row.set(x);
+      expect(new Code128Reader().decodeRow(0, row).getText()).toBe(ace);
+    }
+  });
+
   it("keeps demo identities distinct and validates identifiers", () => {
     expect(new Set(DEMO_CARDS.map((c) => c.publicId)).size).toBe(2);
     expect(new Set(DEMO_CARDS.map((c) => c.serial)).size).toBe(2);

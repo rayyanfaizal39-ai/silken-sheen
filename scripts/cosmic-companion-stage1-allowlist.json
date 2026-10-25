@@ -1,6 +1,6 @@
 {
   "purpose": "Strict Stage 1 Cosmic Companion SQL allowlist. Never run supabase db push from the repository migrations folder.",
-  "checkedAt": "2026-10-25T12:00:00Z",
+  "checkedAt": "2026-10-25T14:20:00Z",
   "productionProject": "aojrbxoqbgyxmfljqpqj",
   "stagingProject": "lyethdhiiwkbuznvvouk",
   "doNotApply": [
@@ -39,6 +39,29 @@
     "20261025120000_nova_collectible_serial.sql",
     "20261025120100_nova_ace_pilot_serial_reissue.sql"
   ],
+  "safeDeploySequence": {
+    "whyFrontendFirst": "The dual-format frontend accepts both ^[0-9]{12}$ and R-XXXXXXXX. Deploying Pages before SQL means Ace (000001000000) keeps rendering. Applying SQL after that only swaps Ace's serial; new inserts mint collectible IDs. Never deploy a collectible-only frontend before SQL if any legacy serial remains.",
+    "steps": [
+      "1. Preflight read-only: confirm Ace public_id f2c18bdb-9de8-44fd-89b7-61b56bb52964, username Ace, rarity Rare, serial ~ ^[0-9]{12}$, sharing/artwork/owner unchanged.",
+      "2. Merge PR #107 and wait for Cloudflare Pages production success (dual-format frontend live).",
+      "3. Smoke Ace public card + /nova owner view: legacy serial still renders; no NovaCard crash.",
+      "4. Apply ONLY 20261025120000_nova_collectible_serial.sql on production aojrbxoqbgyxmfljqpqj (dual CHECK; INSERT generator; gated identity trigger).",
+      "5. Apply ONLY 20261025120100_nova_ace_pilot_serial_reissue.sql (one-time Ace reissue + collectible-only CHECK).",
+      "6. Verify Ace: serial ~ ^R-[23456789ABCDEFGHJKLMNPQRSTUVWXYZ]{8}$, public_id unchanged, audit ace_pilot_serial_reissue, artwork URL /card/c/{publicId}/art still works.",
+      "7. Keep paid AI disabled (flags below)."
+    ]
+  },
+  "rollbackRecovery": {
+    "frontendOnly": "Revert Pages to previous main deploy if dual-format frontend regresses. No SQL needed.",
+    "afterFormatMigrationBeforeReissue": "20261025120000 is additive (dual CHECK + generator). Leaving it applied is safe; Ace still has numeric serial. Do not reverse unless instructed — reversing requires restoring nova_keep_identity and sequential default carefully.",
+    "afterAceReissue": "Serial change is permanent by design. Do not rewrite Ace back to 000001000000 via casual UPDATE (identity trigger blocks it). Recovery = leave new collectible serial; public_id/URL/artwork remain. If reissue migration failed mid-way, check audit + serial; re-run is idempotent when already collectible.",
+    "never": [
+      "supabase db push of the whole migrations folder",
+      "disabling nova_identity_immutable casually",
+      "changing owner_id, public_id, answers, artwork paths, or sharing to 'fix' a serial",
+      "applying partner/announcement migrations from this allowlist"
+    ]
+  },
   "requiredFlagsAfterApply": {
     "NOVA_AI_ENABLED": false,
     "NOVA_AI_BATCH_ENABLED": false,
@@ -52,7 +75,10 @@
     "publicId": "f2c18bdb-9de8-44fd-89b7-61b56bb52964",
     "username": "Ace",
     "rarity": "Rare",
+    "expectedLegacySerial": "000001000000",
     "legacySerialPattern": "^[0-9]{12}$",
+    "newSerialPattern": "^R-[23456789ABCDEFGHJKLMNPQRSTUVWXYZ]{8}$",
+    "permanentUrl": "/card/c/f2c18bdb-9de8-44fd-89b7-61b56bb52964",
     "preserves": [
       "owner_id",
       "public_id",

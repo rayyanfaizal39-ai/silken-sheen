@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { companionSvg } from "./artwork";
 import { CompanionArtworkImage } from "./CompanionArtworkImage";
-import { barcodeSvg, novaCollectibleSerial, novaSerialBody, qrDataUrl, svgUrl } from "./codes";
+import { barcodeSvg, novaCardSerial, novaSerialBody, qrDataUrl, svgUrl } from "./codes";
 import { STAGES, cardFace, type NovaCard as Card } from "./model";
 import { CardShareOptions } from "./CardShareOptions";
 import { downloadCard } from "./download";
@@ -34,8 +34,9 @@ export function NovaCard({
     card.demo && !artworkUrl
       ? svgUrl(companionSvg(face.fallbackTraits, card.variant, stage))
       : null;
+  // Stored serial only — never rewritten here. Accepts legacy 12-digit and R-XXXXXXXX.
   // Collectible identifier only — not authentication or prize entitlement.
-  const serial = novaCollectibleSerial(card.serial);
+  const serial = novaCardSerial(card.serial);
   const barcode = svgUrl(barcodeSvg(serial));
 
   useEffect(() => {
