@@ -1,0 +1,458 @@
+/* My Cosmic Companion profile: the permanent card beside its saved identity. Shares the garden,
+   glass panel and button styles with the Awakening chamber (awakening-chamber.css). */
+.nova-sanctuary .ccprof {
+  display: grid;
+  grid-template-columns: minmax(0, 400px) minmax(0, 560px);
+  justify-content: center;
+  align-items: start;
+  gap: clamp(24px, 3.4vw, 56px);
+  max-width: 1120px;
+  padding: 8px 0 24px;
+  text-align: left;
+}
+
+.nova-sanctuary .ccprof-card {
+  position: sticky;
+  top: calc(var(--preview-height, 0px) + 90px);
+  margin: 0;
+  max-width: 400px;
+}
+
+.ccprof-panel {
+  --cca-gold: #f6ca78;
+  --cca-gold-light: #ffdea5;
+  --cca-ink: #f4f1ff;
+  --cca-muted: rgba(223, 225, 246, 0.7);
+  color: var(--cca-ink);
+}
+
+.nova-sanctuary .ccprof-panel {
+  text-align: left;
+}
+
+.ccprof-panel .cca-crest {
+  justify-self: start;
+  text-indent: 0;
+  animation: none;
+}
+
+.nova-sanctuary .ccprof-panel h1 {
+  margin: 0;
+  color: var(--cca-ink);
+  font-family: var(--font-headline);
+  font-size: clamp(1.9rem, 3vw, 2.8rem);
+  font-weight: 600;
+  line-height: 1.1;
+  text-transform: none;
+  letter-spacing: normal;
+  outline: none;
+}
+
+.ccprof-panel h1 span {
+  background: linear-gradient(180deg, #ffe7b8, #e6b05c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.ccprof-owner {
+  margin: 0;
+  color: var(--cca-muted);
+  font-size: 0.86rem;
+}
+
+.ccprof-owner b {
+  color: var(--cca-gold-light);
+}
+
+.ccprof-key {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0;
+}
+
+.ccprof-key div {
+  padding: 12px 14px;
+  border: 1px solid rgba(246, 202, 120, 0.35);
+  border-radius: 14px;
+  background: linear-gradient(160deg, rgba(60, 40, 110, 0.45), rgba(12, 11, 34, 0.6));
+}
+
+.ccprof-key dt,
+.ccprof-traits dt {
+  color: rgba(223, 225, 246, 0.58);
+  font-family: var(--font-label);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.ccprof-key dd {
+  margin: 4px 0 0;
+  color: var(--cca-gold-light);
+  font-family: var(--font-headline);
+  font-size: 1.2rem;
+}
+
+.ccprof-about {
+  padding: 14px 16px;
+  border: 1px solid rgba(196, 181, 253, 0.2);
+  border-radius: 14px;
+  background: rgba(9, 10, 28, 0.45);
+}
+
+.ccprof-about h2,
+.ccprof-subhead {
+  margin: 0 0 6px;
+  color: var(--cca-ink);
+  font-family: var(--font-headline);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.ccprof-about p {
+  margin: 0;
+  color: rgba(223, 225, 246, 0.82);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.ccprof-traits {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 18px;
+  margin: 0;
+}
+
+.ccprof-traits dd {
+  margin: 2px 0 0;
+  color: var(--cca-ink);
+  font-size: 0.92rem;
+}
+
+.ccprof-actions {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.ccprof-actions .cca-continue {
+  text-decoration: none;
+}
+
+.ccprof-link {
+  color: rgba(223, 225, 246, 0.65);
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.ccprof-link:hover,
+.ccprof-link:focus-visible {
+  color: var(--cca-gold-light);
+}
+
+@media (max-width: 900px) {
+  .nova-sanctuary .ccprof {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+  }
+
+  .nova-sanctuary .ccprof-card {
+    position: static;
+    width: 100%;
+    max-width: 340px;
+  }
+
+  .ccprof-panel {
+    width: 100%;
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ccprof-traits {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* The confirmed-candidate page sits outside .sanctuary-content, whose generic paragraph spacing
+   would otherwise centre and resize every line of the profile and its card. */
+.nova-sanctuary .ccprof-page {
+  position: relative;
+  z-index: 1;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: calc(90px + var(--preview-height, 0px)) 24px 55px;
+}
+
+.nova-sanctuary .ccprof-page .sanctuary-permanent-note {
+  margin: 0 0 18px;
+}
+
+/* ── Permanent profile for a confirmed candidate ───────────────────────────────────────── */
+.nova-sanctuary .ccprof--candidate {
+  grid-template-columns: minmax(0, 400px) minmax(0, 580px);
+}
+
+.ccprof-showcase {
+  --ccprof-tone: rgba(122, 162, 255, 0.45);
+  position: sticky;
+  top: calc(var(--preview-height, 0px) + 96px);
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+}
+
+.ccprof-showcase[data-tone="b"] {
+  --ccprof-tone: rgba(242, 166, 90, 0.45);
+}
+
+.nova-sanctuary .ccprof--candidate .ccprof-card {
+  position: relative;
+  top: auto;
+  width: 100%;
+  max-width: 400px;
+}
+
+/* A soft, slowly breathing light behind the card. */
+.ccprof-card--candidate::before {
+  content: "";
+  position: absolute;
+  inset: 4% -4% 22%;
+  z-index: -1;
+  border-radius: 40px;
+  background: radial-gradient(closest-side, var(--ccprof-tone), transparent);
+  animation: ccprof-glow 5s ease-in-out infinite;
+}
+
+.ccprof--candidate .occ-flip {
+  animation: ccprof-float 6.5s ease-in-out infinite;
+}
+
+.ccprof-sparkles span {
+  position: absolute;
+  z-index: 2;
+  left: calc(6% + var(--i) * 14%);
+  bottom: 30%;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #ffe7b8;
+  box-shadow: 0 0 8px 2px rgba(246, 202, 120, 0.55);
+  opacity: 0;
+  pointer-events: none;
+  animation: ccprof-sparkle 7s ease-in-out infinite;
+  animation-delay: calc(var(--i) * -1s);
+}
+
+.ccprof-sparkles span:nth-child(2n) {
+  background: #e9ddff;
+  box-shadow: 0 0 8px 2px rgba(167, 139, 250, 0.6);
+}
+
+.ccprof-tagline {
+  max-width: 22rem;
+  margin: 0;
+  color: #ffdea5;
+  font-family: var(--font-headline);
+  font-size: 1.05rem;
+  font-style: italic;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.ccprof-column {
+  display: grid;
+  gap: 14px;
+}
+
+.ccprof-rise {
+  animation: cca-rise 520ms ease-out both;
+  animation-delay: calc(180ms + var(--ccprof-n, 0) * 110ms);
+}
+
+.ccprof-intro {
+  margin: 0;
+  color: rgba(223, 225, 246, 0.82);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.ccprof-intro b {
+  color: #ffdea5;
+}
+
+.ccprof-species {
+  display: block;
+  margin-top: 2px;
+  color: rgba(223, 225, 246, 0.55);
+  font-size: 0.82rem;
+}
+
+.ccprof-facts dd {
+  overflow-wrap: anywhere;
+}
+
+.ccprof-traitgroups {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 18px;
+}
+
+.ccprof-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ccprof-chips li {
+  padding: 5px 11px;
+  border: 1px solid rgba(196, 181, 253, 0.35);
+  border-radius: 999px;
+  background: rgba(9, 10, 28, 0.55);
+  color: rgba(236, 232, 255, 0.9);
+  font-size: 0.8rem;
+  transition:
+    border-color 200ms ease,
+    background 200ms ease;
+}
+
+.ccprof-chips--gold li {
+  border-color: rgba(246, 202, 120, 0.4);
+  color: #ffdea5;
+}
+
+@media (hover: hover) {
+  .ccprof-chips li:hover {
+    border-color: rgba(246, 202, 120, 0.7);
+    background: rgba(60, 40, 110, 0.5);
+  }
+}
+
+.ccprof-match h2,
+.ccprof-story h2 {
+  margin: 0 0 6px;
+  color: #f4f1ff;
+  font-family: var(--font-headline);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.ccprof-match p,
+.ccprof-story p {
+  margin: 0;
+  color: rgba(223, 225, 246, 0.84);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.ccprof-story p {
+  font-family: var(--font-headline);
+  font-size: 1.05rem;
+}
+
+.ccprof-match {
+  border-color: rgba(246, 202, 120, 0.3);
+}
+
+@keyframes ccprof-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes ccprof-glow {
+  0%,
+  100% {
+    opacity: 0.65;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes ccprof-sparkle {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+  }
+  25%,
+  70% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(6px, -160px, 0);
+  }
+}
+
+@media (max-width: 900px) {
+  .nova-sanctuary .ccprof-page {
+    padding-inline: 16px;
+  }
+
+  .nova-sanctuary .ccprof--candidate {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+  }
+
+  .ccprof-showcase {
+    position: static;
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .ccprof-column {
+    width: 100%;
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ccprof-traitgroups {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ccprof--candidate .occ-flip,
+  .ccprof-card--candidate::before,
+  .ccprof-sparkles span,
+  .ccprof-rise {
+    animation: none;
+  }
+
+  .ccprof-sparkles span {
+    opacity: 0.5;
+  }
+}
+
+.nova-sanctuary[data-calm="true"]
+  :is(.ccprof--candidate .occ-flip, .ccprof-sparkles span, .ccprof-rise),
+.nova-sanctuary[data-calm="true"] .ccprof-card--candidate::before {
+  animation: none;
+}
+
+/* The answer-based reasons behind a real match, under its headline. */
+.ccprof-reasons {
+  margin: 12px 0 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 6px;
+  color: var(--cca-muted, rgba(223, 225, 246, 0.74));
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.ccprof-reasons li::marker {
+  color: var(--cca-gold, #f6ca78);
+}

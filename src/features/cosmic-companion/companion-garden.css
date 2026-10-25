@@ -1,0 +1,53 @@
+/* The magical garden backdrop, shared by the Cosmic Companion dashboard and the journey
+   introduction. Each page positions the .ccp-garden layer itself. */
+.ccp-garden svg {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+}
+
+.ccp-garden__motes {
+  position: absolute;
+  inset: 0;
+}
+
+.ccp-garden__motes span {
+  position: absolute;
+  left: calc(4% + var(--i) * 6.8%);
+  bottom: calc(18% + var(--i) * 2.6%);
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #ffe7b8;
+  box-shadow: 0 0 8px 2px rgba(246, 202, 120, 0.55);
+  opacity: 0;
+  animation: ccp-mote 11s ease-in-out infinite;
+  animation-delay: calc(var(--i) * -0.8s);
+}
+
+.ccp-garden__motes span:nth-child(3n) {
+  background: #d8c8ff;
+  box-shadow: 0 0 8px 2px rgba(167, 139, 250, 0.6);
+}
+
+@keyframes ccp-mote {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+  }
+  20%,
+  70% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(14px, -120px, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ccp-garden__motes span {
+    animation: none;
+    opacity: 0.6;
+  }
+}

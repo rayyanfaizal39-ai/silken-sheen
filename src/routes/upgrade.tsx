@@ -30,11 +30,15 @@ import { toCheckoutPlan } from "@/lib/billing-config";
 import { checkoutPartnerCode } from "@/lib/partner-attribution";
 import { hasFeature } from "@/lib/feature-access";
 import type { BillingPlan } from "@/lib/billing.types";
+import { isInternalPath } from "@/lib/auth-recovery";
 import { seoMeta } from "@/lib/seo";
 import { createCheckout, simulateMockPayment, type UpgradePlan } from "./-upgrade.server";
 import "@/styles/upgrade.css";
 
 export const Route = createFileRoute("/upgrade")({
+  validateSearch: (search: Record<string, unknown>): { next?: string } => ({
+    next: typeof search.next === "string" && isInternalPath(search.next) ? search.next : undefined,
+  }),
   head: () =>
     seoMeta({
       title: "AcadeMY Pricing — Free, Pro & Premium Plans",
@@ -255,6 +259,7 @@ const PROVIDER_UNAVAILABLE_MESSAGE =
   "Our payment provider is temporarily unavailable. Please try again later.";
 
 function UpgradePage() {
+  const { next } = Route.useSearch();
   const { user, loading: authLoading } = useAuth();
   const subscriptionState = useSubscriptionOverview();
   const activePlan = user ? getActivePlan(subscriptionState) : null;
@@ -289,6 +294,10 @@ function UpgradePage() {
         data: { paymentId: checkout.paymentId, outcome: "successful" },
       });
       window.dispatchEvent(new Event("academy:billing-updated"));
+      if (next) {
+        window.location.assign(next);
+        return;
+      }
       setCheckoutPlan(null);
       checkoutLock.current = false;
     } catch (error) {
@@ -303,6 +312,11 @@ function UpgradePage() {
 
   return (
     <AcademyPageShell className="max-w-[1160px]" rootClassName="upgrade-page">
+      {next === "/companion" ? (
+        <p className="mb-6">
+          <a href={next}>Back to Cosmic Companion</a>
+        </p>
+      ) : null}
       <UpgradeHero />
 
       <CurrentPlanCard

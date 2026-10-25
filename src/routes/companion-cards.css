@@ -1,0 +1,615 @@
+/* Cosmic Companion hub — card-first, design-only. Scoped to /companion so learning
+   dashboards and XP remain untouched. Palette follows the Celestial Gateway and Studio. */
+.ccp-page {
+  --ccp-night: #05070f;
+  --ccp-ink: #dfe1f6;
+  --ccp-muted: rgba(223, 225, 246, 0.72);
+  --ccp-gold: #f6ca78;
+  --ccp-gold-light: #ffdea5;
+  --ccp-line: rgba(167, 139, 250, 0.2);
+  --ccp-garden-height: clamp(720px, 90vh, 980px);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  gap: clamp(16px, 2.2vw, 28px);
+  min-width: 0;
+  min-height: 100%;
+  padding: clamp(12px, 1.6vw, 22px) clamp(16px, 3vw, 44px);
+  padding-bottom: calc(var(--mobile-content-bottom, 0px) + clamp(24px, 3vw, 40px));
+  color: var(--ccp-ink);
+  background: var(--ccp-night);
+}
+
+/* Keeps the headline and copy readable over the garden. */
+.ccp-page::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: var(--ccp-garden-height);
+  z-index: -1;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(5, 7, 15, 0.84) 0%,
+      rgba(5, 7, 15, 0.62) 34%,
+      rgba(5, 7, 15, 0.15) 58%,
+      transparent 72%
+    ),
+    linear-gradient(180deg, rgba(5, 7, 15, 0.55), transparent 22%);
+  pointer-events: none;
+}
+
+/* ── The garden ────────────────────────────────────────────────────────────────────────── */
+.ccp-garden {
+  position: absolute;
+  inset: 0 0 auto;
+  height: var(--ccp-garden-height);
+  z-index: -1;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(180deg, #000 68%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 68%, transparent 100%);
+}
+
+/* ── Section crest ─────────────────────────────────────────────────────────────────────── */
+.ccp-crest {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+}
+
+.ccp-crest__ornament {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--ccp-gold);
+  font-size: 10px;
+}
+
+.ccp-crest__ornament > span {
+  width: clamp(60px, 14vw, 170px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(246, 202, 120, 0.6));
+}
+
+.ccp-crest__ornament > span:last-child {
+  transform: scaleX(-1);
+}
+
+.ccp-crest__ornament svg {
+  width: 22px;
+  height: 22px;
+  fill: var(--ccp-gold);
+  filter: drop-shadow(0 0 8px rgba(246, 202, 120, 0.6));
+}
+
+.ccp-crest p {
+  margin: 0;
+  color: var(--ccp-gold);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.42em;
+  text-indent: 0.42em;
+  text-transform: uppercase;
+}
+
+/* ── Hero ──────────────────────────────────────────────────────────────────────────────── */
+.ccp-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(24px, 4vw, 64px);
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+}
+
+.ccp-intro {
+  display: grid;
+  gap: clamp(12px, 1.4vw, 18px);
+  max-width: 540px;
+}
+
+.ccp-eyebrow {
+  margin: 0;
+  color: var(--ccp-gold);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+}
+
+.ccp-intro h1 {
+  margin: 0;
+  color: #f6f3ff;
+  font-family: "Bodoni Moda", Georgia, serif;
+  font-size: clamp(2.1rem, 3.6vw, 3.4rem);
+  font-weight: 600;
+  line-height: 1.08;
+  text-shadow: 0 2px 30px rgba(5, 7, 15, 0.8);
+}
+
+.ccp-intro h1 span {
+  display: block;
+  color: var(--ccp-gold);
+  background: linear-gradient(180deg, #ffe7b8, #e6b05c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.ccp-lead {
+  max-width: 30em;
+  margin: 0;
+  color: var(--ccp-muted);
+  font-size: clamp(0.98rem, 1.1vw, 1.06rem);
+  line-height: 1.65;
+}
+
+.ccp-features {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(14px, 1.8vw, 22px);
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ccp-features li {
+  display: grid;
+  align-content: start;
+  gap: 4px;
+}
+
+.ccp-features__icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  margin-bottom: 8px;
+  border: 1px solid rgba(196, 181, 253, 0.5);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.28), rgba(9, 14, 28, 0.7));
+  box-shadow: 0 0 22px rgba(124, 58, 237, 0.3);
+}
+
+.ccp-features__icon svg {
+  width: 21px;
+  height: 21px;
+  fill: none;
+  stroke: #ece2ff;
+  stroke-width: 1.4;
+  stroke-linejoin: round;
+}
+
+.ccp-features h2 {
+  margin: 0;
+  color: #f6f3ff;
+  font-size: 0.94rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.ccp-features p {
+  margin: 0;
+  color: rgba(223, 225, 246, 0.62);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+/* ── Card stage ────────────────────────────────────────────────────────────────────────── */
+.ccp-stage {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+  padding-top: 8px;
+}
+
+.ccp-stage__orbits {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.ccp-stage__orbit {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  width: min(116%, 620px);
+  aspect-ratio: 2.5;
+  border: 1px solid rgba(246, 202, 120, 0.32);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) rotate(-14deg);
+  box-shadow: 0 0 16px rgba(246, 202, 120, 0.1);
+}
+
+.ccp-stage__orbit--wide {
+  width: min(94%, 500px);
+  aspect-ratio: 3;
+  border-color: rgba(167, 139, 250, 0.26);
+  transform: translate(-50%, -50%) rotate(16deg);
+}
+
+/* The glowing platform the card floats above. */
+.ccp-stage__platform {
+  position: relative;
+  width: min(118%, 400px);
+  height: 58px;
+  margin-top: -46px;
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse 60% 45% at 50% 42%, rgba(255, 222, 165, 0.35), transparent 70%),
+    radial-gradient(ellipse at 50% 45%, #2b2354 0 52%, #15122c 66%, transparent 70%);
+  box-shadow:
+    inset 0 2px 0 rgba(246, 202, 120, 0.45),
+    0 10px 40px rgba(124, 58, 237, 0.35);
+}
+
+.ccp-stage__platform::before {
+  content: "";
+  position: absolute;
+  inset: -40% -12%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(139, 92, 246, 0.55), transparent 65%);
+  animation: ccp-pulse 4.5s ease-in-out infinite;
+}
+
+.ccp-stage__platform::after {
+  content: "";
+  position: absolute;
+  inset: 8px 8%;
+  border: 1px solid rgba(246, 202, 120, 0.35);
+  border-radius: 50%;
+}
+
+.ccp-discover {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 56px;
+  padding: 8px 26px 8px 10px;
+  border-radius: 999px;
+  color: #fff;
+  font-size: clamp(1rem, 1.25vw, 1.12rem);
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow:
+    0 0 0 6px rgba(124, 58, 237, 0.12),
+    0 0 36px rgba(124, 58, 237, 0.55);
+  transition:
+    transform 250ms ease,
+    box-shadow 250ms ease;
+}
+
+/* Animated border: a slow gold glint travels around the edge. */
+.ccp-discover::before {
+  content: "";
+  position: absolute;
+  inset: -160%;
+  z-index: -2;
+  background: conic-gradient(
+    from 0deg,
+    rgba(196, 181, 253, 0.6) 0 62%,
+    #ffdea5 78%,
+    rgba(196, 181, 253, 0.6) 92%
+  );
+  animation: ccp-spin 5s linear infinite;
+}
+
+.ccp-discover::after {
+  content: "";
+  position: absolute;
+  inset: 1.5px;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #5521d0, #7c3aed 55%, #6a28d6);
+  transition: filter 250ms ease;
+}
+
+.ccp-discover:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 0 7px rgba(124, 58, 237, 0.18),
+    0 0 56px rgba(139, 92, 246, 0.8);
+}
+
+.ccp-discover:hover::after {
+  filter: brightness(1.12);
+}
+
+.ccp-discover:focus-visible {
+  outline: 2px solid var(--ccp-gold-light);
+  outline-offset: 4px;
+}
+
+.ccp-discover__portal {
+  width: 40px;
+  height: 40px;
+  padding: 4px;
+  border-radius: 50%;
+  background: rgba(9, 10, 28, 0.35);
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1.6;
+  transition: transform 600ms ease;
+}
+
+.ccp-discover__core {
+  fill: #fff;
+  filter: drop-shadow(0 0 4px #fff);
+}
+
+.ccp-discover:hover .ccp-discover__portal {
+  transform: rotate(90deg);
+}
+
+.ccp-journey-note {
+  margin: -6px 0 0;
+  color: rgba(223, 225, 246, 0.6);
+  font-size: 0.84rem;
+  text-align: center;
+}
+
+.ccp-journey-note b {
+  color: var(--ccp-gold-light);
+  font-weight: 600;
+}
+
+.ccp-guest {
+  max-width: 26rem;
+  margin: 0;
+  padding: 10px 14px;
+  border: 1px dashed rgba(246, 202, 120, 0.5);
+  border-radius: 14px;
+  background: rgba(30, 22, 64, 0.72);
+  color: rgba(236, 232, 255, 0.86);
+  font-size: 0.84rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.ccp-guest b,
+.ccp-guest a {
+  color: var(--ccp-gold-light);
+}
+
+.ccp-guest a {
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
+
+/* ── Information panels ────────────────────────────────────────────────────────────────── */
+.ccp-panels {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(12px, 1.6vw, 20px);
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+}
+
+.ccp-panel {
+  display: grid;
+  grid-template-columns: clamp(90px, 9vw, 130px) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(14px, 1.6vw, 22px);
+  padding: clamp(12px, 1.2vw, 16px);
+  border: 1px solid var(--ccp-line);
+  border-radius: 18px;
+  background: linear-gradient(160deg, rgba(22, 22, 56, 0.82), rgba(9, 11, 28, 0.88));
+  backdrop-filter: blur(6px);
+}
+
+.ccp-panel__art {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px rgba(246, 202, 120, 0.18);
+}
+
+.ccp-panel__mark {
+  fill: #ffe7b8;
+  font-family: "Bodoni Moda", Georgia, serif;
+  font-size: 15px;
+}
+
+.ccp-panel__step {
+  margin: 0 0 6px;
+  color: var(--ccp-gold);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+}
+
+.ccp-panel h2 {
+  margin: 0 0 6px;
+  color: #f6f3ff;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.ccp-panel p:last-child {
+  margin: 0;
+  color: rgba(223, 225, 246, 0.64);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+/* ── Entrance ──────────────────────────────────────────────────────────────────────────── */
+.ccp-rise {
+  animation: ccp-rise 700ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: calc(var(--d, 0) * 90ms);
+}
+
+@keyframes ccp-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+@keyframes ccp-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ccp-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ── Responsive ────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 1180px) {
+  .ccp-features {
+    grid-template-columns: 1fr;
+  }
+
+  .ccp-features li {
+    grid-template-columns: 46px minmax(0, 1fr);
+    column-gap: 14px;
+  }
+
+  .ccp-features__icon {
+    grid-row: span 2;
+    margin: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .ccp-page {
+    --ccp-garden-height: 820px;
+  }
+
+  .ccp-page::after {
+    background: linear-gradient(
+      180deg,
+      rgba(5, 7, 15, 0.7) 0%,
+      rgba(5, 7, 15, 0.45) 40%,
+      rgba(5, 7, 15, 0.2) 70%
+    );
+  }
+
+  .ccp-hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  /* One column: introduction, then the card, then the three features. */
+  .ccp-intro {
+    display: contents;
+  }
+
+  .ccp-intro > * {
+    justify-self: center;
+    max-width: 560px;
+  }
+
+  .ccp-stage {
+    order: 1;
+  }
+
+  .ccp-features {
+    order: 2;
+    text-align: left;
+  }
+
+  .ccp-panels {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .ccp-discover {
+    width: 100%;
+    justify-content: center;
+    padding-right: 20px;
+  }
+
+  .ccp-stage__orbit {
+    width: 130%;
+  }
+}
+
+.ccp-owned {
+  width: min(100%, 280px);
+  margin: 0 auto 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 14px 18px;
+  border: 2px solid #e1c27f;
+  border-radius: 28px;
+  background: linear-gradient(160deg, #14233d, #070e1c);
+  box-shadow: 0 24px 60px #0008;
+}
+.ccp-owned img {
+  width: 100%;
+  aspect-ratio: 600/640;
+  object-fit: cover;
+  border-radius: 18px 18px 6px 6px;
+  border: 1px solid #dfbf7e55;
+}
+.ccp-owned__craft {
+  width: 100%;
+  aspect-ratio: 600/640;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+  border-radius: 18px 18px 6px 6px;
+  border: 1px solid #dfbf7e55;
+  background:
+    radial-gradient(circle at 50% 42%, #dfbf7e33, transparent 62%),
+    #102033;
+  color: #f6ead2;
+  font-family: Georgia, serif;
+  font-size: 22px;
+  line-height: 1.3;
+}
+.ccp-owned__name {
+  margin: 4px 0 0;
+  font-family: Georgia, serif;
+  font-size: 28px;
+  color: #f6ead2;
+}
+.ccp-owned__meta {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #e1c27f;
+}
+.ccp-owned__card {
+  margin-top: 6px;
+  color: #f6ead2;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ccp-rise,
+  .ccp-discover::before,
+  .ccp-stage__platform::before {
+    animation: none;
+  }
+
+  .ccp-discover,
+  .ccp-discover__portal {
+    transition: none;
+  }
+}

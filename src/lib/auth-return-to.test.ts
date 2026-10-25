@@ -6,6 +6,9 @@ describe("SSO return destinations", () => {
   it.each([
     "https://senior.myacademy.my/home",
     "https://senior.myacademy.my/dashboard",
+    "https://cards.myacademy.my/",
+    "https://cards.myacademy.my/studio?preview=mia",
+    "https://preview.cards.myacademy.my/studio",
     "/upgrade",
     "/notes?subject=science#chapter",
     "https://www.myacademy.my/home",
@@ -22,6 +25,8 @@ describe("SSO return destinations", () => {
     "https://user@senior.myacademy.my/home",
     "http://senior.myacademy.my/home",
     "https://senior.myacademy.my:444/home",
+    "https://cards.myacademy.my.evil.example/studio",
+    "https://preview.cards.myacademy.my:444/studio",
     "javascript:alert(1)",
     "https://senior.myacademy.my\\@evil.example",
   ])("rejects %s", (url) => {
@@ -30,12 +35,19 @@ describe("SSO return destinations", () => {
   it("allows only configured development origins in development", () => {
     expect(getAuthReturnTo("http://localhost:8080/home", true)).toBe("http://localhost:8080/home");
     expect(getAuthReturnTo("http://localhost:8080/home", false)).toBe("/home");
+    expect(getAuthReturnTo("http://localhost:4174/studio", true)).toBe(
+      "http://localhost:4174/studio",
+    );
     expect(getAuthReturnTo("http://localhost:9999/home", true)).toBe("/home");
     expect(getAuthReturnTo("https://myacademy.my/home", false)).toBe("/home");
   });
   it("shares cookies only on production hosts", () => {
     expect(getSupabaseAuthCookieOptions("www.myacademy.my").domain).toBe(".myacademy.my");
     expect(getSupabaseAuthCookieOptions("senior.myacademy.my").domain).toBe(".myacademy.my");
+    expect(getSupabaseAuthCookieOptions("cards.myacademy.my").domain).toBe(".myacademy.my");
+    expect(getSupabaseAuthCookieOptions("preview.cards.myacademy.my").domain).toBe(
+      ".myacademy.my",
+    );
     expect(getSupabaseAuthCookieOptions("localhost").domain).toBeUndefined();
     expect(getSupabaseAuthCookieOptions("preview.pages.dev").domain).toBeUndefined();
   });

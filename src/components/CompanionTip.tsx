@@ -7,7 +7,6 @@ const TIPS: Record<string, string> = {
   "/flashcards": "Flip cards with Space. Mark hard cards to see them more often.",
   "/quizzes": "Pace yourself — quizzes track accuracy, not speed.",
   "/mindmaps": "Pinch to zoom, tap a node to expand, hit Reset to recenter.",
-  "/companion": "Your companion evolves as you earn XP. Stay consistent!",
 };
 
 const SESSION_KEY = "academy:companion-tip-shown";

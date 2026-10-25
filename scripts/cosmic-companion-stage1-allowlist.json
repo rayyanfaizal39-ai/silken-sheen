@@ -1,0 +1,49 @@
+{
+  "purpose": "Strict Stage 1 Cosmic Companion SQL allowlist. Never run supabase db push from the repository migrations folder.",
+  "checkedAt": "2026-10-24T06:10:00Z",
+  "productionProject": "aojrbxoqbgyxmfljqpqj",
+  "stagingProject": "lyethdhiiwkbuznvvouk",
+  "doNotApply": [
+    "20261010010000_sync_form3_math_quiz_sets.sql",
+    "20261023014000_public_announcements.sql",
+    "20261023023000_announcement_polls.sql",
+    "any file from academy-partners",
+    "any file already in production schema_migrations"
+  ],
+  "alreadyOnProductionDoNotReapply": [
+    "20261016120000_partner_referral_commissions",
+    "20261023021238_public_announcements",
+    "20261023023203_announcement_polls",
+    "20261023023701_admin_finance_guards",
+    "20261023023709_partner_verified_access_control",
+    "20261023023718_controlled_production_pilot"
+  ],
+  "stagingHistoryNote": "Staging applied the same 16 logical files under different version timestamps, plus a duplicate nova_artwork_bucket_limits_repo row. Do not copy staging schema_migrations into production. Do not db push this allowlist onto staging; the objects already exist.",
+  "applyToProductionOnlyAfterApproval": [
+    "20261018160000_nova_companion_cards.sql",
+    "20261018160100_nova_studio_batch.sql",
+    "20261018160200_nova_creature_variety.sql",
+    "20261019120000_cosmic_companion_candidates.sql",
+    "20261019130000_cosmic_companion_sharing.sql",
+    "20261020120000_cosmic_companion_artwork.sql",
+    "20261020130000_cosmic_companion_entitlement_parity.sql",
+    "20261023140000_nova_staff_craft.sql",
+    "20261023150000_nova_public_card.sql",
+    "20261023160000_nova_craft_art_options.sql",
+    "20261023170000_nova_companion_journey_gate.sql",
+    "20261024120000_nova_craft_queue_both_picks.sql",
+    "20261024120100_nova_artwork_bucket_limits.sql",
+    "20261024130000_nova_single_companion_submit.sql",
+    "20261024140000_nova_craft_portrait_read.sql",
+    "20261024150000_nova_admin_own_journey.sql"
+  ],
+  "requiredFlagsAfterApply": {
+    "NOVA_AI_ENABLED": false,
+    "NOVA_AI_BATCH_ENABLED": false,
+    "OPENAI_API_KEY": "omit",
+    "nova_generation_settings.enabled": false,
+    "nova_generation_settings.batch_enabled": false,
+    "nova_generation_settings.monthly_cap_microusd": 0,
+    "nova_generation_settings.daily_cap_microusd": 0
+  }
+}
