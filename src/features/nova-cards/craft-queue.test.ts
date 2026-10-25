@@ -17,7 +17,7 @@ const brief: CraftBrief = {
   traits: ["curious", "gentle"],
   personality: "Explorer",
   publicId: "00000000-0000-4000-8000-00000000d101",
-  serial: "100000000101",
+  serial: "R-4H7K2M9P",
   position: 1,
   queuedAt: "2026-10-24T00:00:00.000Z",
   status: "waiting_for_art",

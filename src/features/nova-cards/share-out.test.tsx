@@ -10,7 +10,7 @@ import { cardPictureSvg } from "./download";
 
 const card = {
   publicId: "00000000-0000-4000-8000-00000000d101",
-  serial: "100000000101",
+  serial: "R-4H7K2M9P",
   username: "Aisha",
   traits: null,
   companion: {
@@ -51,7 +51,7 @@ describe("AcadeMY picture share", () => {
     expect(svg).toContain("Aisha");
     expect(svg).toContain("Lumi");
     expect(svg).toContain("#AcadeMY #NovaCompanion");
-    expect(svg).not.toContain("100000000101");
+    expect(svg).not.toContain("R-4H7K2M9P");
     expect(svg).not.toContain("00000000-0000-4000-8000-00000000d101");
     expect(svg).not.toContain("card/c/");
     expect(svg).not.toContain("form1.student@dev.local");
@@ -61,7 +61,7 @@ describe("AcadeMY picture share", () => {
     const svg = cardPictureSvg(card, "data:image/png;base64,aaaa", "data:image/png;base64,logo");
     expect(svg).toContain("Aisha");
     expect(svg).toContain("Lumi");
-    expect(svg).not.toContain("100000000101");
+    expect(svg).not.toContain("R-4H7K2M9P");
     expect(svg).not.toContain(card.publicId);
     expect(svg).not.toContain("card/c/");
     expect(svg).not.toContain("barcode");

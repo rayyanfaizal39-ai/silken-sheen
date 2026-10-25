@@ -109,31 +109,99 @@ const WIDTHS = [
   "2331112",
 ];
 
-/**
- * Permanent collectible serial: exactly twelve digit characters, leading zeros kept.
- * Rejects anything else — never pad or rewrite a stored serial into a different id.
- */
-export function novaSerialDigits(serial: string): string {
-  const value = String(serial ?? "");
-  if (!/^\d{12}$/.test(value)) {
-    throw new Error("Nova serial must contain twelve digits.");
+/** Human-readable body alphabet — no O/0 or I/1. Matches DB generator. */
+export const NOVA_SERIAL_BODY_ALPHABET = "23456789ABCDEFGHJKLMNPQRSTUVWXYZ";
+
+/** Legacy production serials until a separately approved reissue completes. */
+export const NOVA_LEGACY_SERIAL_PATTERN = /^\d{12}$/;
+
+/** Permanent collectible serial: rarity prefix + hyphen + 8 secure body chars. */
+export const NOVA_COLLECTIBLE_SERIAL_PATTERN =
+  /^[CREL]-[23456789ABCDEFGHJKLMNPQRSTUVWXYZ]{8}$/;
+
+const CODE128_START_B = 104;
+const CODE128_START_C = 105;
+const CODE128_STOP = 106;
+
+export type NovaSerialPrefix = "C" | "R" | "E" | "L";
+
+/** Map stored rarity to the collectible serial letter prefix. */
+export function raritySerialPrefix(rarity: string): NovaSerialPrefix {
+  switch (rarity) {
+    case "Common":
+      return "C";
+    case "Rare":
+      return "R";
+    case "Epic":
+      return "E";
+    case "Legendary":
+      return "L";
+    default:
+      throw new Error("Unknown Nova rarity");
   }
-  return value;
+}
+
+export function isLegacyNovaSerial(serial: string): boolean {
+  return NOVA_LEGACY_SERIAL_PATTERN.test(serial);
+}
+
+export function isCollectibleNovaSerial(serial: string): boolean {
+  return NOVA_COLLECTIBLE_SERIAL_PATTERN.test(serial);
+}
+
+/**
+ * Stored card serial as returned by the database — never rewritten here.
+ * Accepts legacy twelve-digit serials and the new R-XXXXXXXX collectible format
+ * so existing production cards keep rendering until a gated reissue is applied.
+ */
+export function novaCardSerial(serial: string): string {
+  const value = String(serial ?? "");
+  if (isLegacyNovaSerial(value) || isCollectibleNovaSerial(value)) return value;
+  throw new Error("Nova serial must be twelve digits or R-XXXXXXXX collectible format.");
+}
+
+/**
+ * Alias kept for call sites that still import the collectible name.
+ * MUST accept legacy twelve-digit serials during the transition — never collectible-only.
+ */
+export const novaCollectibleSerial = novaCardSerial;
+
+/** @deprecated Prefer novaCardSerial — accepts both formats during the transition. */
+export const novaSerialDigits = novaCardSerial;
+
+/** Short body shown on the card front footer (never mutates the stored serial). */
+export function novaSerialBody(serial: string): string {
+  const value = novaCardSerial(serial);
+  return isLegacyNovaSerial(value) ? value.slice(-8) : value.slice(2);
 }
 
 export function barcodeSymbols(serial: string) {
-  const padded = novaSerialDigits(serial);
-  const data = padded.match(/../g)!.map(Number);
-  const checksum = data.reduce((sum, code, i) => sum + code * (i + 1), 105) % 103;
-  return [105, ...data, checksum, 106]; // Start C, six digit pairs, checksum, stop.
+  const value = novaCardSerial(serial);
+  if (isLegacyNovaSerial(value)) {
+    // Code 128 Subset C: six digit pairs for exactly twelve numeric characters.
+    const data = value.match(/../g)!.map(Number);
+    const checksum = data.reduce((sum, code, i) => sum + code * (i + 1), CODE128_START_C) % 103;
+    return [CODE128_START_C, ...data, checksum, CODE128_STOP];
+  }
+  // Code 128 Subset B: printable ASCII (space–~) via charCode - 32.
+  const data = [...value].map((ch) => {
+    const code = ch.charCodeAt(0) - 32;
+    if (code < 0 || code > 94) {
+      throw new Error("Unsupported Code 128 character");
+    }
+    return code;
+  });
+  const checksum =
+    data.reduce((sum, code, i) => sum + code * (i + 1), CODE128_START_B) % 103;
+  return [CODE128_START_B, ...data, checksum, CODE128_STOP];
 }
 
 export function barcodeSvg(serial: string) {
-  const padded = novaSerialDigits(serial);
+  const value = novaCardSerial(serial);
   const quiet = 10; // ISO quiet zone: ≥10 narrow modules on both ends.
   let x = quiet;
   let bars = "";
-  for (const symbol of barcodeSymbols(padded)) {
+  for (const symbol of barcodeSymbols(value)) {
     [...WIDTHS[symbol]].forEach((width, i) => {
       // Full viewBox height — scanners need tall bars; quiet zones are horizontal only.
       if (i % 2 === 0) bars += `<rect x="${x}" y="0" width="${width}" height="74"/>`;
@@ -144,7 +212,7 @@ export function barcodeSvg(serial: string) {
   // Wide strip aspect so CSS width:100% + fixed height fills the card, not a letterboxed box.
   const svgWidth = modules * 8;
   const svgHeight = 64;
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${svgWidth}" height="${svgHeight}" viewBox="0 0 ${modules} 74" preserveAspectRatio="none" shape-rendering="crispEdges" role="img" aria-label="Code 128 barcode ${padded}"><rect width="100%" height="100%" fill="white"/><g fill="black">${bars}</g></svg>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${svgWidth}" height="${svgHeight}" viewBox="0 0 ${modules} 74" preserveAspectRatio="none" shape-rendering="crispEdges" role="img" aria-label="Code 128 barcode ${value}"><rect width="100%" height="100%" fill="white"/><g fill="black">${bars}</g></svg>`;
 }
 
 export const svgUrl = (svg: string) =>

@@ -1,8 +1,9 @@
 {
   "purpose": "Strict Stage 1 Cosmic Companion SQL allowlist. Never run supabase db push from the repository migrations folder.",
-  "checkedAt": "2026-10-24T06:10:00Z",
+  "checkedAt": "2026-10-25T14:24:00Z",
   "productionProject": "aojrbxoqbgyxmfljqpqj",
   "stagingProject": "lyethdhiiwkbuznvvouk",
+  "productionInventoryNote": "Rechecked 2026-10-25: nova_cards total=3, all legacy ^[0-9]{12}$. Recheck immediately before applying SQL.",
   "doNotApply": [
     "20261010010000_sync_form3_math_quiz_sets.sql",
     "20261023014000_public_announcements.sql",
@@ -16,27 +17,54 @@
     "20261023023203_announcement_polls",
     "20261023023701_admin_finance_guards",
     "20261023023709_partner_verified_access_control",
-    "20261023023718_controlled_production_pilot"
+    "20261023023718_controlled_production_pilot",
+    "20261018160000_nova_companion_cards",
+    "20261018160100_nova_studio_batch",
+    "20261018160200_nova_creature_variety",
+    "20261019120000_cosmic_companion_candidates",
+    "20261019130000_cosmic_companion_sharing",
+    "20261020120000_cosmic_companion_artwork",
+    "20261020130000_cosmic_companion_entitlement_parity",
+    "20261023140000_nova_staff_craft",
+    "20261023150000_nova_public_card",
+    "20261023160000_nova_craft_art_options",
+    "20261023170000_nova_companion_journey_gate",
+    "20261024120000_nova_craft_queue_both_picks",
+    "20261024120100_nova_artwork_bucket_limits",
+    "20261024130000_nova_single_companion_submit",
+    "20261024140000_nova_craft_portrait_read",
+    "20261024150000_nova_admin_own_journey"
   ],
-  "stagingHistoryNote": "Staging applied the same 16 logical files under different version timestamps, plus a duplicate nova_artwork_bucket_limits_repo row. Do not copy staging schema_migrations into production. Do not db push this allowlist onto staging; the objects already exist.",
+  "stagingHistoryNote": "Staging applied the same Stage 1 Nova files under different version timestamps, plus a duplicate nova_artwork_bucket_limits_repo row. Do not copy staging schema_migrations into production. Do not db push this allowlist onto staging. Staging inventory 2026-10-25: 1 legacy numeric card (not the production allowlist of 3) — the reissue migration will abort there by design. Production-only after approval.",
   "applyToProductionOnlyAfterApproval": [
-    "20261018160000_nova_companion_cards.sql",
-    "20261018160100_nova_studio_batch.sql",
-    "20261018160200_nova_creature_variety.sql",
-    "20261019120000_cosmic_companion_candidates.sql",
-    "20261019130000_cosmic_companion_sharing.sql",
-    "20261020120000_cosmic_companion_artwork.sql",
-    "20261020130000_cosmic_companion_entitlement_parity.sql",
-    "20261023140000_nova_staff_craft.sql",
-    "20261023150000_nova_public_card.sql",
-    "20261023160000_nova_craft_art_options.sql",
-    "20261023170000_nova_companion_journey_gate.sql",
-    "20261024120000_nova_craft_queue_both_picks.sql",
-    "20261024120100_nova_artwork_bucket_limits.sql",
-    "20261024130000_nova_single_companion_submit.sql",
-    "20261024140000_nova_craft_portrait_read.sql",
-    "20261024150000_nova_admin_own_journey.sql"
+    "20261025120000_nova_collectible_serial.sql",
+    "20261025120100_nova_legacy_serial_reissue.sql"
   ],
+  "safeDeploySequence": {
+    "whyFrontendFirst": "The dual-format frontend accepts both ^[0-9]{12}$ and C/R/E/L-XXXXXXXX. Deploy Pages before SQL so all three existing numeric cards keep rendering. Never deploy a collectible-only frontend while legacy serials remain.",
+    "steps": [
+      "1. Preflight read-only on aojrbxoqbgyxmfljqpqj: count(*) filter serial ~ '^[0-9]{12}$' must equal 3; verify the three allowlisted rows below still match public_id/owner_id/serial/username/rarity/sharing.",
+      "2. Force-push corrected PR #107 branch if needed, merge after approval, wait for Cloudflare Pages production success (dual-format frontend live).",
+      "3. Smoke public /card/c/{publicId} and owner views for Ace (shared) plus at least one private owner card: legacy serial renders; no NovaCard crash.",
+      "4. Apply ONLY 20261025120000_nova_collectible_serial.sql (dual CHECK; INSERT generator; serial immutable — no reissue gate).",
+      "5. Apply ONLY 20261025120100_nova_legacy_serial_reissue.sql (allowlisted batch reissue of all 3; remove gate; collectible-only CHECK). Aborts if inventory drifted.",
+      "6. Verify: zero numeric serials; each allowlisted public_id now matches ^[CREL]-…{8}$; owner/public_id/sharing/answers/variant unchanged; three legacy_numeric_serial_reissue audit rows; casual serial UPDATE still blocked even with app.nova_serial_reissue set.",
+      "7. Keep paid AI disabled (flags below)."
+    ]
+  },
+  "rollbackRecovery": {
+    "frontendOnly": "Revert Pages to previous main deploy if dual-format frontend regresses. No SQL needed.",
+    "afterFormatMigrationBeforeReissue": "20261025120000 is additive (dual CHECK + generator + immutable serial). Leaving it applied is safe; all three cards keep numeric serials. Do not reverse unless instructed.",
+    "afterLegacyBatchReissue": "Serial changes are permanent by design. Do not rewrite cards back to numeric serials (identity trigger blocks it; no gate remains). Recovery = leave new collectible serials; public_id/URL/artwork/sharing remain. Re-run is idempotent when zero legacy serials remain.",
+    "never": [
+      "supabase db push of the whole migrations folder",
+      "disabling nova_identity_immutable / nova_keep_identity casually",
+      "leaving app.nova_serial_reissue as a standing serial-change mechanism",
+      "changing owner_id, public_id, answers, artwork paths, or sharing to 'fix' a serial",
+      "applying partner/announcement migrations from this allowlist",
+      "tightening to collectible-only CHECK while any ^[0-9]{12}$ row remains"
+    ]
+  },
   "requiredFlagsAfterApply": {
     "NOVA_AI_ENABLED": false,
     "NOVA_AI_BATCH_ENABLED": false,
@@ -45,5 +73,52 @@
     "nova_generation_settings.batch_enabled": false,
     "nova_generation_settings.monthly_cap_microusd": 0,
     "nova_generation_settings.daily_cap_microusd": 0
+  },
+  "legacyNumericBatchReissue": {
+    "checkedAt": "2026-10-25T14:24:00Z",
+    "expectedLegacyCount": 3,
+    "gateTokenUsedOnlyInsideMigration": "legacy-numeric-batch-v1",
+    "gateRemovedAfterMigration": true,
+    "newSerialPattern": "^[CREL]-[23456789ABCDEFGHJKLMNPQRSTUVWXYZ]{8}$",
+    "preserves": [
+      "owner_id",
+      "public_id",
+      "username",
+      "answers",
+      "identity_spec",
+      "variant",
+      "rarity",
+      "sharing",
+      "artwork"
+    ],
+    "cards": [
+      {
+        "publicId": "f2c18bdb-9de8-44fd-89b7-61b56bb52964",
+        "ownerId": "ef6fca0a-d6aa-4a24-afb5-2be16d4b9ea3",
+        "username": "Ace",
+        "rarity": "Rare",
+        "expectedLegacySerial": "000001000000",
+        "sharing": true,
+        "permanentUrl": "/card/c/f2c18bdb-9de8-44fd-89b7-61b56bb52964"
+      },
+      {
+        "publicId": "edc7c758-27a0-4f3f-8718-40597a9dca95",
+        "ownerId": "d92249a6-e7d0-4753-8abf-7f5f2d95e846",
+        "username": "scaryguy",
+        "rarity": "Rare",
+        "expectedLegacySerial": "000001000001",
+        "sharing": false,
+        "permanentUrl": "/card/c/edc7c758-27a0-4f3f-8718-40597a9dca95"
+      },
+      {
+        "publicId": "1daf226f-9cb8-4f98-b217-aab494b476c9",
+        "ownerId": "12e9a449-f96a-4872-b417-983a68c707d1",
+        "username": "john",
+        "rarity": "Rare",
+        "expectedLegacySerial": "000001000002",
+        "sharing": false,
+        "permanentUrl": "/card/c/1daf226f-9cb8-4f98-b217-aab494b476c9"
+      }
+    ]
   }
 }
