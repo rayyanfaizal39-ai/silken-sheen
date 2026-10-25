@@ -160,7 +160,10 @@ export function novaCardSerial(serial: string): string {
   throw new Error("Nova serial must be twelve digits or R-XXXXXXXX collectible format.");
 }
 
-/** @deprecated Prefer novaCardSerial — accepts both formats during the transition. */
+/**
+ * Alias kept for call sites that still import the collectible name.
+ * MUST accept legacy twelve-digit serials during the transition — never collectible-only.
+ */
 export const novaCollectibleSerial = novaCardSerial;
 
 /** @deprecated Prefer novaCardSerial — accepts both formats during the transition. */

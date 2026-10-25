@@ -23,6 +23,7 @@ import {
   isCollectibleNovaSerial,
   isLegacyNovaSerial,
   novaCardSerial,
+  novaCollectibleSerial,
   novaSerialBody,
   raritySerialPrefix,
   qrDataUrl,
@@ -79,6 +80,10 @@ describe("Nova permanent identities and scannable codes", () => {
   it("accepts legacy twelve-digit and collectible serials without rewriting them", () => {
     expect(novaCardSerial("000001000000")).toBe("000001000000");
     expect(novaCardSerial("R-7K4M9Q2X")).toBe("R-7K4M9Q2X");
+    // Regression: GitHub #107 originally rejected legacy via novaCollectibleSerial().
+    expect(novaCollectibleSerial("000001000000")).toBe("000001000000");
+    expect(novaCollectibleSerial("000001000001")).toBe("000001000001");
+    expect(novaCollectibleSerial("R-7K4M9Q2X")).toBe("R-7K4M9Q2X");
     expect(isLegacyNovaSerial("000001000000")).toBe(true);
     expect(isCollectibleNovaSerial("000001000000")).toBe(false);
     expect(isCollectibleNovaSerial("R-7K4M9Q2X")).toBe(true);

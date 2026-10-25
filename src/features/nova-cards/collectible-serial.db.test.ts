@@ -12,9 +12,32 @@ import {
   roleQuery,
 } from "./test-support/companion-pipeline";
 
-const ACE_PUBLIC = "f2c18bdb-9de8-44fd-89b7-61b56bb52964";
+/** Production inventory checked 2026-10-25 on aojrbxoqbgyxmfljqpqj (3 legacy numeric). */
+const LEGACY_CARDS = [
+  {
+    publicId: "f2c18bdb-9de8-44fd-89b7-61b56bb52964",
+    ownerId: "ef6fca0a-d6aa-4a24-afb5-2be16d4b9ea3",
+    serial: "000001000000",
+    username: "Ace",
+    sharing: true,
+  },
+  {
+    publicId: "edc7c758-27a0-4f3f-8718-40597a9dca95",
+    ownerId: "d92249a6-e7d0-4753-8abf-7f5f2d95e846",
+    serial: "000001000001",
+    username: "scaryguy",
+    sharing: false,
+  },
+  {
+    publicId: "1daf226f-9cb8-4f98-b217-aab494b476c9",
+    ownerId: "12e9a449-f96a-4872-b417-983a68c707d1",
+    serial: "000001000002",
+    username: "john",
+    sharing: false,
+  },
+] as const;
+
 const STUDENT = "00000000-0000-4000-8000-0000000000e8";
-const ACE_OWNER = "00000000-0000-4000-8000-0000000000e9";
 const ANSWERS = [0, 1, 2, 0, 0, 0, 2, 0, 0, 0, 0, 0];
 const COLLECTIBLE = /^[CREL]-[23456789ABCDEFGHJKLMNPQRSTUVWXYZ]{8}$/;
 
@@ -66,17 +89,19 @@ describe("collectible Nova serial format", () => {
       await apply(file);
     }
 
-    // Seed the Ace pilot with the legacy numeric serial BEFORE the format migration
+    // Seed all verified production legacy cards BEFORE the format migration
     // rewrites INSERT to always mint collectible serials.
-    await addAccount(db, ACE_OWNER);
-    await db.query(
-      `insert into public.nova_cards(
-         owner_id, public_id, serial, username, answers, variant, rarity
-       ) values (
-         $1, $2, '000001000000', 'Ace', $3::int[], 'a', 'Rare'
-       )`,
-      [ACE_OWNER, ACE_PUBLIC, ANSWERS],
-    );
+    for (const card of LEGACY_CARDS) {
+      await addAccount(db, card.ownerId);
+      await db.query(
+        `insert into public.nova_cards(
+           owner_id, public_id, serial, username, answers, variant, rarity, sharing
+         ) values (
+           $1, $2, $3, $4, $5::int[], 'a', 'Rare', $6
+         )`,
+        [card.ownerId, card.publicId, card.serial, card.username, ANSWERS, card.sharing],
+      );
+    }
 
     await apply("20261025120000_nova_collectible_serial.sql");
     as = roleQuery(db);
@@ -116,6 +141,32 @@ describe("collectible Nova serial format", () => {
     expect(new Set(generated).size).toBe(4);
   });
 
+  it("keeps dual-format CHECK so all three legacy cards remain readable after format migration", async () => {
+    const legacy = await db.query<{ serial: string; public_id: string; sharing: boolean }>(
+      `select serial, public_id, sharing from public.nova_cards
+       where serial ~ '^[0-9]{12}$' order by serial`,
+    );
+    expect(legacy.rows).toHaveLength(3);
+    expect(legacy.rows.map((r) => r.serial)).toEqual([
+      "000001000000",
+      "000001000001",
+      "000001000002",
+    ]);
+
+    const ace = LEGACY_CARDS[0];
+    const opened = (
+      await as("anon", null, "select public.get_public_nova_card($1) as r", [ace.publicId])
+    ).rows[0].r as { serial: string; publicId: string } | null;
+    expect(opened?.serial).toBe(ace.serial);
+    expect(opened?.publicId).toBe(ace.publicId);
+
+    const ownerView = (
+      await as("authenticated", ace.ownerId, "select public.get_my_nova_card() as r")
+    ).rows[0].r as { serial: string; publicId: string };
+    expect(ownerView.serial).toBe(ace.serial);
+    expect(ownerView.publicId).toBe(ace.publicId);
+  });
+
   it("does not mint a new serial on refresh-style read or sharing toggle", async () => {
     await submitCompanion(STUDENT, "Stable");
     const before = await db.query<{ serial: string; public_id: string }>(
@@ -143,58 +194,97 @@ describe("collectible Nova serial format", () => {
     expect(after.rows[0]).toMatchObject({ serial, public_id: publicId, n: 1 });
   });
 
-  it("rejects casual serial updates while allowing the gated Ace pilot reissue", async () => {
-    const before = await db.query<{
-      serial: string;
-      public_id: string;
-      owner_id: string;
-      username: string;
-      rarity: string;
-    }>("select serial, public_id, owner_id, username, rarity from public.nova_cards where public_id=$1", [
-      ACE_PUBLIC,
-    ]);
-    expect(before.rows[0].serial).toBe("000001000000");
-
+  it("rejects casual serial updates; batch-reissues all allowlisted legacy cards; removes the gate", async () => {
     await expect(
-      db.query("update public.nova_cards set serial='R-AAAA2222' where public_id=$1", [ACE_PUBLIC]),
+      db.query("update public.nova_cards set serial='R-AAAA2222' where public_id=$1", [
+        LEGACY_CARDS[0].publicId,
+      ]),
     ).rejects.toThrow(/Nova identity is permanent/);
 
-    await apply("20261025120100_nova_ace_pilot_serial_reissue.sql");
+    // Gate token alone must not unlock serial changes before the reissue migration.
+    await expect(
+      db.exec(`select set_config('app.nova_serial_reissue', 'legacy-numeric-batch-v1', true);
+        update public.nova_cards set serial='R-AAAA2222'
+        where public_id='${LEGACY_CARDS[0].publicId}';`),
+    ).rejects.toThrow(/Nova identity is permanent/);
 
-    const ace = await db.query<{
-      serial: string;
+    const before = await db.query<{
       public_id: string;
       owner_id: string;
+      serial: string;
       username: string;
       rarity: string;
-    }>("select serial, public_id, owner_id, username, rarity from public.nova_cards where public_id=$1", [
-      ACE_PUBLIC,
-    ]);
-    expect(ace.rows).toHaveLength(1);
-    expect(ace.rows[0].serial).toMatch(/^R-[23456789ABCDEFGHJKLMNPQRSTUVWXYZ]{8}$/);
-    expect(ace.rows[0].public_id).toBe(ACE_PUBLIC);
-    expect(ace.rows[0].owner_id).toBe(ACE_OWNER);
-    expect(ace.rows[0].username).toBe("Ace");
-    expect(ace.rows[0].rarity).toBe("Rare");
-
-    const audit = await db.query<{
-      action: string;
-      detail: { oldSerial: string; newSerial: string };
+      sharing: boolean;
+      answers: number[];
+      variant: string;
     }>(
-      `select action, detail from public.nova_generation_audit
-       where action='ace_pilot_serial_reissue' order by id desc limit 1`,
+      `select public_id, owner_id, serial, username, rarity, sharing, answers, variant
+       from public.nova_cards
+       where public_id = any($1::uuid[])
+       order by serial`,
+      [LEGACY_CARDS.map((c) => c.publicId)],
     );
-    expect(audit.rows[0].action).toBe("ace_pilot_serial_reissue");
-    expect(audit.rows[0].detail.oldSerial).toBe("000001000000");
-    expect(audit.rows[0].detail.newSerial).toBe(ace.rows[0].serial);
+    expect(before.rows).toHaveLength(3);
 
-    const serialAfterFirst = ace.rows[0].serial;
-    await apply("20261025120100_nova_ace_pilot_serial_reissue.sql");
-    const again = await db.query<{ serial: string }>(
-      "select serial from public.nova_cards where public_id=$1",
-      [ACE_PUBLIC],
+    await apply("20261025120100_nova_legacy_serial_reissue.sql");
+
+    const after = await db.query<{
+      public_id: string;
+      owner_id: string;
+      serial: string;
+      username: string;
+      rarity: string;
+      sharing: boolean;
+      answers: number[];
+      variant: string;
+    }>(
+      `select public_id, owner_id, serial, username, rarity, sharing, answers, variant
+       from public.nova_cards
+       where public_id = any($1::uuid[])
+       order by username`,
+      [LEGACY_CARDS.map((c) => c.publicId)],
     );
-    expect(again.rows[0].serial).toBe(serialAfterFirst);
+    expect(after.rows).toHaveLength(3);
+    for (const row of after.rows) {
+      const prior = before.rows.find((b) => b.public_id === row.public_id)!;
+      expect(row.serial).toMatch(/^R-[23456789ABCDEFGHJKLMNPQRSTUVWXYZ]{8}$/);
+      expect(row.serial).not.toBe(prior.serial);
+      expect(row.owner_id).toBe(prior.owner_id);
+      expect(row.public_id).toBe(prior.public_id);
+      expect(row.username).toBe(prior.username);
+      expect(row.rarity).toBe(prior.rarity);
+      expect(row.sharing).toBe(prior.sharing);
+      expect(row.answers).toEqual(prior.answers);
+      expect(row.variant).toBe(prior.variant);
+    }
+    expect(new Set(after.rows.map((r) => r.serial)).size).toBe(3);
+
+    const legacyLeft = await db.query<{ n: number }>(
+      "select count(*)::int as n from public.nova_cards where serial ~ '^[0-9]{12}$'",
+    );
+    expect(legacyLeft.rows[0].n).toBe(0);
+
+    const audit = await db.query<{ n: number }>(
+      `select count(*)::int as n from public.nova_generation_audit
+       where action='legacy_numeric_serial_reissue'`,
+    );
+    expect(audit.rows[0].n).toBe(3);
+
+    // Gate must not survive: even with the old token set, serial stays immutable.
+    await expect(
+      db.exec(`select set_config('app.nova_serial_reissue', 'legacy-numeric-batch-v1', true);
+        update public.nova_cards set serial='R-BBBB3333'
+        where public_id='${LEGACY_CARDS[0].publicId}';`),
+    ).rejects.toThrow(/Nova identity is permanent/);
+
+    const serials = after.rows.map((r) => r.serial);
+    await apply("20261025120100_nova_legacy_serial_reissue.sql");
+    const again = await db.query<{ serial: string }>(
+      `select serial from public.nova_cards
+       where public_id = any($1::uuid[]) order by serial`,
+      [LEGACY_CARDS.map((c) => c.publicId)],
+    );
+    expect(again.rows.map((r) => r.serial).sort()).toEqual([...serials].sort());
   });
 
   it("retries until unique serials are allocated under repeated generation", async () => {

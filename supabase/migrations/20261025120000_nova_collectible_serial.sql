@@ -1,6 +1,7 @@
 -- Review only. Cosmic Companion Stage 1 final serial format.
--- Replaces sequential numeric defaults with R-XXXXXXXX collectible serials.
--- Does NOT reissue existing rows; see 20261025120100 for the Ace pilot reissue.
+-- Replaces sequential numeric defaults with R-XXXXXXXX collectible serials on INSERT.
+-- Does NOT reissue existing rows; keeps dual-format CHECK for legacy ^[0-9]{12}$.
+-- See 20261025120100 for the audited one-time reissue of all verified legacy cards.
 -- Do not apply to production until explicitly approved.
 begin;
 
@@ -89,22 +90,21 @@ revoke all on function private.nova_generate_collectible_serial(text) from publi
 -- Stop issuing sequential serials. Existing sequence is left unused (not dropped).
 alter table public.nova_cards alter column serial drop default;
 
--- Allow legacy 12-digit rows until the Ace reissue migration tightens the check.
+-- Allow legacy 12-digit rows until the audited reissue migration tightens the check.
+-- Serial remains immutable here — no reissue exception in this function.
 alter table public.nova_cards drop constraint if exists nova_cards_serial_check;
+alter table public.nova_cards drop constraint if exists nova_cards_serial_format_check;
 alter table public.nova_cards add constraint nova_cards_serial_format_check
   check (
     serial ~ '^[0-9]{12}$'
     or serial ~ '^[CREL]-[23456789ABCDEFGHJKLMNPQRSTUVWXYZ]{8}$'
   );
 
--- Assign collectible serials on insert. Gate the one-time Ace numeric→collectible reissue.
+-- Assign collectible serials on insert. Serial updates are never allowed from this trigger.
 create or replace function public.nova_keep_identity() returns trigger
 language plpgsql
 set search_path = ''
 as $$
-declare
-  reissue text := coalesce(nullif(current_setting('app.nova_serial_reissue', true), ''), '');
-  collectible_ok boolean;
 begin
   if TG_OP = 'INSERT' then
     -- Always overwrite; clients and RPCs must never choose the serial.
@@ -113,20 +113,11 @@ begin
     return new;
   end if;
 
-  -- Must be a real boolean (never NULL) so "AND NOT collectible_ok" stays two-valued.
-  collectible_ok :=
-    reissue = 'ace-pilot-v1'
-    and old.serial ~ '^[0-9]{12}$'
-    and new.serial ~ private.nova_collectible_serial_pattern()
-    and left(new.serial, 1) = private.nova_rarity_serial_prefix(old.rarity)
-    and left(new.serial, 1) = private.nova_rarity_serial_prefix(new.rarity)
-    and new.rarity is not distinct from old.rarity;
-
   if new.answers is distinct from old.answers
     or new.identity_spec is distinct from old.identity_spec
     or new.owner_id <> old.owner_id
     or new.public_id <> old.public_id
-    or (new.serial is distinct from old.serial and not collectible_ok)
+    or new.serial is distinct from old.serial
     or (
       new.variant is distinct from old.variant
       and exists (

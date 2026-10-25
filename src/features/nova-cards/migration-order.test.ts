@@ -27,7 +27,7 @@ describe("Cards migration order", () => {
       20261024140000: "nova_craft_portrait_read.sql",
       20261024150000: "nova_admin_own_journey.sql",
       20261025120000: "nova_collectible_serial.sql",
-      20261025120100: "nova_ace_pilot_serial_reissue.sql",
+      20261025120100: "nova_legacy_serial_reissue.sql",
     };
     const cardsVersions = Object.keys(cardsMigrations).map(Number);
 
@@ -56,7 +56,7 @@ describe("Cards migration order", () => {
     ];
     const PENDING_SERIAL = [
       "20261025120000_nova_collectible_serial.sql",
-      "20261025120100_nova_ace_pilot_serial_reissue.sql",
+      "20261025120100_nova_legacy_serial_reissue.sql",
     ];
     expect([...STAGE1_APPLIED, ...PENDING_SERIAL]).toEqual(
       cardsVersions.map((version) => `${version}_${cardsMigrations[version]}`),
@@ -68,6 +68,7 @@ describe("Cards migration order", () => {
       "20261015090000_nova_companion_cards.sql",
       "20261016233058_nova_studio_batch.sql",
       "20261017102224_nova_creature_variety.sql",
+      "20261025120100_nova_ace_pilot_serial_reissue.sql",
     ]) {
       expect(existsSync(migration(name))).toBe(false);
     }
