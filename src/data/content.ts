@@ -13461,7 +13461,7 @@ export const quizzes: QuizQuestion[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     difficulty: "Medium",
-    question: "Yusrate tinggal 2.5 km dari sekolah. Apakah jenis jarak yang dimaksudkan?",
+    question: "Yusrita tinggal 2.5 km dari sekolah. Apakah jenis jarak yang dimaksudkan?",
     options: ["Jarak mutlak", "Jarak relatif", "Jarak anggaran", "Jarak peta"],
     answerIndex: 0,
     explanation:

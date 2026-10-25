@@ -48,3 +48,6 @@ src/routes/command-center-preview.tsx
 silken-sheen/
 
 .env
+
+# Geography Form 2 audit source PDFs — keep local-only, not committed
+audit-sources/Geography/Form-2/*.pdf
