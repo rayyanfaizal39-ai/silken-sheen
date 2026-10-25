@@ -127,8 +127,8 @@ export const getCardForExport = createServerFn({ method: "GET" })
       if (!error && (mine as NovaCard | null)?.publicId === id)
         return (await withArtwork(db, mine as NovaCard))!;
     }
-    const { data, error } = await db.rpc("get_public_nova_card", { requested_public_id: id });
-    if (error || !data)
-      throw new Error("This card is private or unavailable. Refresh to check access.");
-    return (await withArtwork(db, data as NovaCard))!;
+    const { loadPublicNovaCard } = await import("./public-loader.server");
+    const card = await loadPublicNovaCard(id);
+    if (!card) throw new Error("This card is private or unavailable. Refresh to check access.");
+    return card;
   });

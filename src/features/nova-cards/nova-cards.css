@@ -516,6 +516,11 @@
   gap: 8px;
   justify-content: center;
 }
+.nova-actions .nova-share-options {
+  display: flex;
+  flex: 1;
+  gap: 8px;
+}
 .nova-actions button {
   flex: 1;
   white-space: nowrap;

@@ -14,10 +14,15 @@ export const Route = createFileRoute("/card_/c/$publicId/preview.png")({
             : "";
         const parts = new URL(request.url).pathname.split("/");
         const publicId = decodeURIComponent(fromParams || parts[3] || "");
+        const { loadPublicNovaArtworkDataUrl } = await import(
+          "@/features/nova-cards/public-loader.server"
+        );
         const card = await getPublicCard({ data: publicId });
         if (!card?.sharing) return previewNotAvailable();
         const fields = toPublicSnapshot(card);
-        const artwork = await artworkHrefForPreview(fields.artworkUrl);
+        const artwork =
+          (await loadPublicNovaArtworkDataUrl(publicId)) ??
+          (await artworkHrefForPreview(fields.artworkUrl));
         return renderPreviewImage(publicPreviewSvg({ ...fields, artworkUrl: artwork }, artwork));
       },
     },

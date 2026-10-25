@@ -105,7 +105,7 @@ export function CardSharePanel({ publicId }: { publicId: string }) {
           </>
         ) : null}
       </div>
-      {card.sharing ? <CardShareOptions card={card} url={url} onNotice={setNotice} /> : null}
+      {card.sharing ? <CardShareOptions card={card} onNotice={setNotice} /> : null}
       <p className="nova-notice" role="status">
         {notice}
       </p>

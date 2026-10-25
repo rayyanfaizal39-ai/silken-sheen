@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { CardShareOptions } from "@/features/nova-cards/CardShareOptions";
 import { NovaCard } from "@/features/nova-cards/NovaCard";
 import { cardUrl, type NovaCard as Card } from "@/features/nova-cards/model";
 import { loadOwnedOrPublicCard } from "@/features/nova-cards/local-session";
@@ -77,7 +76,6 @@ function PublicFacts({ card }: { card: Card }) {
         </span>
       </p>
       {fields.aura ? <p>{fields.aura}</p> : null}
-      <p>{fields.serial}</p>
     </section>
   );
 }
@@ -87,7 +85,6 @@ function PublicNova() {
   const { publicId } = Route.useParams();
   const [card, setCard] = useState(initial.card);
   const [origin, setOrigin] = useState(initial.origin);
-  const [notice, setNotice] = useState("");
   // Recheck on return to the tab so revoked cards aren't retained by router history.
   useEffect(() => {
     // Permanent share links always use the public site origin, never a preview or localhost host
@@ -131,16 +128,7 @@ function PublicNova() {
             {card.demo ? "FICTIONAL DEMONSTRATION CARD" : "A COMPANION. A COLLECTIBLE. A JOURNEY."}
           </p>
           <PublicFacts card={card} />
-          <NovaCard card={card} url={permanentUrl} />
-          {card.sharing ? (
-            <section className="nova-share-panel" aria-label="Share this card">
-              <h2>Share this card</h2>
-              <CardShareOptions card={card} url={permanentUrl} onNotice={setNotice} />
-              <p className="nova-notice" role="status">
-                {notice}
-              </p>
-            </section>
-          ) : null}
+          <NovaCard card={card} url={permanentUrl} pictureShare />
         </div>
       ) : (
         <section className="nova-unavailable">

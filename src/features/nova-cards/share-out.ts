@@ -17,21 +17,9 @@ export const ACADEMY_SOCIAL_LINKS = {
   tiktok: "https://www.tiktok.com/@myacademymalaysia",
 } as const;
 
-/** Caption for WhatsApp, Instagram, and TikTok. Safe name fields, the card URL, and the AcadeMY tags. */
+/** Caption for a picture share. Names only — no card URL, serial or public id. */
 export function shareCaption(
   fields: Pick<PublicCardFields, "displayName" | "companionName">,
-  url: string,
 ): string {
-  return [
-    `${fields.displayName}'s ${fields.companionName} on AcadeMY`,
-    url,
-    `${ACADEMY_SOCIAL_HANDLES.instagram} ${ACADEMY_SOCIAL_LINKS.instagram}`,
-    `${ACADEMY_SOCIAL_HANDLES.tiktok} ${ACADEMY_SOCIAL_LINKS.tiktok}`,
-    "#AcadeMY #NovaCompanion",
-  ].join("\n");
-}
-
-/** WhatsApp has a web share URL. Instagram and TikTok do not, and this app does not post to them. */
-export function whatsAppShareUrl(caption: string): string {
-  return `https://wa.me/?text=${encodeURIComponent(caption)}`;
+  return `${fields.displayName}'s ${fields.companionName}`;
 }

@@ -35,13 +35,13 @@ import { Route as ExploreAcademyRouteImport } from './routes/explore-academy'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CompanionRouteImport } from './routes/companion'
-import { Route as CompanionPortalRouteImport } from './routes/companion_.portal'
 import { Route as CardRouteImport } from './routes/card'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as NovaStudioRouteImport } from './routes/nova_.studio'
 import { Route as NovaDemoRouteImport } from './routes/nova_.demo'
+import { Route as CompanionPortalRouteImport } from './routes/companion_.portal'
 import { Route as CardContactDotvcfRouteImport } from './routes/card.contact[.]vcf'
 import { Route as AuthResetPasswordRouteImport } from './routes/auth.reset-password'
 import { Route as AuthConfirmRouteImport } from './routes/auth.confirm'
@@ -50,17 +50,18 @@ import { Route as AdminLoginRouteImport } from './routes/admin_.login'
 import { Route as AdminWeeklyReportRouteImport } from './routes/admin.weekly-report'
 import { Route as AdminUsersRouteImport } from './routes/admin.users'
 import { Route as AdminTrafficRouteImport } from './routes/admin.traffic'
-import { Route as AdminCompanionCraftRouteImport } from './routes/admin.companion-craft'
 import { Route as AdminSchoolReportsRouteImport } from './routes/admin.school-reports'
 import { Route as AdminReportsRouteImport } from './routes/admin.reports'
 import { Route as AdminContentLibraryRouteImport } from './routes/admin.content-library'
+import { Route as AdminCompanionCraftRouteImport } from './routes/admin.companion-craft'
 import { Route as AdminCikguIntelRouteImport } from './routes/admin.cikgu-intel'
 import { Route as AccountBillingRouteImport } from './routes/account.billing'
 import { Route as AcademyLandingpage3RouteImport } from './routes/academy/landingpage3'
 import { Route as EnglishForm1GrammarRouteImport } from './routes/english.form-1.grammar'
 import { Route as CardCPublicIdRouteImport } from './routes/card_.c.$publicId'
-import { Route as CardCPublicIdPreviewDotpngRouteImport } from './routes/card_.c.$publicId.preview[.]png'
 import { Route as AdminContentQuizImporterRouteImport } from './routes/admin.content.quiz-importer'
+import { Route as CardCPublicIdPreviewDotpngRouteImport } from './routes/card_.c.$publicId.preview[.]png'
+import { Route as CardCPublicIdArtRouteImport } from './routes/card_.c.$publicId.art'
 
 const WeeklyReportRoute = WeeklyReportRouteImport.update({
   id: '/weekly-report',
@@ -192,11 +193,6 @@ const CompanionRoute = CompanionRouteImport.update({
   path: '/companion',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CompanionPortalRoute = CompanionPortalRouteImport.update({
-  id: '/companion_/portal',
-  path: '/companion/portal',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const CardRoute = CardRouteImport.update({
   id: '/card',
   path: '/card',
@@ -225,6 +221,11 @@ const NovaStudioRoute = NovaStudioRouteImport.update({
 const NovaDemoRoute = NovaDemoRouteImport.update({
   id: '/nova_/demo',
   path: '/nova/demo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompanionPortalRoute = CompanionPortalRouteImport.update({
+  id: '/companion_/portal',
+  path: '/companion/portal',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CardContactDotvcfRoute = CardContactDotvcfRouteImport.update({
@@ -267,11 +268,6 @@ const AdminTrafficRoute = AdminTrafficRouteImport.update({
   path: '/traffic',
   getParentRoute: () => AdminRoute,
 } as any)
-const AdminCompanionCraftRoute = AdminCompanionCraftRouteImport.update({
-  id: '/companion-craft',
-  path: '/companion-craft',
-  getParentRoute: () => AdminRoute,
-} as any)
 const AdminSchoolReportsRoute = AdminSchoolReportsRouteImport.update({
   id: '/school-reports',
   path: '/school-reports',
@@ -285,6 +281,11 @@ const AdminReportsRoute = AdminReportsRouteImport.update({
 const AdminContentLibraryRoute = AdminContentLibraryRouteImport.update({
   id: '/content-library',
   path: '/content-library',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminCompanionCraftRoute = AdminCompanionCraftRouteImport.update({
+  id: '/companion-craft',
+  path: '/companion-craft',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminCikguIntelRoute = AdminCikguIntelRouteImport.update({
@@ -312,25 +313,29 @@ const CardCPublicIdRoute = CardCPublicIdRouteImport.update({
   path: '/card/c/$publicId',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CardCPublicIdPreviewDotpngRoute =
-  CardCPublicIdPreviewDotpngRouteImport.update({
-    id: '/preview.png',
-    path: '/preview.png',
-    getParentRoute: () => CardCPublicIdRoute,
-  } as any)
 const AdminContentQuizImporterRoute =
   AdminContentQuizImporterRouteImport.update({
     id: '/content/quiz-importer',
     path: '/content/quiz-importer',
     getParentRoute: () => AdminRoute,
   } as any)
+const CardCPublicIdPreviewDotpngRoute =
+  CardCPublicIdPreviewDotpngRouteImport.update({
+    id: '/preview.png',
+    path: '/preview.png',
+    getParentRoute: () => CardCPublicIdRoute,
+  } as any)
+const CardCPublicIdArtRoute = CardCPublicIdArtRouteImport.update({
+  id: '/art',
+  path: '/art',
+  getParentRoute: () => CardCPublicIdRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
   '/card': typeof CardRouteWithChildren
   '/companion': typeof CompanionRoute
-  '/companion/portal': typeof CompanionPortalRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
   '/explore-academy': typeof ExploreAcademyRoute
@@ -359,10 +364,10 @@ export interface FileRoutesByFullPath {
   '/academy/landingpage3': typeof AcademyLandingpage3Route
   '/account/billing': typeof AccountBillingRoute
   '/admin/cikgu-intel': typeof AdminCikguIntelRoute
+  '/admin/companion-craft': typeof AdminCompanionCraftRoute
   '/admin/content-library': typeof AdminContentLibraryRoute
   '/admin/reports': typeof AdminReportsRoute
   '/admin/school-reports': typeof AdminSchoolReportsRoute
-  '/admin/companion-craft': typeof AdminCompanionCraftRoute
   '/admin/traffic': typeof AdminTrafficRoute
   '/admin/users': typeof AdminUsersRoute
   '/admin/weekly-report': typeof AdminWeeklyReportRoute
@@ -371,19 +376,20 @@ export interface FileRoutesByFullPath {
   '/auth/confirm': typeof AuthConfirmRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/card/contact.vcf': typeof CardContactDotvcfRoute
+  '/companion/portal': typeof CompanionPortalRoute
   '/nova/demo': typeof NovaDemoRoute
   '/nova/studio': typeof NovaStudioRoute
   '/admin/': typeof AdminIndexRoute
   '/admin/content/quiz-importer': typeof AdminContentQuizImporterRoute
   '/card/c/$publicId': typeof CardCPublicIdRouteWithChildren
-  '/card/c/$publicId/preview.png': typeof CardCPublicIdPreviewDotpngRoute
   '/english/form-1/grammar': typeof EnglishForm1GrammarRoute
+  '/card/c/$publicId/art': typeof CardCPublicIdArtRoute
+  '/card/c/$publicId/preview.png': typeof CardCPublicIdPreviewDotpngRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/card': typeof CardRouteWithChildren
   '/companion': typeof CompanionRoute
-  '/companion/portal': typeof CompanionPortalRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
   '/explore-academy': typeof ExploreAcademyRoute
@@ -412,10 +418,10 @@ export interface FileRoutesByTo {
   '/academy/landingpage3': typeof AcademyLandingpage3Route
   '/account/billing': typeof AccountBillingRoute
   '/admin/cikgu-intel': typeof AdminCikguIntelRoute
+  '/admin/companion-craft': typeof AdminCompanionCraftRoute
   '/admin/content-library': typeof AdminContentLibraryRoute
   '/admin/reports': typeof AdminReportsRoute
   '/admin/school-reports': typeof AdminSchoolReportsRoute
-  '/admin/companion-craft': typeof AdminCompanionCraftRoute
   '/admin/traffic': typeof AdminTrafficRoute
   '/admin/users': typeof AdminUsersRoute
   '/admin/weekly-report': typeof AdminWeeklyReportRoute
@@ -424,13 +430,15 @@ export interface FileRoutesByTo {
   '/auth/confirm': typeof AuthConfirmRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/card/contact.vcf': typeof CardContactDotvcfRoute
+  '/companion/portal': typeof CompanionPortalRoute
   '/nova/demo': typeof NovaDemoRoute
   '/nova/studio': typeof NovaStudioRoute
   '/admin': typeof AdminIndexRoute
   '/admin/content/quiz-importer': typeof AdminContentQuizImporterRoute
   '/card/c/$publicId': typeof CardCPublicIdRouteWithChildren
-  '/card/c/$publicId/preview.png': typeof CardCPublicIdPreviewDotpngRoute
   '/english/form-1/grammar': typeof EnglishForm1GrammarRoute
+  '/card/c/$publicId/art': typeof CardCPublicIdArtRoute
+  '/card/c/$publicId/preview.png': typeof CardCPublicIdPreviewDotpngRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -438,7 +446,6 @@ export interface FileRoutesById {
   '/admin': typeof AdminRouteWithChildren
   '/card': typeof CardRouteWithChildren
   '/companion': typeof CompanionRoute
-  '/companion_/portal': typeof CompanionPortalRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
   '/explore-academy': typeof ExploreAcademyRoute
@@ -467,10 +474,10 @@ export interface FileRoutesById {
   '/academy/landingpage3': typeof AcademyLandingpage3Route
   '/account/billing': typeof AccountBillingRoute
   '/admin/cikgu-intel': typeof AdminCikguIntelRoute
+  '/admin/companion-craft': typeof AdminCompanionCraftRoute
   '/admin/content-library': typeof AdminContentLibraryRoute
   '/admin/reports': typeof AdminReportsRoute
   '/admin/school-reports': typeof AdminSchoolReportsRoute
-  '/admin/companion-craft': typeof AdminCompanionCraftRoute
   '/admin/traffic': typeof AdminTrafficRoute
   '/admin/users': typeof AdminUsersRoute
   '/admin/weekly-report': typeof AdminWeeklyReportRoute
@@ -479,13 +486,15 @@ export interface FileRoutesById {
   '/auth/confirm': typeof AuthConfirmRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/card/contact.vcf': typeof CardContactDotvcfRoute
+  '/companion_/portal': typeof CompanionPortalRoute
   '/nova_/demo': typeof NovaDemoRoute
   '/nova_/studio': typeof NovaStudioRoute
   '/admin/': typeof AdminIndexRoute
   '/admin/content/quiz-importer': typeof AdminContentQuizImporterRoute
   '/card_/c/$publicId': typeof CardCPublicIdRouteWithChildren
-  '/card_/c/$publicId/preview.png': typeof CardCPublicIdPreviewDotpngRoute
   '/english/form-1/grammar': typeof EnglishForm1GrammarRoute
+  '/card_/c/$publicId/art': typeof CardCPublicIdArtRoute
+  '/card_/c/$publicId/preview.png': typeof CardCPublicIdPreviewDotpngRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -494,7 +503,6 @@ export interface FileRouteTypes {
     | '/admin'
     | '/card'
     | '/companion'
-    | '/companion/portal'
     | '/contact'
     | '/dashboard'
     | '/explore-academy'
@@ -523,10 +531,10 @@ export interface FileRouteTypes {
     | '/academy/landingpage3'
     | '/account/billing'
     | '/admin/cikgu-intel'
+    | '/admin/companion-craft'
     | '/admin/content-library'
     | '/admin/reports'
     | '/admin/school-reports'
-    | '/admin/companion-craft'
     | '/admin/traffic'
     | '/admin/users'
     | '/admin/weekly-report'
@@ -535,19 +543,20 @@ export interface FileRouteTypes {
     | '/auth/confirm'
     | '/auth/reset-password'
     | '/card/contact.vcf'
+    | '/companion/portal'
     | '/nova/demo'
     | '/nova/studio'
     | '/admin/'
     | '/admin/content/quiz-importer'
     | '/card/c/$publicId'
-    | '/card/c/$publicId/preview.png'
     | '/english/form-1/grammar'
+    | '/card/c/$publicId/art'
+    | '/card/c/$publicId/preview.png'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/card'
     | '/companion'
-    | '/companion/portal'
     | '/contact'
     | '/dashboard'
     | '/explore-academy'
@@ -576,10 +585,10 @@ export interface FileRouteTypes {
     | '/academy/landingpage3'
     | '/account/billing'
     | '/admin/cikgu-intel'
+    | '/admin/companion-craft'
     | '/admin/content-library'
     | '/admin/reports'
     | '/admin/school-reports'
-    | '/admin/companion-craft'
     | '/admin/traffic'
     | '/admin/users'
     | '/admin/weekly-report'
@@ -588,20 +597,21 @@ export interface FileRouteTypes {
     | '/auth/confirm'
     | '/auth/reset-password'
     | '/card/contact.vcf'
+    | '/companion/portal'
     | '/nova/demo'
     | '/nova/studio'
     | '/admin'
     | '/admin/content/quiz-importer'
     | '/card/c/$publicId'
-    | '/card/c/$publicId/preview.png'
     | '/english/form-1/grammar'
+    | '/card/c/$publicId/art'
+    | '/card/c/$publicId/preview.png'
   id:
     | '__root__'
     | '/'
     | '/admin'
     | '/card'
     | '/companion'
-    | '/companion_/portal'
     | '/contact'
     | '/dashboard'
     | '/explore-academy'
@@ -630,10 +640,10 @@ export interface FileRouteTypes {
     | '/academy/landingpage3'
     | '/account/billing'
     | '/admin/cikgu-intel'
+    | '/admin/companion-craft'
     | '/admin/content-library'
     | '/admin/reports'
     | '/admin/school-reports'
-    | '/admin/companion-craft'
     | '/admin/traffic'
     | '/admin/users'
     | '/admin/weekly-report'
@@ -642,13 +652,15 @@ export interface FileRouteTypes {
     | '/auth/confirm'
     | '/auth/reset-password'
     | '/card/contact.vcf'
+    | '/companion_/portal'
     | '/nova_/demo'
     | '/nova_/studio'
     | '/admin/'
     | '/admin/content/quiz-importer'
     | '/card_/c/$publicId'
-    | '/card_/c/$publicId/preview.png'
     | '/english/form-1/grammar'
+    | '/card_/c/$publicId/art'
+    | '/card_/c/$publicId/preview.png'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -656,7 +668,6 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRouteWithChildren
   CardRoute: typeof CardRouteWithChildren
   CompanionRoute: typeof CompanionRoute
-  CompanionPortalRoute: typeof CompanionPortalRoute
   ContactRoute: typeof ContactRoute
   DashboardRoute: typeof DashboardRoute
   ExploreAcademyRoute: typeof ExploreAcademyRoute
@@ -688,6 +699,7 @@ export interface RootRouteChildren {
   AuthCallbackRoute: typeof AuthCallbackRoute
   AuthConfirmRoute: typeof AuthConfirmRoute
   AuthResetPasswordRoute: typeof AuthResetPasswordRoute
+  CompanionPortalRoute: typeof CompanionPortalRoute
   NovaDemoRoute: typeof NovaDemoRoute
   NovaStudioRoute: typeof NovaStudioRoute
   CardCPublicIdRoute: typeof CardCPublicIdRouteWithChildren
@@ -878,13 +890,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CompanionRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/companion_/portal': {
-      id: '/companion_/portal'
-      path: '/companion/portal'
-      fullPath: '/companion/portal'
-      preLoaderRoute: typeof CompanionPortalRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/card': {
       id: '/card'
       path: '/card'
@@ -925,6 +930,13 @@ declare module '@tanstack/react-router' {
       path: '/nova/demo'
       fullPath: '/nova/demo'
       preLoaderRoute: typeof NovaDemoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/companion_/portal': {
+      id: '/companion_/portal'
+      path: '/companion/portal'
+      fullPath: '/companion/portal'
+      preLoaderRoute: typeof CompanionPortalRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/card/contact.vcf': {
@@ -976,13 +988,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminUsersRouteImport
       parentRoute: typeof AdminRoute
     }
-    '/admin/companion-craft': {
-      id: '/admin/companion-craft'
-      path: '/companion-craft'
-      fullPath: '/admin/companion-craft'
-      preLoaderRoute: typeof AdminCompanionCraftRouteImport
-      parentRoute: typeof AdminRoute
-    }
     '/admin/traffic': {
       id: '/admin/traffic'
       path: '/traffic'
@@ -1009,6 +1014,13 @@ declare module '@tanstack/react-router' {
       path: '/content-library'
       fullPath: '/admin/content-library'
       preLoaderRoute: typeof AdminContentLibraryRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/companion-craft': {
+      id: '/admin/companion-craft'
+      path: '/companion-craft'
+      fullPath: '/admin/companion-craft'
+      preLoaderRoute: typeof AdminCompanionCraftRouteImport
       parentRoute: typeof AdminRoute
     }
     '/admin/cikgu-intel': {
@@ -1046,6 +1058,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CardCPublicIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/content/quiz-importer': {
+      id: '/admin/content/quiz-importer'
+      path: '/content/quiz-importer'
+      fullPath: '/admin/content/quiz-importer'
+      preLoaderRoute: typeof AdminContentQuizImporterRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/card_/c/$publicId/preview.png': {
       id: '/card_/c/$publicId/preview.png'
       path: '/preview.png'
@@ -1053,12 +1072,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CardCPublicIdPreviewDotpngRouteImport
       parentRoute: typeof CardCPublicIdRoute
     }
-    '/admin/content/quiz-importer': {
-      id: '/admin/content/quiz-importer'
-      path: '/content/quiz-importer'
-      fullPath: '/admin/content/quiz-importer'
-      preLoaderRoute: typeof AdminContentQuizImporterRouteImport
-      parentRoute: typeof AdminRoute
+    '/card_/c/$publicId/art': {
+      id: '/card_/c/$publicId/art'
+      path: '/art'
+      fullPath: '/card/c/$publicId/art'
+      preLoaderRoute: typeof CardCPublicIdArtRouteImport
+      parentRoute: typeof CardCPublicIdRoute
     }
   }
 }
@@ -1102,10 +1121,12 @@ const CardRouteChildren: CardRouteChildren = {
 const CardRouteWithChildren = CardRoute._addFileChildren(CardRouteChildren)
 
 interface CardCPublicIdRouteChildren {
+  CardCPublicIdArtRoute: typeof CardCPublicIdArtRoute
   CardCPublicIdPreviewDotpngRoute: typeof CardCPublicIdPreviewDotpngRoute
 }
 
 const CardCPublicIdRouteChildren: CardCPublicIdRouteChildren = {
+  CardCPublicIdArtRoute: CardCPublicIdArtRoute,
   CardCPublicIdPreviewDotpngRoute: CardCPublicIdPreviewDotpngRoute,
 }
 
@@ -1118,7 +1139,6 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRouteWithChildren,
   CardRoute: CardRouteWithChildren,
   CompanionRoute: CompanionRoute,
-  CompanionPortalRoute: CompanionPortalRoute,
   ContactRoute: ContactRoute,
   DashboardRoute: DashboardRoute,
   ExploreAcademyRoute: ExploreAcademyRoute,
@@ -1150,6 +1170,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthCallbackRoute: AuthCallbackRoute,
   AuthConfirmRoute: AuthConfirmRoute,
   AuthResetPasswordRoute: AuthResetPasswordRoute,
+  CompanionPortalRoute: CompanionPortalRoute,
   NovaDemoRoute: NovaDemoRoute,
   NovaStudioRoute: NovaStudioRoute,
   CardCPublicIdRoute: CardCPublicIdRouteWithChildren,

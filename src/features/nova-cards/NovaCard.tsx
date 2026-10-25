@@ -3,6 +3,7 @@ import { companionSvg } from "./artwork";
 import { CompanionArtworkImage } from "./CompanionArtworkImage";
 import { barcodeSvg, qrDataUrl, svgUrl } from "./codes";
 import { STAGES, cardFace, type NovaCard as Card } from "./model";
+import { CardShareOptions } from "./CardShareOptions";
 import { downloadCard } from "./download";
 import { getCardForExport, getPublicCard } from "./server";
 
@@ -10,11 +11,14 @@ export function NovaCard({
   card,
   url,
   appearance = "classic",
+  pictureShare = false,
   onFlip,
 }: {
   card: Card;
   url: string;
   appearance?: "classic" | "sanctuary";
+  /** Public visitors save or WhatsApp a picture. The permanent URL stays in the address bar. */
+  pictureShare?: boolean;
   onFlip?: () => void;
 }) {
   const [flipped, setFlipped] = useState(false);
@@ -64,8 +68,10 @@ export function NovaCard({
     const fresh = await loadFreshCard();
     const next = fresh.artworkUrl ?? null;
     if (!next) throw new Error("This card is private or unavailable. Refresh to check access.");
-    setArtworkUrl(next);
-    return next;
+    const path = next.split("?")[0];
+    const busted = path === (artworkUrl ?? "").split("?")[0] ? `${path}?v=${Date.now()}` : next;
+    setArtworkUrl(busted);
+    return busted;
   }
 
   async function copyLink() {
@@ -242,45 +248,53 @@ export function NovaCard({
         >
           ↻ Flip card
         </button>
-        {card.sharing ? (
+        {pictureShare ? (
+          card.sharing ? <CardShareOptions card={card} onNotice={setNotice} /> : null
+        ) : (
           <>
-            <button type="button" onClick={() => void copyLink()}>
-              Copy link
-            </button>
-            <button type="button" onClick={() => void share()}>
-              Share
+            {card.sharing ? (
+              <>
+                <button type="button" onClick={() => void copyLink()}>
+                  Copy link
+                </button>
+                <button type="button" onClick={() => void share()}>
+                  Share
+                </button>
+              </>
+            ) : null}
+            <button
+              disabled={downloading}
+              onClick={async () => {
+                setDownloading(true);
+                try {
+                  const current = await loadFreshCard();
+                  await downloadCard(current);
+                  if (current.artworkUrl) setArtworkUrl(current.artworkUrl);
+                  setNotice("Companion picture saved.");
+                } catch (e) {
+                  setNotice((e as Error).message);
+                } finally {
+                  setDownloading(false);
+                }
+              }}
+            >
+              {downloading ? "Saving…" : "↓ Save picture"}
             </button>
           </>
-        ) : null}
-        <button
-          disabled={downloading}
-          onClick={async () => {
-            setDownloading(true);
-            try {
-              const current = await loadFreshCard();
-              await downloadCard(current, url);
-              if (current.artworkUrl) setArtworkUrl(current.artworkUrl);
-              setNotice("Card image downloaded.");
-            } catch (e) {
-              setNotice((e as Error).message);
-            } finally {
-              setDownloading(false);
-            }
-          }}
-        >
-          {downloading ? "Saving…" : "↓ Save image"}
-        </button>
+        )}
       </div>
       <p className="nova-notice" role="status" aria-live="polite">
         {notice}
       </p>
-      <p className="nova-public-address">
-        {card.sharing ? (
-          <a href={url}>{url}</a>
-        ) : (
-          "Private by default. You control when your card becomes public."
-        )}
-      </p>
+      {pictureShare ? null : (
+        <p className="nova-public-address">
+          {card.sharing ? (
+            <a href={url}>{url}</a>
+          ) : (
+            "Private by default. You control when your card becomes public."
+          )}
+        </p>
+      )}
     </section>
   );
 }

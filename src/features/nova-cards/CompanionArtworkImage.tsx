@@ -4,7 +4,7 @@ type Status = "empty" | "loading" | "ready" | "failed";
 
 /**
  * Loads a companion portrait with a stable placeholder. Never swaps in a fictional demo image.
- * When a signed URL expires or fails, asks the parent for a fresh URL once, then offers Retry.
+ * When a portrait URL expires or fails, asks the parent for a fresh address once, then offers Retry.
  */
 export function CompanionArtworkImage({
   src,

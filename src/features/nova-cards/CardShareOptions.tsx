@@ -1,46 +1,42 @@
 import { useState } from "react";
 import type { NovaCard } from "./model";
-import { toPublicSnapshot } from "./public-card";
-import { shareCaption, whatsAppShareUrl } from "./share-out";
-import { downloadStoryCard, shareStoryFile, storyCardBlob } from "./story-image";
+import { cardFace } from "./model";
+import { cardPictureBlob, downloadPicture } from "./download";
+import { shareStoryFile } from "./story-image";
 
 /**
- * WhatsApp link, the device share sheet, a Stories download, and caption copy.
- * Instagram and TikTok are not posted to from here. Rendered only while sharing is on.
+ * Picture-only save and WhatsApp share. No QR, barcode, private id or card URL
+ * is placed in the image. Rendered only while sharing is on.
  */
 export function CardShareOptions({
   card,
-  url,
   onNotice,
 }: {
   card: NovaCard;
-  url: string;
+  url?: string;
   onNotice?: (message: string) => void;
 }) {
   const [busy, setBusy] = useState(false);
   if (!card.sharing) return null;
-  const fields = toPublicSnapshot(card);
-  const caption = shareCaption(fields, url);
+  const title = `${card.username}'s ${cardFace(card).name}`;
 
   function tell(message: string) {
     onNotice?.(message);
   }
 
-  async function copyCaption() {
-    try {
-      await navigator.clipboard.writeText(caption);
-      tell("Caption copied.");
-    } catch {
-      tell("Select the caption and copy it.");
-    }
+  async function picture() {
+    if (card.demo) return cardPictureBlob(card);
+    const { getPublicCard } = await import("./server");
+    const fresh = await getPublicCard({ data: card.publicId });
+    if (!fresh) throw new Error("This card is private or unavailable. Refresh to check access.");
+    return cardPictureBlob(fresh);
   }
 
-  async function download() {
+  async function save() {
     setBusy(true);
     try {
-      const blob = await storyCardBlob(card);
-      downloadStoryCard(blob, card.publicId);
-      tell("Story image downloaded. It is 1080 by 1920.");
+      downloadPicture(await picture());
+      tell("Companion picture saved.");
     } catch (error) {
       tell((error as Error).message);
     } finally {
@@ -48,25 +44,21 @@ export function CardShareOptions({
     }
   }
 
-  async function openShareSheet(network: "Instagram" | "TikTok") {
+  async function shareWhatsApp() {
     setBusy(true);
     try {
-      const blob = await storyCardBlob(card);
+      const blob = await picture();
       try {
-        const result = await shareStoryFile(blob, caption);
+        const result = await shareStoryFile(blob, title);
         if (result === "shared") {
-          tell(
-            `The share sheet opened with the story image. Paste the caption in ${network} if the app asks for one.`,
-          );
+          tell("Choose WhatsApp in the share sheet to send the picture.");
           return;
         }
       } catch (error) {
         if ((error as Error).name === "AbortError") return;
       }
-      downloadStoryCard(blob, card.publicId);
-      tell(
-        `${network} has no web share link on this device. The story image was downloaded. Copy the caption, then post it yourself.`,
-      );
+      downloadPicture(blob);
+      tell("The companion picture was saved. Attach it in WhatsApp.");
     } catch (error) {
       tell((error as Error).message);
     } finally {
@@ -76,25 +68,11 @@ export function CardShareOptions({
 
   return (
     <div className="nova-share-options" data-nova-share-options>
-      <a
-        className="nova-share-link"
-        href={whatsAppShareUrl(caption)}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <button type="button" disabled={busy} onClick={() => void shareWhatsApp()}>
         WhatsApp
-      </a>
-      <button type="button" disabled={busy} onClick={() => void openShareSheet("Instagram")}>
-        Instagram
       </button>
-      <button type="button" disabled={busy} onClick={() => void openShareSheet("TikTok")}>
-        TikTok
-      </button>
-      <button type="button" disabled={busy} onClick={() => void download()}>
-        Download card image
-      </button>
-      <button type="button" disabled={busy} onClick={() => void copyCaption()}>
-        Copy caption
+      <button type="button" disabled={busy} onClick={() => void save()}>
+        Save picture
       </button>
     </div>
   );

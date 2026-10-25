@@ -1,6 +1,15 @@
 import { describe, expect, it } from "vitest";
 import { DEMO_CARDS, cardUrl, type NovaCard } from "./model";
-import { devSharePayload, originFromHost, publicPreviewSvg, toPublicSnapshot } from "./public-card";
+import {
+  attachPublicArtworkUrl,
+  devSharePayload,
+  isPublicArtworkHref,
+  isSafeArtworkUrl,
+  originFromHost,
+  publicArtworkHref,
+  publicPreviewSvg,
+  toPublicSnapshot,
+} from "./public-card";
 import { SITE_URL } from "@/lib/seo";
 
 const matched: NovaCard = {
@@ -61,7 +70,7 @@ describe("public companion card", () => {
     const svg = publicPreviewSvg(toPublicSnapshot(matched));
     expect(svg).toContain("Aisha");
     expect(svg).toContain("Lumi");
-    expect(svg).toContain("100000000101");
+    expect(svg).not.toContain("100000000101");
     expect(svg).toContain("Starlight aura");
     expect(svg).toContain("Your portrait is being crafted");
     expect(svg).not.toContain("form1.student@dev.local");
@@ -96,5 +105,29 @@ describe("public companion card", () => {
     expect(cardUrl("7e6b4ac0-3e7e-432b-86e4-ec892329cdd0", SITE_URL)).toBe(
       "https://www.myacademy.my/card/c/7e6b4ac0-3e7e-432b-86e4-ec892329cdd0",
     );
+  });
+
+  it("gives public visitors a sharing-checked artwork path instead of a storage URL", () => {
+    const id = "7e6b4ac0-3e7e-432b-86e4-ec892329cdd0";
+    const href = publicArtworkHref(id);
+    expect(href).toBe(`/card/c/${id}/art`);
+    expect(href).not.toContain("supabase");
+    expect(isPublicArtworkHref(href)).toBe(true);
+    expect(isPublicArtworkHref(`${href}?v=9`)).toBe(true);
+    expect(isSafeArtworkUrl(href)).toBe(true);
+    expect(isPublicArtworkHref(`/card/c/demo-mia/art`)).toBe(false);
+    expect(isPublicArtworkHref(`/card/c/${id}`)).toBe(false);
+    const published = attachPublicArtworkUrl({
+      ...matched,
+      publicId: id,
+      crafting: false,
+      artworkPath: "16846546-3f82-4c18-a430-098f9a24a939/chosen.png",
+      artworkUrl: "https://lyethdhiiwkbuznvvouk.supabase.co/storage/v1/object/sign/nova-artwork/x",
+    });
+    expect(published.artworkUrl).toBe(href);
+    expect(published.artworkPath).toBeUndefined();
+    expect(JSON.stringify(published)).not.toContain("supabase");
+    expect(JSON.stringify(published)).not.toContain("16846546-3f82-4c18-a430-098f9a24a939");
+    expect(attachPublicArtworkUrl(DEMO_CARDS[0]).artworkUrl).toBe(DEMO_CARDS[0].artworkUrl);
   });
 });

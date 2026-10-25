@@ -371,10 +371,6 @@ export function StudioExperience({
               Try again
             </a>
           )}
-          <div className="sanctuary-preview-links">
-            <a href={`${cardsPaths.studio}?preview=mia`}>Explore the fictional sanctuary ↗</a>
-            <a href={`${cardsPaths.studio}?preview=rayyan`}>Meet Rayyan’s Phoenix ↗</a>
-          </div>
         </section>
       ) : !state.active && !state.origin && !state.selected ? (
         <section className="sanctuary-content sanctuary-access">

@@ -88,7 +88,7 @@ function PublicCard() {
           <p className="nova-eyebrow">
             {card.demo ? "FICTIONAL DEMONSTRATION CARD" : "A COMPANION. A COLLECTIBLE. A JOURNEY."}
           </p>
-          <NovaCard card={card} url={permanentUrl} />
+          <NovaCard card={card} url={permanentUrl} pictureShare />
         </div>
       ) : (
         <UnavailableCard />

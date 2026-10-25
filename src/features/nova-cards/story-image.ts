@@ -55,11 +55,11 @@ export async function storyCardBlob(card: NovaCard): Promise<Blob> {
   });
 }
 
-export function downloadStoryCard(blob: Blob, publicId: string) {
+export function downloadStoryCard(blob: Blob) {
   const objectUrl = URL.createObjectURL(blob);
   const anchor = document.createElement("a");
   anchor.href = objectUrl;
-  anchor.download = `academy-nova-${publicId}.png`;
+  anchor.download = "academy-companion.png";
   document.body.append(anchor);
   anchor.click();
   anchor.remove();

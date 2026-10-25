@@ -1,6 +1,14 @@
 import { hostnameOf, isLocalDevHost } from "@/lib/dev-auth/gate";
 import { SITE_URL } from "@/lib/seo";
-import { cardFace, cardUrl, xml, type NovaCard, type PublicCompanion } from "./model";
+import {
+  cardFace,
+  cardPath,
+  cardUrl,
+  validPublicId,
+  xml,
+  type NovaCard,
+  type PublicCompanion,
+} from "./model";
 
 /** Portrait preview used for link unfurls. Safe fields only. */
 export const PUBLIC_PREVIEW_WIDTH = 900;
@@ -31,6 +39,35 @@ export function rarityStars(rarity: string): number {
   return RARITY_STARS[rarity] ?? 2;
 }
 
+/** Same-origin public portrait. Sharing is re-checked on every request; no reusable storage URL. */
+export function publicArtworkHref(publicId: string): string {
+  return `${cardPath(publicId)}/art`;
+}
+
+export function isPublicArtworkHref(value: string): boolean {
+  try {
+    const url = value.startsWith("/") ? new URL(value, SITE_URL) : new URL(value);
+    if (url.username || url.password) return false;
+    const match = url.pathname.match(/^\/card\/c\/([^/]+)\/art$/);
+    if (!match) return false;
+    const id = decodeURIComponent(match[1]);
+    return validPublicId(id) && !id.startsWith("demo-");
+  } catch {
+    return false;
+  }
+}
+
+/** Public visitors receive this path instead of a signed storage URL. */
+export function attachPublicArtworkUrl(card: NovaCard): NovaCard {
+  if (card.demo) return { ...card, artworkPath: undefined };
+  const hasArt = Boolean(card.artworkPath || card.artworkUrl);
+  return {
+    ...card,
+    artworkPath: undefined,
+    artworkUrl: hasArt ? publicArtworkHref(card.publicId) : card.artworkUrl,
+  };
+}
+
 export function isSafeArtworkUrl(value: string): boolean {
   if (
     value.startsWith("data:image/png;base64,") ||
@@ -39,6 +76,7 @@ export function isSafeArtworkUrl(value: string): boolean {
   ) {
     return value.length <= 1_500_000;
   }
+  if (isPublicArtworkHref(value)) return true;
   try {
     const url = new URL(value);
     if (url.username || url.password) return false;
@@ -181,7 +219,6 @@ export function publicPreviewSvg(
   <text x="96" y="1110" fill="#d7deee" font-family="DejaVu Sans, sans-serif" font-size="22">${xml(traitLine)}</text>
   <text x="96" y="1180" fill="#f6ca78" font-family="DejaVu Sans, sans-serif" font-size="36">${xml(stars(fields.stars))}</text>
   <text x="96" y="1236" fill="#d7deee" font-family="DejaVu Sans, sans-serif" font-size="24">${xml(fields.aura)}</text>
-  <text x="96" y="1300" fill="#f4efe4" font-family="DejaVu Sans, sans-serif" font-size="28">${xml(fields.serial)}</text>
 </svg>`;
 }
 
@@ -217,7 +254,6 @@ export function storyCardSvg(
   <text x="120" y="1516" fill="#d7deee" font-family="DejaVu Sans, sans-serif" font-size="26">${xml(traitLine)}</text>
   <text x="120" y="1600" fill="#f6ca78" font-family="DejaVu Sans, sans-serif" font-size="42">${xml(stars(fields.stars))}</text>
   <text x="120" y="1664" fill="#d7deee" font-family="DejaVu Sans, sans-serif" font-size="28">${xml(fields.aura)}</text>
-  <text x="120" y="1736" fill="#f4efe4" font-family="DejaVu Sans, sans-serif" font-size="32">${xml(fields.serial)}</text>
   <text x="120" y="1810" fill="#f6ca78" font-family="DejaVu Sans, sans-serif" font-size="28">#AcadeMY #NovaCompanion</text>
 </svg>`;
 }
