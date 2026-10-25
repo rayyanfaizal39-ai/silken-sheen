@@ -13,6 +13,7 @@ export function CraftArtChoice({
 }) {
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState("");
+  const [tone, setTone] = useState<"idle" | "saving" | "success" | "error">("idle");
   const options = card.artOptions ?? [];
   if (options.length !== 2 || card.artworkUrl) return null;
   return (
@@ -22,7 +23,7 @@ export function CraftArtChoice({
       aria-label="Choose your companion art"
     >
       <h2>Choose your companion art</h2>
-      <div className="nova-art-choice-grid">
+      <div className="nova-art-choice-grid" aria-busy={busy}>
         {options.map((option) => (
           <figure key={option.option}>
             {option.url ? (
@@ -35,11 +36,20 @@ export function CraftArtChoice({
               data-craft-option={option.option}
               disabled={busy || !option.url}
               onClick={() => {
+                if (busy || !option.url) return;
                 setBusy(true);
-                setNotice("");
+                setTone("saving");
+                setNotice("Saving your portrait…");
                 void onChoose(option.option)
-                  .catch((error: Error) => setNotice(error.message))
-                  .finally(() => setBusy(false));
+                  .then(() => {
+                    setTone("success");
+                    setNotice("Portrait saved.");
+                  })
+                  .catch((error: Error) => {
+                    setTone("error");
+                    setNotice(error.message || "Could not save your portrait. Please retry.");
+                    setBusy(false);
+                  });
               }}
             >
               Choose option {option.option}
@@ -47,7 +57,13 @@ export function CraftArtChoice({
           </figure>
         ))}
       </div>
-      <p className="nova-notice" role="status">
+      <p
+        className={`nova-notice nova-art-choice-status${tone === "error" ? " is-error" : ""}${tone === "success" ? " is-success" : ""}`}
+        role="status"
+        aria-live="polite"
+        data-craft-status={tone}
+      >
+        {tone === "saving" ? <span className="nova-inline-spinner" aria-hidden="true" /> : null}
         {notice}
       </p>
     </section>

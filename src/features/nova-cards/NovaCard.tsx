@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { companionSvg } from "./artwork";
 import { CompanionArtworkImage } from "./CompanionArtworkImage";
-import { barcodeSvg, qrDataUrl, svgUrl } from "./codes";
+import { barcodeSvg, novaSerialDigits, qrDataUrl, svgUrl } from "./codes";
 import { STAGES, cardFace, type NovaCard as Card } from "./model";
 import { CardShareOptions } from "./CardShareOptions";
 import { downloadCard } from "./download";
@@ -34,6 +34,9 @@ export function NovaCard({
     card.demo && !artworkUrl
       ? svgUrl(companionSvg(face.fallbackTraits, card.variant, stage))
       : null;
+  // Collectible identifier only — not authentication or prize entitlement.
+  const serial = novaSerialDigits(card.serial);
+  const barcode = svgUrl(barcodeSvg(serial));
 
   useEffect(() => {
     setArtworkUrl(card.artworkUrl);
@@ -179,12 +182,12 @@ export function NovaCard({
               <p className="nova-description">{face.description}</p>
               <div className="nova-card-footer">
                 <span>✦ {STAGES[stage - 1].name}</span>
-                <span>{card.serial.slice(-8)}</span>
+                <span>{serial.slice(-8)}</span>
               </div>
             </div>
             <div className="nova-hologram" aria-hidden="true" />
           </div>
-          <div className="nova-face nova-back" aria-hidden={!flipped}>
+          <div className="nova-face nova-back" aria-hidden={!flipped} data-nova-card-back>
             <div className="nova-back-brand">
               <img src="/branding/academy-icon.png" alt="AcadeMY" width="44" height="44" />
               <span>
@@ -204,26 +207,35 @@ export function NovaCard({
               <br />
               {face.details[2]}
             </p>
-            <div className="nova-qr-box">
-              {qr ? (
-                <img src={qr} alt={`QR code for ${url}`} width="200" height="200" />
-              ) : (
-                <span>Preparing QR…</span>
-              )}
+            <div className="nova-codes" data-nova-codes>
+              <div className="nova-qr-box" data-nova-qr>
+                {qr ? (
+                  <img src={qr} alt={`QR code for ${url}`} width="200" height="200" />
+                ) : (
+                  <span className="nova-qr-pending">
+                    <span className="nova-inline-spinner" aria-hidden="true" />
+                    Preparing QR…
+                  </span>
+                )}
+              </div>
+              <p className="nova-privacy">
+                {card.sharing
+                  ? "Scan to meet this companion"
+                  : "Private · only opens after sharing is enabled"}
+              </p>
+              <img
+                className="nova-barcode"
+                data-nova-barcode
+                src={barcode}
+                alt={`Code 128 barcode: ${serial}`}
+                width="471"
+                height="222"
+                decoding="sync"
+              />
+              <p className="nova-serial" data-nova-serial>
+                {serial}
+              </p>
             </div>
-            <p className="nova-privacy">
-              {card.sharing
-                ? "Scan to meet this companion"
-                : "Private · only opens after sharing is enabled"}
-            </p>
-            <img
-              className="nova-barcode"
-              src={svgUrl(barcodeSvg(card.serial))}
-              alt={`Code 128 barcode: ${card.serial}`}
-              width="471"
-              height="222"
-            />
-            <p className="nova-serial">{card.serial}</p>
             <p className="nova-back-bottom">
               {card.demo
                 ? "FICTIONAL TEST CARD · NO STUDENT DATA"

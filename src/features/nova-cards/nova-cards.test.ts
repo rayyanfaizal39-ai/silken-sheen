@@ -17,7 +17,7 @@ import {
   answerOptionIndex,
 } from "./model";
 import { companionSvg } from "./artwork";
-import { barcodeSvg, barcodeSymbols, qrDataUrl } from "./codes";
+import { barcodeSvg, barcodeSymbols, novaSerialDigits, qrDataUrl } from "./codes";
 import { isOnboardingExemptRoute } from "@/lib/onboarding-routing";
 
 describe("Nova permanent identities and scannable codes", () => {
@@ -36,6 +36,7 @@ describe("Nova permanent identities and scannable codes", () => {
       }
       expect(new Code128Reader().decodeRow(30, pixels).getText()).toBe(card.serial);
       expect(barcodeSymbols(card.serial).at(-1)).toBe(106);
+      expect(svg).toContain(`aria-label="Code 128 barcode ${card.serial}"`);
     });
     it(`decodes ${card.username}'s barcode rasterized at mobile and export sizes`, async () => {
       for (const width of [234, 240, 270, 292, 375, 750]) {
@@ -56,6 +57,21 @@ describe("Nova permanent identities and scannable codes", () => {
       }
     });
   }
+  it("preserves leading zeros on the permanent twelve-digit serial", () => {
+    expect(novaSerialDigits("000000000001")).toBe("000000000001");
+    expect(novaSerialDigits("1")).toBe("000000000001");
+    expect(barcodeSymbols("1")).toEqual(barcodeSymbols("000000000001"));
+    expect(new Code128Reader().decodeRow(30, (() => {
+      const svg = barcodeSvg("000000000002");
+      const width = Number(svg.match(/viewBox="0 0 (\d+)/)![1]);
+      const pixels = new BitArray(width * 3);
+      for (const match of svg.matchAll(/<rect x="(\d+)" y="10" width="(\d+)" height="54"/g)) {
+        pixels.setRange(Number(match[1]) * 3, (Number(match[1]) + Number(match[2])) * 3);
+      }
+      return pixels;
+    })()).getText()).toBe("000000000002");
+    expect(() => barcodeSvg("<script>")).toThrow();
+  });
   it("keeps demo identities distinct and validates identifiers", () => {
     expect(new Set(DEMO_CARDS.map((c) => c.publicId)).size).toBe(2);
     expect(new Set(DEMO_CARDS.map((c) => c.serial)).size).toBe(2);
