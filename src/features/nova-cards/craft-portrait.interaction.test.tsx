@@ -37,7 +37,18 @@ const base: Card = {
   crafting: true,
 };
 
-function PortraitFlow({ initial }: { initial: Card }) {
+const readyOptions = [
+  { option: 1 as const, url: FIRST },
+  { option: 2 as const, url: SECOND },
+];
+
+function PortraitFlow({
+  initial,
+  choose,
+}: {
+  initial: Card;
+  choose?: (option: 1 | 2) => Promise<void>;
+}) {
   const [card, setCard] = useState(initial);
   return (
     <>
@@ -45,6 +56,10 @@ function PortraitFlow({ initial }: { initial: Card }) {
       <CraftArtChoice
         card={card}
         onChoose={async (option) => {
+          if (choose) {
+            await choose(option);
+            return;
+          }
           const picked = card.artOptions?.find((item) => item.option === option);
           if (!picked?.url) throw new Error("Choose one of the two portraits");
           setCard({ ...card, artworkUrl: picked.url, crafting: false, artOptions: undefined });
@@ -55,10 +70,7 @@ function PortraitFlow({ initial }: { initial: Card }) {
         onClick={() =>
           setCard({
             ...card,
-            artOptions: [
-              { option: 1, url: FIRST },
-              { option: 2, url: SECOND },
-            ],
+            artOptions: readyOptions,
           })
         }
       >
@@ -75,12 +87,15 @@ afterEach(async () => {
   document.body.innerHTML = "";
 });
 
-async function mount(initial: Card) {
+async function mount(
+  initial: Card,
+  choose?: (option: 1 | 2) => Promise<void>,
+) {
   const host = document.createElement("div");
   document.body.append(host);
   const root = createRoot(host);
   roots.push(root);
-  await act(async () => root.render(<PortraitFlow initial={initial} />));
+  await act(async () => root.render(<PortraitFlow initial={initial} choose={choose} />));
   return host;
 }
 
@@ -110,5 +125,81 @@ describe("student portrait choice", () => {
     expect(host.querySelector("img.nova-art")?.getAttribute("src")).toBe(SECOND);
     expect(host.textContent).not.toContain(FIRST);
     expect(host.querySelector("[data-craft-option]")).toBeNull();
+  });
+
+  it("shows Saving your portrait… with a spinner, keeps artwork, and blocks double submit", async () => {
+    vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockReturnValue(null);
+    let release!: () => void;
+    const gate = new Promise<void>((resolve) => {
+      release = resolve;
+    });
+    const choose = vi.fn(async () => {
+      await gate;
+    });
+    const host = await mount({ ...base, artOptions: readyOptions, crafting: false }, choose);
+
+    await act(async () => {
+      host.querySelector<HTMLButtonElement>("[data-craft-option='1']")!.click();
+    });
+
+    expect(host.querySelector("[data-craft-status='saving']")?.textContent).toContain(
+      "Saving your portrait…",
+    );
+    expect(host.querySelector(".nova-inline-spinner")).not.toBeNull();
+    expect(
+      [...host.querySelectorAll<HTMLButtonElement>("[data-craft-option]")].every(
+        (button) => button.disabled,
+      ),
+    ).toBe(true);
+    expect(
+      [...host.querySelectorAll("[data-craft-art-choice] img")].map((image) =>
+        image.getAttribute("src"),
+      ),
+    ).toEqual([FIRST, SECOND]);
+
+    await act(async () => {
+      host.querySelector<HTMLButtonElement>("[data-craft-option='2']")!.click();
+    });
+    expect(choose).toHaveBeenCalledTimes(1);
+
+    await act(async () => {
+      release();
+      await gate;
+    });
+    expect(host.querySelector("[data-craft-status='success']")?.textContent).toContain(
+      "Portrait saved.",
+    );
+    expect(host.querySelector("[data-craft-art-choice]")?.getAttribute("aria-busy")).not.toBe(
+      "true",
+    );
+    expect(
+      [...host.querySelectorAll<HTMLButtonElement>("[data-craft-option]")].every(
+        (button) => button.disabled,
+      ),
+    ).toBe(true);
+
+    await act(async () => {
+      host.querySelector<HTMLButtonElement>("[data-craft-option='2']")!.click();
+    });
+    expect(choose).toHaveBeenCalledTimes(1);
+  });
+
+  it("restores buttons and shows an error when the server rejects the choice", async () => {
+    vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockReturnValue(null);
+    const host = await mount({ ...base, artOptions: readyOptions, crafting: false }, async () => {
+      throw new Error("Choose one of the two portraits");
+    });
+
+    await act(async () => {
+      host.querySelector<HTMLButtonElement>("[data-craft-option='1']")!.click();
+    });
+
+    expect(host.querySelector("[data-craft-status='error']")?.textContent).toContain(
+      "Choose one of the two portraits",
+    );
+    expect(
+      host.querySelector<HTMLButtonElement>("[data-craft-option='1']")!.disabled,
+    ).toBe(false);
+    expect(host.querySelector("[data-craft-art-choice] img")).not.toBeNull();
   });
 });

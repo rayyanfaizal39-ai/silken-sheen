@@ -40,8 +40,22 @@ describe("crafted companion card", () => {
     expect(html).toContain("nova-craft-wait");
     expect(html).not.toMatch(/<img[^>]*class="nova-art"/);
     expect(html).toContain("nova-barcode");
+    expect(html).toContain("data-nova-barcode");
     expect(html).toContain("100000000101");
+    expect(html).toContain("data-nova-serial");
     expect(html.toLowerCase()).not.toContain("birth year");
+  });
+
+  it("keeps leading zeros on the collectible serial for Code 128 and QR surfaces", () => {
+    const html = renderToStaticMarkup(
+      <NovaCard
+        card={{ ...card, serial: "000000000007", crafting: false, artworkUrl: "https://example.test/a.png" }}
+        url="http://localhost:8080/card/c/00000000-0000-4000-8000-00000000d101"
+      />,
+    );
+    expect(html).toContain("000000000007");
+    expect(html).toContain("Code 128 barcode: 000000000007");
+    expect(html).toContain("data-nova-codes");
   });
 
   it("asks the student to choose once both portraits are ready", () => {

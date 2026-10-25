@@ -15,7 +15,9 @@ export function NovaStudio() {
   const [entitlement, setEntitlement] = useState<NovaEntitlement | null>(null);
   const [notice, setNotice] = useState("");
   const [problem, setProblem] = useState<NovaAccessProblem>("unavailable");
-  const [busy, setBusy] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
+  const [sharingBusy, setSharingBusy] = useState(false);
   const [origin, setOrigin] = useState(publicCardOrigin());
   useEffect(() => {
     setOrigin(publicCardOrigin());
@@ -32,13 +34,28 @@ export function NovaStudio() {
         if (active) setProblem(novaAccessProblem(e));
       })
       .finally(() => {
-        if (active) setBusy(false);
+        if (active) setLoading(false);
       });
     return () => {
       active = false;
     };
   }, []);
   const access = novaAccessCopy(problem);
+  const permanentUrl = card ? cardUrl(card.publicId, origin) : "";
+
+  async function copyPermanentUrl() {
+    if (!permanentUrl) return;
+    try {
+      await navigator.clipboard.writeText(permanentUrl);
+      setNotice(
+        card?.sharing
+          ? "Permanent card URL copied. Anyone with the link can open it while sharing is on."
+          : "Permanent card URL copied. Other people can open it only after you enable public sharing.",
+      );
+    } catch {
+      setNotice("Select the permanent card URL below to copy it.");
+    }
+  }
 
   return (
     <main className="nova-page">
@@ -89,10 +106,10 @@ export function NovaStudio() {
                   <input
                     type="checkbox"
                     checked={card.sharing}
-                    disabled={busy}
+                    disabled={sharingBusy || refreshing}
                     onChange={async (e) => {
                       const enabled = e.target.checked;
-                      setBusy(true);
+                      setSharingBusy(true);
                       try {
                         setCard(await updateCardSharing(enabled));
                         setNotice(
@@ -103,28 +120,66 @@ export function NovaStudio() {
                       } catch (e) {
                         setNotice((e as Error).message);
                       } finally {
-                        setBusy(false);
+                        setSharingBusy(false);
                       }
                     }}
                   />{" "}
                   Enable public sharing
                 </label>
                 <button
-                  disabled={busy}
+                  type="button"
+                  disabled={refreshing || sharingBusy}
+                  aria-busy={refreshing}
                   onClick={async () => {
-                    setBusy(true);
+                    setRefreshing(true);
                     try {
                       const [next] = await loadOwnerNova();
                       setCard(next);
+                      setNotice("Card refreshed.");
                     } catch (e) {
                       setNotice((e as Error).message);
                     } finally {
-                      setBusy(false);
+                      setRefreshing(false);
                     }
                   }}
                 >
-                  Refresh card
+                  {refreshing ? (
+                    <>
+                      <span className="nova-inline-spinner" aria-hidden="true" />
+                      Refreshing…
+                    </>
+                  ) : (
+                    "Refresh card"
+                  )}
                 </button>
+                <section
+                  className="nova-share-panel nova-permanent-url"
+                  aria-label="Permanent Card URL"
+                  data-permanent-card-url
+                >
+                  <h2>Permanent Card URL</h2>
+                  <p>
+                    This address never changes. Other people can open it only when you enable public
+                    sharing above. With sharing off, visitors will not see your card.
+                  </p>
+                  <p className="nova-share-url">
+                    {card.sharing ? (
+                      <a href={permanentUrl}>{permanentUrl}</a>
+                    ) : (
+                      <span>{permanentUrl}</span>
+                    )}
+                  </p>
+                  <div className="nova-share-actions">
+                    <button type="button" onClick={() => void copyPermanentUrl()}>
+                      Copy URL
+                    </button>
+                  </div>
+                  <p className="nova-permanent-url-hint">
+                    {card.sharing
+                      ? "Public sharing is on. Anyone with this link can view your card."
+                      : "Public sharing is off. Keep the link for yourself, or turn sharing on when you are ready."}
+                  </p>
+                </section>
               </div>
               <div className="nova-stage-list" aria-label="Origin companion">
                 <span className="current">
@@ -133,12 +188,12 @@ export function NovaStudio() {
               </div>
             </>
           )}
-          <p className="nova-notice" role="status">
+          <p className="nova-notice" role="status" aria-live="polite">
             {notice}
           </p>
         </section>
         <section className="nova-studio-content">
-          {busy ? (
+          {loading ? (
             <p role="status">Checking your Nova and subscription…</p>
           ) : !entitlement ? (
             <div className="nova-creation-panel" role="alert" data-access-problem={problem}>
@@ -167,8 +222,15 @@ export function NovaStudio() {
             />
           ) : card && (card.traits || card.companion) ? (
             // An owned card stays viewable whatever the subscription status.
+            // Refresh never hides this card — only the Refresh button shows progress.
             <>
-              <NovaCard card={card} url={cardUrl(card.publicId, origin)} />
+              <NovaCard card={card} url={permanentUrl} />
+              {refreshing ? (
+                <p className="nova-refresh-status" role="status" aria-live="polite">
+                  <span className="nova-inline-spinner" aria-hidden="true" />
+                  Refreshing…
+                </p>
+              ) : null}
               <LiveCraftArtChoice onChanged={setCard} />
             </>
           ) : card ? (

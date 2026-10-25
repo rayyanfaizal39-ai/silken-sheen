@@ -109,23 +109,38 @@ const WIDTHS = [
   "2331112",
 ];
 
+/**
+ * Permanent collectible serial: exactly twelve digit characters, leading zeros kept.
+ * Rejects anything else — never pad or rewrite a stored serial into a different id.
+ */
+export function novaSerialDigits(serial: string): string {
+  const value = String(serial ?? "");
+  if (!/^\d{12}$/.test(value)) {
+    throw new Error("Nova serial must contain twelve digits.");
+  }
+  return value;
+}
+
 export function barcodeSymbols(serial: string) {
-  if (!/^\d{12}$/.test(serial)) throw new Error("Nova serial must contain twelve digits.");
-  const data = serial.match(/../g)!.map(Number);
+  const padded = novaSerialDigits(serial);
+  const data = padded.match(/../g)!.map(Number);
   const checksum = data.reduce((sum, code, i) => sum + code * (i + 1), 105) % 103;
   return [105, ...data, checksum, 106]; // Start C, six digit pairs, checksum, stop.
 }
 
 export function barcodeSvg(serial: string) {
+  const padded = novaSerialDigits(serial);
   let x = 10; // At least ten narrow modules of quiet zone on both ends.
   let bars = "";
-  for (const symbol of barcodeSymbols(serial)) {
+  for (const symbol of barcodeSymbols(padded)) {
     [...WIDTHS[symbol]].forEach((width, i) => {
       if (i % 2 === 0) bars += `<rect x="${x}" y="10" width="${width}" height="54"/>`;
       x += Number(width);
     });
   }
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${(x + 10) * 3}" height="222" viewBox="0 0 ${x + 10} 74" preserveAspectRatio="none" shape-rendering="crispEdges"><rect width="100%" height="100%" fill="white"/><g fill="black">${bars}</g></svg>`;
+  // Intrinsic width/height keep module proportions. CSS object-fit:contain
+  // prevents the card face from stretching bars on mobile.
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${(x + 10) * 3}" height="222" viewBox="0 0 ${x + 10} 74" preserveAspectRatio="none" shape-rendering="crispEdges" role="img" aria-label="Code 128 barcode ${padded}"><rect width="100%" height="100%" fill="white"/><g fill="black">${bars}</g></svg>`;
 }
 
 export const svgUrl = (svg: string) =>
