@@ -130,17 +130,21 @@ export function barcodeSymbols(serial: string) {
 
 export function barcodeSvg(serial: string) {
   const padded = novaSerialDigits(serial);
-  let x = 10; // At least ten narrow modules of quiet zone on both ends.
+  const quiet = 10; // ISO quiet zone: ≥10 narrow modules on both ends.
+  let x = quiet;
   let bars = "";
   for (const symbol of barcodeSymbols(padded)) {
     [...WIDTHS[symbol]].forEach((width, i) => {
-      if (i % 2 === 0) bars += `<rect x="${x}" y="10" width="${width}" height="54"/>`;
+      // Full viewBox height — scanners need tall bars; quiet zones are horizontal only.
+      if (i % 2 === 0) bars += `<rect x="${x}" y="0" width="${width}" height="74"/>`;
       x += Number(width);
     });
   }
-  // Intrinsic width/height keep module proportions. CSS object-fit:contain
-  // prevents the card face from stretching bars on mobile.
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${(x + 10) * 3}" height="222" viewBox="0 0 ${x + 10} 74" preserveAspectRatio="none" shape-rendering="crispEdges" role="img" aria-label="Code 128 barcode ${padded}"><rect width="100%" height="100%" fill="white"/><g fill="black">${bars}</g></svg>`;
+  const modules = x + quiet;
+  // Wide strip aspect so CSS width:100% + fixed height fills the card, not a letterboxed box.
+  const svgWidth = modules * 8;
+  const svgHeight = 64;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${svgWidth}" height="${svgHeight}" viewBox="0 0 ${modules} 74" preserveAspectRatio="none" shape-rendering="crispEdges" role="img" aria-label="Code 128 barcode ${padded}"><rect width="100%" height="100%" fill="white"/><g fill="black">${bars}</g></svg>`;
 }
 
 export const svgUrl = (svg: string) =>

@@ -504,15 +504,15 @@
   max-width: 220px;
 }
 .nova-barcode {
+  display: block;
   width: 100%;
   max-width: 100%;
-  height: auto;
-  min-height: 48px;
-  max-height: 72px;
+  height: 58px;
   border-radius: 4px;
-  object-fit: contain;
+  /* fill: horizontal scale keeps module ratios; vertical stretch is fine for Code 128 */
+  object-fit: fill;
   object-position: center;
-  background: white;
+  background: #fff;
   flex-shrink: 0;
   image-rendering: crisp-edges;
 }
@@ -1343,8 +1343,7 @@
     margin-bottom: 8px;
   }
   .nova-barcode {
-    min-height: 40px;
-    max-height: 56px;
+    height: 52px;
   }
   .nova-qr-box {
     width: min(48%, 140px);

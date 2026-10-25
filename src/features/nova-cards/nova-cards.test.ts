@@ -31,19 +31,22 @@ describe("Nova permanent identities and scannable codes", () => {
       const svg = barcodeSvg(card.serial);
       const width = Number(svg.match(/viewBox="0 0 (\d+)/)![1]);
       const pixels = new BitArray(width * 3);
-      for (const match of svg.matchAll(/<rect x="(\d+)" y="10" width="(\d+)" height="54"/g)) {
+      for (const match of svg.matchAll(/<rect x="(\d+)" y="0" width="(\d+)" height="74"/g)) {
         pixels.setRange(Number(match[1]) * 3, (Number(match[1]) + Number(match[2])) * 3);
       }
       expect(new Code128Reader().decodeRow(30, pixels).getText()).toBe(card.serial);
       expect(barcodeSymbols(card.serial).at(-1)).toBe(106);
       expect(svg).toContain(`aria-label="Code 128 barcode ${card.serial}"`);
+      const svgW = Number(svg.match(/\bwidth="(\d+)"/)![1]);
+      const svgH = Number(svg.match(/\bheight="(\d+)"/)![1]);
+      expect(svgW).toBeGreaterThan(svgH * 4);
     });
     it(`decodes ${card.username}'s barcode rasterized at mobile and export sizes`, async () => {
       for (const width of [234, 240, 270, 292, 375, 750]) {
         const { data } = await sharp(
           Buffer.from(
             barcodeSvg(card.serial).replace(
-              /width="\d+" height="222"/,
+              /width="\d+" height="\d+"/,
               `width="${width}" height="64"`,
             ),
           ),
@@ -67,7 +70,7 @@ describe("Nova permanent identities and scannable codes", () => {
       const svg = barcodeSvg("000000000002");
       const width = Number(svg.match(/viewBox="0 0 (\d+)/)![1]);
       const pixels = new BitArray(width * 3);
-      for (const match of svg.matchAll(/<rect x="(\d+)" y="10" width="(\d+)" height="54"/g)) {
+      for (const match of svg.matchAll(/<rect x="(\d+)" y="0" width="(\d+)" height="74"/g)) {
         pixels.setRange(Number(match[1]) * 3, (Number(match[1]) + Number(match[2])) * 3);
       }
       return pixels;
