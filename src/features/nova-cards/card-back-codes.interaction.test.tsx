@@ -63,7 +63,7 @@ function decodeBarcode(src: string) {
   const svg = decodeURIComponent(src.replace(/^data:image\/svg\+xml;charset=utf-8,/, ""));
   const width = Number(svg.match(/viewBox="0 0 (\d+)/)![1]);
   const pixels = new BitArray(width * 3);
-  for (const match of svg.matchAll(/<rect x="(\d+)" y="10" width="(\d+)" height="54"/g)) {
+  for (const match of svg.matchAll(/<rect x="(\d+)" y="0" width="(\d+)" height="74"/g)) {
     pixels.setRange(Number(match[1]) * 3, (Number(match[1]) + Number(match[2])) * 3);
   }
   return new Code128Reader().decodeRow(30, pixels).getText();

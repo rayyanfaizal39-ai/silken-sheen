@@ -228,8 +228,8 @@ export function NovaCard({
                 data-nova-barcode
                 src={barcode}
                 alt={`Code 128 barcode: ${serial}`}
-                width="471"
-                height="222"
+                width="480"
+                height="64"
                 decoding="sync"
               />
               <p className="nova-serial" data-nova-serial>
