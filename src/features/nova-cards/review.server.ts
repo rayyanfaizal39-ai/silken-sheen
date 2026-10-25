@@ -46,7 +46,11 @@ export const getCompanionReviewQueue = createServerFn({ method: "GET" }).handler
   const storage = getSupabaseAdminClient().storage.from("nova-artwork");
   return Promise.all(
     items.map(async ({ storagePath, ...item }): Promise<ReviewItem> => {
-      const { data: signed } = await storage.createSignedUrl(storagePath, 60);
+      const { NOVA_ARTWORK_SIGNED_URL_SECONDS } = await import("./artwork-signing");
+      const { data: signed } = await storage.createSignedUrl(
+        storagePath,
+        NOVA_ARTWORK_SIGNED_URL_SECONDS,
+      );
       return { ...item, url: signed?.signedUrl ?? null };
     }),
   );

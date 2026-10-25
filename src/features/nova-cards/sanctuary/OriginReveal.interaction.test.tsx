@@ -127,7 +127,7 @@ describe("Two-companion comparison", () => {
     expect(companions[0]).not.toBe(companions[1]);
     expect(companions.every((c) => c.name === undefined && c.reason === undefined)).toBe(true);
     const { host } = await mount(companions, { fictional: false });
-    expect(host.querySelectorAll(".sanctuary-candidate-art>img:first-child")).toHaveLength(2);
+    expect(host.querySelectorAll(".sanctuary-candidate-art img")).toHaveLength(2);
     expect(host.textContent).toContain("Both companions share your Cosmic Identity");
     expect(cell(host, "Strengths", "a")).toBe("Not available yet");
     expect(host.textContent).not.toContain("Fictional preview");

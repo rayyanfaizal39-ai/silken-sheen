@@ -25,15 +25,23 @@ export function CandidateProfile({
   username,
   fictional,
   collectionHref,
+  publicId,
 }: {
   companion: CompanionCandidate;
   username: string;
   fictional: boolean;
   /** Real cards: where the student manages sharing, the QR code and export. */
   collectionHref?: string;
+  /** Permanent card id used to refresh signed portrait URLs. */
+  publicId?: string | null;
 }) {
   const name = candidateTitle(companion);
+  const [portrait, setPortrait] = useState(companion);
   const [viewing, setViewing] = useState(false);
+  useEffect(() => {
+    setPortrait(companion);
+  }, [companion]);
+  const applyArtwork = (url: string) => setPortrait((current) => ({ ...current, artworkUrl: url }));
   const dialog = useRef<HTMLDialogElement>(null);
   const opener = useRef<HTMLButtonElement | null>(null);
   useEffect(() => {
@@ -48,12 +56,12 @@ export function CandidateProfile({
   }, [viewing]);
 
   const facts: [string, string | undefined][] = [
-    ["Personality", companion.personality],
-    ["Element", companion.element],
-    ["Strengths", listValues(companion.strengths)],
+    ["Personality", portrait.personality],
+    ["Element", portrait.element],
+    ["Strengths", listValues(portrait.strengths)],
   ];
   // Shown only when the candidate actually carries them.
-  if (companion.learningStyle) facts.push(["Learning style", companion.learningStyle]);
+  if (portrait.learningStyle) facts.push(["Learning style", portrait.learningStyle]);
 
   return (
     <>
@@ -73,8 +81,10 @@ export function CandidateProfile({
           </div>
           <div className="sanctuary-card-wrap ccprof-card ccprof-card--candidate">
             <CandidateCard
-              c={companion}
+              c={portrait}
               picked
+              publicId={fictional ? null : publicId}
+              onArtworkUrl={applyArtwork}
               exploreLabel="View Full Card"
               onExplore={(trigger) => {
                 opener.current = trigger;
@@ -82,7 +92,7 @@ export function CandidateProfile({
               }}
             />
           </div>
-          {companion.uniqueQuality && <p className="ccprof-tagline">“{companion.uniqueQuality}”</p>}
+          {portrait.uniqueQuality && <p className="ccprof-tagline">“{portrait.uniqueQuality}”</p>}
         </div>
 
         <div className="ccprof-column">
@@ -98,7 +108,7 @@ export function CandidateProfile({
             <p className="ccprof-intro">
               {name} is your permanent Cosmic Companion, bonded with <b>{username}</b>.{" "}
               <span className="ccprof-species">
-                {companion.species ?? "Species revealed with artwork"}
+                {portrait.species ?? "Species revealed with artwork"}
               </span>
             </p>
 
@@ -111,23 +121,23 @@ export function CandidateProfile({
               ))}
             </dl>
 
-            {((companion.qualities?.length ?? 0) > 0 || (companion.abilities?.length ?? 0) > 0) && (
+            {((portrait.qualities?.length ?? 0) > 0 || (portrait.abilities?.length ?? 0) > 0) && (
               <div className="ccprof-traitgroups">
-                {companion.qualities && companion.qualities.length > 0 && (
+                {portrait.qualities && portrait.qualities.length > 0 && (
                   <div>
                     <h2 className="ccprof-subhead">Unique traits</h2>
                     <ul className="ccprof-chips">
-                      {companion.qualities.map((q) => (
+                      {portrait.qualities.map((q) => (
                         <li key={q}>{q}</li>
                       ))}
                     </ul>
                   </div>
                 )}
-                {companion.abilities && companion.abilities.length > 0 && (
+                {portrait.abilities && portrait.abilities.length > 0 && (
                   <div>
                     <h2 className="ccprof-subhead">Abilities</h2>
                     <ul className="ccprof-chips ccprof-chips--gold">
-                      {companion.abilities.map((a) => (
+                      {portrait.abilities.map((a) => (
                         <li key={a}>{a}</li>
                       ))}
                     </ul>
@@ -195,29 +205,33 @@ export function CandidateProfile({
           }}
         >
           <div className="occ-detail__art">
-            <CandidateArt c={companion} />
+            <CandidateArt
+              c={portrait}
+              publicId={fictional ? null : publicId}
+              onArtworkUrl={applyArtwork}
+            />
           </div>
           <div className="occ-detail__body">
-            <p className="occ-card__label">{CANDIDATE_LABEL[companion.id]} · Permanent</p>
+            <p className="occ-card__label">{CANDIDATE_LABEL[portrait.id]} · Permanent</p>
             <h2 id="ccprof-full-title">{name}</h2>
-            <p className="occ-species">{companion.species ?? "Species revealed with artwork"}</p>
-            <p>{companion.description ?? NOT_AVAILABLE}</p>
+            <p className="occ-species">{portrait.species ?? "Species revealed with artwork"}</p>
+            <p>{portrait.description ?? NOT_AVAILABLE}</p>
             <dl>
               <div>
                 <dt>Personality</dt>
-                <dd>{companion.personality ?? NOT_AVAILABLE}</dd>
+                <dd>{portrait.personality ?? NOT_AVAILABLE}</dd>
               </div>
               <div>
                 <dt>Element</dt>
-                <dd>{companion.element ?? NOT_AVAILABLE}</dd>
+                <dd>{portrait.element ?? NOT_AVAILABLE}</dd>
               </div>
               <div>
                 <dt>Qualities</dt>
-                <dd>{listValues(companion.qualities) ?? NOT_AVAILABLE}</dd>
+                <dd>{listValues(portrait.qualities) ?? NOT_AVAILABLE}</dd>
               </div>
               <div>
                 <dt>Abilities</dt>
-                <dd>{listValues(companion.abilities) ?? NOT_AVAILABLE}</dd>
+                <dd>{listValues(portrait.abilities) ?? NOT_AVAILABLE}</dd>
               </div>
             </dl>
             <div className="sanctuary-dialog-actions">

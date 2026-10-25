@@ -4,6 +4,7 @@ import { NovaCard } from "../../../../src/features/nova-cards/NovaCard";
 import { cardUrl } from "../../../../src/features/nova-cards/model";
 import {
   publicCardDescription,
+  publicCardOrigin,
   toPublicSnapshot,
 } from "../../../../src/features/nova-cards/public-card";
 import { cardsPaths } from "../../../../src/features/nova-cards/paths";
@@ -33,8 +34,11 @@ function UnavailableCard() {
   return (
     <main className="nova-page nova-unavailable">
       <h1>This card is not available</h1>
-      <p>The link does not open a public card.</p>
-      <a href={cardsPaths.demo}>Explore fictional demos</a>
+      <p>
+        This permanent link is valid, but the companion is private or the card id is not recognised.
+        Ask the owner to enable sharing, then refresh.
+      </p>
+      <a href={cardsPaths.home}>AcadeMY Cards</a>
     </main>
   );
 }
@@ -46,7 +50,7 @@ function PublicCard() {
   const [origin, setOrigin] = useState(SITE_URL);
 
   useEffect(() => {
-    setOrigin(window.location.origin);
+    setOrigin(publicCardOrigin());
     setCard(initialCard);
     let active = true;
     const refresh = () => {
@@ -68,6 +72,7 @@ function PublicCard() {
     };
   }, [initialCard, publicId]);
 
+  const permanentUrl = card ? cardUrl(card.publicId, origin || publicCardOrigin()) : "";
   return (
     <main className="nova-page">
       <header className="nova-topbar">
@@ -76,14 +81,14 @@ function PublicCard() {
           AcadeMY Cards
         </a>
         <span>NOVA COMPANION COLLECTION</span>
-        <a href={cardsPaths.demo}>Explore demos ↗</a>
+        {card?.demo ? <a href={cardsPaths.demo}>Explore demos ↗</a> : null}
       </header>
       {card ? (
         <div className="nova-single">
           <p className="nova-eyebrow">
             {card.demo ? "FICTIONAL DEMONSTRATION CARD" : "A COMPANION. A COLLECTIBLE. A JOURNEY."}
           </p>
-          <NovaCard card={card} url={cardUrl(card.publicId, origin)} />
+          <NovaCard card={card} url={permanentUrl} />
         </div>
       ) : (
         <UnavailableCard />

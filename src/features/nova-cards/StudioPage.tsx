@@ -407,6 +407,7 @@ export function StudioExperience({
               companion={oneCompanion}
               username={state.draft.username}
               fictional={fictional}
+              publicId={state.publicId}
               collectionHref={chosenPreview ? undefined : cardsPaths.home}
             />
           ) : (
@@ -599,8 +600,7 @@ export function StudioExperience({
       ) : null}
       {!quiz && !intro && (
         <footer className="sanctuary-footer">
-          COSMIC COMPANION · DISCOVER · CHOOSE · KEEP YOUR CARD{" "}
-          <a href={cardsPaths.demo}>Evolution study ↗</a>
+          COSMIC COMPANION · DISCOVER · CHOOSE · KEEP YOUR CARD
         </footer>
       )}
     </main>

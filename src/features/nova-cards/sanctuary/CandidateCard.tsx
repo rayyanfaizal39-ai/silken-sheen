@@ -7,6 +7,8 @@ import {
   listValues,
   type CompanionCandidate,
 } from "../companion-candidates";
+import { CompanionArtworkImage } from "../CompanionArtworkImage";
+import { getCardForExport } from "../server";
 import "./companion-comparison.css";
 
 /** A soft, unidentified silhouette for companions whose artwork does not exist yet. */
@@ -37,15 +39,36 @@ function MysteryArt({ id }: { id: "a" | "b" }) {
   );
 }
 
-export function CandidateArt({ c }: { c: CompanionCandidate }) {
+export function CandidateArt({
+  c,
+  publicId,
+  onArtworkUrl,
+}: {
+  c: CompanionCandidate;
+  /** When set, an expired signed portrait can be refreshed without using demo art. */
+  publicId?: string | null;
+  onArtworkUrl?: (url: string) => void;
+}) {
   return (
     <div className="sanctuary-candidate-art occ-art">
       {c.artworkUrl ? (
-        <img
+        <CompanionArtworkImage
           src={c.artworkUrl}
           alt={`${candidateTitle(c)}${c.species ? `, ${c.species}` : ""} — ${CANDIDATE_LABEL[c.id]} artwork`}
-          width="1024"
-          height="1536"
+          width={1024}
+          height={1536}
+          className="occ-art__img"
+          companionLabel={`${candidateTitle(c)}${c.species ? ` the ${c.species}` : ""}`}
+          onRefresh={
+            publicId
+              ? async () => {
+                  const fresh = await getCardForExport({ data: publicId });
+                  const next = fresh.artworkUrl ?? null;
+                  if (next) onArtworkUrl?.(next);
+                  return next;
+                }
+              : undefined
+          }
         />
       ) : (
         <MysteryArt id={c.id} />
@@ -59,12 +82,16 @@ export function CandidateCard({
   picked = false,
   onExplore,
   exploreLabel = "Explore this companion",
+  publicId,
+  onArtworkUrl,
 }: {
   c: CompanionCandidate;
   picked?: boolean;
   /** Opens a larger view of this companion; omitted where there is nothing more to show. */
   onExplore?: (trigger: HTMLButtonElement) => void;
   exploreLabel?: string;
+  publicId?: string | null;
+  onArtworkUrl?: (url: string) => void;
 }) {
   const [flipped, setFlipped] = useState(false);
   const name = candidateTitle(c);
@@ -85,7 +112,7 @@ export function CandidateCard({
       >
         <div className="occ-flip__inner" data-flipped={flipped}>
           <div className="occ-face occ-face--front">
-            <CandidateArt c={c} />
+            <CandidateArt c={c} publicId={publicId} onArtworkUrl={onArtworkUrl} />
             <h2>{name}</h2>
             <p className="occ-species">{c.species ?? "Species revealed with artwork"}</p>
             <span className="occ-chip occ-chip--element">{c.element ?? NOT_AVAILABLE}</span>

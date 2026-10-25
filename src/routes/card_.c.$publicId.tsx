@@ -11,9 +11,11 @@ import {
   PUBLIC_PREVIEW_HEIGHT,
   PUBLIC_PREVIEW_WIDTH,
   publicCardDescription,
+  publicCardOrigin,
   publicPreviewUrl,
   toPublicSnapshot,
 } from "@/features/nova-cards/public-card";
+import { cardsPaths } from "@/features/nova-cards/paths";
 
 export const Route = createFileRoute("/card_/c/$publicId")({
   loader: ({ params }) => getPublicCardPage({ data: params.publicId }),
@@ -88,7 +90,9 @@ function PublicNova() {
   const [notice, setNotice] = useState("");
   // Recheck on return to the tab so revoked cards aren't retained by router history.
   useEffect(() => {
-    setOrigin(window.location.origin);
+    // Permanent share links always use the public site origin, never a preview or localhost host
+    // (except when developing on a local host — see publicCardOrigin).
+    setOrigin(publicCardOrigin());
     setCard(initial.card);
     let active = true;
     const check = () => {
@@ -110,15 +114,16 @@ function PublicNova() {
       document.removeEventListener("visibilitychange", check);
     };
   }, [initial, publicId]);
+  const permanentUrl = card ? cardUrl(card.publicId, origin || publicCardOrigin()) : "";
   return (
     <main className="nova-page" data-public-card={card ? "open" : "unavailable"}>
       <header className="nova-topbar">
-        <a className="nova-home" href="/nova">
+        <a className="nova-home" href={cardsPaths.home}>
           <img src="/branding/academy-icon.png" alt="AcadeMY" width="32" height="32" />
           AcadeMY
         </a>
         <span>NOVA COMPANION COLLECTION</span>
-        <a href="/nova/demo">Explore demos ↗</a>
+        {card?.demo ? <a href={cardsPaths.demo}>Explore demos ↗</a> : <a href="/companion">Cosmic Companion</a>}
       </header>
       {card ? (
         <div className="nova-single">
@@ -126,15 +131,11 @@ function PublicNova() {
             {card.demo ? "FICTIONAL DEMONSTRATION CARD" : "A COMPANION. A COLLECTIBLE. A JOURNEY."}
           </p>
           <PublicFacts card={card} />
-          <NovaCard card={card} url={cardUrl(card.publicId, origin)} />
+          <NovaCard card={card} url={permanentUrl} />
           {card.sharing ? (
             <section className="nova-share-panel" aria-label="Share this card">
               <h2>Share this card</h2>
-              <CardShareOptions
-                card={card}
-                url={cardUrl(card.publicId, origin)}
-                onNotice={setNotice}
-              />
+              <CardShareOptions card={card} url={permanentUrl} onNotice={setNotice} />
               <p className="nova-notice" role="status">
                 {notice}
               </p>
@@ -144,7 +145,11 @@ function PublicNova() {
       ) : (
         <section className="nova-unavailable">
           <h1>This card is not available</h1>
-          <p>The link does not open a public card.</p>
+          <p>
+            This permanent link is valid, but the companion is private or the card id is not
+            recognised. Ask the owner to enable sharing, then refresh.
+          </p>
+          <a href="/companion">Discover Cosmic Companion</a>
         </section>
       )}
     </main>

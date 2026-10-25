@@ -61,4 +61,17 @@ describe("crafted companion card", () => {
     expect(html).not.toContain("Your portrait is being crafted");
     expect(html).not.toContain("form1.student@dev.local");
   });
+
+  it("never substitutes fictional SVG for a real student card waiting on artwork", () => {
+    const html = renderToStaticMarkup(
+      <NovaCard
+        card={{ ...card, crafting: false, artworkUrl: "https://example.test/lumi.png" }}
+        url="https://www.myacademy.my/card/c/00000000-0000-4000-8000-00000000d101"
+      />,
+    );
+    expect(html).toContain('src="https://example.test/lumi.png"');
+    expect(html).toContain("Loading portrait");
+    expect(html).not.toContain("FICTIONAL DEMO");
+    expect(html).not.toContain("companionSvg");
+  });
 });

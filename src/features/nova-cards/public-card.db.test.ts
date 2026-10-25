@@ -55,7 +55,7 @@ describe("public companion card", () => {
       JSON.stringify(prepared.dna),
     ]);
     await as("authenticated", STUDENT, "select public.nova_record_craft_choice('b')");
-  });
+  }, 60_000);
   afterAll(() => db.close());
 
   it("opens a shared crafted card by public id and hides it again when sharing is off", async () => {

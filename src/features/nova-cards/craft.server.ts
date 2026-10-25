@@ -85,7 +85,11 @@ export const getCraftQueue = createServerFn({ method: "GET" }).handler(async () 
         (row.optionPaths ?? []).map(async (option) => {
           const number = option.option === 1 || option.option === 2 ? option.option : null;
           if (!number || typeof option.path !== "string") return null;
-          const { data: signed } = await storage.createSignedUrl(option.path, 60);
+          const { NOVA_ARTWORK_SIGNED_URL_SECONDS } = await import("./artwork-signing");
+          const { data: signed } = await storage.createSignedUrl(
+            option.path,
+            NOVA_ARTWORK_SIGNED_URL_SECONDS,
+          );
           return { option: number, previewUrl: signed?.signedUrl ?? null };
         }),
       );

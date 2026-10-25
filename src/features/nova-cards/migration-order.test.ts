@@ -34,6 +34,28 @@ describe("Cards migration order", () => {
     expect(cardsVersions).toEqual([...cardsVersions].sort((a, b) => a - b));
     for (const version of cardsVersions)
       expect(existsSync(migration(`${version}_${cardsMigrations[version]}`))).toBe(true);
+
+    const STAGE1_ALLOWLIST = [
+      "20261018160000_nova_companion_cards.sql",
+      "20261018160100_nova_studio_batch.sql",
+      "20261018160200_nova_creature_variety.sql",
+      "20261019120000_cosmic_companion_candidates.sql",
+      "20261019130000_cosmic_companion_sharing.sql",
+      "20261020120000_cosmic_companion_artwork.sql",
+      "20261020130000_cosmic_companion_entitlement_parity.sql",
+      "20261023140000_nova_staff_craft.sql",
+      "20261023150000_nova_public_card.sql",
+      "20261023160000_nova_craft_art_options.sql",
+      "20261023170000_nova_companion_journey_gate.sql",
+      "20261024120000_nova_craft_queue_both_picks.sql",
+      "20261024120100_nova_artwork_bucket_limits.sql",
+      "20261024130000_nova_single_companion_submit.sql",
+      "20261024140000_nova_craft_portrait_read.sql",
+      "20261024150000_nova_admin_own_journey.sql",
+    ];
+    expect(STAGE1_ALLOWLIST).toEqual(
+      cardsVersions.map((version) => `${version}_${cardsMigrations[version]}`),
+    );
   });
 
   it("does not retain the three superseded unapplied filenames", () => {

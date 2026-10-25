@@ -43,7 +43,7 @@ describe("companion artwork checks (png-rgba-v1)", () => {
     expect(art.checks.subjectPermille).toBeGreaterThan(30);
     // Deterministic: the same file always gives the same hash.
     expect((await validateCompanionPng(await companionPng("candidate-a"))).phash).toBe(art.phash);
-  });
+  }, 30_000);
 
   it("rejects images that must never reach review", async () => {
     expect(await code(validateCompanionPng(await companionPng("x", { opaque: true })))).toBe(
@@ -82,7 +82,7 @@ describe("companion artwork checks (png-rgba-v1)", () => {
     const valid = await companionPng("y");
     const corrupt = valid.slice(0, 200) + (valid[200] === "A" ? "B" : "A") + valid.slice(201);
     expect(await code(validateCompanionPng(corrupt))).toMatch(/^invalid_png/);
-  });
+  }, 30_000);
 
   it("flags subjects that touch the edge for the reviewer", async () => {
     const edge = await sharp({

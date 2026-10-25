@@ -170,7 +170,7 @@ describe("Standalone Nova Studio journey", () => {
       expect(h.api.submit).toHaveBeenCalledTimes(1);
       expect(h.get().identity?.traits).toEqual(traitsFromAnswers(answers));
       expect(host.querySelector("h1")?.textContent).toBe("Your Companion Is Almost Here");
-      expect(host.querySelectorAll(".sanctuary-candidate-art>img:first-child")).toHaveLength(0);
+      expect(host.querySelectorAll(".sanctuary-candidate-art img")).toHaveLength(0);
       h.set({
         origin: { ...h.get().origin!, status: "ready", ready: true, completed: 2 },
         candidates: [
@@ -184,7 +184,7 @@ describe("Standalone Nova Studio journey", () => {
       await act(async () => {
         await new Promise((resolve) => setTimeout(resolve, 5));
       });
-      expect(host.querySelectorAll(".sanctuary-candidate-art>img:first-child")).toHaveLength(2);
+      expect(host.querySelectorAll(".sanctuary-candidate-art img")).toHaveLength(2);
       await click(host, "Choose Companion A");
       await click(host, "Confirm My Companion");
       expect(h.api.choose).not.toHaveBeenCalled();
@@ -235,7 +235,7 @@ describe("Standalone Nova Studio journey", () => {
     const { host } = await h.mount();
     expect(host.textContent).toContain("Saved collectible");
     expect(host.textContent).not.toContain("learning plan is required");
-    expect(host.querySelectorAll(".sanctuary-candidate-art>img:first-child")).toHaveLength(0);
+    expect(host.querySelectorAll(".sanctuary-candidate-art img")).toHaveLength(0);
     expect(h.api.choose).not.toHaveBeenCalled();
   });
   it("lets a submitted journey keep waiting after a subscription expires", async () => {
@@ -391,7 +391,7 @@ describe("Permanent discovery journey for returning students", () => {
       await new Promise((resolve) => setTimeout(resolve, 5));
     });
     expect(host.querySelector("h1")?.textContent).toBe("Two Companions. One Lifelong Bond.");
-    expect(host.querySelectorAll(".sanctuary-candidate-art>img:first-child")).toHaveLength(2);
+    expect(host.querySelectorAll(".sanctuary-candidate-art img")).toHaveLength(2);
     expect(h.api.choose).not.toHaveBeenCalled();
   });
 
@@ -401,6 +401,8 @@ describe("Permanent discovery journey for returning students", () => {
     const { host } = await h.mount();
     expect(host.textContent).toContain("Saved collectible");
     expect(host.textContent).toContain("Your companion choice is permanent");
+    expect(host.textContent).not.toContain("Evolution study");
+    expect(host.textContent).not.toContain("five stages");
     noQuestions(host);
     expect(
       host.querySelector(".sanctuary-egg-awakening, .cws, .sanctuary-candidate-art"),

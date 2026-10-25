@@ -79,6 +79,22 @@ describe("public companion card", () => {
     expect(JSON.stringify(payload)).not.toContain("form1.student@dev.local");
     expect(originFromHost("127.0.0.1:8080")).toBe("http://127.0.0.1:8080");
     expect(originFromHost("www.myacademy.my")).toBe(SITE_URL);
+    expect(originFromHost("cards.myacademy.my")).toBe(SITE_URL);
+    expect(originFromHost("preview.pages.dev")).toBe(SITE_URL);
     expect(toPublicSnapshot(DEMO_CARDS[0]).companionName).toBe("Nova");
+  });
+
+  it("keeps permanent card paths on /card/c/{publicId}", () => {
+    const id = "4159d80b-c683-4fb9-95ef-5f76d43530bf";
+    expect(cardUrl(id, SITE_URL)).toBe(`${SITE_URL}/card/c/${id}`);
+    expect(cardUrl(id, SITE_URL)).not.toContain("localhost");
+  });
+
+  it("keeps QR and share origins on the public site for non-local hosts", () => {
+    expect(originFromHost("academymy.pages.dev")).toBe(SITE_URL);
+    expect(originFromHost("www.myacademy.my")).toBe("https://www.myacademy.my");
+    expect(cardUrl("7e6b4ac0-3e7e-432b-86e4-ec892329cdd0", SITE_URL)).toBe(
+      "https://www.myacademy.my/card/c/7e6b4ac0-3e7e-432b-86e4-ec892329cdd0",
+    );
   });
 });

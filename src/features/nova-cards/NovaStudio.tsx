@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { NovaCard } from "./NovaCard";
 import { EvolutionPreview } from "./EvolutionPreview";
-import { cardUrl, DEMO_CARDS, STAGES, type NovaCard as Card } from "./model";
+import { cardUrl, DEMO_CARDS, type NovaCard as Card } from "./model";
 import { LiveCraftArtChoice } from "./CraftArtChoice";
 import { loadOwnerNova, republishOwnedDevCard, updateCardSharing } from "./local-session";
 import type { NovaEntitlement } from "./server";
 import { NovaTeaser } from "./NovaTeaser";
 import { academyHomeHref, cardsPaths, signInHref } from "./paths";
+import { publicCardOrigin } from "./public-card";
 import { novaAccessCopy, novaAccessProblem, type NovaAccessProblem } from "./access";
 
 export function NovaStudio() {
@@ -15,9 +16,9 @@ export function NovaStudio() {
   const [notice, setNotice] = useState("");
   const [problem, setProblem] = useState<NovaAccessProblem>("unavailable");
   const [busy, setBusy] = useState(true);
-  const [origin, setOrigin] = useState("https://www.myacademy.my");
+  const [origin, setOrigin] = useState(publicCardOrigin());
   useEffect(() => {
-    setOrigin(window.location.origin);
+    setOrigin(publicCardOrigin());
     let active = true;
     loadOwnerNova()
       .then(([c, access]) => {
@@ -47,11 +48,11 @@ export function NovaStudio() {
           AcadeMY
         </a>
         <span>ACADEMY CARDS · VOL. 01</span>
-        <a href={cardsPaths.demo}>Explore demos ↗</a>
+        <span>Origin companion</span>
       </header>
       <div className="nova-studio-layout">
         <section className="nova-intro">
-          <p className="nova-eyebrow">A LITTLE MAGIC. A LIFETIME OF GROWTH.</p>
+          <p className="nova-eyebrow">A LITTLE MAGIC. YOUR COMPANION.</p>
           <h1>
             Your journey.
             <br />
@@ -66,11 +67,11 @@ export function NovaStudio() {
               <small>Twelve questions. One companion. One lifelong bond.</small>
             </span>
             <span>
-              02 <b>Grow through five stages</b>
-              <small>Evolution designs are preserved for a future phase.</small>
+              02 <b>Keep your portrait</b>
+              <small>One companion. One permanent Origin card.</small>
             </span>
             <span>
-              03 <b>Keep it. Share it.</b>
+              03 <b>Share it when you choose</b>
               <small>A permanent card, scannable identity, and privacy you control.</small>
             </span>
           </div>
@@ -125,12 +126,10 @@ export function NovaStudio() {
                   Refresh card
                 </button>
               </div>
-              <div className="nova-stage-list" aria-label="Five evolution stages">
-                {STAGES.map((s, i) => (
-                  <span key={s.name} className={i + 1 === (card.stage ?? 1) ? "current" : ""}>
-                    {i + 1}. {s.name} <small>{i === 0 ? "Phase 1" : "Coming later"}</small>
-                  </span>
-                ))}
+              <div className="nova-stage-list" aria-label="Origin companion">
+                <span className="current">
+                  Origin <small>Your permanent card</small>
+                </span>
               </div>
             </>
           )}
@@ -151,7 +150,7 @@ export function NovaStudio() {
                 <a href={cardsPaths.home}>Retry</a>
               )}
               {" · "}
-              <a href={cardsPaths.demo}>Explore fictional demos</a>
+              <a href={cardsPaths.home}>Cosmic Companion</a>
             </div>
           ) : !entitlement.active && !card ? (
             <NovaTeaser
@@ -203,8 +202,8 @@ export function NovaStudio() {
 }
 
 export function NovaDemoGallery() {
-  const [origin, setOrigin] = useState("https://www.myacademy.my");
-  useEffect(() => setOrigin(window.location.origin), []);
+  const [origin, setOrigin] = useState(publicCardOrigin());
+  useEffect(() => setOrigin(publicCardOrigin()), []);
   return (
     <main className="nova-page">
       <header className="nova-topbar">

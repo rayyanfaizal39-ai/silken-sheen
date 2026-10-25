@@ -33,9 +33,10 @@ async function withArtwork(
   card: NovaCard | null,
 ) {
   if (card?.artworkPath) {
+    const { NOVA_ARTWORK_SIGNED_URL_SECONDS } = await import("./artwork-signing");
     const { data, error } = await db.storage
       .from("nova-artwork")
-      .createSignedUrl(card.artworkPath, 60);
+      .createSignedUrl(card.artworkPath, NOVA_ARTWORK_SIGNED_URL_SECONDS);
     if (error) throw new Error("Companion artwork is temporarily unavailable.");
     return { ...card, artworkPath: undefined, artworkUrl: data.signedUrl };
   }

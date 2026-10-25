@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { DEMO_CARDS, type LegacyNovaCard, type NovaCard as Card } from "./model";
+import { publicCardOrigin } from "./public-card";
 import { getMyCard } from "./server";
 import { SanctuaryCardPanel } from "./sanctuary/SanctuaryCardPanel";
 import { SOURCE_FOX_ARTWORK } from "./sanctuary/preview-artwork";
@@ -16,9 +17,9 @@ export default function StudioCompletedCard({
 }) {
   const [card, setCard] = useState<Card | null>(null),
     [notice, setNotice] = useState("");
-  const [origin, setOrigin] = useState("https://www.myacademy.my");
+  const [origin, setOrigin] = useState(publicCardOrigin());
   useEffect(() => {
-    setOrigin(window.location.origin);
+    setOrigin(publicCardOrigin());
     let active = true;
     if (fictional) {
       const sample = DEMO_CARDS.find((c) => c.publicId === publicId) ?? DEMO_CARDS[0];

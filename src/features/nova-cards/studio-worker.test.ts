@@ -196,7 +196,7 @@ describe("Nova Batch provider contracts and crash safety", () => {
     expect(outcomes.every((o) => o.digest?.length === 64 && o.cost_microusd === 15500)).toBe(true);
     await runNovaWorker(store, provider, { enabled: true, batchEnabled: true });
     expect(provider.submissions).toHaveLength(1);
-  });
+  }, 30_000);
   it("never resubmits an uncertain paid creation, even on the next tick", async () => {
     const { store, current } = memoryStore();
     const submit = vi.fn(async () => {

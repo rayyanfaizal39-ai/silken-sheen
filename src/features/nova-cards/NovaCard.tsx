@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { companionSvg } from "./artwork";
+import { CompanionArtworkImage } from "./CompanionArtworkImage";
 import { barcodeSvg, qrDataUrl, svgUrl } from "./codes";
 import { STAGES, cardFace, type NovaCard as Card } from "./model";
 import { downloadCard } from "./download";
-import { getCardForExport } from "./server";
+import { getCardForExport, getPublicCard } from "./server";
 
 export function NovaCard({
   card,
@@ -20,13 +21,20 @@ export function NovaCard({
   const [qr, setQr] = useState("");
   const [notice, setNotice] = useState("");
   const [downloading, setDownloading] = useState(false);
+  const [artworkUrl, setArtworkUrl] = useState(card.artworkUrl);
   const stage = Math.max(1, Math.min(STAGES.length, card.stage ?? 1));
   const face = cardFace(card);
-  const choosing = (card.artOptions?.length ?? 0) === 2 && !card.artworkUrl;
-  const crafting = Boolean(card.crafting) && !card.artworkUrl && !choosing;
-  const artwork = crafting
-    ? ""
-    : card.artworkUrl || svgUrl(companionSvg(face.fallbackTraits, card.variant, stage));
+  const choosing = (card.artOptions?.length ?? 0) === 2 && !artworkUrl;
+  const crafting = Boolean(card.crafting) && !artworkUrl && !choosing;
+  const demoFallback =
+    card.demo && !artworkUrl
+      ? svgUrl(companionSvg(face.fallbackTraits, card.variant, stage))
+      : null;
+
+  useEffect(() => {
+    setArtworkUrl(card.artworkUrl);
+  }, [card.artworkUrl, card.publicId]);
+
   useEffect(() => {
     let active = true;
     setQr("");
@@ -41,6 +49,24 @@ export function NovaCard({
       active = false;
     };
   }, [url]);
+
+  async function loadFreshCard() {
+    // Shared cards use the public RPC so visitors never need owner authentication.
+    if (card.sharing) {
+      const fresh = await getPublicCard({ data: card.publicId });
+      if (!fresh) throw new Error("This card is private or unavailable. Refresh to check access.");
+      return fresh;
+    }
+    return getCardForExport({ data: card.publicId });
+  }
+
+  async function refreshArtwork() {
+    const fresh = await loadFreshCard();
+    const next = fresh.artworkUrl ?? null;
+    if (!next) throw new Error("This card is private or unavailable. Refresh to check access.");
+    setArtworkUrl(next);
+    return next;
+  }
 
   async function copyLink() {
     if (!card.sharing) return;
@@ -73,7 +99,7 @@ export function NovaCard({
 
   return (
     <section
-      className={`nova-viewer ${appearance === "sanctuary" ? `nova-viewer-sanctuary ${card.demo && card.artworkUrl ? "nova-design-fixture" : ""}` : ""}`}
+      className={`nova-viewer ${appearance === "sanctuary" ? `nova-viewer-sanctuary ${card.demo && artworkUrl ? "nova-design-fixture" : ""}` : ""}`}
       aria-label={`${card.username}'s Nova companion card`}
     >
       <div className="nova-perspective">
@@ -112,17 +138,26 @@ export function NovaCard({
                     {face.name} the {face.species}
                   </p>
                 </div>
-              ) : (
+              ) : demoFallback ? (
                 <img
                   className="nova-art"
-                  src={artwork}
+                  src={demoFallback}
                   alt={`${face.alt}, stage ${stage}`}
                   width="600"
                   height="640"
                 />
+              ) : (
+                <CompanionArtworkImage
+                  src={artworkUrl}
+                  alt={`${face.alt}, stage ${stage}`}
+                  width={600}
+                  height={640}
+                  companionLabel={`${face.name} the ${face.species}`}
+                  onRefresh={card.demo ? undefined : refreshArtwork}
+                />
               )}
               <span className="nova-art-label">
-                {card.demo ? "FICTIONAL DEMO · " : ""}STAGE {stage} / {STAGES.length}
+                {card.demo ? "FICTIONAL DEMO" : "ORIGIN"}
               </span>
             </div>
             <div className="nova-card-content">
@@ -196,7 +231,7 @@ export function NovaCard({
       </p>
       <div className="nova-earned-xp">
         <span>Origin Master Card</span>
-        <span>Evolution is coming in a later phase</span>
+        <span>{card.demo ? "Fictional preview" : "Your permanent Cosmic Companion"}</span>
       </div>
       <div className="nova-actions">
         <button
@@ -222,10 +257,9 @@ export function NovaCard({
           onClick={async () => {
             setDownloading(true);
             try {
-              const current = card.artworkUrl
-                ? await getCardForExport({ data: card.publicId })
-                : card;
+              const current = await loadFreshCard();
               await downloadCard(current, url);
+              if (current.artworkUrl) setArtworkUrl(current.artworkUrl);
               setNotice("Card image downloaded.");
             } catch (e) {
               setNotice((e as Error).message);

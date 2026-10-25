@@ -717,11 +717,29 @@
 }
 
 .occ-art img,
+.occ-art .occ-art__img,
+.occ-art .nova-art-slot,
+.occ-art .nova-art-placeholder,
 .occ-mystery {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.occ-art .nova-art-slot {
+  position: relative;
+  min-height: 0;
+}
+
+.occ-art .nova-art-placeholder {
+  min-height: 0;
+  border-radius: inherit;
+}
+
+.occ-art .nova-art-slot .occ-art__img {
+  position: absolute;
+  inset: 0;
 }
 
 .occ-mystery__mark {

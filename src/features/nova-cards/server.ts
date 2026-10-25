@@ -39,7 +39,10 @@ export const getNovaEntitlement = createServerFn({ method: "GET" }).handler(
 );
 
 async function signedArtwork(db: ReturnType<typeof client>, path: string) {
-  const { data, error } = await db.storage.from("nova-artwork").createSignedUrl(path, 60);
+  const { NOVA_ARTWORK_SIGNED_URL_SECONDS } = await import("./artwork-signing");
+  const { data, error } = await db.storage
+    .from("nova-artwork")
+    .createSignedUrl(path, NOVA_ARTWORK_SIGNED_URL_SECONDS);
   if (error || !data?.signedUrl) throw new Error("Companion artwork is temporarily unavailable.");
   return data.signedUrl;
 }
@@ -108,6 +111,9 @@ export const setSharing = createServerFn({ method: "POST" })
   });
 
 // Re-authorize at export time: short-lived private URLs may have expired since page load.
+// Owner RPC is used only when the signed-in user owns this publicId. Visitors and
+// other accounts fall through to get_public_nova_card (sharing required). Anonymous
+// artwork refresh never depends on owner-only authentication.
 export const getCardForExport = createServerFn({ method: "GET" })
   .validator((input: unknown) => z.string().max(64).parse(input))
   .handler(async ({ data: id }): Promise<NovaCard> => {

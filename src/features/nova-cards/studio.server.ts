@@ -61,11 +61,12 @@ async function state(
   const raw = data as Omit<StudioState, "candidates"> & {
     candidates: { candidate: "a" | "b"; path: string }[];
   };
+  const { NOVA_ARTWORK_SIGNED_URL_SECONDS } = await import("./artwork-signing");
   const candidates = await Promise.all(
     raw.candidates.map(async (c) => {
       const { data: signed, error: signError } = await db.storage
         .from("nova-artwork")
-        .createSignedUrl(c.path, 60);
+        .createSignedUrl(c.path, NOVA_ARTWORK_SIGNED_URL_SECONDS);
       if (signError)
         throw new Error("Your artwork is temporarily unavailable. Refresh to try again.");
       return { candidate: c.candidate, url: signed.signedUrl };
@@ -77,7 +78,9 @@ async function state(
     const { data: card } = await db.rpc("get_my_nova_card");
     const path = (card as { artworkPath?: string | null } | null)?.artworkPath;
     if (path) {
-      const { data: signed } = await db.storage.from("nova-artwork").createSignedUrl(path, 60);
+      const { data: signed } = await db.storage
+        .from("nova-artwork")
+        .createSignedUrl(path, NOVA_ARTWORK_SIGNED_URL_SECONDS);
       companionArtworkUrl = signed?.signedUrl;
     }
   }

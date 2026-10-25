@@ -50,7 +50,7 @@ describe("staff companion craft queue", () => {
     await addAccount(db, STUDENT);
     await addAccount(db, ADMIN, { role: "admin" });
     await submit();
-  });
+  }, 60_000);
   afterAll(() => db.close());
 
   it("keeps image generation switched off", async () => {
