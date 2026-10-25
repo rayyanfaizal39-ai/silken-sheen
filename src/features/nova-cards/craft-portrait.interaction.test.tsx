@@ -169,6 +169,19 @@ describe("student portrait choice", () => {
     expect(host.querySelector("[data-craft-status='success']")?.textContent).toContain(
       "Portrait saved.",
     );
+    expect(host.querySelector("[data-craft-art-choice]")?.getAttribute("aria-busy")).not.toBe(
+      "true",
+    );
+    expect(
+      [...host.querySelectorAll<HTMLButtonElement>("[data-craft-option]")].every(
+        (button) => button.disabled,
+      ),
+    ).toBe(true);
+
+    await act(async () => {
+      host.querySelector<HTMLButtonElement>("[data-craft-option='2']")!.click();
+    });
+    expect(choose).toHaveBeenCalledTimes(1);
   });
 
   it("restores buttons and shows an error when the server rejects the choice", async () => {

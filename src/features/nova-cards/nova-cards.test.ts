@@ -57,10 +57,12 @@ describe("Nova permanent identities and scannable codes", () => {
       }
     });
   }
-  it("preserves leading zeros on the permanent twelve-digit serial", () => {
+  it("preserves leading zeros and rejects rewritten or short serials", () => {
     expect(novaSerialDigits("000000000001")).toBe("000000000001");
-    expect(novaSerialDigits("1")).toBe("000000000001");
-    expect(barcodeSymbols("1")).toEqual(barcodeSymbols("000000000001"));
+    expect(novaSerialDigits("000000000002")).toBe("000000000002");
+    expect(() => novaSerialDigits("1")).toThrow(/twelve digits/);
+    expect(() => novaSerialDigits("00000000001")).toThrow(/twelve digits/);
+    expect(() => barcodeSymbols("1")).toThrow(/twelve digits/);
     expect(new Code128Reader().decodeRow(30, (() => {
       const svg = barcodeSvg("000000000002");
       const width = Number(svg.match(/viewBox="0 0 (\d+)/)![1]);

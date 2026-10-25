@@ -12,6 +12,7 @@ export function CraftArtChoice({
   onChoose: (option: 1 | 2) => Promise<void>;
 }) {
   const [busy, setBusy] = useState(false);
+  const [locked, setLocked] = useState(false);
   const [notice, setNotice] = useState("");
   const [tone, setTone] = useState<"idle" | "saving" | "success" | "error">("idle");
   const options = card.artOptions ?? [];
@@ -34,20 +35,24 @@ export function CraftArtChoice({
             <button
               type="button"
               data-craft-option={option.option}
-              disabled={busy || !option.url}
+              disabled={busy || locked || !option.url}
               onClick={() => {
-                if (busy || !option.url) return;
+                if (busy || locked || !option.url) return;
                 setBusy(true);
                 setTone("saving");
                 setNotice("Saving your portrait…");
                 void onChoose(option.option)
                   .then(() => {
+                    // One-time pick: lock further clicks even if this panel stays mounted.
+                    setLocked(true);
                     setTone("success");
                     setNotice("Portrait saved.");
                   })
                   .catch((error: Error) => {
                     setTone("error");
                     setNotice(error.message || "Could not save your portrait. Please retry.");
+                  })
+                  .finally(() => {
                     setBusy(false);
                   });
               }}

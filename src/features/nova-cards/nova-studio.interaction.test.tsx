@@ -127,6 +127,11 @@ describe("Nova collection settings", () => {
   it("copies the permanent URL without requiring sharing to be on", async () => {
     vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockReturnValue(null);
     const host = await mountStudio();
+    const panel = host.querySelector("[data-permanent-card-url]")!;
+    expect(panel.querySelector("a")).toBeNull();
+    expect(panel.querySelector(".nova-share-url")?.textContent).toContain(
+      "/card/c/00000000-0000-4000-8000-00000000d101",
+    );
     const copy = [...host.querySelectorAll("button")].find((button) =>
       button.textContent?.includes("Copy URL"),
     )!;
@@ -138,6 +143,32 @@ describe("Nova collection settings", () => {
     );
     expect(host.textContent).toContain(
       "Other people can open it only after you enable public sharing",
+    );
+  });
+
+  it("links the permanent URL when public sharing is on", async () => {
+    vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockReturnValue(null);
+    loadOwnerNova.mockResolvedValue([{ ...card, sharing: true }, { active: true, status: "active" }]);
+    const host = await mountStudio();
+    const panel = host.querySelector("[data-permanent-card-url]")!;
+    const link = panel.querySelector("a");
+    expect(link?.getAttribute("href")).toContain(
+      "/card/c/00000000-0000-4000-8000-00000000d101",
+    );
+    expect(panel.textContent).toContain(
+      "Public sharing is on. Anyone with this link can view your card.",
+    );
+    const copy = [...host.querySelectorAll("button")].find((button) =>
+      button.textContent?.includes("Copy URL"),
+    )!;
+    await act(async () => {
+      copy.click();
+    });
+    expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
+      expect.stringContaining("/card/c/00000000-0000-4000-8000-00000000d101"),
+    );
+    expect(host.textContent).toContain(
+      "Anyone with the link can open it while sharing is on",
     );
   });
 });

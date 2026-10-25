@@ -110,15 +110,15 @@ const WIDTHS = [
 ];
 
 /**
- * Permanent collectible serial: exactly twelve digits, leading zeros kept.
- * Never invents a new serial — only normalizes an existing identifier for Code 128.
+ * Permanent collectible serial: exactly twelve digit characters, leading zeros kept.
+ * Rejects anything else — never pad or rewrite a stored serial into a different id.
  */
 export function novaSerialDigits(serial: string): string {
-  const digits = String(serial ?? "").replace(/\D/g, "");
-  if (!digits || digits.length > 12) {
+  const value = String(serial ?? "");
+  if (!/^\d{12}$/.test(value)) {
     throw new Error("Nova serial must contain twelve digits.");
   }
-  return digits.padStart(12, "0");
+  return value;
 }
 
 export function barcodeSymbols(serial: string) {
