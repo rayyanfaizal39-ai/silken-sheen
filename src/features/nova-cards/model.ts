@@ -237,7 +237,7 @@ export const validPublicId = (id: string) =>
 export const DEMO_CARDS: LegacyNovaCard[] = [
   {
     publicId: "demo-rayyan",
-    serial: "000000000001",
+    serial: "R-7K4M9Q2X",
     username: "Rayyan",
     traits: traitsFromAnswers(Array(12).fill(0)),
     variant: "a",
@@ -248,7 +248,7 @@ export const DEMO_CARDS: LegacyNovaCard[] = [
   },
   {
     publicId: "demo-mia",
-    serial: "000000000002",
+    serial: "R-8P3W6T9A",
     username: "Mia",
     traits: traitsFromAnswers([0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0]),
     variant: "b",

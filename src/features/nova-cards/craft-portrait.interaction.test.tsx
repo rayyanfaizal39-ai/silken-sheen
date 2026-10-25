@@ -16,7 +16,7 @@ const URL = "http://localhost:8080/card/c/00000000-0000-4000-8000-00000000d101";
 
 const base: Card = {
   publicId: "00000000-0000-4000-8000-00000000d101",
-  serial: "100000000101",
+  serial: "R-4H7K2M9P",
   username: "Aisha",
   traits: null,
   companion: {

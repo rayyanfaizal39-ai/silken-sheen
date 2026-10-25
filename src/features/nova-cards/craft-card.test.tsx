@@ -5,7 +5,7 @@ import type { NovaCard as Card } from "./model";
 
 const card: Card = {
   publicId: "00000000-0000-4000-8000-00000000d101",
-  serial: "100000000101",
+  serial: "R-4H7K2M9P",
   username: "Aisha",
   traits: null,
   companion: {
@@ -41,20 +41,20 @@ describe("crafted companion card", () => {
     expect(html).not.toMatch(/<img[^>]*class="nova-art"/);
     expect(html).toContain("nova-barcode");
     expect(html).toContain("data-nova-barcode");
-    expect(html).toContain("100000000101");
+    expect(html).toContain("R-4H7K2M9P");
     expect(html).toContain("data-nova-serial");
     expect(html.toLowerCase()).not.toContain("birth year");
   });
 
-  it("keeps leading zeros on the collectible serial for Code 128 and QR surfaces", () => {
+  it("keeps the full collectible serial on Code 128 and QR surfaces", () => {
     const html = renderToStaticMarkup(
       <NovaCard
-        card={{ ...card, serial: "000000000007", crafting: false, artworkUrl: "https://example.test/a.png" }}
+        card={{ ...card, serial: "E-X5K8D2M7", crafting: false, artworkUrl: "https://example.test/a.png" }}
         url="http://localhost:8080/card/c/00000000-0000-4000-8000-00000000d101"
       />,
     );
-    expect(html).toContain("000000000007");
-    expect(html).toContain("Code 128 barcode: 000000000007");
+    expect(html).toContain("E-X5K8D2M7");
+    expect(html).toContain("Code 128 barcode: E-X5K8D2M7");
     expect(html).toContain("data-nova-codes");
   });
 

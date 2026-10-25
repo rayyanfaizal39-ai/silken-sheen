@@ -14,7 +14,7 @@ env.IS_REACT_ACT_ENVIRONMENT = true;
 
 const card: Card = {
   publicId: "demo-mia",
-  serial: "000000000002",
+  serial: "R-8P3W6T9A",
   username: "Mia",
   traits: null,
   companion: {
@@ -71,7 +71,7 @@ function decodeBarcode(src: string) {
 
 describe("card back QR and Code 128", () => {
   for (const width of [390, 320]) {
-    it(`shows a scannable QR and full 12-digit barcode at ${width}px`, async () => {
+    it(`shows a scannable QR and full collectible barcode at ${width}px`, async () => {
       vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockReturnValue(null);
       const host = await mountAt(width);
       const flip = host.querySelector<HTMLButtonElement>("button.nova-card-object")!;
@@ -87,12 +87,12 @@ describe("card back QR and Code 128", () => {
       const back = host.querySelector("[data-nova-card-back]");
       expect(back).not.toBeNull();
       expect(host.querySelector("[data-nova-codes]")).not.toBeNull();
-      expect(host.querySelector("[data-nova-serial]")?.textContent).toBe("000000000002");
+      expect(host.querySelector("[data-nova-serial]")?.textContent).toBe("R-8P3W6T9A");
 
       const barcode = host.querySelector<HTMLImageElement>("[data-nova-barcode]");
-      expect(barcode?.getAttribute("alt")).toBe("Code 128 barcode: 000000000002");
-      expect(decodeBarcode(barcode!.getAttribute("src")!)).toBe("000000000002");
-      expect(barcodeSvg("000000000002")).toContain("000000000002");
+      expect(barcode?.getAttribute("alt")).toBe("Code 128 barcode: R-8P3W6T9A");
+      expect(decodeBarcode(barcode!.getAttribute("src")!)).toBe("R-8P3W6T9A");
+      expect(barcodeSvg("R-8P3W6T9A")).toContain("R-8P3W6T9A");
 
       // Wait for async QR generation used by the live card.
       await act(async () => {
