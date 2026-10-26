@@ -99,6 +99,7 @@ describe("CosmicPortalWidget", () => {
     expect(imgs).toHaveLength(1);
     expect(imgs[0].getAttribute("src")).toContain("academy-cosmic-portal-v1");
     expect(imgs[0].getAttribute("alt")).toBe("");
+    expect(host.querySelector(".cosmic-portal-widget__art svg")).toBeNull();
   });
 
   it("keeps the portal art and continue CTA for a saved unfinished journey", async () => {
@@ -150,6 +151,7 @@ describe("CosmicPortalWidget", () => {
     const imgs = host.querySelectorAll("img");
     expect(imgs).toHaveLength(1);
     expect(imgs[0].getAttribute("src")).toContain("academy-cosmic-egg-v2");
+    expect(host.querySelector(".cosmic-portal-widget__art svg")).toBeNull();
     expect(host.textContent).toContain("Your Companion Is Being Crafted");
     expect(host.textContent).toContain("Your unique portrait is on its way.");
     expect(host.textContent).toContain("Check My Journey");

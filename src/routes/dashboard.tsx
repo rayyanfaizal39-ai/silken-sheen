@@ -498,7 +498,7 @@ function DashboardPage() {
   );
 }
 
-// ─── Hero Row — Rank / Companion / Next Goal (3 equal columns, answers "who am I / what's next") ─────
+// ─── Hero Row — Rank / Companion / Next Goal (answers "who am I / what's next") ─────
 
 function HeroRow({
   rank,
@@ -515,10 +515,15 @@ function HeroRow({
   nextGoalLabel: string;
   companionPreview?: JourneyStage;
 }) {
+  // Stacked on phones; Rank + Next Goal pair up with the companion artwork on its own
+  // full-width row until three columns are wide enough to stay readable (xl).
   return (
-    <div className="mb-6 grid gap-4 sm:grid-cols-3">
+    <div className="mb-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
       <RankHeroCard rank={rank} nextRank={nextRank} xp={xp} rankPct={rankPct} />
-      <CosmicPortalWidget preview={companionPreview} />
+      <CosmicPortalWidget
+        preview={companionPreview}
+        className="md:order-last md:col-span-2 xl:order-none xl:col-span-1"
+      />
       <NextGoalHeroCard nextGoalLabel={nextGoalLabel} nextRank={nextRank} xp={xp} />
     </div>
   );
