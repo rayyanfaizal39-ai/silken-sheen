@@ -4,7 +4,11 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@/context/auth-context";
 import type { NovaCard } from "@/features/nova-cards/model";
 import { loadOwnerNova } from "@/features/nova-cards/local-session";
-import { CosmicDualFrameMark, CosmicEggMark, CosmicPortalMark } from "./CosmicMarks";
+// Approved artwork as transparent cutouts: the baked navy backdrop is removed, so glow,
+// stars and orbit rings sit directly on the card surface.
+import cosmicEggArt from "@/assets/cosmic-companion/academy-cosmic-egg-v2-cutout.webp";
+import cosmicPortalArt from "@/assets/cosmic-companion/academy-cosmic-portal-v1-cutout.webp";
+import { CosmicDualFrameMark } from "./CosmicMarks";
 import { companionEntry } from "./entry";
 import type { JourneyStage } from "./journey";
 import { resolvePortalDisplay, type PortalDisplayKind } from "./portal-display";
@@ -13,7 +17,7 @@ import "./cosmic-portal-widget.css";
 
 /**
  * Compact Cosmic Companion dashboard widget.
- * Pre-discovery: portal/egg/dual SVG mark + journey CTA.
+ * Pre-discovery: approved portal/egg illustrations (or dual SVG mark) + journey CTA.
  * After permanent portrait choice: the student's real signed artwork (static, no flip).
  * Optional `preview` is DEVELOPMENT/review only — never a saved owner card.
  */
@@ -104,26 +108,33 @@ export function CosmicPortalWidget({
         ) : (
           <>
             {display.kind === "selected" && display.portrait && !artBroken ? (
-              <div className="cosmic-portal-widget__portrait">
+              <div className="cosmic-portal-widget__art">
+                <div className="cosmic-portal-widget__portrait">
+                  <img
+                    src={display.portrait.artworkUrl}
+                    alt={`${display.portrait.companionName}, permanent Cosmic Companion portrait`}
+                    loading="eager"
+                    decoding="async"
+                    onError={() => setArtBroken(true)}
+                  />
+                </div>
+              </div>
+            ) : display.mark === "egg" || display.mark === "portal" ? (
+              <div className="cosmic-portal-widget__art">
                 <img
-                  src={display.portrait.artworkUrl}
-                  alt={`${display.portrait.companionName}, permanent Cosmic Companion portrait`}
-                  loading="eager"
+                  className="cosmic-portal-widget__illustration"
+                  src={display.mark === "egg" ? cosmicEggArt : cosmicPortalArt}
+                  alt=""
+                  width={960}
+                  height={display.mark === "egg" ? 670 : 675}
                   decoding="async"
-                  onError={() => setArtBroken(true)}
                 />
               </div>
-            ) : display.mark === "egg" ? (
-              <div className="cosmic-portal-widget__mark">
-                <CosmicEggMark />
-              </div>
             ) : display.mark === "dual" ? (
-              <div className="cosmic-portal-widget__mark">
-                <CosmicDualFrameMark />
-              </div>
-            ) : display.mark === "portal" ? (
-              <div className="cosmic-portal-widget__mark">
-                <CosmicPortalMark />
+              <div className="cosmic-portal-widget__art">
+                <div className="cosmic-portal-widget__mark">
+                  <CosmicDualFrameMark />
+                </div>
               </div>
             ) : null}
 
