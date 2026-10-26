@@ -12,7 +12,7 @@ export type PortalDisplayKind =
   | "error";
 
 /** Compact illustration mark — never a full-bleed cinematic background. */
-export type PortalMark = "portal" | "egg" | "none";
+export type PortalMark = "portal" | "egg" | "dual" | "none";
 
 export type PortalDisplay = {
   kind: PortalDisplayKind;
@@ -39,7 +39,7 @@ const PORTAL_COPY: Record<
 > = {
   new: {
     label: "COSMIC COMPANION",
-    headline: "Discover Your Cosmic Companion",
+    headline: "Discover My Companion",
     support: "Begin your journey to discover a companion uniquely yours.",
     cta: "Start My Journey",
   },
@@ -137,7 +137,7 @@ export function resolvePortalDisplay(input: {
     !input.card?.artworkUrl;
 
   if (portraitsReady || input.stage === "ready") {
-    return { kind: "ready", mark: "egg", ...PORTAL_COPY.ready };
+    return { kind: "ready", mark: "dual", ...PORTAL_COPY.ready };
   }
   if (input.stage === "waiting") {
     return { kind: "waiting", mark: "egg", ...PORTAL_COPY.waiting };

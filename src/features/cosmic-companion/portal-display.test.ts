@@ -49,7 +49,7 @@ describe("resolvePortalDisplay", () => {
     expect(view).toMatchObject({
       kind: "new",
       mark: "portal",
-      headline: "Discover Your Cosmic Companion",
+      headline: "Discover My Companion",
       support: "Begin your journey to discover a companion uniquely yours.",
       cta: "Start My Journey",
     });
@@ -90,7 +90,7 @@ describe("resolvePortalDisplay", () => {
       },
     });
     expect(view.kind).toBe("ready");
-    expect(view.mark).toBe("egg");
+    expect(view.mark).toBe("dual");
     expect(view.headline).toBe("Your Portraits Are Ready");
     expect(view.cta).toBe("Choose My Portrait");
     expect(view.portrait).toBeUndefined();

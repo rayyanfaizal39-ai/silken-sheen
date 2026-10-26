@@ -1,18 +1,19 @@
 import { Link } from "@tanstack/react-router";
+import { ArrowRight, Clock } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useAuth } from "@/context/auth-context";
 import type { NovaCard } from "@/features/nova-cards/model";
 import { loadOwnerNova } from "@/features/nova-cards/local-session";
-import { CosmicEggMark, CosmicPortalMark } from "./CosmicMarks";
+import { CosmicDualFrameMark, CosmicEggMark, CosmicPortalMark } from "./CosmicMarks";
 import { companionEntry } from "./entry";
 import type { JourneyStage } from "./journey";
-import { resolvePortalDisplay } from "./portal-display";
+import { resolvePortalDisplay, type PortalDisplayKind } from "./portal-display";
 import { useCompanionEntry } from "./use-companion-entry";
 import "./cosmic-portal-widget.css";
 
 /**
  * Compact Cosmic Companion dashboard widget.
- * Pre-discovery: small portal/egg SVG mark + journey CTA.
+ * Pre-discovery: portal/egg/dual SVG mark + journey CTA.
  * After permanent portrait choice: the student's real signed artwork (static, no flip).
  * Optional `preview` is DEVELOPMENT/review only — never a saved owner card.
  */
@@ -116,6 +117,10 @@ export function CosmicPortalWidget({
               <div className="cosmic-portal-widget__mark">
                 <CosmicEggMark />
               </div>
+            ) : display.mark === "dual" ? (
+              <div className="cosmic-portal-widget__mark">
+                <CosmicDualFrameMark />
+              </div>
             ) : display.mark === "portal" ? (
               <div className="cosmic-portal-widget__mark">
                 <CosmicPortalMark />
@@ -124,15 +129,17 @@ export function CosmicPortalWidget({
 
             <div className="cosmic-portal-widget__copy">
               <p className="cosmic-portal-widget__label">{display.label}</p>
-              <h2 className="cosmic-portal-widget__headline">{display.headline}</h2>
+              <h2 className="cosmic-portal-widget__headline">
+                <PortalHeadline kind={display.kind} text={display.headline} />
+              </h2>
 
               {display.kind === "selected" && display.portrait ? (
                 <>
-                  <div className="cosmic-portal-widget__meta">
-                    <span className="cosmic-portal-widget__rarity">{display.portrait.rarity}</span>
-                    <span className="cosmic-portal-widget__stage">{display.support}</span>
-                  </div>
                   {traitLine ? <p className="cosmic-portal-widget__traits">{traitLine}</p> : null}
+                  <div className="cosmic-portal-widget__meta">
+                    <span className="cosmic-portal-widget__stage">{display.support}</span>
+                    <span className="cosmic-portal-widget__rarity">{display.portrait.rarity}</span>
+                  </div>
                 </>
               ) : (
                 <p className="cosmic-portal-widget__support">
@@ -154,7 +161,11 @@ export function CosmicPortalWidget({
                   Retry
                 </button>
               ) : display.cta ? (
-                <PortalCta entry={linkEntry} label={display.cta} />
+                <PortalCta
+                  entry={linkEntry}
+                  label={display.cta}
+                  ghost={display.kind === "waiting"}
+                />
               ) : null}
             </div>
           </>
@@ -164,30 +175,72 @@ export function CosmicPortalWidget({
   );
 }
 
+function PortalHeadline({ kind, text }: { kind: PortalDisplayKind; text: string }) {
+  if (kind === "waiting" && text === "Your Companion Is Being Crafted") {
+    return (
+      <>
+        Your Companion <span className="cosmic-portal-widget__headline-accent">Is Being Crafted</span>
+      </>
+    );
+  }
+  if (kind === "new" && text === "Discover My Companion") {
+    return (
+      <>
+        Discover My <span className="cosmic-portal-widget__headline-accent">Companion</span>
+      </>
+    );
+  }
+  if (kind === "ready" && text === "Your Portraits Are Ready") {
+    return (
+      <>
+        Your Portraits <span className="cosmic-portal-widget__headline-accent">Are Ready</span>
+      </>
+    );
+  }
+  return text;
+}
+
 function PortalCta({
   entry,
   label,
+  ghost = false,
 }: {
   entry: NonNullable<ReturnType<typeof useCompanionEntry>["entry"]>;
   label: string;
+  ghost?: boolean;
 }) {
+  const className = ghost
+    ? "cosmic-portal-widget__cta cosmic-portal-widget__cta--ghost"
+    : "cosmic-portal-widget__cta";
+  const icon = ghost ? (
+    <Clock className="cosmic-portal-widget__cta-arrow" aria-hidden="true" />
+  ) : (
+    <ArrowRight className="cosmic-portal-widget__cta-arrow" aria-hidden="true" />
+  );
+
   if (entry.kind === "upgrade") {
     return (
-      <Link to={entry.to} search={entry.search} className="cosmic-portal-widget__cta">
+      <Link to={entry.to} search={entry.search} className={className}>
+        {ghost ? icon : null}
         {label}
+        {ghost ? null : icon}
       </Link>
     );
   }
   if (entry.kind === "card") {
     return (
-      <Link to={entry.to} className="cosmic-portal-widget__cta">
+      <Link to={entry.to} className={className}>
+        {ghost ? icon : null}
         {label}
+        {ghost ? null : icon}
       </Link>
     );
   }
   return (
-    <Link to={entry.to} search={entry.search} className="cosmic-portal-widget__cta">
+    <Link to={entry.to} search={entry.search} className={className}>
+      {ghost ? icon : null}
       {label}
+      {ghost ? null : icon}
     </Link>
   );
 }

@@ -92,7 +92,8 @@ describe("CosmicPortalWidget", () => {
     const host = await mount();
     const widget = host.querySelector("[data-state='new']")!;
     expect(widget.getAttribute("data-mark")).toBe("portal");
-    expect(host.textContent).toContain("Discover Your Cosmic Companion");
+    expect(host.textContent).toContain("Discover My");
+    expect(host.textContent).toContain("Companion");
     expect(host.textContent).toContain("Start My Journey");
     expect(host.querySelector("img")).toBeNull();
   });
