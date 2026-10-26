@@ -91,10 +91,10 @@ describe("CosmicPortalWidget", () => {
     vi.mocked(useAuth).mockReturnValue({ user: null, devAuthBypass: false } as never);
     const host = await mount();
     const widget = host.querySelector("[data-state='new']")!;
-    expect(widget.getAttribute("data-bg")).toBe("portal");
-    expect(host.textContent).toContain("Your Cosmic Companion Awaits");
-    expect(host.textContent).toContain("Discover My Companion");
-    expect(host.querySelector("img.nova-art, .companion-image")).toBeNull();
+    expect(widget.getAttribute("data-mark")).toBe("portal");
+    expect(host.textContent).toContain("Discover Your Cosmic Companion");
+    expect(host.textContent).toContain("Start My Journey");
+    expect(host.querySelector("img")).toBeNull();
   });
 
   it("shows egg waiting art while a portrait is being crafted", async () => {
@@ -121,8 +121,8 @@ describe("CosmicPortalWidget", () => {
       { active: true } as never,
     ]);
     const host = await mount();
-    expect(host.querySelector("[data-state='waiting']")?.getAttribute("data-bg")).toBe("egg");
-    expect(host.textContent).toContain("Your Portrait Is Being Crafted");
+    expect(host.querySelector("[data-state='waiting']")?.getAttribute("data-mark")).toBe("egg");
+    expect(host.textContent).toContain("Your Companion Is Being Crafted");
     expect(host.textContent).toContain("Check My Journey");
   });
 
@@ -147,6 +147,7 @@ describe("CosmicPortalWidget", () => {
     expect(host.textContent).toContain("Lumi");
     expect(host.textContent).toContain("Rare");
     expect(host.textContent).toContain("Stage 1 · Origin");
+    expect(host.textContent).toContain("Magical Fox");
     expect(host.textContent).toContain("View My Card");
     expect(host.textContent).not.toContain("Earn Lifetime XP");
     expect(host.querySelector("a[href='/nova']")?.textContent).toContain("View My Card");

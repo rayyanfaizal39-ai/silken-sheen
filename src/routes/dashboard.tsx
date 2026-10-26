@@ -76,8 +76,10 @@ export const Route = createFileRoute("/dashboard")({
   // indexing it would just be a wall of identical placeholder XP/streak
   // markup for every crawl. Standard practice: noindex app/account pages.
   validateSearch: (search: Record<string, unknown>): { companionPreview?: JourneyStage } => ({
-    // Local review fixtures only (portal / egg / selected layout). Never a saved owner card.
-    companionPreview: parseJourneyPreview(search.companionPreview),
+    // DEVELOPMENT review fixtures only. Never a saved owner card; stripped in production builds.
+    companionPreview: import.meta.env.DEV
+      ? parseJourneyPreview(search.companionPreview)
+      : undefined,
   }),
   head: () =>
     seoMeta({
@@ -387,10 +389,9 @@ function DashboardPage() {
         <QuickActionsCard lastVisited={progress.lastVisited} />
       </div>
 
-      {/* ── ROW 5 — Cosmic Companion journey strip / Ace ──────────── */}
-      <div className="mb-6 grid gap-6 lg:grid-cols-2">
-        <CosmicPortalWidget layout="banner" preview={companionPreview} />
-        <div className="space-y-4">
+      {/* ── ROW 5 — Ace (Cosmic Companion lives only in the hero middle card) ──────────── */}
+      <div className="mb-6">
+        <div className="space-y-4 lg:max-w-[50%]">
           {/* Ace CTA */}
           <div className="rounded-[2rem] border border-[#6366F1]/25 bg-gradient-to-br from-[#6366F1]/15 to-[#8B5CF6]/15 p-5 backdrop-blur-2xl">
             <div className="flex items-center gap-3 mb-3">

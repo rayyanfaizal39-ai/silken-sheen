@@ -11,11 +11,12 @@ export type PortalDisplayKind =
   | "selected"
   | "error";
 
-export type PortalBackground = "portal" | "egg" | "none";
+/** Compact illustration mark — never a full-bleed cinematic background. */
+export type PortalMark = "portal" | "egg" | "none";
 
 export type PortalDisplay = {
   kind: PortalDisplayKind;
-  background: PortalBackground;
+  mark: PortalMark;
   label: string;
   headline: string;
   support: string;
@@ -26,18 +27,21 @@ export type PortalDisplay = {
     companionName: string;
     rarity: string;
     username: string;
+    species?: string;
+    element?: string;
+    personality?: string;
   };
 };
 
 const PORTAL_COPY: Record<
   Exclude<PortalDisplayKind, "selected" | "loading" | "error">,
-  Omit<PortalDisplay, "kind" | "background" | "portrait">
+  Omit<PortalDisplay, "kind" | "mark" | "portrait">
 > = {
   new: {
     label: "COSMIC COMPANION",
-    headline: "Your Cosmic Companion Awaits",
-    support: "A companion as unique as you.",
-    cta: "Discover My Companion",
+    headline: "Discover Your Cosmic Companion",
+    support: "Begin your journey to discover a companion uniquely yours.",
+    cta: "Start My Journey",
   },
   unfinished: {
     label: "COSMIC COMPANION",
@@ -47,21 +51,34 @@ const PORTAL_COPY: Record<
   },
   waiting: {
     label: "COSMIC COMPANION",
-    headline: "Your Portrait Is Being Crafted",
-    support: "Your permanent portrait is on its way.",
+    headline: "Your Companion Is Being Crafted",
+    support: "Your unique portrait is on its way.",
     cta: "Check My Journey",
   },
   ready: {
     label: "COSMIC COMPANION",
     headline: "Your Portraits Are Ready",
-    support: "Two portraits of the same companion — choose one.",
+    support: "Choose the portrait you'll keep forever.",
     cta: "Choose My Portrait",
   },
 };
 
+function portraitFromCard(card: NovaCard) {
+  const companionName = card.companion?.name?.trim() || card.username;
+  return {
+    artworkUrl: card.artworkUrl!,
+    companionName,
+    rarity: card.rarity,
+    username: card.username,
+    species: card.companion?.species,
+    element: card.companion?.element,
+    personality: card.companion?.personality,
+  };
+}
+
 /**
- * Resolve dashboard portal copy + background from journey stage and optional owner card.
- * `artOptions` length 2 (same companion) means choice is pending even when status.ready is false.
+ * Resolve dashboard portal copy + mark from journey stage and optional owner card.
+ * `artOptions` length ≥ 2 (same companion) means choice is pending even when status.ready is false.
  */
 export function resolvePortalDisplay(input: {
   ready: boolean;
@@ -72,7 +89,7 @@ export function resolvePortalDisplay(input: {
   if (!input.ready) {
     return {
       kind: "loading",
-      background: "portal",
+      mark: "portal",
       label: "COSMIC COMPANION",
       headline: "Your Cosmic Companion",
       support: "Loading your journey…",
@@ -82,7 +99,7 @@ export function resolvePortalDisplay(input: {
   if (input.problem) {
     return {
       kind: "error",
-      background: "portal",
+      mark: "portal",
       label: "COSMIC COMPANION",
       headline: "Your Cosmic Companion",
       support: "We could not load your companion status.",
@@ -91,40 +108,26 @@ export function resolvePortalDisplay(input: {
   }
 
   if (input.stage === "selected" && input.card?.artworkUrl) {
-    const companionName = input.card.companion?.name?.trim() || input.card.username;
+    const portrait = portraitFromCard(input.card);
     return {
       kind: "selected",
-      background: "none",
+      mark: "none",
       label: "COSMIC COMPANION",
-      headline: companionName,
+      headline: portrait.companionName,
       support: "Stage 1 · Origin",
       cta: "View My Card",
-      portrait: {
-        artworkUrl: input.card.artworkUrl,
-        companionName,
-        rarity: input.card.rarity,
-        username: input.card.username,
-      },
+      portrait,
     };
   }
 
-  // Portrait chosen on server but signed URL not yet available — keep portal, prompt view.
   if (input.stage === "selected") {
     return {
       kind: "selected",
-      background: "portal",
+      mark: "none",
       label: "COSMIC COMPANION",
       headline: input.card?.companion?.name?.trim() || input.card?.username || "Your Companion",
       support: "Stage 1 · Origin",
       cta: "View My Card",
-      portrait: input.card?.artworkUrl
-        ? {
-            artworkUrl: input.card.artworkUrl,
-            companionName: input.card.companion?.name?.trim() || input.card.username,
-            rarity: input.card.rarity,
-            username: input.card.username,
-          }
-        : undefined,
     };
   }
 
@@ -134,18 +137,13 @@ export function resolvePortalDisplay(input: {
     !input.card?.artworkUrl;
 
   if (portraitsReady || input.stage === "ready") {
-    return { kind: "ready", background: "egg", ...PORTAL_COPY.ready };
+    return { kind: "ready", mark: "egg", ...PORTAL_COPY.ready };
   }
   if (input.stage === "waiting") {
-    return { kind: "waiting", background: "egg", ...PORTAL_COPY.waiting };
+    return { kind: "waiting", mark: "egg", ...PORTAL_COPY.waiting };
   }
   if (input.stage === "unfinished") {
-    return { kind: "unfinished", background: "egg", ...PORTAL_COPY.unfinished };
+    return { kind: "unfinished", mark: "portal", ...PORTAL_COPY.unfinished };
   }
-  return { kind: "new", background: "portal", ...PORTAL_COPY.new };
+  return { kind: "new", mark: "portal", ...PORTAL_COPY.new };
 }
-
-export const PORTAL_IMAGE = {
-  portal: "/images/cosmic-companion-portal.webp",
-  egg: "/images/cosmic-companion-egg-waiting.webp",
-} as const;

@@ -35,7 +35,7 @@ describe("resolvePortalDisplay", () => {
       card: null,
     });
     expect(view.kind).toBe("loading");
-    expect(view.background).toBe("portal");
+    expect(view.mark).toBe("portal");
     expect(view.portrait).toBeUndefined();
   });
 
@@ -48,26 +48,28 @@ describe("resolvePortalDisplay", () => {
     });
     expect(view).toMatchObject({
       kind: "new",
-      background: "portal",
-      headline: "Your Cosmic Companion Awaits",
-      cta: "Discover My Companion",
+      mark: "portal",
+      headline: "Discover Your Cosmic Companion",
+      support: "Begin your journey to discover a companion uniquely yours.",
+      cta: "Start My Journey",
     });
   });
 
-  it("uses egg waiting art for unfinished and crafting states", () => {
+  it("keeps unfinished on the portal mark and waiting on the egg mark", () => {
     expect(
       resolvePortalDisplay({ ready: true, stage: "unfinished", problem: false, card: null }),
     ).toMatchObject({
       kind: "unfinished",
-      background: "egg",
+      mark: "portal",
       cta: "Continue My Journey",
     });
     expect(
       resolvePortalDisplay({ ready: true, stage: "waiting", problem: false, card: null }),
     ).toMatchObject({
       kind: "waiting",
-      background: "egg",
-      headline: "Your Portrait Is Being Crafted",
+      mark: "egg",
+      headline: "Your Companion Is Being Crafted",
+      support: "Your unique portrait is on its way.",
       cta: "Check My Journey",
     });
   });
@@ -88,7 +90,8 @@ describe("resolvePortalDisplay", () => {
       },
     });
     expect(view.kind).toBe("ready");
-    expect(view.background).toBe("egg");
+    expect(view.mark).toBe("egg");
+    expect(view.headline).toBe("Your Portraits Are Ready");
     expect(view.cta).toBe("Choose My Portrait");
     expect(view.portrait).toBeUndefined();
   });
@@ -101,7 +104,7 @@ describe("resolvePortalDisplay", () => {
       card: selectedCard,
     });
     expect(view.kind).toBe("selected");
-    expect(view.background).toBe("none");
+    expect(view.mark).toBe("none");
     expect(view.headline).toBe("Lumi");
     expect(view.support).toBe("Stage 1 · Origin");
     expect(view.cta).toBe("View My Card");
@@ -110,6 +113,9 @@ describe("resolvePortalDisplay", () => {
       companionName: "Lumi",
       rarity: "Rare",
       username: "Aisha",
+      species: "Magical Fox",
+      element: "Starlight",
+      personality: "Gentle",
     });
   });
 
@@ -122,6 +128,6 @@ describe("resolvePortalDisplay", () => {
     });
     expect(view.kind).toBe("error");
     expect(view.cta).toBe("Retry");
-    expect(view.background).toBe("portal");
+    expect(view.mark).toBe("portal");
   });
 });
