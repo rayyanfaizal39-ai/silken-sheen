@@ -1,0 +1,267 @@
+/* Cosmic Companion dashboard hero — static portal until a permanent portrait is chosen. */
+.cosmic-portal-widget {
+  --cpw-gold: rgba(232, 193, 124, 0.38);
+  --cpw-ink: #050819;
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  height: 280px;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 2rem;
+  border: 1px solid var(--cpw-gold);
+  background-color: #0a1028;
+  background-position: center 58%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  text-align: center;
+  color: #f8fafc;
+}
+
+@media (min-width: 640px) {
+  .cosmic-portal-widget {
+    height: 300px;
+  }
+}
+
+.cosmic-portal-widget[data-bg="portal"] {
+  background-image: url("/images/cosmic-companion-portal.webp");
+}
+
+.cosmic-portal-widget[data-bg="egg"] {
+  background-image: url("/images/cosmic-companion-egg-waiting.webp");
+  background-position: center 56%;
+}
+
+.cosmic-portal-widget[data-bg="none"] {
+  background-image: none;
+  background: radial-gradient(circle at 50% 20%, rgba(88, 60, 160, 0.35), #0a1028 70%);
+}
+
+.cosmic-portal-widget::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(5, 8, 25, 0.5) 0%,
+    rgba(5, 8, 25, 0.08) 42%,
+    rgba(5, 8, 25, 0.82) 100%
+  );
+}
+
+.cosmic-portal-widget[data-bg="none"]::before {
+  background: linear-gradient(180deg, rgba(5, 8, 25, 0.15) 0%, rgba(5, 8, 25, 0.55) 100%);
+}
+
+.cosmic-portal-widget__body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.35rem;
+  padding: 1rem 1rem 1.1rem;
+}
+
+.cosmic-portal-widget__label {
+  margin: 0;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(232, 193, 124, 0.92);
+}
+
+.cosmic-portal-widget__headline {
+  margin: 0;
+  max-width: 16rem;
+  font-family: var(--font-display, ui-serif, Georgia, serif);
+  font-size: 1.15rem;
+  font-weight: 900;
+  line-height: 1.2;
+  color: #fff;
+  text-shadow: 0 2px 18px rgba(5, 8, 25, 0.65);
+}
+
+@media (min-width: 640px) {
+  .cosmic-portal-widget__headline {
+    font-size: 1.28rem;
+  }
+}
+
+.cosmic-portal-widget__support {
+  margin: 0;
+  max-width: 15rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: rgba(226, 232, 240, 0.86);
+}
+
+.cosmic-portal-widget__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin: 0.15rem 0 0;
+}
+
+.cosmic-portal-widget__rarity {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(232, 193, 124, 0.45);
+  background: rgba(10, 16, 40, 0.55);
+  padding: 0.15rem 0.55rem;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #f6ead2;
+}
+
+.cosmic-portal-widget__stage {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: rgba(196, 181, 253, 0.95);
+}
+
+.cosmic-portal-widget__portrait {
+  display: flex;
+  max-height: 148px;
+  width: 100%;
+  max-width: 200px;
+  align-items: center;
+  justify-content: center;
+  margin: 0.15rem auto 0.25rem;
+}
+
+@media (min-width: 640px) {
+  .cosmic-portal-widget__portrait {
+    max-height: 164px;
+  }
+}
+
+.cosmic-portal-widget__portrait img {
+  max-height: 100%;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(225, 194, 127, 0.75);
+  object-fit: contain;
+  background: rgba(5, 8, 25, 0.35);
+}
+
+.cosmic-portal-widget__cta {
+  display: inline-flex;
+  min-height: 2.4rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.35rem;
+  border-radius: 999px;
+  border: 1px solid rgba(232, 193, 124, 0.55);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.92), rgba(139, 92, 246, 0.92));
+  padding: 0.45rem 1.05rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 8px 22px rgba(99, 102, 241, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.cosmic-portal-widget__cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 26px rgba(99, 102, 241, 0.45);
+}
+
+.cosmic-portal-widget__cta:focus-visible {
+  outline: 2px solid #ffdea5;
+  outline-offset: 3px;
+}
+
+.cosmic-portal-widget__cta--button {
+  cursor: pointer;
+  font: inherit;
+}
+
+.cosmic-portal-widget__skeleton {
+  width: 70%;
+  max-width: 12rem;
+  height: 0.7rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.cosmic-portal-widget__skeleton + .cosmic-portal-widget__skeleton {
+  width: 48%;
+  margin-top: 0.45rem;
+}
+
+.cosmic-portal-banner {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 2rem;
+  border: 1px solid var(--cpw-gold, rgba(232, 193, 124, 0.38));
+  background: #0a1028 url("/images/cosmic-companion-portal.webp") center 60% / cover no-repeat;
+  min-height: 140px;
+}
+
+.cosmic-portal-banner[data-bg="egg"] {
+  background-image: url("/images/cosmic-companion-egg-waiting.webp");
+}
+
+.cosmic-portal-banner[data-bg="none"] {
+  background-image: none;
+  background: radial-gradient(circle at 20% 30%, rgba(88, 60, 160, 0.35), #0a1028 72%);
+}
+
+.cosmic-portal-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(5, 8, 25, 0.82) 0%, rgba(5, 8, 25, 0.35) 55%, rgba(5, 8, 25, 0.7) 100%);
+}
+
+.cosmic-portal-banner__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.15rem 1.25rem;
+}
+
+.cosmic-portal-banner__copy {
+  min-width: 0;
+  flex: 1;
+  text-align: left;
+}
+
+.cosmic-portal-banner__thumb {
+  width: 72px;
+  height: 72px;
+  border-radius: 1rem;
+  border: 1px solid rgba(225, 194, 127, 0.7);
+  object-fit: contain;
+  background: rgba(5, 8, 25, 0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cosmic-portal-widget__cta {
+    transition: none;
+  }
+  .cosmic-portal-widget__cta:hover {
+    transform: none;
+  }
+}
