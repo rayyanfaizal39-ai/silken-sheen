@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { chooseCraftArt, loadOwnerNova } from "./local-session";
 import type { NovaCard } from "./model";
+import { CraftRevealPanel } from "./sanctuary/CraftRevealPanel";
+import { craftPortraitsChoosable, craftRevealPhase } from "./sanctuary/craft-reveal";
 import "./nova-cards.css";
 
 /** The two portraits staff uploaded. The owner picks one. */
@@ -76,8 +78,20 @@ export function CraftArtChoice({
 }
 
 /** Loads the signed-in student's card and saves their one-time art choice. */
-export function LiveCraftArtChoice({ onChanged }: { onChanged?: (card: NovaCard | null) => void }) {
+export function LiveCraftArtChoice({
+  revealAfter,
+  checking,
+  onCheck,
+  onChanged,
+}: {
+  /** Authoritative `origin.revealAfter` from get_my_nova_studio. Never invent a clock. */
+  revealAfter?: string | null;
+  checking?: boolean;
+  onCheck?: () => void;
+  onChanged?: (card: NovaCard | null) => void;
+}) {
   const [card, setCard] = useState<NovaCard | null>(null);
+  const [now, setNow] = useState(() => Date.now());
   const changed = useRef(onChanged);
   changed.current = onChanged;
 
@@ -113,15 +127,46 @@ export function LiveCraftArtChoice({ onChanged }: { onChanged?: (card: NovaCard 
     };
   }, []);
 
-  if (!card) return null;
+  const hasPermanentArtwork = Boolean(card?.artworkUrl);
+  const artOptionCount = card?.artOptions?.length ?? 0;
+  const { phase } = craftRevealPhase({
+    hasPermanentArtwork,
+    artOptionCount,
+    craftOptionsReady: card?.craftOptionsReady,
+    revealAfter,
+    now,
+  });
+  const tick = !hasPermanentArtwork && phase !== "choose" && phase !== "selected";
+
+  useEffect(() => {
+    if (!tick) return;
+    const timer = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(timer);
+  }, [tick]);
+
+  if (hasPermanentArtwork) return null;
+
   return (
-    <CraftArtChoice
-      card={card}
-      onChoose={async (option) => {
-        const next = await chooseCraftArt(option);
-        setCard(next);
-        onChanged?.(next);
-      }}
-    />
+    <>
+      <CraftRevealPanel
+        revealAfter={revealAfter}
+        artOptionCount={
+          artOptionCount > 0 ? artOptionCount : card?.craftOptionsReady ? 2 : 0
+        }
+        hasPermanentArtwork={false}
+        busy={checking}
+        onCheck={onCheck}
+      />
+      {card && craftPortraitsChoosable(phase) ? (
+        <CraftArtChoice
+          card={card}
+          onChoose={async (option) => {
+            const next = await chooseCraftArt(option);
+            setCard(next);
+            onChanged?.(next);
+          }}
+        />
+      ) : null}
+    </>
   );
 }

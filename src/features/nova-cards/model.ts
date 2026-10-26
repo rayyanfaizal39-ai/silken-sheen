@@ -179,6 +179,11 @@ export interface NovaCard {
    * The card keeps its frame, serial and codes; the portrait is the crafted state.
    */
   crafting?: boolean;
+  /**
+   * Staff have attached both craft portraits. Paths stay off the payload until
+   * the scheduled craft reveal opens (`artOptions`).
+   */
+  craftOptionsReady?: boolean;
   /** Two staff portraits the owner may choose. Absent on a public card. */
   artOptions?: { option: 1 | 2; url?: string; path?: string }[];
 }

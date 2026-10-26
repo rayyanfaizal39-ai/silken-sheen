@@ -167,6 +167,30 @@ describe("craft portraits are readable by the owner", () => {
         "utf8",
       ),
     );
+    await db.exec(
+      readFileSync(
+        resolve(process.cwd(), "supabase/migrations/20261024150000_nova_admin_own_journey.sql"),
+        "utf8",
+      ),
+    );
+    await db.exec(
+      readFileSync(
+        resolve(process.cwd(), "supabase/migrations/20261026120000_nova_craft_reveal_gate.sql"),
+        "utf8",
+      ),
+    );
+
+    // Schedule still closed: paths stay hidden even after the read migration.
+    expect(await canRead(STUDENT, paths.option1)).toBe(false);
+    const gated = (await as("authenticated", STUDENT, "select public.get_my_nova_card() as r"))
+      .rows[0].r as { artOptions: unknown[]; craftOptionsReady: boolean };
+    expect(gated.artOptions).toEqual([]);
+    expect(gated.craftOptionsReady).toBe(true);
+
+    await db.query(
+      "update public.nova_generation_jobs set reveal_after = now() - interval '1 minute' where card_id = $1",
+      [card.id],
+    );
 
     expect(await canRead(STUDENT, paths.option1)).toBe(true);
     expect(await canRead(STUDENT, paths.option2)).toBe(true);

@@ -168,8 +168,9 @@ describe("Real accounts: one companion", () => {
         .map((reason) => reason.text),
     );
     expect(host.querySelector("[data-portrait-status]")?.textContent).toBe(
-      "Your portrait is being crafted.",
+      "Your companion has been discovered.",
     );
+    expect(host.textContent).toContain("Your Cosmic Reveal");
     expect(text(host)).not.toContain(B.name);
     expect(button(host, "Choose Companion")).toBeUndefined();
     expect(button(host, "Hatch egg")).toBeUndefined();
