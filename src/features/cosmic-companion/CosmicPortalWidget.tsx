@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@/context/auth-context";
 import type { NovaCard } from "@/features/nova-cards/model";
 import { loadOwnerNova } from "@/features/nova-cards/local-session";
-import { CosmicDualFrameMark, CosmicEggMark, CosmicPortalMark } from "./CosmicMarks";
+import cosmicEggArt from "@/assets/cosmic-companion/academy-cosmic-egg-v2.webp";
+import cosmicPortalArt from "@/assets/cosmic-companion/academy-cosmic-portal-v1.webp";
+import { CosmicDualFrameMark } from "./CosmicMarks";
 import { companionEntry } from "./entry";
 import type { JourneyStage } from "./journey";
 import { resolvePortalDisplay, type PortalDisplayKind } from "./portal-display";
@@ -13,7 +15,7 @@ import "./cosmic-portal-widget.css";
 
 /**
  * Compact Cosmic Companion dashboard widget.
- * Pre-discovery: portal/egg/dual SVG mark + journey CTA.
+ * Pre-discovery: approved portal/egg illustrations (or dual SVG mark) + journey CTA.
  * After permanent portrait choice: the student's real signed artwork (static, no flip).
  * Optional `preview` is DEVELOPMENT/review only — never a saved owner card.
  */
@@ -114,16 +116,16 @@ export function CosmicPortalWidget({
                 />
               </div>
             ) : display.mark === "egg" ? (
-              <div className="cosmic-portal-widget__mark">
-                <CosmicEggMark />
+              <div className="cosmic-portal-widget__illustration">
+                <img src={cosmicEggArt} alt="" width={1536} height={1024} decoding="async" />
               </div>
             ) : display.mark === "dual" ? (
               <div className="cosmic-portal-widget__mark">
                 <CosmicDualFrameMark />
               </div>
             ) : display.mark === "portal" ? (
-              <div className="cosmic-portal-widget__mark">
-                <CosmicPortalMark />
+              <div className="cosmic-portal-widget__illustration">
+                <img src={cosmicPortalArt} alt="" width={1536} height={1024} decoding="async" />
               </div>
             ) : null}
 

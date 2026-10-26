@@ -3,6 +3,10 @@
   --cpw-navy: #0b1220;
   --cpw-violet: #8b5cf6;
   --cpw-gold: #e8c17c;
+  /* Art size: stacked phones by default; narrow cards shrink it, side-by-side grows it. */
+  --cpw-art: 118px;
+  --cpw-illustration: 128px;
+  container: cpw / inline-size;
   position: relative;
   display: flex;
   height: 280px;
@@ -39,31 +43,37 @@
   text-align: center;
 }
 
-@media (min-width: 480px) {
-  .cosmic-portal-widget__body {
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 0.95rem;
-    text-align: left;
-    padding: 1.05rem 1.15rem;
-  }
-}
-
 .cosmic-portal-widget__mark,
 .cosmic-portal-widget__portrait {
   flex-shrink: 0;
   display: flex;
-  width: 118px;
-  height: 118px;
+  width: var(--cpw-art);
+  height: var(--cpw-art);
   align-items: center;
   justify-content: center;
 }
 
 .cosmic-portal-widget__mark svg {
-  width: 118px;
-  height: 118px;
+  width: 100%;
+  height: 100%;
   filter: drop-shadow(0 0 18px rgba(167, 139, 250, 0.35));
+}
+
+/* Approved portal/egg WebP art (3:2 source): compact frame, only empty navy margin is trimmed.
+   Stacked keeps 4:3 so art + copy fit the fixed card height; side-by-side goes square. */
+.cosmic-portal-widget__illustration {
+  flex-shrink: 0;
+  width: var(--cpw-illustration);
+  aspect-ratio: 4 / 3;
+  -webkit-mask-image: radial-gradient(ellipse closest-side at 50% 50%, #000 72%, transparent 100%);
+  mask-image: radial-gradient(ellipse closest-side at 50% 50%, #000 72%, transparent 100%);
+}
+
+.cosmic-portal-widget__illustration img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .cosmic-portal-widget__portrait {
@@ -81,30 +91,6 @@
   object-fit: contain;
 }
 
-@media (min-width: 640px) {
-  .cosmic-portal-widget__mark,
-  .cosmic-portal-widget__portrait {
-    width: 136px;
-    height: 136px;
-  }
-  .cosmic-portal-widget__mark svg {
-    width: 136px;
-    height: 136px;
-  }
-}
-
-@media (min-width: 1100px) {
-  .cosmic-portal-widget__mark,
-  .cosmic-portal-widget__portrait {
-    width: 148px;
-    height: 148px;
-  }
-  .cosmic-portal-widget__mark svg {
-    width: 148px;
-    height: 148px;
-  }
-}
-
 .cosmic-portal-widget__copy {
   min-width: 0;
   flex: 1;
@@ -112,13 +98,6 @@
   flex-direction: column;
   align-items: center;
   gap: 0.35rem;
-}
-
-@media (min-width: 480px) {
-  .cosmic-portal-widget__copy {
-    align-items: flex-start;
-    justify-content: center;
-  }
 }
 
 .cosmic-portal-widget__label {
@@ -170,12 +149,6 @@
   margin-top: 0.05rem;
 }
 
-@media (min-width: 480px) {
-  .cosmic-portal-widget__meta {
-    justify-content: flex-start;
-  }
-}
-
 .cosmic-portal-widget__rarity,
 .cosmic-portal-widget__stage {
   display: inline-flex;
@@ -221,6 +194,7 @@
   font-size: 0.76rem;
   font-weight: 800;
   color: #fff;
+  white-space: nowrap;
   text-decoration: none;
   box-shadow: 0 8px 22px rgba(99, 102, 241, 0.32);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
@@ -271,6 +245,77 @@
 .cosmic-portal-widget__skeleton + .cosmic-portal-widget__skeleton {
   width: 48%;
   margin-top: 0.45rem;
+}
+
+/* Side-by-side only when the card itself is wide enough (the dashboard row is 3 columns
+   from 640px, so viewport width alone overflows at laptop sizes). Phones stay stacked. */
+@media (min-width: 480px) {
+  @container cpw (min-width: 340px) {
+    .cosmic-portal-widget__body {
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 0.95rem;
+      text-align: left;
+      padding: 1.05rem 1.15rem;
+    }
+    .cosmic-portal-widget__mark,
+    .cosmic-portal-widget__portrait,
+    .cosmic-portal-widget__illustration {
+      --cpw-art: 140px;
+      --cpw-illustration: 140px;
+    }
+    .cosmic-portal-widget__illustration {
+      aspect-ratio: 1;
+    }
+    .cosmic-portal-widget__copy {
+      align-items: flex-start;
+      justify-content: center;
+    }
+    .cosmic-portal-widget__meta {
+      justify-content: flex-start;
+    }
+  }
+}
+
+/* Narrow stacked cards (3-column row on tablets/laptops): smaller art and type. */
+@container cpw (max-width: 299px) {
+  .cosmic-portal-widget__body {
+    gap: 0.45rem;
+    padding: 0.9rem 0.85rem;
+  }
+  .cosmic-portal-widget__mark,
+  .cosmic-portal-widget__portrait,
+  .cosmic-portal-widget__illustration {
+    --cpw-art: 84px;
+    --cpw-illustration: 104px;
+  }
+  .cosmic-portal-widget__copy {
+    gap: 0.25rem;
+  }
+  .cosmic-portal-widget__headline {
+    font-size: 1rem;
+  }
+  .cosmic-portal-widget__support {
+    font-size: 0.7rem;
+  }
+  .cosmic-portal-widget__cta {
+    margin-top: 0.3rem;
+    padding-inline: 0.85rem;
+  }
+}
+
+@container cpw (max-width: 219px) {
+  .cosmic-portal-widget__mark,
+  .cosmic-portal-widget__portrait,
+  .cosmic-portal-widget__illustration {
+    --cpw-art: 72px;
+    --cpw-illustration: 88px;
+  }
+  .cosmic-portal-widget__cta {
+    white-space: normal;
+    text-align: center;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
