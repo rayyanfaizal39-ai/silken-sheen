@@ -391,13 +391,19 @@ export function StudioExperience({
             data-portrait-status={oneCompanion && !oneCompanion.artworkUrl ? "crafting" : "kept"}
           >
             {oneCompanion && !oneCompanion.artworkUrl
-              ? "Your portrait is being crafted."
+              ? "Your companion has been discovered."
               : oneCompanion
                 ? "Your Cosmic Card stays with you."
                 : "Your companion choice is permanent. Your Cosmic Card stays with you."}
           </p>
           <DevGeneratedCardSlot selected={selected} />
-          {!fictional ? <LiveCraftArtChoice /> : null}
+          {!fictional ? (
+            <LiveCraftArtChoice
+              revealAfter={state.origin?.revealAfter}
+              checking={busy}
+              onCheck={() => void perform(async () => setState(await api.load()))}
+            />
+          ) : null}
           {oneCompanion ? (
             <CandidateProfile
               companion={oneCompanion}

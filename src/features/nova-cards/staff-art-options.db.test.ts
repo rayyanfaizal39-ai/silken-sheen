@@ -35,7 +35,6 @@ async function submit() {
     JSON.stringify(prepared.match),
     JSON.stringify(prepared.dna),
   ]);
-  await as("authenticated", STUDENT, "select public.nova_record_craft_choice('b')");
 }
 
 describe("two staff portraits for one companion", () => {
@@ -45,14 +44,27 @@ describe("two staff portraits for one companion", () => {
       "20261023140000_nova_staff_craft.sql",
       "20261023150000_nova_public_card.sql",
       "20261023160000_nova_craft_art_options.sql",
+      "20261023170000_nova_companion_journey_gate.sql",
     ]) {
       await db.exec(readFileSync(resolve(process.cwd(), "supabase/migrations", file), "utf8"));
     }
     as = roleQuery(db);
     await addAccount(db, STUDENT);
     await addAccount(db, ADMIN, { role: "admin" });
+    await db.exec(`alter table storage.buckets add column file_size_limit bigint;
+      alter table storage.buckets add column allowed_mime_types text[];`);
+    for (const file of [
+      "20261024120000_nova_craft_queue_both_picks.sql",
+      "20261024120100_nova_artwork_bucket_limits.sql",
+      "20261024130000_nova_single_companion_submit.sql",
+      "20261024140000_nova_craft_portrait_read.sql",
+      "20261024150000_nova_admin_own_journey.sql",
+      "20261026120000_nova_craft_reveal_gate.sql",
+    ]) {
+      await db.exec(readFileSync(resolve(process.cwd(), "supabase/migrations", file), "utf8"));
+    }
     await submit();
-  }, 60_000);
+  }, 90_000);
   afterAll(() => db.close());
 
   it("moves waiting_for_art to options_ready to chosen, and lets staff reset", async () => {
@@ -124,6 +136,25 @@ describe("two staff portraits for one companion", () => {
       )
     ).rows[0].r as { status: string; serial: string };
     expect(attached).toMatchObject({ status: "options_ready", serial: card.serial });
+
+    const scheduled = (await as("authenticated", STUDENT, "select public.get_my_nova_card() as r"))
+      .rows[0].r as {
+      crafting: boolean;
+      artworkPath: string | null;
+      artOptions: unknown[];
+      craftOptionsReady: boolean;
+      serial: string;
+    };
+    expect(scheduled.crafting).toBe(true);
+    expect(scheduled.artworkPath).toBeNull();
+    expect(scheduled.artOptions).toEqual([]);
+    expect(scheduled.craftOptionsReady).toBe(true);
+    expect(scheduled.serial).toBe(card.serial);
+
+    await db.query(
+      "update public.nova_generation_jobs set reveal_after = now() - interval '1 minute' where card_id = $1",
+      [card.id],
+    );
 
     const ready = (await as("authenticated", STUDENT, "select public.get_my_nova_card() as r"))
       .rows[0].r as {

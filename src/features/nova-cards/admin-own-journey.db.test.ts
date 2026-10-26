@@ -73,6 +73,7 @@ describe("an admin can take their own companion journey", () => {
       "20261024130000_nova_single_companion_submit.sql",
       "20261024140000_nova_craft_portrait_read.sql",
       "20261024150000_nova_admin_own_journey.sql",
+      "20261026120000_nova_craft_reveal_gate.sql",
     ]) {
       await db.exec(readFileSync(resolve(process.cwd(), "supabase/migrations", file), "utf8"));
     }
@@ -232,6 +233,10 @@ describe("an admin can take their own companion journey", () => {
       `insert into public.nova_craft_art_options(card_id, option_no, storage_path, sha256)
        values ($1, 1, $2, $3), ($1, 2, $4, $5)`,
       [studentCard.id, studentOne, THIRD, studentTwo, FOURTH],
+    );
+    await db.query(
+      "update public.nova_generation_jobs set reveal_after = now() - interval '1 minute' where card_id in ($1, $2)",
+      [adminCard.id, studentCard.id],
     );
 
     expect(await canRead(ADMIN, adminOne)).toBe(true);

@@ -27,6 +27,8 @@ env.IS_REACT_ACT_ENVIRONMENT = true;
 const ANSWERS = [0, 1, 2, 0, 0, 0, 2, 0, 0, 0, 0, 0];
 const [A, B] = matchCompanions(ANSWERS).candidates;
 const PUBLIC_ID = "9b4c6f6e-55e6-4b52-9d5f-3c1c0f6e2a11";
+const FUTURE = "2099-01-01T00:00:00Z";
+const PAST = "2000-01-01T00:00:00Z";
 
 function card(over: Partial<NovaCard> = {}): NovaCard {
   return {
@@ -59,7 +61,7 @@ function card(over: Partial<NovaCard> = {}): NovaCard {
   };
 }
 
-function studio(): StudioState {
+function studio(revealAfter = FUTURE): StudioState {
   return {
     active: true,
     enabled: false,
@@ -69,7 +71,7 @@ function studio(): StudioState {
     selected: "a",
     origin: {
       status: "queued",
-      revealAfter: "2099-01-01T00:00:00Z",
+      revealAfter,
       ready: false,
       errorCode: null,
       completed: 0,
@@ -96,8 +98,8 @@ afterEach(async () => {
   document.body.innerHTML = "";
 });
 
-async function mount() {
-  let current = card();
+async function mount(revealAfter = FUTURE, owner = card()) {
+  let current = owner;
   vi.mocked(loadOwnerNova).mockImplementation(async () => [
     current,
     { active: true, status: "active" },
@@ -108,7 +110,7 @@ async function mount() {
     return current;
   });
   const api: StudioApi = {
-    load: vi.fn(async () => studio()),
+    load: vi.fn(async () => studio(revealAfter)),
     save: vi.fn(),
     submit: vi.fn(),
     choose: vi.fn(),
@@ -119,7 +121,12 @@ async function mount() {
   roots.push(root);
   await act(async () => root.render(<StudioExperience api={api} />));
   for (let i = 0; i < 20; i += 1) {
-    if (host.querySelector("[data-craft-art-choice]")) break;
+    if (
+      host.querySelector("[data-craft-art-choice]") ||
+      host.querySelector(".cc-reveal") ||
+      host.querySelector("h1")
+    )
+      break;
     await act(async () => {
       await new Promise((resolve) => setTimeout(resolve, 0));
     });
@@ -128,16 +135,26 @@ async function mount() {
 }
 
 describe("one companion, two portraits", () => {
-  it("shows the preference companion and both portraits while image generation is off", async () => {
-    const host = await mount();
+  it("shows the scheduled reveal countdown and keeps portraits hidden before revealAfter", async () => {
+    const host = await mount(FUTURE);
     expect(host.querySelector("h1")?.textContent).toBe(`Your ${A.name}`);
     expect(host.textContent).toContain(A.species);
-    expect(host.textContent).toContain(A.element);
     expect(host.textContent).not.toContain(B.name);
-    expect(host.textContent).not.toContain("Explore Nova plans");
-    expect(host.textContent).not.toContain("has not opened yet");
+    expect(host.querySelector(".cc-reveal")).toBeTruthy();
+    expect(host.textContent).toContain("Your Cosmic Reveal");
+    expect(host.textContent).toContain("Reveal opens in");
+    expect(host.textContent).toContain("Check Reveal Status");
+    expect(host.querySelector("[data-craft-art-choice]")).toBeNull();
+    expect(host.querySelector("[data-craft-option]")).toBeNull();
+  });
+
+  it("offers the two staff portraits only after the real reveal window opens", async () => {
+    const host = await mount(PAST);
+    expect(host.querySelector("h1")?.textContent).toBe(`Your ${A.name}`);
+    expect(host.textContent).toContain("Your portraits are ready!");
+    expect(host.textContent).not.toContain(B.name);
     expect(host.querySelector("[data-portrait-status]")?.textContent).toBe(
-      "Your portrait is being crafted.",
+      "Your companion has been discovered.",
     );
     const images = [...host.querySelectorAll("[data-craft-art-choice] img")].map((image) =>
       image.getAttribute("src"),
@@ -156,6 +173,7 @@ describe("one companion, two portraits", () => {
     expect(chooseCraftArt).toHaveBeenCalledWith(2);
     expect(host.querySelector("[data-craft-option]")).toBeNull();
     expect(host.querySelector("[data-craft-art-choice]")).toBeNull();
+    expect(host.querySelector(".cc-reveal")).toBeNull();
     expect(host.textContent).not.toContain(B.name);
   });
 });
