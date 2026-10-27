@@ -46,7 +46,7 @@ const sejarahF2C8NotesSource: StructuredNotes = {
   ],
   keyExamFacts: [
     "Tan Dermadewa dan Tun Perkasa menghadap serta melantik Maharaja Derbar Raja sebagai Raja Kedah.",
-    "Tunku Ahmad membuka Kota Siputih pada tahun 1282 untuk menghadapi ancaman Siam dan Aceh di utara.",
+    "Tunku Ahmad membuka Kota Siputih pada tahun 1282 untuk menghadapi ancaman Siam dan Acheh di utara.",
     "Long Yunus memindahkan pusat pemerintahan Kelantan ke Kota Galoh pada tahun 1777.",
     "Sultan Muhammad II mengasaskan Kota Bharu sebagai pusat pemerintahan Kelantan pada tahun 1844.",
     "Empat Penghulu Luak Sungai Ujong, Jelebu, Johol dan Rembau menjemput anak raja Minangkabau untuk dirajakan.",
@@ -106,7 +106,7 @@ const sejarahF2C8NotesSource: StructuredNotes = {
             "Pelantikan baginda disertai pengiktirafan alat kebesaran dari Parsi, iaitu nobat.",
             "Maharaja Derbar Raja membina pusat pemerintahan di Sungai Mas.",
             "Wilayah Kedah berkembang melalui pembukaan kota atau pusat pentadbiran baharu.",
-            "Tunku Ahmad membuka Kota Siputih pada tahun 1282 untuk menghadapi ancaman Siam dan Aceh di utara.",
+            "Tunku Ahmad membuka Kota Siputih pada tahun 1282 untuk menghadapi ancaman Siam dan Acheh di utara.",
             "Kota Siputih menjadi tempat bersemayam Sultan Ibrahim, Sultan Kedah keenam.",
             "Sultan Muhammad Jiwa Zainal Adilin Mu'adzam Shah II mengasaskan Alor Setar sebagai ibu negeri Kedah.",
           ],

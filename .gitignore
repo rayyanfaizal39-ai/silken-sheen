@@ -48,3 +48,5 @@ src/routes/command-center-preview.tsx
 silken-sheen/
 
 .env
+
+.tmp-cosmic-dashboard-kit/

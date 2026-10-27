@@ -86,6 +86,13 @@ const CANONICAL_HOST = "www.myacademy.my";
 const APEX_HOST = "myacademy.my";
 
 function revalidateDocument(request: Request, response: Response): Response {
+  const path = new URL(request.url).pathname;
+  if (path.startsWith("/card/c/") || path === "/nova" || path === "/nova/demo") {
+    const headers = new Headers(response.headers);
+    headers.set("cache-control", "private, no-store, max-age=0");
+    headers.set("referrer-policy", "no-referrer");
+    return new Response(response.body, { status: response.status, statusText: response.statusText, headers });
+  }
   if (request.method !== "GET" || response.status >= 400) return response;
   const accept = request.headers.get("accept") ?? "";
   if (!accept.includes("text/html")) return response;

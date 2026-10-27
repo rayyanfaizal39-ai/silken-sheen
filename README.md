@@ -3,6 +3,14 @@
 A drop-in `/admin` console for the AcadeMY (TanStack Start + Supabase) app.
 Admin-only, mobile responsive, styled to match the Mission Control dark theme.
 
+## Hosting
+
+AcadeMY is hosted exclusively on **Cloudflare Pages**, project `academymy`.
+The production domains are `myacademy.my` and `www.myacademy.my`. Use the existing
+root `wrangler.jsonc`, `npm run build` and `dist/client` output, including the
+packaged Pages worker. No alternative hosting service is part of this application.
+Running the build does not deploy; production deployment and merging require approval.
+
 Open **`preview.html`** in a browser to see the finished design with mock data.
 
 ---

@@ -1,559 +1,410 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { CheckCircle2, Lock, Orbit, Pencil, Sparkles, Star } from "lucide-react";
-import { useState } from "react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
+import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
+import { novaAccessCopy } from "@/features/nova-cards/access";
+import type { CompanionEntry } from "@/features/cosmic-companion/entry";
+import { CompanionGarden } from "@/features/cosmic-companion/CompanionGarden";
 import {
-  COMPANION_STAGES,
-  type CompanionId,
-  type CompanionStageId,
-  getCompanionDaysTogether,
-  getCompanionLevelProgress,
-  useProgress,
-} from "@/hooks/use-progress";
-import {
-  CompanionImage,
-  getCompanionDisplayName,
-  getCompanionMood,
-  getCompanionMoodMessage,
-  MOOD_EMOJI,
-  MOOD_LABEL,
-  useCompanionMessage,
-} from "@/companion";
+  JOURNEY_CTA,
+  parseJourneyPreview,
+  type JourneyStage,
+} from "@/features/cosmic-companion/journey";
+import { useCompanionEntry } from "@/features/cosmic-companion/use-companion-entry";
+import { UnrevealedCosmicCard } from "@/features/cosmic-companion/UnrevealedCosmicCard";
+import { useAuth } from "@/context/auth-context";
+import { useDevDemoCompanion } from "@/lib/dev-auth/use-dev-demo-companion";
 import { seoMeta } from "@/lib/seo";
+import "./companion-cards.css";
 
 export const Route = createFileRoute("/companion")({
+  validateSearch: (search: Record<string, unknown>): { preview?: JourneyStage } => ({
+    preview: parseJourneyPreview(search.preview),
+  }),
   component: CosmicCompanionPage,
-  // Per-user gamification state — noindex, same as /dashboard.
-  head: () =>
-    seoMeta({
+  head: () => {
+    const head = seoMeta({
       title: "Cosmic Companion",
-      description:
-        "Evolve your Cosmic Companion by earning XP on AcadeMY — a gamified KSSM study companion for Form 1-3 students.",
+      description: "Discover the companion waiting for you and begin your Cosmic Card journey.",
       path: "/companion",
       noindex: true,
-    }),
+    });
+    return {
+      ...head,
+      links: [
+        ...head.links,
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap",
+        },
+      ],
+    };
+  },
 });
 
-// V1 ships Nova only. Future species (Luna, Terra, Comet, Nebula) get added
-// here once their assets/personality picker land — nothing else needs to change.
-const STARTERS: Array<{
-  id: CompanionId;
-  name: string;
-  role: string;
-  focus: string;
-  accent: string;
-}> = [
+/** Staggers the entrance of each block. */
+const rise = (step: number) => ({ "--d": step }) as CSSProperties;
+
+const FEATURES = [
   {
-    id: "nova",
-    name: "Nova",
-    role: "Explorer",
-    focus: "Balanced growth",
-    accent: "#8B5CF6",
+    title: "12 Unique Questions",
+    body: "Explore your learning style and personality.",
+    icon: (
+      <>
+        <path d="M4 5.5C7 4.5 9.5 4.8 12 6.5c2.5-1.7 5-2 8-1v13c-3-1-5.5-.7-8 1-2.5-1.7-5-2-8-1Z" />
+        <path d="M12 6.5v13" />
+      </>
+    ),
+  },
+  {
+    title: "A Guided Adventure",
+    body: "Discover more about yourself through an interactive cinematic journey.",
+    icon: (
+      <>
+        <circle cx="12" cy="12" r="8.5" />
+        <path d="m15.5 8.5-2.2 4.8-4.8 2.2 2.2-4.8Z" />
+      </>
+    ),
+  },
+  {
+    title: "A Permanent Cosmic Card",
+    body: "Unlock a unique companion card that stays with you forever.",
+    icon: (
+      <>
+        <rect x="6" y="3" width="12" height="18" rx="2.2" />
+        <path d="M12 8.5 13 11l2.5 1-2.5 1-1 2.5-1-2.5-2.5-1 2.5-1Z" />
+      </>
+    ),
   },
 ];
 
-const STAGE_ART: Record<CompanionStageId, { tint: string }> = {
-  egg: { tint: "#FDE68A" },
-  blobling: { tint: "#7DD3FC" },
-  sprout: { tint: "#34D399" },
-  cadet: { tint: "#A78BFA" },
-  guardian: { tint: "#F0ABFC" },
-};
+const PANELS = [
+  {
+    title: "A Journey of Self-Discovery",
+    body: "Answer 12 carefully crafted questions designed to reveal your learning personality.",
+    art: "path",
+  },
+  {
+    title: "A Companion for Your Journey",
+    body: "Meet a unique companion that matches your mindset, strengths and learning style.",
+    art: "companion",
+  },
+  {
+    title: "A Cosmic Card to Keep",
+    body: "Receive a beautifully designed Cosmic Card and companion that stays with you forever.",
+    art: "card",
+  },
+] as const;
 
-function CosmicCompanionPage() {
-  const { progress, renameCompanion } = useProgress();
-  const companion = progress.companion ?? { id: "nova" as CompanionId, level: 1 };
-  const activeStarter = STARTERS.find((starter) => starter.id === companion.id) ?? STARTERS[0];
-  const displayName = getCompanionDisplayName(companion);
-  const dailyMessage = useCompanionMessage();
-
-  // Stage is always derived from XP, so the artwork updates automatically as the student earns XP.
-  const companionProgress = getCompanionLevelProgress(progress.xp);
-  const currentStageId = companionProgress.currentStage.id;
-  const stageIndex = companionProgress.currentLevel - 1;
-  const currentStage = companionProgress.currentStage;
-  const nextStage = companionProgress.nextStage;
-  const progressPct = companionProgress.progressPercentage;
-  const xpNeeded = companionProgress.remainingXp;
-
-  const mood = getCompanionMood(progress, currentStageId);
-  const moodMessage = getCompanionMoodMessage(mood, displayName);
-  const daysTogether = progress.companion ? getCompanionDaysTogether(progress.companion) : 1;
-
+function PanelArt({ art }: { art: (typeof PANELS)[number]["art"] }) {
   return (
-    <main className="relative isolate overflow-hidden px-4 py-6 pb-[calc(var(--mobile-content-bottom)+1rem)] sm:px-6 lg:px-8 lg:pb-10">
-      <CompanionBackdrop />
+    <svg className="ccp-panel__art" viewBox="0 0 120 120" aria-hidden="true">
+      <defs>
+        <linearGradient id={`ccp-art-sky-${art}`} x1="0" y1="0" x2="0" y2="1">
+          <stop stopColor="#1c1850" />
+          <stop offset="1" stopColor="#0a0b22" />
+        </linearGradient>
+        <radialGradient id={`ccp-art-glow-${art}`} cx=".5" cy=".55" r=".5">
+          <stop stopColor="#ffdea5" stopOpacity=".6" />
+          <stop offset=".4" stopColor="#a78bfa" stopOpacity=".35" />
+          <stop offset="1" stopColor="#6001d1" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <rect width="120" height="120" fill={`url(#ccp-art-sky-${art})`} />
+      <g fill="#fff4dc">
+        <circle cx="18" cy="18" r=".9" />
+        <circle cx="96" cy="14" r="1.1" />
+        <circle cx="106" cy="44" r=".8" />
+        <circle cx="12" cy="52" r=".8" />
+      </g>
+      {art === "path" && (
+        <g>
+          <circle cx="60" cy="48" r="40" fill={`url(#ccp-art-glow-${art})`} />
+          <path d="M30 120V50a30 30 0 0 1 60 0v70" fill="none" stroke="#2f2758" strokeWidth="8" />
+          <path d="M44 120h32l-4-12H48Zm6-16h20l-3-9H53Zm5-13h10l-2-7h-6Z" fill="#3b3170" />
+          <path d="M48 108h24M53 95h14M56 84h8" stroke="#ffdea5" strokeOpacity=".7" />
+          <g fill="#a78bfa">
+            <circle cx="22" cy="96" r="4" />
+            <circle cx="98" cy="100" r="5" />
+            <circle cx="16" cy="108" r="3" />
+            <circle cx="104" cy="88" r="3" />
+          </g>
+        </g>
+      )}
+      {art === "companion" && (
+        <g>
+          <circle cx="60" cy="62" r="42" fill={`url(#ccp-art-glow-${art})`} />
+          <path d="M0 104q30-16 60-10t60-4v30H0Z" fill="#1a1640" />
+          <path
+            d="M61 58c-10 0-17 7-17 16 0 4 2 8 4 11-6 5-10 12-10 21v6h46v-6c0-9-4-16-10-21 3-3 4-7 4-11 0-9-7-16-17-16Z"
+            fill="#0b0920"
+            stroke="#c4b5fd"
+            strokeOpacity=".55"
+            strokeWidth="1.2"
+          />
+          <text x="61" y="80" textAnchor="middle" className="ccp-panel__mark">
+            ?
+          </text>
+        </g>
+      )}
+      {art === "card" && (
+        <g>
+          <circle cx="60" cy="60" r="42" fill={`url(#ccp-art-glow-${art})`} />
+          <g transform="rotate(-10 60 60)">
+            <rect
+              x="36"
+              y="24"
+              width="48"
+              height="70"
+              rx="6"
+              fill="#15132e"
+              stroke="#f6ca78"
+              strokeOpacity=".8"
+            />
+            <circle cx="60" cy="56" r="13" fill="#120d2e" stroke="#f6ca78" strokeOpacity=".8" />
+            <path
+              d="M54 63 60 48l6 15M56.5 58h7"
+              fill="none"
+              stroke="#ffdea5"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+            <ellipse
+              cx="60"
+              cy="56"
+              rx="19"
+              ry="6"
+              fill="none"
+              stroke="#c4b5fd"
+              strokeOpacity=".5"
+              transform="rotate(-18 60 56)"
+            />
+          </g>
+        </g>
+      )}
+    </svg>
+  );
+}
 
-      <section className="relative mx-auto flex max-w-7xl flex-col gap-6">
-        <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.09] bg-[#0B1220]/70 p-6 shadow-[0_24px_90px_rgba(15,23,42,0.55)] backdrop-blur-2xl sm:p-8">
-          <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(139,92,246,0.35),transparent_65%)] blur-2xl" />
-          <div className="pointer-events-none absolute -bottom-28 left-12 h-80 w-80 rounded-full bg-[radial-gradient(circle,rgba(34,211,238,0.18),transparent_65%)] blur-2xl" />
-          <div className="relative z-10 grid gap-6 lg:grid-cols-[1fr_420px] lg:items-center">
-            <div>
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#A78BFA]/30 bg-[#A78BFA]/10 px-3 py-1.5 text-xs font-black uppercase tracking-[0.2em] text-[#C4B5FD]">
-                <Sparkles className="h-3.5 w-3.5" />
-                Cosmic Companion
-              </div>
-              <h1 className="font-display text-4xl font-black leading-tight text-white sm:text-5xl">
-                Meet Your Cosmic Companion
-              </h1>
-              <p className="mt-4 max-w-2xl text-sm leading-7 text-white/60 sm:text-base">
-                Study, earn XP, hatch your egg, and evolve your Cosmic Companion as you learn.
-              </p>
-            </div>
+function PortalIcon() {
+  return (
+    <svg className="ccp-discover__portal" viewBox="0 0 32 32" aria-hidden="true">
+      <circle cx="16" cy="16" r="13" />
+      <circle cx="16" cy="16" r="8.5" strokeDasharray="3 3" />
+      <circle cx="16" cy="16" r="3.5" className="ccp-discover__core" />
+    </svg>
+  );
+}
 
-            {/* Nova is the visual centerpiece — bigger display + daily message + mood */}
-            <div className="relative min-h-[280px] overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-white/[0.05] p-5">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.16),transparent_34%)]" />
-              <div className="relative flex flex-col items-center justify-center gap-3">
-                <CompanionArtwork starter={activeStarter} stage={currentStage.id} size="large" />
-                <p className="max-w-[260px] text-center text-sm font-bold leading-5 text-white/80">
-                  "{dailyMessage}"
-                </p>
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.1] bg-white/[0.06] px-3 py-1 text-[11px] font-bold text-white/60">
-                  {MOOD_EMOJI[mood]} {MOOD_LABEL[mood]}
+/**
+ * Design-only Cosmic Companion hub.
+ *
+ * Until a real card has been chosen, the card is an unrevealed placeholder. Nothing here
+ * requests artwork, reveals a creature, reads card records, or changes XP. The cinematic
+ * gateway lives independently at /companion/portal.
+ */
+export function CosmicCompanionPage() {
+  const { preview } = Route.useSearch();
+  const { ready, entry, stage, problem, retry } = useCompanionEntry(preview);
+  const { user, devAuthBypass } = useAuth();
+  const demo = useDevDemoCompanion();
+  const discovered = demo !== "off" && demo?.discovered ? demo : null;
+  return (
+    <main className="ccp-page">
+      <CompanionGarden />
+
+      <header className="ccp-crest ccp-rise" style={rise(0)}>
+        <span className="ccp-crest__ornament" aria-hidden="true">
+          <span />✦
+          <svg viewBox="0 0 24 24">
+            <path d="M14 3a9 9 0 1 0 7 14A8 8 0 1 1 14 3Z" />
+          </svg>
+          ✦<span />
+        </span>
+        <p>Cosmic Companion</p>
+      </header>
+
+      <section className="ccp-hero" aria-labelledby="ccp-hero-title">
+        <div className="ccp-intro">
+          <p className="ccp-eyebrow ccp-rise" style={rise(1)}>
+            Your journey awaits
+          </p>
+          <h1 id="ccp-hero-title" className="ccp-rise" style={rise(2)}>
+            Discover Your <span>Cosmic Companion</span>
+          </h1>
+          <p className="ccp-lead ccp-rise" style={rise(3)}>
+            Embark on a guided journey of 12 discoveries to find the companion that truly matches
+            your mindset, strengths and learning style.
+          </p>
+          <ul className="ccp-features ccp-rise" style={rise(4)}>
+            {FEATURES.map((feature) => (
+              <li key={feature.title}>
+                <span className="ccp-features__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">{feature.icon}</svg>
                 </span>
-              </div>
-            </div>
-          </div>
+                <h2>{feature.title}</h2>
+                <p>{feature.body}</p>
+              </li>
+            ))}
+          </ul>
         </div>
 
-        <section className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_390px]">
-          <div className="rounded-[2rem] border border-white/[0.09] bg-[#0B1220]/68 p-5 backdrop-blur-2xl sm:p-6">
-            <div className="grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)] lg:items-center">
-              <div className="flex justify-center">
-                <CompanionArtwork starter={activeStarter} stage={currentStage.id} size="hero" />
-              </div>
-
-              <div className="min-w-0">
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="rounded-full border border-white/[0.1] bg-white/[0.06] px-3 py-1 text-xs font-black uppercase tracking-widest text-white/55">
-                    Companion Level {stageIndex + 1}
-                  </span>
-                  <span
-                    className="rounded-full px-3 py-1 text-xs font-black uppercase tracking-widest text-[#050816]"
-                    style={{ background: activeStarter.accent }}
-                  >
-                    {currentStage.name}
-                  </span>
-                </div>
-
-                <CompanionNameEditor
-                  displayName={displayName}
-                  stageName={currentStage.name}
-                  onRename={renameCompanion}
+        <div className="ccp-stage ccp-rise" style={rise(2)}>
+          <div className="ccp-stage__orbits" aria-hidden="true">
+            <span className="ccp-stage__orbit" />
+            <span className="ccp-stage__orbit ccp-stage__orbit--wide" />
+          </div>
+          {discovered ? (
+            <div className="ccp-owned">
+              {discovered.artworkUrl ? (
+                <img
+                  src={discovered.artworkUrl}
+                  alt={`${discovered.name}, ${discovered.species}`}
+                  width="600"
+                  height="640"
                 />
-                <p className="mt-2 text-sm text-white/50">
-                  {activeStarter.role} companion · {activeStarter.focus}
-                </p>
-                <p className="mt-1 text-xs italic text-white/40">{moodMessage}</p>
-
-                <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                  <MetricCard label="Lifetime XP" value={progress.xp.toLocaleString()} />
-                  <MetricCard
-                    label="XP until next stage"
-                    value={nextStage ? xpNeeded.toLocaleString() : "Final stage"}
-                  />
+              ) : discovered.choosing ? (
+                <div className="ccp-owned__craft">
+                  <strong>Choose your companion art</strong>
                 </div>
-
-                <div className="mt-6">
-                  <div className="mb-2 flex items-center justify-between gap-3 text-xs font-bold text-white/55">
-                    <span>{progress.xp.toLocaleString()} Lifetime XP</span>
-                    <span>
-                      {nextStage ? `${nextStage.xpRequired.toLocaleString()} XP` : "Max stage"}
-                    </span>
-                  </div>
-                  <div
-                    className="relative h-4 overflow-hidden rounded-full border border-white/[0.08] bg-white/[0.07]"
-                    role="progressbar"
-                    aria-label={`${displayName} progress to ${nextStage?.name ?? "final stage"}`}
-                    aria-valuemin={0}
-                    aria-valuemax={100}
-                    aria-valuenow={progressPct}
-                  >
-                    <div
-                      className="h-full rounded-full bg-gradient-to-r from-[#22D3EE] via-[#A78BFA] to-[#F0ABFC] shadow-[0_0_24px_rgba(167,139,250,0.7)] transition-all duration-700"
-                      style={{ width: `${progressPct}%` }}
-                    />
-                    <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.18),transparent)] opacity-60" />
-                  </div>
+              ) : (
+                <div className="ccp-owned__craft">
+                  <strong>Your portrait is being crafted</strong>
                 </div>
-
-                {nextStage ? (
-                  <NextEvolutionPreview
-                    speciesId={activeStarter.id}
-                    nextStage={nextStage}
-                    xpNeeded={xpNeeded}
-                  />
-                ) : (
-                  <div className="mt-5 flex flex-wrap items-center gap-3 rounded-2xl border border-[#FBBF24]/35 bg-[#FBBF24]/10 p-4">
-                    <p className="flex-1 text-sm font-black text-[#FDE68A]">
-                      ✨ {displayName} reached Guardian — the final stage!
-                    </p>
-                  </div>
-                )}
-              </div>
+              )}
+              <p className="ccp-owned__name">{discovered.name}</p>
+              <p className="ccp-owned__meta">
+                {discovered.element} · {discovered.species}
+              </p>
+              <Link className="ccp-owned__card" to="/nova">
+                View your card
+              </Link>
             </div>
-          </div>
-
-          <div className="flex flex-col gap-5">
-            <StarterSelection activeId={companion.id} displayName={displayName} />
-            <CompanionStatsCard
-              displayName={displayName}
-              stageName={currentStage.name}
-              level={stageIndex + 1}
-              xp={progress.xp}
-              mood={mood}
-              daysTogether={daysTogether}
+          ) : (
+            <UnrevealedCosmicCard
+              pedestal={<span className="ccp-stage__platform" aria-hidden="true" />}
             />
-          </div>
-        </section>
+          )}
+          {!ready ? (
+            <span className="ccp-discover" aria-busy="true">
+              Checking your plan…
+            </span>
+          ) : problem || !entry ? (
+            <button
+              type="button"
+              className="ccp-discover"
+              data-companion-entry="retry"
+              onClick={retry}
+            >
+              <PortalIcon />
+              <span>Try again</span>
+              <ArrowRight size={21} aria-hidden="true" />
+            </button>
+          ) : (
+            <CompanionEntryLink entry={entry} stage={stage} preview={preview} />
+          )}
+          <p className="ccp-journey-note">
+            {preview && <b>Fictional preview · </b>}
+            {!ready
+              ? "Checking your companion…"
+              : problem
+                ? novaAccessCopy(problem).body
+                : entry?.kind === "upgrade"
+                  ? "An eligible AcadeMY learning plan is required to begin your companion journey."
+                  : JOURNEY_CTA[stage].note}
+          </p>
+          {import.meta.env.DEV && devAuthBypass ? <LocalPlanToggle /> : null}
+          {!user && !preview && (
+            <p className="ccp-guest" role="note">
+              <b>You’re exploring as a guest.</b> Your progress won’t be saved.{" "}
+              <a href={`/login?next=${encodeURIComponent("/companion")}`}>Sign in</a> to unlock your
+              lifelong Cosmic Companion.
+            </p>
+          )}
+        </div>
+      </section>
 
-        <EvolutionPath
-          activeStage={currentStage.id}
-          xp={progress.xp}
-          speciesId={activeStarter.id}
-        />
+      <section className="ccp-panels" aria-label="About the Cosmic Companion journey">
+        {PANELS.map((panel, i) => (
+          <article key={panel.title} className="ccp-panel ccp-rise" style={rise(5 + i)}>
+            <PanelArt art={panel.art} />
+            <div>
+              <p className="ccp-panel__step">0{i + 1}</p>
+              <h2>{panel.title}</h2>
+              <p>{panel.body}</p>
+            </div>
+          </article>
+        ))}
       </section>
     </main>
   );
 }
 
-/** Inline rename control — first-time students keep "Nova", or pick their own name. */
-function CompanionNameEditor({
-  displayName,
-  stageName,
-  onRename,
+function CompanionEntryLink({
+  entry,
+  stage,
+  preview,
 }: {
-  displayName: string;
-  stageName: string;
-  onRename: (name: string) => void;
+  entry: CompanionEntry;
+  stage: JourneyStage;
+  preview?: JourneyStage;
 }) {
-  const [editing, setEditing] = useState(false);
-  const [draft, setDraft] = useState(displayName);
-
-  function commit() {
-    const trimmed = draft.trim();
-    if (trimmed && trimmed !== displayName) onRename(trimmed);
-    setEditing(false);
-  }
-
-  if (editing) {
+  const label = (
+    <>
+      <PortalIcon />
+      <span>{JOURNEY_CTA[stage].label}</span>
+      <ArrowRight size={21} aria-hidden="true" />
+    </>
+  );
+  if (entry.kind === "upgrade") {
     return (
-      <div className="mt-4 flex items-center gap-2">
-        <input
-          autoFocus
-          value={draft}
-          onChange={(e) => setDraft(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") commit();
-            if (e.key === "Escape") {
-              setDraft(displayName);
-              setEditing(false);
-            }
-          }}
-          maxLength={24}
-          placeholder="Name your companion"
-          className="font-display w-full max-w-[260px] rounded-xl border border-[#A78BFA]/40 bg-white/[0.06] px-3 py-2 text-2xl font-black text-white outline-none placeholder:text-white/30 focus:border-[#A78BFA]"
-        />
-        <button
-          type="button"
-          onClick={commit}
-          className="shrink-0 rounded-xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-3 py-2 text-xs font-bold text-white"
-        >
-          Save
-        </button>
-      </div>
+      <Link
+        className="ccp-discover"
+        to="/upgrade"
+        search={{ next: entry.search.next }}
+        data-journey-stage={stage}
+        data-companion-entry="upgrade"
+      >
+        {label}
+      </Link>
     );
   }
-
+  if (entry.kind === "card") {
+    return (
+      <Link
+        className="ccp-discover"
+        to="/nova"
+        data-journey-stage={stage}
+        data-companion-entry="card"
+      >
+        {label}
+      </Link>
+    );
+  }
   return (
-    <button
-      type="button"
-      onClick={() => {
-        setDraft(displayName);
-        setEditing(true);
-      }}
-      className="group mt-4 flex items-center gap-2 text-left"
-      aria-label="Rename companion"
+    <Link
+      className="ccp-discover"
+      to="/companion/portal"
+      search={preview ? { preview } : entry.search}
+      data-journey-stage={stage}
+      data-companion-entry="journey"
     >
-      <h2 className="font-display text-3xl font-black text-white sm:text-4xl">
-        {displayName} {stageName}
-      </h2>
-      <Pencil className="h-4 w-4 text-white/30 transition-colors group-hover:text-white/70" />
-    </button>
+      {label}
+    </Link>
   );
 }
 
-/** Visual preview of what the companion becomes next, so progress feels concrete. */
-function NextEvolutionPreview({
-  speciesId,
-  nextStage,
-  xpNeeded,
-}: {
-  speciesId: CompanionId;
-  nextStage: { id: CompanionStageId; name: string; xpRequired: number };
-  xpNeeded: number;
-}) {
-  return (
-    <div className="mt-5 flex items-center gap-4 rounded-2xl border border-[#22D3EE]/25 bg-[#22D3EE]/[0.06] p-4">
-      <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white/[0.05]">
-        <CompanionImage speciesId={speciesId} stage={nextStage.id} size={52} />
-      </div>
-      <div className="min-w-0">
-        <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#67E8F9]">
-          Next Evolution
-        </p>
-        <p className="mt-0.5 font-display text-lg font-black text-white">{nextStage.name}</p>
-        <p className="text-xs font-bold text-white/50">{xpNeeded.toLocaleString()} XP remaining</p>
-      </div>
-    </div>
-  );
-}
-
-function CompanionStatsCard({
-  displayName,
-  stageName,
-  level,
-  xp,
-  mood,
-  daysTogether,
-}: {
-  displayName: string;
-  stageName: string;
-  level: number;
-  xp: number;
-  mood: ReturnType<typeof getCompanionMood>;
-  daysTogether: number;
-}) {
-  return (
-    <section className="rounded-[2rem] border border-white/[0.09] bg-[#0B1220]/68 p-5 backdrop-blur-2xl sm:p-6">
-      <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#818CF8]">
-        Companion Profile
-      </p>
-      <h2 className="mt-1 font-display text-2xl font-black text-white">{displayName}</h2>
-
-      <dl className="mt-4 grid grid-cols-2 gap-2">
-        <StatField label="Stage" value={stageName} />
-        <StatField label="Companion Level" value={`Level ${level}`} />
-        <StatField label="Lifetime XP" value={`${xp.toLocaleString()} XP`} />
-        <StatField label="Mood" value={`${MOOD_EMOJI[mood]} ${MOOD_LABEL[mood]}`} />
-      </dl>
-      <div className="mt-3 rounded-xl border border-white/[0.07] bg-white/[0.03] px-3 py-2">
-        <p className="text-[9px] font-black uppercase tracking-widest text-white/30">
-          Days Together
-        </p>
-        <p className="mt-0.5 text-sm font-bold text-white">
-          {daysTogether} day{daysTogether !== 1 ? "s" : ""}
-        </p>
-      </div>
-    </section>
-  );
-}
-
-function StatField({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="rounded-xl border border-white/[0.07] bg-white/[0.03] px-3 py-2">
-      <p className="text-[9px] font-black uppercase tracking-widest text-white/30">{label}</p>
-      <p className="mt-0.5 truncate text-sm font-bold text-white">{value}</p>
-    </div>
-  );
-}
-
-function StarterSelection({
-  activeId,
-  displayName,
-}: {
-  activeId: CompanionId;
-  displayName: string;
-}) {
-  return (
-    <section className="rounded-[2rem] border border-white/[0.09] bg-[#0B1220]/68 p-5 backdrop-blur-2xl sm:p-6">
-      <div className="mb-5">
-        <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#818CF8]">
-          Starter Companion
-        </p>
-        <h2 className="mt-1 font-display text-2xl font-black text-white">Your Active Companion</h2>
-      </div>
-
-      <div className="space-y-3">
-        {STARTERS.map((starter) => (
-          <div
-            key={starter.id}
-            className={`flex w-full items-center gap-3 rounded-2xl border p-3 text-left transition-transform hover:-translate-y-0.5 ${
-              starter.id === activeId
-                ? "border-[#F0ABFC]/45 bg-[#F0ABFC]/10"
-                : "border-white/[0.08] bg-white/[0.04]"
-            }`}
-          >
-            <CompanionMini starter={starter} />
-            <div className="min-w-0 flex-1">
-              <p className="font-black text-white">
-                {starter.id === activeId ? displayName : starter.name}
-              </p>
-              <p className="text-xs text-white/45">
-                {starter.role} · {starter.focus}
-              </p>
-            </div>
-            <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-300" />
-          </div>
-        ))}
-      </div>
-      <p className="mt-4 text-[11px] leading-5 text-white/35">
-        More starter companions are on the way — for now, {displayName} is your guide through
-        AcadeMY.
-      </p>
-    </section>
-  );
-}
-
-function EvolutionPath({
-  activeStage,
-  xp,
-  speciesId,
-}: {
-  activeStage: CompanionStageId;
-  xp: number;
-  speciesId: CompanionId;
-}) {
-  const activeIndex = Math.max(
-    0,
-    COMPANION_STAGES.findIndex((s) => s.id === activeStage),
-  );
-
-  return (
-    <section className="rounded-[2rem] border border-white/[0.09] bg-[#0B1220]/68 p-5 backdrop-blur-2xl sm:p-6">
-      <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
-        <div>
-          <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#818CF8]">
-            Evolution Journey
-          </p>
-          <h2 className="mt-1 font-display text-2xl font-black text-white">Growth Path</h2>
-        </div>
-        <p className="text-xs font-bold text-white/45">Powered by Lifetime XP</p>
-      </div>
-
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-        {COMPANION_STAGES.map((stage, index) => {
-          const active = index === activeIndex;
-          const completed = index < activeIndex;
-          const locked = index > activeIndex;
-          return (
-            <div
-              key={stage.id}
-              className={`relative overflow-hidden rounded-2xl border p-4 ${
-                active
-                  ? "border-[#A78BFA]/50 bg-[#A78BFA]/12 shadow-[0_0_36px_rgba(167,139,250,0.22)]"
-                  : completed
-                    ? "border-emerald-300/25 bg-emerald-400/[0.06]"
-                    : "border-white/[0.07] bg-white/[0.035] opacity-70"
-              }`}
-            >
-              {index < COMPANION_STAGES.length - 1 && (
-                <div className="pointer-events-none absolute right-3 top-1/2 hidden h-px w-10 bg-gradient-to-r from-white/20 to-transparent lg:block" />
-              )}
-              <div
-                className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl"
-                style={{
-                  background: `${STAGE_ART[stage.id].tint}22`,
-                  boxShadow: active ? `0 0 28px ${STAGE_ART[stage.id].tint}55` : undefined,
-                }}
-              >
-                {locked ? (
-                  <Lock className="h-4 w-4 text-white/30" />
-                ) : (
-                  <CompanionImage speciesId={speciesId} stage={stage.id} size={48} />
-                )}
-              </div>
-              <p className="font-black text-white">{stage.name}</p>
-              <p className="mt-1 text-xs text-white/45">
-                {stage.xpRequired.toLocaleString()} XP required
-              </p>
-              <div className="mt-4 flex items-center gap-1.5 text-xs font-bold">
-                {active ? (
-                  <span className="text-[#C4B5FD]">Current stage</span>
-                ) : completed ? (
-                  <span className="flex items-center gap-1 text-emerald-300">
-                    <CheckCircle2 className="h-3.5 w-3.5" /> Completed
-                  </span>
-                ) : (
-                  <span className="flex items-center gap-1 text-white/35">
-                    <Lock className="h-3 w-3" /> Locked
-                  </span>
-                )}
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </section>
-  );
-}
-
-function CompanionArtwork({
-  starter,
-  stage,
-  size,
-}: {
-  starter: (typeof STARTERS)[number];
-  stage: CompanionStageId;
-  size: "large" | "hero";
-}) {
-  const dimension = size === "hero" ? "clamp(220px, 28vw, 320px)" : "clamp(150px, 18vw, 190px)";
-  return (
-    <div
-      className="relative flex items-center justify-center animate-[companionFloat_4.6s_ease-in-out_infinite]"
-      style={{ width: dimension, height: dimension }}
-      aria-label={`${starter.name} — ${stage} stage`}
-    >
-      <div
-        className="cosmic-companion-glow absolute inset-0 rounded-full opacity-65 blur-2xl"
-        style={{ background: starter.accent }}
-      />
-      <div
-        className="absolute inset-[11%] rounded-full border border-white/20"
-        style={{ boxShadow: `0 0 50px ${starter.accent}70` }}
-      />
-      <div className="absolute inset-[4%] rounded-full border border-white/10 animate-[companionOrbit_6s_linear_infinite]" />
-      <CompanionImage
-        speciesId={starter.id}
-        stage={stage}
-        size="92%"
-        className="relative z-10 drop-shadow-[0_10px_24px_rgba(0,0,0,0.45)]"
-      />
-      <span className="absolute left-[18%] top-[12%] h-2 w-2 rounded-full bg-white/80 shadow-[0_0_12px_rgba(255,255,255,0.8)]" />
-      <span className="absolute bottom-[18%] right-[16%] h-1.5 w-1.5 rounded-full bg-white/70 shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
-    </div>
-  );
-}
-
-function CompanionMini({ starter }: { starter: (typeof STARTERS)[number] }) {
-  return (
-    <div
-      className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl"
-      style={{ boxShadow: `0 0 20px ${starter.accent}55` }}
-    >
-      <CompanionImage speciesId={starter.id} stage="egg" size={40} />
-    </div>
-  );
-}
-
-function MetricCard({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="rounded-2xl border border-white/[0.08] bg-white/[0.045] p-4">
-      <p className="text-[10px] font-black uppercase tracking-[0.18em] text-white/35">{label}</p>
-      <p className="mt-1 truncate text-lg font-black text-white">{value}</p>
-    </div>
-  );
-}
-
-function CompanionBackdrop() {
-  return (
-    <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_14%_5%,rgba(139,92,246,0.25),transparent_30%),radial-gradient(circle_at_88%_20%,rgba(34,211,238,0.18),transparent_26%),radial-gradient(circle_at_50%_95%,rgba(244,114,182,0.12),transparent_32%)]" />
-      <div className="absolute inset-0 opacity-35 [background-image:radial-gradient(circle,rgba(255,255,255,0.7)_1px,transparent_1px)] [background-size:38px_38px]" />
-      <Star className="absolute left-[8%] top-[16%] h-3 w-3 animate-pulse text-white/60" />
-      <Orbit className="absolute right-[12%] top-[34%] h-5 w-5 animate-pulse text-[#A78BFA]/50 [animation-delay:900ms]" />
-      <Sparkles className="absolute bottom-[15%] left-[20%] h-4 w-4 animate-pulse text-[#F0ABFC]/50 [animation-delay:1500ms]" />
-    </div>
-  );
+/** Localhost-only Premium / Free switch. The import stays inside the dev branch. */
+function LocalPlanToggle() {
+  const [toggle, setToggle] = useState<ReactNode>(null);
+  useEffect(() => {
+    if (!import.meta.env.DEV) return;
+    let cancelled = false;
+    void import("@/lib/dev-auth/DevSignInPanel").then((mod) => {
+      if (!cancelled) setToggle(<mod.DevPremiumToggle />);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  return toggle;
 }

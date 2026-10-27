@@ -890,22 +890,22 @@ export const sejarahF2C5MindMap: MindNode = {
                     {
                       id: "sejarah-f2-c5-empayar-politik-kat",
                       label: "Politik",
-                      children: [{ id: "sejarah-f2-c5-empayar-politik", label: "Pengukuhan politik" }],
+                      children: [{ id: "sejarah-f2-c5-empayar-politik", label: "Meluaskan wilayah; menyekat pengaruh Siam, Majapahit dan Pasai" }],
                     },
                     {
                       id: "sejarah-f2-c5-empayar-ekonomi",
                       label: "Ekonomi",
-                      children: [{ id: "sejarah-f2-c5-empayar-hasil", label: "Hasil kerajaan" }],
+                      children: [{ id: "sejarah-f2-c5-empayar-hasil", label: "Hadiah, bekalan dan penguasaan perdagangan Selat Melaka" }],
                     },
                     {
                       id: "sejarah-f2-c5-empayar-selamat-kat",
-                      label: "Keselamatan",
-                      children: [{ id: "sejarah-f2-c5-empayar-selamat", label: "Keselamatan" }],
+                      label: "Sosial",
+                      children: [{ id: "sejarah-f2-c5-empayar-selamat", label: "Asimilasi budaya dan masyarakat majmuk" }],
                     },
                     {
                       id: "sejarah-f2-c5-empayar-dagang-kat",
-                      label: "Perdagangan",
-                      children: [{ id: "sejarah-f2-c5-empayar-dagang", label: "Perdagangan" }],
+                      label: "Agama",
+                      children: [{ id: "sejarah-f2-c5-empayar-dagang", label: "Islam berkembang ke wilayah empayar" }],
                     },
                   ],
                 },
@@ -921,7 +921,7 @@ export const sejarahF2C5MindMap: MindNode = {
                   children: [
                     {
                       id: "sejarah-f2-c5-islam-pusat",
-                      label: "Pusat pengaruh Islam yang paling berpengaruh di Alam Melayu",
+                      label: "Pusat penyebaran Islam yang unggul di Alam Melayu",
                     },
                   ],
                 },
@@ -965,7 +965,7 @@ export const sejarahF2C5MindMap: MindNode = {
                       children: [
                         {
                           id: "sejarah-f2-c5-islam-dagang",
-                          label: "Pedagang Islam dari Arab, Parsi dan India berdakwah semasa berniaga",
+                          label: "Pedagang Arab, India dan China turut menyebarkan Islam",
                         },
                       ],
                     },
@@ -997,7 +997,7 @@ export const sejarahF2C5MindMap: MindNode = {
                   children: [
                     {
                       id: "sejarah-f2-c5-islam-kesan-serentak",
-                      label: "Penyebaran berlaku serentak dengan perkembangan empayar dan perdagangan",
+                      label: "Pusat ilmu, tulisan Jawi berkembang, undang-undang Islam serta jawatan mufti dan kadi",
                     },
                   ],
                 },

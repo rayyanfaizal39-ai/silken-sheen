@@ -1,0 +1,323 @@
+/* Waiting sanctuary: shares the Awakening chamber's layout, panel and egg (awakening-chamber.css)
+   and adds the reveal countdown, preparation timeline and waiting actions. */
+.cws-panel {
+  gap: 9px;
+}
+
+.cws-preview-tag {
+  justify-self: start;
+  margin: 0;
+  padding: 4px 10px;
+  border: 1px dashed rgba(246, 202, 120, 0.45);
+  border-radius: 999px;
+  color: var(--cca-gold-light);
+  font-family: var(--font-label);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* ── Countdown ─────────────────────────────────────────────────────────────────────────── */
+.cws-countdown {
+  position: relative;
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+  padding: 12px 20px;
+  overflow: hidden;
+  border: 1px solid rgba(246, 202, 120, 0.4);
+  border-radius: 18px;
+  background:
+    radial-gradient(ellipse 70% 120% at 60% 50%, rgba(124, 58, 237, 0.35), transparent 70%),
+    linear-gradient(160deg, rgba(42, 26, 92, 0.7), rgba(14, 12, 40, 0.8));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 222, 165, 0.15),
+    0 0 34px rgba(124, 58, 237, 0.3);
+  animation: cws-glow 5s ease-in-out infinite;
+}
+
+.cws-countdown__icon {
+  color: var(--cca-gold-light);
+  filter: drop-shadow(0 0 8px rgba(246, 202, 120, 0.5));
+}
+
+.cws-countdown__label {
+  margin: 0 0 2px;
+  color: rgba(223, 225, 246, 0.72);
+  font-family: var(--font-label);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.cws-countdown__time {
+  margin: 0;
+  color: var(--cca-gold-light);
+  font-family: var(--font-headline);
+  font-size: clamp(1.75rem, 2.6vw, 2.35rem);
+  font-weight: 600;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  text-shadow: 0 0 18px rgba(246, 202, 120, 0.35);
+}
+
+.cws-countdown__time small {
+  margin-left: 1px;
+  font-size: 0.55em;
+  color: rgba(255, 222, 165, 0.8);
+}
+
+.cws-countdown__when,
+.cws-countdown__message {
+  margin: 4px 0 0;
+  color: rgba(223, 225, 246, 0.78);
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+
+.cws[data-state="ready"] .cws-countdown {
+  border-color: rgba(134, 239, 172, 0.45);
+}
+
+/* ── Timeline ──────────────────────────────────────────────────────────────────────────── */
+.cws-steps {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cws-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 30px 30px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  padding: 4px 0;
+  animation: cca-rise 450ms ease-out both;
+  animation-delay: calc(450ms + var(--cws-n) * 90ms);
+}
+
+/* The thread joining each step to the next. */
+.cws-step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: calc(50% + 15px);
+  left: 14px;
+  width: 2px;
+  height: calc(100% - 22px);
+  background: rgba(196, 181, 253, 0.2);
+}
+
+.cws-step__mark {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1.5px solid rgba(196, 181, 253, 0.3);
+  border-radius: 50%;
+  background: rgba(9, 10, 28, 0.7);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.cws-step__icon {
+  display: grid;
+  place-items: center;
+  color: rgba(223, 225, 246, 0.45);
+}
+
+.cws-step b {
+  display: block;
+  color: rgba(223, 225, 246, 0.6);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.cws-step small {
+  display: block;
+  margin-top: 1px;
+  color: rgba(223, 225, 246, 0.5);
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.cws-step[data-state="done"] .cws-step__mark {
+  border-color: rgba(134, 239, 172, 0.7);
+  background: rgba(22, 101, 52, 0.55);
+  color: #bbf7d0;
+}
+
+.cws-step[data-state="done"] :is(b, .cws-step__icon) {
+  color: var(--cca-ink);
+}
+
+.cws-step[data-state="done"]:not(:last-child)::after {
+  background: rgba(134, 239, 172, 0.4);
+}
+
+.cws-step[data-state="active"] .cws-step__mark {
+  border-color: rgba(196, 181, 253, 0.9);
+  background: radial-gradient(circle, #8b5cf6, #4c1d95);
+  box-shadow: 0 0 16px rgba(139, 92, 246, 0.75);
+  animation: cws-current 2.8s ease-in-out infinite;
+}
+
+.cws-step[data-state="active"] b {
+  color: var(--cca-gold-light);
+}
+
+.cws-step[data-state="active"] .cws-step__icon {
+  color: var(--cca-gold);
+}
+
+.cws-step[data-state="failed"] .cws-step__mark {
+  border-color: rgba(251, 191, 36, 0.8);
+  background: rgba(120, 53, 15, 0.6);
+  color: #fde68a;
+}
+
+.cws-step[data-state="failed"] :is(b, .cws-step__icon) {
+  color: #fcd34d;
+}
+
+.cws-prepared {
+  margin: 0;
+  color: rgba(223, 225, 246, 0.55);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+/* ── While you wait ────────────────────────────────────────────────────────────────────── */
+.cws-wait {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  padding: 10px 14px;
+  border: 1px solid rgba(196, 181, 253, 0.22);
+  border-radius: 16px;
+  background: linear-gradient(160deg, rgba(42, 30, 92, 0.5), rgba(12, 11, 34, 0.6));
+}
+
+.cws-wait__icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(240, 171, 252, 0.4);
+  border-radius: 50%;
+  color: #f0abfc;
+  box-shadow: 0 0 18px rgba(192, 132, 252, 0.3);
+}
+
+.cws-wait b {
+  color: var(--cca-ink);
+  font-family: var(--font-headline);
+  font-size: 1rem;
+}
+
+.cws-wait p {
+  margin: 2px 0 0;
+  color: rgba(223, 225, 246, 0.62);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+/* ── Actions ───────────────────────────────────────────────────────────────────────────── */
+.cws-actions {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+}
+
+.cws-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 22px;
+  border: 1px solid rgba(196, 181, 253, 0.35);
+  border-radius: 999px;
+  color: var(--cca-ink);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    border-color 250ms ease,
+    background 250ms ease;
+}
+
+.cws-secondary:hover {
+  border-color: rgba(246, 202, 120, 0.6);
+  background: rgba(124, 58, 237, 0.15);
+}
+
+.cws-secondary:focus-visible {
+  outline: 2px solid var(--cca-gold-light);
+  outline-offset: 3px;
+}
+
+.cws-fine {
+  margin: 0;
+  color: rgba(223, 225, 246, 0.45);
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+@keyframes cws-glow {
+  0%,
+  100% {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 222, 165, 0.15),
+      0 0 28px rgba(124, 58, 237, 0.25);
+  }
+  50% {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 222, 165, 0.22),
+      0 0 42px rgba(124, 58, 237, 0.4);
+  }
+}
+
+@keyframes cws-current {
+  0%,
+  100% {
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.9);
+  }
+}
+
+/* ── Phones: status first, then the timeline and actions; While You Wait comes last. ──── */
+@media (max-width: 560px) {
+  .cws-countdown {
+    grid-template-columns: 40px minmax(0, 1fr);
+    gap: 12px;
+    padding: 14px 16px;
+  }
+
+  .cws-countdown__time {
+    font-size: 1.8rem;
+  }
+
+  .cws-wait {
+    order: 10;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cws-countdown,
+  .cws-step,
+  .cws-step[data-state="active"] .cws-step__mark {
+    animation: none;
+  }
+}
+
+.cws[data-calm="true"] :is(.cws-countdown, .cws-step, .cws-step__mark) {
+  animation: none;
+}

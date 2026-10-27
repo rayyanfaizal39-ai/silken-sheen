@@ -1,0 +1,5 @@
+// Original artwork URLs from the supplied archive. Fictional preview only.
+export const SOURCE_FOX_ARTWORK = [
+  "https://lh3.googleusercontent.com/aida-public/AB6AXuCuxHd6JM_CukXOQzxQWOUrSyxZjb6hzp-bNJB-Divm5lOj39Zr61NXukvO3XbCxDarh6I-xl0X97yA1yv8mXwQWaT89D5JBcIEs-2FvlqWmCDEdHAi248eeS5jtMFeWRA4cP1Z831x5W45fpUhBkpkMrOR9aGeH1AGR_4aRxD1g5WO7suDCB6diDwQwOcNASGR5I7Y5UbPPtZYy6e2cvW9pKFX5-IcqoPWBDxoL444aMHppwu3u-iDFaGmeMlTFcNEwH8",
+  "https://lh3.googleusercontent.com/aida-public/AB6AXuA7w4OETjp6NBTKUDURt9Thgwo_NbGbQc7QIuBz0qTZTO4rQAUnMSCzeekAWYrUOlxzsDosSBytsw-GqcF99cuuiFKCw3h4n87AG0rtJAlLnQncZeeoGHbF2QeTcWIvurGgk9IZK2ktJVB8UlhWDEll0uJVtkjk0d9XBRMT16RuwmoTu9c2R5Umn5w9uxv3uOLd5-nyjehGJm3UYo-uUudoLr3nOGhCnnKgHK9XwsM6upKXNU9pSCfaWQ",
+] as const;

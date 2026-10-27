@@ -343,13 +343,13 @@ const quizContent: QuizSeed[] = [
     "Hard",
     "Manakah padanan budaya Sabah yang betul?",
     [
-      "Kaamatan - Kadazandusun dan Murut; Regatta Lepa - Bajau/Sama; Sumazau - Kadazandusun; Magunatip - Murut; Limbai - Bajau/Sama",
-      "Kaamatan - Bajau; Regatta Lepa - Murut; Sumazau - Suluk; Magunatip - Kadazandusun; Limbai - Rungus",
-      "Kaamatan - Orang Sungai; Regatta Lepa - Kadazandusun; Sumazau - Murut; Magunatip - Bajau; Limbai - Suluk",
-      "Kaamatan - Suluk; Regatta Lepa - Orang Sungai; Sumazau - Rungus; Magunatip - Bajau; Limbai - Murut",
+      "Kaamatan - Kadazandusun dan Murut; Regata Lepa - Bajau/Sama; Sumazau - Kadazandusun; Magunatip - Murut; Limbai - Bajau/Sama",
+      "Kaamatan - Bajau; Regata Lepa - Murut; Sumazau - Suluk; Magunatip - Kadazandusun; Limbai - Rungus",
+      "Kaamatan - Orang Sungai; Regata Lepa - Kadazandusun; Sumazau - Murut; Magunatip - Bajau; Limbai - Suluk",
+      "Kaamatan - Suluk; Regata Lepa - Orang Sungai; Sumazau - Rungus; Magunatip - Bajau; Limbai - Murut",
     ],
     0,
-    "Kaamatan disambut Kadazandusun dan Murut, Regatta Lepa oleh Bajau/Sama, Sumazau oleh Kadazandusun, Magunatip oleh Murut dan Limbai oleh Bajau/Sama.",
+    "Kaamatan disambut Kadazandusun dan Murut, Regata Lepa oleh Bajau/Sama, Sumazau oleh Kadazandusun, Magunatip oleh Murut dan Limbai oleh Bajau/Sama.",
   ],
   [
     "Hard",

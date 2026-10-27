@@ -19,6 +19,25 @@
 import { PLAN_FEATURES, type Feature, type Plan } from "@/config/features";
 
 /**
+ * Persisted billing/profile values mapped into the canonical feature-plan vocabulary.
+ * The review-only database entitlement migration carries the same map and a parity test
+ * prevents either side from changing independently.
+ */
+export const STORED_PLAN_ALIASES = {
+  basic: "basic",
+  explorer: "explorer",
+  captain: "captain",
+  teacher: "teacher",
+  school: "school",
+  enterprise: "enterprise",
+  free: "basic",
+  // profiles.plan = 'paid' is written for every successful payment, including Basic and Pro.
+  paid: "explorer",
+  pro: "explorer",
+  premium: "captain",
+} as const satisfies Readonly<Record<string, Plan>>;
+
+/**
  * Translates billing values into the feature-plan vocabulary. Active
  * subscriptions use basic/pro/premium. profiles.plan = 'paid' is written for
  * every successful payment, including Basic and Pro, so it is not Premium
@@ -26,13 +45,8 @@ import { PLAN_FEATURES, type Feature, type Plan } from "@/config/features";
  * never branch on plan names.
  */
 export function resolveStoredPlan(storedPlan: string | null | undefined): Plan {
-  if (storedPlan === "pro") return "explorer";
-  if (storedPlan === "premium") return "captain";
-  if (storedPlan === "paid") return "explorer";
-  if (storedPlan && Object.prototype.hasOwnProperty.call(PLAN_FEATURES, storedPlan)) {
-    return storedPlan as Plan;
-  }
-  return "basic";
+  if (!storedPlan) return "basic";
+  return STORED_PLAN_ALIASES[storedPlan as keyof typeof STORED_PLAN_ALIASES] ?? "basic";
 }
 
 /**

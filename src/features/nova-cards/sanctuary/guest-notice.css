@@ -1,0 +1,55 @@
+/* Guest notice: friendly, clearly visible, never in the way of the journey's controls. */
+.cc-guest {
+  max-width: 34rem;
+  margin: 0 auto;
+  padding: 10px 16px;
+  border: 1px dashed rgba(246, 202, 120, 0.5);
+  border-radius: 14px;
+  background: rgba(30, 22, 64, 0.72);
+  color: rgba(236, 232, 255, 0.86);
+  font-size: 0.86rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.cc-guest p {
+  margin: 0;
+}
+
+.cc-guest b {
+  color: #ffdea5;
+}
+
+.cc-guest a {
+  color: #ffdea5;
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
+
+.cc-guest a:focus-visible {
+  outline: 2px solid #ffdea5;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* During the questions: a slim pill above the Studio's bottom controls. */
+.cc-guest--compact {
+  position: fixed;
+  z-index: 61;
+  left: 50%;
+  bottom: 18px;
+  max-width: calc(100vw - 32px);
+  margin: 0;
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  white-space: nowrap;
+  transform: translateX(-50%);
+  backdrop-filter: blur(8px);
+}
+
+@media (max-width: 760px) {
+  .cc-guest--compact {
+    bottom: 66px;
+  }
+}

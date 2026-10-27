@@ -1,0 +1,646 @@
+import type { ExplorerProfile } from "@/lib/explorer-profile";
+import { NOVA_ACCESS_ERRORS } from "@/features/nova-cards/access";
+import { novaEntitlement, type NovaEntitlement } from "@/features/nova-cards/entitlement";
+import {
+  traitsFromAnswers,
+  type NovaCard,
+  type PublicCompanion,
+} from "@/features/nova-cards/model";
+import type { StudioDraft, StudioState } from "@/features/nova-cards/studio-model";
+import {
+  CompanionMatchError,
+  matchCompanions,
+  type CompanionCandidateSpec,
+} from "../../../supabase/functions/_shared/companion-matcher";
+import {
+  CRAFT_OUTPUT_RULES,
+  type CraftArtistBrief,
+  type CraftBrief,
+} from "@/features/nova-cards/craft-queue";
+import { deriveVisualDna } from "../../../supabase/functions/_shared/companion-dna";
+import { devCompanionArtworkUrl } from "./local-artwork";
+import { devStudentById, type DevStudent } from "./students";
+
+export const DEV_AUTH_STORAGE_KEY = "academymy.dev-auth.v1";
+
+export interface KeyValueStorage {
+  getItem(key: string): string | null;
+  setItem(key: string, value: string): void;
+  removeItem(key: string): void;
+}
+
+interface StudentRecord {
+  studio: StudioState;
+  card: NovaCard | null;
+  /** Set when this card was created under an active cosmic_companion entitlement. */
+  journeyEntitled?: boolean;
+  /** Card id for the artist brief. Separate from the demo account id. */
+  localCardId?: string;
+  /** When the student confirmed a companion and entered the staff queue. */
+  queuedAt?: string | null;
+  /** Staff portrait workflow. Absent until the student confirms a companion. */
+  craft?: {
+    options?: { option: 1 | 2; url: string }[];
+    choice?: 1 | 2;
+  };
+}
+
+interface PersistedDevAuth {
+  activeStudentId: string | null;
+  /** Demo plan. True is the paid cosmic_companion entitlement. False is free. */
+  premium: boolean;
+  students: Record<string, StudentRecord>;
+}
+
+const fallbackMemory = createMemoryStorage();
+let override: KeyValueStorage | null = null;
+
+export function createMemoryStorage(): KeyValueStorage {
+  const data = new Map<string, string>();
+  return {
+    getItem: (key) => data.get(key) ?? null,
+    setItem: (key, value) => {
+      data.set(key, value);
+    },
+    removeItem: (key) => {
+      data.delete(key);
+    },
+  };
+}
+
+/** Tests inject a memory store. Pass null to return to localStorage. */
+export function useDevAuthStorage(next: KeyValueStorage | null) {
+  override = next;
+}
+
+function storage(): KeyValueStorage {
+  if (override) return override;
+  if (typeof localStorage !== "undefined") return localStorage;
+  return fallbackMemory;
+}
+
+function blankStudio(student: DevStudent): StudioState {
+  return {
+    active: true,
+    enabled: true,
+    draft: { answers: [], username: student.name, revision: 0 },
+    publicId: null,
+    identity: null,
+    selected: null,
+    origin: null,
+    candidates: [],
+    account: student.id,
+    kind: null,
+    companion: null,
+  };
+}
+
+function emptyState(): PersistedDevAuth {
+  return { activeStudentId: null, premium: true, students: {} };
+}
+
+function read(): PersistedDevAuth {
+  try {
+    const raw = storage().getItem(DEV_AUTH_STORAGE_KEY);
+    if (!raw) return emptyState();
+    const parsed = JSON.parse(raw) as PersistedDevAuth;
+    if (!parsed || typeof parsed !== "object" || typeof parsed.students !== "object")
+      return emptyState();
+    for (const record of Object.values(parsed.students)) {
+      if (record?.card && record.journeyEntitled === undefined) record.journeyEntitled = true;
+    }
+    return {
+      activeStudentId: typeof parsed.activeStudentId === "string" ? parsed.activeStudentId : null,
+      premium: parsed.premium !== false,
+      students: parsed.students,
+    };
+  } catch {
+    return emptyState();
+  }
+}
+
+/** Local demo plan. Premium grants cosmic_companion. Free does not. */
+export function devCompanionPremium() {
+  return read().premium;
+}
+
+export function devSetCompanionPremium(premium: boolean) {
+  const state = read();
+  state.premium = premium;
+  write(state);
+}
+
+const storeListeners = new Set<() => void>();
+
+/** Same-tab updates for the dashboard and companion page. */
+export function subscribeDevStore(listener: () => void) {
+  storeListeners.add(listener);
+  listener();
+  return () => {
+    storeListeners.delete(listener);
+  };
+}
+
+function write(state: PersistedDevAuth) {
+  storage().setItem(DEV_AUTH_STORAGE_KEY, JSON.stringify(state));
+  for (const listener of storeListeners) listener();
+}
+
+function ensureStudent(state: PersistedDevAuth, student: DevStudent): StudentRecord {
+  const existing = state.students[student.id];
+  if (existing?.studio) return existing;
+  const created = { studio: blankStudio(student), card: null };
+  state.students[student.id] = created;
+  return created;
+}
+
+export function devAuthActiveStudentId(): string | null {
+  const id = read().activeStudentId;
+  return id && devStudentById(id) ? id : null;
+}
+
+export function signInDevStudentRecord(studentId: string) {
+  const student = devStudentById(studentId);
+  if (!student) throw new Error("Choose a local demo student.");
+  const state = read();
+  ensureStudent(state, student);
+  state.activeStudentId = student.id;
+  write(state);
+}
+
+export function signOutDevStudentRecord() {
+  const state = read();
+  state.activeStudentId = null;
+  write(state);
+}
+
+export function devExplorerProfile(student: DevStudent): ExplorerProfile {
+  return {
+    displayName: student.name,
+    age: student.age,
+    formLevel: student.formLevel,
+    recordedForm: student.formLevel,
+    schoolId: null,
+    onboardingCompleted: true,
+    role: student.role ?? "student",
+  };
+}
+
+function activeRecord(): { student: DevStudent; record: StudentRecord; state: PersistedDevAuth } {
+  const state = read();
+  const student = state.activeStudentId ? devStudentById(state.activeStudentId) : undefined;
+  if (!student) throw new Error(NOVA_ACCESS_ERRORS.signedOut);
+  const record = ensureStudent(state, student);
+  return { student, record, state };
+}
+
+function persist(state: PersistedDevAuth) {
+  write(state);
+}
+
+function artworkFor(species: string, element: string, variant: "a" | "b") {
+  return devCompanionArtworkUrl(species, element, variant);
+}
+
+/** Comparison drawings only, before the student confirms a companion. */
+function withArtwork(studio: StudioState): StudioState {
+  const specs = !studio.selected && studio.companions?.length ? studio.companions : [];
+  if (!specs.length) return studio;
+  const candidates = specs.map((spec) => {
+    const saved = studio.candidates.find((item) => item.candidate === spec.slot && item.url);
+    return {
+      candidate: spec.slot,
+      url: saved?.url || artworkFor(spec.species, spec.element, spec.slot),
+    };
+  });
+  // Comparison drawings only. A confirmed card waits for a staff portrait.
+  return { ...studio, candidates };
+}
+
+/** Students follow the Premium toggle. An admin may summon on their own card either way. */
+function ownJourneyOpen(student: DevStudent, premium: boolean) {
+  return premium || student.role === "admin";
+}
+
+export function devLoadStudio(): Promise<StudioState> {
+  const { student, record, state } = activeRecord();
+  const studio = withArtwork(structuredClone(record.studio));
+  return Promise.resolve({ ...studio, active: ownJourneyOpen(student, state.premium) });
+}
+
+export async function devSaveStudio(draft: StudioDraft): Promise<StudioDraft> {
+  const { student, record, state } = activeRecord();
+  if (record.studio.publicId) throw new Error("Your companion journey is already complete.");
+  if (!ownJourneyOpen(student, state.premium))
+    throw new Error("An eligible learning plan is required to begin your companion journey.");
+  record.studio = {
+    ...record.studio,
+    draft: { ...draft, revision: draft.revision + 1 },
+  };
+  persist(state);
+  return Promise.resolve(structuredClone(record.studio.draft));
+}
+
+function toPublicCompanion(spec: CompanionCandidateSpec): PublicCompanion {
+  return {
+    archetypeId: spec.archetypeId,
+    name: spec.name,
+    species: spec.species,
+    element: spec.element,
+    personality: spec.personality,
+    tagline: spec.tagline,
+    description: spec.description,
+    traits: [...spec.traits],
+    abilities: [...spec.abilities],
+  };
+}
+
+export async function devSubmitStudio(): Promise<StudioState> {
+  const { student, record, state } = activeRecord();
+  if (record.studio.publicId) throw new Error("Your companion journey is already complete.");
+  if (!ownJourneyOpen(student, state.premium))
+    throw new Error("An eligible learning plan is required to begin your companion journey.");
+  const answers = record.studio.draft.answers;
+  let match;
+  try {
+    match = matchCompanions(answers);
+  } catch (error) {
+    if (error instanceof CompanionMatchError)
+      throw new Error("Answer all twelve questions before summoning your companion.");
+    throw error;
+  }
+  const preference = match.candidates.find((spec) => spec.slot === "a") ?? match.candidates[0];
+  if (!student.serial) throw new Error("This account does not receive a companion card.");
+  const username = record.studio.draft.username;
+  record.card = {
+    publicId: student.id,
+    serial: student.serial,
+    username,
+    traits: null,
+    companion: toPublicCompanion(preference),
+    variant: "a",
+    rarity: "Rare",
+    stage: 1,
+    sharing: false,
+    crafting: true,
+  };
+  record.craft = {};
+  if (!record.queuedAt) record.queuedAt = new Date().toISOString();
+  if (!record.localCardId) record.localCardId = crypto.randomUUID();
+  record.studio = {
+    ...record.studio,
+    publicId: student.id,
+    identity: {
+      version: "nova-identity-v1",
+      answers: [...answers],
+      traits: traitsFromAnswers(answers),
+    },
+    kind: "cosmic-companion",
+    companions: undefined,
+    companion: preference,
+    selected: "a",
+    origin: {
+      status: "queued",
+      revealAfter: new Date().toISOString(),
+      ready: false,
+      errorCode: null,
+      completed: 0,
+    },
+    candidates: [],
+  };
+  record.journeyEntitled = true;
+  persist(state);
+  return Promise.resolve(structuredClone(record.studio));
+}
+
+export function devChooseStudio(candidate: "a" | "b"): Promise<StudioState> {
+  const { student, record, state } = activeRecord();
+  if (!student.serial) throw new Error("This account does not receive a companion card.");
+  if (record.studio.selected) return Promise.resolve(structuredClone(record.studio));
+  const spec = record.studio.companions?.find((item) => item.slot === candidate);
+  if (!spec || !record.studio.publicId)
+    throw new Error("Meet both companions before choosing one.");
+  const username = record.studio.draft.username;
+  const card: NovaCard = {
+    publicId: record.studio.publicId,
+    serial: student.serial,
+    username,
+    traits: null,
+    companion: toPublicCompanion(spec),
+    variant: candidate,
+    rarity: "Rare",
+    stage: 1,
+    sharing: false,
+    crafting: true,
+    artOptions: undefined,
+  };
+  record.card = card;
+  record.craft = {};
+  if (!record.queuedAt) record.queuedAt = new Date().toISOString();
+  if (!record.localCardId) record.localCardId = crypto.randomUUID();
+  record.studio = {
+    ...record.studio,
+    selected: candidate,
+    companion: spec,
+    companions: undefined,
+    companionArtworkUrl: undefined,
+    candidates: [],
+  };
+  persist(state);
+  return Promise.resolve(structuredClone(record.studio));
+}
+
+export function devDashboardStatus() {
+  const { student, record, state } = activeRecord();
+  const studio = record.studio;
+  const portraitReady = !!record.card?.artworkUrl;
+  return {
+    active: ownJourneyOpen(student, state.premium),
+    selected: portraitReady,
+    ready: false,
+    pending: !!record.card && !portraitReady,
+    failed: studio.origin?.status === "failed",
+    unfinished: !studio.publicId && studio.draft.answers.length > 0,
+  };
+}
+
+export type DevDemoCompanion =
+  | { discovered: false }
+  | {
+      discovered: true;
+      crafting: boolean;
+      choosing: boolean;
+      name: string;
+      species: string;
+      element: string;
+      artworkUrl?: string;
+    };
+
+/** What the dashboard and Cosmic Companion page should show for this browser session. */
+export function devDemoCompanion(): DevDemoCompanion {
+  try {
+    const { record } = activeRecord();
+    const companion = record.card?.companion;
+    if (!record.card || !companion) return { discovered: false };
+    const choosing = (record.card.artOptions?.length ?? 0) === 2 && !record.card.artworkUrl;
+    const crafting = !choosing && (Boolean(record.card.crafting) || !record.card.artworkUrl);
+    return {
+      discovered: true,
+      crafting,
+      choosing,
+      name: companion.name,
+      species: companion.species,
+      element: companion.element,
+      ...(crafting || choosing || typeof record.card.artworkUrl !== "string"
+        ? {}
+        : { artworkUrl: record.card.artworkUrl }),
+    };
+  } catch {
+    return { discovered: false };
+  }
+}
+
+export function devOwnerNova(): { card: NovaCard | null; entitlement: NovaEntitlement } {
+  const { student, record, state } = activeRecord();
+  const card = record.card ? structuredClone(record.card) : null;
+  const open = ownJourneyOpen(student, state.premium);
+  return {
+    card,
+    entitlement: open ? { active: true, status: "active" } : novaEntitlement(null),
+  };
+}
+
+export function devSetSharing(enabled: boolean): NovaCard {
+  const { record, state } = activeRecord();
+  if (!record.card) throw new Error("Create your companion first");
+  record.card = { ...record.card, sharing: enabled };
+  persist(state);
+  return structuredClone(record.card);
+}
+
+/** Shared local card, or null when it is private or unknown. */
+export function readDevPublicCard(publicId: string): NovaCard | null {
+  const state = read();
+  for (const record of Object.values(state.students)) {
+    if (record.card?.publicId === publicId && record.card.sharing) {
+      const { artOptions: _hidden, ...card } = structuredClone(record.card);
+      return card;
+    }
+  }
+  return null;
+}
+
+function requireStaff() {
+  const id = read().activeStudentId;
+  const account = id ? devStudentById(id) : undefined;
+  if (account?.role !== "admin") throw new Error("An active administrator account is required");
+}
+
+function craftStatus(record: StudentRecord): CraftBrief["status"] {
+  if (record.craft?.choice) return "chosen";
+  if ((record.craft?.options?.length ?? 0) === 2) return "options_ready";
+  return "waiting_for_art";
+}
+
+function queueOrder(state: PersistedDevAuth): [string, StudentRecord][] {
+  return Object.entries(state.students)
+    .filter((entry): entry is [string, StudentRecord] => {
+      const [studentId, record] = entry;
+      const student = devStudentById(studentId);
+      return Boolean(
+        student && record.card?.serial && record.card.companion && record.journeyEntitled,
+      );
+    })
+    .sort((a, b) => {
+      const left = a[1].queuedAt ?? "9999";
+      const right = b[1].queuedAt ?? "9999";
+      if (left !== right) return left < right ? -1 : 1;
+      return a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0;
+    });
+}
+
+function toBrief(studentId: string, record: StudentRecord, position: number): CraftBrief {
+  const student = devStudentById(studentId)!;
+  const card = record.card!;
+  const companion = card.companion!;
+  const options = record.craft?.options ?? [];
+  return {
+    position,
+    queuedAt: record.queuedAt ?? null,
+    publicId: card.publicId,
+    serial: card.serial,
+    displayName: card.username,
+    form: student.formLevel ?? "",
+    companionName: companion.name,
+    species: companion.species,
+    element: companion.element,
+    traits: companion.traits,
+    personality: companion.personality,
+    status: craftStatus(record),
+    staffTest: student.role === "admin",
+    choice: record.craft?.choice ?? null,
+    options: options.map((option) => ({ option: option.option, previewUrl: option.url })),
+  };
+}
+
+function briefFor(state: PersistedDevAuth, studentId: string): CraftBrief | null {
+  const index = queueOrder(state).findIndex(([id]) => id === studentId);
+  if (index < 0) return null;
+  const record = state.students[studentId];
+  return toBrief(studentId, record, index + 1);
+}
+
+/** Confirmed companions waiting for a staff portrait. Staff only. Oldest first. */
+export function devCraftQueue(): CraftBrief[] {
+  requireStaff();
+  const state = read();
+  return queueOrder(state).map(([id, record], index) => toBrief(id, record, index + 1));
+}
+
+const DEV_DNA_SECRET = "dev-companion-dna-secret-not-for-production";
+
+function demoCardId(publicId: string) {
+  const hex = publicId.replace(/-/g, "");
+  const flipped = `${hex[0] === "0" ? "a" : "0"}${hex.slice(1)}`;
+  return `${flipped.slice(0, 8)}-${flipped.slice(8, 12)}-${flipped.slice(12, 16)}-${flipped.slice(16, 20)}-${flipped.slice(20)}`;
+}
+
+/** Local stand-in for nova_admin_craft_brief. No email and no account id. */
+export function devCraftBrief(publicId: string): CraftArtistBrief {
+  requireStaff();
+  const state = read();
+  const found = Object.entries(state.students).find(
+    ([, record]) => record.card?.publicId === publicId,
+  );
+  if (!found || !briefFor(state, found[0]))
+    throw new Error("That student has not confirmed a companion.");
+  const [studentId, record] = found;
+  const spec = record.studio.companion;
+  const card = record.card;
+  if (!spec || !card) throw new Error("That student has not confirmed a companion.");
+  let dna: CraftArtistBrief["dna"] = { genes: null, palette: null, identityLock: null };
+  try {
+    const derived = deriveVisualDna(spec, { studentId, secret: DEV_DNA_SECRET });
+    dna = {
+      genes: derived.genes as CraftArtistBrief["dna"]["genes"],
+      palette: derived.palette as CraftArtistBrief["dna"]["palette"],
+      identityLock: derived.identityLock as unknown as CraftArtistBrief["dna"]["identityLock"],
+    };
+  } catch {
+    dna = { genes: null, palette: null, identityLock: null };
+  }
+  return {
+    cardId: record.localCardId ?? demoCardId(card.publicId),
+    publicId: card.publicId,
+    nickname: card.username,
+    form: devStudentById(studentId)?.formLevel ?? "",
+    rarity: card.rarity,
+    submittedAt: record.queuedAt ?? null,
+    answers: [...(record.studio.identity?.answers ?? record.studio.draft.answers)],
+    traits: (record.studio.identity?.traits ?? null) as CraftArtistBrief["traits"],
+    companion: {
+      name: spec.name,
+      species: spec.species,
+      element: spec.element,
+      personality: spec.personality,
+      visual: {
+        canonical: spec.visual
+          .canonical as unknown as CraftArtistBrief["companion"]["visual"]["canonical"],
+        personalisation: spec.visual
+          .personalisation as unknown as CraftArtistBrief["companion"]["visual"]["personalisation"],
+      },
+    },
+    dna,
+    staffTest: devStudentById(studentId)?.role === "admin",
+    output: CRAFT_OUTPUT_RULES,
+  };
+}
+
+const MAX_PORTRAIT_CHARS = 1_400_000;
+
+function portraitUrl(dataUrl: string) {
+  if (!dataUrl.startsWith("data:image/") || dataUrl.length > MAX_PORTRAIT_CHARS)
+    throw new Error("Choose a PNG, JPEG or WebP portrait under 1 MB.");
+  return dataUrl;
+}
+
+function recordByPublicId(publicId: string) {
+  const state = read();
+  const found = Object.entries(state.students).find(
+    ([, record]) => record.card?.publicId === publicId,
+  );
+  return found ? { state, studentId: found[0], record: found[1] } : null;
+}
+
+/** Store both staff portraits. The card serial stays the same, and neither is chosen yet. */
+export function devAttachCraftOptions(
+  publicId: string,
+  options: [{ option: 1; dataUrl: string }, { option: 2; dataUrl: string }],
+): CraftBrief {
+  requireStaff();
+  const first = portraitUrl(options[0].dataUrl);
+  const second = portraitUrl(options[1].dataUrl);
+  if (first === second) throw new Error("The two portraits must be different.");
+  const found = recordByPublicId(publicId);
+  if (!found || !briefFor(found.state, found.studentId))
+    throw new Error("That student has not confirmed a companion.");
+  if (found.record.craft?.choice)
+    throw new Error("Reset the student choice before replacing the portraits.");
+  const serial = found.record.card?.serial;
+  const stored = [
+    { option: 1 as const, url: first },
+    { option: 2 as const, url: second },
+  ];
+  found.record.craft = { options: stored };
+  found.record.card = {
+    ...found.record.card!,
+    artworkUrl: undefined,
+    crafting: true,
+    artOptions: stored,
+  };
+  persist(found.state);
+  if (found.record.card.serial !== serial) throw new Error("The card serial must stay the same.");
+  return briefFor(found.state, found.studentId)!;
+}
+
+/** The signed-in student picks one portrait. The choice is kept until staff reset it. */
+export function devChooseCraftArt(option: 1 | 2): NovaCard {
+  const { record, state } = activeRecord();
+  if (!record.card) throw new Error("Your companion is being crafted");
+  const options = record.craft?.options ?? [];
+  if (options.length !== 2) throw new Error("Your companion is being crafted");
+  if (record.craft?.choice) throw new Error("Your art choice is already saved");
+  const picked = options.find((item) => item.option === option);
+  if (!picked) throw new Error("Choose one of the two portraits");
+  const serial = record.card.serial;
+  record.craft = { options, choice: option };
+  record.card = {
+    ...record.card,
+    artworkUrl: picked.url,
+    crafting: false,
+    artOptions: undefined,
+  };
+  persist(state);
+  if (record.card.serial !== serial) throw new Error("The card serial must stay the same.");
+  return structuredClone(record.card);
+}
+
+/** Staff clear the pick. Both portraits stay, and the student may choose again. */
+export function devResetCraftArt(publicId: string): CraftBrief {
+  requireStaff();
+  const found = recordByPublicId(publicId);
+  if (!found?.record.card || !found.record.craft?.choice)
+    throw new Error("This student has not chosen a portrait.");
+  const serial = found.record.card.serial;
+  const options = found.record.craft.options ?? [];
+  found.record.craft = { options };
+  found.record.card = {
+    ...found.record.card,
+    artworkUrl: undefined,
+    crafting: true,
+    artOptions: options,
+  };
+  persist(found.state);
+  if (found.record.card.serial !== serial) throw new Error("The card serial must stay the same.");
+  return briefFor(found.state, found.studentId)!;
+}

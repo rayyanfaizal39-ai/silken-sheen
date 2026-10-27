@@ -943,7 +943,7 @@ export const chapters: ChapterContent[] = [
     chapterKey: "Chapter 1",
     title: "Kerajaan Alam Melayu",
     sej2Chapter1Data: sej2Ch1Content,
-    mindMap: { data: sejarahF2C1MindMap, title: "Kerajaan Alam Melayu yang Masyhur" },
+    mindMap: { data: sejarahF2C1MindMap, title: "Kerajaan Alam Melayu" },
     flashcards: sejarahF2FlashcardsFor(1),
     quiz: sejarahF2QuizzesFor(1),
   },

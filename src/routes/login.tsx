@@ -6,6 +6,7 @@ import { useAuth } from "@/context/auth-context";
 import { seoMeta } from "@/lib/seo";
 import { AcademyLogo } from "@/components/AcademyLogo";
 import { enableGuestMode } from "@/lib/guest-mode";
+import { DevSignInSlot } from "@/lib/dev-auth/DevSignInSlot";
 
 export const Route = createFileRoute("/login")({
   validateSearch: (search: Record<string, unknown>): { next?: string } => ({
@@ -499,7 +500,7 @@ function StarField() {
 }
 
 function LoginPage() {
-  const { user, loading, isConfigured, signInWithGoogle } = useAuth();
+  const { user, loading, isConfigured, devAuthBypass, signInWithGoogle } = useAuth();
   const { next } = Route.useSearch();
   const returnTo = next ?? "/home";
   const [signing, setSigning] = useState(false);
@@ -582,14 +583,15 @@ function LoginPage() {
               ))}
             </div>
 
-            {/* Divider */}
-            <div className="my-6 flex items-center gap-3">
-              <div className="h-px flex-1 bg-white/[0.07]" />
-              <span className="text-[11px] font-semibold uppercase tracking-widest text-white/30">
-                sign in free
-              </span>
-              <div className="h-px flex-1 bg-white/[0.07]" />
-            </div>
+            {!devAuthBypass && (
+              <div className="my-6 flex items-center gap-3">
+                <div className="h-px flex-1 bg-white/[0.07]" />
+                <span className="text-[11px] font-semibold uppercase tracking-widest text-white/30">
+                  sign in free
+                </span>
+                <div className="h-px flex-1 bg-white/[0.07]" />
+              </div>
+            )}
 
             {/* Error */}
             {error && (
@@ -599,8 +601,9 @@ function LoginPage() {
               </div>
             )}
 
-            {/* Not configured */}
-            {!isConfigured && (
+            {devAuthBypass && <DevSignInSlot active={devAuthBypass} />}
+
+            {!loading && !isConfigured && (
               <div className="mb-4 flex items-start gap-2 rounded-xl border border-amber-400/20 bg-amber-400/10 px-3.5 py-3 text-sm text-amber-300">
                 <Sparkles className="h-4 w-4 mt-0.5 shrink-0" />
                 <span>
@@ -618,20 +621,21 @@ function LoginPage() {
               </div>
             )}
 
-            {/* Google button */}
-            <button
-              type="button"
-              onClick={handleGoogle}
-              disabled={signing || !isConfigured}
-              className="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl border border-white/10 bg-white px-5 py-3.5 text-sm font-semibold text-gray-800 shadow-[0_2px_16px_rgba(0,0,0,0.3)] transition-all hover:scale-[1.02] hover:shadow-[0_4px_24px_rgba(0,0,0,0.4)] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
-            >
-              {signing ? (
-                <div className="h-5 w-5 shrink-0 animate-spin rounded-full border-2 border-gray-400 border-t-transparent" />
-              ) : (
-                <GoogleIcon />
-              )}
-              <span>{signing ? "Redirecting to Google…" : "Continue with Google"}</span>
-            </button>
+            {!devAuthBypass && (
+              <button
+                type="button"
+                onClick={handleGoogle}
+                disabled={signing || loading || !isConfigured}
+                className="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl border border-white/10 bg-white px-5 py-3.5 text-sm font-semibold text-gray-800 shadow-[0_2px_16px_rgba(0,0,0,0.3)] transition-all hover:scale-[1.02] hover:shadow-[0_4px_24px_rgba(0,0,0,0.4)] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                {signing ? (
+                  <div className="h-5 w-5 shrink-0 animate-spin rounded-full border-2 border-gray-400 border-t-transparent" />
+                ) : (
+                  <GoogleIcon />
+                )}
+                <span>{signing ? "Redirecting to Google…" : "Continue with Google"}</span>
+              </button>
+            )}
 
             {/* Already browsing note */}
             <p className="mt-5 text-center text-xs text-white/30 leading-relaxed">

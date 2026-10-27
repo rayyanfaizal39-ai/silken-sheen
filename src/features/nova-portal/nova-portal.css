@@ -1,0 +1,519 @@
+/* AcadeMY → AcadeMY Cards portal. Palette, type and rings follow the Studio's
+   CinematicOpening so the doorway and the journey read as one world. */
+.nova-portal {
+  --portal-night: #05070f;
+  --portal-deep: #090e1c;
+  --portal-gold: #f6ca78;
+  --portal-gold-deep: #d8af60;
+  --portal-gold-light: #ffdea5;
+  --portal-violet: #6001d1;
+  --portal-cyan: #3ec1fc;
+  --portal-ink: #dfe1f6;
+  --portal-size: clamp(150px, min(40vw, 34vh), 400px);
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  min-height: calc(100dvh - 7rem);
+  overflow: hidden;
+  border: 1px solid rgba(246, 202, 120, 0.16);
+  border-radius: 2rem;
+  background: radial-gradient(
+    ellipse at 50% 38%,
+    #171b2a 0%,
+    var(--portal-deep) 48%,
+    var(--portal-night) 100%
+  );
+  color: var(--portal-ink);
+  box-shadow: 0 24px 90px rgba(5, 7, 15, 0.6);
+}
+
+.nova-portal__stage {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 40%;
+  animation: nova-portal-drift 18s ease-in-out infinite alternate;
+}
+
+/* The gate's own row, so it never overlaps the copy at any size. */
+.nova-portal__focus {
+  position: relative;
+  z-index: 1;
+  grid-row: 1;
+  display: grid;
+  place-items: center;
+  padding: calc(var(--portal-size) * 0.3) 1rem calc(var(--portal-size) * 0.26);
+  animation: nova-portal-drift 18s ease-in-out infinite alternate;
+}
+
+.nova-portal__sky {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.nova-portal__nebula {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(120px);
+  pointer-events: none;
+}
+
+.nova-portal__nebula--violet {
+  top: 8%;
+  left: 18%;
+  width: 46%;
+  height: 52%;
+  background: rgba(96, 1, 209, 0.28);
+}
+
+.nova-portal__nebula--cyan {
+  right: 12%;
+  bottom: 14%;
+  width: 40%;
+  height: 44%;
+  background: rgba(62, 193, 252, 0.16);
+}
+
+.nova-portal__gate {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: var(--portal-size);
+  height: var(--portal-size);
+}
+
+.nova-portal__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+}
+
+.nova-portal__ring--outer {
+  inset: -18%;
+  border: 1px solid rgba(246, 202, 120, 0.32);
+  box-shadow:
+    0 0 40px rgba(246, 202, 120, 0.12),
+    inset 0 0 40px rgba(246, 202, 120, 0.08);
+  animation: nova-portal-spin 60s linear infinite;
+}
+
+.nova-portal__ring--outer::before,
+.nova-portal__ring--outer::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--portal-gold);
+  box-shadow: 0 0 16px var(--portal-gold);
+}
+
+.nova-portal__ring--outer::after {
+  top: auto;
+  bottom: -4px;
+  background: var(--portal-cyan);
+  box-shadow: 0 0 16px var(--portal-cyan);
+}
+
+.nova-portal__ring--dashed {
+  inset: -4%;
+  border: 1px dashed rgba(160, 110, 255, 0.5);
+  animation: nova-portal-spin 40s linear infinite reverse;
+}
+
+.nova-portal__ring--inner {
+  inset: 9%;
+  border: 1px solid rgba(62, 193, 252, 0.34);
+  animation: nova-portal-spin 26s linear infinite;
+}
+
+.nova-portal__core {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 64%;
+  height: 64%;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 1px solid rgba(246, 202, 120, 0.75);
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 239, 205, 0.95) 0%,
+      rgba(246, 202, 120, 0.55) 22%,
+      transparent 60%
+    ),
+    conic-gradient(from 0deg, #f6ca78, #6001d1, #3ec1fc, #ffdea5, #6001d1, #f6ca78);
+  box-shadow:
+    0 0 60px rgba(246, 202, 120, 0.55),
+    0 0 140px rgba(246, 202, 120, 0.25),
+    inset 0 0 50px rgba(5, 7, 15, 0.55);
+  animation: nova-portal-breathe 4.8s ease-in-out infinite;
+}
+
+.nova-portal__core::before {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  background: conic-gradient(
+    from 90deg,
+    transparent 0deg,
+    rgba(255, 222, 165, 0.55) 40deg,
+    transparent 110deg,
+    rgba(160, 110, 255, 0.45) 200deg,
+    transparent 280deg
+  );
+  animation: nova-portal-spin 7s linear infinite;
+  mix-blend-mode: screen;
+}
+
+.nova-portal__core img {
+  position: relative;
+  width: 86%;
+  height: 86%;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 0 30px rgba(5, 7, 15, 0.6);
+}
+
+.nova-portal__spark {
+  position: relative;
+  width: 18%;
+  height: 18%;
+  border-radius: 50%;
+  background: #fffaf0;
+  box-shadow:
+    0 0 30px #fff3d6,
+    0 0 70px var(--portal-gold),
+    0 0 120px rgba(246, 202, 120, 0.8);
+  animation: nova-portal-breathe 2.4s ease-in-out infinite;
+}
+
+.nova-portal__ray {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 2px;
+  height: 260%;
+  pointer-events: none;
+  translate: -50% -50%;
+}
+
+.nova-portal__ray--gold {
+  rotate: 45deg;
+  background: linear-gradient(to top, transparent, rgba(246, 202, 120, 0.42), transparent);
+}
+
+.nova-portal__ray--violet {
+  rotate: -45deg;
+  background: linear-gradient(to top, transparent, rgba(160, 110, 255, 0.34), transparent);
+}
+
+.nova-portal__ray--cyan {
+  rotate: 12deg;
+  background: linear-gradient(to top, transparent, rgba(62, 193, 252, 0.3), transparent);
+}
+
+.nova-portal__copy {
+  position: relative;
+  z-index: 2;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0 1.25rem clamp(2rem, 6vh, 3.5rem);
+  text-align: center;
+  transition:
+    opacity 600ms ease,
+    transform 600ms ease;
+}
+
+.nova-portal__eyebrow {
+  margin: 0;
+  color: var(--portal-gold);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.nova-portal__title {
+  max-width: 40rem;
+  margin: 0;
+  color: var(--portal-ink);
+  font-family: "Bodoni Moda", Georgia, serif;
+  font-size: clamp(1.9rem, 4.6vw, 3.4rem);
+  font-weight: 500;
+  line-height: 1.15;
+  text-shadow: 0 2px 24px rgba(7, 11, 25, 0.9);
+}
+
+.nova-portal__lead {
+  max-width: 32rem;
+  margin: 0;
+  color: rgba(223, 225, 246, 0.72);
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+.nova-portal__enter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.6rem;
+  padding: 1rem 2.4rem;
+  border: 0;
+  border-radius: 1.5rem;
+  background: linear-gradient(
+    90deg,
+    var(--portal-gold-deep),
+    var(--portal-gold),
+    var(--portal-gold-light)
+  );
+  color: #412d00;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(0.75rem, 1.6vw, 0.875rem);
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  box-shadow: 0 0 35px rgba(246, 202, 120, 0.5);
+  cursor: pointer;
+  transition:
+    filter 300ms ease,
+    transform 300ms ease,
+    box-shadow 300ms ease;
+}
+
+.nova-portal__enter svg {
+  width: 1.15rem;
+  height: 1.15rem;
+  fill: currentColor;
+}
+
+.nova-portal__enter:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 0 55px rgba(246, 202, 120, 0.7);
+}
+
+.nova-portal__enter:active {
+  transform: scale(0.96);
+}
+
+.nova-portal__enter:focus-visible {
+  outline: 2px solid var(--portal-gold-light);
+  outline-offset: 4px;
+}
+
+.nova-portal__enter:disabled {
+  cursor: default;
+}
+
+.nova-portal__status {
+  min-height: 1.2em;
+  margin: 0;
+  color: rgba(223, 225, 246, 0.6);
+  font-size: 0.8rem;
+}
+
+/* Covers the whole page, sidebar included, so the hand-off feels like stepping through. */
+.nova-portal__veil {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  pointer-events: none;
+}
+
+.nova-portal__veil::before,
+.nova-portal__veil::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+/* A burst of portal light, then the darkness the Studio's opening begins in. */
+.nova-portal__veil::before {
+  background: radial-gradient(
+    circle at 50% 42%,
+    #fff7e6 0%,
+    #f6ca78 22%,
+    rgba(96, 1, 209, 0.6) 55%,
+    transparent 80%
+  );
+}
+
+.nova-portal__veil::after {
+  background: #05070f;
+}
+
+/* ── Opening ─────────────────────────────────────────────────────────────── */
+.nova-portal[data-opening="true"] .nova-portal__stage,
+.nova-portal[data-opening="true"] .nova-portal__focus {
+  animation: nova-portal-push 1500ms cubic-bezier(0.55, 0, 0.75, 0.2) forwards;
+}
+
+.nova-portal[data-opening="true"] .nova-portal__gate {
+  animation: nova-portal-open 1500ms cubic-bezier(0.6, 0, 0.8, 0.3) forwards;
+}
+
+.nova-portal[data-opening="true"] .nova-portal__ring {
+  animation-duration: 2.4s;
+}
+
+.nova-portal[data-opening="true"] .nova-portal__copy {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  pointer-events: none;
+}
+
+.nova-portal__veil[data-opening="true"] {
+  pointer-events: auto;
+}
+
+.nova-portal__veil[data-opening="true"]::before {
+  animation: nova-portal-flash 1500ms ease-in-out forwards;
+}
+
+.nova-portal__veil[data-opening="true"]::after {
+  animation: nova-portal-dusk 1500ms ease-in forwards;
+}
+
+.nova-portal[data-opening="true"][data-calm="true"] .nova-portal__stage,
+.nova-portal[data-opening="true"][data-calm="true"] .nova-portal__focus,
+.nova-portal[data-opening="true"][data-calm="true"] .nova-portal__gate {
+  animation: none;
+}
+
+.nova-portal__veil[data-opening="true"][data-calm="true"]::before {
+  animation: none;
+}
+
+.nova-portal__veil[data-opening="true"][data-calm="true"]::after {
+  animation: nova-portal-fade 250ms ease-out forwards;
+}
+
+@keyframes nova-portal-drift {
+  from {
+    transform: scale(1) translate3d(-0.6%, 0.4%, 0);
+  }
+  to {
+    transform: scale(1.05) translate3d(0.6%, -0.6%, 0);
+  }
+}
+
+@keyframes nova-portal-spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes nova-portal-breathe {
+  0%,
+  100% {
+    filter: brightness(1);
+    scale: 1;
+  }
+  50% {
+    filter: brightness(1.18);
+    scale: 1.035;
+  }
+}
+
+@keyframes nova-portal-push {
+  to {
+    transform: scale(1.7);
+  }
+}
+
+@keyframes nova-portal-open {
+  0% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  60% {
+    filter: brightness(1.8);
+  }
+  100% {
+    transform: scale(6);
+    filter: brightness(2.4);
+  }
+}
+
+@keyframes nova-portal-flash {
+  0%,
+  30% {
+    opacity: 0;
+  }
+  62% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes nova-portal-dusk {
+  0%,
+  58% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes nova-portal-fade {
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nova-portal__stage,
+  .nova-portal__focus,
+  .nova-portal__ring,
+  .nova-portal__core,
+  .nova-portal__core::before,
+  .nova-portal__spark {
+    animation: none;
+  }
+}
+
+/* Below the desktop sidebar breakpoint the page has a bottom navigation bar, so the
+   portal sizes to its content and keeps the action above it. */
+@media (max-width: 1023px) {
+  .nova-portal {
+    --portal-size: clamp(130px, min(38vw, 23vh), 340px);
+    min-height: 0;
+  }
+
+  .nova-portal__focus {
+    padding: calc(var(--portal-size) * 0.24) 1rem calc(var(--portal-size) * 0.2);
+  }
+
+  .nova-portal__copy {
+    gap: 0.6rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .nova-portal__title {
+    font-size: clamp(1.6rem, 5.4vw, 2.6rem);
+  }
+}
+
+@media (max-width: 640px) {
+  .nova-portal {
+    border-radius: 1.5rem;
+  }
+
+  .nova-portal__enter {
+    padding: 0.95rem 1.6rem;
+    letter-spacing: 0.18em;
+  }
+}
