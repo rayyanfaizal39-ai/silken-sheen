@@ -27,7 +27,7 @@ describe("cosmic_companion entitlement", () => {
       novaEntitlement({ plan, status: "active", current_period_end: FUTURE }, NOW);
     expect(active("pro")).toEqual({ active: true, status: "active" }); // Explorer
     expect(active("premium")).toEqual({ active: true, status: "active" }); // Captain
-    expect(active("paid")).toEqual({ active: true, status: "active" }); // legacy paid → Captain
+    expect(active("paid")).toEqual({ active: true, status: "active" }); // legacy paid → Explorer
     expect(active("free").active).toBe(false); // Basic
     expect(active("basic").active).toBe(false);
   });

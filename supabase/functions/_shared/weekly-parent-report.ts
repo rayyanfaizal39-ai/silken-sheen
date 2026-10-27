@@ -20,6 +20,10 @@ const SUBJECT_NAMES: Record<string, string> = {
   geography: "Geography",
 };
 
+export function subjectDisplayName(subjectId: string): string {
+  return SUBJECT_NAMES[subjectId] ?? subjectId;
+}
+
 export type WeeklyQuizRow = {
   createdAt: string;
   scorePct: number | string | null;
@@ -70,7 +74,9 @@ export function currentKualaLumpurWeek(now: Date): KualaLumpurWeek {
     shifted.getUTCMonth(),
     shifted.getUTCDate() - daysFromMonday,
   );
-  const dayKeys = Array.from({ length: 7 }, (_, index) => dateKeyFromUtc(startUtc + index * 86_400_000));
+  const dayKeys = Array.from({ length: 7 }, (_, index) =>
+    dateKeyFromUtc(startUtc + index * 86_400_000),
+  );
   const startIso = new Date(startUtc - KL_OFFSET_MS).toISOString();
   const endIso = new Date(startUtc + 7 * 86_400_000 - KL_OFFSET_MS).toISOString();
   return {
@@ -113,7 +119,9 @@ export function emailedParentReportCycle(now: Date): EmailedReportCycle {
   if (beforeCutoff) sundayKlMidnight -= 7 * 86_400_000;
   const endMs = sundayKlMidnight + EMAIL_CUTOFF_HOUR * 60 * 60 * 1000 - KL_OFFSET_MS;
   const mondayKlMidnight = sundayKlMidnight - 6 * 86_400_000;
-  const dayKeys = Array.from({ length: 7 }, (_, index) => dateKeyFromUtc(mondayKlMidnight + index * 86_400_000));
+  const dayKeys = Array.from({ length: 7 }, (_, index) =>
+    dateKeyFromUtc(mondayKlMidnight + index * 86_400_000),
+  );
   return {
     weekStart: dayKeys[0],
     weekEnd: dayKeys[6],
@@ -130,7 +138,8 @@ export function formatSubjectPeriod(weekStart: string, weekEnd: string): string 
   const end = parseDateKey(weekEnd);
   const startMonth = monthName(start.month);
   const endMonth = monthName(end.month);
-  if (start.month === end.month && start.year === end.year) return `${start.day}–${end.day} ${endMonth}`;
+  if (start.month === end.month && start.year === end.year)
+    return `${start.day}–${end.day} ${endMonth}`;
   if (start.year === end.year) return `${start.day} ${startMonth}–${end.day} ${endMonth}`;
   return `${start.day} ${startMonth} ${start.year}–${end.day} ${endMonth} ${end.year}`;
 }
@@ -155,7 +164,8 @@ export function formatWeekPeriod(weekStart: string, weekEnd: string): string {
   const startMonth = monthName(start.month);
   const endMonth = monthName(end.month);
   if (sameMonth) return `${start.day}–${end.day} ${endMonth} ${end.year}`;
-  if (start.year === end.year) return `${start.day} ${startMonth}–${end.day} ${endMonth} ${end.year}`;
+  if (start.year === end.year)
+    return `${start.day} ${startMonth}–${end.day} ${endMonth} ${end.year}`;
   return `${start.day} ${startMonth} ${start.year}–${end.day} ${endMonth} ${end.year}`;
 }
 
@@ -180,37 +190,24 @@ export function usableEmail(value: string | null | undefined): string | null {
 }
 
 /**
- * Parent address when it is present and valid. Otherwise the student's
- * authenticated account email. Returns null only when neither is usable.
- */
-export function resolveWeeklyReportRecipient(
-  parentReportEmail: string | null | undefined,
-  accountEmail: string | null | undefined,
-): string | null {
-  return usableEmail(parentReportEmail) ?? usableEmail(accountEmail);
-}
-
-/**
  * Stored billing values that resolve to a plan with parent_reports.
  * Kept as an explicit list so the Edge Function can apply the same rule
  * without importing the app alias. src/features/parent-report tests lock
- * this list to hasFeature(..., "parent_reports").
+ * this list to hasFeature(..., "parent_reports"). profiles.plan = 'paid'
+ * is not in the list: that flag is set for every successful payment.
  */
 export function storedPlanGrantsParentReports(storedPlan: string | null | undefined): boolean {
-  return (
-    storedPlan === "premium" ||
-    storedPlan === "paid" ||
-    storedPlan === "captain" ||
-    storedPlan === "enterprise"
-  );
+  return storedPlan === "premium" || storedPlan === "captain" || storedPlan === "enterprise";
 }
 
+/** Parent reports require the active subscription itself. The profile plan is ignored. */
 export function hasParentReportsAccess(
   activeSubscriptionPlan: string | null | undefined,
-  profilePlan: string | null | undefined,
+  _profilePlan?: string | null | undefined,
 ): boolean {
-  const hasActiveSubscription = typeof activeSubscriptionPlan === "string" && activeSubscriptionPlan.length > 0;
-  return storedPlanGrantsParentReports(hasActiveSubscription ? activeSubscriptionPlan : profilePlan);
+  if (typeof activeSubscriptionPlan !== "string" || activeSubscriptionPlan.length === 0)
+    return false;
+  return storedPlanGrantsParentReports(activeSubscriptionPlan);
 }
 
 export function buildWeeklyParentReport(input: {
@@ -254,7 +251,9 @@ export function buildWeeklyParentReport(input: {
       ? null
       : Math.round(quizzes.reduce((sum, row) => sum + row.scorePct, 0) / quizzesCompleted);
 
-  const bySubject = groupAverages(quizzes.map((row) => ({ key: row.subjectId, scorePct: row.scorePct })));
+  const bySubject = groupAverages(
+    quizzes.map((row) => ({ key: row.subjectId, scorePct: row.scorePct })),
+  );
   const subjects = [...bySubject.entries()]
     .map(([subjectId, stats]) => ({
       name: SUBJECT_NAMES[subjectId] ?? subjectId,
@@ -281,7 +280,12 @@ export function buildWeeklyParentReport(input: {
         attempts: stats.attempts,
       };
     })
-    .sort((a, b) => a.average - b.average || b.attempts - a.attempts || a.chapterKey.localeCompare(b.chapterKey));
+    .sort(
+      (a, b) =>
+        a.average - b.average ||
+        b.attempts - a.attempts ||
+        a.chapterKey.localeCompare(b.chapterKey),
+    );
 
   const strongest = subjects[0] ?? null;
   const bestQuiz = [...quizzes].sort(
@@ -328,7 +332,7 @@ export function buildWeeklyParentReport(input: {
     : `${firstName} has no quiz results in this Monday–Sunday week, so there is no subject insight yet.`;
 
   const weakGoals = input.preferRepeatedWeakness
-    ? repeatedFocus?.goals ?? []
+    ? (repeatedFocus?.goals ?? [])
     : chapters
         .filter((chapter) => chapter.average < 80)
         .slice(0, 3)
@@ -369,7 +373,9 @@ function repeatedWeaknessFocus(
 ): { focusArea: string; goals: string[] } | null {
   const weakestSubject = [...subjects]
     .filter((subject) => subject.attempts >= 2)
-    .sort((a, b) => a.average - b.average || b.attempts - a.attempts || a.name.localeCompare(b.name))[0];
+    .sort(
+      (a, b) => a.average - b.average || b.attempts - a.attempts || a.name.localeCompare(b.name),
+    )[0];
   if (!weakestSubject) return null;
   const chapter = chapters
     .filter((item) => item.subjectName === weakestSubject.name && item.attempts >= 2)
@@ -436,5 +442,9 @@ function parseDateKey(key: string): { year: number; month: number; day: number }
 }
 
 function monthName(month: number): string {
-  return ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][month - 1] ?? "";
+  return (
+    ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][
+      month - 1
+    ] ?? ""
+  );
 }

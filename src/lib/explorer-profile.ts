@@ -1,3 +1,5 @@
+import { parentEmailWrite } from "@/features/parent-report/parentEmailConsent";
+import { normalizeParentReportEmail } from "@/features/parent-report/weeklyParentReport";
 import { supabase } from "@/lib/supabase";
 
 export const EXPLORER_FORM_LEVELS = ["Form 1", "Form 2", "Form 3"] as const;
@@ -22,6 +24,8 @@ export interface ExplorerProfileInput {
   formLevel: ExplorerFormLevel;
   /** Verified school UUID, or null when the learner skipped school for now. */
   schoolId: string | null;
+  /** Optional parent or guardian address for the monthly progress report. */
+  parentReportEmail?: string | null;
 }
 
 export interface ExplorerProfileEditInput {
@@ -89,8 +93,10 @@ export function normalizeExplorerProfileInput(input: ExplorerProfileInput): Expl
   if (input.schoolId !== null && !isUuid(input.schoolId)) {
     throw new Error("Choose a verified school from the search results.");
   }
+  const parentEmail = normalizeParentReportEmail(input.parentReportEmail ?? "");
+  if (!parentEmail.ok) throw new Error(parentEmail.error);
 
-  return { ...input, displayName };
+  return { ...input, displayName, parentReportEmail: parentEmail.email };
 }
 
 export function normalizeExplorerProfileEditInput(
@@ -145,6 +151,7 @@ export async function saveCompletedExplorerProfile(
         form: normalized.formLevel,
         school_id: normalized.schoolId,
         onboarding_completed: true,
+        ...parentEmailWrite(normalized.parentReportEmail ?? null),
       },
       { onConflict: "id" },
     )

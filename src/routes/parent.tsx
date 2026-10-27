@@ -1,10 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   Mail,
   Send,
   Printer,
-  CalendarDays,
   ShieldCheck,
   Flame,
   Trophy,
@@ -12,46 +11,115 @@ import {
   TrendingUp,
   Brain,
 } from "lucide-react";
-import { useProgress, getRank, type ReportCadence } from "@/hooks/use-progress";
+import { useProgress } from "@/hooks/use-progress";
 import { useAuth } from "@/context/auth-context";
-import { analyzeProgress, withinDays } from "@/lib/tracker";
+import { ParentEmailConsent } from "@/components/parent/ParentEmailConsent";
+import { ParentEmailNotice } from "@/components/parent/ParentEmailNotice";
+import { ParentPremiumUpsell } from "@/components/parent/ParentPremiumUpsell";
+import { previousKualaLumpurMonth } from "@/features/parent-report/monthlyParentReport";
+import {
+  consentAfterEmailEdit,
+  parentEmailSaveBlocked,
+  parentEmailWrite,
+  recordedParentEmailConsent,
+} from "@/features/parent-report/parentEmailConsent";
+import {
+  hasParentReportsAccess,
+  normalizeParentReportEmail,
+} from "@/features/parent-report/weeklyParentReport";
+import { analyzeProgress } from "@/lib/tracker";
 import { seoMeta } from "@/lib/seo";
 import { isSupabaseConfigured, supabase } from "@/lib/supabase";
 import { Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/parent")({
-  head: () => seoMeta({
-    title: "Parent Mission Report",
-    description: "A clear weekly or monthly summary of your child's KSSM study progress — a parent learning dashboard for Malaysian families.",
-    path: "/parent",
-    keywords: ["parent learning dashboard", "KSSM progress report", "student learning platform Malaysia"],
-  }),
+  head: () =>
+    seoMeta({
+      title: "Parent Mission Report",
+      description:
+        "A clear monthly summary of your child's KSSM study progress — a parent learning dashboard for Malaysian families.",
+      path: "/parent",
+      keywords: [
+        "parent learning dashboard",
+        "KSSM progress report",
+        "student learning platform Malaysia",
+      ],
+    }),
   component: ParentPage,
 });
 
 function ParentPage() {
   const { progress, setParentReport } = useProgress();
   const { user, loading: authLoading } = useAuth();
-  const [cadence, setCadence] = useState<ReportCadence>(progress.reportCadence ?? "weekly");
-  const [email, setEmail] = useState(progress.parentEmail ?? "");
+  const [email, setEmail] = useState("");
+  const [savedEmail, setSavedEmail] = useState<string | null>(null);
+  const [savedConsent, setSavedConsent] = useState(false);
+  const [consent, setConsent] = useState(false);
+  const [profileReady, setProfileReady] = useState(false);
+  const [entitled, setEntitled] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [saving, setSaving] = useState(false);
   const [sending, setSending] = useState(false);
   const [deliveryError, setDeliveryError] = useState<string | null>(null);
-  const [deliveryComplete, setDeliveryComplete] = useState(false);
+  const [deliveryNote, setDeliveryNote] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (authLoading) return;
+    if (!user || !isSupabaseConfigured) {
+      setProfileReady(true);
+      return;
+    }
+    let active = true;
+    void (async () => {
+      const [profileResult, subscriptionResult] = await Promise.all([
+        supabase
+          .from("profiles")
+          .select("plan, parent_report_email, parent_email_consent_at")
+          .eq("id", user.id)
+          .maybeSingle(),
+        supabase
+          .from("subscriptions")
+          .select("plan")
+          .eq("user_id", user.id)
+          .eq("status", "active")
+          .maybeSingle(),
+      ]);
+      if (!active) return;
+      const data = profileResult.data;
+      const stored = data?.parent_report_email ?? "";
+      const recorded = recordedParentEmailConsent(data?.parent_email_consent_at) && Boolean(stored);
+      setEntitled(
+        !subscriptionResult.error &&
+          hasParentReportsAccess(subscriptionResult.data?.plan ?? null, data?.plan ?? null),
+      );
+      setEmail(stored);
+      setSavedEmail(stored || null);
+      setSavedConsent(recorded);
+      setConsent(recorded);
+      setProfileReady(true);
+    })();
+    return () => {
+      active = false;
+    };
+  }, [authLoading, user]);
 
   const studentName = user?.name ?? "Your child";
-  const days = cadence === "weekly" ? 7 : 30;
-  const periodLabel = cadence === "weekly" ? "the past 7 days" : "the past 30 days";
+  const month = useMemo(() => previousKualaLumpurMonth(new Date()), []);
+  const periodLabel = month.periodLabel;
 
-  const insight = useMemo(
-    () => analyzeProgress(withinDays(progress.quizHistory ?? [], days)),
-    [progress.quizHistory, days],
-  );
-  const rank = getRank(progress.xp);
+  const insight = useMemo(() => {
+    const start = Date.parse(month.startIso);
+    const end = Date.parse(month.endIso);
+    const history = (progress.quizHistory ?? []).filter((quiz) => {
+      const at = new Date(quiz.date).getTime();
+      return at >= start && at < end;
+    });
+    return analyzeProgress(history);
+  }, [progress.quizHistory, month.startIso, month.endIso]);
+  const normalizedEmail = normalizeParentReportEmail(email);
+  const emailInvalid = email.trim().length > 0 && !normalizedEmail.ok;
 
-  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
-  if (authLoading) {
+  if (authLoading || (user && !profileReady)) {
     return (
       <section className="mx-auto max-w-3xl px-4 py-10" aria-label="Loading Parent Mission Report">
         <div className="h-56 animate-pulse rounded-[2rem] border border-white/[0.08] bg-white/[0.04]" />
@@ -80,55 +148,82 @@ function ParentPage() {
     );
   }
 
-  function save() {
-    setParentReport(emailValid ? email : undefined, cadence);
+  if (!entitled) {
+    return (
+      <section className="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8">
+        <ParentPremiumUpsell />
+      </section>
+    );
+  }
+
+  async function save() {
+    if (!user || !normalizedEmail.ok || parentEmailSaveBlocked({ email, consent })) return;
+    setDeliveryError(null);
+    setDeliveryNote(null);
+    if (!isSupabaseConfigured) {
+      setDeliveryError("Email delivery is not available.");
+      return;
+    }
+    setSaving(true);
+    const { error } = await supabase
+      .from("profiles")
+      .update(parentEmailWrite(normalizedEmail.email, consent))
+      .eq("id", user.id);
+    setSaving(false);
+    if (error) {
+      setDeliveryError("The parent email could not be saved.");
+      return;
+    }
+    const nextEmail = normalizedEmail.email;
+    const recorded = Boolean(nextEmail) && consent;
+    setEmail(nextEmail ?? "");
+    setSavedEmail(nextEmail);
+    setSavedConsent(recorded);
+    setConsent(recorded);
+    setParentReport(nextEmail ?? undefined, "monthly");
     setSaved(true);
     window.setTimeout(() => setSaved(false), 2200);
   }
 
   async function sendEmail() {
     setDeliveryError(null);
-    setDeliveryComplete(false);
+    setDeliveryNote(null);
     if (!user) {
       setDeliveryError("Sign in before sending a parent report.");
       return;
     }
-    if (!isSupabaseConfigured || !emailValid) {
-      setDeliveryError("Enter a valid parent email address.");
+    if (!normalizedEmail.ok) {
+      setDeliveryError(normalizedEmail.error);
+      return;
+    }
+    const formEmail = normalizedEmail.email;
+    const savedMatches = formEmail === savedEmail;
+    if (!savedMatches) {
+      setDeliveryError("Save the parent email before sending the report.");
+      return;
+    }
+    if (!isSupabaseConfigured) {
+      setDeliveryError("Email delivery is not available.");
       return;
     }
 
     setSending(true);
-    setParentReport(email, cadence);
-    const { error } = await supabase.functions.invoke("send-parent-report", {
-      body: {
-        to: email,
-        cadence,
-        studentName,
-        periodLabel,
-        totalQuizzes: insight.totalQuizzes,
-        overallAvg: insight.overallAvg,
-        passRate: insight.passRate,
-        rankName: rank.name,
-        totalXp: progress.xp,
-        studyStreak: progress.streak,
-        strongest: insight.strongest
-          ? { name: insight.strongest.name, avgScore: insight.strongest.avgScore }
-          : null,
-        weakSpots: insight.weakSpots.slice(0, 5).map((spot) => ({
-          subjectName: spot.subjectName,
-          chapterLabel: spot.chapterLabel,
-          avgScore: spot.avgScore,
-        })),
-        recommendation: insight.recommendation,
-      },
+    const { data, error } = await supabase.functions.invoke("send-parent-report", {
+      body: { action: "send_now" },
     });
     setSending(false);
     if (error) {
-      setDeliveryError(error.message || "The report could not be sent. Please try again.");
+      setDeliveryError(await functionErrorMessage(error));
       return;
     }
-    setDeliveryComplete(true);
+    const usedParentEmail = Boolean(
+      data && typeof data === "object" && "usedParentEmail" in data && data.usedParentEmail,
+    );
+    setDeliveryNote(
+      usedParentEmail
+        ? "Report sent to the saved parent email."
+        : "Report sent to your AcadeMY email.",
+    );
   }
 
   return (
@@ -141,41 +236,18 @@ function ParentPage() {
           </div>
           <div className="min-w-0">
             <p className="text-[10px] font-black uppercase tracking-[0.28em] text-[#6EE7B7] print:text-emerald-700">
-              Parent Mission Report
+              Monthly Parent Report
             </p>
             <h1 className="mt-1 font-display text-2xl font-bold text-white sm:text-3xl print:text-slate-900">
               {studentName}'s progress
             </h1>
             <p className="mt-2 text-sm leading-relaxed text-white/55 print:text-slate-600">
-              A clear, syllabus-aligned summary of {periodLabel}. Sent automatically to a parent so
-              they always know how study is going — no surprises.
+              A clear, syllabus-aligned summary of {periodLabel}. The automatic report covers the
+              previous calendar month in Malaysia.
             </p>
           </div>
         </div>
       </header>
-
-      {/* ── Cadence toggle ── */}
-      <div className="flex items-center gap-3 print:hidden">
-        <span className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-white/40">
-          <CalendarDays className="h-4 w-4" /> Report period
-        </span>
-        <div className="inline-flex rounded-xl border border-white/10 bg-white/[0.04] p-1">
-          {(["weekly", "monthly"] as ReportCadence[]).map((c) => (
-            <button
-              key={c}
-              type="button"
-              onClick={() => setCadence(c)}
-              className={`rounded-lg px-4 py-1.5 text-xs font-bold capitalize transition-all ${
-                cadence === c
-                  ? "bg-gradient-to-r from-[#34D399] to-[#10B981] text-[#04130C]"
-                  : "text-white/50 hover:text-white"
-              }`}
-            >
-              {c}
-            </button>
-          ))}
-        </div>
-      </div>
 
       {/* ── Summary stats ── */}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
@@ -274,7 +346,8 @@ function ParentPage() {
           <Mail className="h-5 w-5 text-[#34D399]" /> Send to a parent
         </h2>
         <p className="mt-1 text-sm text-white/45">
-          Save a parent's email to enable {cadence} Mission Reports. You can send one right now too.
+          This preview is {periodLabel}, the previous calendar month. Save a parent address, or
+          leave it blank to use your AcadeMY email. The sent report is built on the server.
         </p>
 
         <label
@@ -290,30 +363,36 @@ function ParentPage() {
             inputMode="email"
             autoComplete="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              const nextEmail = e.target.value;
+              setEmail(nextEmail);
+              setConsent(consentAfterEmailEdit({ nextEmail, savedEmail, savedConsent }));
+            }}
             placeholder="parent@example.com"
             className="min-h-[44px] flex-1 rounded-xl border border-white/10 bg-white/[0.05] px-4 text-sm text-white placeholder:text-white/30 focus:border-[#34D399]/50 focus:outline-none focus:ring-2 focus:ring-[#34D399]/30"
           />
           <button
             type="button"
-            onClick={save}
-            disabled={email.length > 0 && !emailValid}
+            onClick={() => void save()}
+            disabled={saving || parentEmailSaveBlocked({ email, consent })}
             className="min-h-[44px] rounded-xl border border-white/15 bg-white/[0.06] px-5 text-sm font-bold text-white transition-colors hover:bg-white/[0.12] disabled:cursor-not-allowed disabled:opacity-40"
           >
-            {saved ? "Saved ✓" : "Save"}
+            {saving ? "Saving…" : saved ? "Saved ✓" : "Save"}
           </button>
         </div>
-        {email.length > 0 && !emailValid && (
+        {emailInvalid && (
           <p role="alert" className="mt-1.5 text-xs text-rose-300">
             Enter a valid email address.
           </p>
         )}
+        <ParentEmailNotice />
+        <ParentEmailConsent id="parent-email-consent" checked={consent} onChange={setConsent} />
 
         <div className="mt-5 flex flex-col gap-2.5 sm:flex-row">
           <button
             type="button"
             onClick={() => void sendEmail()}
-            disabled={sending || !emailValid}
+            disabled={sending || emailInvalid}
             className="inline-flex min-h-[44px] flex-1 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#34D399] to-[#10B981] px-5 text-sm font-black text-[#04130C] transition-transform hover:scale-[1.02] active:scale-[0.99]"
           >
             <Send className="h-4 w-4" /> {sending ? "Sending…" : "Send report now"}
@@ -332,20 +411,38 @@ function ParentPage() {
             {deliveryError}
           </p>
         )}
-        {deliveryComplete && (
+        {deliveryNote && (
           <p role="status" className="mt-3 text-sm font-semibold text-emerald-300">
-            Report sent to {email}.
+            {deliveryNote}
           </p>
         )}
 
         <p className="mt-4 flex items-start gap-2 text-[11px] leading-relaxed text-white/35">
           <ShieldCheck className="mt-0.5 h-3.5 w-3.5 shrink-0" />
-          "Send report now" delivers securely through AcadeMY. Scheduled {cadence} delivery is
-          still being prepared; your saved preference is remembered.
+          Send report now uses the saved parent email when it is a valid address and consent is
+          recorded. Otherwise it goes to your AcadeMY email. Changing the address clears consent
+          until the checkbox is ticked again. Automatic delivery is monthly, on the 1st at 8:00 AM
+          Malaysia time, once that schedule is turned on. Parents can see weekly progress any time
+          on the Parent Dashboard.
         </p>
       </div>
     </section>
   );
+}
+
+async function functionErrorMessage(error: {
+  message?: string;
+  context?: { json?: () => Promise<unknown> };
+}) {
+  try {
+    const body = await error.context?.json?.();
+    if (body && typeof body === "object" && "error" in body && typeof body.error === "string") {
+      return body.error;
+    }
+  } catch {
+    // The function response was not JSON.
+  }
+  return error.message || "The report could not be sent. Please try again.";
 }
 
 function ReportStat({

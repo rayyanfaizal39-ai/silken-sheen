@@ -351,6 +351,20 @@
   font-size: 0.76rem;
   line-height: 1.5;
 }
+.explorer-onboarding__optional {
+  margin-left: 0.4rem;
+  color: rgba(221, 214, 254, 0.45);
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.explorer-onboarding__parent-email {
+  grid-column: 1 / -1;
+}
+.explorer-onboarding__parent-email .explorer-onboarding__input-wrap input {
+  padding-left: 1rem;
+}
 
 .explorer-onboarding__mission-fields {
   display: grid;

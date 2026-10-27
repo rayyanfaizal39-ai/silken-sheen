@@ -64,7 +64,7 @@ with aliases(value) as (values ($academy_plan_aliases$
   "school": "school",
   "enterprise": "enterprise",
   "free": "basic",
-  "paid": "captain",
+  "paid": "explorer",
   "pro": "explorer",
   "premium": "captain"
 }

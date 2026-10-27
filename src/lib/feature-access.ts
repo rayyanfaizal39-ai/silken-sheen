@@ -31,16 +31,18 @@ export const STORED_PLAN_ALIASES = {
   school: "school",
   enterprise: "enterprise",
   free: "basic",
-  paid: "captain",
+  // profiles.plan = 'paid' is written for every successful payment, including Basic and Pro.
+  paid: "explorer",
   pro: "explorer",
   premium: "captain",
 } as const satisfies Readonly<Record<string, Plan>>;
 
 /**
  * Translates billing values into the feature-plan vocabulary. Active
- * subscriptions use pro/premium; profiles.plan still supplies free/paid for
- * legacy accounts. Keep this mapping here so call sites never branch on plan
- * names.
+ * subscriptions use basic/pro/premium. profiles.plan = 'paid' is written for
+ * every successful payment, including Basic and Pro, so it is not Premium
+ * and does not unlock parent features. Keep this mapping here so call sites
+ * never branch on plan names.
  */
 export function resolveStoredPlan(storedPlan: string | null | undefined): Plan {
   if (!storedPlan) return "basic";

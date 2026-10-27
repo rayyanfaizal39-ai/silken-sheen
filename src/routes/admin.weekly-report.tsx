@@ -82,7 +82,7 @@ function AdminWeeklyReportPage() {
     <div>
       <h1 style={{ marginTop: 0 }}>View Parent Report</h1>
       <p style={{ color: "var(--muted)", maxWidth: 640 }}>
-        Support preview of one student&apos;s current Monday–Sunday report. This does not create a parent account.
+        Legacy Monday–Sunday preview. Automatic parent email is monthly and is not sent from this screen. This does not create a parent account.
       </p>
       <form
         onSubmit={(event) => {

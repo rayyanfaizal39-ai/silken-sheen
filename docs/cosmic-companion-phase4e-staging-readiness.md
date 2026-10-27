@@ -59,8 +59,8 @@ Review-only migration `20261020130000_cosmic_companion_entitlement_parity.sql`:
 
 1. creates private, non-Data-API tables for canonical plans, plan features and stored-plan aliases;
 2. seeds the full matrix from the same values as `src/config/features.ts`;
-3. maps legacy stored values exactly as the application does (`pro` → `explorer`, `premium` and
-   `paid` → `captain`, `free` → `basic`);
+3. maps legacy stored values exactly as the application does (`pro` and `paid` → `explorer`,
+   `premium` → `captain`, `free` → `basic`);
 4. changes `nova_subscription_active` to ask whether the active, unexpired subscription has the
    `cosmic_companion` feature;
 5. keeps entitlement mandatory inside the atomic submission transaction;

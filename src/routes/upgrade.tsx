@@ -169,9 +169,9 @@ const ENTITLEMENTS: Array<{
   {
     feature: "parent_reports",
     group: "Parent visibility",
-    label: "Weekly parent progress email",
-    description: "A simple weekly summary sent to parents",
-    cardLabel: "Weekly parent progress email",
+    label: "Monthly parent progress email",
+    description: "A simple monthly summary sent to parents",
+    cardLabel: "Monthly parent progress email",
   },
   {
     feature: "parent_progress_monitoring",
@@ -238,7 +238,7 @@ const PRICING_PLANS: Array<{
     monthlyPrice: 59,
     eyebrow: "Student + parent",
     description:
-      "Everything in Pro, plus the Parent Dashboard, weekly parent email and full parent insight into progress.",
+      "Everything in Pro, plus the Parent Dashboard, monthly parent email and full parent insight into progress.",
     icon: Crown,
   },
 ];

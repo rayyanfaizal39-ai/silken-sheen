@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import {
   ArrowLeft,
@@ -156,6 +156,7 @@ function ExplorerOnboardingPage() {
         age: Number(age),
         formLevel,
         schoolId: school?.id ?? null,
+        parentReportEmail: null,
       });
       await navigate({ to: "/home", replace: true });
     } catch {
@@ -394,6 +395,10 @@ function ExplorerOnboardingPage() {
                       </div>
                     </div>
                   )}
+                  <div className="explorer-onboarding__field explorer-onboarding__parent-email">
+                    <p>Parent progress reports are included with Premium.</p>
+                    <Link to="/upgrade">Upgrade to Premium</Link>
+                  </div>
                 </div>
               )}
             </div>
