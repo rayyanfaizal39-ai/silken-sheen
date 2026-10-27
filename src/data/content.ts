@@ -5263,13 +5263,13 @@ export const quizzes: QuizQuestion[] = [
       "Menurut A. Aziz Deraman, apakah contoh budaya yang dikongsi oleh masyarakat Alam Melayu?",
     options: [
       "Mata wang, sistem cukai dan pelabuhan",
-      "Silat, wayang kulit dan nilai gotong-royong",
+      "Seni mempertahankan diri, wayang kulit dan nilai gotong-royong",
       "Tulisan Palava, candi dan sistem kasta",
       "Undang-undang bertulis, mahkamah dan penjara",
     ],
     answerIndex: 1,
     explanation:
-      "Menurut A. Aziz Deraman, budaya Alam Melayu berkembang maju dengan kepandaian asli seperti silat, nilai gotong-royong dalam masyarakat serta wayang kulit di Kelantan dan Pulau Jawa.",
+      "Menurut A. Aziz Deraman, budaya Alam Melayu berkembang maju dengan kepandaian asli seperti pembuatan gangsa dan seni mempertahankan diri, nilai gotong-royong dalam masyarakat serta wayang kulit di Kelantan dan Pulau Jawa. Buku teks juga menyatakan bahawa silat menjadi identiti budaya serumpun di Alam Melayu (hlm. 7).",
   },
 
   // 1.2 Kewujudan Kerajaan di Alam Melayu
@@ -5320,7 +5320,7 @@ export const quizzes: QuizQuestion[] = [
     options: [
       "Vyadhapura dan Oc Eo",
       "Sungai Mas dan Pangkalan Bujang",
-      "Kota Trowulan dan Tuban",
+      "Kota Trowulan dan pelabuhan Tuban",
       "Indrapura dan Panduranga",
     ],
     answerIndex: 1,
@@ -5427,7 +5427,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     difficulty: "Medium",
     question: "Srivijaya diasaskan pada tahun 683 Masihi oleh siapakah?",
-    options: ["Sangramadhananjaya", "Dapunta Hyang Sri Jayanasa", "Jayavarman II", "Raden Wijaya"],
+    options: ["Sangramadhananjaya", "Dapunta Hyang Sri Jayanasa", "Jayavarman II", "Raden Vijaya"],
     answerIndex: 1,
     explanation:
       "Dapunta Hyang Sri Jayanasa mengasaskan kerajaan Srivijaya pada tahun 683 Masihi dan berpusat di Palembang.",
@@ -5439,7 +5439,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     difficulty: "Hard",
     question:
-      "Srivijaya menguasai Selat Melaka dan Selat Sunda serta menjadi pusat pengajian agama Buddha semasa zaman kegemilangannya. Apakah yang menyebabkan kerajaan ini merosot pada tahun 1025?",
+      "Srivijaya menguasai Selat Melaka dan Selat Sunda serta menjadi pusat pengajian agama Buddha semasa zaman kegemilangannya. Apakah yang menyebabkan kerajaan ini menjadi lemah pada tahun 1025?",
     options: [
       "Serangan tentera Dai Viet dari utara",
       "Serangan tentera Demak dari Jawa",
@@ -5470,7 +5470,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 1",
     difficulty: "Easy",
     question: "Patih Gajah Mada dilantik sebagai Perdana Menteri Majapahit oleh siapakah?",
-    options: ["Raden Wijaya", "Sangramadhananjaya", "Jayavarman II", "Tribuana Tunggadewi"],
+    options: ["Raden Vijaya", "Sangramadhananjaya", "Jayavarman II", "Tribuana Tunggadewi"],
     answerIndex: 3,
     explanation: "Tribuana Tunggadewi melantik Patih Gajah Mada sebagai Perdana Menteri Majapahit.",
   },
@@ -5553,7 +5553,7 @@ export const quizzes: QuizQuestion[] = [
     options: ["Hariharalaya", "Oc Eo", "Palembang", "Tuban"],
     answerIndex: 0,
     explanation:
-      "Oc Eo, Kedah Tua, Palembang dan Tuban ialah pelabuhan penting Alam Melayu dalam perdagangan antarabangsa, manakala Hariharalaya ialah pusat pemerintahan Angkor, bukan sebuah pelabuhan.",
+      "Oc Eo, Kedah Tua, Palembang dan Tuban ialah pelabuhan penting Alam Melayu dalam perdagangan antarabangsa, manakala Hariharalaya ialah pusat kerajaan Angkor dan tidak ditunjukkan sebagai pelabuhan pada peta jalan perdagangan (hlm. 8, 16).",
   },
   {
     id: "sej-f2-c1-q26",
@@ -5564,13 +5564,13 @@ export const quizzes: QuizQuestion[] = [
     question: "Agama Buddha tersebar ke Alam Melayu terutamanya melalui peranan siapakah?",
     options: [
       "Golongan Brahmin dan pendeta Hindu",
-      "Maharaja Asoka dan sami Buddha",
+      "Asoka, pemerintah empayar Maurya, dan sami Buddha",
       "Pedagang Arab dan Parsi",
       "Tentera Chola dan pedagang Tamil",
     ],
     answerIndex: 1,
     explanation:
-      "Agama Buddha tersebar melalui peranan Maharaja Asoka dan sami Buddha yang dihantar ke Alam Melayu.",
+      "Agama Buddha tersebar melalui peranan Asoka, pemerintah empayar Maurya, yang menghantar sami-sami Buddha ke Alam Melayu (hlm. 17).",
   },
   {
     id: "sej-f2-c1-q27",
@@ -5638,6 +5638,192 @@ export const quizzes: QuizQuestion[] = [
     answerIndex: 1,
     explanation:
       "Kewujudan kerajaan Alam Melayu yang sezaman dengan kerajaan luar serta hubungan perdagangan, keagamaan dan diplomatik yang dijalinkan membuktikan bahawa kerajaan Alam Melayu membangun dan maju setanding dengan tamadun dunia lain.",
+  },
+  {
+    id: "sej-f2-c1-q31",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 1",
+    difficulty: "Medium",
+    question: "Kerajaan Majapahit diasaskan oleh Raden Vijaya pada tahun 1294 dengan bantuan pihak manakah?",
+    options: [
+      "Tentera Chola dari selatan India",
+      "Tentera Siam dari utara",
+      "Tentera Srivijaya dari Palembang",
+      "Tentera Mongol",
+    ],
+    answerIndex: 3,
+    explanation: "Majapahit diasaskan oleh Raden Vijaya dengan bantuan tentera Mongol dalam perebutan kuasa di Jawa pada tahun 1294 (hlm. 12).",
+  },
+  {
+    id: "sej-f2-c1-q32",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 1",
+    difficulty: "Medium",
+    question: "Sumber China, India dan Arab masing-masing menamakan sebuah kerajaan Alam Melayu sebagai Chieh Ch'a, Kataha dan Kalah-bar. Kerajaan manakah itu?",
+    options: [
+      "Gangga Nagara",
+      "Srivijaya",
+      "Kedah Tua",
+      "Funan",
+    ],
+    answerIndex: 2,
+    explanation: "Sumber China menamakan Kedah Tua sebagai Chieh Ch'a, manakala sumber India dan Arab merujuknya sebagai Kataha dan Kalah-bar (hlm. 12).",
+  },
+  {
+    id: "sej-f2-c1-q33",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 1",
+    difficulty: "Easy",
+    question: "Pada abad kesembilan, kerajaan Champa, Srivijaya dan Angkor sezaman dengan kerajaan luar yang manakah?",
+    options: [
+      "Empayar Rom dan Dinasti Han",
+      "Empayar Mongol dan Kesultanan Delhi",
+      "Kerajaan Turki Uthmaniyah dan Empayar Parsi",
+      "Kerajaan Abbasiyah dan Dinasti Tang",
+    ],
+    answerIndex: 3,
+    explanation: "Pada abad kesembilan, Champa, Srivijaya dan Angkor sezaman dengan kerajaan Abbasiyah, empayar Byzantine, Dinasti Tang dan kerajaan Chola (hlm. 15).",
+  },
+  {
+    id: "sej-f2-c1-q34",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 1",
+    difficulty: "Easy",
+    question: "Agama Islam tersebar ke Alam Melayu melalui peranan golongan manakah?",
+    options: [
+      "Pedagang, pemerintah dan pendakwah",
+      "Tentera, golongan Brahmin dan pedagang",
+      "Sami Buddha yang dihantar oleh Asoka",
+      "Utusan Dinasti Han dan Dinasti Tang",
+    ],
+    answerIndex: 0,
+    explanation: "Islam tersebar melalui peranan pedagang, pemerintah dan pendakwah; Hindu melalui pedagang, tentera dan Brahmin; Buddha melalui sami yang dihantar oleh Asoka (hlm. 17).",
+  },
+  {
+    id: "sej-f2-c1-q35",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 1",
+    difficulty: "Hard",
+    question: "Susun peristiwa berikut mengikut kronologi yang betul: P – Srivijaya diserang tentera Chola; Q – Champa ditawan Dai Viet; R – Angkor diserang Siam; S – Majapahit diserang Demak.",
+    options: [
+      "P, S, Q, R",
+      "P, Q, S, R",
+      "Q, P, S, R",
+      "P, Q, R, S",
+    ],
+    answerIndex: 1,
+    explanation: "Chola menyerang pada 1025, Champa ditawan Dai Viet pada 1471, Demak menyerang Majapahit pada 1478 dan Siam menyerang Angkor pada 1594 (hlm. 9-12).",
+  },
+  {
+    id: "sej-f2-c1-q36",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 1",
+    difficulty: "Hard",
+    question: "Tokoh-tokoh seperti Nik Hassan Shuhaimi, Ismail Hussein, Alfred Russel Wallace dan Ding Choo Ming mentakrifkan kawasan Alam Melayu secara berbeza. Apakah kesimpulan yang paling tepat tentang pandangan mereka?",
+    options: [
+      "Alam Melayu hanya meliputi Semenanjung Tanah Melayu dan pulau-pulau di sekitarnya",
+      "Alam Melayu tidak termasuk dalam Asia Tenggara kerana meliputi Madagaskar dan Taiwan",
+      "Pandangan mereka bercanggah sepenuhnya dan tidak boleh dijadikan rujukan sejarah",
+      "Pandangan mereka hampir sama, iaitu Alam Melayu kini sebahagian daripada Asia Tenggara",
+    ],
+    answerIndex: 3,
+    explanation: "Tokoh-tokoh ini mengemukakan pandangan yang hampir sama; pada hari ini Alam Melayu merupakan sebahagian daripada Asia Tenggara (hlm. 4-5).",
+  },
+  {
+    id: "sej-f2-c1-q37",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 1",
+    difficulty: "Medium",
+    question:
+      "Menurut Sutan Takdir Alisjahbana, apakah faktor bahasa Melayu digunakan secara meluas di Alam Melayu sejak awal Masihi?",
+    options: [
+      "Sifat orang Melayu yang gemar belayar serta bahasa Melayu yang sederhana dan mudah dipelajari",
+      "Bahasa Melayu diwajibkan oleh kerajaan Chola",
+      "Bahasa Melayu hanya digunakan dalam upacara keagamaan",
+      "Bahasa Melayu dibawa oleh pedagang dari Rom",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Bahasa Melayu digunakan secara meluas sejak awal Masihi kerana sifat orang Melayu yang gemar belayar, dan sifat bahasa Melayu yang sederhana dan mudah dipelajari membolehkannya diterima di Alam Melayu (hlm. 6).",
+  },
+  {
+    id: "sej-f2-c1-q38",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 1",
+    difficulty: "Hard",
+    question:
+      "Funan menguasai jalan perdagangan utama antara timur dengan barat, manakala Srivijaya menguasai Selat Melaka dan Selat Sunda. Apakah kesimpulan yang paling tepat tentang kepentingan kedudukan strategik kepada kemajuan sesebuah kerajaan?",
+    options: [
+      "Kerajaan itu terpaksa bergantung sepenuhnya kepada kuasa luar",
+      "Kedudukan strategik tidak mempengaruhi kemajuan kerajaan",
+      "Penguasaan laluan perdagangan menjadikan kerajaan itu pusat perdagangan dan kuasa perdagangan utama di Alam Melayu",
+      "Kerajaan itu menjadi pusat pertanian sahaja",
+    ],
+    answerIndex: 2,
+    explanation:
+      "Fan Shih-man menguasai jalan perdagangan timur-barat sehingga Funan menjadi pusat perdagangan utama pada abad ketiga (hlm. 9). Penguasaan Selat Melaka dan Selat Sunda menjadikan Srivijaya kuasa perdagangan utama (hlm. 10). Kedudukan strategik di laluan perdagangan timur dan barat mendorong hubungan perdagangan (hlm. 16).",
+  },
+  {
+    id: "sej-f2-c1-q39",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 1",
+    difficulty: "Hard",
+    question:
+      "Buku teks menyatakan kerajaan-kerajaan Alam Melayu yang masyhur merupakan contoh kebijaksanaan kepimpinan masyarakat Alam Melayu. Antara berikut, yang manakah bukti terbaik bagi pernyataan ini?",
+    options: [
+      "Patih Gajah Mada mengembalikan keamanan Majapahit dan meluaskan tanah jajahannya sehingga Majapahit menjadi pusat perdagangan pada abad ke-14",
+      "Majapahit diserang oleh kerajaan Demak pada tahun 1478",
+      "Angkor diserang oleh Siam pada tahun 1594",
+      "Funan merosot akibat serangan kerajaan Chenla",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Kebijaksanaan pemimpin seperti Patih Gajah Mada membawa keamanan, perluasan jajahan dan kemakmuran perdagangan (hlm. 12). Buku teks menyatakan kerajaan yang masyhur ialah contoh kebijaksanaan kepimpinan masyarakat Alam Melayu (hlm. 13). Pilihan lain ialah faktor kemerosotan.",
+  },
+  {
+    id: "sej-f2-c1-q40",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 1",
+    difficulty: "Hard",
+    question:
+      "Kerajaan Alam Melayu menghantar utusan ke China dan India untuk mengukuhkan kedudukan, membuka jalan perdagangan dan menjalin persahabatan. Apakah penilaian yang paling tepat tentang pemerintah kerajaan Alam Melayu?",
+    options: [
+      "Pemerintah menolak hubungan dengan kerajaan luar",
+      "Pemerintah bijak mengurus hubungan kerajaannya dengan kerajaan luar secara terbuka dan saling menghormati",
+      "Pemerintah hanya mementingkan peperangan",
+      "Pemerintah bergantung sepenuhnya kepada India untuk pentadbiran",
+    ],
+    answerIndex: 1,
+    explanation:
+      "Kerajaan-kerajaan Alam Melayu bersifat terbuka dan saling menghormati dalam menjalinkan hubungan dengan kerajaan luar; jelaslah bahawa pemerintah kerajaan Alam Melayu bijak mengurus hubungan kerajaannya dengan kerajaan luar (hlm. 18-19).",
+  },
+  {
+    id: "sej-f2-c1-q41",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 1",
+    difficulty: "Hard",
+    question:
+      "Pada pendapat anda, bagaimanakah kita dapat meneruskan kegemilangan tamadun kerajaan Alam Melayu? Pilih cadangan yang paling selaras dengan buku teks.",
+    options: [
+      "Memutuskan hubungan dengan negara luar",
+      "Mengabaikan sejarah kerajaan awal",
+      "Mencontohi kebijaksanaan dan kemasyhuran kerajaan Alam Melayu untuk membina tamadun bangsa yang setanding, serta menjalinkan kerjasama dan bersifat terbuka untuk kemakmuran negara",
+      "Menumpukan perhatian kepada kegiatan pertanian sahaja",
+    ],
+    answerIndex: 2,
+    explanation:
+      "Buku teks menyatakan kebijaksanaan dan kemasyhuran kerajaan Alam Melayu wajar menjadi contoh untuk membina tamadun bangsa yang setanding dengan bangsa lain (hlm. 13), dan hubungan dengan kerajaan luar mendidik kita menjalinkan kerjasama dan bersifat terbuka untuk kemakmuran negara (hlm. 23). Soalan ini berdasarkan soalan 6(c) buku teks (hlm. 22).",
   },
   // Sejarah Form 2 Chapter 2 - Sistem Pemerintahan dan Kegiatan Ekonomi
   // 2.1 Sistem Pemerintahan
@@ -5832,11 +6018,11 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 2",
     difficulty: "Medium",
     question:
-      "Funan, Champa dan Angkor memanfaatkan tasik yang manakah untuk membekalkan air bagi pertanian padi?",
+      "Funan dan Angkor memanfaatkan tasik yang manakah untuk membekalkan air bagi pertanian padi?",
     options: ["Tasik Toba", "Tonle Sap", "Tasik Chini", "Tasik Kenyir"],
     answerIndex: 1,
     explanation:
-      "Funan, Champa dan Angkor memanfaatkan kawasan Lembah Sungai Mekong, dengan Tonle Sap membekalkan air untuk pertanian.",
+      "Funan dan Angkor menjalankan pertanian padi di Lembah Sungai Mekong; Tasik Tonle Sap membekalkan air untuk pertanian (hlm. 29).",
   },
   {
     id: "sej-f2-c2-q15",
@@ -5865,14 +6051,14 @@ export const quizzes: QuizQuestion[] = [
     question:
       "Champa mempunyai Ketua Air di setiap kampung, manakala Majapahit menjalankan pertanian di sekitar Sungai Bengawan Solo dan Sungai Brantas. Apakah persamaan pendekatan kedua-dua kerajaan ini dalam bidang pertanian?",
     options: [
-      "Kedua-duanya membina sistem pengairan untuk menampung keperluan pertanian padi",
+      "Kedua-duanya mengurus sistem pengairan untuk menampung keperluan pertanian padi",
       "Kedua-duanya mengutamakan tanaman rempah untuk dieksport",
       "Kedua-duanya menjalankan pertanian pindah di kawasan bukit",
       "Kedua-duanya bergantung kepada air hujan tanpa sistem pengairan",
     ],
     answerIndex: 0,
     explanation:
-      "Champa menyelenggarakan terusan melalui Ketua Air manakala Majapahit membina sistem pengairan menggunakan Sungai Bengawan Solo dan Sungai Brantas — kedua-duanya membina kemudahan pengairan untuk meningkatkan hasil pertanian padi.",
+      "Di Champa, Ketua Air di setiap kampung menyelenggara terusan dan daik, manakala Majapahit mengusahakan padi di sekitar Sungai Bengawan Solo dan Sungai Brantas dengan sistem pengairan — kedua-duanya mengurus pengairan untuk pertanian padi (hlm. 28–29).",
   },
   {
     id: "sej-f2-c2-q17",
@@ -5958,7 +6144,7 @@ export const quizzes: QuizQuestion[] = [
     ],
     answerIndex: 3,
     explanation:
-      "Palembang mendagangkan damar, kapur barus, gaharu, madu, rotan, rempah, mutiara, rumpai laut, gading gajah dan sumbu badak, manakala beras merupakan barang dagangan utama pelabuhan Champa, bukan Palembang.",
+      "Palembang mendagangkan damar, kapur barus, gaharu, madu, rotan, rempah, mutiara, rumpai laut, gading gajah dan sumbu badak, manakala beras didagangkan oleh Champa dan Majapahit, bukan Palembang (hlm. 30–31).",
   },
   {
     id: "sej-f2-c2-q23",
@@ -5969,14 +6155,14 @@ export const quizzes: QuizQuestion[] = [
     question:
       "Pedagang China ke Alam Melayu membawa barangan seperti kain sutera. Apakah barangan yang mereka cari daripada Alam Melayu?",
     options: [
-      "Rempah, gaharu dan kapur barus",
-      "Batu berharga, akik dan manik",
+      "Barangan yang mempunyai nilai perubatan",
+      "Batu berharga seperti akik dan karnelian",
       "Minyak wangi dan barangan kaca",
-      "Tembikar, kain kapas dan kaca",
+      "Kain kapas dan tembikar",
     ],
     answerIndex: 0,
     explanation:
-      "Pedagang China mendapatkan barangan Alam Melayu seperti rempah, gaharu dan kapur barus sambil membawa barangan seperti kain sutera.",
+      "Pedagang China membawa kain sutera dan tembikar, dan mencari barangan yang mempunyai nilai perubatan. Rempah, gaharu dan kapur barus dicari oleh pedagang India (hlm. 31).",
   },
   {
     id: "sej-f2-c2-q24",
@@ -6083,13 +6269,103 @@ export const quizzes: QuizQuestion[] = [
       "Champa menjalankan perlombongan emas dan perak, manakala Majapahit terkenal dengan kegiatan pembuatan. Antara berikut, yang manakah barangan pembuatan Majapahit?",
     options: [
       "Tembikar, cuka kelapa, tikar dan rotan",
-      "Barang perhiasan emas dan bijih besi",
+      "Barang perhiasan daripada emas dan bijih besi",
       "Garam, gula, minyak dan mi beras",
       "Kain sutera dan barangan kaca",
     ],
     answerIndex: 2,
     explanation:
-      "Majapahit menghasilkan garam, gula, minyak dan mi beras, manakala tembikar dan cuka kelapa dihasilkan oleh Champa, dan barang perhiasan emas daripada bijih besi dihasilkan oleh Funan dan Angkor.",
+      "Majapahit menghasilkan garam, gula, minyak dan mi beras, manakala tembikar dan cuka kelapa dihasilkan oleh Champa, dan pelbagai barangan daripada bijih besi dan emas, seperti barang perhiasan, dihasilkan oleh Funan dan Angkor (hlm. 33).",
+  },
+  {
+    id: "sej-f2-c2-q31",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 2",
+    difficulty: "Medium",
+    question:
+      "Apakah kedudukan wanita kerabat diraja dalam pemerintahan Majapahit?",
+    options: [
+      "Mereka menjadi anggota Sapta Prabu dan ada yang dilantik menjadi raja",
+      "Mereka hanya menguruskan istana",
+      "Mereka mengetuai pentadbiran wilayah Kabupaten",
+      "Mereka tidak terlibat dalam pemerintahan",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Wanita kerabat diraja Majapahit mendapat tempat yang tinggi dalam pentadbiran; mereka menjadi anggota Sapta Prabu, malahan ada yang dilantik menjadi raja (hlm. 27).",
+  },
+  {
+    id: "sej-f2-c2-q32",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 2",
+    difficulty: "Medium",
+    question:
+      "Siapakah Tuhan Vatakvurah dalam pemerintahan Srivijaya?",
+    options: [
+      "Penyelia kegiatan perdagangan dan perkapalan",
+      "Ketua wilayah Pradatuan",
+      "Ketua golongan agama",
+      "Ketua tentera",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Di pelabuhan Srivijaya, jawatan Tuhan Vatakvurah berperanan sebagai penyelia kegiatan perdagangan dan perkapalan (hlm. 30).",
+  },
+  {
+    id: "sej-f2-c2-q33",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 2",
+    difficulty: "Easy",
+    question:
+      "Apakah antara kemudahan yang disediakan di pelabuhan kerajaan Alam Melayu?",
+    options: [
+      "Bekalan air, tempat tinggal dan tempat menyimpan barang dagangan",
+      "Lapangan terbang",
+      "Kilang perkapalan moden",
+      "Landasan kereta api",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Pelabuhan dilengkapi kemudahan seperti bekalan air, tempat tinggal, tempat menyimpan barang dagangan dan kawasan berjual beli (hlm. 30).",
+  },
+  {
+    id: "sej-f2-c2-q34",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 2",
+    difficulty: "Medium",
+    question:
+      "Bagaimanakah kegiatan perlombongan dijalankan pada peringkat awal?",
+    options: [
+      "Secara mendulang secara kecil-kecilan",
+      "Menggunakan kapal korek",
+      "Secara lombong dedah yang besar",
+      "Menggunakan jentera berat",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Pada peringkat awal, perlombongan emas, perak dan bijih besi dijalankan dengan cara mendulang secara kecil-kecilan (hlm. 33).",
+  },
+  {
+    id: "sej-f2-c2-q35",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 2",
+    difficulty: "Hard",
+    question:
+      "Majapahit menghasilkan garam, gula, minyak, pembungkusan daging kerbau dan mi daripada beras. Apakah nilai yang dapat dicontohi daripada kegiatan ini?",
+    options: [
+      "Kreatif dalam penciptaan",
+      "Bergantung kepada pedagang asing",
+      "Mengutamakan kemewahan diri",
+      "Menolak pembaharuan",
+    ],
+    answerIndex: 0,
+    explanation:
+      "Kegiatan pembuatan Majapahit menunjukkan masyarakat yang kreatif dan inovatif dalam menghasilkan barangan keperluan (hlm. 33 dan 37).",
   },
   ...sejarahF2C3Quizzes,
   ...sejarahF2C4Quizzes,
@@ -19345,7 +19621,7 @@ export const flashcards: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     front: "Apakah maksud Alam Melayu dari aspek geografi?",
-    back: "Gugusan kepulauan dan tanah besar di Asia Tenggara serta kawasan sekitarnya.",
+    back: "Gugusan kepulauan dan tanah besar di bahagian tenggara benua Asia.",
   },
   {
     id: "sej-f2-c1-fc3",
@@ -19369,7 +19645,7 @@ export const flashcards: Flashcard[] = [
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Apakah istilah yang menggantikan Melayu-Polinesia pada tahun 1972?",
+    front: "Apakah istilah yang menggantikan Melayu Polinesia?",
     back: "Austronesia.",
   },
   {
@@ -19377,8 +19653,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Apakah persamaan budaya Alam Melayu menurut A. Aziz Deraman?",
-    back: "Kesenian, adat, nilai masyarakat dan gotong-royong.",
+    front: "Apakah aspek budaya serumpun masyarakat Alam Melayu?",
+    back: "Bahasa dan tulisan, persuratan, struktur sosial, kesenian, kepercayaan dan adat.",
   },
   {
     id: "sej-f2-c1-fc7",
@@ -19402,7 +19678,7 @@ export const flashcards: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     front: "Siapakah pengasas Kerajaan Funan?",
-    back: "Kaudinya.",
+    back: "Kaundinya.",
   },
   {
     id: "sej-f2-c1-fc10",
@@ -19482,14 +19758,14 @@ export const flashcards: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     front: "Di manakah Kerajaan Kedah Tua berkembang?",
-    back: "Sungai Mas dan Pangkalan Bujang.",
+    back: "Sungai Mas dan Sungai Bujang.",
   },
   {
     id: "sej-f2-c1-fc20",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Apakah pusat kerajaan terawal Gangga Negara?",
+    front: "Apakah pusat kerajaan terawal Gangga Nagara?",
     back: "Pangkalan.",
   },
 
@@ -19540,7 +19816,7 @@ export const flashcards: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     front: "Apakah faktor kemerosotan Kerajaan Champa?",
-    back: "Serangan Dai Viet dan penawanan Champa pada tahun 1471.",
+    back: "Kemerosotan bermula selepas kematian Indravarman pada tahun 1441, diikuti serangan Dai Viet sehingga Champa ditawan pada tahun 1471.",
   },
   {
     id: "sej-f2-c1-fc27",
@@ -19588,7 +19864,7 @@ export const flashcards: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     front: "Siapakah pengasas Kerajaan Majapahit?",
-    back: "Raden Wijaya.",
+    back: "Raden Vijaya.",
   },
   {
     id: "sej-f2-c1-fc33",
@@ -19612,7 +19888,7 @@ export const flashcards: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     front: "Apakah faktor kemerosotan Kerajaan Majapahit?",
-    back: "Kematian Patih Gajah Mada dan serangan Kesultanan Demak pada tahun 1478.",
+    back: "Kematian Patih Gajah Mada dan serangan kerajaan Demak pada tahun 1478.",
   },
   {
     id: "sej-f2-c1-fc36",
@@ -19627,7 +19903,7 @@ export const flashcards: Flashcard[] = [
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Siapakah pengasas Gangga Negara menurut sumber tradisi?",
+    front: "Siapakah pengasas Gangga Nagara menurut sumber tradisi?",
     back: "Raja Ganji Sarjuna.",
   },
   {
@@ -19635,7 +19911,7 @@ export const flashcards: Flashcard[] = [
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Apakah bukti kemasyhuran Gangga Negara?",
+    front: "Apakah bukti kemasyhuran Gangga Nagara?",
     back: "Menjadi pusat pelabuhan penting, dikunjungi pedagang luar serta kaya dengan emas dan bijih timah.",
   },
   {
@@ -19643,7 +19919,7 @@ export const flashcards: Flashcard[] = [
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Apakah bukti Gangga Negara mempertahankan kedaulatannya?",
+    front: "Apakah bukti Gangga Nagara mempertahankan kedaulatannya?",
     back: "Berjaya mempertahankan diri daripada serangan Srivijaya pada tahun 850 Masihi.",
   },
   {
@@ -19651,7 +19927,7 @@ export const flashcards: Flashcard[] = [
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Apakah faktor kemerosotan Gangga Negara?",
+    front: "Apakah faktor kemerosotan Gangga Nagara?",
     back: "Serangan tentera Chola pada tahun 1025 yang memusnahkan pelabuhannya.",
   },
 
@@ -19662,7 +19938,7 @@ export const flashcards: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     front: "Apakah kawasan yang dikuasai Funan semasa kemasyhurannya?",
-    back: "Teluk Cam Ranh, selatan Myanmar, Segenting Kra dan laluan perdagangan Timur-Barat.",
+    back: "Sungai Mekong hingga Teluk Camranh, selatan Myanmar dan Segenting Kra.",
   },
   {
     id: "sej-f2-c1-fc42",
@@ -19702,7 +19978,7 @@ export const flashcards: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     front: "Apakah faktor yang melemahkan perdagangan Kedah Tua?",
-    back: "Serangan tentera Chola pada tahun 1025 sehingga muncul Kesultanan Kedah sebagai kerajaan baharu.",
+    back: "Serangan tentera Chola dari India pada tahun 1025 melemahkan kegiatan perdagangan Kedah Tua.",
   },
   {
     id: "sej-f2-c1-fc47",
@@ -19718,15 +19994,15 @@ export const flashcards: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     front:
-      "Kerajaan Alam Melayu manakah yang sezaman dengan Empayar Byzantine pada abad kesembilan?",
-    back: "Srivijaya.",
+      "Namakan kerajaan Alam Melayu yang sezaman dengan Empayar Byzantine pada abad kesembilan.",
+    back: "Champa, Srivijaya dan Angkor.",
   },
   {
     id: "sej-f2-c1-fc49",
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Kerajaan luar manakah yang sezaman dengan Majapahit pada abad ke-14?",
+    front: "Namakan satu kerajaan luar yang sezaman dengan Majapahit pada abad ke-14.",
     back: "Kerajaan Turki Uthmaniyah.",
   },
   {
@@ -19750,8 +20026,8 @@ export const flashcards: Flashcard[] = [
     subjectId: "sejarah",
     form: "Form 2",
     chapter: "Chapter 1",
-    front: "Namakan empat pelabuhan penting Alam Melayu dalam perdagangan antarabangsa.",
-    back: "Oc Eo, Kedah Tua, Palembang dan Tuban.",
+    front: "Namakan pelabuhan di kawasan Alam Melayu yang ditunjukkan pada peta jalan perdagangan (hlm. 16).",
+    back: "Oc Eo, Turan, Kedah Tua, Palembang dan Tuban.",
   },
   {
     id: "sej-f2-c1-fc53",
@@ -19759,7 +20035,7 @@ export const flashcards: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     front: "Apakah kesan hubungan perdagangan kepada kerajaan Alam Melayu?",
-    back: "Menggalakkan kemakmuran ekonomi, menarik pedagang luar, memajukan pelabuhan dan mengukuhkan kerajaan.",
+    back: "Membawa kemakmuran ekonomi.",
   },
   {
     id: "sej-f2-c1-fc54",
@@ -19775,7 +20051,7 @@ export const flashcards: Flashcard[] = [
     form: "Form 2",
     chapter: "Chapter 1",
     front: "Bagaimanakah agama Buddha tersebar ke Alam Melayu?",
-    back: "Melalui peranan Maharaja Asoka dan sami Buddha yang dihantar ke Alam Melayu.",
+    back: "Melalui peranan Asoka, pemerintah empayar Maurya, yang menghantar sami-sami Buddha ke Alam Melayu.",
   },
   {
     id: "sej-f2-c1-fc56",
@@ -19816,6 +20092,134 @@ export const flashcards: Flashcard[] = [
     chapter: "Chapter 1",
     front: "Apakah tujuan Funan berhubung dengan India pada abad ketiga?",
     back: "Memperkukuh hubungan perdagangan dan hubungan keagamaan.",
+  },
+  {
+    id: "sej-f2-c1-fc61",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 1",
+    front: "Apakah nama gugusan tanah luas yang menghubungkan daratan dengan kepulauan Alam Melayu pada masa dahulu?",
+    back: "Pentas Sunda.",
+  },
+  {
+    id: "sej-f2-c1-fc62",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 1",
+    front: "Menurut Nik Hassan Shuhaimi Nik Abdul Rahman, Alam Melayu meliputi kawasan dari mana hingga mana?",
+    back: "Dari Madagaskar ke Tanah Melayu, Papua New Guinea, Australia, New Zealand, Kepulauan Pasifik dan sampai ke Taiwan.",
+  },
+  {
+    id: "sej-f2-c1-fc63",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 1",
+    front: "Menurut Alfred Russel Wallace, Kepulauan Melayu meliputi kawasan apa?",
+    back: "Tanah Melayu hingga Tenasserim dan Kepulauan Nicobar, Filipina dan Kepulauan Solomon hingga Papua New Guinea.",
+  },
+  {
+    id: "sej-f2-c1-fc64",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 1",
+    front: "Apakah yang dipilih oleh UNESCO pada tahun 1972?",
+    back: "Istilah Melayu bagi merujuk suku bangsa yang berbahasa Melayu yang mendiami Asia Tenggara.",
+  },
+  {
+    id: "sej-f2-c1-fc65",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 1",
+    front: "Apakah nama Kedah Tua dalam sumber China, India dan Arab?",
+    back: "Chieh Ch'a (China), Kataha (India) dan Kalah-bar (Arab).",
+  },
+  {
+    id: "sej-f2-c1-fc66",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 1",
+    front: "Kerajaan Dai Viet merujuk kawasan mana hari ini?",
+    back: "Kawasan utara Vietnam.",
+  },
+  {
+    id: "sej-f2-c1-fc67",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 1",
+    front: "Siapakah yang membantu Raden Vijaya mengasaskan Majapahit pada tahun 1294?",
+    back: "Tentera Mongol.",
+  },
+  {
+    id: "sej-f2-c1-fc68",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 1",
+    front: "Namakan kerajaan luar yang sezaman dengan Champa, Angkor dan Majapahit pada abad ke-14.",
+    back: "Empayar Mongol, kerajaan Turki Uthmaniyah dan Kesultanan Delhi.",
+  },
+  {
+    id: "sej-f2-c1-fc69",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 1",
+    front: "Apakah tujuan Champa menghantar utusan ke China pada abad ketiga?",
+    back: "Memulihkan hubungan setelah berperang dengan sekutu China, iaitu Dai Viet.",
+  },
+  {
+    id: "sej-f2-c1-fc70",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 1",
+    front: "Apakah tujuan Srivijaya menghantar utusan ke India pada abad kesembilan?",
+    back: "Mengeratkan hubungan persahabatan dan hubungan keagamaan.",
+  },
+  {
+    id: "sej-f2-c1-fc71",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 1",
+    front: "Mengapakah bahasa Melayu digunakan secara meluas di Alam Melayu sejak awal Masihi?",
+    back: "Sifat orang Melayu yang gemar belayar mengembangkan bahasa Melayu; bahasa Melayu juga sederhana dan mudah dipelajari (hlm. 6).",
+  },
+  {
+    id: "sej-f2-c1-fc72",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 1",
+    front: "Apakah yang ditunjukkan oleh kerajaan-kerajaan Alam Melayu yang masyhur tentang kepimpinan?",
+    back: "Kerajaan ini merupakan contoh kebijaksanaan kepimpinan masyarakat Alam Melayu (hlm. 13).",
+  },
+  {
+    id: "sej-f2-c1-fc73",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 1",
+    front: "Bagaimanakah pemerintah kerajaan Alam Melayu menguruskan hubungan dengan kerajaan luar?",
+    back: "Bersifat terbuka dan saling menghormati; pemerintah bijak mengurus hubungan kerajaannya dengan kerajaan luar (hlm. 19).",
+  },
+  {
+    id: "sej-f2-c1-fc74",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 1",
+    front: "Bagaimanakah kedudukan strategik membantu kemajuan Srivijaya?",
+    back: "Penguasaan Selat Melaka dan Selat Sunda menjadikan Srivijaya kuasa perdagangan utama di Alam Melayu (hlm. 10).",
+  },
+  {
+    id: "sej-f2-c1-fc75",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 1",
+    front: "Apakah kesan memahami sejarah kewujudan kerajaan Alam Melayu kepada diri kita?",
+    back: "Melahirkan rasa bangga akan kegemilangan negara (hlm. 23) dan menyedarkan kita bahawa kawasan kita mempunyai warisan kerajaan yang agung (hlm. 8).",
+  },
+  {
+    id: "sej-f2-c1-fc76",
+    subjectId: "sejarah",
+    form: "Form 2",
+    chapter: "Chapter 1",
+    front: "Apakah bukti kewujudan kerajaan Alam Melayu yang ditemukan di Lembah Bujang dan Beruas?",
+    back: "Candi dan artifak pengaruh Hindu serta Buddha di Lembah Bujang, Kedah; ukiran pengaruh Islam di Beruas, Perak (hlm. 13, 17).",
   },
   ...sejarahF2C2Flashcards,
   ...sejarahF2C3Flashcards,

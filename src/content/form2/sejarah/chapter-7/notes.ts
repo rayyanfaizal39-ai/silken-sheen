@@ -377,10 +377,10 @@ const sejarahF2C7NotesSource: StructuredNotes = {
           ],
         },
         {
-          title: "Persuratan: Hikayat Pelayaran Abdullah",
+          title: "Persuratan: Hikayat Sang Kancil",
           bulletPoints: [
-            "Karya ini mencatatkan pelayaran Abdullah Munsyi ke pantai timur Semenanjung Tanah Melayu.",
-            "Catatan pelayaran melibatkan Pahang, Terengganu dan Kelantan.",
+            "Cerita teladan dan jenaka berasaskan manuskrip Hikayat Pelandok Jenaka.",
+            "Dibukukan oleh Daeng Abdul Hamid dari Perak dan mengandungi 20 buah cerita.",
           ],
         },
         {

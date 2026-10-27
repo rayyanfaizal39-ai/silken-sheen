@@ -10,7 +10,13 @@ export const SUPABASE_AUTH_COOKIE_OPTIONS = {
 };
 
 export function getSupabaseAuthCookieOptions(hostname: string, https = false) {
-  const production = ["myacademy.my", "www.myacademy.my", "senior.myacademy.my"].includes(hostname);
+  const production = [
+    "myacademy.my",
+    "www.myacademy.my",
+    "senior.myacademy.my",
+    "cards.myacademy.my",
+    "preview.cards.myacademy.my",
+  ].includes(hostname);
   return {
     ...SUPABASE_AUTH_COOKIE_OPTIONS,
     secure: production || https,

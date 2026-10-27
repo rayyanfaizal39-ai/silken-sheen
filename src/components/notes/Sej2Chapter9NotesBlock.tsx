@@ -12,12 +12,12 @@ import { bgPanel, groupGlow, neon } from "./blocks/neon-tokens";
 
 const ORBIT_LABELS = ["Warisan 3 Kerajaan", "Salasilah & Pertabalan", "Adat Perpatih", "Hierarki Adat", "Rumusan"];
 
-const SECTION_CHROME: Array<{ eyebrow: string; title: string; sub?: string }> = [
-  { eyebrow: "◆ 9.1", title: "5 Aspek Warisan Kedah, Kelantan dan Perlis", sub: "Sistem pemerintahan beraja, adat istiadat, perundangan, persuratan dan kesenian kekal hingga kini." },
-  { eyebrow: "◆ 9.1", title: "Salasilah Raja Perlis & Istiadat Pertabalan", sub: "Tujuh Raja Perlis meneruskan salasilah Jamalullail; pertabalan mengikut empat langkah tetap." },
-  { eyebrow: "◆ 9.2", title: "Keunikan Adat Perpatih Negeri Sembilan", sub: "Sistem matrilineal yang unik — jurai ibu, perkahwinan luar suku, dan upacara kedim." },
-  { eyebrow: "◆ 9.2", title: "Hierarki Pemerintahan Adat Perpatih", sub: "Daripada Yamtuan Besar hingga Ibu Soko — dipilih melalui permuafakatan, bukan diwarisi terus." },
-  { eyebrow: "◆ Rumusan", title: "Fakta Penting & Istilah Utama" },
+const SECTION_CHROME: Array<{ eyebrow: string; title: string; sub: string }> = [
+  { eyebrow: "9.1 Warisan Kerajaan Kedah, Kelantan dan Perlis", title: "5 Aspek Warisan Kedah, Kelantan dan Perlis", sub: "Bahagian ini menerangkan warisan kerajaan Kedah, Kelantan dan Perlis yang kekal hingga kini." },
+  { eyebrow: "9.1 Warisan Kerajaan Kedah, Kelantan dan Perlis", title: "Salasilah Raja Perlis & Istiadat Pertabalan", sub: "Bahagian ini menerangkan salasilah Raja Perlis dan istiadat pertabalan." },
+  { eyebrow: "9.2 Keunikan Adat dan Pemerintahan Negeri Sembilan", title: "Keunikan Adat Perpatih Negeri Sembilan", sub: "Bahagian ini menerangkan ciri-ciri Adat Perpatih di Negeri Sembilan." },
+  { eyebrow: "9.2 Keunikan Adat dan Pemerintahan Negeri Sembilan", title: "Hierarki Pemerintahan Adat Perpatih", sub: "Bahagian ini menerangkan susunan pemerintahan Negeri Sembilan mengikut Adat Perpatih." },
+  { eyebrow: "Rumusan Bab 9", title: "Fakta Penting & Istilah Utama", sub: "Bahagian ini mengumpulkan fakta penting dan istilah utama Bab 9 untuk ulang kaji." },
 ];
 
 const TOTAL = ORBIT_LABELS.length;
@@ -75,7 +75,7 @@ export function Sej2Chapter9NotesBlock({
   }));
 
   return (
-    <section id={id} className="mt-8 animate-fade-up">
+    <section id={id} className="sej2-notes mt-8 animate-fade-up">
       <div className="mb-6 flex items-start gap-4 rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 via-accent/5 to-transparent p-5">
         <div className="shrink-0 text-2xl">🏛️</div>
         <div>
@@ -115,14 +115,14 @@ export function Sej2Chapter9NotesBlock({
       </div>
 
       <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-5 sm:p-8">
-        <p className="mb-1 text-xs font-bold uppercase tracking-wider text-primary">{chrome.eyebrow}</p>
-        <h2 className="font-display mb-1 text-xl font-bold text-foreground sm:text-2xl">{chrome.title}</h2>
-        {chrome.sub && <p className="mb-6 text-[13.5px] leading-relaxed text-muted-foreground">{chrome.sub}</p>}
-        {!chrome.sub && <div className="mb-6" />}
+        <p className="mb-1.5 font-display text-[15px] font-bold leading-snug text-primary">{chrome.eyebrow}</p>
+        <h2 className="font-display mb-2 text-[22px] font-bold leading-tight text-foreground sm:text-2xl">{chrome.title}</h2>
+        <p className="mb-6 border-l-2 border-primary/50 pl-3 text-base leading-relaxed text-muted-foreground">{chrome.sub}</p>
 
         {current === 0 && (
           <div className="space-y-6">
             <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.legacyOfThreeKingdoms.intro}</p>
+            <h4 className="sej2-block-label">Aspek warisan</h4>
             <div className="grid gap-3.5 sm:grid-cols-2">
               {content.legacyOfThreeKingdoms.aspects.map((a) => (
                 <div key={a.aspect} className="rounded-2xl p-4" style={{ background: bgPanel, boxShadow: groupGlow(neon.violet, 14, 0.1) }}>
@@ -142,6 +142,7 @@ export function Sej2Chapter9NotesBlock({
                 </div>
               ))}
             </div>
+            <h4 className="sej2-block-label">Gelaran pemerintah</h4>
             <DataTable
               headers={["Negeri", "Gelaran Pemerintah"]}
               rows={content.legacyOfThreeKingdoms.royalTitles.map((r) => [r.kingdom, r.title])}
@@ -171,6 +172,7 @@ export function Sej2Chapter9NotesBlock({
                 }))}
               />
             </div>
+            <h4 className="sej2-block-label">Peringkat pemerintahan dan peranannya</h4>
             <DataTable
               headers={["Peringkat", "Peranan"]}
               rows={content.legacyOfThreeKingdoms.governanceHierarchy.map((g) => [g.tier, g.role])}
@@ -181,6 +183,7 @@ export function Sej2Chapter9NotesBlock({
         {current === 2 && (
           <div className="space-y-6">
             <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.negeriSembilanUniqueness.intro}</p>
+            <h4 className="sej2-block-label">Ciri-ciri Adat Perpatih</h4>
             <KingdomChipGrid
               items={content.negeriSembilanUniqueness.features.map((f) => ({
                 name: f.feature,

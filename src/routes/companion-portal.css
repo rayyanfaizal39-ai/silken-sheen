@@ -1,0 +1,33 @@
+/* Portal is independent of the card dashboard. Its fullscreen shell sits
+   above AcadeMY's sidebar/top bar, without moving or deleting them. */
+.ccp-fullscreen-gateway {
+  position: fixed;
+  inset: 0;
+  z-index: 2147482000;
+  overflow: auto;
+  background: #05070f;
+}
+.ccp-fullscreen-gateway__back {
+  position: fixed;
+  z-index: 2147482100;
+  top: max(16px, env(safe-area-inset-top));
+  left: max(16px, env(safe-area-inset-left));
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid rgba(249, 209, 153, .3);
+  border-radius: 999px;
+  background: rgba(6, 9, 25, .72);
+  color: #fce7bc;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  backdrop-filter: blur(12px);
+}
+.ccp-fullscreen-gateway__back:hover { background: rgba(35, 22, 54, .86); }
+.ccp-fullscreen-gateway__back:focus-visible { outline: 2px solid #ffdeaa; outline-offset: 3px; }
+@media (max-width: 550px) {
+  .ccp-fullscreen-gateway__back { font-size: 11px; }
+}

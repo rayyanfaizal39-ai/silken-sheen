@@ -5,14 +5,18 @@ import { ChipRow } from "./blocks/ChipRow";
 import { FactGrid } from "./blocks/FactGrid";
 import { PortGoodsGrid } from "./blocks/PortGoodsGrid";
 import { bgPanel, groupGlow, hexToRgba, neon } from "./blocks/neon-tokens";
+import pusatMobile from "@/assets/form2-content/sej2-bab8/v1-pusat-empat-kerajaan.svg";
+import pusatDesktop from "@/assets/form2-content/sej2-bab8/v1-pusat-empat-kerajaan-desktop.svg";
+
+const FIG_IMG = "notes-figure-img w-full rounded-2xl border border-border";
 
 const ORBIT_LABELS = ["Pengasasan", "Asas Hubungan", "Diplomatik & Dagang", "Rumusan"];
 
-const SECTION_CHROME: Array<{ eyebrow: string; title: string; sub?: string }> = [
-  { eyebrow: "◆ 8.1", title: "Empat Kerajaan, Empat Cara Pengasasan", sub: "Kedah, Kelantan, Negeri Sembilan dan Perlis muncul melalui proses pengasasan yang tersendiri." },
-  { eyebrow: "◆ 8.2", title: "Asas Hubungan Antara Kerajaan Melayu", sub: "Keserumpunan, geografi dan agama menjadi tiga asas hubungan negeri Melayu." },
-  { eyebrow: "◆ 8.2", title: "Hubungan Diplomatik dan Perdagangan", sub: "Pengiktirafan, bantuan pertahanan dan perkahwinan diraja mengukuhkan kedaulatan; pelabuhan mengukuhkan kemakmuran." },
-  { eyebrow: "◆ Rumusan", title: "Fakta Penting & Istilah Utama" },
+const SECTION_CHROME: Array<{ eyebrow: string; title: string; sub: string }> = [
+  { eyebrow: "8.1 Pengasasan Kerajaan Kedah, Kelantan, Negeri Sembilan dan Perlis", title: "Empat Kerajaan, Empat Cara Pengasasan", sub: "Bahagian ini menerangkan cara setiap kerajaan diasaskan." },
+  { eyebrow: "8.2 Hubungan Kerajaan Kedah, Kelantan, Negeri Sembilan dan Perlis dengan Negeri-negeri Melayu yang Lain", title: "Asas Hubungan Antara Kerajaan Melayu", sub: "Bahagian ini menerangkan asas hubungan antara kerajaan-kerajaan Melayu." },
+  { eyebrow: "8.2 Hubungan Kerajaan Kedah, Kelantan, Negeri Sembilan dan Perlis dengan Negeri-negeri Melayu yang Lain", title: "Hubungan Diplomatik dan Perdagangan", sub: "Bahagian ini menerangkan bentuk hubungan diplomatik dan perdagangan antara kerajaan." },
+  { eyebrow: "Rumusan Bab 8", title: "Fakta Penting & Istilah Utama", sub: "Bahagian ini mengumpulkan fakta penting dan istilah utama Bab 8 untuk ulang kaji." },
 ];
 
 const TOTAL = ORBIT_LABELS.length;
@@ -59,7 +63,7 @@ export function Sej2Chapter8NotesBlock({
   };
 
   return (
-    <section id={id} className="mt-8 animate-fade-up">
+    <section id={id} className="sej2-notes mt-8 animate-fade-up">
       <div className="mb-6 flex items-start gap-4 rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 via-accent/5 to-transparent p-5">
         <div className="shrink-0 text-2xl">🏯</div>
         <div>
@@ -99,14 +103,19 @@ export function Sej2Chapter8NotesBlock({
       </div>
 
       <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-5 sm:p-8">
-        <p className="mb-1 text-xs font-bold uppercase tracking-wider text-primary">{chrome.eyebrow}</p>
-        <h2 className="font-display mb-1 text-xl font-bold text-foreground sm:text-2xl">{chrome.title}</h2>
-        {chrome.sub && <p className="mb-6 text-[13.5px] leading-relaxed text-muted-foreground">{chrome.sub}</p>}
-        {!chrome.sub && <div className="mb-6" />}
+        <p className="mb-1.5 font-display text-[15px] font-bold leading-snug text-primary">{chrome.eyebrow}</p>
+        <h2 className="font-display mb-2 text-[22px] font-bold leading-tight text-foreground sm:text-2xl">{chrome.title}</h2>
+        <p className="mb-6 border-l-2 border-primary/50 pl-3 text-base leading-relaxed text-muted-foreground">{chrome.sub}</p>
 
         {current === 0 && (
           <div className="space-y-6">
             <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.founding.intro}</p>
+            <figure className="space-y-2">
+              <div className="sm:hidden"><img src={pusatMobile} alt="Peta pusat pemerintahan awal Kedah, Kelantan, Negeri Sembilan dan Perlis" className={FIG_IMG} loading="lazy" /></div>
+              <div className="hidden sm:block"><img src={pusatDesktop} alt="Peta pusat pemerintahan awal Kedah, Kelantan, Negeri Sembilan dan Perlis" className={`${FIG_IMG} notes-figure-img--wide`} loading="lazy" /></div>
+              <figcaption className="text-center text-[11px] italic leading-snug text-muted-foreground">Sumber: buku teks hlm. 138–144. Peta asas: Natural Earth; kedudukan anggaran.</figcaption>
+            </figure>
+            <h4 className="sej2-block-label">Pengasasan setiap kerajaan</h4>
             <div className="grid gap-4 sm:grid-cols-2">
               {content.founding.kingdoms.map((k) => (
                 <div key={k.name} className="rounded-2xl p-4.5" style={{ background: bgPanel, boxShadow: groupGlow(neon.amber, 16, 0.1) }}>
@@ -139,6 +148,7 @@ export function Sej2Chapter8NotesBlock({
         {current === 1 && (
           <div className="space-y-6">
             <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.relations.intro}</p>
+            <h4 className="sej2-block-label">Asas hubungan</h4>
             <div className="grid gap-3.5 sm:grid-cols-3">
               {content.relations.bases.map((b) => {
                 const color = neon[basisColors[b.basis] ?? "violet"];

@@ -8,11 +8,11 @@ const sejarahF2C1NotesSource: StructuredNotes = {
     "Alam Melayu merangkumi gugusan kepulauan dan tanah besar di Asia Tenggara.",
     "Konsep Alam Melayu boleh dilihat dari aspek geografi, bahasa dan budaya.",
     "Bahasa Melayu tergolong dalam keluarga Austronesia.",
-    "Terdapat lebih 200 bahasa yang dituturkan di Alam Melayu.",
+    "Bahasa Melayu merupakan antara 200 bahasa yang dituturkan di Alam Melayu.",
     "Kerajaan Alam Melayu bermula daripada petempatan kecil, berkembang menjadi pelabuhan dan seterusnya menjadi kerajaan.",
     "Kerajaan awal Alam Melayu muncul seawal abad pertama.",
-    "Kerajaan Alam Melayu yang masyhur ialah Funan, Champa, Srivijaya, Angkor, Majapahit, Kedah Tua dan Gangga Negara.",
-    "Kemasyhuran kerajaan Alam Melayu dapat dilihat dalam aspek pemerintahan, ekonomi, agama, pelabuhan dan perluasan kuasa.",
+    "Kerajaan Alam Melayu yang masyhur ialah Funan, Champa, Srivijaya, Angkor, Majapahit, Kedah Tua dan Gangga Nagara.",
+    "Kemasyhuran kerajaan Alam Melayu dapat dilihat dalam aspek pemerintahan, ekonomi, agama dan kemunculan pelabuhan.",
     "Kerajaan Alam Melayu muncul sezaman dengan kerajaan luar seperti Empayar Rom, Empayar Parsi, Dinasti Han, Dinasti Tang dan Kerajaan Chola.",
     "Kerajaan Alam Melayu menjalinkan hubungan perdagangan, keagamaan dan diplomatik dengan kerajaan lain.",
   ],
@@ -73,7 +73,7 @@ const sejarahF2C1NotesSource: StructuredNotes = {
           title: "Aspek Bahasa",
           bulletPoints: [
             "Bahasa Melayu tergolong dalam keluarga Austronesia.",
-            "Terdapat lebih 200 bahasa yang dituturkan di Alam Melayu.",
+            "Bahasa Melayu merupakan antara 200 bahasa yang dituturkan di Alam Melayu.",
           ],
         },
         {
@@ -105,7 +105,7 @@ const sejarahF2C1NotesSource: StructuredNotes = {
         {
           title: "Fakta Penting",
           content:
-            "Istilah Melayu-Polinesia digantikan dengan Austronesia oleh UNESCO pada tahun 1972.",
+            "Istilah Melayu Polinesia digunakan sebelum digantikan dengan Austronesia. Pada tahun 1972, UNESCO memilih istilah Melayu bagi merujuk suku bangsa yang berbahasa Melayu yang mendiami Asia Tenggara.",
         },
         {
           title: "Aspek Budaya",
@@ -148,7 +148,7 @@ const sejarahF2C1NotesSource: StructuredNotes = {
                 "Abad Kelima",
                 "Sungai Mas dan Pangkalan Bujang",
               ],
-              ["Gangga Negara", "Pantai Barat Tengah Tanah Melayu", "Abad Keenam", "Pangkalan"],
+              ["Gangga Nagara", "Pantai Barat Tengah Tanah Melayu", "Abad Keenam", "Pangkalan"],
             ],
           },
         },
@@ -165,8 +165,8 @@ const sejarahF2C1NotesSource: StructuredNotes = {
         {
           title: "Pengenalan",
           bulletPoints: [
-            "Antara kerajaan Alam Melayu yang masyhur ialah Funan, Champa, Srivijaya, Angkor, Majapahit, Kedah Tua dan Gangga Negara.",
-            "Kemasyhuran kerajaan ini dapat dilihat dalam aspek pemerintahan, ekonomi, agama, pelabuhan dan perluasan kuasa.",
+            "Antara kerajaan Alam Melayu yang masyhur ialah Funan, Champa, Srivijaya, Angkor, Majapahit, Kedah Tua dan Gangga Nagara.",
+            "Kemasyhuran kerajaan ini dapat dilihat dalam aspek pemerintahan, ekonomi, agama dan kemunculan pelabuhan.",
           ],
         },
         {
@@ -176,11 +176,11 @@ const sejarahF2C1NotesSource: StructuredNotes = {
             rows: [
               [
                 "Pengasas",
-                "Diasaskan oleh Kaudinya dan berpusat di Vyadhapura. Kaudinya berkahwin dengan Soma dan membentuk kerajaan Funan.",
+                "Diasaskan oleh Kaundinya dan berpusat di Vyadhapura. Kaundinya berkahwin dengan Soma dan membentuk kerajaan Funan.",
               ],
               [
                 "Kemasyhuran",
-                "Diperintah oleh Fan Shih-man. Funan meluaskan empayar hingga Teluk Cam Ranh, menguasai selatan Myanmar, Segenting Kra dan laluan perdagangan utama Timur dan Barat.",
+                "Diperintah oleh Fan Shih-man. Funan meluaskan empayar hingga Teluk Camranh, menguasai selatan Myanmar, Segenting Kra dan laluan perdagangan utama Timur dan Barat.",
               ],
               [
                 "Kemasyhuran Ekonomi",
@@ -276,7 +276,7 @@ const sejarahF2C1NotesSource: StructuredNotes = {
             rows: [
               [
                 "Pengasas",
-                "Diasaskan oleh Raden Wijaya pada tahun 1294 Masihi dan berpusat di Kota Trowulan.",
+                "Diasaskan oleh Raden Vijaya pada tahun 1294 Masihi dan berpusat di Kota Trowulan.",
               ],
               [
                 "Patih Gajah Mada",
@@ -292,7 +292,7 @@ const sejarahF2C1NotesSource: StructuredNotes = {
               ],
               [
                 "Kemerosotan",
-                "Kematian Patih Gajah Mada dan serangan Kesultanan Demak pada tahun 1478 menyebabkan kerajaan menjadi lemah.",
+                "Kematian Patih Gajah Mada dan serangan kerajaan Demak pada tahun 1478 menyebabkan kerajaan menjadi lemah.",
               ],
             ],
           },
@@ -322,7 +322,7 @@ const sejarahF2C1NotesSource: StructuredNotes = {
           },
         },
         {
-          title: "Kerajaan Gangga Negara",
+          title: "Kerajaan Gangga Nagara",
           table: {
             headers: ["Aspek", "Catatan Penting"],
             rows: [
@@ -336,7 +336,7 @@ const sejarahF2C1NotesSource: StructuredNotes = {
               ],
               [
                 "Kemasyhuran",
-                "Bermula pada abad kesembilan. Gangga Negara menjadi pusat pelabuhan penting, dikunjungi pedagang luar dan kaya dengan emas serta bijih timah.",
+                "Bermula pada abad kesembilan. Gangga Nagara menjadi pusat pelabuhan penting, dikunjungi pedagang luar dan kaya dengan emas serta bijih timah.",
               ],
               [
                 "Pertahanan",
@@ -344,7 +344,7 @@ const sejarahF2C1NotesSource: StructuredNotes = {
               ],
               [
                 "Kemerosotan",
-                "Diserang tentera Chola dari India pada tahun 1025. Pelabuhan Gangga Negara dimusnahkan dan kerajaan menjadi lemah.",
+                "Diserang tentera Chola dari India pada tahun 1025. Pelabuhan Gangga Nagara dimusnahkan dan kerajaan menjadi lemah.",
               ],
             ],
           },
@@ -352,7 +352,7 @@ const sejarahF2C1NotesSource: StructuredNotes = {
         {
           title: "Kesimpulan Bab 1.3",
           content:
-            "Kerajaan Funan, Champa, Srivijaya, Angkor, Majapahit, Kedah Tua dan Gangga Negara merupakan kerajaan Alam Melayu yang masyhur kerana kebijaksanaan pemerintah, kemajuan perdagangan, perluasan empayar dan keupayaan mempertahankan kedaulatan kerajaan masing-masing.",
+            "Kerajaan Funan, Champa, Srivijaya, Angkor, Majapahit, Kedah Tua dan Gangga Nagara merupakan kerajaan Alam Melayu yang masyhur kerana kebijaksanaan pemerintah, kemajuan perdagangan, perluasan empayar dan keupayaan mempertahankan kedaulatan kerajaan masing-masing.",
         },
       ],
     },
@@ -488,7 +488,7 @@ const sejarahF2C1NotesSource: StructuredNotes = {
           title: "Rumusan Bab 1",
           bulletPoints: [
             "Konsep Alam Melayu boleh dilihat dari aspek geografi, bahasa dan budaya.",
-            "Kerajaan awal Alam Melayu ialah Funan, Champa, Srivijaya, Angkor, Majapahit, Kedah Tua dan Gangga Negara.",
+            "Kerajaan awal Alam Melayu ialah Funan, Champa, Srivijaya, Angkor, Majapahit, Kedah Tua dan Gangga Nagara.",
             "Kerajaan Alam Melayu yang masyhur dapat dikaji melalui pengasas, kemasyhuran dan kemerosotan.",
             "Hubungan dengan kerajaan luar berlaku melalui perdagangan, keagamaan dan diplomatik.",
           ],
@@ -504,8 +504,8 @@ const sejarahF2C1NotesSource: StructuredNotes = {
   keyExamFacts: [
     "Alam Melayu boleh dilihat dari aspek geografi, bahasa dan budaya.",
     "Bahasa Melayu tergolong dalam keluarga Austronesia.",
-    "Terdapat lebih 200 bahasa yang dituturkan di Alam Melayu.",
-    "Istilah Melayu-Polinesia digantikan dengan Austronesia oleh UNESCO pada tahun 1972.",
+    "Bahasa Melayu merupakan antara 200 bahasa yang dituturkan di Alam Melayu.",
+    "Istilah Melayu Polinesia digunakan sebelum digantikan dengan Austronesia. Pada tahun 1972, UNESCO memilih istilah Melayu bagi merujuk suku bangsa yang berbahasa Melayu yang mendiami Asia Tenggara.",
     "Kerajaan awal Alam Melayu muncul seawal abad pertama.",
     "Funan berpusat di Vyadhapura.",
     "Champa berpusat di Indrapura.",
@@ -513,15 +513,15 @@ const sejarahF2C1NotesSource: StructuredNotes = {
     "Angkor berpusat di Hariharalaya.",
     "Majapahit berpusat di Kota Trowulan.",
     "Kedah Tua berpusat di Sungai Mas dan Pangkalan Bujang.",
-    "Gangga Negara berpusat di Pangkalan.",
-    "Funan diasaskan oleh Kaudinya dan mencapai kemasyhuran di bawah Fan Shih-man.",
+    "Gangga Nagara berpusat di Pangkalan.",
+    "Funan diasaskan oleh Kaundinya dan mencapai kemasyhuran di bawah Fan Shih-man.",
     "Champa diasaskan oleh Chu-Lien pada tahun 192 Masihi.",
     "Srivijaya diasaskan oleh Dapunta Hyang Sri Jayanasa pada tahun 683 Masihi.",
     "Angkor diasaskan oleh Jayavarman II dan berpusat di Hariharalaya.",
-    "Majapahit diasaskan oleh Raden Wijaya pada tahun 1294 Masihi.",
+    "Majapahit diasaskan oleh Raden Vijaya pada tahun 1294 Masihi.",
     "Kedah Tua dikenali sebagai Chieh Ch'a, Kataha dan Kalah-bar dalam sumber luar.",
-    "Gangga Negara kaya dengan emas dan bijih timah.",
-    "Serangan tentera Chola pada tahun 1025 melemahkan Srivijaya, Kedah Tua dan Gangga Negara.",
+    "Gangga Nagara kaya dengan emas dan bijih timah.",
+    "Serangan tentera Chola pada tahun 1025 melemahkan Srivijaya, Kedah Tua dan Gangga Nagara.",
     "Kerajaan Alam Melayu membangun sezaman dengan kerajaan luar dan mempunyai tamadun yang setanding dengan tamadun dunia lain.",
     "Funan muncul sezaman dengan Empayar Rom, Empayar Parsi, Empayar Kushan dan Dinasti Han pada abad pertama.",
     "Hubungan perdagangan Alam Melayu berkembang kerana kedudukan strategik, laluan perdagangan Timur dan Barat serta kekayaan hasil bumi.",
@@ -542,7 +542,7 @@ const sejarahF2C1NotesSource: StructuredNotes = {
     "Sungai Mas",
     "Pangkalan Bujang",
     "Pangkalan",
-    "Kaudinya",
+    "Kaundinya",
     "Soma",
     "Fan Shih-man",
     "Rudravarman",
@@ -553,7 +553,7 @@ const sejarahF2C1NotesSource: StructuredNotes = {
     "Jayavarman II",
     "Suryavarman II",
     "Jayavarman VII",
-    "Raden Wijaya",
+    "Raden Vijaya",
     "Patih Gajah Mada",
     "Tribuana Tunggadewi",
     "Raja Ganji Sarjuna",

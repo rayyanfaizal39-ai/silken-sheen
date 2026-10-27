@@ -8,17 +8,21 @@ import { EraDotTimeline } from "./blocks/EraDotTimeline";
 import { KingdomChipGrid } from "./blocks/KingdomChipGrid";
 import { IconCardGrid } from "./blocks/IconCardGrid";
 import { bgPanel, groupGlow, neon } from "./blocks/neon-tokens";
-import santubongImg from "@/assets/form2-content/santubong-pelabuhan-purba.png";
-import kaumBumiputeraImg from "@/assets/form2-content/kaum-bumiputera-sarawak-sabah.png";
+import portsImg from "@/assets/form2-content/sej2-bab10/v1-pelabuhan-awal-borneo.svg";
+import portsImgDesktop from "@/assets/form2-content/sej2-bab10/v1-pelabuhan-awal-borneo-desktop.svg";
+import kaumImg from "@/assets/form2-content/sej2-bab10/v2-kaum-bumiputera.svg";
+import kaumImgDesktop from "@/assets/form2-content/sej2-bab10/v2-kaum-bumiputera-desktop.svg";
+
+const FIG_IMG = "notes-figure-img w-full rounded-2xl border border-border";
 
 const ORBIT_LABELS = ["Alam Melayu", "Pemerintahan Tempatan", "Ekonomi & Sungai", "Kaum & Warisan", "Rumusan"];
 
-const SECTION_CHROME: Array<{ eyebrow: string; title: string; sub?: string }> = [
-  { eyebrow: "◆ 10.1", title: "Sarawak dan Sabah dalam Alam Melayu", sub: "Bukan wilayah terpencil — sebahagian penting rangkaian perdagangan dan pengaruh Alam Melayu sejak sebelum Masihi." },
-  { eyebrow: "◆ 10.2", title: "Kemunculan Pemerintahan Tempatan", sub: "Kepimpinan kesukuan, kerajaan lembah sungai, wakil raja dan ketua bebas." },
-  { eyebrow: "◆ 10.3", title: "Kegiatan Ekonomi dan Kepentingan Sungai", sub: "Kegiatan ekonomi menyesuaikan diri dengan pedalaman, lembah sungai dan pesisir pantai." },
-  { eyebrow: "◆ 10.4", title: "Keunikan Kaum Bumiputera dan Warisan", sub: "Kepelbagaian kaum menghasilkan tenunan, perayaan, tarian dan seni bina tersendiri." },
-  { eyebrow: "◆ Rumusan", title: "Fakta Penting & Istilah Utama" },
+const SECTION_CHROME: Array<{ eyebrow: string; title: string; sub: string }> = [
+  { eyebrow: "10.1 Sarawak dan Sabah dalam Alam Melayu", title: "Sarawak dan Sabah dalam Alam Melayu", sub: "Bahagian ini menerangkan kedudukan Sarawak dan Sabah sebagai sebahagian daripada Alam Melayu." },
+  { eyebrow: "10.2 Kemunculan Pemerintahan Tempatan", title: "Kemunculan Pemerintahan Tempatan", sub: "Bahagian ini menerangkan bentuk pemerintahan tempatan di Sarawak dan Sabah." },
+  { eyebrow: "10.3 Kegiatan Ekonomi Masyarakat Sarawak dan Sabah", title: "Kegiatan Ekonomi dan Kepentingan Sungai", sub: "Bahagian ini menerangkan kegiatan ekonomi masyarakat dan peranan sungai." },
+  { eyebrow: "10.4 Keunikan Masyarakat Bumiputera Sarawak dan Sabah", title: "Keunikan Kaum Bumiputera dan Warisan", sub: "Bahagian ini menerangkan kaum bumiputera serta kesenian, perayaan dan seni bina mereka." },
+  { eyebrow: "Rumusan Bab 10", title: "Fakta Penting & Istilah Utama", sub: "Bahagian ini mengumpulkan fakta penting dan istilah utama Bab 10 untuk ulang kaji." },
 ];
 
 const TOTAL = ORBIT_LABELS.length;
@@ -69,7 +73,7 @@ export function Sej2Chapter10NotesBlock({
   const empireChain = ["Srivijaya", "Majapahit", "Sambas", "Brunei", "Sulu"];
 
   return (
-    <section id={id} className="mt-8 animate-fade-up">
+    <section id={id} className="sej2-notes mt-8 animate-fade-up">
       <div className="mb-6 flex items-start gap-4 rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 via-accent/5 to-transparent p-5">
         <div className="shrink-0 text-2xl">🌴</div>
         <div>
@@ -109,21 +113,20 @@ export function Sej2Chapter10NotesBlock({
       </div>
 
       <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-5 sm:p-8">
-        <p className="mb-1 text-xs font-bold uppercase tracking-wider text-primary">{chrome.eyebrow}</p>
-        <h2 className="font-display mb-1 text-xl font-bold text-foreground sm:text-2xl">{chrome.title}</h2>
-        {chrome.sub && <p className="mb-6 text-[13.5px] leading-relaxed text-muted-foreground">{chrome.sub}</p>}
-        {!chrome.sub && <div className="mb-6" />}
+        <p className="mb-1.5 font-display text-[15px] font-bold leading-snug text-primary">{chrome.eyebrow}</p>
+        <h2 className="font-display mb-2 text-[22px] font-bold leading-tight text-foreground sm:text-2xl">{chrome.title}</h2>
+        <p className="mb-6 border-l-2 border-primary/50 pl-3 text-base leading-relaxed text-muted-foreground">{chrome.sub}</p>
 
         {current === 0 && (
           <div className="space-y-8">
             <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.connectionToAlamMelayu.intro}</p>
             <div>
               <h4 className="font-display mb-3 text-sm font-bold text-foreground">⚓ Pelabuhan Awal</h4>
-              <img
-                src={santubongImg}
-                alt="Santubong Pelabuhan Purba"
-                className="notes-figure-img mb-4 rounded-2xl border border-border"
-              />
+              <figure className="mb-4 space-y-2">
+                <div className="sm:hidden"><img src={portsImg} alt="Peta pelabuhan dan pusat perdagangan awal Sarawak dan Sabah" loading="lazy" className={FIG_IMG} /></div>
+                <div className="hidden sm:block"><img src={portsImgDesktop} alt="Peta pelabuhan dan pusat perdagangan awal Sarawak dan Sabah" loading="lazy" className={`${FIG_IMG} notes-figure-img--wide`} /></div>
+                <figcaption className="text-center text-[11px] italic leading-snug text-muted-foreground">Sumber: buku teks hlm. 178–179. Peta asas: Natural Earth; kedudukan anggaran.</figcaption>
+              </figure>
               <EraDotTimeline
                 items={content.connectionToAlamMelayu.earlyTradePosts
                   .filter((t) => t.facts.length > 0)
@@ -184,6 +187,7 @@ export function Sej2Chapter10NotesBlock({
                 }))}
               />
             </div>
+            <h4 className="sej2-block-label">Wakil Raja</h4>
             <div className="grid gap-3.5 sm:grid-cols-2">
               <div className="rounded-2xl p-4" style={{ background: bgPanel, boxShadow: groupGlow(neon.green, 14, 0.1) }}>
                 <h5 className="font-display mb-1.5 text-[12.5px] font-bold" style={{ color: neon.green }}>
@@ -243,11 +247,11 @@ export function Sej2Chapter10NotesBlock({
           <div className="space-y-8">
             <div>
               <h4 className="font-display mb-3 text-sm font-bold text-foreground">🎭 Kepelbagaian Kaum Bumiputera</h4>
-              <img
-                src={kaumBumiputeraImg}
-                alt="Kaum Bumiputera Sarawak dan Sabah"
-                className="notes-figure-img mb-4 rounded-2xl border border-border"
-              />
+              <figure className="mb-4 space-y-2">
+                <div className="sm:hidden"><img src={kaumImg} alt="Peta kawasan petempatan kaum bumiputera Sarawak dan Sabah" loading="lazy" className={FIG_IMG} /></div>
+                <div className="hidden sm:block"><img src={kaumImgDesktop} alt="Peta kawasan petempatan kaum bumiputera Sarawak dan Sabah" loading="lazy" className={`${FIG_IMG} notes-figure-img--wide`} /></div>
+                <figcaption className="text-center text-[11px] italic leading-snug text-muted-foreground">Sumber: buku teks hlm. 186–189. Peta asas: Natural Earth; kedudukan anggaran.</figcaption>
+              </figure>
               <div className="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3">
                 {[...content.bumiputeraUniqueness.sarawakGroups, ...content.bumiputeraUniqueness.sabahGroups].map((g) => (
                   <div key={g.name} className="rounded-2xl p-4" style={{ background: bgPanel }}>

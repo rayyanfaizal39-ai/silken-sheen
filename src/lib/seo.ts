@@ -17,6 +17,10 @@ export interface SeoOptions {
   path: string;
   keywords?: string[];
   image?: string;
+  /** Pixel size of `image`, when the page has its own preview. */
+  imageWidth?: number;
+  imageHeight?: number;
+  imageAlt?: string;
   /** Defaults to "website"; use "article" for content-style pages if needed. */
   ogType?: string;
   /** Set true to suppress indexing (e.g. auth-gated or duplicate-content pages). */
@@ -31,6 +35,9 @@ export function seoMeta({
   path,
   keywords,
   image = DEFAULT_OG_IMAGE,
+  imageWidth,
+  imageHeight,
+  imageAlt,
   ogType = "website",
   noindex = false,
   jsonLd,
@@ -61,6 +68,13 @@ export function seoMeta({
     { name: "twitter:description", content: description },
     { name: "twitter:image", content: image },
   );
+
+  if (imageWidth) meta.push({ property: "og:image:width", content: String(imageWidth) });
+  if (imageHeight) meta.push({ property: "og:image:height", content: String(imageHeight) });
+  if (imageAlt) {
+    meta.push({ property: "og:image:alt", content: imageAlt });
+    meta.push({ name: "twitter:image:alt", content: imageAlt });
+  }
 
   const result: {
     meta: Array<Record<string, string>>;
@@ -124,4 +138,3 @@ export function courseJsonLd(input: {
     ...(input.subjectName ? { about: input.subjectName } : {}),
   };
 }
-

@@ -23,6 +23,7 @@ export function DataTable({
               {row.map((cell, j) => (
                 <td
                   key={j}
+                  data-label={headers[j]}
                   className={j === 0 ? "px-4 py-2.5 font-semibold text-foreground" : "px-4 py-2.5 text-muted-foreground"}
                 >
                   {cell}

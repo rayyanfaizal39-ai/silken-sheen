@@ -69,7 +69,7 @@ const sejarahF2C5NotesSource: StructuredNotes = {
     "Siam",
     "Pegu",
     "Luzon",
-    "Gujarat",
+    "Gujerat",
     "Portugis",
     "Sultan Mahmud Shah",
     "Bentan",
@@ -95,7 +95,7 @@ const sejarahF2C5NotesSource: StructuredNotes = {
     "Pedagang yang datang ke Melaka terdiri daripada pedagang dalam Alam Melayu dan pedagang luar Alam Melayu.",
     "Lima aspek pengurusan perdagangan ialah Syahbandar, cukai perdagangan, mata wang, Orang Laut dan kemudahan pelabuhan.",
     "Hubungan dalam Alam Melayu melibatkan Pasai, Majapahit dan Makasar.",
-    "Hubungan luar Alam Melayu melibatkan China, Ryukyu, Siam, Pegu, Luzon dan Gujarat.",
+    "Hubungan luar Alam Melayu melibatkan China, Ryukyu, Siam, Pegu, Luzon dan Gujerat.",
     "Faktor dalaman pengakhiran Melaka melibatkan kepimpinan dan perpaduan.",
     "Portugis menyerang Melaka pada tahun 1511.",
     "Perjuangan mengembalikan kedaulatan dikaitkan dengan Sultan Mahmud Shah, Bentan dan Kampar.",
@@ -497,7 +497,7 @@ const sejarahF2C5NotesSource: StructuredNotes = {
         },
         {
           title: "Hubungan Luar Alam Melayu",
-          bulletPoints: ["China.", "Ryukyu.", "Siam.", "Pegu.", "Luzon.", "Gujarat."],
+          bulletPoints: ["China.", "Ryukyu.", "Siam.", "Pegu.", "Luzon.", "Gujerat."],
         },
         {
           title: "Wajib Hafal",
@@ -505,7 +505,7 @@ const sejarahF2C5NotesSource: StructuredNotes = {
             headers: ["Kategori", "Kerajaan / Wilayah"],
             rows: [
               ["Alam Melayu", "Pasai, Majapahit dan Makasar"],
-              ["Luar Alam Melayu", "China, Ryukyu, Siam, Pegu, Luzon dan Gujarat"],
+              ["Luar Alam Melayu", "China, Ryukyu, Siam, Pegu, Luzon dan Gujerat"],
             ],
           },
         },
@@ -536,7 +536,7 @@ const sejarahF2C5NotesSource: StructuredNotes = {
             "Pengislaman pemerintah, ulama dan mubaligh, perdagangan serta peluasan kuasa.",
             "Pengumpulan barang, pengedaran barang dan pusat perkapalan.",
             "Syahbandar, cukai perdagangan, mata wang, Orang Laut dan kemudahan pelabuhan.",
-            "Pasai, Majapahit, Makasar, China, Ryukyu, Siam, Pegu, Luzon dan Gujarat.",
+            "Pasai, Majapahit, Makasar, China, Ryukyu, Siam, Pegu, Luzon dan Gujerat.",
           ],
         },
       ],
@@ -566,7 +566,7 @@ const sejarahF2C5NotesSource: StructuredNotes = {
         {
           title: "Perpaduan",
           bulletPoints: [
-            "Fitnah dan perebutan kuasa menjejaskan perpaduan.",
+            "Persaingan kuasa dan perbalahan sesama pembesar menjejaskan perpaduan.",
             "Rasuah dan sikap tidak setia turut menjadi masalah dalaman.",
           ],
         },
@@ -575,7 +575,7 @@ const sejarahF2C5NotesSource: StructuredNotes = {
           bulletPoints: [
             "Kepimpinan.",
             "Perpaduan.",
-            "Fitnah, perebutan kuasa, rasuah dan tidak setia.",
+            "Persaingan kuasa, perbalahan pembesar, rasuah dan tidak setia.",
           ],
         },
       ],

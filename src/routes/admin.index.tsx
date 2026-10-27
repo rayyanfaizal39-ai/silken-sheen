@@ -22,6 +22,7 @@ import {
 } from '../components/admin/ui';
 import { Filters } from '../components/admin/Filters';
 import { AdminPrintReport } from '../components/admin/AdminPrintReport';
+import { CompanionArtworkReview } from '../components/admin/CompanionArtworkReview';
 
 const EMPTY_STATS: AdminStats = {
   total_users: 0,
@@ -350,6 +351,9 @@ function AdminDashboard() {
           </table>
         </div>
       </Panel>
+
+      {/* ── COSMIC COMPANION REVIEW ─────────────────────────── */}
+      <CompanionArtworkReview />
     </div>
   );
 }

@@ -2,6 +2,8 @@ import { createFileRoute, Outlet, useNavigate } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { useAuth } from "@/context/auth-context";
 import { getProfileForAdminCheck, hasAdministratorRole } from "@/lib/admin-access";
+import { isDevAuthBypassEnabled } from "@/lib/dev-auth";
+import { isSupabaseConfigured } from "@/lib/supabase";
 import { AdminShell } from "../components/admin/AdminShell";
 import "../components/admin/admin.css";
 import type { AdminProfile } from "../lib/admin.types";
@@ -77,7 +79,18 @@ function AdminLayout() {
     void (async () => {
       let profile: AdminProfile | null = null;
       try {
-        profile = await getProfileForAdminCheck(user.id);
+        if (
+          import.meta.env.DEV &&
+          isDevAuthBypassEnabled(
+            typeof window === "undefined" ? "" : window.location.hostname,
+            isSupabaseConfigured,
+          )
+        ) {
+          const { devStaffAdminProfile } = await import("@/lib/dev-auth/staff");
+          profile = devStaffAdminProfile(user.id);
+        } else {
+          profile = await getProfileForAdminCheck(user.id);
+        }
       } catch (cause) {
         if (cancelled) return;
         const message = cause instanceof Error ? cause.message : "Profile query failed.";

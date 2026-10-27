@@ -125,7 +125,7 @@ export const sejarahF2C9MindMap: MindNode = {
                     },
                     {
                       "id": "sejarah-f2-c9-024",
-                      "label": "Memelihara keamanan setempat"
+                      "label": "Diwarisi sebagai ketua kampung"
                     }
                   ]
                 }
@@ -581,7 +581,7 @@ export const sejarahF2C9MindMap: MindNode = {
                 },
                 {
                   "id": "sejarah-f2-c9-124",
-                  "label": "Pengaruh kesenian Islam"
+                  "label": "Motif haiwan diganti motif alam (amalan Islam)"
                 }
               ]
             },
@@ -823,7 +823,7 @@ export const sejarahF2C9MindMap: MindNode = {
                 },
                 {
                   "id": "sejarah-f2-c9-176",
-                  "label": "Bukan pemilik pusaka suku isteri"
+                  "label": "Mengerjakan tanah pusaka isteri"
                 },
                 {
                   "id": "sejarah-f2-c9-177",

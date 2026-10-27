@@ -1,0 +1,352 @@
+/* Celestial Gateway. Palette follows the Studio (#05070f night, #090e1c deep, #f6ca78 gold,
+   #6001d1 violet) so the last frame is the first frame of the 12-question journey.
+   Layers only animate transform and opacity; the camera sets both from timeline.ts. */
+.cg {
+  --cg-u: 1px;
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  isolation: isolate;
+  opacity: 0;
+  background: radial-gradient(
+    ellipse 90% 80% at 50% var(--cg-horizon),
+    #15153a 0%,
+    #0b0d22 38%,
+    #070914 70%,
+    #05070f 100%
+  );
+  color: #dfe1f6;
+}
+
+.cg-canvas,
+.cg-layer,
+.cg-vignette {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.cg-layer {
+  transform-origin: 50% var(--cg-horizon);
+  will-change: transform, opacity;
+}
+
+/* Scene-anchored art: 1600 × 1900 units with the portal centre on the vanishing point. */
+.cg-art {
+  position: absolute;
+  left: calc(50% - var(--cg-u) * 800);
+  top: calc(var(--cg-horizon) - var(--cg-u) * 900);
+  width: calc(var(--cg-u) * 1600);
+  height: calc(var(--cg-u) * 1900);
+  max-width: none;
+  overflow: visible;
+}
+
+.cg-gate-light {
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+  will-change: opacity;
+}
+
+/* ── Gold markings ignite clockwise from the crest ─────────────────────────────────────────── */
+.cg-rune {
+  opacity: 0.1;
+}
+
+.cg:is([data-phase="awakening"], [data-phase="opening"], [data-phase="entering"]) .cg-rune {
+  animation: cg-ignite 620ms ease-out calc(var(--cg-rune-index) * 26ms) both;
+}
+
+.cg:is([data-phase="awakening"], [data-phase="opening"], [data-phase="entering"]) .cg-rune-trace {
+  animation: cg-trace 950ms cubic-bezier(0.45, 0, 0.25, 1) forwards;
+}
+
+.cg[data-still="true"] .cg-rune {
+  animation: none;
+  opacity: 0.85;
+}
+
+.cg[data-still="true"] .cg-rune-trace {
+  animation: none;
+  stroke-dashoffset: 0;
+}
+
+/* ── Orbital rings, spun by the camera clock ───────────────────────────────────────────────── */
+.cg-orbit {
+  position: absolute;
+  left: 50%;
+  top: var(--cg-horizon);
+  width: calc(var(--cg-u) * var(--cg-orbit));
+  aspect-ratio: 1;
+  border: 1px solid rgba(246, 202, 120, 0.22);
+  border-radius: 50%;
+  opacity: 0.18;
+  transform: translate(-50%, -50%);
+  will-change: transform, opacity;
+}
+
+.cg-orbit::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0 62%,
+    rgba(255, 222, 165, 0.85) 92%,
+    transparent 100%
+  );
+  -webkit-mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 2.5px),
+    #000 calc(100% - 2px)
+  );
+  mask: radial-gradient(farthest-side, transparent calc(100% - 2.5px), #000 calc(100% - 2px));
+}
+
+.cg-orbit::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: calc(50% - 3px);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fff3d6;
+  box-shadow: 0 0 12px 3px rgba(246, 202, 120, 0.8);
+}
+
+.cg-orbit--flat {
+  border: 1px dashed rgba(167, 139, 250, 0.38);
+}
+
+.cg-orbit--flat::before,
+.cg-orbit--flat::after {
+  display: none;
+}
+
+/* ── Light spreading from the gate across the forest ───────────────────────────────────────── */
+.cg-glow {
+  opacity: 0;
+  background: radial-gradient(
+    circle calc(var(--cg-u) * 760) at 50% var(--cg-horizon),
+    rgba(255, 226, 170, 0.2) 0%,
+    rgba(124, 58, 237, 0.2) 30%,
+    rgba(76, 29, 149, 0.09) 58%,
+    transparent 82%
+  );
+}
+
+.cg-mist {
+  position: absolute;
+  left: -30%;
+  width: 160%;
+  top: calc(var(--cg-horizon) + var(--cg-u) * 170);
+  height: calc(var(--cg-u) * 240);
+  background:
+    radial-gradient(ellipse 30% 50% at 28% 50%, rgba(139, 92, 246, 0.2), transparent 70%),
+    radial-gradient(ellipse 26% 40% at 74% 56%, rgba(99, 102, 241, 0.16), transparent 70%);
+  animation: cg-mist 16s ease-in-out infinite alternate;
+}
+
+.cg-mist--drift {
+  top: calc(var(--cg-horizon) + var(--cg-u) * 260);
+  background:
+    radial-gradient(ellipse 34% 46% at 60% 50%, rgba(124, 58, 237, 0.16), transparent 70%),
+    radial-gradient(ellipse 22% 40% at 12% 40%, rgba(167, 139, 250, 0.12), transparent 70%);
+  animation-duration: 22s;
+  animation-direction: alternate-reverse;
+}
+
+/* ── Framing trees ─────────────────────────────────────────────────────────────────────────── */
+.cg-tree {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(120px, 30vw, 560px);
+}
+
+.cg-tree--left {
+  left: 0;
+}
+
+.cg-tree--right {
+  right: 0;
+  transform: scaleX(-1);
+}
+
+.cg-tree svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.cg-tree__canopy {
+  transform-origin: 0 0;
+  animation: cg-sway 7s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.cg-tree--right .cg-tree__canopy {
+  animation-duration: 8.5s;
+  animation-delay: -2s;
+}
+
+.cg-tree__rim {
+  opacity: 0.12;
+  transition: opacity 900ms ease;
+}
+
+.cg:is([data-phase="opening"], [data-phase="entering"]) .cg-tree__rim {
+  opacity: 1;
+}
+
+/* ── Foreground blossoms and embers, out of focus and nearest the camera ───────────────────── */
+.cg-bloom,
+.cg-ember {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.cg-bloom {
+  width: 38vmax;
+  height: 26vmax;
+  bottom: -10vmax;
+  background:
+    radial-gradient(circle at 30% 40%, rgba(139, 92, 246, 0.42) 0 6%, transparent 13%),
+    radial-gradient(circle at 55% 30%, rgba(167, 139, 250, 0.3) 0 4%, transparent 10%),
+    radial-gradient(circle at 70% 60%, rgba(124, 58, 237, 0.36) 0 7%, transparent 14%),
+    radial-gradient(circle at 40% 70%, rgba(109, 40, 217, 0.4) 0 9%, transparent 17%),
+    radial-gradient(ellipse at 50% 70%, rgba(12, 8, 26, 0.95) 0 40%, transparent 70%);
+}
+
+.cg-bloom--left {
+  left: -12vmax;
+}
+
+.cg-bloom--right {
+  right: -12vmax;
+  transform: scaleX(-1);
+}
+
+.cg-ember {
+  width: 4vmax;
+  height: 4vmax;
+  background: radial-gradient(
+    circle,
+    rgba(255, 222, 165, 0.55),
+    rgba(246, 202, 120, 0.12) 45%,
+    transparent 70%
+  );
+}
+
+.cg-ember--a {
+  left: 9vw;
+  bottom: 16vh;
+}
+
+.cg-ember--b {
+  right: 12vw;
+  bottom: 10vh;
+  width: 3vmax;
+  height: 3vmax;
+}
+
+.cg-vignette {
+  background: radial-gradient(
+    ellipse 80% 75% at 50% var(--cg-horizon),
+    transparent 50%,
+    rgba(3, 4, 10, 0.78) 100%
+  );
+}
+
+/* The darkness the Studio begins in. */
+.cg-veil {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  background: #05070f;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cg-veil[data-leaving="true"] {
+  opacity: 1;
+  transition: opacity 400ms ease-out;
+}
+
+/* Portrait screens: only the outer edge of each tree frames the gate. */
+@media (max-aspect-ratio: 4/5) {
+  .cg-tree {
+    width: 36vw;
+  }
+
+  .cg-tree--left {
+    left: -20vw;
+  }
+
+  .cg-tree--right {
+    right: -20vw;
+  }
+}
+
+@keyframes cg-ignite {
+  0% {
+    opacity: 0.1;
+  }
+  45% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.85;
+  }
+}
+
+@keyframes cg-trace {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes cg-sway {
+  from {
+    transform: rotate(-0.8deg);
+  }
+  to {
+    transform: rotate(1deg);
+  }
+}
+
+@keyframes cg-mist {
+  from {
+    transform: translate3d(-4%, 0, 0);
+  }
+  to {
+    transform: translate3d(4%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cg-tree__canopy,
+  .cg-mist,
+  .cg-rune,
+  .cg-rune-trace {
+    animation: none !important;
+  }
+
+  .cg-rune {
+    opacity: 0.85;
+  }
+
+  .cg-rune-trace {
+    stroke-dashoffset: 0;
+  }
+
+  .cg-tree__rim {
+    transition: none;
+  }
+}

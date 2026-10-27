@@ -10,6 +10,7 @@ import {
 } from "react";
 import type { User, Session } from "@supabase/supabase-js";
 import { useRouterState } from "@tanstack/react-router";
+import { isDevAuthBypassEnabled } from "@/lib/dev-auth";
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 import { clearGuestMode } from "@/lib/guest-mode";
 import { beginLoadingTask } from "@/lib/loading-store";
@@ -41,6 +42,8 @@ interface AuthContextValue {
   explorerProfileError: string | null;
   onboardingRequired: boolean;
   isConfigured: boolean;
+  /** Localhost dev sign-in. Always false in production builds. */
+  devAuthBypass: boolean;
   signInWithGoogle: (returnTo?: string) => Promise<void>;
   signInWithEmail: (email: string, password: string) => Promise<void>;
   signUpWithEmail: (email: string, password: string) => Promise<{ needsConfirmation: boolean }>;
@@ -61,6 +64,7 @@ const AuthContext = createContext<AuthContextValue>({
   explorerProfileError: null,
   onboardingRequired: false,
   isConfigured: false,
+  devAuthBypass: false,
   signInWithGoogle: async () => {},
   signInWithEmail: async () => {},
   signUpWithEmail: async () => ({ needsConfirmation: false }),
@@ -96,8 +100,36 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [explorerProfileLoading, setExplorerProfileLoading] = useState(false);
   const [explorerProfileUserId, setExplorerProfileUserId] = useState<string | null>(null);
   const [explorerProfileError, setExplorerProfileError] = useState<string | null>(null);
+  const [devAuthBypass, setDevAuthBypass] = useState(false);
 
   useEffect(() => {
+    if (
+      import.meta.env.DEV &&
+      isDevAuthBypassEnabled(window.location.hostname, isSupabaseConfigured)
+    ) {
+      let active = true;
+      let unsubscribe = () => {};
+      void import("@/lib/dev-auth/session").then((mod) => {
+        if (!active) return;
+        setDevAuthBypass(true);
+        unsubscribe = mod.subscribeDevAuth((snapshot) => {
+          if (!active) return;
+          setSession(null);
+          setUser(snapshot.user);
+          setExplorerProfile(snapshot.profile);
+          setExplorerProfileUserId(snapshot.user?.id ?? null);
+          setExplorerProfileError(null);
+          setExplorerProfileLoading(false);
+          setLoading(false);
+        });
+      });
+      return () => {
+        active = false;
+        unsubscribe();
+      };
+    }
+
+    setDevAuthBypass(false);
     if (!isSupabaseConfigured) {
       setLoading(false);
       return;
@@ -165,6 +197,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     let active = true;
 
+    if (import.meta.env.DEV && devAuthBypass) return;
+
     if (!isSupabaseConfigured || !user) {
       setExplorerProfile(null);
       setExplorerProfileUserId(null);
@@ -204,9 +238,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return () => {
       active = false;
     };
-  }, [explorerProfileRequired, user]);
+  }, [devAuthBypass, explorerProfileRequired, user]);
 
   const signInWithGoogle = useCallback(async (returnTo?: string) => {
+    if (
+      import.meta.env.DEV &&
+      isDevAuthBypassEnabled(window.location.hostname, isSupabaseConfigured)
+    ) {
+      const { signInDevStudent } = await import("@/lib/dev-auth/session");
+      signInDevStudent();
+      return;
+    }
     if (!isSupabaseConfigured) {
       throw new Error("Supabase is not configured");
     }
@@ -240,6 +282,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const signInWithEmail = useCallback(async (email: string, password: string) => {
+    if (
+      import.meta.env.DEV &&
+      isDevAuthBypassEnabled(window.location.hostname, isSupabaseConfigured)
+    ) {
+      const { DEV_STUDENTS } = await import("@/lib/dev-auth/students");
+      const { signInDevStudent } = await import("@/lib/dev-auth/session");
+      const match = DEV_STUDENTS.find((student) => student.email === email.trim().toLowerCase());
+      signInDevStudent(match?.id);
+      return;
+    }
     if (!isSupabaseConfigured) {
       throw new Error("Supabase is not configured");
     }
@@ -302,6 +354,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const refreshExplorerProfile = useCallback(async () => {
+    if (import.meta.env.DEV && devAuthBypass) return;
     if (!user) return;
     setExplorerProfileLoading(true);
     setExplorerProfileError(null);
@@ -316,10 +369,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     } finally {
       setExplorerProfileLoading(false);
     }
-  }, [user]);
+  }, [devAuthBypass, user]);
 
   const completeExplorerProfile = useCallback(
     async (input: ExplorerProfileInput) => {
+      if (import.meta.env.DEV && devAuthBypass) return;
       if (!user) throw new Error("Sign in before completing your Explorer Profile.");
       const profile = await saveCompletedExplorerProfile(user.id, input);
       setExplorerProfile(profile);
@@ -329,10 +383,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         current && profile.displayName ? { ...current, name: profile.displayName } : current,
       );
     },
-    [user],
+    [devAuthBypass, user],
   );
 
   const signOut = useCallback(async () => {
+    if (
+      import.meta.env.DEV &&
+      isDevAuthBypassEnabled(window.location.hostname, isSupabaseConfigured)
+    ) {
+      const { signOutDevStudent } = await import("@/lib/dev-auth/session");
+      signOutDevStudent();
+      return;
+    }
     if (!isSupabaseConfigured) return;
     const task = beginLoadingTask({ message: "Securing your session…", timeoutMs: 15_000 });
     try {
@@ -360,7 +422,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       explorerProfileError,
       onboardingRequired:
         explorerProfileRequired && !profileLoading && needsExplorerOnboarding(explorerProfile),
-      isConfigured: isSupabaseConfigured,
+      isConfigured: isSupabaseConfigured || devAuthBypass,
+      devAuthBypass,
       signInWithGoogle,
       signInWithEmail,
       signUpWithEmail,
@@ -385,6 +448,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     refreshExplorerProfile,
     completeExplorerProfile,
     signOut,
+    devAuthBypass,
   ]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

@@ -7,24 +7,27 @@ import { DataTable } from "./blocks/DataTable";
 import { KingdomChipGrid, type KingdomChipGridItem } from "./blocks/KingdomChipGrid";
 import { NarrowingHierarchyTiers, type NarrowingHierarchyTier } from "./blocks/NarrowingHierarchyTiers";
 import { bgPanel, groupGlow, neon } from "./blocks/neon-tokens";
-import angkorWatBorobudur from "@/assets/form2-content/angkor-wat-borobudur.png";
+import v1SeniBina from "@/assets/form2-content/sej2-bab3/v1-tapak-seni-bina.svg";
+import v1SeniBinaDesktop from "@/assets/form2-content/sej2-bab3/v1-tapak-seni-bina-desktop.svg";
+
+const FIG_IMG = "notes-figure-img w-full rounded-2xl border border-border";
 
 const ORBIT_LABELS = [
   "Bahasa & Tulisan",
-  "Talang Tuwo",
+  "Bukti & Pengaruh",
   "Persuratan",
   "Seni Bina",
   "Struktur Sosial",
   "Rumusan",
 ];
 
-const SECTION_CHROME: Array<{ eyebrow: string; title: string; sub?: string }> = [
-  { eyebrow: "◆ 3.1", title: "Bahasa dan Tulisan Mengikut Kerajaan", sub: "Sifat keterbukaan masyarakat Alam Melayu membolehkan sistem tulisan berkembang dalam pelbagai kerajaan." },
-  { eyebrow: "◆ 3.1", title: "Batu Bersurat Talang Tuwo", sub: "Inskripsi 1,300 tahun yang masih boleh dibaca hari ini." },
-  { eyebrow: "◆ 3.2", title: "Persuratan", sub: "Daripada tradisi lisan kepada batu bersurat dan manuskrip — bukti keintelektualan masyarakat." },
-  { eyebrow: "◆ 3.3", title: "Seni Bina Kerajaan Alam Melayu", sub: "Candi, perkapalan dan sistem pengairan — kecemerlangan yang masih berdiri hingga kini." },
-  { eyebrow: "◆ 3.4", title: "Struktur Sosial — Empat Lapisan", sub: "Kelas atasan (golongan pemerintah) dan kelas bawahan (golongan diperintah)." },
-  { eyebrow: "◆ Rumusan", title: "Fakta Penting & Istilah Utama" },
+const SECTION_CHROME: Array<{ eyebrow: string; title: string; sub: string }> = [
+  { eyebrow: "3.1 Bahasa dan Tulisan", title: "Bahasa dan Tulisan Mengikut Kerajaan", sub: "Bahagian ini menerangkan bahasa dan tulisan yang digunakan oleh setiap kerajaan." },
+  { eyebrow: "3.1 Bahasa dan Tulisan", title: "Bukti dan Pengaruh Bahasa", sub: "Bahagian ini menerangkan bukti penggunaan bahasa dan pengaruh bahasa asing dalam bahasa Melayu." },
+  { eyebrow: "3.2 Persuratan", title: "Persuratan", sub: "Bahagian ini menerangkan tradisi lisan dan karya persuratan kerajaan Alam Melayu." },
+  { eyebrow: "3.3 Seni Bina", title: "Seni Bina Kerajaan Alam Melayu", sub: "Bahagian ini menerangkan binaan dan seni bina tinggalan kerajaan Alam Melayu." },
+  { eyebrow: "3.4 Struktur Sosial", title: "Struktur Sosial — Empat Lapisan", sub: "Bahagian ini menerangkan susunan golongan dalam masyarakat kerajaan Alam Melayu." },
+  { eyebrow: "Rumusan Bab 3", title: "Fakta Penting & Istilah Utama", sub: "Bahagian ini mengumpulkan fakta penting dan istilah utama Bab 3 untuk ulang kaji." },
 ];
 
 const TOTAL = ORBIT_LABELS.length;
@@ -81,7 +84,7 @@ export function Sej2Chapter3NotesBlock({
   }));
 
   return (
-    <section id={id} className="mt-8 animate-fade-up">
+    <section id={id} className="sej2-notes mt-8 animate-fade-up">
       <div className="mb-6 flex items-start gap-4 rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 via-accent/5 to-transparent p-5">
         <div className="shrink-0 text-2xl">📜</div>
         <div>
@@ -121,15 +124,16 @@ export function Sej2Chapter3NotesBlock({
       </div>
 
       <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-5 sm:p-8">
-        <p className="mb-1 text-xs font-bold uppercase tracking-wider text-primary">{chrome.eyebrow}</p>
-        <h2 className="font-display mb-1 text-xl font-bold text-foreground sm:text-2xl">{chrome.title}</h2>
-        {chrome.sub && <p className="mb-6 text-[13.5px] leading-relaxed text-muted-foreground">{chrome.sub}</p>}
-        {!chrome.sub && <div className="mb-6" />}
+        <p className="mb-1.5 font-display text-[15px] font-bold leading-snug text-primary">{chrome.eyebrow}</p>
+        <h2 className="font-display mb-2 text-[22px] font-bold leading-tight text-foreground sm:text-2xl">{chrome.title}</h2>
+        <p className="mb-6 border-l-2 border-primary/50 pl-3 text-base leading-relaxed text-muted-foreground">{chrome.sub}</p>
 
         {current === 0 && (
           <div className="space-y-6">
             <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.languageWriting.intro}</p>
+            <h4 className="sej2-block-label">Bahasa dan tulisan mengikut kerajaan</h4>
             <KingdomChipGrid items={languageItems} />
+            <h4 className="sej2-block-label">Pendidikan</h4>
             <div className="grid gap-3 sm:grid-cols-2">
               <div className="rounded-xl p-3.5" style={{ background: bgPanel }}>
                 <p className="text-[12.5px] font-semibold text-foreground">🎓 Pendidikan Formal</p>
@@ -156,6 +160,15 @@ export function Sej2Chapter3NotesBlock({
                 "{content.languageWriting.talangTuwoInscription.translation}"
               </p>
             </div>
+            <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.languageWriting.importance}</p>
+            <div>
+              <h4 className="font-display mb-2 text-sm font-bold text-foreground">🔤 Pengaruh Bahasa Asing dalam Bahasa Melayu</h4>
+              <DataTable
+                headers={["Bahasa", "Contoh perkataan"]}
+                rows={content.languageWriting.loanwords.map((l) => [l.language, l.words.join(", ")])}
+              />
+            </div>
+            <p className="text-[12.5px] leading-relaxed text-muted-foreground">{content.languageWriting.jawiLetters}</p>
           </div>
         )}
 
@@ -171,6 +184,7 @@ export function Sej2Chapter3NotesBlock({
                 k.famousWorks.length > 0 ? k.famousWorks.join(", ") : "—",
               ])}
             />
+            <h4 className="sej2-block-label">Pengaruh luar dalam persuratan</h4>
             <div className="grid gap-3 sm:grid-cols-2">
               <div className="rounded-xl p-3.5" style={{ background: bgPanel }}>
                 <p className="text-[12.5px] font-semibold text-foreground">🕉️ Pengaruh India</p>
@@ -202,11 +216,15 @@ export function Sej2Chapter3NotesBlock({
 
         {current === 3 && (
           <div className="space-y-6">
-            <img
-              src={angkorWatBorobudur}
-              alt="Angkor Wat dan Candi Borobudur"
-              className="notes-figure-img rounded-2xl border border-border"
-            />
+            <figure id="seni-bina-peta" className="space-y-1.5">
+              <div className="sm:hidden">
+                <img src={v1SeniBina} alt="Peta tapak candi dan binaan kerajaan Alam Melayu" loading="lazy" className={FIG_IMG} />
+              </div>
+              <div className="hidden sm:block">
+                <img src={v1SeniBinaDesktop} alt="Peta tapak candi dan binaan kerajaan Alam Melayu" loading="lazy" className={`${FIG_IMG} notes-figure-img--wide`} />
+              </div>
+              <figcaption className="text-center text-[11px] italic leading-snug text-muted-foreground">Sumber: buku teks hlm. 46–48. Peta asas: Natural Earth; kedudukan anggaran.</figcaption>
+            </figure>
             <div className="grid gap-3.5 sm:grid-cols-2">
               {content.architecture.byKingdom.map((a) => (
                 <div
@@ -234,7 +252,9 @@ export function Sej2Chapter3NotesBlock({
         {current === 4 && (
           <div className="space-y-6">
             <p className="text-[13.5px] leading-relaxed text-muted-foreground">{content.socialStructure.intro}</p>
+            <h4 className="sej2-block-label">Susunan lapisan masyarakat</h4>
             <NarrowingHierarchyTiers tiers={hierarchyTiers} />
+            <h4 className="sej2-block-label">Peranan setiap golongan</h4>
             <div className="grid gap-3 sm:grid-cols-2">
               {content.socialStructure.classes.map((c) => (
                 <div key={c.className} className="rounded-xl p-3.5" style={{ background: bgPanel }}>
@@ -250,6 +270,7 @@ export function Sej2Chapter3NotesBlock({
         {current === 5 && (
           <div className="space-y-6">
             <FactGrid heading="⭐ Fakta Penting Peperiksaan" facts={content.keyExamFacts} />
+            <FactGrid heading="🤝 Nilai dan Iktibar" facts={content.values} />
             <ChipRow heading="📘 Istilah Utama" items={content.keyTerms} />
             <div>
               <h4 className="font-display mb-2 text-sm font-bold text-foreground">⭐ Rumusan Bab</h4>

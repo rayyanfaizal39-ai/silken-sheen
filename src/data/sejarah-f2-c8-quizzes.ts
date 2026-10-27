@@ -185,7 +185,7 @@ const quizContent: QuizSeed[] = [
       "Dihantar ke Johor Riau setiap tiga tahun sebagai mas kahwin diraja",
     ],
     0,
-    "Bunga Mas dihantar ke Bangkok setiap tiga tahun sebagai tanda persahabatan dan bagi menjamin keselamatan negeri Perlis daripada campur tangan luar.",
+    "Bunga Mas dihantar ke Bangkok setiap tiga tahun sebagai tanda persahabatan dan menjamin keselamatan.",
   ],
 
   // 8.2 Hubungan Kerajaan Kedah, Kelantan, Negeri Sembilan dan Perlis dengan Negeri-negeri Melayu yang Lain (Q17-Q30)

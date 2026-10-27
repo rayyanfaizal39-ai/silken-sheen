@@ -483,7 +483,7 @@ export const sejarahF2C8MindMap: MindNode = {
                     },
                     {
                       "id": "sejarah-f2-c8-100",
-                      "label": "Menentang campur tangan kuasa luar"
+                      "label": "Menjamin keamanan daripada campur tangan luar"
                     }
                   ]
                 },
@@ -709,7 +709,7 @@ export const sejarahF2C8MindMap: MindNode = {
                 },
                 {
                   "id": "sejarah-f2-c8-149",
-                  "label": "Menjamin keselamatan"
+                  "label": "Kestabilan dalam negeri"
                 }
               ]
             },
@@ -957,11 +957,11 @@ export const sejarahF2C8MindMap: MindNode = {
                   "children": [
                     {
                       "id": "sejarah-f2-c8-202",
-                      "label": "Mengukuhkan persaudaraan"
+                      "label": "Mengukuhkan hubungan"
                     },
                     {
                       "id": "sejarah-f2-c8-203",
-                      "label": "Memperkukuh kedaulatan"
+                      "label": "Menjamin kedaulatan"
                     }
                   ]
                 }
@@ -1023,15 +1023,15 @@ export const sejarahF2C8MindMap: MindNode = {
                   "children": [
                     {
                       "id": "sejarah-f2-c8-216",
-                      "label": "Menghubungkan negeri Melayu"
+                      "label": "Asas hubungan dengan pedagang"
                     },
                     {
                       "id": "sejarah-f2-c8-217",
-                      "label": "Menggalakkan pertukaran barang"
+                      "label": "Menyumbang kepada kemakmuran"
                     },
                     {
                       "id": "sejarah-f2-c8-218",
-                      "label": "Memakmurkan pelabuhan"
+                      "label": "Perkembangan kerajaan"
                     }
                   ]
                 }
@@ -1143,7 +1143,7 @@ export const sejarahF2C8MindMap: MindNode = {
                     },
                     {
                       "id": "sejarah-f2-c8-242",
-                      "label": "Pedagang dari Kepulauan Melayu"
+                      "label": "Pedagang dari dalam dan luar Kepulauan Melayu"
                     }
                   ]
                 },
@@ -1157,7 +1157,7 @@ export const sejarahF2C8MindMap: MindNode = {
                     },
                     {
                       "id": "sejarah-f2-c8-245",
-                      "label": "Dikenali sejak tahun 1181"
+                      "label": "Digunakan sejak tahun 1181"
                     }
                   ]
                 }
