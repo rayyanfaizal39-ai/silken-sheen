@@ -122,6 +122,52 @@ export const geographyF2C1Interactive: GeoF2InteractiveContent = {
           resultUnit: "km",
         },
       ],
+      mapScale: {
+        title: "🗺️ Baca Peta dan Kira Jarak Sebenar",
+        instruction: "Lihat kedua-dua lokasi pada peta, jarak yang telah diukur (dalam cm) dan skala yang diberikan, kemudian pilih jarak sebenar yang betul.",
+        scenarios: [
+          {
+            id: "penyata",
+            pointA: { icon: "🏠", label: "Rumah Aina", x: 15, y: 62 },
+            pointB: { icon: "📚", label: "Perpustakaan", x: 55, y: 20 },
+            legend: [
+              { icon: "🏠", label: "Rumah" },
+              { icon: "📚", label: "Bangunan awam" },
+            ],
+            mapDistanceCm: 7,
+            scaleLabel: "1 cm mewakili 2 km",
+            question: "Berapakah jarak sebenar di antara Rumah Aina dengan Perpustakaan?",
+            options: [
+              { label: "7 km", correct: false },
+              { label: "9 km", correct: false },
+              { label: "14 km", correct: true },
+              { label: "28 km", correct: false },
+            ],
+            correctFeedback: "Betul! Jarak Sebenar = Jarak di Peta × Skala = 7 cm × 2 km = 14 km.",
+            incorrectFeedback: "Cuba semak semula: darabkan jarak pada peta (7 cm) dengan nilai skala (2 km bagi setiap cm).",
+          },
+          {
+            id: "pecahan-wakilan",
+            pointA: { icon: "🏫", label: "Sekolah", x: 15, y: 25 },
+            pointB: { icon: "🏥", label: "Klinik Desa", x: 58, y: 60 },
+            legend: [
+              { icon: "🏫", label: "Sekolah" },
+              { icon: "🏥", label: "Klinik" },
+            ],
+            mapDistanceCm: 5,
+            scaleLabel: "1 : 50 000",
+            question: "Skala peta ialah 1:50 000. Berapakah jarak sebenar di antara Sekolah dengan Klinik Desa?",
+            options: [
+              { label: "0.5 km", correct: false },
+              { label: "2.5 km", correct: true },
+              { label: "5 km", correct: false },
+              { label: "25 km", correct: false },
+            ],
+            correctFeedback: "Betul! 1:50 000 bermakna 1 cm mewakili 50 000 cm (0.5 km). Jarak sebenar = 5 cm × 0.5 km = 2.5 km.",
+            incorrectFeedback: "Cuba semak semula: tukarkan 1:50 000 kepada 1 cm = 0.5 km dahulu, kemudian darabkan dengan 5 cm.",
+          },
+        ],
+      },
       checks: [
         {
           question: "Jarak lurus di antara rumah Khairul dengan balai polis ialah 9 cm, dan skala 1 cm mewakili 1 km. Berapakah jarak sebenar?",

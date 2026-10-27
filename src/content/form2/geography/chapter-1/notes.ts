@@ -34,41 +34,26 @@ export const geographyF2C1Notes: StructuredNotes = {
         {
           title: "Skala Lurus",
           content:
-            "Skala lurus ialah skala yang berbentuk satu garisan lurus yang dibahagikan kepada beberapa bahagian yang sama saiz, dengan setiap bahagian mewakili jarak sebenar di permukaan bumi.\n\nCiri-ciri: dilukis sebagai garis berskala dengan unit ukuran ditanda pada setiap bahagian; terbahagi kepada skala lurus mudah (bermula terus dari 0 sehingga nombor maksimum tanpa sebarang bahagian tambahan) dan skala lurus penuh (mempunyai bahagian tambahan berlorek di sebelah kiri 0, untuk bacaan yang lebih tepat).\n\nKelebihan: nilai skala tidak berubah walaupun peta diperbesar atau diperkecil melalui fotokopi, kerana garisan skala turut berubah mengikut kadar yang sama.\n\nCara membaca: kenal pasti nilai yang diwakili oleh setiap bahagian pada garis skala, kemudian kira jumlah bahagian yang diliputi oleh jarak yang diukur.\n\nKegunaan: sesuai digunakan pada peta yang akan diperbesar atau diperkecilkan saiznya (contohnya melalui fotokopi atau cetakan semula).",
+            "Skala lurus ialah skala yang berbentuk satu garisan lurus yang dibahagikan kepada beberapa bahagian yang sama saiz, dengan setiap bahagian mewakili jarak sebenar di permukaan bumi.\n\nCiri-ciri: dilukis sebagai garis berskala dengan unit ukuran ditanda pada setiap bahagian; terbahagi kepada skala lurus mudah (bermula terus dari 0 sehingga nombor maksimum tanpa sebarang bahagian tambahan) dan skala lurus penuh (mempunyai bahagian tambahan berlorek di sebelah kiri 0, untuk bacaan yang lebih tepat).\n\nKelebihan: nilai skala tidak berubah walaupun peta diperbesar atau diperkecil melalui fotokopi, kerana garisan skala turut berubah mengikut kadar yang sama.\n\nCara membaca: kenal pasti nilai yang diwakili oleh setiap bahagian pada garis skala, kemudian kira jumlah bahagian yang diliputi oleh jarak yang diukur.",
         },
         {
           title: "Skala Penyata",
           content:
-            "Skala penyata ialah skala yang dinyatakan dalam bentuk ayat pernyataan, contohnya '1 cm mewakili 1 km'.\n\nCiri-ciri: dinyatakan secara terus dalam ayat tanpa unit nisbah; mudah difahami secara literal kerana ia menyatakan unit jarak peta dan unit jarak sebenar secara jelas.\n\nKelebihan: senang dan cepat difahami oleh pembaca peta tanpa pengiraan tambahan unit.\n\nCara membaca: baca pernyataan skala (contoh: 1 cm mewakili 1 km), kemudian darabkan jarak yang diukur pada peta (dalam cm) dengan nilai jarak sebenar yang dinyatakan.\n\nKegunaan: digunakan secara meluas pada peta lakar dan peta pelancongan ringkas.",
+            "Skala penyata ialah skala yang dinyatakan dalam bentuk ayat pernyataan, contohnya '1 cm mewakili 1 km'.\n\nCiri-ciri: dinyatakan secara terus dalam ayat tanpa unit nisbah; mudah difahami secara literal kerana ia menyatakan unit jarak peta dan unit jarak sebenar secara jelas.\n\nKelebihan: senang dan cepat difahami oleh pembaca peta tanpa pengiraan tambahan unit.\n\nCara membaca: baca pernyataan skala (contoh: 1 cm mewakili 1 km), kemudian darabkan jarak yang diukur pada peta (dalam cm) dengan nilai jarak sebenar yang dinyatakan.",
         },
         {
           title: "Pecahan Wakilan (PW)",
           content:
-            "Pecahan wakilan dinyatakan dalam bentuk nisbah tanpa unit, contohnya 1:100 000 atau 1/100 000.\n\nCiri-ciri: nombor pertama (1) mewakili 1 unit jarak di atas peta dan nombor kedua (100 000) mewakili unit jarak sebenar yang sama di permukaan bumi; tidak mempunyai unit kerana kedua-dua nombor dianggap unit yang sama (contohnya 1 cm di atas peta = 100 000 cm di permukaan bumi).\n\nKelebihan: skala yang seragam dan piawai digunakan di seluruh dunia tanpa mengira sistem unit ukuran negara (metrik atau imperial).\n\nCara membaca: 1 cm di atas peta bersamaan dengan 100 000 cm di atas permukaan bumi, iaitu 1 km di permukaan bumi (selepas penukaran unit).\n\nKegunaan: digunakan secara meluas pada peta topografi dan peta rasmi kerajaan.",
+            "Pecahan wakilan dinyatakan dalam bentuk nisbah tanpa unit, contohnya 1:100 000 atau 1/100 000.\n\nCiri-ciri: nombor pertama (1) mewakili 1 unit jarak di atas peta dan nombor kedua (100 000) mewakili unit jarak sebenar yang sama di permukaan bumi; tidak mempunyai unit kerana kedua-dua nombor dianggap unit yang sama (contohnya 1 cm di atas peta = 100 000 cm di permukaan bumi).\n\nKelebihan: skala yang seragam dan piawai digunakan di seluruh dunia tanpa mengira sistem unit ukuran negara (metrik atau imperial).\n\nCara membaca: 1 cm di atas peta bersamaan dengan 100 000 cm di atas permukaan bumi, iaitu 1 km di permukaan bumi (selepas penukaran unit).",
         },
         {
           title: "Jadual Perbandingan Jenis Skala",
           table: {
-            headers: ["Jenis Skala", "Bentuk", "Kegunaan", "Contoh"],
+            headers: ["Jenis Skala", "Bentuk", "Contoh"],
             rows: [
-              [
-                "Skala Lurus",
-                "Garisan lurus berbahagi sama saiz",
-                "Peta yang akan diperbesar/diperkecil",
-                "0   1   2   3 km",
-              ],
-              [
-                "Skala Penyata",
-                "Ayat pernyataan",
-                "Peta lakar dan peta pelancongan",
-                "1 cm mewakili 1 km",
-              ],
-              [
-                "Pecahan Wakilan",
-                "Nisbah tanpa unit",
-                "Peta topografi dan peta rasmi",
-                "1 : 100 000",
-              ],
+              ["Skala Lurus", "Garisan lurus berbahagi sama saiz", "0   1   2   3 km"],
+              ["Skala Penyata", "Ayat pernyataan", "1 cm mewakili 1 km"],
+              ["Pecahan Wakilan", "Nisbah tanpa unit", "1 : 100 000"],
             ],
           },
         },
@@ -190,7 +175,7 @@ export const geographyF2C1Notes: StructuredNotes = {
         {
           title: "Contoh Pengiraan 2: Skala Lurus",
           content:
-            "Jangka tolok diletakkan di antara dua tanda × dan dipindahkan ke garis skala lurus sebanyak 6 bahagian, dengan setiap bahagian mewakili 2 km.\nJarak sebenar = 6 × 2 km = 12 km.",
+            "Jangka tolok digunakan untuk mengukur jarak di antara sekolah dengan pejabat pos di atas peta, iaitu 6 cm. Jangka tolok dipindahkan (tanpa mengubah bukaannya) ke atas skala lurus peta, yang menunjukkan setiap 1 cm mewakili 2 km.\nJarak sebenar = 6 cm × 2 km = 12 km.",
         },
         {
           title: "Contoh Pengiraan 3: Jarak Melengkung (Pecahan Wakilan)",
@@ -203,7 +188,7 @@ export const geographyF2C1Notes: StructuredNotes = {
             "Tidak menukar unit cm kepada km selepas pengiraan, menyebabkan jawapan ditolak markah.",
             "Tersilap meletakkan jangka tolok pada garis skala sehingga bukaan jangka tolok berubah dan bacaan menjadi tidak tepat.",
             "Tidak merentangkan benang secara lurus sepenuhnya sebelum mengukur, menyebabkan jarak melengkung terkurang anggaran.",
-            "Lupa mendarab bilangan bahagian skala lurus dengan nilai sebenar setiap bahagian.",
+            "Lupa mendarab bacaan jangka tolok (cm) dengan nilai skala lurus (km bagi setiap cm) untuk mendapat jarak sebenar.",
           ],
         },
         {
@@ -327,7 +312,7 @@ export const geographyF2C1Notes: StructuredNotes = {
         {
           title: "Contoh Penggunaan Formula 2",
           content:
-            "Diberi: Jangka tolok mewakili 6 bahagian skala lurus, setiap bahagian = 2 km.\nLangkah 1: Jarak Sebenar = Bilangan Bahagian × Nilai Setiap Bahagian.\nLangkah 2: Jarak Sebenar = 6 × 2 km.\nLangkah 3: Jarak Sebenar = 12 km.",
+            "Diberi: Jarak diukur dengan jangka tolok = 6 cm, Skala lurus menunjukkan 1 cm mewakili 2 km.\nLangkah 1: Jarak Sebenar = Jarak di Peta × Skala.\nLangkah 2: Jarak Sebenar = 6 cm × 2 km.\nLangkah 3: Jarak Sebenar = 12 km.",
         },
         {
           title: "Contoh Penggunaan Formula 3",
