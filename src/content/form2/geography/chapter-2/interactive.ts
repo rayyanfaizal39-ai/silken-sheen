@@ -218,7 +218,7 @@ export const geographyF2C2Interactive: GeoF2InteractiveContent = {
       intro:
         "**Mentafsir peta topografi** bermaksud mengenal pasti dan menghubungkaitkan ciri pandang darat fizikal dengan ciri pandang darat budaya sesuatu kawasan berdasarkan maklumat yang terdapat pada peta, bagi memahami **taburan penduduk**, **kedudukan** dan **pola petempatan** sesuatu kawasan.",
       recap: "Mentafsir peta = perhatikan keseluruhan → kenal pasti ciri → kaitkan fizikal dengan budaya → tafsirkan dengan bukti.",
-      workedMapDiagram: true,
+      interactiveJertehMap: true,
       accordions: [
         {
           title: "1️⃣ Perhatikan peta secara keseluruhan",

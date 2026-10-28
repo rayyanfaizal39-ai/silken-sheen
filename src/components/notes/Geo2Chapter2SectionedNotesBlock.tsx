@@ -15,7 +15,7 @@ import { useProgress } from "@/hooks/use-progress";
  * isolated to this single file — every other Form 2 geography chapter still
  * renders through the unchanged `GeoF2InteractiveNotesBlock` stacked view.
  * Reuses `GeoInteractiveSectionBody` (same block renderer the stacked view
- * uses) so `GridReferenceReader`, `MapSymbolLegend`, `WorkedMapDiagram`,
+ * uses) so `GridReferenceReader`, `MapSymbolLegend`, `InteractiveJertehMap`,
  * `GridAxisDiagram` and the callouts render exactly as already verified —
  * nothing about their content or accuracy changes here, only the navigation
  * shell around them.

@@ -89,7 +89,8 @@ export type GeoInteractiveSection = {
   callouts?: GeoCalloutItem[];
   gridAxisDiagram?: boolean;
   mapSymbolLegend?: MapSymbolLegendBlock;
-  workedMapDiagram?: boolean;
+  /** Renders the accurate, interactive recreation of the textbook's Peta Jerteh (grid 6605, Pekan Jabir, Bukit Oh, Sungai Nering, Ladang Baharu). */
+  interactiveJertehMap?: boolean;
   sequence?: {
     title: string;
     instruction: string;

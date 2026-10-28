@@ -10,7 +10,7 @@ import { ZoneExplorer } from "@/components/notes/blocks/ZoneExplorer";
 import { GeoCalloutList } from "@/components/notes/blocks/GeoCallout";
 import { GridAxisDiagram } from "@/components/notes/blocks/GridAxisDiagram";
 import { MapSymbolLegend } from "@/components/notes/blocks/MapSymbolLegend";
-import { WorkedMapDiagram } from "@/components/notes/blocks/WorkedMapDiagram";
+import { InteractiveJertehMap } from "@/components/notes/blocks/InteractiveJertehMap";
 import type { GeoInteractiveSection } from "@/content/form2/geography/interactive-types";
 
 /**
@@ -35,7 +35,7 @@ export function GeoInteractiveSectionBody({
       {introNode ?? (section.intro && <p className="text-[13.5px] leading-relaxed text-muted-foreground">{section.intro}</p>)}
       {section.gridAxisDiagram && <GridAxisDiagram />}
       {section.mapSymbolLegend && <MapSymbolLegend block={section.mapSymbolLegend} />}
-      {section.workedMapDiagram && <WorkedMapDiagram />}
+      {section.interactiveJertehMap && <InteractiveJertehMap />}
       {section.cards && (
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {section.cards.map((card) => (

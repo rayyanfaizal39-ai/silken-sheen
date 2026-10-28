@@ -43,9 +43,9 @@ describe("Geography Form 2 Chapter 2 — Phase 5 visual additions", () => {
     expect(s.gridReference).toBeDefined();
   });
 
-  it("2.5 has the worked-map diagram, and its disclaimer-bearing component is the only new map visual (no fabricated grid)", () => {
+  it("2.5 has the interactive Peta Jerteh recreation", () => {
     const s = section("2.5");
-    expect(s.workedMapDiagram).toBe(true);
+    expect(s.interactiveJertehMap).toBe(true);
   });
 
   it("2.1 presents the three mandatory elements as cards instead of prose-only", () => {
