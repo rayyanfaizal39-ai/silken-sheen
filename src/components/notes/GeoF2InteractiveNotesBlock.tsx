@@ -8,6 +8,7 @@ import { SelfReflectionChecklist } from "@/components/notes/blocks/SelfReflectio
 import { TwoFieldCalculator } from "@/components/notes/blocks/TwoFieldCalculator";
 import { Journey } from "@/components/notes/blocks/Journey";
 import { GridReferenceReader } from "@/components/notes/blocks/GridReferenceReader";
+import { MapScaleReader } from "@/components/notes/blocks/MapScaleReader";
 import { ZoneExplorer } from "@/components/notes/blocks/ZoneExplorer";
 import type { GeoF2InteractiveContent, GeoMiniQuizItem } from "@/content/form2/geography/interactive-types";
 import { getNotesImageUrl } from "@/lib/notes-images";
@@ -173,6 +174,13 @@ export function GeoF2InteractiveNotesBlock({
               <h3 className="font-display mb-2 text-base font-bold text-foreground">{section.gridReference.title}</h3>
               <p className="mb-2 text-[13px] leading-relaxed text-muted-foreground">{section.gridReference.instruction}</p>
               <GridReferenceReader block={section.gridReference} onComplete={() => awardOnce(`grid-${section.number}`, 20)} />
+            </div>
+          )}
+          {section.mapScale && (
+            <div>
+              <h3 className="font-display mb-2 text-base font-bold text-foreground">{section.mapScale.title}</h3>
+              <p className="mb-2 text-[13px] leading-relaxed text-muted-foreground">{section.mapScale.instruction}</p>
+              <MapScaleReader block={section.mapScale} onComplete={() => awardOnce(`mapscale-${section.number}`, 20)} />
             </div>
           )}
           <div>
