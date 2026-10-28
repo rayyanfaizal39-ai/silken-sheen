@@ -115,7 +115,7 @@ export const geographyF2C2Notes: StructuredNotes = {
         {
           title: "Rujukan Grid 4 Angka",
           content:
-            "Rujukan grid 4 angka sesuai digunakan untuk menentukan kedudukan sesuatu kawasan yang luas seperti kawasan hutan, kawasan pertanian dan perlombongan.\n\nNilai rujukan grid 4 angka terdiri daripada dua digit nilai garisan timuran diikuti dua digit nilai garisan utaraan hendaklah dibaca dahulu, diikuti nilai garisan utaraan.",
+            "Rujukan grid 4 angka sesuai digunakan untuk menentukan kedudukan sesuatu kawasan yang luas seperti kawasan hutan, kawasan pertanian dan perlombongan.\n\nNilai rujukan grid 4 angka terdiri daripada dua digit nilai garisan timuran diikuti dua digit nilai garisan utaraan. Nilai garisan timuran hendaklah dibaca dahulu, diikuti nilai garisan utaraan.",
         },
         {
           title: "Rujukan Grid 6 Angka",
@@ -190,19 +190,18 @@ export const geographyF2C2Notes: StructuredNotes = {
         {
           title: "Contoh Simbol Ciri Pandang Darat Fizikal",
           bulletPoints: [
-            "Bentuk muka bumi: Bukit (kontur), Bukit (kontur)",
+            "Bentuk muka bumi: Kontur, Bukit (Bt.), Tanjung (Tg.)",
             "Saliran: Tasik, Sungai",
-            "Tumbuh-tumbuhan: Hutan, Rumput",
+            "Tumbuh-tumbuhan: Hutan, Rumput, Belukar",
             "Saliran khas: Paya nipah, Paya bakau",
           ],
         },
         {
           title: "Contoh Simbol Ciri Pandang Darat Budaya",
           bulletPoints: [
-            "Pengangkutan: Jalan raya, Jambatan",
-            "Petempatan: Kawasan kediaman, Bangunan",
-            "Kemudahan sosial: Masjid, Kelapa sawit (tanaman)",
-            "Kegiatan ekonomi: Padi sawah, Kuil, Tokong, Gereja",
+            "Pengangkutan: Jalan raya, Jambatan, Jalan kereta api",
+            "Kegiatan ekonomi / guna tanah: Getah, Kelapa sawit, Padi sawah",
+            "Kemudahan sosial (tempat ibadat): Masjid, Kuil, Tokong, Gereja",
           ],
         },
         {
@@ -217,16 +216,16 @@ export const geographyF2C2Notes: StructuredNotes = {
             rows: [
               [
                 "Tanah pamah",
-                "Pertanian: Tanaman padi sawah, nanas. Pengangkutan: Jalan raya, jalan kereta api, lapangan terbang. Petempatan: Bandar. Kemudahan sosial: Sekolah, hospital, tempat ibadat.",
+                "Pertanian: Tanaman padi sawah, nanas. Pengangkutan: Jalan raya, jalan kereta api, lapangan terbang. Petempatan: Rumah. Kemudahan sosial: Sekolah, hospital, tempat ibadat.",
               ],
               ["Tanah beralun", "Pertanian: Tanaman getah dan kelapa sawit. Petempatan: Rumah."],
               [
                 "Tanah tinggi",
-                "Pertanian: Tanaman teh dan sayur-sayuran hawa sederhana. Pengangkutan: Kemudahan pengangkutan terhad. Kuasa hidroelektrik: Empangan.",
+                "Pertanian: Tanaman teh dan sayur-sayuran hawa sederhana. Pelancongan: Kemudahan penginapan. Kuasa hidroelektrik: Empangan.",
               ],
               [
                 "Pinggir laut",
-                "Perikanan: Penangkapan nelayan, pelabuhan. Pelancongan: Tempat berkelah, jeti.",
+                "Perikanan: Petempatan nelayan, pelabuhan. Pelancongan: Tempat berkelah, jeti.",
               ],
               ["Saliran", "Sumber air: Paip saluran air. Pengangkutan: Jeti, pangkalan bot."],
               [
@@ -239,7 +238,7 @@ export const geographyF2C2Notes: StructuredNotes = {
         {
           title: "Fakta Penting",
           content:
-            "Info Geografi: Jabatan Ukur dan Pemetaan Malaysia (JUPEM) berfungsi menerbitkan peta topografi dan rujukan peta pemetaan, pengurusan sumber asli, serta pemulihardan alam sekitar di Malaysia.",
+            "Info Geografi: Jabatan Ukur dan Pemetaan Malaysia (JUPEM) berfungsi menerbitkan peta topografi untuk tujuan perancangan, pengurusan sumber asli, pemuliharaan alam sekitar, pembangunan, pemantauan dan keselamatan negara.",
         },
         {
           title: "Wajib Hafal",
@@ -271,7 +270,7 @@ export const geographyF2C2Notes: StructuredNotes = {
         {
           title: "Contoh Tafsiran",
           content:
-            "Peta topografi menunjukkan ciri pandang darat fizikal dan ciri pandang darat budaya kawasan Jertih. Ciri pandang darat fizikal terdapat dalam peta topografi seperti sungai, tanah pamah dan tanah tinggi. Manakala ciri pandang darat budaya pula seperti petempatan, jalan raya, jambatan, sekolah, balai polis, pejabat pos dan pejabat daerah.\n\nSebahagian besar bentuk muka bumi di kawasan kajian terdiri daripada kawasan yang berada di kawasan tanah pamah serta tanah tinggi. Manakala kawasan pengangkutan kawasan tinggi disediakan dengan jalan raya, jambatan, petempatan, sekolah, balai polis, pejabat pos dan pejabat daerah.\n\nBerdasarkan peta, kegiatan ekonomi penduduk dijalankan secara aktiviti pertanian. Padi sawah ditanam di kawasan tanah pamah berhampiran Sungai Nering. Sawah padi membentuk corak petempatan berkelompok dan berjajar di sekitar kawasan tanah pamah, sekolah, klinik, balai polis dan pejabat pos. Peta topografi menunjukkan jalan raya terdapat di Ladang Bauharu yang membentuk kawasan grid 6105.",
+            "Peta topografi menunjukkan kawasan Jerteh. Ciri pandang darat fizikal yang terdapat dalam peta ialah sungai (Sungai Nering), hutan dan paya nipah. Ciri pandang darat budaya pula terdiri daripada jalan raya, ladang getah, sawah padi, petempatan, jambatan, pejabat daerah, sekolah, pejabat pos dan balai polis.\n\nSebahagian besar bentuk muka bumi di kawasan peta ialah tanah pamah yang rata, kecuali di sebelah barat daya yang merupakan kawasan tanah tinggi. Kawasan tanah pamah digunakan untuk petempatan, pengangkutan dan pertanian, manakala kawasan tanah beralun yang bersaliran baik digunakan untuk penanaman getah. Saliran utama di kawasan ini ialah Sungai Nering.\n\nKegiatan ekonomi utama penduduk ialah pertanian, iaitu padi sawah dan getah. Padi sawah ditanam di kawasan lembah sungai dan tanah pamah seperti di sekitar Kg. Sawah dan Kg. Gelang, manakala getah diusahakan di kawasan kaki bukit dan tanah pamah secara kebun kecil dan ladang, misalnya Ladang Bukit Oh.\n\nPekan Jabir menjadi kawasan tumpuan penduduk dengan pola petempatan berpusat, serta mempunyai kemudahan sosial seperti sekolah, klinik, balai polis dan pejabat pos. Petempatan berkelompok terdapat di Ladang Baharu, manakala petempatan berjajar terdapat di segi empat grid 6605.",
         },
         {
           title: "Kaedah Analisis Tafsiran",

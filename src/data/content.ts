@@ -14484,7 +14484,7 @@ export const quizzes: QuizQuestion[] = [
     chapter: "Chapter 2",
     difficulty: "Hard",
     question:
-      "Dalam tafsiran peta Jertih, padi sawah ditanam berhampiran Sungai Nering. Apakah hubung kait yang ditunjukkan?",
+      "Dalam tafsiran peta Jerteh, padi sawah ditanam berhampiran Sungai Nering. Apakah hubung kait yang ditunjukkan?",
     options: [
       "Tanah pamah subur berhampiran sungai sesuai untuk padi sawah",
       "Sungai Nering digunakan untuk mengangkut padi ke pelabuhan",
