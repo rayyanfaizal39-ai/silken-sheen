@@ -73,6 +73,10 @@ export type GeoCalculatorBlock = {
 export type GeoInteractiveSection = {
   number: string;
   title: string;
+  /** Short "How...?"/"What...?" question rendered above intro, in a sectioned (one-module-at-a-time) shell. Ignored by the legacy stacked renderer. */
+  discoveryQuestion?: string;
+  /** One-line takeaway shown at the end of the module, in a sectioned shell. Ignored by the legacy stacked renderer. */
+  recap?: string;
   intro?: string;
   cards?: GeoInteractiveCard[];
   flipCards?: GeoFlipCardItem[];

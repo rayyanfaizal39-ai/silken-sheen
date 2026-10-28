@@ -19,9 +19,11 @@ export const geographyF2C2Interactive: GeoF2InteractiveContent = {
   sections: [
     {
       number: "2.1",
-      title: "Maksud Peta Topografi",
+      title: "Mengenali Peta Topografi",
+      discoveryQuestion: "Apakah yang menjadikan sebuah peta itu 'peta topografi'?",
       intro:
-        "Peta topografi ialah peta yang menunjukkan keadaan bentuk muka bumi sesebuah kawasan dan mempunyai garisan grid secara melintang dan menegak. Peta ini menggambarkan ciri pandang darat fizikal dan ciri pandang darat budaya sesuatu kawasan, dilukis menggunakan skala dan simbol-simbol tertentu.",
+        "**Peta topografi** ialah peta yang menunjukkan keadaan **bentuk muka bumi** sesebuah kawasan dan mempunyai **garisan grid** secara melintang dan menegak. Peta ini menggambarkan **ciri pandang darat fizikal** dan **ciri pandang darat budaya** sesuatu kawasan, dilukis menggunakan skala dan simbol-simbol tertentu.",
+      recap: "Peta topografi = bentuk muka bumi + garisan grid + ciri fizikal & budaya, dilukis dengan tajuk, petunjuk dan skala.",
       cards: [
         { title: "📋 Tajuk Peta", body: "Menyatakan nama kawasan yang digambarkan oleh peta, contohnya \"Peta Kuala Krau\"." },
         { title: "🔑 Petunjuk", body: "Senarai simbol yang digunakan pada peta, berserta maksud setiap satu." },
@@ -36,9 +38,11 @@ export const geographyF2C2Interactive: GeoF2InteractiveContent = {
     },
     {
       number: "2.2",
-      title: "Garisan Timuran dan Garisan Utaraan",
+      title: "Garisan Timuran dan Utaraan",
+      discoveryQuestion: "Bagaimanakah peta topografi menunjukkan kedudukan sesuatu tempat 'ke mana'?",
       intro:
-        "Garisan grid ialah garisan-garisan dalam peta topografi yang dilukis secara menegak dan melintang, terbahagi kepada dua jenis: garisan timuran dan garisan utaraan.",
+        "**Garisan grid** ialah garisan-garisan dalam peta topografi yang dilukis secara menegak dan melintang, terbahagi kepada dua jenis: **garisan timuran** dan **garisan utaraan**.",
+      recap: "Garisan timuran = menegak, ke Timur. Garisan utaraan = melintang, ke Utara.",
       gridAxisDiagram: true,
       tabGroups: [
         {
@@ -70,9 +74,11 @@ export const geographyF2C2Interactive: GeoF2InteractiveContent = {
     },
     {
       number: "2.3",
-      title: "Rujukan Grid",
+      title: "Rujukan Grid 4 dan 6 Angka",
+      discoveryQuestion: "Bagaimanakah kita tentukan kedudukan tepat sesuatu tempat hanya dengan nombor?",
       intro:
-        "Rujukan grid ialah kombinasi antara nilai garisan timuran dengan nilai garisan utaraan pada titik persilangan — dengan itu kita dapat menentukan kedudukan sesuatu tempat atau objek dengan mudah pada peta. Peraturan penting: nilai garisan timuran SENTIASA dibaca dan ditulis dahulu, diikuti garisan utaraan (dikenali sebagai 'Right then Up').",
+        "**Rujukan grid** ialah kombinasi antara nilai garisan timuran dengan nilai garisan utaraan pada titik persilangan — dengan itu kita dapat menentukan kedudukan sesuatu tempat atau objek dengan mudah pada peta. Peraturan penting: nilai garisan **timuran SENTIASA dibaca dan ditulis dahulu**, diikuti garisan utaraan (dikenali sebagai 'Right then Up').",
+      recap: "RG 4 angka = kawasan luas (2+2 digit). RG 6 angka = objek spesifik (3+3 digit). Timuran dahulu, utaraan kemudian.",
       cards: [
         {
           title: "Rujukan Grid 4 Angka",
@@ -131,9 +137,11 @@ export const geographyF2C2Interactive: GeoF2InteractiveContent = {
     },
     {
       number: "2.4",
-      title: "Ciri Pandang Darat Fizikal dan Ciri Pandang Darat Budaya",
+      title: "Ciri Pandang Darat Fizikal dan Budaya",
+      discoveryQuestion: "Bagaimanakah kita bezakan ciri semula jadi dengan ciri buatan manusia pada peta?",
       intro:
-        "Ciri pandang darat fizikal merujuk pelbagai bentuk muka bumi semula jadi seperti saliran dan tumbuh-tumbuhan semula jadi. Ciri pandang darat budaya pula merujuk ciri buatan manusia seperti guna tanah, kegiatan ekonomi penduduk, petempatan, kemudahan sosial serta pengangkutan dan perhubungan. Pada umumnya, ciri pandang darat fizikal akan mempengaruhi kewujudan ciri pandang darat budaya di sesuatu kawasan — contohnya, tanah pamah yang subur menggalakkan pertanian padi sawah dan petempatan yang padat.",
+        "**Ciri pandang darat fizikal** merujuk pelbagai bentuk muka bumi semula jadi seperti saliran dan tumbuh-tumbuhan semula jadi. **Ciri pandang darat budaya** pula merujuk ciri buatan manusia seperti guna tanah, kegiatan ekonomi penduduk, petempatan, kemudahan sosial serta pengangkutan dan perhubungan. Pada umumnya, **ciri fizikal mempengaruhi kewujudan ciri budaya** di sesuatu kawasan — contohnya, tanah pamah yang subur menggalakkan pertanian padi sawah dan petempatan yang padat.",
+      recap: "Fizikal = semula jadi (tanah, saliran, tumbuhan). Budaya = buatan manusia (petempatan, ekonomi, pengangkutan). Fizikal mempengaruhi budaya.",
       mapSymbolLegend: {
         fizikal: [
           { id: "kontur", label: "Kontur" },
@@ -206,8 +214,10 @@ export const geographyF2C2Interactive: GeoF2InteractiveContent = {
     {
       number: "2.5",
       title: "Mentafsir Peta Topografi",
+      discoveryQuestion: "Bagaimanakah kita 'membaca cerita' sesebuah kawasan hanya daripada petanya?",
       intro:
-        "Mentafsir peta topografi bermaksud mengenal pasti dan menghubungkaitkan ciri pandang darat fizikal dengan ciri pandang darat budaya sesuatu kawasan berdasarkan maklumat yang terdapat pada peta, bagi memahami taburan penduduk, kedudukan dan pola petempatan sesuatu kawasan.",
+        "**Mentafsir peta topografi** bermaksud mengenal pasti dan menghubungkaitkan ciri pandang darat fizikal dengan ciri pandang darat budaya sesuatu kawasan berdasarkan maklumat yang terdapat pada peta, bagi memahami **taburan penduduk**, **kedudukan** dan **pola petempatan** sesuatu kawasan.",
+      recap: "Mentafsir peta = perhatikan keseluruhan → kenal pasti ciri → kaitkan fizikal dengan budaya → tafsirkan dengan bukti.",
       workedMapDiagram: true,
       accordions: [
         {

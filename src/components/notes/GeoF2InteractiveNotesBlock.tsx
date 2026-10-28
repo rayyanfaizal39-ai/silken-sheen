@@ -1,19 +1,8 @@
 import { useRef, useState } from "react";
 import { CheckCircle2 } from "lucide-react";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ChipRow } from "@/components/notes/blocks/ChipRow";
-import { FlipCardGrid } from "@/components/notes/blocks/FlipCard";
 import { SelfReflectionChecklist } from "@/components/notes/blocks/SelfReflectionChecklist";
-import { TwoFieldCalculator } from "@/components/notes/blocks/TwoFieldCalculator";
-import { Journey } from "@/components/notes/blocks/Journey";
-import { GridReferenceReader } from "@/components/notes/blocks/GridReferenceReader";
-import { MapScaleReader } from "@/components/notes/blocks/MapScaleReader";
-import { ZoneExplorer } from "@/components/notes/blocks/ZoneExplorer";
-import { GeoCalloutList } from "@/components/notes/blocks/GeoCallout";
-import { GridAxisDiagram } from "@/components/notes/blocks/GridAxisDiagram";
-import { MapSymbolLegend } from "@/components/notes/blocks/MapSymbolLegend";
-import { WorkedMapDiagram } from "@/components/notes/blocks/WorkedMapDiagram";
+import { GeoInteractiveSectionBody } from "@/components/notes/blocks/GeoInteractiveSectionBody";
 import type { GeoF2InteractiveContent, GeoMiniQuizItem } from "@/content/form2/geography/interactive-types";
 import { getNotesImageUrl } from "@/lib/notes-images";
 import { useProgress } from "@/hooks/use-progress";
@@ -108,100 +97,7 @@ export function GeoF2InteractiveNotesBlock({
             <span className="shrink-0 rounded-lg border border-primary/35 bg-primary/10 px-2.5 py-1 text-xs font-bold text-primary">{section.number}</span>
             <h2 className="font-display text-xl font-bold leading-tight text-foreground">{section.title}</h2>
           </div>
-          {section.intro && <p className="text-[13.5px] leading-relaxed text-muted-foreground">{section.intro}</p>}
-          {section.gridAxisDiagram && <GridAxisDiagram />}
-          {section.mapSymbolLegend && <MapSymbolLegend block={section.mapSymbolLegend} />}
-          {section.workedMapDiagram && <WorkedMapDiagram />}
-          {section.cards && (
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {section.cards.map((card) => (
-                <article key={card.title} className="min-w-0 rounded-2xl border border-border bg-card/55 p-4">
-                  <h3 className="font-display text-sm font-bold text-foreground">{card.title}</h3>
-                  <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">{card.body}</p>
-                  {card.detail && <p className="mt-2 text-xs font-semibold text-primary">{card.detail}</p>}
-                </article>
-              ))}
-            </div>
-          )}
-          {section.flipCards && <FlipCardGrid items={section.flipCards} />}
-          {section.zoneExplorer && (
-            <div>
-              <h3 className="font-display mb-2 text-base font-bold text-foreground">{section.zoneExplorer.title}</h3>
-              <p className="mb-2 text-[13px] leading-relaxed text-muted-foreground">{section.zoneExplorer.instruction}</p>
-              <ZoneExplorer block={section.zoneExplorer} />
-            </div>
-          )}
-          {section.accordions && (
-            <Accordion type="single" collapsible>
-              {section.accordions.map((item, i) => (
-                <AccordionItem key={item.title} value={`${section.number}-${i}`}>
-                  <AccordionTrigger>{item.title}</AccordionTrigger>
-                  <AccordionContent className="text-[13px] leading-relaxed text-muted-foreground">{item.body}</AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          )}
-          {section.tabGroups?.map((group, gi) => (
-            <div key={`${section.number}-tabgroup-${gi}`}>
-              <h3 className="font-display mb-2 text-base font-bold text-foreground">{group.title}</h3>
-              {group.instruction && <p className="mb-2 text-[13px] leading-relaxed text-muted-foreground">{group.instruction}</p>}
-              <Tabs defaultValue="tab-0">
-                <TabsList className="h-auto max-w-full flex-wrap justify-start">
-                  {group.tabs.map((tab, i) => <TabsTrigger key={tab.title} value={`tab-${i}`}>{tab.title}</TabsTrigger>)}
-                </TabsList>
-                {group.tabs.map((tab, i) => (
-                  <TabsContent key={tab.title} value={`tab-${i}`} className="text-[13.5px] leading-relaxed text-muted-foreground">
-                    {tab.body}
-                  </TabsContent>
-                ))}
-              </Tabs>
-            </div>
-          ))}
-          {section.sequence && (
-            <div>
-              <h3 className="font-display mb-2 text-base font-bold text-foreground">{section.sequence.title}</h3>
-              <Journey steps={section.sequence.steps} instruction={section.sequence.instruction} />
-            </div>
-          )}
-          {section.calculators?.map((calc, i) => (
-            <div key={`${section.number}-calc-${i}`}>
-              <h3 className="font-display mb-2 text-base font-bold text-foreground">{calc.title}</h3>
-              <p className="text-[13px] leading-relaxed text-muted-foreground">{calc.instruction}</p>
-              <TwoFieldCalculator
-                fieldA={calc.fieldA}
-                fieldB={calc.fieldB}
-                operation={calc.operation}
-                resultLabel={calc.resultLabel}
-                resultUnit={calc.resultUnit}
-              />
-            </div>
-          ))}
-          {section.gridReference && (
-            <div>
-              <h3 className="font-display mb-2 text-base font-bold text-foreground">{section.gridReference.title}</h3>
-              <p className="mb-2 text-[13px] leading-relaxed text-muted-foreground">{section.gridReference.instruction}</p>
-              <GridReferenceReader block={section.gridReference} onComplete={() => awardOnce(`grid-${section.number}`, 20)} />
-            </div>
-          )}
-          {section.mapScale && (
-            <div>
-              <h3 className="font-display mb-2 text-base font-bold text-foreground">{section.mapScale.title}</h3>
-              <p className="mb-2 text-[13px] leading-relaxed text-muted-foreground">{section.mapScale.instruction}</p>
-              <MapScaleReader block={section.mapScale} onComplete={() => awardOnce(`mapscale-${section.number}`, 20)} />
-            </div>
-          )}
-          {section.callouts && <GeoCalloutList items={section.callouts} />}
-          <div>
-            <h3 className="font-display mb-2 text-base font-bold text-foreground">Semak diri — {section.number}</h3>
-            <Accordion type="single" collapsible>
-              {section.checks.map((item, i) => (
-                <AccordionItem key={item.question} value={`check-${section.number}-${i}`}>
-                  <AccordionTrigger className="text-[13.5px]">{i + 1}. {item.question}</AccordionTrigger>
-                  <AccordionContent className="text-[13px] text-muted-foreground">{item.hint}</AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
+          <GeoInteractiveSectionBody section={section} awardOnce={awardOnce} />
         </div>
       ))}
 
