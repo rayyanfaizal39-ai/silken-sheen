@@ -7,7 +7,7 @@ import { quizzes } from "@/data/content";
 function flattenText(notes: typeof geographyF2C1Notes): string {
   return notes.sections
     .flatMap((section) =>
-      section.subsections.map((sub) =>
+      (section.subsections ?? []).map((sub) =>
         [sub.content, sub.formula, ...(sub.bulletPoints ?? []), ...(sub.table?.rows.flat() ?? [])]
           .filter(Boolean)
           .join(" "),
@@ -54,7 +54,7 @@ describe("Geography Form 2 Chapter 1 (Skala dan Jarak) textbook/DSKP audit regre
 
   it("F6: mindmap describes the skala lurus measuring tool as jangka tolok, not a plain pembaris", () => {
     const skalaLurusNode = geoF2C1MindMap.children
-      .find((c) => c.label === "1.1 Skala")
+      ?.find((c) => c.label === "1.1 Skala")
       ?.children?.find((c) => c.label === "Skala Lurus");
     const toolLabel = skalaLurusNode?.children?.map((c) => c.label).join(" | ") ?? "";
     expect(toolLabel).toContain("jangka tolok");
