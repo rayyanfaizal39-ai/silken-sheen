@@ -21,7 +21,12 @@ export const geographyF2C2Interactive: GeoF2InteractiveContent = {
       number: "2.1",
       title: "Maksud Peta Topografi",
       intro:
-        "Peta topografi ialah peta yang menunjukkan keadaan bentuk muka bumi sesebuah kawasan dan mempunyai garisan grid secara melintang dan menegak. Peta ini menggambarkan ciri pandang darat fizikal dan ciri pandang darat budaya sesuatu kawasan, dilukis menggunakan skala dan simbol-simbol tertentu. Setiap peta topografi yang lengkap mesti mempunyai tiga elemen wajib: tajuk peta, petunjuk dan skala — sama seperti elemen wajib pada peta lakar yang telah dipelajari dalam Bab 1.",
+        "Peta topografi ialah peta yang menunjukkan keadaan bentuk muka bumi sesebuah kawasan dan mempunyai garisan grid secara melintang dan menegak. Peta ini menggambarkan ciri pandang darat fizikal dan ciri pandang darat budaya sesuatu kawasan, dilukis menggunakan skala dan simbol-simbol tertentu.",
+      cards: [
+        { title: "📋 Tajuk Peta", body: "Menyatakan nama kawasan yang digambarkan oleh peta, contohnya \"Peta Kuala Krau\"." },
+        { title: "🔑 Petunjuk", body: "Senarai simbol yang digunakan pada peta, berserta maksud setiap satu." },
+        { title: "📏 Skala", body: "Nisbah jarak di peta berbanding jarak sebenar — sama seperti yang dipelajari dalam Bab 1." },
+      ],
       checks: [
         {
           question: "Senaraikan ciri yang mesti ada pada sebuah peta topografi yang lengkap.",
@@ -34,6 +39,7 @@ export const geographyF2C2Interactive: GeoF2InteractiveContent = {
       title: "Garisan Timuran dan Garisan Utaraan",
       intro:
         "Garisan grid ialah garisan-garisan dalam peta topografi yang dilukis secara menegak dan melintang, terbahagi kepada dua jenis: garisan timuran dan garisan utaraan.",
+      gridAxisDiagram: true,
       tabGroups: [
         {
           title: "Garisan grid dalam peta",
@@ -47,6 +53,12 @@ export const geographyF2C2Interactive: GeoF2InteractiveContent = {
               body: "Garisan grid yang dilukis secara melintang, menunjukkan kedudukan sesuatu tempat ke arah utara. Nilainya bertambah ke arah utara.",
             },
           ],
+        },
+      ],
+      callouts: [
+        {
+          variant: "ingat",
+          body: "Garisan TIMURAN = menegak (atas-bawah), nilai bertambah ke arah TIMUR. Garisan UTARAAN = melintang (kiri-kanan), nilai bertambah ke arah UTARA.",
         },
       ],
       checks: [
@@ -100,6 +112,16 @@ export const geographyF2C2Interactive: GeoF2InteractiveContent = {
           incorrectFeedback: "✗ Belum tepat — lihat kedudukan titik dalam segi empat grid dengan lebih teliti.",
         },
       },
+      callouts: [
+        {
+          variant: "fakta-penting",
+          body: "Peraturan 'Right then Up': nilai garisan TIMURAN sentiasa dibaca dan ditulis dahulu, diikuti nilai garisan UTARAAN.",
+        },
+        {
+          variant: "kesilapan-lazim",
+          body: "Ramai murid menulis nilai garisan utaraan dahulu — ini akan menghasilkan rujukan grid yang salah walaupun kedua-dua nilai betul.",
+        },
+      ],
       checks: [
         {
           question: "Nilai manakah yang dibaca dahulu — garisan timuran atau garisan utaraan?",
@@ -112,6 +134,32 @@ export const geographyF2C2Interactive: GeoF2InteractiveContent = {
       title: "Ciri Pandang Darat Fizikal dan Ciri Pandang Darat Budaya",
       intro:
         "Ciri pandang darat fizikal merujuk pelbagai bentuk muka bumi semula jadi seperti saliran dan tumbuh-tumbuhan semula jadi. Ciri pandang darat budaya pula merujuk ciri buatan manusia seperti guna tanah, kegiatan ekonomi penduduk, petempatan, kemudahan sosial serta pengangkutan dan perhubungan. Pada umumnya, ciri pandang darat fizikal akan mempengaruhi kewujudan ciri pandang darat budaya di sesuatu kawasan — contohnya, tanah pamah yang subur menggalakkan pertanian padi sawah dan petempatan yang padat.",
+      mapSymbolLegend: {
+        fizikal: [
+          { id: "kontur", label: "Kontur" },
+          { id: "tasik", label: "Tasik" },
+          { id: "sungai", label: "Sungai" },
+          { id: "belukar", label: "Belukar" },
+          { id: "rumput", label: "Rumput" },
+          { id: "hutan", label: "Hutan" },
+          { id: "paya-nipah", label: "Paya nipah" },
+          { id: "paya-bakau", label: "Paya bakau" },
+          { id: "tanjung", label: "Tanjung (Tg.)" },
+          { id: "bukit", label: "Bukit (Bt.)" },
+        ],
+        budaya: [
+          { id: "jalan-raya", label: "Jalan raya" },
+          { id: "jambatan", label: "Jambatan" },
+          { id: "jalan-kereta-api", label: "Jalan kereta api" },
+          { id: "getah", label: "Getah" },
+          { id: "kelapa-sawit", label: "Kelapa sawit" },
+          { id: "padi-sawah", label: "Padi sawah" },
+          { id: "masjid", label: "Masjid" },
+          { id: "kuil", label: "Kuil" },
+          { id: "tokong", label: "Tokong" },
+          { id: "gereja", label: "Gereja" },
+        ],
+      },
       cards: [
         {
           title: "🏔️ Ciri Pandang Darat Fizikal",
@@ -142,6 +190,12 @@ export const geographyF2C2Interactive: GeoF2InteractiveContent = {
           body: "Perikanan (petempatan nelayan, pelabuhan), pelancongan (jeti, tempat berkelah).",
         },
       ],
+      callouts: [
+        {
+          variant: "kesilapan-lazim",
+          body: "Kelapa sawit dan getah ialah ciri pandang darat BUDAYA (tanaman diusahakan manusia), bukan ciri fizikal — jangan keliru dengan hutan atau tumbuhan semula jadi.",
+        },
+      ],
       checks: [
         {
           question: "Mengapa ladang getah lebih banyak terdapat di tanah beralun berbanding tanah pamah?",
@@ -154,6 +208,7 @@ export const geographyF2C2Interactive: GeoF2InteractiveContent = {
       title: "Mentafsir Peta Topografi",
       intro:
         "Mentafsir peta topografi bermaksud mengenal pasti dan menghubungkaitkan ciri pandang darat fizikal dengan ciri pandang darat budaya sesuatu kawasan berdasarkan maklumat yang terdapat pada peta, bagi memahami taburan penduduk, kedudukan dan pola petempatan sesuatu kawasan.",
+      workedMapDiagram: true,
       accordions: [
         {
           title: "1️⃣ Perhatikan peta secara keseluruhan",

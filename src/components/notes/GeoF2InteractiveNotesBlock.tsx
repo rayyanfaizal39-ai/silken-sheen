@@ -10,6 +10,10 @@ import { Journey } from "@/components/notes/blocks/Journey";
 import { GridReferenceReader } from "@/components/notes/blocks/GridReferenceReader";
 import { MapScaleReader } from "@/components/notes/blocks/MapScaleReader";
 import { ZoneExplorer } from "@/components/notes/blocks/ZoneExplorer";
+import { GeoCalloutList } from "@/components/notes/blocks/GeoCallout";
+import { GridAxisDiagram } from "@/components/notes/blocks/GridAxisDiagram";
+import { MapSymbolLegend } from "@/components/notes/blocks/MapSymbolLegend";
+import { WorkedMapDiagram } from "@/components/notes/blocks/WorkedMapDiagram";
 import type { GeoF2InteractiveContent, GeoMiniQuizItem } from "@/content/form2/geography/interactive-types";
 import { getNotesImageUrl } from "@/lib/notes-images";
 import { useProgress } from "@/hooks/use-progress";
@@ -105,6 +109,9 @@ export function GeoF2InteractiveNotesBlock({
             <h2 className="font-display text-xl font-bold leading-tight text-foreground">{section.title}</h2>
           </div>
           {section.intro && <p className="text-[13.5px] leading-relaxed text-muted-foreground">{section.intro}</p>}
+          {section.gridAxisDiagram && <GridAxisDiagram />}
+          {section.mapSymbolLegend && <MapSymbolLegend block={section.mapSymbolLegend} />}
+          {section.workedMapDiagram && <WorkedMapDiagram />}
           {section.cards && (
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {section.cards.map((card) => (
@@ -183,6 +190,7 @@ export function GeoF2InteractiveNotesBlock({
               <MapScaleReader block={section.mapScale} onComplete={() => awardOnce(`mapscale-${section.number}`, 20)} />
             </div>
           )}
+          {section.callouts && <GeoCalloutList items={section.callouts} />}
           <div>
             <h3 className="font-display mb-2 text-base font-bold text-foreground">Semak diri — {section.number}</h3>
             <Accordion type="single" collapsible>

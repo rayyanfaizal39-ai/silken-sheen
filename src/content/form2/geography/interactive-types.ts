@@ -1,6 +1,8 @@
 import type { GridReferenceBlock } from "@/components/notes/blocks/GridReferenceReader";
 import type { ZoneExplorerBlock } from "@/components/notes/blocks/ZoneExplorer";
 import type { MapScaleBlock } from "@/components/notes/blocks/MapScaleReader";
+import type { GeoCalloutItem } from "@/components/notes/blocks/GeoCallout";
+import type { MapSymbolLegendBlock } from "@/components/notes/blocks/MapSymbolLegend";
 
 export type GeoInteractiveCard = {
   title: string;
@@ -80,6 +82,10 @@ export type GeoInteractiveSection = {
   calculators?: GeoCalculatorBlock[];
   gridReference?: GridReferenceBlock;
   mapScale?: MapScaleBlock;
+  callouts?: GeoCalloutItem[];
+  gridAxisDiagram?: boolean;
+  mapSymbolLegend?: MapSymbolLegendBlock;
+  workedMapDiagram?: boolean;
   sequence?: {
     title: string;
     instruction: string;
