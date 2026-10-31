@@ -1,10 +1,22 @@
 import { getAuthReturnTo } from "@/lib/auth-return-to";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import { Sparkles, Shield, Zap, Star, ArrowLeft, AlertCircle } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import {
+  Sparkles,
+  Zap,
+  ChartNoAxesColumnIncreasing,
+  Cloud,
+  ShieldCheck,
+  UsersRound,
+  Laptop,
+  ArrowRight,
+  ArrowLeft,
+  AlertCircle,
+} from "lucide-react";
 import { useAuth } from "@/context/auth-context";
 import { seoMeta } from "@/lib/seo";
 import { AcademyLogo } from "@/components/AcademyLogo";
+import { LearningLevelSelector } from "@/components/auth/LearningLevelSelector";
 import { enableGuestMode } from "@/lib/guest-mode";
 import { DevSignInSlot } from "@/lib/dev-auth/DevSignInSlot";
 
@@ -23,25 +35,46 @@ export const Route = createFileRoute("/login")({
   component: LoginPage,
 });
 
+// Study-desk artwork supplied by the AcadeMY team (896×1120 WebP). The overlay
+// in LoginBackdrop keeps text legible if this image is swapped.
+const LOGIN_BACKGROUND_SRC = "/images/login/login-background.webp";
+
+const TEXT_SHADOW = "[text-shadow:0_2px_14px_rgba(0,0,0,0.45)]";
+
 const PERKS = [
-  { icon: Zap, color: "#FBBF24", label: "XP & Rank", desc: "Earn points and unlock Space Ranks" },
   {
-    icon: Star,
-    color: "#A78BFA",
+    icon: Zap,
+    color: "text-[#FACC15] fill-[#FACC15]",
+    label: "XP & Rank",
+    desc: "Earn points and unlock Space Ranks",
+  },
+  {
+    icon: ChartNoAxesColumnIncreasing,
+    color: "text-[#A855F7]",
     label: "Streak Tracking",
     desc: "Keep your daily learning fire alive",
   },
   {
-    icon: Shield,
-    color: "#34D399",
+    icon: Cloud,
+    color: "text-[#60A5FA]",
     label: "Sync Everywhere",
-    desc: "Progress saved across all your devices",
+    desc: "Across all your devices",
   },
+];
+
+const TRUST_NOTES = [
+  { icon: ShieldCheck, label: "Safe & Secure", desc: "Your data is protected" },
+  {
+    icon: UsersRound,
+    label: "Built for Malaysian Students",
+    desc: "Designed for our national curriculum",
+  },
+  { icon: Laptop, label: "Works on All Devices", desc: "Learn anytime, anywhere" },
 ];
 
 function GoogleIcon() {
   return (
-    <svg className="w-5 h-5 shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+    <svg className="w-5 h-5 shrink-0 sm:h-6 sm:w-6" viewBox="0 0 24 24" aria-hidden="true">
       <path
         fill="#4285F4"
         d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -62,439 +95,35 @@ function GoogleIcon() {
   );
 }
 
-type Star = {
-  id: number;
-  left: string;
-  top: string;
-  width: string;
-  height: string;
-  opacity: number;
-  animationDuration: string;
-  animationDelay: string;
-};
+/**
+ * Static, decorative backdrop with a dark overlay for legibility. An <img> (not a
+ * CSS background) so the browser fetches it early; it fades in over the matching
+ * navy fill once decoded. The position keeps the backpack and books in view on
+ * narrow screens and the desk on wide ones.
+ */
+function LoginBackdrop() {
+  const imgRef = useRef<HTMLImageElement>(null);
+  const [loaded, setLoaded] = useState(false);
 
-// Fixed starfield data so the server and client render the exact same markup.
-const STARS: Star[] = [
-  {
-    id: 0,
-    left: "8%",
-    top: "12%",
-    width: "1.1px",
-    height: "1.1px",
-    opacity: 0.32,
-    animationDuration: "3.2s",
-    animationDelay: "0.1s",
-  },
-  {
-    id: 1,
-    left: "16%",
-    top: "68%",
-    width: "1.4px",
-    height: "1.4px",
-    opacity: 0.22,
-    animationDuration: "4.4s",
-    animationDelay: "0.8s",
-  },
-  {
-    id: 2,
-    left: "24%",
-    top: "28%",
-    width: "0.9px",
-    height: "0.9px",
-    opacity: 0.48,
-    animationDuration: "2.8s",
-    animationDelay: "1.4s",
-  },
-  {
-    id: 3,
-    left: "31%",
-    top: "82%",
-    width: "1.2px",
-    height: "1.2px",
-    opacity: 0.27,
-    animationDuration: "3.9s",
-    animationDelay: "0.5s",
-  },
-  {
-    id: 4,
-    left: "39%",
-    top: "18%",
-    width: "1.5px",
-    height: "1.5px",
-    opacity: 0.18,
-    animationDuration: "5.1s",
-    animationDelay: "1.1s",
-  },
-  {
-    id: 5,
-    left: "47%",
-    top: "54%",
-    width: "0.8px",
-    height: "0.8px",
-    opacity: 0.44,
-    animationDuration: "2.6s",
-    animationDelay: "0.3s",
-  },
-  {
-    id: 6,
-    left: "55%",
-    top: "10%",
-    width: "1.3px",
-    height: "1.3px",
-    opacity: 0.29,
-    animationDuration: "4.8s",
-    animationDelay: "1.7s",
-  },
-  {
-    id: 7,
-    left: "63%",
-    top: "36%",
-    width: "1.0px",
-    height: "1.0px",
-    opacity: 0.36,
-    animationDuration: "3.1s",
-    animationDelay: "0.9s",
-  },
-  {
-    id: 8,
-    left: "71%",
-    top: "76%",
-    width: "1.6px",
-    height: "1.6px",
-    opacity: 0.19,
-    animationDuration: "5.4s",
-    animationDelay: "1.6s",
-  },
-  {
-    id: 9,
-    left: "79%",
-    top: "22%",
-    width: "0.9px",
-    height: "0.9px",
-    opacity: 0.41,
-    animationDuration: "2.9s",
-    animationDelay: "0.2s",
-  },
-  {
-    id: 10,
-    left: "87%",
-    top: "60%",
-    width: "1.4px",
-    height: "1.4px",
-    opacity: 0.24,
-    animationDuration: "4.1s",
-    animationDelay: "1.0s",
-  },
-  {
-    id: 11,
-    left: "92%",
-    top: "14%",
-    width: "1.1px",
-    height: "1.1px",
-    opacity: 0.34,
-    animationDuration: "3.5s",
-    animationDelay: "1.3s",
-  },
-  {
-    id: 12,
-    left: "11%",
-    top: "42%",
-    width: "0.8px",
-    height: "0.8px",
-    opacity: 0.5,
-    animationDuration: "2.4s",
-    animationDelay: "0.6s",
-  },
-  {
-    id: 13,
-    left: "19%",
-    top: "90%",
-    width: "1.3px",
-    height: "1.3px",
-    opacity: 0.26,
-    animationDuration: "4.9s",
-    animationDelay: "1.8s",
-  },
-  {
-    id: 14,
-    left: "27%",
-    top: "6%",
-    width: "1.0px",
-    height: "1.0px",
-    opacity: 0.37,
-    animationDuration: "3.3s",
-    animationDelay: "0.4s",
-  },
-  {
-    id: 15,
-    left: "35%",
-    top: "50%",
-    width: "1.5px",
-    height: "1.5px",
-    opacity: 0.21,
-    animationDuration: "5.0s",
-    animationDelay: "1.2s",
-  },
-  {
-    id: 16,
-    left: "43%",
-    top: "74%",
-    width: "0.9px",
-    height: "0.9px",
-    opacity: 0.46,
-    animationDuration: "2.7s",
-    animationDelay: "0.7s",
-  },
-  {
-    id: 17,
-    left: "51%",
-    top: "26%",
-    width: "1.2px",
-    height: "1.2px",
-    opacity: 0.28,
-    animationDuration: "3.8s",
-    animationDelay: "1.5s",
-  },
-  {
-    id: 18,
-    left: "59%",
-    top: "86%",
-    width: "1.6px",
-    height: "1.6px",
-    opacity: 0.17,
-    animationDuration: "5.5s",
-    animationDelay: "0.9s",
-  },
-  {
-    id: 19,
-    left: "67%",
-    top: "40%",
-    width: "1.0px",
-    height: "1.0px",
-    opacity: 0.39,
-    animationDuration: "3.0s",
-    animationDelay: "0.1s",
-  },
-  {
-    id: 20,
-    left: "75%",
-    top: "8%",
-    width: "1.4px",
-    height: "1.4px",
-    opacity: 0.23,
-    animationDuration: "4.3s",
-    animationDelay: "1.3s",
-  },
-  {
-    id: 21,
-    left: "83%",
-    top: "48%",
-    width: "0.8px",
-    height: "0.8px",
-    opacity: 0.47,
-    animationDuration: "2.5s",
-    animationDelay: "0.5s",
-  },
-  {
-    id: 22,
-    left: "90%",
-    top: "80%",
-    width: "1.1px",
-    height: "1.1px",
-    opacity: 0.31,
-    animationDuration: "3.6s",
-    animationDelay: "1.6s",
-  },
-  {
-    id: 23,
-    left: "6%",
-    top: "62%",
-    width: "1.5px",
-    height: "1.5px",
-    opacity: 0.2,
-    animationDuration: "4.7s",
-    animationDelay: "0.8s",
-  },
-  {
-    id: 24,
-    left: "14%",
-    top: "20%",
-    width: "1.0px",
-    height: "1.0px",
-    opacity: 0.43,
-    animationDuration: "3.4s",
-    animationDelay: "1.1s",
-  },
-  {
-    id: 25,
-    left: "22%",
-    top: "58%",
-    width: "1.3px",
-    height: "1.3px",
-    opacity: 0.25,
-    animationDuration: "4.0s",
-    animationDelay: "0.3s",
-  },
-  {
-    id: 26,
-    left: "30%",
-    top: "94%",
-    width: "0.9px",
-    height: "0.9px",
-    opacity: 0.38,
-    animationDuration: "2.9s",
-    animationDelay: "1.7s",
-  },
-  {
-    id: 27,
-    left: "38%",
-    top: "32%",
-    width: "1.6px",
-    height: "1.6px",
-    opacity: 0.18,
-    animationDuration: "5.2s",
-    animationDelay: "0.4s",
-  },
-  {
-    id: 28,
-    left: "46%",
-    top: "16%",
-    width: "1.1px",
-    height: "1.1px",
-    opacity: 0.35,
-    animationDuration: "3.2s",
-    animationDelay: "1.0s",
-  },
-  {
-    id: 29,
-    left: "54%",
-    top: "70%",
-    width: "0.8px",
-    height: "0.8px",
-    opacity: 0.49,
-    animationDuration: "2.6s",
-    animationDelay: "1.4s",
-  },
-  {
-    id: 30,
-    left: "62%",
-    top: "24%",
-    width: "1.4px",
-    height: "1.4px",
-    opacity: 0.22,
-    animationDuration: "4.6s",
-    animationDelay: "0.6s",
-  },
-  {
-    id: 31,
-    left: "70%",
-    top: "52%",
-    width: "1.0px",
-    height: "1.0px",
-    opacity: 0.4,
-    animationDuration: "3.1s",
-    animationDelay: "1.8s",
-  },
-  {
-    id: 32,
-    left: "78%",
-    top: "12%",
-    width: "1.2px",
-    height: "1.2px",
-    opacity: 0.27,
-    animationDuration: "3.7s",
-    animationDelay: "0.9s",
-  },
-  {
-    id: 33,
-    left: "86%",
-    top: "88%",
-    width: "1.5px",
-    height: "1.5px",
-    opacity: 0.2,
-    animationDuration: "5.3s",
-    animationDelay: "0.2s",
-  },
-  {
-    id: 34,
-    left: "94%",
-    top: "38%",
-    width: "0.9px",
-    height: "0.9px",
-    opacity: 0.45,
-    animationDuration: "2.8s",
-    animationDelay: "1.2s",
-  },
-  {
-    id: 35,
-    left: "9%",
-    top: "74%",
-    width: "1.3px",
-    height: "1.3px",
-    opacity: 0.24,
-    animationDuration: "4.2s",
-    animationDelay: "0.7s",
-  },
-  {
-    id: 36,
-    left: "17%",
-    top: "4%",
-    width: "1.0px",
-    height: "1.0px",
-    opacity: 0.37,
-    animationDuration: "3.5s",
-    animationDelay: "1.5s",
-  },
-  {
-    id: 37,
-    left: "25%",
-    top: "46%",
-    width: "1.6px",
-    height: "1.6px",
-    opacity: 0.19,
-    animationDuration: "5.0s",
-    animationDelay: "0.4s",
-  },
-  {
-    id: 38,
-    left: "33%",
-    top: "66%",
-    width: "0.8px",
-    height: "0.8px",
-    opacity: 0.48,
-    animationDuration: "2.5s",
-    animationDelay: "1.1s",
-  },
-  {
-    id: 39,
-    left: "41%",
-    top: "96%",
-    width: "1.1px",
-    height: "1.1px",
-    opacity: 0.3,
-    animationDuration: "3.9s",
-    animationDelay: "1.7s",
-  },
-];
+  // A cached or SSR-delivered image can finish before hydration, so onLoad never fires.
+  useEffect(() => {
+    if (imgRef.current?.complete) setLoaded(true);
+  }, []);
 
-function StarField() {
   return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-3xl">
-      {STARS.map((s) => (
-        <div
-          key={s.id}
-          className="absolute rounded-full bg-white animate-pulse"
-          style={{
-            left: s.left,
-            top: s.top,
-            width: s.width,
-            height: s.height,
-            opacity: s.opacity,
-            animationDuration: s.animationDuration,
-            animationDelay: s.animationDelay,
-          }}
-        />
-      ))}
+    <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+      <img
+        ref={imgRef}
+        src={LOGIN_BACKGROUND_SRC}
+        alt=""
+        width={896}
+        height={1120}
+        decoding="async"
+        fetchPriority="high"
+        onLoad={() => setLoaded(true)}
+        className={`absolute inset-0 h-full w-full object-cover object-[72%_60%] motion-safe:transition-opacity motion-safe:duration-700 ${loaded ? "opacity-100" : "opacity-0"}`}
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/20 to-black/55" />
     </div>
   );
 }
@@ -528,75 +157,61 @@ function LoginPage() {
   }
 
   return (
-    <section className="min-h-[calc(100svh-80px)] flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-md">
-        {/* Back link */}
-        <Link
-          to="/"
-          className="inline-flex items-center gap-1.5 text-sm text-white/40 hover:text-white/70 transition-colors mb-6 group"
-        >
-          <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-0.5" />
-          Back to home
-        </Link>
+    <section className="relative isolate min-h-svh overflow-hidden bg-[#0A1128] text-white">
+      <LoginBackdrop />
 
-        {/* Card */}
-        <div className="relative overflow-hidden rounded-3xl border border-white/[0.09] bg-[#080E1C]/90 p-8 shadow-[0_32px_80px_rgba(0,0,0,0.5)] backdrop-blur-2xl">
-          <StarField />
+      <Link
+        to="/"
+        className={`group absolute left-3 top-3 z-10 inline-flex items-center gap-2 rounded-md text-sm text-white/90 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white motion-safe:transition-colors sm:left-8 sm:top-6 sm:text-base ${TEXT_SHADOW}`}
+      >
+        <ArrowLeft className="h-4 w-4 motion-safe:transition-transform motion-safe:group-hover:-translate-x-0.5 sm:h-5 sm:w-5" />
+        Back to home
+      </Link>
 
-          {/* Ambient glows */}
-          <div className="pointer-events-none absolute -top-28 -right-28 w-72 h-72 rounded-full bg-[#6366F1]/20 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-28 -left-28 w-72 h-72 rounded-full bg-[#8B5CF6]/20 blur-3xl" />
+      <div className="relative mx-auto w-full max-w-[1240px] px-3 pb-10 pt-12 sm:px-6 sm:pb-14 sm:pt-7">
+        <header className="text-center">
+          <AcademyLogo className="mx-auto h-auto w-[180px] drop-shadow-[0_4px_16px_rgba(0,0,0,0.35)] sm:w-[224px]" />
+          <h1
+            className={`mt-3 font-display text-[clamp(1.75rem,6.2vw,4.25rem)] font-bold leading-[1.05] tracking-tight sm:mt-4 ${TEXT_SHADOW}`}
+          >
+            Your journey <span className="text-[#A259FF]">awaits</span>
+          </h1>
+          <p className={`mt-2 text-sm text-white/90 sm:mt-3 sm:text-xl ${TEXT_SHADOW}`}>
+            Sign in to save your progress, streaks, and achievements — forever.
+          </p>
+        </header>
 
-          <div className="relative">
-            {/* Logo */}
-            <AcademyLogo className="mb-6 h-auto w-[156px]" />
-
-            {/* Heading */}
-            <h1 className="font-display text-3xl font-bold leading-tight">
-              Your journey{" "}
-              <span className="bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] bg-clip-text text-transparent">
-                awaits
+        <ul className="mx-auto mt-5 grid max-w-[1060px] grid-cols-3 divide-x divide-white/25 sm:mt-7">
+          {PERKS.map(({ icon: Icon, color, label, desc }) => (
+            <li
+              key={label}
+              className="flex flex-col items-center gap-2 px-1.5 text-center sm:px-5 lg:flex-row lg:justify-center lg:gap-4 lg:text-left"
+            >
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/10 bg-black/40 backdrop-blur-sm sm:h-14 sm:w-14">
+                <Icon
+                  aria-hidden="true"
+                  strokeWidth={2.25}
+                  className={`h-5 w-5 sm:h-7 sm:w-7 ${color}`}
+                />
               </span>
-            </h1>
-            <p className="mt-2 text-sm text-white/50 leading-relaxed">
-              Sign in to save your progress, streaks, and achievements — forever.
-            </p>
-
-            {/* Perks */}
-            <div className="mt-6 grid gap-2.5">
-              {PERKS.map(({ icon: Icon, color, label, desc }) => (
-                <div
-                  key={label}
-                  className="flex items-center gap-3 rounded-2xl border border-white/[0.06] bg-white/[0.03] px-3.5 py-2.5"
-                >
-                  <div
-                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl"
-                    style={{ background: `${color}20` }}
-                  >
-                    <Icon className="h-4 w-4" style={{ color }} />
-                  </div>
-                  <div>
-                    <p className="text-xs font-bold text-white">{label}</p>
-                    <p className="text-[11px] text-white/40">{desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {!devAuthBypass && (
-              <div className="my-6 flex items-center gap-3">
-                <div className="h-px flex-1 bg-white/[0.07]" />
-                <span className="text-[11px] font-semibold uppercase tracking-widest text-white/30">
-                  sign in free
-                </span>
-                <div className="h-px flex-1 bg-white/[0.07]" />
+              <div className={`min-w-0 ${TEXT_SHADOW}`}>
+                <p className="text-[12px] font-semibold leading-tight sm:text-base">{label}</p>
+                <p className="mt-0.5 hidden text-sm leading-snug text-white/85 sm:block">{desc}</p>
               </div>
-            )}
+            </li>
+          ))}
+        </ul>
 
-            {/* Error */}
+        <div className="mt-6 rounded-[24px] border border-white/20 bg-[#0A1128]/45 px-2.5 py-6 shadow-[0_30px_80px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.15)] backdrop-blur-xl sm:mt-8 sm:rounded-[36px] sm:px-8 sm:py-10 lg:px-10 lg:py-8">
+          <LearningLevelSelector />
+
+          <div className="mx-auto mt-7 max-w-[860px] sm:mt-8">
             {error && (
-              <div className="mb-4 flex items-start gap-2 rounded-xl border border-red-500/20 bg-red-500/10 px-3.5 py-3 text-sm text-red-300">
-                <AlertCircle className="h-4 w-4 mt-0.5 shrink-0" />
+              <div
+                role="alert"
+                className="mb-4 flex items-start gap-2 rounded-xl border border-red-400/40 bg-red-950/70 px-3.5 py-3 text-sm text-red-200"
+              >
+                <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
                 <span>{error}</span>
               </div>
             )}
@@ -604,8 +219,8 @@ function LoginPage() {
             {devAuthBypass && <DevSignInSlot active={devAuthBypass} />}
 
             {!loading && !isConfigured && (
-              <div className="mb-4 flex items-start gap-2 rounded-xl border border-amber-400/20 bg-amber-400/10 px-3.5 py-3 text-sm text-amber-300">
-                <Sparkles className="h-4 w-4 mt-0.5 shrink-0" />
+              <div className="mb-4 flex items-start gap-2 rounded-xl border border-amber-400/40 bg-amber-950/70 px-3.5 py-3 text-sm text-amber-200">
+                <Sparkles className="mt-0.5 h-4 w-4 shrink-0" />
                 <span>
                   Supabase is not yet configured.{" "}
                   <a
@@ -626,7 +241,8 @@ function LoginPage() {
                 type="button"
                 onClick={handleGoogle}
                 disabled={signing || loading || !isConfigured}
-                className="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl border border-white/10 bg-white px-5 py-3.5 text-sm font-semibold text-gray-800 shadow-[0_2px_16px_rgba(0,0,0,0.3)] transition-all hover:scale-[1.02] hover:shadow-[0_4px_24px_rgba(0,0,0,0.4)] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
+                aria-busy={signing}
+                className="relative flex h-14 w-full items-center justify-center gap-2.5 whitespace-nowrap rounded-full bg-white px-10 text-[15px] font-semibold text-[#111827] shadow-[0_10px_30px_rgba(0,0,0,0.35)] hover:bg-[#F7F5FF] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#A855F7]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A1128] active:bg-[#EDE9FE] disabled:cursor-not-allowed disabled:opacity-60 motion-safe:transition-colors sm:h-16 sm:gap-4 sm:px-16 sm:text-xl"
               >
                 {signing ? (
                   <div className="h-5 w-5 shrink-0 animate-spin rounded-full border-2 border-gray-400 border-t-transparent" />
@@ -634,28 +250,53 @@ function LoginPage() {
                   <GoogleIcon />
                 )}
                 <span>{signing ? "Redirecting to Google…" : "Continue with Google"}</span>
+                <ArrowRight
+                  aria-hidden="true"
+                  className="absolute right-5 h-5 w-5 text-[#111827]/80 max-[359px]:hidden sm:right-7 sm:h-6 sm:w-6"
+                />
               </button>
             )}
 
-            {/* Already browsing note */}
-            <p className="mt-5 text-center text-xs text-white/30 leading-relaxed">
-              Already browsing without an account?{" "}
+            <div className="mt-5 flex items-center gap-4 sm:mt-6">
+              <div className="h-px flex-1 bg-white/25" />
+              <span className="text-sm text-white/80">or</span>
+              <div className="h-px flex-1 bg-white/25" />
+            </div>
+
+            <p className="mt-3 text-center sm:mt-4">
               <Link
                 to="/home"
                 onClick={() => enableGuestMode()}
-                className="text-white/50 hover:text-white/80 underline underline-offset-2 transition-colors"
+                className="rounded-md text-[15px] font-semibold text-[#D8B4FE] underline decoration-[#D8B4FE]/60 underline-offset-4 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white motion-safe:transition-colors sm:text-lg"
               >
                 Continue as guest
-              </Link>{" "}
-              — your local progress is still saved.
+              </Link>
             </p>
           </div>
-        </div>
 
-        {/* Trust note */}
-        <p className="mt-4 text-center text-[11px] text-white/25">
-          Secure sign-in · No password required · Free forever
-        </p>
+          <ul className="mx-auto mt-8 grid max-w-[940px] grid-cols-3 divide-x divide-white/25 sm:mt-8">
+            {TRUST_NOTES.map(({ icon: Icon, label, desc }) => (
+              <li
+                key={label}
+                className="flex flex-col items-center gap-1.5 px-1.5 text-center sm:px-4 lg:flex-row lg:justify-center lg:gap-3 lg:text-left"
+              >
+                <Icon
+                  aria-hidden="true"
+                  strokeWidth={1.5}
+                  className="h-6 w-6 shrink-0 text-white sm:h-8 sm:w-8"
+                />
+                <div className="min-w-0">
+                  <p className="text-[10.5px] font-semibold leading-tight text-white sm:text-sm">
+                    {label}
+                  </p>
+                  <p className="mt-0.5 hidden text-xs leading-snug text-white/75 sm:block">
+                    {desc}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );
