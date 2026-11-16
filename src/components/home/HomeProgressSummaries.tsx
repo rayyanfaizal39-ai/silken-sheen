@@ -1,16 +1,10 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, BookOpen, Brain, Layers3, Rocket, Sparkles, Star } from "lucide-react";
 import { useEffect, useMemo, useState, type CSSProperties } from "react";
-import {
-  CompanionImage,
-  getCompanionDisplayName,
-  getCompanionMood,
-  getCompanionMoodMessage,
-  getCompanionSpecies,
-} from "@/companion";
 import { RankBadge } from "@/components/RankBadge";
 import { subjects } from "@/data/subjects-meta";
-import { getCompanionLevelProgress, useProgress } from "@/hooks/use-progress";
+import { CosmicPortalWidget } from "@/features/cosmic-companion/CosmicPortalWidget";
+import { useProgress } from "@/hooks/use-progress";
 import {
   getHomeJourneySummary,
   resolveHomeRecommendation,
@@ -137,7 +131,7 @@ export function HomeProgressSummaries() {
     <section className="home-progress-summaries" aria-label="Student progress summary">
       <div className="home-progress-summaries__top">
         <HomeJourneySummary xp={progress.xp} />
-        <HomeCompanionSummary progress={progress} />
+        <CosmicPortalWidget variant="summary" />
       </div>
       {recommendation ? (
         <HomeRecommendedMission recommendation={recommendation} />
@@ -200,58 +194,6 @@ function HomeJourneySummary({ xp }: { xp: number }) {
         </p>
         <Link className="home-skeleton__secondary-button" to="/dashboard">
           View Journey <ArrowRight aria-hidden="true" />
-        </Link>
-      </div>
-    </section>
-  );
-}
-
-function HomeCompanionSummary({
-  progress,
-}: {
-  progress: ReturnType<typeof useProgress>["progress"];
-}) {
-  const companion = progress.companion ?? { id: "nova" as const, level: 1 };
-  const species = getCompanionSpecies(companion.id);
-  const displayName = getCompanionDisplayName(companion);
-  const companionProgress = getCompanionLevelProgress(progress.xp);
-  const stage = companionProgress.currentStage;
-  const mood = getCompanionMood(progress, stage.id);
-  const message = getCompanionMoodMessage(mood, displayName);
-
-  return (
-    <section
-      className="home-skeleton__card home-progress-summary home-progress-summary--companion"
-      aria-labelledby="companion-summary-title"
-    >
-      <div className="home-progress-summary__art home-progress-summary__companion-art">
-        <CompanionImage
-          speciesId={companion.id}
-          stage={stage.id}
-          size="var(--summary-art-size, 92px)"
-        />
-      </div>
-      <div className="home-progress-summary__body">
-        <p className="home-skeleton__section-label">Cosmic Companion</p>
-        <h2 id="companion-summary-title">{displayName} is ready to explore</h2>
-        <p className="home-progress-summary__companion-meta">
-          {species.name} · {stage.name} Stage · Companion Level {companionProgress.currentLevel}
-        </p>
-        <p className="home-progress-summary__message">
-          Earn Lifetime XP to help {displayName} grow. {message}
-        </p>
-        <div
-          className="home-progress-summary__progress home-progress-summary__progress--companion"
-          role="progressbar"
-          aria-label={`${displayName} growth progress`}
-          aria-valuemin={0}
-          aria-valuemax={100}
-          aria-valuenow={companionProgress.progressPercentage}
-        >
-          <span style={{ width: `${companionProgress.progressPercentage}%` }} />
-        </div>
-        <Link className="home-skeleton__secondary-button" to="/companion">
-          Visit {displayName} <ArrowRight aria-hidden="true" />
         </Link>
       </div>
     </section>

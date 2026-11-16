@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { companionSvg } from "./artwork";
 import { CompanionArtworkImage } from "./CompanionArtworkImage";
-import { barcodeSvg, novaCardSerial, novaSerialBody, qrDataUrl, svgUrl } from "./codes";
+import { barcodeSvg, novaCardSerial, qrDataUrl, svgUrl } from "./codes";
 import { STAGES, cardFace, type NovaCard as Card } from "./model";
 import { CardShareOptions } from "./CardShareOptions";
 import { downloadCard } from "./download";
 import { getCardForExport, getPublicCard } from "./server";
+import { NovaCardFrontFace } from "./NovaCardFrontFace";
 
 export function NovaCard({
   card,
@@ -123,71 +124,48 @@ export function NovaCard({
           aria-pressed={flipped}
           aria-label={`${flipped ? "Show front" : "Flip to QR code and barcode"} of ${card.username}'s card`}
         >
-          <div className="nova-face nova-front" aria-hidden={flipped}>
-            <div className="nova-card-header">
-              <img src="/branding/academy-icon.png" alt="AcadeMY" width="34" height="34" />
-              <span>
-                AcadeMY <b>NOVA COMPANION</b>
-              </span>
-              <small>{card.rarity}</small>
-            </div>
-            <div className="nova-art-frame">
-              {choosing ? (
-                <div className="nova-craft-wait">
-                  <span aria-hidden="true">✦</span>
-                  <strong>Choose your companion art</strong>
-                  <p>
-                    {face.name} the {face.species}
-                  </p>
-                </div>
-              ) : crafting ? (
-                <div className="nova-craft-wait">
-                  <span aria-hidden="true">✦</span>
-                  <strong>Your portrait is being crafted</strong>
-                  <p>
-                    {face.name} the {face.species}
-                  </p>
-                </div>
-              ) : demoFallback ? (
-                <img
-                  className="nova-art"
-                  src={demoFallback}
-                  alt={`${face.alt}, stage ${stage}`}
-                  width="600"
-                  height="640"
-                />
-              ) : (
-                <CompanionArtworkImage
-                  src={artworkUrl}
-                  alt={`${face.alt}, stage ${stage}`}
-                  width={600}
-                  height={640}
-                  companionLabel={`${face.name} the ${face.species}`}
-                  onRefresh={card.demo ? undefined : refreshArtwork}
-                />
-              )}
-              <span className="nova-art-label">
-                {card.demo ? "FICTIONAL DEMO" : "ORIGIN"}
-              </span>
-            </div>
-            <div className="nova-card-content">
-              <p className="nova-eyebrow">{face.eyebrow}</p>
-              <h2>
-                {card.username}
-                <span>'s {face.name}</span>
-              </h2>
-              <div className="nova-species">
-                <span>{face.species}</span>
-                <b>{STAGES[stage - 1].name.toUpperCase()}</b>
-              </div>
-              <p className="nova-description">{face.description}</p>
-              <div className="nova-card-footer">
-                <span>✦ {STAGES[stage - 1].name}</span>
-                <span>{novaSerialBody(serial)}</span>
-              </div>
-            </div>
-            <div className="nova-hologram" aria-hidden="true" />
-          </div>
+          <NovaCardFrontFace
+            card={card}
+            ariaHidden={flipped}
+            artwork={
+              <>
+                {choosing ? (
+                  <div className="nova-craft-wait">
+                    <span aria-hidden="true">✦</span>
+                    <strong>Choose your companion art</strong>
+                    <p>
+                      {face.name} the {face.species}
+                    </p>
+                  </div>
+                ) : crafting ? (
+                  <div className="nova-craft-wait">
+                    <span aria-hidden="true">✦</span>
+                    <strong>Your portrait is being crafted</strong>
+                    <p>
+                      {face.name} the {face.species}
+                    </p>
+                  </div>
+                ) : demoFallback ? (
+                  <img
+                    className="nova-art"
+                    src={demoFallback}
+                    alt={`${face.alt}, stage ${stage}`}
+                    width="600"
+                    height="640"
+                  />
+                ) : (
+                  <CompanionArtworkImage
+                    src={artworkUrl}
+                    alt={`${face.alt}, stage ${stage}`}
+                    width={600}
+                    height={640}
+                    companionLabel={`${face.name} the ${face.species}`}
+                    onRefresh={card.demo ? undefined : refreshArtwork}
+                  />
+                )}
+              </>
+            }
+          />
           <div className="nova-face nova-back" aria-hidden={!flipped} data-nova-card-back>
             <div className="nova-back-brand">
               <img src="/branding/academy-icon.png" alt="AcadeMY" width="44" height="44" />
@@ -262,7 +240,9 @@ export function NovaCard({
           ↻ Flip card
         </button>
         {pictureShare ? (
-          card.sharing ? <CardShareOptions card={card} onNotice={setNotice} /> : null
+          card.sharing ? (
+            <CardShareOptions card={card} onNotice={setNotice} />
+          ) : null
         ) : (
           <>
             {card.sharing ? (

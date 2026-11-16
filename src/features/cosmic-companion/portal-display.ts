@@ -1,5 +1,5 @@
 import type { JourneyStage } from "./journey";
-import type { NovaCard } from "@/features/nova-cards/model";
+import { STAGES, type NovaCard } from "@/features/nova-cards/model";
 
 /** Dashboard Cosmic Companion hero presentation (visual only). */
 export type PortalDisplayKind =
@@ -30,6 +30,9 @@ export type PortalDisplay = {
     species?: string;
     element?: string;
     personality?: string;
+    archetypeId?: string;
+    stageNumber: number;
+    stageName: (typeof STAGES)[number]["name"];
   };
 };
 
@@ -65,6 +68,7 @@ const PORTAL_COPY: Record<
 
 function portraitFromCard(card: NovaCard) {
   const companionName = card.companion?.name?.trim() || card.username;
+  const stage = stageFromCard(card);
   return {
     artworkUrl: card.artworkUrl!,
     companionName,
@@ -73,7 +77,22 @@ function portraitFromCard(card: NovaCard) {
     species: card.companion?.species,
     element: card.companion?.element,
     personality: card.companion?.personality,
+    archetypeId: card.companion?.archetypeId,
+    stageNumber: stage.number,
+    stageName: stage.name,
   };
+}
+
+function stageFromCard(card: NovaCard | null) {
+  const storedStage = card?.stage ?? 1;
+  const stageNumber = Number.isFinite(storedStage) ? Math.trunc(storedStage) : 1;
+  const stageIndex = Math.max(0, Math.min(STAGES.length - 1, stageNumber - 1));
+  return { number: stageIndex + 1, name: STAGES[stageIndex].name };
+}
+
+function stageSupport(card: NovaCard | null) {
+  const stage = stageFromCard(card);
+  return `Stage ${stage.number} · ${stage.name}`;
 }
 
 /**
@@ -114,7 +133,7 @@ export function resolvePortalDisplay(input: {
       mark: "none",
       label: "COSMIC COMPANION",
       headline: portrait.companionName,
-      support: "Stage 1 · Origin",
+      support: stageSupport(input.card),
       cta: "View My Card",
       portrait,
     };
@@ -126,7 +145,7 @@ export function resolvePortalDisplay(input: {
       mark: "none",
       label: "COSMIC COMPANION",
       headline: input.card?.companion?.name?.trim() || input.card?.username || "Your Companion",
-      support: "Stage 1 · Origin",
+      support: stageSupport(input.card),
       cta: "View My Card",
     };
   }

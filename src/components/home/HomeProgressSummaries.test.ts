@@ -14,9 +14,12 @@ describe("homepage progress summaries", () => {
     expect(summaries).not.toContain("HomeImagePlaceholder");
   });
 
-  it("uses the real dashboard and companion routes", () => {
+  it("uses the real dashboard journey and owner-scoped companion preview", () => {
     expect(summaries).toContain('to="/dashboard"');
-    expect(summaries).toContain('to="/companion"');
+    expect(summaries).toContain('<CosmicPortalWidget variant="summary" />');
+    expect(summaries).not.toContain("CompanionImage");
+    expect(summaries).not.toContain("getCompanionLevelProgress");
+    expect(summaries).not.toContain('id: "nova"');
   });
 
   it("provides accessible progress semantics and a mobile single-column layout", () => {
@@ -25,5 +28,9 @@ describe("homepage progress summaries", () => {
     expect(styles).toMatch(
       /@media \(max-width: 880px\)[\s\S]*?\.home-progress-summaries__top\s*{[^}]*grid-template-columns:\s*1fr/,
     );
+    expect(styles).toMatch(
+      /\.home-progress-summary__art\s*{[^}]*aspect-ratio:\s*1[^}]*place-items:\s*center/,
+    );
+    expect(styles).toMatch(/\.home-progress-summary__companion-art\s*{[^}]*border-radius:\s*50%/);
   });
 });

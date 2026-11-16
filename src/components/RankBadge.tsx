@@ -1,5 +1,5 @@
 import { type CSSProperties } from "react";
-import { getRankAsset, getRankGlow, type SpaceRank } from "@/data/rankAssets";
+import { getRankArtworkFit, getRankAsset, getRankGlow, type SpaceRank } from "@/data/rankAssets";
 import { cn } from "@/lib/utils";
 
 type RankBadgeProps = {
@@ -19,10 +19,11 @@ export function RankBadge({
 }: RankBadgeProps) {
   const rankName = typeof rank === "string" ? rank : rank.name;
   const src = getRankAsset(rankName);
+  const fit = getRankArtworkFit(rankName);
 
   return (
     <span
-      className={cn("relative inline-flex shrink-0 items-center justify-center", className)}
+      className={cn("relative inline-grid shrink-0 place-items-center overflow-hidden", className)}
       style={
         {
           width: size,
@@ -40,7 +41,14 @@ export function RankBadge({
         src={src}
         alt={locked ? "" : `${rankName} rank badge`}
         aria-hidden={locked || undefined}
-        className={cn("h-[92%] w-[92%] object-contain", imageClassName)}
+        className={cn(
+          "absolute inset-0 block h-full w-full object-contain object-center",
+          imageClassName,
+        )}
+        style={{
+          transform: `translate(${fit.translateX}%, ${fit.translateY}%) scale(${fit.scale})`,
+          transformOrigin: "center",
+        }}
         draggable={false}
       />
     </span>
