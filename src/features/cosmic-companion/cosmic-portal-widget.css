@@ -282,7 +282,9 @@
   white-space: nowrap;
   text-decoration: none;
   box-shadow: 0 8px 22px rgba(99, 102, 241, 0.32);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .cosmic-portal-widget__cta:hover {
@@ -330,6 +332,423 @@
 .cosmic-portal-widget__skeleton + .cosmic-portal-widget__skeleton {
   width: 48%;
   margin-top: 0.45rem;
+}
+
+/* Authenticated homepage summary variant. It retains the homepage card and circular
+   artwork frame while using the same owner-scoped state and artwork as the dashboard widget. */
+.home-progress-summary.cosmic-companion-preview {
+  --companion-accent: #9fb2ff;
+  --companion-accent-soft: #f8c8f0;
+  --rarity-accent: #60a5fa;
+  --summary-accent: var(--companion-accent-soft);
+  --summary-art-frame: clamp(118px, 11vw, 152px);
+  min-height: 264px;
+}
+
+.home-progress-summary.cosmic-companion-preview[data-state="selected"] {
+  --summary-art-frame: clamp(142px, 12vw, 174px);
+  min-height: 292px;
+}
+
+.cosmic-companion-preview[data-element="fire"] {
+  --companion-accent: #fb923c;
+  --companion-accent-soft: #fbbf24;
+}
+
+.cosmic-companion-preview[data-element="water"] {
+  --companion-accent: #38bdf8;
+  --companion-accent-soft: #67e8f9;
+}
+
+.cosmic-companion-preview[data-element="wind"] {
+  --companion-accent: #34d399;
+  --companion-accent-soft: #a7f3d0;
+}
+
+.cosmic-companion-preview[data-rarity="common"] {
+  --rarity-accent: #cbd5e1;
+}
+
+.cosmic-companion-preview[data-rarity="epic"] {
+  --rarity-accent: #c084fc;
+}
+
+.cosmic-companion-preview[data-rarity="legendary"] {
+  --rarity-accent: #fbbf24;
+}
+
+.cosmic-companion-preview__frame {
+  isolation: isolate;
+  overflow: visible;
+  border-color: color-mix(in srgb, var(--companion-accent) 58%, transparent);
+  background:
+    radial-gradient(
+      circle at 50% 43%,
+      color-mix(in srgb, var(--companion-accent-soft) 25%, transparent) 0%,
+      color-mix(in srgb, var(--companion-accent) 13%, transparent) 39%,
+      transparent 70%
+    ),
+    rgba(10, 8, 38, 0.44);
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.15),
+    inset 0 -16px 32px rgba(5, 4, 24, 0.36),
+    0 14px 32px rgba(4, 2, 16, 0.3),
+    0 0 28px color-mix(in srgb, var(--companion-accent) 17%, transparent);
+  transition:
+    transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 220ms ease-out,
+    box-shadow 240ms ease-out;
+}
+
+.cosmic-companion-preview__frame::before {
+  content: "";
+  position: absolute;
+  inset: -14%;
+  z-index: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.72;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--companion-accent) 22%, transparent),
+    transparent 67%
+  );
+  filter: blur(10px);
+  transition: opacity 220ms ease-out;
+}
+
+.cosmic-companion-preview__frame::after {
+  content: "";
+  position: absolute;
+  inset: 5%;
+  z-index: 0;
+  border: 1px solid color-mix(in srgb, var(--companion-accent-soft) 18%, transparent);
+  border-radius: 50%;
+  pointer-events: none;
+  background: none;
+  box-shadow: inset 0 0 22px color-mix(in srgb, var(--companion-accent) 9%, transparent);
+  filter: none;
+}
+
+.cosmic-companion-preview[data-state="selected"] .cosmic-companion-preview__frame {
+  align-self: center;
+  aspect-ratio: 390 / 610;
+  overflow: visible;
+  border: 0;
+  border-radius: 18px;
+  background: none;
+  box-shadow: none;
+  transition: none;
+}
+
+.cosmic-companion-preview[data-state="selected"] .cosmic-companion-preview__frame::before,
+.cosmic-companion-preview[data-state="selected"] .cosmic-companion-preview__frame::after {
+  display: none;
+}
+
+.cosmic-companion-preview__frame > * {
+  position: relative;
+  z-index: 1;
+}
+
+.cosmic-companion-preview__illustration {
+  display: block;
+  width: 88%;
+  height: 88%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.cosmic-companion-preview__card-link {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 18px;
+  perspective: 900px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cosmic-companion-preview__card-link:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--companion-accent) 76%, white);
+  outline-offset: 5px;
+}
+
+.cosmic-companion-preview__mini-card {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  height: 100%;
+  container-type: inline-size;
+  border-radius: 18px;
+  transform: translateY(0) rotateX(0) rotateY(0);
+  transform-style: preserve-3d;
+  box-shadow:
+    0 22px 42px rgba(4, 2, 16, 0.42),
+    0 0 30px color-mix(in srgb, var(--companion-accent) 16%, transparent),
+    0 0 0 1px color-mix(in srgb, #dfbf7e 34%, transparent);
+  transition:
+    transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 220ms ease-out;
+}
+
+.cosmic-companion-preview__card-face.nova-face {
+  border-color: rgba(225, 194, 127, 0.72);
+  border-radius: 18px;
+  background:
+    radial-gradient(
+      circle at 74% 18%,
+      color-mix(in srgb, var(--companion-accent) 18%, transparent),
+      transparent 42%
+    ),
+    linear-gradient(150deg, #10213a, #080d25 58%, #17163f);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.cosmic-companion-preview__card-face.nova-face::after {
+  inset: 4px;
+  border-color: rgba(214, 181, 110, 0.3);
+  border-radius: 14px;
+}
+
+.cosmic-companion-preview__mini-card .nova-card-header {
+  height: 17cqi;
+  gap: 2.8cqi;
+  padding: 3.4cqi 4.8cqi;
+}
+
+.cosmic-companion-preview__mini-card .nova-card-header img {
+  width: 8.8cqi;
+  height: 8.8cqi;
+  border-radius: 2.2cqi;
+}
+
+.cosmic-companion-preview__mini-card .nova-card-header > span {
+  font-size: clamp(6.5px, 4cqi, 8px);
+  line-height: 1.35;
+}
+
+.cosmic-companion-preview__mini-card .nova-card-header b {
+  font-size: clamp(5.5px, 3.2cqi, 7px);
+  letter-spacing: 0.12em;
+}
+
+.cosmic-companion-preview__mini-card .nova-card-header small {
+  padding: 1.2cqi 2cqi;
+  font-size: clamp(6px, 3.4cqi, 7px);
+}
+
+.cosmic-companion-preview__mini-card .nova-art-frame {
+  margin-inline: 3.3cqi;
+  border-color: rgba(223, 191, 126, 0.4);
+  border-radius: 48cqi 48cqi 4px 4px;
+  background:
+    radial-gradient(
+      circle at 50% 44%,
+      color-mix(in srgb, var(--companion-accent) 24%, transparent),
+      transparent 64%
+    ),
+    rgba(7, 12, 32, 0.62);
+}
+
+.cosmic-companion-preview__mini-card .nova-art {
+  object-fit: contain;
+  object-position: center;
+  filter: drop-shadow(0 8px 12px rgba(4, 2, 16, 0.34));
+}
+
+.cosmic-companion-preview__mini-card .nova-art-label {
+  padding: 7cqi 2cqi 2.4cqi;
+  font-size: clamp(5.5px, 3.1cqi, 6.5px);
+}
+
+.cosmic-companion-preview__mini-card .nova-card-content {
+  padding: 3.5cqi 5.6cqi 4cqi;
+}
+
+.cosmic-companion-preview__mini-card .nova-card-content > .nova-eyebrow {
+  margin-bottom: 1cqi;
+  font-size: clamp(5.5px, 3.2cqi, 6.5px);
+  line-height: 1.25;
+}
+
+.cosmic-companion-preview__mini-card .nova-card-content h2 {
+  margin-bottom: 2.2cqi;
+  font-size: clamp(12px, 8cqi, 15px);
+  line-height: 1.02;
+}
+
+.cosmic-companion-preview__mini-card .nova-card-content h2 span {
+  font-size: clamp(9px, 5.9cqi, 11px);
+}
+
+.cosmic-companion-preview__mini-card .nova-species {
+  padding-top: 2cqi;
+  font-size: clamp(7px, 4.2cqi, 8.5px);
+}
+
+.cosmic-companion-preview__mini-card .nova-species b {
+  font-size: clamp(6.5px, 3.8cqi, 7.5px);
+}
+
+.cosmic-companion-preview__mini-card .nova-description {
+  display: none;
+}
+
+.cosmic-companion-preview__mini-card .nova-card-footer {
+  margin-top: 2.2cqi;
+  padding-top: 2.2cqi;
+  font-size: clamp(5.5px, 3.2cqi, 6.5px);
+}
+
+.cosmic-companion-preview__mini-card .nova-hologram {
+  inset: -20% auto -20% -62%;
+  width: 42%;
+  opacity: 0;
+  background: linear-gradient(
+    110deg,
+    transparent,
+    rgba(127, 170, 255, 0.16),
+    rgba(214, 160, 255, 0.2),
+    rgba(255, 230, 163, 0.24),
+    transparent
+  );
+  mix-blend-mode: screen;
+  transform: translateX(-40%) rotate(8deg);
+  animation: none;
+  transition:
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 160ms ease-out;
+}
+
+.cosmic-companion-preview__dual {
+  width: 78%;
+  height: 78%;
+}
+
+.cosmic-companion-preview__dual svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 14px rgba(167, 139, 250, 0.34));
+}
+
+.cosmic-companion-preview__placeholder {
+  width: 70%;
+  height: 70%;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(196, 181, 253, 0.18);
+  border-radius: 50%;
+  color: rgba(221, 214, 254, 0.72);
+  background: rgba(139, 92, 246, 0.1);
+}
+
+.cosmic-companion-preview__placeholder svg {
+  width: 34%;
+  height: 34%;
+}
+
+.cosmic-companion-preview__skeleton-line {
+  width: min(100%, 250px);
+  height: 18px;
+  display: block;
+  margin-top: 0.5rem;
+  border-radius: 999px;
+}
+
+.cosmic-companion-preview__skeleton-line--short {
+  width: min(64%, 170px);
+}
+
+.cosmic-companion-preview[data-state="selected"] > .home-progress-summary__body > h2 {
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+}
+
+.cosmic-companion-preview[data-state="selected"] .home-progress-summary__companion-meta {
+  margin-top: 0.4rem;
+  color: color-mix(in srgb, var(--companion-accent) 66%, white);
+  font-weight: 700;
+}
+
+.cosmic-companion-preview__badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.42rem;
+  margin-top: 0.55rem;
+}
+
+.cosmic-companion-preview__badge {
+  display: inline-flex;
+  min-height: 1.42rem;
+  align-items: center;
+  border: 1px solid color-mix(in srgb, var(--companion-accent) 42%, transparent);
+  border-radius: 999px;
+  padding: 0.2rem 0.52rem;
+  color: color-mix(in srgb, var(--companion-accent) 60%, white);
+  font-size: 0.58rem;
+  font-weight: 850;
+  letter-spacing: 0.11em;
+  line-height: 1;
+  text-transform: uppercase;
+  background: color-mix(in srgb, var(--companion-accent) 12%, transparent);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.cosmic-companion-preview__badge--rarity {
+  border-color: color-mix(in srgb, var(--rarity-accent) 52%, transparent);
+  color: color-mix(in srgb, var(--rarity-accent) 64%, white);
+  background: color-mix(in srgb, var(--rarity-accent) 14%, transparent);
+}
+
+.cosmic-companion-preview__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.cosmic-companion-preview__actions .home-skeleton__secondary-button {
+  margin-top: 0.72rem;
+}
+
+.cosmic-companion-preview__retry {
+  font: inherit;
+  cursor: pointer;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cosmic-companion-preview__card-link:hover .cosmic-companion-preview__mini-card {
+    box-shadow:
+      0 26px 48px rgba(4, 2, 16, 0.48),
+      0 0 38px color-mix(in srgb, var(--companion-accent) 23%, transparent),
+      0 0 0 1px color-mix(in srgb, #dfbf7e 52%, transparent);
+    transform: translateY(-4px) rotateX(2deg) rotateY(-3deg);
+  }
+
+  .cosmic-companion-preview__card-link:hover .nova-hologram {
+    opacity: 0.72;
+    transform: translateX(390%) rotate(8deg);
+  }
+}
+
+@media (max-width: 560px) {
+  .home-progress-summary.cosmic-companion-preview {
+    --summary-art-frame: clamp(118px, 32vw, 138px);
+    min-height: 0;
+  }
+
+  .home-progress-summary.cosmic-companion-preview[data-state="selected"] {
+    --summary-art-frame: clamp(132px, 38vw, 150px);
+  }
+
+  .cosmic-companion-preview__actions {
+    display: grid;
+  }
 }
 
 /* Wide card (its own full-width row on tablets): artwork beside the copy. */
@@ -389,6 +808,22 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .cosmic-companion-preview__frame,
+  .cosmic-companion-preview__frame::before,
+  .cosmic-companion-preview__mini-card,
+  .cosmic-companion-preview__mini-card .nova-hologram {
+    transition: none;
+  }
+
+  .cosmic-companion-preview__card-link:hover .cosmic-companion-preview__mini-card,
+  .cosmic-companion-preview__card-link:hover .nova-hologram {
+    transform: none;
+  }
+
+  .cosmic-companion-preview__mini-card .nova-hologram {
+    display: none;
+  }
+
   .cosmic-portal-widget__cta {
     transition: none;
   }
@@ -396,6 +831,9 @@
     transform: none;
   }
   .cosmic-portal-widget__mark svg {
+    filter: none;
+  }
+  .cosmic-companion-preview__dual svg {
     filter: none;
   }
   .cosmic-portal-widget__illustration,

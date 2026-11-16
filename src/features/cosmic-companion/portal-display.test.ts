@@ -116,7 +116,22 @@ describe("resolvePortalDisplay", () => {
       species: "Magical Fox",
       element: "Starlight",
       personality: "Gentle",
+      archetypeId: "fox",
+      stageNumber: 1,
+      stageName: "Origin",
     });
+  });
+
+  it("uses the official stage model for supported evolution stages", () => {
+    const view = resolvePortalDisplay({
+      ready: true,
+      stage: "selected",
+      problem: false,
+      card: { ...selectedCard, stage: 3 },
+    });
+
+    expect(view.support).toBe("Stage 3 · Ascended");
+    expect(view.portrait).toMatchObject({ stageNumber: 3, stageName: "Ascended" });
   });
 
   it("keeps a retry surface on load problems without resetting journey data", () => {
