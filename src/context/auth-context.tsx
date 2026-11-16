@@ -14,6 +14,7 @@ import { isDevAuthBypassEnabled } from "@/lib/dev-auth";
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 import { clearGuestMode } from "@/lib/guest-mode";
 import { beginLoadingTask } from "@/lib/loading-store";
+import { isExistingAccountSignUpError } from "@/lib/auth-signup-response";
 import {
   getExplorerProfile,
   needsExplorerOnboarding,
@@ -307,9 +308,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         password,
       });
 
-      if (error) {
-        throw error;
-      }
+      if (error) throw error;
     } finally {
       task.finish();
     }
@@ -335,6 +334,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       });
 
       if (error) {
+        // Supabase intentionally varies this response with the project's email
+        // confirmation settings. Treat both documented existing-account codes
+        // as the same neutral, confirmation-style result so callers never
+        // expose whether a specific address is registered.
+        if (isExistingAccountSignUpError(error)) {
+          return { needsConfirmation: true };
+        }
         throw error;
       }
 

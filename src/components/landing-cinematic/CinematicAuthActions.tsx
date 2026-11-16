@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { useAuth } from "@/context/auth-context";
-import { useSignInModal } from "@/context/sign-in-modal";
 
 type AppRoute = "/dashboard" | "/login" | "/notes" | "/parent-dashboard" | "/upgrade";
 
@@ -17,7 +16,6 @@ export function CinematicAuthCta({
   authenticatedTo?: AppRoute;
 }) {
   const { user } = useAuth();
-  const { open } = useSignInModal();
 
   if (user) {
     return (
@@ -28,9 +26,9 @@ export function CinematicAuthCta({
   }
 
   return (
-    <button className={className} type="button" onClick={() => open("signup")}>
+    <Link className={className} to="/register">
       {children}
-    </button>
+    </Link>
   );
 }
 

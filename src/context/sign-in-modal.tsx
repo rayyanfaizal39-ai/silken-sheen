@@ -17,9 +17,11 @@ const SignInModalContext = createContext<Ctx>({
 
 export function SignInModalProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [requestedMode, setRequestedMode] = useState<RequestedMode>("signin");
   const open = useCallback((mode?: RequestedMode) => {
-    setRequestedMode(mode === "signup" ? "signup" : "signin");
+    if (mode === "signup") {
+      window.location.assign("/register");
+      return;
+    }
     setIsOpen(true);
   }, []);
   const close = useCallback(() => setIsOpen(false), []);
@@ -27,7 +29,7 @@ export function SignInModalProvider({ children }: { children: ReactNode }) {
   return (
     <SignInModalContext.Provider value={value}>
       {children}
-      <SignInModal open={isOpen} onClose={close} initialMode={requestedMode} />
+      <SignInModal open={isOpen} onClose={close} />
     </SignInModalContext.Provider>
   );
 }

@@ -30,6 +30,8 @@ vi.mock("@/context/auth-context", () => ({
     isConfigured: true,
     signInWithGoogle: state.google,
     signInWithEmail: state.email,
+    signUpWithEmail: vi.fn(),
+    devAuthBypass: false,
     signOut: vi.fn(),
   }),
 }));
@@ -39,6 +41,7 @@ vi.mock("@/lib/admin-access", () => ({
 }));
 import { Route as Login } from "./login";
 import { Route as Admin } from "./admin_.login";
+import { AuthForm } from "@/components/auth/AuthForm";
 
 function render(route: typeof Login | typeof Admin) {
   return (route.options.component as () => ReactElement)();
@@ -75,12 +78,11 @@ describe("login route next wiring", () => {
     "https://evil.example",
     "javascript:alert(1)",
     "//evil.example",
-  ])("passes safe next from Main login to Google: %s", async (next) => {
+  ])("passes safe next from Main login to the shared auth form: %s", (next) => {
     state.search = { next };
     const page = render(Login);
-    const button = find(page, (e) => e.type === "button" && typeof e.props.onClick === "function")!;
-    await (button.props.onClick as () => Promise<void>)();
-    expect(state.google).toHaveBeenCalledWith(
+    const form = find(page, (element) => element.type === AuthForm)!;
+    expect(form.props.returnTo).toBe(
       next === undefined ? undefined : next === "https://senior.myacademy.my/home" ? next : "/home",
     );
   });
