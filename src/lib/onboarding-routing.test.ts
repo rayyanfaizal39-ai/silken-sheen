@@ -60,7 +60,7 @@ describe("onboarding routing", () => {
     expect(shouldRedirectToLogin("/leaderboard", false, true, true)).toBe(false);
   });
 
-  it.each(["/login", "/forgot-password", "/auth/callback", "/auth/reset-password"])(
+  it.each(["/login", "/register", "/forgot-password", "/auth/callback", "/auth/reset-password"])(
     "keeps Explorer Profile data out of public auth route %s",
     (pathname) => {
       expect(isPublicAuthRoute(pathname)).toBe(true);

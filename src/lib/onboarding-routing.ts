@@ -12,6 +12,7 @@ const ONBOARDING_EXEMPT_ROUTES = new Set([
   "/landing",
   "/landing-preview",
   "/login",
+  "/register",
   "/onboarding",
   "/parent",
   "/parent-dashboard",
@@ -38,7 +39,12 @@ const STUDENT_PROTECTED_ROUTES = new Set([
 ]);
 
 export function isPublicAuthRoute(pathname: string): boolean {
-  return pathname === "/login" || pathname === "/forgot-password" || pathname.startsWith("/auth/");
+  return (
+    pathname === "/login" ||
+    pathname === "/register" ||
+    pathname === "/forgot-password" ||
+    pathname.startsWith("/auth/")
+  );
 }
 
 export function shouldLoadExplorerProfile(pathname: string): boolean {
