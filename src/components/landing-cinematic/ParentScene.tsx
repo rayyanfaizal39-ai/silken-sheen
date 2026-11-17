@@ -214,14 +214,17 @@ export default function ParentScene() {
           },
         });
 
-        tl
-          // the light surface emerges while the cosmos is still visible above
-          .fromTo(
-            q(".parents__panel"),
-            { yPercent: 78, borderRadius: "44px 44px 0 0" },
-            { yPercent: 0, borderRadius: "0px 0px 0 0", duration: 2.4, ease: "power1.inOut" },
-            0,
-          )
+        tl.fromTo(
+          q(".parents__panel"),
+          { yPercent: 78, borderRadius: "44px 44px 0 0" },
+          {
+            yPercent: 0,
+            borderRadius: "0px 0px 0px 0px",
+            duration: 2.4,
+            ease: "power1.inOut",
+          },
+          0,
+        )
           .to(q(".parents__sky"), { opacity: 0.35, scale: 1.05, duration: 2.4 }, 0)
           .from(
             q(".parents__title .cine-reveal-line__inner"),
@@ -234,8 +237,7 @@ export default function ParentScene() {
             { y: 90, opacity: 0, rotateX: 12, duration: 1.8, ease: "power2.out" },
             2.3,
           )
-          .from(q(".parents__side-card"), { y: 60, opacity: 0, duration: 1, stagger: 0.2 }, 3.0)
-          // the report's own contents settle in
+          .from(q(".parents__side-card"), { y: 60, opacity: 0, duration: 1, stagger: 0.2 }, 3)
           .from(q(".preport__metric"), { y: 18, opacity: 0, duration: 0.7, stagger: 0.06 }, 3.2)
           .from(q(".preport__day"), { scale: 0.5, opacity: 0, duration: 0.5, stagger: 0.05 }, 3.6)
           .from(
@@ -243,11 +245,86 @@ export default function ParentScene() {
             { scaleX: 0, duration: 0.9, stagger: 0.1, ease: "power2.out" },
             3.9,
           )
-          // settle flat so everything stays readable
-          .to(q(".pdash"), { rotateX: 0, y: -14, duration: 2, ease: "power1.inOut" }, 4.0);
+          .to(q(".pdash"), { rotateX: 0, y: -14, duration: 2, ease: "power1.inOut" }, 4);
+
+        // A height change can move every earlier pinned scene and therefore
+        // shift this trigger's document coordinates by thousands of pixels.
+        // Preserve the Parent scene's current narrative progress across the
+        // refresh so a browser resize does not abruptly release the pin.
+        const trigger = tl.scrollTrigger;
+        let progressBeforeRefresh: number | null = null;
+        let restoreFrame = 0;
+        const rememberProgress = () => {
+          if (!trigger) return;
+          const scroll = trigger.scroll();
+          if (scroll >= trigger.start - 1 && scroll <= trigger.end + 1) {
+            progressBeforeRefresh = trigger.progress;
+          }
+        };
+        const restoreProgress = () => {
+          if (!trigger || progressBeforeRefresh === null) return;
+          const progress = progressBeforeRefresh;
+          progressBeforeRefresh = null;
+          window.cancelAnimationFrame(restoreFrame);
+          restoreFrame = window.requestAnimationFrame(() => {
+            const scroll = trigger.start + (trigger.end - trigger.start) * progress;
+            const lenis = motion.getLenis();
+            if (lenis) {
+              lenis.resize();
+              lenis.scrollTo(scroll, { immediate: true, force: true });
+            } else {
+              window.scrollTo({ top: scroll, behavior: "instant" });
+            }
+            ScrollTrigger.update();
+          });
+        };
+
+        ScrollTrigger.addEventListener("refreshInit", rememberProgress);
+        ScrollTrigger.addEventListener("refresh", restoreProgress);
+
+        return () => {
+          window.cancelAnimationFrame(restoreFrame);
+          ScrollTrigger.removeEventListener("refreshInit", rememberProgress);
+          ScrollTrigger.removeEventListener("refresh", restoreProgress);
+        };
       });
 
-      mm.add("(max-width: 1023px)", () => {
+      mm.add("(max-width: 1023px) and (prefers-reduced-motion: no-preference)", () => {
+        // Narrow viewports keep the full report in document flow. A
+        // reversible scrub preserves the reveal without pinning a stacked
+        // composition that is necessarily taller than the viewport.
+        const tl = gsap.timeline({
+          defaults: { ease: "power2.out" },
+          scrollTrigger: {
+            trigger: root,
+            start: "top 82%",
+            end: "top 18%",
+            scrub: 0.7,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        tl.fromTo(
+          q(".parents__panel"),
+          { y: 48, borderRadius: "44px 44px 0 0" },
+          { y: 0, borderRadius: "0px 0px 0px 0px", duration: 1.4 },
+          0,
+        )
+          .from(
+            q(".parents__title .cine-reveal-line__inner"),
+            { yPercent: 115, duration: 0.8, stagger: 0.08 },
+            0.3,
+          )
+          .from(q(".parents__body"), { y: 20, opacity: 0, duration: 0.6 }, 0.55)
+          .from(q(".pdash"), { y: 54, opacity: 0, rotateX: 6, duration: 1 }, 0.65)
+          .from(q(".parents__side-card"), { y: 34, opacity: 0, duration: 0.7, stagger: 0.09 }, 0.9)
+          .from(q(".preport__metric"), { y: 14, opacity: 0, duration: 0.5, stagger: 0.04 }, 0.95)
+          .from(q(".preport__day"), { scale: 0.7, opacity: 0, duration: 0.4, stagger: 0.03 }, 1.1)
+          .from(q(".preport__bar-fill"), { scaleX: 0, duration: 0.6, stagger: 0.05 }, 1.2)
+          .to(q(".pdash"), { rotateX: 0, duration: 0.45 }, 1.25);
+      });
+
+      mm.add("(prefers-reduced-motion: reduce)", () => {
         gsap.set(
           q(
             ".parents__panel, .parents__sky, .parents__title .cine-reveal-line__inner, .parents__body, .pdash, .parents__side-card, .preport__metric, .preport__day",

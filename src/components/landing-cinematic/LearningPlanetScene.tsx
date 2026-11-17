@@ -163,24 +163,14 @@ export default function LearningPlanetScene() {
     if (!target) return;
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const navigation = target
-      .closest(".cinematic-landing-root")
-      ?.querySelector<HTMLElement>(".cine-nav");
-    const offset = -(navigation?.offsetHeight ?? 0);
-    const lenis = motion?.getLenis();
-
-    if (lenis) {
-      lenis.scrollTo(
-        target,
-        reducedMotion ? { immediate: true, offset } : { duration: 1.1, offset },
-      );
+    if (motion) {
+      motion.scrollToSection("#kssm");
       return;
     }
 
-    const top = target.getBoundingClientRect().top + window.scrollY + offset;
-    window.scrollTo({
-      top,
+    target.scrollIntoView({
       behavior: reducedMotion ? "auto" : "smooth",
+      block: "start",
     });
   }, [motion]);
 

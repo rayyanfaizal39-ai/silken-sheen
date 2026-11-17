@@ -17,6 +17,8 @@
   --ink: #17102e;
   --ink-soft: #4d4468;
   --surface-light: #f7f5ff;
+  --cine-nav-height: 80px;
+  --cine-nav-offset: calc(var(--cine-nav-height) + 12px);
 
   --font-display: "Outfit", system-ui, sans-serif;
   --font-body: "Inter", system-ui, sans-serif;
@@ -132,9 +134,10 @@
   }
 }
 
-/* native anchor jumps + keyboard focus clear the fixed nav */
+/* Native anchor jumps + keyboard focus clear the measured fixed nav. The
+   document scroll container receives the same value from CinematicLanding. */
 .cinematic-landing-root {
-  scroll-padding-top: 88px;
+  scroll-padding-top: var(--cine-nav-offset);
   background: var(--bg-deep);
 }
 
@@ -624,9 +627,8 @@
   align-items: flex-start;
   justify-content: center;
   text-align: left;
-  padding: 0 clamp(1.6rem, 7vw, 8rem);
-  padding-bottom: 8vh;
-  max-width: 720px;
+  padding: var(--cine-nav-offset) clamp(1.6rem, 7vw, 8rem) clamp(1.5rem, 6vh, 4rem);
+  max-width: min(900px, 72vw);
 }
 .cinematic-landing-root .hero__eyebrow {
   font-family: var(--font-display);
@@ -1028,7 +1030,7 @@
   height: 100%;
   display: flex;
   align-items: center;
-  padding: 0 clamp(1.4rem, 5vw, 5rem);
+  padding: var(--cine-nav-offset) clamp(1.4rem, 5vw, 5rem) clamp(0.75rem, 2vh, 1.5rem);
 }
 .cinematic-landing-root .lworld__content-inner {
   /* left column carries the heading + papercraft card grid */
@@ -1292,7 +1294,6 @@
     width: 94%;
     max-width: none;
   }
-
 }
 @media (max-width: 767px) {
   .cinematic-landing-root .lworld__ecosystem {
@@ -1899,7 +1900,8 @@
   height: 100%;
   max-width: 1180px;
   margin: 0 auto;
-  padding: clamp(4rem, 9vh, 7rem) clamp(1.4rem, 5vw, 3rem) 2rem;
+  padding: max(calc(var(--cine-nav-offset) + 16px), clamp(4rem, 9vh, 7rem)) clamp(1.4rem, 5vw, 3rem)
+    2rem;
   display: flex;
   flex-direction: column;
   gap: clamp(1.4rem, 3.5vh, 2.6rem);
@@ -2760,7 +2762,7 @@
   }
   .cinematic-landing-root .lworld__content {
     align-items: stretch;
-    padding: 9vh clamp(1rem, 4vw, 2rem) 3vh;
+    padding: max(calc(var(--cine-nav-offset) + 12px), 7vh) clamp(1rem, 4vw, 2rem) 3vh;
   }
   .cinematic-landing-root .lworld__content-inner {
     width: 100%;
@@ -2912,7 +2914,7 @@
     width: clamp(180px, 44vw, 250px);
   }
   .cinematic-landing-root .lworld__content {
-    padding: 7vh 1rem 2.5vh;
+    padding: max(calc(var(--cine-nav-offset) + 10px), 6vh) 1rem 2.5vh;
   }
   .cinematic-landing-root .lworld__stage {
     width: 92vw;
@@ -2980,9 +2982,73 @@
 /* (Why Choose short-desktop handling is built into the base height clamp's
    420px floor + the section's own scroll — no separate shrink needed.) */
 
+/* Short laptop and browser-zoom layouts keep the original pinned Hero and
+   Learning World timelines, but reserve the fixed nav and fit their complete
+   compositions inside the available visual viewport. */
+@media (min-width: 721px) and (max-height: 700px) {
+  .cinematic-landing-root .hero__content {
+    justify-content: flex-start;
+    padding-top: calc(var(--cine-nav-offset) + 10px);
+    padding-bottom: 14px;
+  }
+  .cinematic-landing-root .hero__eyebrow {
+    margin-bottom: 0.65rem;
+  }
+  .cinematic-landing-root .hero__support {
+    margin-top: 0.85rem;
+    line-height: 1.5;
+  }
+  .cinematic-landing-root .hero__ctas {
+    margin-top: 1.15rem;
+  }
+}
+
+@media (min-width: 901px) and (max-height: 700px) {
+  .cinematic-landing-root .lworld__content {
+    align-items: center;
+    padding-top: calc(var(--cine-nav-offset) + 8px);
+    padding-bottom: 10px;
+  }
+  .cinematic-landing-root .lworld__stage {
+    width: max(320px, min(36vw, calc((100svh - var(--cine-nav-offset) - 270px) * 1.55)));
+  }
+  .cinematic-landing-root .lworld__desc {
+    margin-top: 0.45rem;
+    line-height: 1.45;
+  }
+  .cinematic-landing-root .lworld__tabs {
+    margin-top: 0.4rem;
+  }
+}
+
+@media (min-width: 901px) and (max-height: 540px) {
+  .cinematic-landing-root .hero__title {
+    font-size: clamp(2rem, 10.5vh, 3.4rem);
+  }
+  .cinematic-landing-root .hero__support {
+    font-size: 0.9rem;
+  }
+  .cinematic-landing-root .lworld__eyebrow {
+    margin-bottom: 0.35rem;
+  }
+  .cinematic-landing-root .lworld__title {
+    font-size: clamp(1.45rem, 6.4vh, 2rem);
+  }
+  .cinematic-landing-root .lworld__desc {
+    font-size: 0.86rem;
+  }
+  .cinematic-landing-root .lworld__stage {
+    width: max(260px, min(32vw, calc((100svh - var(--cine-nav-offset) - 245px) * 1.55)));
+  }
+  .cinematic-landing-root .lworld__tab {
+    min-height: 40px;
+    padding: 0.42rem 0.75rem 0.48rem;
+  }
+}
+
 @media (max-height: 820px) {
   .cinematic-landing-root .parents__inner {
-    padding-top: clamp(2.6rem, 6vh, 4rem);
+    padding-top: max(calc(var(--cine-nav-offset) + 12px), clamp(2.6rem, 6vh, 4rem));
     gap: clamp(0.9rem, 2vh, 1.4rem);
   }
   .cinematic-landing-root .parents__title {
@@ -3024,6 +3090,221 @@
   .cinematic-landing-root .pplan__cta {
     margin-top: 0.6rem;
     padding: 0.5rem 1rem;
+  }
+}
+
+/* Short desktop screens retain the original pinned Parent timeline. The
+   dashboard remains two-column, while vertical rhythm compresses enough for
+   the full composition to stay readable above the fold. */
+@media (min-width: 1024px) and (max-height: 740px) {
+  .cinematic-landing-root .parents__inner {
+    padding: calc(var(--cine-nav-offset) + 6px) clamp(1.25rem, 4vw, 2.5rem) 10px;
+    gap: 8px;
+  }
+  .cinematic-landing-root .parents__header {
+    align-items: center;
+    gap: 1rem;
+  }
+  .cinematic-landing-root .parents__title {
+    font-size: clamp(1.35rem, 4.3vh, 1.75rem);
+  }
+  .cinematic-landing-root .parents__body {
+    font-size: 0.78rem;
+    line-height: 1.35;
+  }
+  .cinematic-landing-root .parents__grid {
+    gap: clamp(0.65rem, 1.5vw, 1rem);
+  }
+  .cinematic-landing-root .pdash {
+    padding: 0.65rem 0.75rem;
+    border-radius: 18px;
+  }
+  .cinematic-landing-root .preport {
+    gap: 0.28rem;
+  }
+  .cinematic-landing-root .preport__bar {
+    padding: 0.35rem 0.65rem;
+  }
+  .cinematic-landing-root .preport__intro {
+    gap: 0.45rem;
+    padding-inline: 0.65rem;
+  }
+  .cinematic-landing-root .preport__avatar {
+    width: 1.65rem;
+    height: 1.65rem;
+  }
+  .cinematic-landing-root .preport__intro-title {
+    font-size: 0.82rem;
+  }
+  .cinematic-landing-root .preport__momentum {
+    gap: 0.5rem;
+    margin-inline: 0.65rem;
+    padding: 0.32rem 0.5rem;
+  }
+  .cinematic-landing-root .preport__ring {
+    width: 38px;
+    height: 38px;
+  }
+  .cinematic-landing-root .preport__ring-label {
+    font-size: 13px;
+  }
+  .cinematic-landing-root .preport__momentum-copy strong {
+    font-size: 0.75rem;
+  }
+  .cinematic-landing-root .preport__momentum-copy p {
+    margin-top: 0.05rem;
+    font-size: 0.61rem;
+    line-height: 1.3;
+  }
+  .cinematic-landing-root .preport__section-title {
+    margin-top: 0;
+    margin-inline: 0.65rem;
+    font-size: 0.68rem;
+  }
+  .cinematic-landing-root .preport__metrics {
+    gap: 0.35rem;
+    margin-inline: 0.65rem;
+  }
+  .cinematic-landing-root .preport__metric {
+    padding: 0.3rem 0.4rem 0.35rem;
+  }
+  .cinematic-landing-root .preport__metric-icon {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+  .cinematic-landing-root .preport__metric-value {
+    margin-top: 0.16rem;
+    font-size: 0.84rem;
+  }
+  .cinematic-landing-root .preport__consistency {
+    margin: 0.05rem 0.65rem 0;
+  }
+  .cinematic-landing-root .preport__days {
+    margin-top: 0.3rem;
+  }
+  .cinematic-landing-root .preport__day {
+    gap: 0.1rem;
+  }
+  .cinematic-landing-root .preport__day-bubble {
+    width: 1.15rem;
+    height: 1.15rem;
+    font-size: 0.62rem;
+  }
+  .cinematic-landing-root .preport__subjects {
+    gap: 0.25rem;
+    margin: 0 0.65rem 0.55rem;
+  }
+  .cinematic-landing-root .preport__subject-meta {
+    margin-bottom: 0.08rem;
+  }
+  .cinematic-landing-root .preport__track {
+    height: 5px;
+  }
+  .cinematic-landing-root .parents__side {
+    gap: 0.45rem;
+  }
+  .cinematic-landing-root .parents__side-card {
+    padding: 0.55rem 0.65rem;
+    border-radius: 14px;
+  }
+  .cinematic-landing-root .pinsight__finding,
+  .cinematic-landing-root .pfocus__need,
+  .cinematic-landing-root .pplan__list {
+    margin-top: 0.35rem;
+  }
+  .cinematic-landing-root .pinsight__body,
+  .cinematic-landing-root .pfocus__text,
+  .cinematic-landing-root .pplan__list li {
+    font-size: 0.65rem;
+    line-height: 1.35;
+  }
+  .cinematic-landing-root .pplan__list {
+    gap: 0.25rem;
+  }
+  .cinematic-landing-root .pplan__cta {
+    min-height: 36px;
+    margin-top: 0.4rem;
+    padding: 0.42rem 0.7rem;
+    font-size: 0.7rem;
+  }
+}
+
+@media (min-width: 1024px) and (max-height: 620px) {
+  .cinematic-landing-root .preport {
+    gap: 0.16rem;
+  }
+  .cinematic-landing-root .preport__bar {
+    padding-block: 0.25rem;
+  }
+  .cinematic-landing-root .preport__avatar {
+    width: 1.4rem;
+    height: 1.4rem;
+    font-size: 0.72rem;
+  }
+  .cinematic-landing-root .preport__intro-title {
+    font-size: 0.76rem;
+  }
+  .cinematic-landing-root .preport__intro-meta {
+    font-size: 0.62rem;
+  }
+  .cinematic-landing-root .preport__momentum {
+    padding-block: 0.2rem;
+  }
+  .cinematic-landing-root .preport__ring {
+    width: 32px;
+    height: 32px;
+  }
+  .cinematic-landing-root .preport__momentum-copy strong {
+    font-size: 0.7rem;
+  }
+  .cinematic-landing-root .preport__momentum-copy p {
+    font-size: 0.58rem;
+  }
+  .cinematic-landing-root .preport__metric {
+    padding-block: 0.24rem;
+  }
+  .cinematic-landing-root .preport__metric-value {
+    font-size: 0.78rem;
+  }
+  .cinematic-landing-root .preport__days {
+    margin-top: 0.2rem;
+  }
+  .cinematic-landing-root .preport__day-bubble {
+    width: 1rem;
+    height: 1rem;
+    font-size: 0.56rem;
+  }
+  .cinematic-landing-root .preport__day-label {
+    font-size: 0.55rem;
+  }
+  .cinematic-landing-root .preport__subjects {
+    gap: 0.16rem;
+    margin-bottom: 0.35rem;
+  }
+  .cinematic-landing-root .preport__subject-meta {
+    margin-bottom: 0.02rem;
+  }
+  .cinematic-landing-root .preport__track {
+    height: 4px;
+  }
+}
+
+/* 1024px-wide desktop/tablet-landscape viewports still have enough room for
+   the cinematic two-column report. The general <=1100px stacking rule would
+   otherwise make the pinned composition taller than the viewport. */
+@media (min-width: 1024px) and (max-width: 1100px) {
+  .cinematic-landing-root .parents__header {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  }
+  .cinematic-landing-root .parents__body {
+    justify-self: end;
+  }
+  .cinematic-landing-root .parents__grid {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    overflow: visible;
+  }
+  .cinematic-landing-root .parents__side {
+    flex-direction: column;
   }
 }
 
@@ -3357,6 +3638,15 @@
     height: auto;
     min-height: 100svh;
   }
+  .cinematic-landing-root .parents__panel {
+    position: relative;
+    inset: auto;
+    overflow: visible;
+  }
+  .cinematic-landing-root .parents__inner {
+    height: auto;
+    min-height: 100svh;
+  }
   .cinematic-landing-root .lworld {
     margin-top: 0;
   }
@@ -3428,9 +3718,56 @@
   }
 }
 
+/* Compact desktop composition keeps the original pinned Ace timeline on short
+   laptop screens instead of dropping the scene into a static document flow. */
+@media (min-width: 1024px) and (max-height: 700px) {
+  .cinematic-landing-root .companion--cikgu .companion__layout {
+    gap: clamp(22px, 3vw, 38px);
+    padding-top: var(--cine-nav-offset);
+    padding-bottom: clamp(62px, 11vh, 82px);
+  }
+  .cinematic-landing-root .companion--cikgu .companion__stage {
+    height: min(62vh, 420px);
+  }
+  .cinematic-landing-root .companion--cikgu .companion__figure {
+    height: clamp(210px, 43vh, 360px);
+  }
+  .cinematic-landing-root .companion--cikgu .companion__book {
+    width: min(84%, 440px);
+  }
+  .cinematic-landing-root .companion--cikgu .companion__heading {
+    font-size: clamp(2rem, 7.6vh, 3.35rem);
+  }
+  .cinematic-landing-root .companion--cikgu .companion__body {
+    margin-top: 0.7rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  .cinematic-landing-root .companion--cikgu .companion__steps {
+    margin-top: 0.9rem;
+  }
+  .cinematic-landing-root .companion--cikgu .companion__trust {
+    margin-top: 0.55rem;
+  }
+  .cinematic-landing-root .companion--cikgu .companion__question {
+    font-size: 0.7rem;
+    padding: 0.4rem 0.65rem;
+  }
+  .cinematic-landing-root .companion--cikgu .companion__convo {
+    width: min(88%, 390px);
+    padding: 0.65rem 0.8rem;
+  }
+  .cinematic-landing-root .companion--cikgu .companion__convo-row {
+    font-size: 0.78rem;
+    line-height: 1.35;
+  }
+  .cinematic-landing-root .companion--cikgu .companion__terrain {
+    height: clamp(62px, 10vh, 78px);
+  }
+}
+
 /* ============================================================
-   Natural-flow layouts for Why Choose, Ace and Parents.
-   Desktop (1024px+) retains the original pinned scene layouts.
+   Natural-flow layouts for narrower Why Choose, Ace and Parent scenes.
    ============================================================ */
 @media (max-width: 1023px) {
   /* Why Choose already uses content-driven sizing; make that contract explicit
@@ -3464,8 +3801,7 @@
     align-content: normal;
     align-items: start;
     gap: clamp(1.4rem, 4vw, 2.2rem);
-    padding: clamp(6.5rem, 12svh, 8rem) clamp(1rem, 4vw, 2rem)
-      clamp(6rem, 12svh, 8rem);
+    padding: clamp(6.5rem, 12svh, 8rem) clamp(1rem, 4vw, 2rem) clamp(6rem, 12svh, 8rem);
     text-align: center;
   }
   .cinematic-landing-root .companion--cikgu .companion__copy {
@@ -3541,7 +3877,11 @@
   .cinematic-landing-root .companion--cikgu .companion__particle {
     display: none;
   }
+}
 
+/* Narrow Parent reports stay in document flow while their reversible
+   ScrollTrigger timeline supplies the cinematic reveal. */
+@media (max-width: 1023px) {
   /* Parent report and its side cards all contribute to the section height. */
   .cinematic-landing-root .parents {
     height: auto;
@@ -3559,8 +3899,8 @@
   .cinematic-landing-root .parents__inner {
     height: auto;
     min-height: 0;
-    padding: clamp(6.5rem, 12svh, 8rem) clamp(1rem, 4vw, 2rem)
-      clamp(3.5rem, 8svh, 5.5rem);
+    padding: max(calc(var(--cine-nav-offset) + 16px), clamp(6.5rem, 12svh, 8rem))
+      clamp(1rem, 4vw, 2rem) clamp(3.5rem, 8svh, 5.5rem);
     overflow: visible;
   }
   .cinematic-landing-root .parents__header,
