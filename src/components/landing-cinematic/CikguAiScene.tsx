@@ -9,8 +9,8 @@ import AtmosphericBackground from "./AtmosphericBackground";
 
 /**
  * Ace — the original Companion desktop engine. Its GSAP timeline and
- * ScrollTrigger config (pin, scrub, +=300%) remain intact at 1024px and above;
- * smaller viewports use the natural-flow layout defined in the scoped CSS.
+ * ScrollTrigger config (pin, scrub, +=300%) remains intact on desktop;
+ * narrower screens use the natural-flow layout and static-safe fallbacks.
  *
  * Animation-target mapping (old → new):
  *   .companion__figure   → Ace tutor (silhouette → full-colour reveal)
@@ -24,6 +24,8 @@ import AtmosphericBackground from "./AtmosphericBackground";
 const ACTIONS = ["Explain it simply", "Give me a hint", "Test my understanding"];
 
 const QUESTIONS = ["Can you explain this?", "Give me one hint", "Quiz me on this topic"];
+
+const DESKTOP_PIN_QUERY = "(min-width: 1024px) and (prefers-reduced-motion: no-preference)";
 
 /* Four-point sparkle, drawn inline. Was a text glyph (✦/★/◆), which depended on
    whatever font happened to resolve; this renders identically everywhere. */
@@ -61,7 +63,7 @@ export default function CikguAiScene() {
     const ctx = gsap.context((self) => {
       const q = (sel: string) => self.selector!(sel) as HTMLElement[];
 
-      mm.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
+      mm.add(DESKTOP_PIN_QUERY, () => {
         const tl = gsap.timeline({
           defaults: { ease: "power2.out" },
           scrollTrigger: {

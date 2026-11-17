@@ -8,7 +8,9 @@ function navigationOffset(root: HTMLElement) {
 }
 
 const ANCHOR_PROGRESS: Record<string, number> = {
-  "#parents": 0.45,
+  "#learning-world": 0.27,
+  "#cikgu-ai": 0.62,
+  "#parents": 0.8,
 };
 
 export function CinematicMotionProvider({
@@ -70,13 +72,19 @@ export function CinematicMotionProvider({
 
         const progress = ANCHOR_PROGRESS[target];
         if (progress) {
-          const pinnedTrigger = ScrollTrigger.getAll().find(
-            (trigger) => trigger.trigger === element && trigger.pin,
-          );
+          const pinnedTrigger = ScrollTrigger.getAll().find((trigger) => {
+            const triggerElement = trigger.trigger;
+            return (
+              trigger.pin &&
+              triggerElement instanceof Element &&
+              (triggerElement === element || element.contains(triggerElement))
+            );
+          });
           if (pinnedTrigger) {
             const top = pinnedTrigger.start + (pinnedTrigger.end - pinnedTrigger.start) * progress;
             if (lenis) {
-              lenis.scrollTo(top, { duration: 1.6 });
+              lenis.resize();
+              lenis.scrollTo(top, { duration: 1.6, force: true });
             } else {
               window.scrollTo({ top, behavior: "smooth" });
             }
@@ -84,15 +92,15 @@ export function CinematicMotionProvider({
           }
         }
 
+        const top = element.getBoundingClientRect().top + window.scrollY + navigationOffset(root);
         if (lenis) {
-          lenis.scrollTo(element, {
-            offset: navigationOffset(root),
-            duration: 1.6,
-          });
+          // Use a numeric destination. Passing the element itself makes Lenis
+          // add the document's scroll-padding on top of our measured offset.
+          lenis.resize();
+          lenis.scrollTo(top, { duration: 1.6, force: true });
           return;
         }
 
-        const top = element.getBoundingClientRect().top + window.scrollY + navigationOffset(root);
         window.scrollTo({
           top,
           behavior: prefersReducedMotion ? "auto" : "smooth",

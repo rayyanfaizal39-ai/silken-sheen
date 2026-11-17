@@ -158,7 +158,19 @@ export default function CinematicNavigation() {
   const go = (target: string) => {
     const wasOpen = open;
     setOpen(false);
-    motion?.scrollToSection(target);
+    if (motion) {
+      motion.scrollToSection(target);
+    } else {
+      navRef.current
+        ?.closest(".cinematic-landing-root")
+        ?.querySelector<HTMLElement>(target)
+        ?.scrollIntoView({
+          behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+            ? "auto"
+            : "smooth",
+          block: "start",
+        });
+    }
     if (wasOpen) {
       window.requestAnimationFrame(() => burgerRef.current?.focus());
     }
