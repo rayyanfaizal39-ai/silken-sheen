@@ -13,8 +13,8 @@ export const geoF2C1MindMap: MindNode = {
           label: "Skala Lurus",
           children: [
             { id: "c1-1-1", label: "Bentuk graf berskala (bar)" },
-            { id: "c1-1-2", label: "Skala lurus muduh vs skala lurus penuh" },
-            { id: "c1-1-3", label: "Diukur terus dengan pembaris" },
+            { id: "c1-1-2", label: "Skala lurus mudah vs skala lurus penuh" },
+            { id: "c1-1-3", label: "Diukur dengan jangka tolok, dipindah ke skala" },
           ],
         },
         {

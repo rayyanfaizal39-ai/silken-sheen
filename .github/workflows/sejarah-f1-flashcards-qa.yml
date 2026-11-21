@@ -1,0 +1,28 @@
+name: Sejarah F1 Flashcard QA
+
+on:
+  push:
+    branches:
+      - audit/sejarah-f1-flashcards-oct2026
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  flashcards:
+    name: Flashcard tests and build
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Check Sejarah F1 flashcard decks and form isolation
+        run: npm test -- src/content/form1/sejarah/sejarah-f1-flashcards-audit.test.ts src/lib/flashcard-content-audit.test.ts src/lib/flashcard-form-isolation.test.ts --reporter=dot
+      - name: Check production build
+        run: npm run build

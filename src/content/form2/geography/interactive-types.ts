@@ -1,5 +1,6 @@
 import type { GridReferenceBlock } from "@/components/notes/blocks/GridReferenceReader";
 import type { ZoneExplorerBlock } from "@/components/notes/blocks/ZoneExplorer";
+import type { MapScaleBlock } from "@/components/notes/blocks/MapScaleReader";
 
 export type GeoInteractiveCard = {
   title: string;
@@ -78,6 +79,7 @@ export type GeoInteractiveSection = {
   tabGroups?: GeoTabGroup[];
   calculators?: GeoCalculatorBlock[];
   gridReference?: GridReferenceBlock;
+  mapScale?: MapScaleBlock;
   sequence?: {
     title: string;
     instruction: string;
