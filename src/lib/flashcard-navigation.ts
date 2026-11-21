@@ -25,7 +25,9 @@ export interface FlashcardSearch {
 }
 
 /** Form 1 Maths chapters that use the combined Concept / Practice / Challenge deck. */
-const STRUCTURED_MATH_F1_CHAPTERS = new Set(["Chapter 1"]);
+const STRUCTURED_MATH_F1_CHAPTERS = new Set(
+  Array.from({ length: 13 }, (_, index) => "Chapter " + (index + 1)),
+);
 
 export function isStructuredMathF1Chapter(
   subject: string | null | undefined,
