@@ -81,7 +81,12 @@ export const scienceF1C3QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Easy",
     question: "Organ manakah bertindak sebagai pusat kawalan dalam homeostasis manusia?",
-    options: ["Perut", "Otak", "Paru-paru", "Kulit"],
+    options: [
+      "Perut",
+      "Otak",
+      "Hati",
+      "Kulit",
+    ],
     answerIndex: 1,
     explanation:
       "Otak bertindak sebagai pusat kawalan yang mengesan perubahan dan menghantar arahan pembetulan.",

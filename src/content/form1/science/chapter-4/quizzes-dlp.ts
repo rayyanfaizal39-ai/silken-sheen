@@ -87,7 +87,12 @@ export const scienceF1C4QuizzesDLP: QuizQuestion[] = [
     lang: "dlp",
     difficulty: "Easy",
     question: "Which type of fertilisation usually occurs outside the body, often in water?",
-    options: ["External fertilisation", "Internal fertilisation", "Implantation", "Budding"],
+    options: [
+      "External fertilisation",
+      "Internal fertilisation",
+      "Artificial insemination",
+      "Asexual reproduction",
+    ],
     answerIndex: 0,
     explanation:
       "External fertilisation happens outside the body and is common in some aquatic animals.",
@@ -338,7 +343,7 @@ export const scienceF1C4QuizzesDLP: QuizQuestion[] = [
       "Why is fertilisation more likely to occur around the fertile period of the menstrual cycle?",
     options: [
       "The uterine lining breaks down to help sperm meet the ovum",
-      "A mature ovum is released from the ovary",
+      "A mature ovum is released from the ovary around the fertile period",
       "An embryo implants in the uterine lining before the ovum is fertilised",
       "A mature ovum is released from the uterus into the vagina",
     ],
@@ -356,10 +361,10 @@ export const scienceF1C4QuizzesDLP: QuizQuestion[] = [
     question:
       "How does the uterine lining change during the premenstrual phase when fertilisation may occur?",
     options: [
-      "The lining thickens and becomes richly supplied with blood vessels in preparation for possible implantation",
-      "The lining is completely shed with menstrual blood during the same phase",
-      "The lining becomes progressively thinner as all nutrients are reabsorbed",
-      "The lining becomes a placenta even if fertilisation has not occurred",
+      "The lining thickens with blood vessels to prepare for possible implantation",
+      "The lining is fully shed together with menstrual blood during this phase",
+      "The lining becomes thinner as its stored nutrients are reabsorbed",
+      "The lining becomes a placenta even without fertilisation taking place",
     ],
     answerIndex: 0,
     explanation:

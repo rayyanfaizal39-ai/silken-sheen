@@ -273,10 +273,10 @@ const pairs: Chapter2QuizPair[] = [
     bm: {
       question: "Kulit yang luka membentuk sel baharu untuk menggantikan sel rosak. Proses apakah yang terlibat?",
       options: [
-        "Pembahagian sel",
-        "Pembesaran sel sedia ada sahaja",
-        "Pengkhususan sel tanpa pembahagian",
-        "Penggabungan sel rosak",
+        "Pembahagian sel untuk menghasilkan sel pengganti",
+        "Pembesaran sel tanpa menghasilkan sebarang sel baharu",
+        "Pengkhususan sel tanpa membentuk sel yang baharu",
+        "Penggabungan sel rosak menjadi satu sel sahaja",
       ],
       answerIndex: 0,
       explanation: "Pembahagian sel membentuk sel baharu untuk pertumbuhan dan menggantikan sel yang rosak.",
@@ -284,10 +284,10 @@ const pairs: Chapter2QuizPair[] = [
     dlp: {
       question: "Damaged skin forms new cells to replace injured cells. Which process is involved?",
       options: [
-        "Cell division",
-        "Enlargement of existing cells only",
-        "Cell specialisation without division",
-        "Fusion of damaged cells",
+        "Division of cells to produce replacement cells",
+        "Enlargement of cells without producing new cells",
+        "Specialisation of cells without forming new cells",
+        "Fusion of damaged cells into a single cell",
       ],
       answerIndex: 0,
       explanation: "Cell division forms new cells for growth and to replace damaged cells.",
@@ -378,9 +378,9 @@ const pairs: Chapter2QuizPair[] = [
       question: "Perut dan usus kecil bekerjasama untuk mencerna makanan. Apakah aras organisasi yang diwakili oleh gabungan organ ini?",
       options: [
         "Sistem pencernaan",
-        "Tisu otot",
-        "Sel epitelium",
-        "Organisma",
+        "Tisu pencernaan",
+        "Sel pencernaan",
+        "Organ pencernaan",
       ],
       answerIndex: 0,
       explanation: "Beberapa organ yang bekerjasama menjalankan fungsi tertentu membentuk sistem. Perut dan usus kecil merupakan organ dalam sistem pencernaan.",
@@ -718,9 +718,9 @@ const pairs: Chapter2QuizPair[] = [
         "Tumbuhan diletakkan dalam gelap selama sehari tetapi masih hidup. Penjelasan manakah paling tepat?",
       options: [
         "Respirasi sel terus berlaku walaupun fotosintesis tidak berlaku tanpa cahaya",
-        "Fotosintesis terus berlaku tanpa cahaya",
-        "Kloroplas mengambil alih fungsi semua mitokondria",
-        "Tumbuhan berhenti menggunakan tenaga",
+        "Fotosintesis terus berjalan kerana makanan tersimpan menggantikan keperluan cahaya",
+        "Kloroplas mengambil alih semua proses pembebasan tenaga yang dijalankan mitokondria",
+        "Tumbuhan berhenti menggunakan tenaga kerana semua selnya tidak aktif dalam gelap",
       ],
       answerIndex: 0,
       explanation:
@@ -731,9 +731,9 @@ const pairs: Chapter2QuizPair[] = [
         "A plant is kept in darkness for one day but remains alive. Which explanation is most accurate?",
       options: [
         "Cell respiration continues although photosynthesis does not occur without light",
-        "Photosynthesis continues without light",
-        "Chloroplasts replace all mitochondrial functions",
-        "The plant stops using energy",
+        "Photosynthesis continues normally because stored food replaces the need for sunlight",
+        "Chloroplasts take over all energy-release processes normally done by mitochondria",
+        "The plant stops using energy because its living cells become inactive in darkness",
       ],
       answerIndex: 0,
       explanation:

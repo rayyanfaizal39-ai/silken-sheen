@@ -41,6 +41,20 @@ export const scienceF1QuizVisualById: Readonly<Record<string, string>> = {
   "sci-f1-c9-dlp-q12": "/quiz-visuals/science-f1/earth-layers.svg",
   "sci-f1-c9-bm-q28": "/quiz-visuals/science-f1/plates.svg",
   "sci-f1-c9-dlp-q28": "/quiz-visuals/science-f1/plates.svg",
+  "sci-f1-c1-bm-q15": "/quiz-visuals/science-f1/pendulum-setup.svg",
+  "sci-f1-c1-dlp-q15": "/quiz-visuals/science-f1/pendulum-setup.svg",
+  "sci-f1-c3-bm-q30": "/quiz-visuals/science-f1/plant-variables.svg",
+  "sci-f1-c3-dlp-q30": "/quiz-visuals/science-f1/plant-variables.svg",
+  "sci-f1-c4-bm-q15": "/quiz-visuals/science-f1/seed-conditions.svg",
+  "sci-f1-c4-dlp-q15": "/quiz-visuals/science-f1/seed-conditions.svg",
+  "sci-f1-c5-bm-q30": "/quiz-visuals/science-f1/density-comparison.svg",
+  "sci-f1-c5-dlp-q30": "/quiz-visuals/science-f1/density-comparison.svg",
+  "sci-f1-c6-bm-q29": "/quiz-visuals/science-f1/mass-conservation.svg",
+  "sci-f1-c6-dlp-q29": "/quiz-visuals/science-f1/mass-conservation.svg",
+  "sci-f1-c7-bm-q26": "/quiz-visuals/science-f1/candle-jars.svg",
+  "sci-f1-c7-dlp-q26": "/quiz-visuals/science-f1/candle-jars.svg",
+  "sci-f1-c9-bm-q30": "/quiz-visuals/science-f1/mining-runoff.svg",
+  "sci-f1-c9-dlp-q30": "/quiz-visuals/science-f1/mining-runoff.svg",
 };
 
 /** Describe the stimulus, not the answer. Shared geometry has localised alternatives. */
@@ -102,5 +116,33 @@ export const scienceF1QuizVisualDescriptions: Readonly<
   plates: {
     bm: "Dua plat kerak dengan anak panah menghala ke arah satu sama lain pada sempadan.",
     dlp: "Two crustal plates with arrows pointing towards each other at a boundary.",
+  },
+  "pendulum-setup": {
+    bm: "Dua bandul dengan panjang berbeza serta peringatan sepuluh ayunan. Tiada masa ditunjukkan.",
+    dlp: "Two pendulums have different lengths; timing ten oscillations is indicated, but no times or results appear.",
+  },
+  "plant-variables": {
+    bm: "Tumbuhan P dalam keadaan panas tanpa air, Q sejuk dengan air. Kedua-duanya menerima cahaya; bukaan stoma tidak ditunjukkan.",
+    dlp: "Plant P is hot and unwatered while Q is cool and watered. Both receive light; stomatal aperture is not shown.",
+  },
+  "seed-conditions": {
+    bm: "Tiga set biji benih: P mendapat air dan oksigen, Q tiada air, R tiada oksigen. Semua menerima haba yang sama; hasil percambahan tidak ditunjukkan.",
+    dlp: "Three seed setups: P has water and oxygen, Q lacks water, R lacks oxygen. Warmth is the same; germination outcomes are not shown.",
+  },
+  "density-comparison": {
+    bm: "Objek X berjisim 24 g, Y berjisim 42 g. Isi padu masing-masing 30 cm³. Kedudukan terapung atau tenggelam tidak ditunjukkan.",
+    dlp: "X has a mass of 24 g and Y 42 g; each has a volume of 30 cm³. Floating or sinking is not shown.",
+  },
+  "mass-conservation": {
+    bm: "Dalam sistem tertutup, X 10 g dan Y 6 g menghasilkan pepejal 12 g serta gas berjisim tidak diketahui.",
+    dlp: "In a closed system, X 10 g plus Y 6 g yield 12 g of solid and an unknown mass of gas.",
+  },
+  "candle-jars": {
+    bm: "Dua lilin serupa berada dalam balang tertutup berlainan isi padu udara. Tempoh pembakaran tidak ditunjukkan.",
+    dlp: "Two identical candles are enclosed in sealed jars containing different air volumes. Burning durations are not shown.",
+  },
+  "mining-runoff": {
+    bm: "Hujan di kawasan perlombongan berhampiran sungai; air hulu lebih jernih dan air hilir lebih keruh. Tiada cadangan tindakan ditunjukkan.",
+    dlp: "Rain at a mining area beside a river; upstream water is clearer than downstream water. No intervention is suggested.",
   },
 };

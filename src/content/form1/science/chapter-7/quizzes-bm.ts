@@ -53,10 +53,10 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     question: "Apakah atmosfera?",
     options: [
-      "Lapisan udara yang mengelilingi Bumi",
-      "Lapisan batu di kerak Bumi",
-      "Air laut di permukaan Bumi",
-      "Gas oksigen sahaja",
+      "Lapisan gas yang mengelilingi Bumi",
+      "Lapisan batu yang membentuk kerak Bumi",
+      "Lapisan air yang meliputi permukaan Bumi",
+      "Gas oksigen yang berada di dalam Bumi",
     ],
     answerIndex: 0,
     explanation: "Atmosfera ialah lapisan udara yang mengelilingi Bumi.",
@@ -89,10 +89,10 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
     question:
       "Jika salah satu daripada tiga syarat pembakaran disingkirkan, apakah yang akan berlaku?",
     options: [
-      "Pembakaran akan berterusan selagi salah satu syarat masih tersedia",
-      "Pembakaran akan berhenti",
-      "Pembakaran akan menghasilkan sendiri syarat yang telah disingkirkan",
-      "Pembakaran akan menjadi lebih cepat kerana kurang syarat diperlukan",
+      "Pembakaran berterusan kerana bahan api sahaja mencukupi",
+      "Pembakaran berhenti kerana ketiga-tiga syarat diperlukan",
+      "Pembakaran menghasilkan sendiri syarat yang tiada",
+      "Pembakaran menjadi lebih cepat apabila satu syarat tiada",
     ],
     answerIndex: 1,
     explanation:
@@ -153,7 +153,12 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Easy",
     question: "Gas nadir manakah digunakan dalam lampu papan tanda berwarna?",
-    options: ["Neon", "Helium", "Nitrogen", "Oksigen"],
+    options: [
+      "Neon",
+      "Radon",
+      "Helium",
+      "Xenon",
+    ],
     answerIndex: 0,
     explanation:
       "Neon digunakan dalam lampu papan tanda kerana menghasilkan cahaya berwarna terang.",
@@ -219,7 +224,12 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Easy",
     question: "Antara berikut, yang manakah bahan pencemar udara?",
-    options: ["Asap", "Oksigen", "Helium", "Nitrogen tulen"],
+    options: [
+      "Asap ekzos",
+      "Gas oksigen",
+      "Gas helium",
+      "Gas nitrogen",
+    ],
     answerIndex: 0,
     explanation: "Asap ialah bahan pencemar udara yang boleh menjejaskan kesihatan.",
   },
@@ -356,7 +366,12 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Medium",
     question: "Pencemar manakah boleh menyebabkan hujan asid?",
-    options: ["Sulfur dioksida", "Helium", "Neon", "Oksigen"],
+    options: [
+      "Sulfur dioksida",
+      "Karbon monoksida",
+      "Nitrogen molekul",
+      "Oksigen molekul",
+    ],
     answerIndex: 0,
     explanation: "Sulfur dioksida boleh melarut dalam air hujan dan membentuk hujan asid.",
   },
@@ -482,9 +497,9 @@ export const scienceF1C7QuizzesBM: QuizQuestion[] = [
     question:
       "Sebuah kawasan perumahan mengalami pencemaran udara akibat pembakaran sampah secara terbuka. Apakah tindakan paling sesuai?",
     options: [
-      "Memindahkan pembakaran sampah ke kawasan lapang berhampiran rumah",
+      "Memindahkan tempat membakar sampah ke kawasan lapang yang masih berhampiran rumah",
       "Menghentikan pembakaran terbuka dan mengurus sisa melalui kaedah pelupusan atau kitar semula yang sesuai",
-      "Membakar sampah pada waktu malam supaya asap kurang kelihatan",
+      "Membakar sampah pada waktu malam supaya asap lebih sukar dilihat oleh penduduk sekitar",
       "Membakar sampah dalam timbunan kecil setiap hari tanpa mengubah kaedah pelupusan",
     ],
     answerIndex: 1,

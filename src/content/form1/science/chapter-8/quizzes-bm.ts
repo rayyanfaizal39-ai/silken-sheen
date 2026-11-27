@@ -38,7 +38,12 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
     lang: "bm",
     difficulty: "Easy",
     question: "Berapakah kelajuan cahaya?",
-    options: ["3.0 x 10^8 m/s", "300 m/s", "3.0 x 10^3 m/s", "30 m/s"],
+    options: [
+      "3.0 x 10^8 m/s",
+      "3.0 x 10^2 m/s",
+      "3.0 x 10^3 m/s",
+      "3.0 x 10^1 m/s",
+    ],
     answerIndex: 0,
     explanation: "Kelajuan cahaya ialah kira-kira 3.0 x 10^8 meter sesaat.",
   },
@@ -100,7 +105,7 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
     question:
       "Apakah yang terhasil apabila cahaya merah, hijau dan biru dengan keamatan yang sesuai ditambahkan bersama?",
     options: [
-      "Cahaya putih",
+      "Cahaya putih sahaja",
       "Cahaya biru sahaja",
       "Cahaya magenta sahaja",
       "Cahaya kuning sahaja",
@@ -164,10 +169,10 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     question: "Mengapakah cermin cembung digunakan sebagai cermin sisi kenderaan?",
     options: [
-      "Menghasilkan medan pandangan yang lebih luas",
-      "Menghasilkan imej diperbesar supaya jarak objek dapat diukur secara langsung",
-      "Menumpukan cahaya untuk menghasilkan imej sahih di hadapan cermin",
-      "Menghasilkan imej sama saiz supaya seluruh kawasan belakang dapat dilihat",
+      "Memberi medan pandangan yang lebih luas",
+      "Membesarkan imej pada semua jarak objek",
+      "Menghasilkan imej nyata pada sebuah skrin",
+      "Mengekalkan saiz sebenar semua objek jauh",
     ],
     answerIndex: 0,
     explanation:
@@ -336,7 +341,7 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
     question:
       "Sinar cahaya memasuki kaca dari udara. Dalam keadaan manakah arah sinar tidak berubah?",
     options: [
-      "Sinar masuk sepanjang garis normal",
+      "Sinar memasuki kaca pada sudut sifar terhadap garis normal",
       "Sinar masuk pada sudut 30 darjah terhadap garis normal",
       "Sinar masuk pada sudut 45 darjah terhadap garis normal",
       "Sinar masuk pada sudut 60 darjah terhadap garis normal",
@@ -452,10 +457,10 @@ export const scienceF1C8QuizzesBM: QuizQuestion[] = [
     difficulty: "Easy",
     question: "Fenomena manakah paling berkaitan dengan penyebaran cahaya?",
     options: [
-      "Pembentukan pelangi",
-      "Pembentukan imej dalam cermin satah",
-      "Penyedut minuman kelihatan bengkok dalam air",
-      "Langit kelihatan biru pada waktu siang",
+      "Pelangi yang terhasil di langit selepas hujan",
+      "Imej yang terbentuk pada cermin satah",
+      "Penyedut minuman yang kelihatan bengkok",
+      "Langit yang kelihatan biru pada waktu siang",
     ],
     answerIndex: 0,
     explanation:
