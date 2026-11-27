@@ -82,3 +82,8 @@ Before and after: the existing helper shuffles every question **within Easy/Medi
 - Compared all non-Bab-1 inline records before/after: 3,045 in `content.ts` and 750 in `quizzes.ts` unchanged. Dedicated SHA-256 checks lock both files' Chapters 2–8 records.
 - Lifecycle tests guard the actual route's state/start/reset dependencies and exercise saved-order restoration; no browser-based full-attempt claim is made.
 - No commits, pushes, database updates or migration edits.
+
+
+## Current runtime addendum — 16 October 2026
+
+The shuffle description above records the earlier audit baseline. The current `orderRegularQuizQuestions` helper in `src/features/quiz/difficulty/quizDifficulty.ts` **fully mixes difficulty tiers for Sejarah Form 1** (the `mixDifficulties` path), rather than concatenating Easy → Medium → Hard blocks. Questions and choices are reshuffled for new attempts, and answer indices are remapped. The cross-chapter `sejarah-f1-quiz-bank-audit.test.ts` now locks this live behavior. Original editorial decisions and question-specific audit records above are unchanged.

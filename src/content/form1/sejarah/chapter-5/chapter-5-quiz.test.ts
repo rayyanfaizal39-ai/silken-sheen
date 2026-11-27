@@ -245,10 +245,32 @@ describe("Sejarah Form 1 Bab 5 textbook alignment", () => {
     expect(allText).not.toMatch(/laluan sutera|silk road/i);
   });
 
-  it("asks for the Indus by evidence, without a 'most advanced' superlative", () => {
+  it("assesses Indus geography, environmental risk and trade without repeating the drainage questions", () => {
     expect(correct(22)).toBe("Indus");
-    expect(byId(22).question).toMatch(/bandar terancang/);
-    expect(byId(22).question).toMatch(/pembetungan/);
+    expect(byId(22).question).toMatch(/pengkaji/);
+    expect(byId(22).question).toMatch(/barat laut India/);
+    expect(byId(22).question).toMatch(/banjir luar jangkaan/);
+    expect(byId(22).question).toMatch(/kemarau/);
+    expect(byId(22).question).toMatch(/Mesopotamia/);
+    expect(byId(22).question).not.toMatch(/batu bata|pembetungan|bandar terancang/);
+    expect(byId(22).explanation).toMatch(/dua musim yang ekstrem/);
+  });
+
+  it("uses parallel city pairs for the two Indus cities", () => {
+    expect(correct(13)).toBe("Mohenjo-Daro dan Harappa");
+    for (const option of byId(13).options) {
+      expect(option.split(" dan "), option).toHaveLength(2);
+    }
+  });
+
+  it("assesses the chronological order of all three Egyptian kingdom periods", () => {
+    expect(byId(24).question).toMatch(/Urutan/);
+    expect(correct(24)).toBe("Kerajaan Purba, Kerajaan Pertengahan dan Kerajaan Baru");
+    const terms = ["Kerajaan Purba", "Kerajaan Pertengahan", "Kerajaan Baru"];
+    for (const option of byId(24).options) {
+      expect(terms.every((term) => option.includes(term)), option).toBe(true);
+      expect(option.indexOf("Kerajaan"), option).toBe(0);
+    }
   });
 
   it("has only one simple base-60 recall question", () => {

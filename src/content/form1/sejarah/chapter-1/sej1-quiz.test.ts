@@ -1,4 +1,6 @@
 import { createHash } from "node:crypto";
+// Snapshot SHA values below reflect the live bank at the Form 1 Sejarah audit on 2026-10-16.
+// These guards intentionally require refresh after a reviewed unrelated quiz edit.
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { getChapterQuizQuestions } from "@/content/registry";
@@ -158,7 +160,7 @@ describe("Sejarah Form 1 Bab 1 selective repair — live registry", () => {
   });
 
   it.each([
-    ["content", "4bd7d92647845ff6be1d0026cc2e39914bbd7181ceed2c83b11f3902a18b590f"],
+    ["content", "a419039c097c0d6f5097d120f0026bb9af4e504f5275dcb8dd08a8d8da054058"],
     ["quizzes", "5348fe2c41e531d81bc2e92b85c3144ea598a5a49aa324a24881cb8696f832c4"],
   ])("locks untouched Chapters 4–8 records in %s", (file, expectedHash) => {
     const records = [...source(file).matchAll(/ {2}\{\n {4}id: "([^"]+)",[\s\S]*?\n {2}\},/g)]
@@ -230,13 +232,13 @@ describe("existing Sejarah attempt contract — no shuffle engine change", () =>
   it("guards the existing route lifecycle: state-held order, start dependencies, explicit reshuffle and reset", () => {
     const route = readFileSync(new URL("../../../../routes/quizzes.tsx", import.meta.url), "utf8");
     expect(route).toContain('subject !== "sejarah" && diff !== "All"');
-    expect(route).toContain('difficulty: subject === "sejarah" ? "All" : diff');
+    expect(route).toContain('difficulty: subject === "sejarah" || isForm3MathSetQuiz ? "All" : diff');
     expect(route).toMatch(/const \[shuffledPool, setShuffledPool\] = useState/);
     expect(route).toMatch(
       /if \(timerPref && pool.length > 0\) \{\s*setShuffledPool\(buildShuffledPool\(pool\)\);\s*\}\s*\}, \[timerPref, pool\]\)/,
     );
     expect(route).toMatch(
-      /function reshuffle\(\) \{\s*if \(pool.length > 0\) \{\s*setShuffledPool\(buildShuffledPool\(pool\)\)/,
+      /function reshuffle\(\) \{\s*quizMotion\.cancel\(\);\s*if \(pool.length > 0\) \{\s*setShuffledPool\(buildShuffledPool\(pool\)\)/,
     );
     const answer = route.slice(
       route.indexOf("  function answer(i:"),
